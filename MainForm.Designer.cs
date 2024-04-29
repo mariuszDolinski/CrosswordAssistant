@@ -107,6 +107,7 @@
             textBoxPatternResults.BackColor = SystemColors.ControlLight;
             textBoxPatternResults.BorderStyle = BorderStyle.FixedSingle;
             textBoxPatternResults.Dock = DockStyle.Fill;
+            textBoxPatternResults.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point, 238);
             textBoxPatternResults.Location = new Point(0, 0);
             textBoxPatternResults.Multiline = true;
             textBoxPatternResults.Name = "textBoxPatternResults";
@@ -242,7 +243,7 @@
             labelPattern.Name = "labelPattern";
             labelPattern.Size = new Size(777, 32);
             labelPattern.TabIndex = 0;
-            labelPattern.Text = "DOPASUJ DO WZORCA";
+            labelPattern.Text = "WZORZEC/ANAGRAMY/METAGRAMY";
             labelPattern.TextAlign = ContentAlignment.TopCenter;
             labelPattern.Click += PatternLabel_Click;
             // 

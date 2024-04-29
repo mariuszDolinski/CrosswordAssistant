@@ -9,6 +9,7 @@ namespace CrosswordAssistant
         public MainForm()
         {
             InitializeComponent();
+            MinimumSize = Size;
 
             _dictionaryService = new DictionaryService();
             if (_dictionaryService.DictionaryLoadError())
@@ -42,10 +43,9 @@ namespace CrosswordAssistant
                     matches = _dictionaryService.SearchByPattern(pattern);
                     break;
                 case SearchMode.Anagram:
-                    //TO DO
+                    matches = _dictionaryService.SearchForAnagrams(pattern);
                     break;
-            }
-            
+            }           
             FillTextBoxResults(matches, textBoxPatternResults);
             textBoxPattern.ReadOnly = false;
         }
@@ -87,9 +87,8 @@ namespace CrosswordAssistant
                         textBox.Text = "BRAK DOPASOWAÑ";
                         break;
                     case SearchMode.Anagram:
-                        textBox.Text = "Funkcje jeszcze nie dostêpna.";
+                        textBox.Text = "BRAK ANAGRAMÓW";
                         break;
-
                 }
             }
             else
