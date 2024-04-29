@@ -49,7 +49,6 @@ namespace CrosswordAssistant.Services
                 if (isMatch)
                 {
                     result.Add(word);
-                    if (result.Count == 500) break;
                 }
             }
             return result;
@@ -70,7 +69,7 @@ namespace CrosswordAssistant.Services
                 isAnagram = true;
                 if(word is null) continue;
                 if(word.Length != pattern.Length) continue;
-                if(word == pattern) continue;
+                if(word.Equals(pattern, StringComparison.CurrentCultureIgnoreCase)) continue;
                 string tmp = word.ToLower();
                 for(int i=0; i<pattern.Length; i++)
                 {
@@ -87,10 +86,45 @@ namespace CrosswordAssistant.Services
                 if(pattern.CountChars('.',0) == tmp.CountChars('+', 1))
                 {
                     result.Add(word);
-                    if(result.Count == 500) break;
                 }
             }
 
+            return result;
+        }
+        /// <summary>
+        /// Return: list of words in CurrentDictionary with length is in given range.
+        /// </summary>
+        /// <param name="min">range lower boundry</param>
+        /// <param name="max">range upper boundry</param>
+        /// <returns></returns>
+        public List<string> SearchWithGivenLength(int min, int max)
+        {
+            List<string> result = [];
+            foreach(var word in CurrentDictionary)
+            {
+                if (word.Length >= min && word.Length <= max)
+                {
+                    result.Add(word);
+                }
+            }
+
+            return result;  
+        }
+        /// <summary>
+        /// Return list of words from CurrentDictionary which are metagrams of given pattern
+        /// </summary>
+        /// <param name="pattern"></param>
+        /// <returns></returns>
+        public List<string> SearchForMetagrams(string pattern)
+        {
+            List<string> result = [];
+            foreach (var word in CurrentDictionary)
+            {
+                if (word.IsMetagram(pattern))
+                {
+                    result.Add(word);
+                }
+            }
             return result;
         }
 

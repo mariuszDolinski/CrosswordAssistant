@@ -30,13 +30,9 @@ namespace CrosswordAssistant
         private void SearchPattern_Click(object sender, EventArgs e)
         {
             string pattern = textBoxPattern.Text.Trim().ToLower();
-            if (pattern.Length == 0)
-            {
-                textBoxPatternResults.Text = Messages.EmptyPattern;
-                return;
-            }
+            if (!IsPatternCorrect(pattern)) return;
             textBoxPattern.ReadOnly = true;
-            List<string> matches = new List<string>();
+            List<string> matches = [];
             switch (_dictionaryService.Mode)
             {
                 case SearchMode.Pattern:
@@ -45,7 +41,26 @@ namespace CrosswordAssistant
                 case SearchMode.Anagram:
                     matches = _dictionaryService.SearchForAnagrams(pattern);
                     break;
-            }           
+                case SearchMode.Length:
+                    int min, max;
+                    bool minOk = int.TryParse(textBoxMinLen.Text, out min);
+                    bool maxOk = int.TryParse(textBoxMaxLen.Text, out max);
+                    if (minOk && maxOk)
+                    {
+                        matches = _dictionaryService.SearchWithGivenLength(min, max);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Podaj poprawny zakres dla iloœci znaków", "B³¹d danych",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    break;
+                case SearchMode.Metagram:
+                    matches = _dictionaryService.SearchForMetagrams(pattern);
+                    break;
+            }
+            matches = ApplyFilters(matches);
+            matches = BoundTo500(matches);
             FillTextBoxResults(matches, textBoxPatternResults);
             textBoxPattern.ReadOnly = false;
         }
@@ -63,6 +78,41 @@ namespace CrosswordAssistant
             {
                 _dictionaryService.Mode = SearchMode.Anagram;
                 textBoxPatternResults.Text = Messages.AnagramModeMessage;
+            }
+        }
+        private void RadioLength_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioLengthMode.Checked)
+            {
+                groupBoxMode.Size = new Size(groupBoxMode.Size.Width, 160);
+                _dictionaryService.Mode = SearchMode.Length;
+                textBoxPatternResults.Text = Messages.LengthModeMessage;
+                textBoxPattern.Enabled = false;
+            }
+            else
+            {
+                groupBoxMode.Size = new Size(groupBoxMode.Size.Width, 110);
+                textBoxPattern.Enabled = true;
+            }
+        }
+        private void RadioMetagram_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioMetagramMode.Checked)
+            {
+                _dictionaryService.Mode = SearchMode.Metagram;
+                textBoxPatternResults.Text = Messages.MetagramModeMessage;
+            }
+        }
+        private void CheckBoxStartWith_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxBeginWith.Checked)
+            {
+                textBoxBeginsWith.Enabled = true;
+            }
+            else
+            {
+                textBoxBeginsWith.Enabled = false;
+                textBoxBeginsWith.Text = "";
             }
         }
         #endregion
@@ -89,6 +139,9 @@ namespace CrosswordAssistant
                     case SearchMode.Anagram:
                         textBox.Text = "BRAK ANAGRAMÓW";
                         break;
+                    case SearchMode.Metagram:
+                        textBox.Text = "BRAK METAGRAMÓW";
+                        break;
                 }
             }
             else
@@ -101,10 +154,41 @@ namespace CrosswordAssistant
             if (results.Count == 500)
             {
                 textBox.Text += Environment.NewLine;
-                textBox.Text += "Zbyt wiele dopasowañ. Wyœwietlam pierwsze 500.";
+                textBox.Text += "Zbyt wiele dopasowañ. " + Environment.NewLine +
+                    "Wyœwietlam pierwsze 500.";
             }
         }
-        #endregion
+        private bool IsPatternCorrect(string pattern)
+        {
+            if (_dictionaryService.Mode == SearchMode.Length) return true;
+            if (pattern.Length == 0)
+            {
+                textBoxPatternResults.Text = Messages.EmptyPattern;
+                return false;
+            }
+            return true;
+        }
+        private List<string> ApplyFilters(List<string> words)
+        {
+            List<string> results = words;
+            if (checkBoxBeginWith.Checked)
+            {
+                if(textBoxBeginsWith.Text.Length > 0)
+                {
+                    results = results
+                        .Where(w => w.StartsWith(textBoxBeginsWith.Text, StringComparison.CurrentCultureIgnoreCase))
+                        .ToList();
+                }
+            }
 
+            return results;
+        }
+        private List<string> BoundTo500(List<string> words)
+        {
+            List<string> results = words;
+            if(results.Count <= 500) return results;
+            return results.Take(500).ToList();
+        }
+        #endregion
     }
 }
