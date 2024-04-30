@@ -88,6 +88,7 @@ namespace CrosswordAssistant
                 _dictionaryService.Mode = SearchMode.Length;
                 textBoxPatternResults.Text = Messages.LengthModeMessage;
                 textBoxPattern.Enabled = false;
+                textBoxPattern.Text = "";
             }
             else
             {
@@ -105,15 +106,15 @@ namespace CrosswordAssistant
         }
         private void CheckBoxStartWith_CheckedChanged(object sender, EventArgs e)
         {
-            if (checkBoxBeginWith.Checked)
-            {
-                textBoxBeginsWith.Enabled = true;
-            }
-            else
-            {
-                textBoxBeginsWith.Enabled = false;
-                textBoxBeginsWith.Text = "";
-            }
+            FormService.FilterChecked(checkBoxBeginWith, textBoxBeginsWith);
+        }
+        private void CheckBoxEndsWith_CheckedChanged(object sender, EventArgs e)
+        {
+            FormService.FilterChecked(checkBoxEndsWith, textBoxEndsWith);
+        }
+        private void CheckBoxContains_CheckedChanged(object sender, EventArgs e)
+        {
+            FormService.FilterChecked(checkBoxContains, textBoxContains);
         }
         #endregion
 
@@ -173,20 +174,37 @@ namespace CrosswordAssistant
             List<string> results = words;
             if (checkBoxBeginWith.Checked)
             {
-                if(textBoxBeginsWith.Text.Length > 0)
+                if (textBoxBeginsWith.Text.Length > 0)
                 {
                     results = results
                         .Where(w => w.StartsWith(textBoxBeginsWith.Text, StringComparison.CurrentCultureIgnoreCase))
                         .ToList();
                 }
             }
-
+            if (checkBoxEndsWith.Checked)
+            {
+                if (textBoxEndsWith.Text.Length > 0)
+                {
+                    results = results
+                        .Where(w => w.EndsWith(textBoxEndsWith.Text, StringComparison.CurrentCultureIgnoreCase))
+                        .ToList();
+                }
+            }
+            if (checkBoxContains.Checked)
+            {
+                if (textBoxContains.Text.Length > 0)
+                {
+                    results = results
+                        .Where(w => w.Contains(textBoxContains.Text, StringComparison.CurrentCultureIgnoreCase))
+                        .ToList();
+                }
+            }
             return results;
         }
         private List<string> BoundTo500(List<string> words)
         {
             List<string> results = words;
-            if(results.Count <= 500) return results;
+            if (results.Count <= 500) return results;
             return results.Take(500).ToList();
         }
         #endregion

@@ -33,6 +33,10 @@
             splitContainerResults = new SplitContainer();
             textBoxPatternResults = new TextBox();
             groupBoxFilters = new GroupBox();
+            textBoxContains = new TextBox();
+            checkBoxContains = new CheckBox();
+            textBoxEndsWith = new TextBox();
+            checkBoxEndsWith = new CheckBox();
             textBoxBeginsWith = new TextBox();
             checkBoxBeginWith = new CheckBox();
             groupBoxMode = new GroupBox();
@@ -130,6 +134,10 @@
             // 
             // groupBoxFilters
             // 
+            groupBoxFilters.Controls.Add(textBoxContains);
+            groupBoxFilters.Controls.Add(checkBoxContains);
+            groupBoxFilters.Controls.Add(textBoxEndsWith);
+            groupBoxFilters.Controls.Add(checkBoxEndsWith);
             groupBoxFilters.Controls.Add(textBoxBeginsWith);
             groupBoxFilters.Controls.Add(checkBoxBeginWith);
             groupBoxFilters.Dock = DockStyle.Fill;
@@ -139,6 +147,46 @@
             groupBoxFilters.TabIndex = 1;
             groupBoxFilters.TabStop = false;
             groupBoxFilters.Text = "Dodatkowe filtry";
+            // 
+            // textBoxContains
+            // 
+            textBoxContains.Enabled = false;
+            textBoxContains.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            textBoxContains.Location = new Point(26, 231);
+            textBoxContains.Name = "textBoxContains";
+            textBoxContains.Size = new Size(273, 37);
+            textBoxContains.TabIndex = 5;
+            // 
+            // checkBoxContains
+            // 
+            checkBoxContains.AutoSize = true;
+            checkBoxContains.Location = new Point(26, 196);
+            checkBoxContains.Name = "checkBoxContains";
+            checkBoxContains.Size = new Size(231, 29);
+            checkBoxContains.TabIndex = 4;
+            checkBoxContains.Text = "Tylko wyrazy zawierające";
+            checkBoxContains.UseVisualStyleBackColor = true;
+            checkBoxContains.CheckedChanged += CheckBoxContains_CheckedChanged;
+            // 
+            // textBoxEndsWith
+            // 
+            textBoxEndsWith.Enabled = false;
+            textBoxEndsWith.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            textBoxEndsWith.Location = new Point(28, 153);
+            textBoxEndsWith.Name = "textBoxEndsWith";
+            textBoxEndsWith.Size = new Size(273, 37);
+            textBoxEndsWith.TabIndex = 3;
+            // 
+            // checkBoxEndsWith
+            // 
+            checkBoxEndsWith.AutoSize = true;
+            checkBoxEndsWith.Location = new Point(26, 118);
+            checkBoxEndsWith.Name = "checkBoxEndsWith";
+            checkBoxEndsWith.Size = new Size(265, 29);
+            checkBoxEndsWith.TabIndex = 2;
+            checkBoxEndsWith.Text = "Tylko wyrazy kończące się na";
+            checkBoxEndsWith.UseVisualStyleBackColor = true;
+            checkBoxEndsWith.CheckedChanged += CheckBoxEndsWith_CheckedChanged;
             // 
             // textBoxBeginsWith
             // 
@@ -432,5 +480,9 @@
         private GroupBox groupBoxFilters;
         private CheckBox checkBoxBeginWith;
         private TextBox textBoxBeginsWith;
+        private TextBox textBoxContains;
+        private CheckBox checkBoxContains;
+        private TextBox textBoxEndsWith;
+        private CheckBox checkBoxEndsWith;
     }
 }

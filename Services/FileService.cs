@@ -24,6 +24,5 @@ namespace CrosswordAssistant.Services
                 return [Messages.NoFile];
             }
         }
-
     }
 }
