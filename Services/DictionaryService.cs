@@ -7,6 +7,9 @@ namespace CrosswordAssistant.Services
         public List<string> CurrentDictionary { get; set; }
         public SearchMode Mode { get; set; }
 
+        public const string AllowedChars = "aąbcćdeęfghijklłmnńoópqrsśtuvwxyzźż.";
+        public const string AllowedLetters = "aąbcćdeęfghijklłmnńoópqrsśtuvwxyzźż";
+
         public DictionaryService() 
         {
             CurrentDictionary = FileService.ReadDictionary();
@@ -126,6 +129,45 @@ namespace CrosswordAssistant.Services
                 }
             }
             return result;
+        }
+        public List<string> SearchUluzSam(List<int> digits, string[] groups)
+        {
+            List<string> result = [];
+            int patternLength = digits.Count;
+            foreach(var word in CurrentDictionary)
+            {
+                string wordL = word.ToLower();
+                bool isMatch = true;
+                if (word.Length != patternLength) continue;
+                for(int i=0; i<digits.Count; i++)
+                {
+                    if (!groups[digits[i] - 1].Contains(wordL[i]))
+                    {
+                        isMatch = false;
+                        break;
+                    }
+                }
+                if (isMatch)
+                {
+                    result.Add(word);
+                }                   
+            }
+
+            return result;
+        }
+        /// <summary>
+        /// Return: true if pattern contains only allowed chars, specified in allowedChars string
+        /// </summary>
+        /// <param name="pattern"></param>
+        /// <returns></returns>
+        public static bool ValidatePattern(string pattern, string allowedChars)
+        {
+            foreach (var ch in pattern)
+            {
+                if (!allowedChars.Contains(ch))
+                    return false;
+            }
+            return true;
         }
 
     }

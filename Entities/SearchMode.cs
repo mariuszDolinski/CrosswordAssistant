@@ -5,6 +5,7 @@
         Pattern = 1,
         Anagram = 2,
         Metagram = 3,
-        Length = 4
+        Length = 4,
+        UluzSam = 5
     }
 }
