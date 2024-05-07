@@ -4,8 +4,8 @@ namespace CrosswordAssistant.Services
 {
     public class FileService
     {
-        private static string SavePath { get; } = "Słowniki";
-        private static string FileName { get; } = "slownik.txt";
+        public static string SavePath { get; } = "Słowniki";
+        public static string FileName { get; } = "slownik.txt";
 
 
         public static List<string> ReadDictionary()

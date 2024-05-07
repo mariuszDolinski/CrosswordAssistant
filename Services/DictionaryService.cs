@@ -169,6 +169,11 @@ namespace CrosswordAssistant.Services
             }
             return true;
         }
+        public string RenderLoadInfo()
+        {
+            return "Słownik " + FileService.FileName + " został wczytany poprawnie."
+                + Environment.NewLine + "Słownik zawiera " + CurrentDictionary.Count + " wyrazów.";
+        }
 
     }
 }

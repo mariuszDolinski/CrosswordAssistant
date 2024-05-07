@@ -1,5 +1,6 @@
 using CrosswordAssistant.Entities;
 using CrosswordAssistant.Services;
+using System.Diagnostics;
 
 namespace CrosswordAssistant
 {
@@ -24,8 +25,7 @@ namespace CrosswordAssistant
 
         #region events handlers
         private void SearchPattern_Click(object sender, EventArgs e)
-        {
-            SetMode();
+        { 
             string pattern = textBoxPattern.Text.Trim().ToLower();
             if (!ValidatePattern(pattern)) return;
             textBoxPattern.ReadOnly = true;
@@ -66,15 +66,19 @@ namespace CrosswordAssistant
             textBoxPatternUls.ReadOnly = true;
             _dictionaryService.Mode = SearchMode.UluzSam;
             int result = ValidateUluzSamPattern(textBoxPatternUls.Text);
-            if(result == -1)
+            if (result == -1)
             {
                 MessageBox.Show("Wzorzec zawiera niedozwolone znaki, powinien zawieraæ tylko cyfry 1-8.",
-                    "B³¹d wzorca",MessageBoxButtons.OK,MessageBoxIcon.Warning);
+                    "B³¹d wzorca", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                textBoxPatternUls.ReadOnly = false;
+                return;
             }
-            if(!ValidateUluzSamGroups())
+            if (!ValidateUluzSamGroups())
             {
-                MessageBox.Show("Grupy zawieraj¹ niedozwolone znaki, powinnny zawieraæ tylko litery polsiego alfabetu.",
+                MessageBox.Show("Grupy zawieraj¹ niedozwolone znaki, powinnny zawieraæ tylko litery polskiego alfabetu.",
                     "B³¹d grup", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                textBoxPatternUls.ReadOnly = false;
+                return;
             }
             List<int> digits = ConvertIntToList(result);
             string[] groups = ConvertGroupsToArray();
@@ -149,12 +153,30 @@ namespace CrosswordAssistant
 
             }
         }
+        private void searchGoogle_MenuClick(object sender, EventArgs e)
+        {
+            string searchPhrase = GetSelectedResult();
+            if (searchPhrase.Length > 0)
+                SearchInWeb(WebSearch.Google, searchPhrase);
+        }
+        private void searchSJP_MenuClick(object sender, EventArgs e)
+        {
+            string searchPhrase = GetSelectedResult();
+            if (searchPhrase.Length > 0)
+                SearchInWeb(WebSearch.Sjp, searchPhrase);
+        }
+        private void TabControl_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var currentPage = (sender as TabControl)!.SelectedIndex;
+            SetMode(currentPage);
+        }
         #endregion
 
         #region private methods
         private void InitControls()
         {
             textBoxPatternResults.Text = Messages.PatternModeMessage + Environment.NewLine;
+            labelLoadInfo.Text = _dictionaryService.RenderLoadInfo();
             SetHelpLabels();
         }
         private void FillTextBoxResults(List<string> results, TextBox textBox)
@@ -219,7 +241,7 @@ namespace CrosswordAssistant
             int result;
             if (pattern.Length == 0) return -1;
             if (pattern.Contains('0') || pattern.Contains('9')) return -1;
-            if(int.TryParse(pattern, out result)) return result;
+            if (int.TryParse(pattern, out result)) return result;
             return -1;
         }
         private bool ValidateUluzSamGroups()
@@ -288,17 +310,23 @@ namespace CrosswordAssistant
             msg = "Wyszukuje wyrazy o wskazanej w zakresie od-do iloœci znaków. W tym trybie wzorzec nie jest u¿ywany. " +
                 "W celu ograniczenia iloœci dopasowañ zaleca siê u¿ycie dodatkowych filtrów.";
             labelLM.Text = msg;
-            msg = "Pomocnik krzy¿ówkowicza v2.2.1" + Environment.NewLine +
+            msg = "Pomocnik krzy¿ówkowicza v2.2.2" + Environment.NewLine +
                 "Autor: Mariusz Doliñski" + Environment.NewLine + "© 2024";
             labelAbout.Text = msg;
         }
-        private void SetMode()
+        private void SetMode(int tabIndex)
         {
-            if (_dictionaryService.Mode != SearchMode.UluzSam) return;
-            if (radioPatternMode.Checked) _dictionaryService.Mode = SearchMode.Pattern;
-            if (radioAnagramMode.Checked) _dictionaryService.Mode = SearchMode.Anagram;
-            if (radioMetagramMode.Checked) _dictionaryService.Mode = SearchMode.Metagram;
-            if (radioLengthMode.Checked) _dictionaryService.Mode = SearchMode.Length;
+            if (tabIndex == 1) 
+            {
+                _dictionaryService.Mode = SearchMode.UluzSam;
+            }
+            else if (tabIndex == 0)
+            {
+                if (radioPatternMode.Checked) _dictionaryService.Mode = SearchMode.Pattern;
+                else if (radioAnagramMode.Checked) _dictionaryService.Mode = SearchMode.Anagram;
+                else if (radioMetagramMode.Checked) _dictionaryService.Mode = SearchMode.Metagram;
+                else if (radioLengthMode.Checked) _dictionaryService.Mode = SearchMode.Length;
+            }
         }
         private List<int> ConvertIntToList(int number)
         {
@@ -307,24 +335,54 @@ namespace CrosswordAssistant
             while (number > 0)
             {
                 digit = number % 10;
-                result.Insert(0,digit);
+                result.Insert(0, digit);
                 number = (number - digit) / 10;
             }
             return result;
         }
-        private string[] ConvertGroupsToArray() 
+        private string[] ConvertGroupsToArray()
         {
-            string[] result = new string[8];
-            result[0] = textBoxGr1.Text.ToLower();
-            result[1] = textBoxGr2.Text.ToLower();
-            result[2] = textBoxGr3.Text.ToLower();
-            result[3] = textBoxGr4.Text.ToLower();
-            result[4] = textBoxGr5.Text.ToLower();
-            result[5] = textBoxGr6.Text.ToLower();
-            result[6] = textBoxGr7.Text.ToLower();
-            result[7] = textBoxGr8.Text.ToLower();
-
+            string[] result =
+            [
+                textBoxGr1.Text.ToLower(),
+                textBoxGr2.Text.ToLower(),
+                textBoxGr3.Text.ToLower(),
+                textBoxGr4.Text.ToLower(),
+                textBoxGr5.Text.ToLower(),
+                textBoxGr6.Text.ToLower(),
+                textBoxGr7.Text.ToLower(),
+                textBoxGr8.Text.ToLower(),
+            ];
             return result;
+        }
+        private static void SearchInWeb(string web, string searchPhrase)
+        {
+            ProcessStartInfo processInfo = new()
+            {
+                FileName = web + searchPhrase,
+                UseShellExecute = true
+            };
+            Process.Start(processInfo);
+        }
+        private string GetSelectedResult()
+        {
+            string searchPhrase;
+            if (_dictionaryService.Mode == SearchMode.UluzSam)
+            {
+                searchPhrase = textBoxResultsUls.SelectedText;
+            }
+            else
+            {
+                searchPhrase = textBoxPatternResults.SelectedText;
+            }
+
+            if (string.IsNullOrEmpty(searchPhrase))
+            {
+                MessageBox.Show("Zaznacz tekst do wyszukania", "Uwaga", MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                return "";
+            }
+            return searchPhrase;
         }
 
         #endregion
