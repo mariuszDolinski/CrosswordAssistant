@@ -25,7 +25,7 @@ namespace CrosswordAssistant
 
         #region events handlers
         private void SearchPattern_Click(object sender, EventArgs e)
-        { 
+        {
             string pattern = textBoxPattern.Text.Trim().ToLower();
             if (!ValidatePattern(pattern)) return;
             textBoxPattern.ReadOnly = true;
@@ -57,7 +57,7 @@ namespace CrosswordAssistant
                     break;
             }
             matches = ApplyFilters(matches);
-            matches = BoundTo500(matches);
+            matches = Utilities.BoundTo500(matches);
             FillTextBoxResults(matches, textBoxPatternResults);
             textBoxPattern.ReadOnly = false;
         }
@@ -65,7 +65,7 @@ namespace CrosswordAssistant
         {
             textBoxPatternUls.ReadOnly = true;
             _dictionaryService.Mode = SearchMode.UluzSam;
-            int result = ValidateUluzSamPattern(textBoxPatternUls.Text);
+            int result = Utilities.ValidateUluzSamPattern(textBoxPatternUls.Text);
             if (result == -1)
             {
                 MessageBox.Show("Wzorzec zawiera niedozwolone znaki, powinien zawieraæ tylko cyfry 1-8.",
@@ -80,12 +80,58 @@ namespace CrosswordAssistant
                 textBoxPatternUls.ReadOnly = false;
                 return;
             }
-            List<int> digits = ConvertIntToList(result);
+            List<int> digits = Utilities.ConvertIntToList(result);
             string[] groups = ConvertGroupsToArray();
             List<string> matches = _dictionaryService.SearchUluzSam(digits, groups);
-            matches = BoundTo500(matches);
+            matches = Utilities.BoundTo500(matches);
             FillTextBoxResults(matches, textBoxResultsUls);
             textBoxPatternUls.ReadOnly = false;
+        }
+        private void LoadDictionaryBtn_Click(object sender, EventArgs e)
+        {
+            if (FileService.SetFileFromDialog(newDictionaryDialog))
+            {
+                _dictionaryService.LoadDictionary();
+                SetFileInfo();
+            }
+        }
+        private void AddToDictionaryBtn_Click(object sender, EventArgs e)
+        {
+            if (textBoxAddToDictionary.Text.Length == 0)
+            {
+                MessageBox.Show("Nie podano ¿adnych wyrazów do dodania.", "Uwaga", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            var wordsToAdd = textBoxAddToDictionary.Lines.ToList();
+            wordsToAdd = Utilities.CorrectLines(wordsToAdd);
+            if (wordsToAdd.Count == 0)
+            {
+                MessageBox.Show("Nie podano ¿adnych wyrazów do dodania.", "Uwaga", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (!DictionaryService.ValidateWordsToAdd(wordsToAdd))
+            {
+                MessageBox.Show("Wyrazy do dodania powinny zaczynaæ i koñczyæ siê liter¹ " +
+                    "oraz zawieraæ tylko litery i znak pauzy (-)", "Uwaga", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            var addedWords = _dictionaryService.AddWordsToDictionary(wordsToAdd);
+            if (addedWords.Count == 0)
+            {
+                MessageBox.Show("Podane wyrazy s¹ ju¿ w bie¿¹cym s³owniku.", "Uwaga", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            string msg = "";
+            foreach (var word in addedWords)
+            {
+                msg += word + Environment.NewLine;
+            }
+            if (FileService.SaveDictionary(_dictionaryService.CurrentDictionary))
+            {
+                MessageBox.Show("Wyrazy: " + Environment.NewLine + msg + "dodane poprawnie.", "Dodano wyrazy do s³ownika",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
         private void RadioPattern_CheckedChanged(object sender, EventArgs e)
         {
@@ -153,17 +199,17 @@ namespace CrosswordAssistant
 
             }
         }
-        private void searchGoogle_MenuClick(object sender, EventArgs e)
+        private void SearchGoogle_MenuClick(object sender, EventArgs e)
         {
             string searchPhrase = GetSelectedResult();
             if (searchPhrase.Length > 0)
-                SearchInWeb(WebSearch.Google, searchPhrase);
+                Utilities.SearchInWeb(WebSearch.Google, searchPhrase);
         }
-        private void searchSJP_MenuClick(object sender, EventArgs e)
+        private void SearchSJP_MenuClick(object sender, EventArgs e)
         {
             string searchPhrase = GetSelectedResult();
             if (searchPhrase.Length > 0)
-                SearchInWeb(WebSearch.Sjp, searchPhrase);
+                Utilities.SearchInWeb(WebSearch.Sjp, searchPhrase);
         }
         private void TabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -176,8 +222,24 @@ namespace CrosswordAssistant
         private void InitControls()
         {
             textBoxPatternResults.Text = Messages.PatternModeMessage + Environment.NewLine;
-            labelLoadInfo.Text = _dictionaryService.RenderLoadInfo();
+            textBoxAddToDictionary.PlaceholderText = "Wpisz wyrazy do dodania " + Environment.NewLine +
+                "(po jednym w linii)";
+            SetFileInfo();
             SetHelpLabels();
+        }
+        private void SetFileInfo()
+        {
+            labelFileName.Text = FileService.FileName;
+            int wordsCount = _dictionaryService.GetWordsCount();
+            labelWordsCount.Text = wordsCount.ToString();
+            if (wordsCount < 10)
+            {
+                labelWordsCount.BackColor = Color.DarkSalmon;
+            }
+            else
+            {
+                labelWordsCount.BackColor = Color.MediumAquamarine;
+            }
         }
         private void FillTextBoxResults(List<string> results, TextBox textBox)
         {
@@ -222,7 +284,7 @@ namespace CrosswordAssistant
                 return false;
             }
             if (_dictionaryService.Mode == SearchMode.Metagram && pattern.Contains('.')
-                || !DictionaryService.ValidatePattern(pattern, DictionaryService.AllowedChars))
+                || !DictionaryService.ValidateAllowedChars(pattern, DictionaryService.AllowedPatternChars))
             {
                 MessageBox.Show("Wzorzec zawiera niedozwolone znaki.");
                 return false;
@@ -230,30 +292,16 @@ namespace CrosswordAssistant
 
             return true;
         }
-        /// <summary>
-        /// Check if pattern contains only digits from 1 to 8, i.e. is a proper integer. 
-        /// If true returns this integer. If not returns -1.
-        /// </summary>
-        /// <param name="pattern"></param>
-        /// <returns></returns>
-        private int ValidateUluzSamPattern(string pattern)
-        {
-            int result;
-            if (pattern.Length == 0) return -1;
-            if (pattern.Contains('0') || pattern.Contains('9')) return -1;
-            if (int.TryParse(pattern, out result)) return result;
-            return -1;
-        }
         private bool ValidateUluzSamGroups()
         {
-            if (!DictionaryService.ValidatePattern(textBoxGr1.Text.ToLower(), DictionaryService.AllowedLetters)
-                || !DictionaryService.ValidatePattern(textBoxGr2.Text.ToLower(), DictionaryService.AllowedLetters)
-                || !DictionaryService.ValidatePattern(textBoxGr3.Text.ToLower(), DictionaryService.AllowedLetters)
-                || !DictionaryService.ValidatePattern(textBoxGr4.Text.ToLower(), DictionaryService.AllowedLetters)
-                || !DictionaryService.ValidatePattern(textBoxGr5.Text.ToLower(), DictionaryService.AllowedLetters)
-                || !DictionaryService.ValidatePattern(textBoxGr6.Text.ToLower(), DictionaryService.AllowedLetters)
-                || !DictionaryService.ValidatePattern(textBoxGr7.Text.ToLower(), DictionaryService.AllowedLetters)
-                || !DictionaryService.ValidatePattern(textBoxGr8.Text.ToLower(), DictionaryService.AllowedLetters))
+            if (!DictionaryService.ValidateAllowedChars(textBoxGr1.Text.ToLower(), DictionaryService.AllowedLetters)
+                || !DictionaryService.ValidateAllowedChars(textBoxGr2.Text.ToLower(), DictionaryService.AllowedLetters)
+                || !DictionaryService.ValidateAllowedChars(textBoxGr3.Text.ToLower(), DictionaryService.AllowedLetters)
+                || !DictionaryService.ValidateAllowedChars(textBoxGr4.Text.ToLower(), DictionaryService.AllowedLetters)
+                || !DictionaryService.ValidateAllowedChars(textBoxGr5.Text.ToLower(), DictionaryService.AllowedLetters)
+                || !DictionaryService.ValidateAllowedChars(textBoxGr6.Text.ToLower(), DictionaryService.AllowedLetters)
+                || !DictionaryService.ValidateAllowedChars(textBoxGr7.Text.ToLower(), DictionaryService.AllowedLetters)
+                || !DictionaryService.ValidateAllowedChars(textBoxGr8.Text.ToLower(), DictionaryService.AllowedLetters))
                 return false;
 
             return true;
@@ -290,12 +338,6 @@ namespace CrosswordAssistant
             }
             return results;
         }
-        private List<string> BoundTo500(List<string> words)
-        {
-            List<string> results = words;
-            if (results.Count <= 500) return results;
-            return results.Take(500).ToList();
-        }
         private void SetHelpLabels()
         {
             string msg = "Wyszukuje wyrazy pasuj¹ce do podanego wzorca. " +
@@ -310,13 +352,13 @@ namespace CrosswordAssistant
             msg = "Wyszukuje wyrazy o wskazanej w zakresie od-do iloœci znaków. W tym trybie wzorzec nie jest u¿ywany. " +
                 "W celu ograniczenia iloœci dopasowañ zaleca siê u¿ycie dodatkowych filtrów.";
             labelLM.Text = msg;
-            msg = "Pomocnik krzy¿ówkowicza v2.2.2" + Environment.NewLine +
+            msg = "Pomocnik krzy¿ówkowicza v2.2.4" + Environment.NewLine +
                 "Autor: Mariusz Doliñski" + Environment.NewLine + "© 2024";
             labelAbout.Text = msg;
         }
         private void SetMode(int tabIndex)
         {
-            if (tabIndex == 1) 
+            if (tabIndex == 1)
             {
                 _dictionaryService.Mode = SearchMode.UluzSam;
             }
@@ -327,18 +369,6 @@ namespace CrosswordAssistant
                 else if (radioMetagramMode.Checked) _dictionaryService.Mode = SearchMode.Metagram;
                 else if (radioLengthMode.Checked) _dictionaryService.Mode = SearchMode.Length;
             }
-        }
-        private List<int> ConvertIntToList(int number)
-        {
-            List<int> result = [];
-            int digit;
-            while (number > 0)
-            {
-                digit = number % 10;
-                result.Insert(0, digit);
-                number = (number - digit) / 10;
-            }
-            return result;
         }
         private string[] ConvertGroupsToArray()
         {
@@ -354,15 +384,6 @@ namespace CrosswordAssistant
                 textBoxGr8.Text.ToLower(),
             ];
             return result;
-        }
-        private static void SearchInWeb(string web, string searchPhrase)
-        {
-            ProcessStartInfo processInfo = new()
-            {
-                FileName = web + searchPhrase,
-                UseShellExecute = true
-            };
-            Process.Start(processInfo);
         }
         private string GetSelectedResult()
         {
@@ -384,7 +405,6 @@ namespace CrosswordAssistant
             }
             return searchPhrase;
         }
-
         #endregion
     }
 }

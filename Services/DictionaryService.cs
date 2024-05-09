@@ -4,18 +4,23 @@ namespace CrosswordAssistant.Services
 {
     public class DictionaryService
     {
-        public List<string> CurrentDictionary { get; set; }
+        public List<string> CurrentDictionary { get; private set; } = [];
         public SearchMode Mode { get; set; }
 
-        public const string AllowedChars = "aąbcćdeęfghijklłmnńoópqrsśtuvwxyzźż.";
-        public const string AllowedLetters = "aąbcćdeęfghijklłmnńoópqrsśtuvwxyzźż";
+        public const string AllowedPatternChars = "aąbcćdeęfghijklłmnńoópqrsśtuvwxyzźż.";
+        public const string AllowedLetters = "aąbcćdeęfghijklłmnńoópqrsśtuvwxyzźżAĄBCĆDEĘFGHIJKLŁMNŃOÓPQRSŚTUVWXYZŹŻ";
+        public const string AllowedWordChars = "aąbcćdeęfghijklłmnńoópqrsśtuvwxyzźż-AĄBCĆDEĘFGHIJKLŁMNŃOÓPQRSŚTUVWXYZŹŻ";
 
         public DictionaryService() 
         {
-            CurrentDictionary = FileService.ReadDictionary();
+            LoadDictionary();
             Mode = SearchMode.Pattern;
         }
 
+        public void LoadDictionary()
+        {
+            CurrentDictionary = FileService.ReadDictionary();
+        }
         /// <summary>
         /// Return true if dictionary was not loaded properly. Return false otherwise.
         /// </summary>
@@ -156,11 +161,48 @@ namespace CrosswordAssistant.Services
             return result;
         }
         /// <summary>
+        /// Add given list of words to CurrentDictionary. Preserve alphabetical order.
+        /// Return list of added words. If empty list is returned, no words was added.
+        /// </summary>
+        /// <param name="words"></param>
+        /// <returns></returns>
+        public List<string> AddWordsToDictionary(List<string> words)
+        {
+            List<string> wordsAdded = [];
+            var tmpDictionary = new List<string>(CurrentDictionary);
+            bool isLast; //if true, newWord has to be add at the end of Dictionary
+            foreach(var newWord in words) 
+            {
+                isLast = true;
+                foreach(var word in CurrentDictionary)
+                {
+                    if (newWord.ToLower() == word.ToLower())
+                    {
+                        isLast = false;
+                        break;
+                    }
+                    if (string.Compare(newWord, word, StringComparison.CurrentCulture) > 0) 
+                        continue;
+                    tmpDictionary.Insert(tmpDictionary.IndexOf(word), newWord);
+                    wordsAdded.Add(newWord);
+                    isLast = false;
+                    break;
+                }
+                if (isLast)
+                {
+                    tmpDictionary.Add(newWord);
+                    wordsAdded.Add(newWord);
+                }
+                CurrentDictionary = tmpDictionary;
+            }
+            return wordsAdded;
+        }
+        /// <summary>
         /// Return: true if pattern contains only allowed chars, specified in allowedChars string
         /// </summary>
         /// <param name="pattern"></param>
         /// <returns></returns>
-        public static bool ValidatePattern(string pattern, string allowedChars)
+        public static bool ValidateAllowedChars(string pattern, string allowedChars)
         {
             foreach (var ch in pattern)
             {
@@ -169,11 +211,24 @@ namespace CrosswordAssistant.Services
             }
             return true;
         }
-        public string RenderLoadInfo()
+        public static bool ValidateWordsToAdd(List<string> words)
         {
-            return "Słownik " + FileService.FileName + " został wczytany poprawnie."
-                + Environment.NewLine + "Słownik zawiera " + CurrentDictionary.Count + " wyrazów.";
+            foreach(var word in words)
+            {
+                if(word.Length == 0) continue;
+                if(!AllowedLetters.Contains(word[0]) || !AllowedLetters.Contains(word[^1]))
+                {
+                    return false;
+                }
+                if(!ValidateAllowedChars(word, AllowedWordChars))
+                {
+                    return false;
+                }
+            }
+            return true;
         }
+        public int GetWordsCount()
+            => CurrentDictionary.Count;
 
     }
 }

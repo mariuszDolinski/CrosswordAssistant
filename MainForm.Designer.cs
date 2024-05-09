@@ -96,8 +96,18 @@
             label8 = new Label();
             labelUluzSam = new Label();
             tabPageDictionary = new TabPage();
-            labelLoadInfo = new Label();
+            tableLayoutPanel3 = new TableLayoutPanel();
+            groupBoxAddToDict = new GroupBox();
+            buttonAddToDictionary = new Button();
+            label21 = new Label();
+            textBoxAddToDictionary = new TextBox();
+            buttonLoadDict = new Button();
             label20 = new Label();
+            tableLayoutPanel2 = new TableLayoutPanel();
+            labelWordsCount = new Label();
+            labelDicLengthInfo = new Label();
+            labelFileNameInfo = new Label();
+            labelFileName = new Label();
             labelDictionary = new Label();
             tabPageAbout = new TabPage();
             labelAbout = new Label();
@@ -122,6 +132,7 @@
             tableLayoutPanel1 = new TableLayoutPanel();
             label19 = new Label();
             label22 = new Label();
+            newDictionaryDialog = new OpenFileDialog();
             tabControl.SuspendLayout();
             tabPattern.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainerResults).BeginInit();
@@ -143,6 +154,9 @@
             groupBoxUlsGroups.SuspendLayout();
             tableLayoutPanelUsl.SuspendLayout();
             tabPageDictionary.SuspendLayout();
+            tableLayoutPanel3.SuspendLayout();
+            groupBoxAddToDict.SuspendLayout();
+            tableLayoutPanel2.SuspendLayout();
             tabPageAbout.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainerLengthHelp).BeginInit();
             splitContainerLengthHelp.Panel1.SuspendLayout();
@@ -245,14 +259,14 @@
             googleToolStripMenuItem.Name = "googleToolStripMenuItem";
             googleToolStripMenuItem.Size = new Size(172, 34);
             googleToolStripMenuItem.Text = "Google";
-            googleToolStripMenuItem.Click += searchGoogle_MenuClick;
+            googleToolStripMenuItem.Click += SearchGoogle_MenuClick;
             // 
             // sJPToolStripMenuItem
             // 
             sJPToolStripMenuItem.Name = "sJPToolStripMenuItem";
             sJPToolStripMenuItem.Size = new Size(172, 34);
             sJPToolStripMenuItem.Text = "SJP";
-            sJPToolStripMenuItem.Click += searchSJP_MenuClick;
+            sJPToolStripMenuItem.Click += SearchSJP_MenuClick;
             // 
             // groupBoxFilters
             // 
@@ -966,8 +980,10 @@
             // 
             // tabPageDictionary
             // 
-            tabPageDictionary.Controls.Add(labelLoadInfo);
+            tabPageDictionary.Controls.Add(tableLayoutPanel3);
+            tabPageDictionary.Controls.Add(buttonLoadDict);
             tabPageDictionary.Controls.Add(label20);
+            tabPageDictionary.Controls.Add(tableLayoutPanel2);
             tabPageDictionary.Controls.Add(labelDictionary);
             tabPageDictionary.Location = new Point(4, 34);
             tabPageDictionary.Name = "tabPageDictionary";
@@ -977,36 +993,166 @@
             tabPageDictionary.Text = "Słownik";
             tabPageDictionary.UseVisualStyleBackColor = true;
             // 
-            // labelLoadInfo
+            // tableLayoutPanel3
             // 
-            labelLoadInfo.BackColor = Color.LightGray;
-            labelLoadInfo.Dock = DockStyle.Top;
-            labelLoadInfo.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            labelLoadInfo.Location = new Point(3, 38);
-            labelLoadInfo.Name = "labelLoadInfo";
-            labelLoadInfo.Size = new Size(811, 64);
-            labelLoadInfo.TabIndex = 5;
+            tableLayoutPanel3.ColumnCount = 2;
+            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel3.Controls.Add(groupBoxAddToDict, 0, 0);
+            tableLayoutPanel3.Dock = DockStyle.Fill;
+            tableLayoutPanel3.Location = new Point(3, 146);
+            tableLayoutPanel3.Name = "tableLayoutPanel3";
+            tableLayoutPanel3.RowCount = 1;
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel3.Size = new Size(811, 513);
+            tableLayoutPanel3.TabIndex = 9;
+            // 
+            // groupBoxAddToDict
+            // 
+            groupBoxAddToDict.Controls.Add(buttonAddToDictionary);
+            groupBoxAddToDict.Controls.Add(label21);
+            groupBoxAddToDict.Controls.Add(textBoxAddToDictionary);
+            groupBoxAddToDict.Dock = DockStyle.Fill;
+            groupBoxAddToDict.Location = new Point(3, 3);
+            groupBoxAddToDict.Name = "groupBoxAddToDict";
+            groupBoxAddToDict.Size = new Size(399, 507);
+            groupBoxAddToDict.TabIndex = 0;
+            groupBoxAddToDict.TabStop = false;
+            groupBoxAddToDict.Text = "Dodaj wyrazy do bieżącego słownika";
+            // 
+            // buttonAddToDictionary
+            // 
+            buttonAddToDictionary.Cursor = Cursors.Hand;
+            buttonAddToDictionary.Dock = DockStyle.Fill;
+            buttonAddToDictionary.FlatStyle = FlatStyle.Flat;
+            buttonAddToDictionary.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            buttonAddToDictionary.Location = new Point(3, 467);
+            buttonAddToDictionary.Name = "buttonAddToDictionary";
+            buttonAddToDictionary.Size = new Size(393, 37);
+            buttonAddToDictionary.TabIndex = 8;
+            buttonAddToDictionary.Text = "DODAJ DO SŁOWNIKA";
+            buttonAddToDictionary.UseVisualStyleBackColor = true;
+            buttonAddToDictionary.Click += AddToDictionaryBtn_Click;
+            // 
+            // label21
+            // 
+            label21.Dock = DockStyle.Top;
+            label21.Location = new Point(3, 464);
+            label21.Name = "label21";
+            label21.Size = new Size(393, 3);
+            label21.TabIndex = 4;
+            // 
+            // textBoxAddToDictionary
+            // 
+            textBoxAddToDictionary.Dock = DockStyle.Top;
+            textBoxAddToDictionary.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            textBoxAddToDictionary.Location = new Point(3, 27);
+            textBoxAddToDictionary.Multiline = true;
+            textBoxAddToDictionary.Name = "textBoxAddToDictionary";
+            textBoxAddToDictionary.ScrollBars = ScrollBars.Vertical;
+            textBoxAddToDictionary.Size = new Size(393, 437);
+            textBoxAddToDictionary.TabIndex = 0;
+            // 
+            // buttonLoadDict
+            // 
+            buttonLoadDict.Cursor = Cursors.Hand;
+            buttonLoadDict.Dock = DockStyle.Top;
+            buttonLoadDict.FlatStyle = FlatStyle.Flat;
+            buttonLoadDict.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            buttonLoadDict.Location = new Point(3, 109);
+            buttonLoadDict.Name = "buttonLoadDict";
+            buttonLoadDict.Size = new Size(811, 37);
+            buttonLoadDict.TabIndex = 8;
+            buttonLoadDict.Text = "WCZYTAJ PLIK ZE SŁOWNIKIEM";
+            buttonLoadDict.UseVisualStyleBackColor = true;
+            buttonLoadDict.Click += LoadDictionaryBtn_Click;
             // 
             // label20
             // 
-            label20.BackColor = Color.Transparent;
             label20.Dock = DockStyle.Top;
-            label20.Location = new Point(3, 35);
+            label20.Location = new Point(3, 104);
             label20.Name = "label20";
-            label20.Size = new Size(811, 3);
-            label20.TabIndex = 4;
-            label20.Text = " ";
+            label20.Size = new Size(811, 5);
+            label20.TabIndex = 3;
+            // 
+            // tableLayoutPanel2
+            // 
+            tableLayoutPanel2.ColumnCount = 2;
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 61.89889F));
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 38.10111F));
+            tableLayoutPanel2.Controls.Add(labelWordsCount, 1, 1);
+            tableLayoutPanel2.Controls.Add(labelDicLengthInfo, 0, 1);
+            tableLayoutPanel2.Controls.Add(labelFileNameInfo, 0, 0);
+            tableLayoutPanel2.Controls.Add(labelFileName, 1, 0);
+            tableLayoutPanel2.Dock = DockStyle.Top;
+            tableLayoutPanel2.Location = new Point(3, 35);
+            tableLayoutPanel2.Name = "tableLayoutPanel2";
+            tableLayoutPanel2.RowCount = 2;
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel2.Size = new Size(811, 69);
+            tableLayoutPanel2.TabIndex = 2;
+            // 
+            // labelWordsCount
+            // 
+            labelWordsCount.BackColor = Color.MediumAquamarine;
+            labelWordsCount.Dock = DockStyle.Fill;
+            labelWordsCount.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            labelWordsCount.Location = new Point(504, 38);
+            labelWordsCount.Margin = new Padding(2, 4, 0, 0);
+            labelWordsCount.Name = "labelWordsCount";
+            labelWordsCount.Size = new Size(307, 31);
+            labelWordsCount.TabIndex = 3;
+            labelWordsCount.TextAlign = ContentAlignment.TopCenter;
+            // 
+            // labelDicLengthInfo
+            // 
+            labelDicLengthInfo.BackColor = Color.LightGray;
+            labelDicLengthInfo.Dock = DockStyle.Fill;
+            labelDicLengthInfo.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            labelDicLengthInfo.Location = new Point(0, 38);
+            labelDicLengthInfo.Margin = new Padding(0, 4, 2, 0);
+            labelDicLengthInfo.Name = "labelDicLengthInfo";
+            labelDicLengthInfo.Size = new Size(500, 31);
+            labelDicLengthInfo.TabIndex = 1;
+            labelDicLengthInfo.Text = "Ilość wyrazów w słowniku:";
+            labelDicLengthInfo.TextAlign = ContentAlignment.TopRight;
+            // 
+            // labelFileNameInfo
+            // 
+            labelFileNameInfo.BackColor = Color.LightGray;
+            labelFileNameInfo.Dock = DockStyle.Fill;
+            labelFileNameInfo.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            labelFileNameInfo.Location = new Point(0, 4);
+            labelFileNameInfo.Margin = new Padding(0, 4, 2, 0);
+            labelFileNameInfo.Name = "labelFileNameInfo";
+            labelFileNameInfo.Size = new Size(500, 30);
+            labelFileNameInfo.TabIndex = 0;
+            labelFileNameInfo.Text = "Wczytany plik ze słownikiem:";
+            labelFileNameInfo.TextAlign = ContentAlignment.TopRight;
+            // 
+            // labelFileName
+            // 
+            labelFileName.BackColor = Color.MediumAquamarine;
+            labelFileName.Dock = DockStyle.Fill;
+            labelFileName.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            labelFileName.Location = new Point(504, 4);
+            labelFileName.Margin = new Padding(2, 4, 0, 0);
+            labelFileName.Name = "labelFileName";
+            labelFileName.Size = new Size(307, 30);
+            labelFileName.TabIndex = 2;
+            labelFileName.TextAlign = ContentAlignment.TopCenter;
             // 
             // labelDictionary
             // 
-            labelDictionary.BackColor = Color.DarkSalmon;
+            labelDictionary.BackColor = Color.CornflowerBlue;
             labelDictionary.Dock = DockStyle.Top;
             labelDictionary.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 238);
             labelDictionary.Location = new Point(3, 3);
             labelDictionary.Name = "labelDictionary";
             labelDictionary.Size = new Size(811, 32);
             labelDictionary.TabIndex = 1;
-            labelDictionary.Text = "BIEŻĄCY SŁOWNIK";
+            labelDictionary.Text = "ZARZĄDZANIE SŁOWNIKIEM";
             labelDictionary.TextAlign = ContentAlignment.TopCenter;
             // 
             // tabPageAbout
@@ -1292,8 +1438,14 @@
             label22.Name = "label22";
             label22.Size = new Size(97, 36);
             label22.TabIndex = 0;
-            label22.Text = "1";
+            label22.Text = "112112";
             label22.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // newDictionaryDialog
+            // 
+            newDictionaryDialog.FileName = "slownik.txt";
+            newDictionaryDialog.Filter = "Pliki tekstowe|*.txt";
+            newDictionaryDialog.Title = "Wybierz plik ze słownikiem";
             // 
             // MainForm
             // 
@@ -1332,6 +1484,10 @@
             tableLayoutPanelUsl.ResumeLayout(false);
             tableLayoutPanelUsl.PerformLayout();
             tabPageDictionary.ResumeLayout(false);
+            tableLayoutPanel3.ResumeLayout(false);
+            groupBoxAddToDict.ResumeLayout(false);
+            groupBoxAddToDict.PerformLayout();
+            tableLayoutPanel2.ResumeLayout(false);
             tabPageAbout.ResumeLayout(false);
             splitContainerLengthHelp.Panel1.ResumeLayout(false);
             splitContainerLengthHelp.Panel2.ResumeLayout(false);
@@ -1420,9 +1576,7 @@
         private Label label14;
         private Label label18;
         private TabPage tabPageDictionary;
-        private Label label20;
         private Label labelDictionary;
-        private Label labelLoadInfo;
         private TableLayoutPanel tableLayoutPanelUsl;
         private Label labelGr1;
         private Label labelGr2;
@@ -1448,5 +1602,18 @@
         private ToolStripMenuItem szukajWToolStripMenuItem;
         private ToolStripMenuItem googleToolStripMenuItem;
         private ToolStripMenuItem sJPToolStripMenuItem;
+        private TableLayoutPanel tableLayoutPanel2;
+        private Label labelFileNameInfo;
+        private Label labelDicLengthInfo;
+        private Label labelFileName;
+        private Label labelWordsCount;
+        private OpenFileDialog newDictionaryDialog;
+        private Label label20;
+        private Button buttonLoadDict;
+        private TableLayoutPanel tableLayoutPanel3;
+        private GroupBox groupBoxAddToDict;
+        private TextBox textBoxAddToDictionary;
+        private Button buttonAddToDictionary;
+        private Label label21;
     }
 }

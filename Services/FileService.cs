@@ -4,9 +4,8 @@ namespace CrosswordAssistant.Services
 {
     public class FileService
     {
-        public static string SavePath { get; } = "Słowniki";
-        public static string FileName { get; } = "slownik.txt";
-
+        public static string SavePath { get; private set; } = "Słowniki";
+        public static string FileName { get; private set; } = "slownik.txt";
 
         public static List<string> ReadDictionary()
         {
@@ -24,5 +23,38 @@ namespace CrosswordAssistant.Services
                 return [Messages.NoFile];
             }
         }
+
+        public static bool SaveDictionary(List<string> words)
+        {
+            try
+            {
+                File.WriteAllLines(Path.Combine(SavePath, FileName), words);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public static bool SetFileFromDialog(OpenFileDialog ofd)
+        {
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                if (!ofd.FileName.EndsWith("txt"))
+                {
+                    MessageBox.Show("Wybrany plik nie jest plikiem tekstowym.");
+                    return false;
+                }
+                else
+                {
+                    FileName = Path.GetFileName(ofd.FileName);
+                    SavePath = Path.GetDirectoryName(ofd.FileName)!;
+                    return true;
+                }
+            }
+            return false;
+        }
+
     }
 }
