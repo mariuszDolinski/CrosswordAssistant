@@ -48,7 +48,7 @@ namespace CrosswordAssistant
             return result;
         }
         /// <summary>
-        /// Return: true if string differs by exactly one character from the string given as parameter.
+        /// Returns: true if string differs by exactly one character from the string given as parameter.
         /// Otherwise return false.
         /// </summary>
         /// <param name="text"></param>
@@ -57,10 +57,12 @@ namespace CrosswordAssistant
         public static bool IsMetagram(this string text, string word)
         {
             if(text == null || word == null || text.Length != word.Length) return false;
+            var textL = text.ToLower();
+            word = word.ToLower();
             int diffCount = 0;
-            for(int i = 0; i < text.Length; i++)
+            for(int i = 0; i < textL.Length; i++)
             {
-                if (text[i] != word[i]) diffCount++;
+                if (textL[i] != word[i]) diffCount++;
                 if (diffCount > 1) break;
             }
 

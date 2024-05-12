@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             tabControl = new TabControl();
             tabPattern = new TabPage();
             splitContainerResults = new SplitContainer();
@@ -111,21 +112,17 @@
             labelDictionary = new Label();
             tabPageAbout = new TabPage();
             labelAbout = new Label();
-            splitContainerLengthHelp = new SplitContainer();
-            label7 = new Label();
-            labelLM = new Label();
-            label6 = new Label();
-            splitContainerMetagramHelp = new SplitContainer();
-            label5 = new Label();
-            labelMM = new Label();
             label2 = new Label();
-            splitContainerAnagramHelp = new SplitContainer();
-            label4 = new Label();
-            labelAM = new Label();
-            label3 = new Label();
-            splitContainerPatternHelp = new SplitContainer();
             label1 = new Label();
-            labelPM = new Label();
+            textBoxAbout = new TextBox();
+            tableLayoutPanel4 = new TableLayoutPanel();
+            labelShortcuts = new Label();
+            labelUlozSamInfo = new Label();
+            labelLengthInfo = new Label();
+            labelMetagramInfo = new Label();
+            labelAnagramInfo = new Label();
+            labelPatternInfo = new Label();
+            label3 = new Label();
             labelSpace2 = new Label();
             labelHelp = new Label();
             groupBox1 = new GroupBox();
@@ -158,22 +155,7 @@
             groupBoxAddToDict.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
             tabPageAbout.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)splitContainerLengthHelp).BeginInit();
-            splitContainerLengthHelp.Panel1.SuspendLayout();
-            splitContainerLengthHelp.Panel2.SuspendLayout();
-            splitContainerLengthHelp.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)splitContainerMetagramHelp).BeginInit();
-            splitContainerMetagramHelp.Panel1.SuspendLayout();
-            splitContainerMetagramHelp.Panel2.SuspendLayout();
-            splitContainerMetagramHelp.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)splitContainerAnagramHelp).BeginInit();
-            splitContainerAnagramHelp.Panel1.SuspendLayout();
-            splitContainerAnagramHelp.Panel2.SuspendLayout();
-            splitContainerAnagramHelp.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)splitContainerPatternHelp).BeginInit();
-            splitContainerPatternHelp.Panel1.SuspendLayout();
-            splitContainerPatternHelp.Panel2.SuspendLayout();
-            splitContainerPatternHelp.SuspendLayout();
+            tableLayoutPanel4.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -975,7 +957,7 @@
             labelUluzSam.Name = "labelUluzSam";
             labelUluzSam.Size = new Size(811, 32);
             labelUluzSam.TabIndex = 1;
-            labelUluzSam.Text = "UŁUŻ SAM";
+            labelUluzSam.Text = "UŁÓŻ SAM";
             labelUluzSam.TextAlign = ContentAlignment.TopCenter;
             // 
             // tabPageDictionary
@@ -1158,13 +1140,11 @@
             // tabPageAbout
             // 
             tabPageAbout.Controls.Add(labelAbout);
-            tabPageAbout.Controls.Add(splitContainerLengthHelp);
-            tabPageAbout.Controls.Add(label6);
-            tabPageAbout.Controls.Add(splitContainerMetagramHelp);
             tabPageAbout.Controls.Add(label2);
-            tabPageAbout.Controls.Add(splitContainerAnagramHelp);
+            tabPageAbout.Controls.Add(label1);
+            tabPageAbout.Controls.Add(textBoxAbout);
+            tabPageAbout.Controls.Add(tableLayoutPanel4);
             tabPageAbout.Controls.Add(label3);
-            tabPageAbout.Controls.Add(splitContainerPatternHelp);
             tabPageAbout.Controls.Add(labelSpace2);
             tabPageAbout.Controls.Add(labelHelp);
             tabPageAbout.Location = new Point(4, 34);
@@ -1177,200 +1157,172 @@
             // 
             // labelAbout
             // 
-            labelAbout.BorderStyle = BorderStyle.FixedSingle;
-            labelAbout.Dock = DockStyle.Bottom;
+            labelAbout.BackColor = Color.Silver;
+            labelAbout.Dock = DockStyle.Fill;
             labelAbout.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            labelAbout.Location = new Point(3, 566);
+            labelAbout.Location = new Point(234, 555);
             labelAbout.Name = "labelAbout";
-            labelAbout.Size = new Size(811, 93);
-            labelAbout.TabIndex = 12;
-            labelAbout.TextAlign = ContentAlignment.TopCenter;
-            // 
-            // splitContainerLengthHelp
-            // 
-            splitContainerLengthHelp.Dock = DockStyle.Top;
-            splitContainerLengthHelp.Location = new Point(3, 227);
-            splitContainerLengthHelp.Name = "splitContainerLengthHelp";
-            // 
-            // splitContainerLengthHelp.Panel1
-            // 
-            splitContainerLengthHelp.Panel1.Controls.Add(label7);
-            // 
-            // splitContainerLengthHelp.Panel2
-            // 
-            splitContainerLengthHelp.Panel2.Controls.Add(labelLM);
-            splitContainerLengthHelp.Size = new Size(811, 90);
-            splitContainerLengthHelp.SplitterDistance = 165;
-            splitContainerLengthHelp.TabIndex = 11;
-            // 
-            // label7
-            // 
-            label7.BackColor = Color.Silver;
-            label7.Dock = DockStyle.Fill;
-            label7.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            label7.Location = new Point(0, 0);
-            label7.Name = "label7";
-            label7.Size = new Size(165, 90);
-            label7.TabIndex = 3;
-            label7.Text = "Długość";
-            label7.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // labelLM
-            // 
-            labelLM.BackColor = Color.Silver;
-            labelLM.Dock = DockStyle.Fill;
-            labelLM.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            labelLM.Location = new Point(0, 0);
-            labelLM.Name = "labelLM";
-            labelLM.Size = new Size(642, 90);
-            labelLM.TabIndex = 4;
-            // 
-            // label6
-            // 
-            label6.BackColor = Color.Transparent;
-            label6.Dock = DockStyle.Top;
-            label6.Location = new Point(3, 224);
-            label6.Name = "label6";
-            label6.Size = new Size(811, 3);
-            label6.TabIndex = 10;
-            label6.Text = " ";
-            // 
-            // splitContainerMetagramHelp
-            // 
-            splitContainerMetagramHelp.Dock = DockStyle.Top;
-            splitContainerMetagramHelp.Location = new Point(3, 164);
-            splitContainerMetagramHelp.Name = "splitContainerMetagramHelp";
-            // 
-            // splitContainerMetagramHelp.Panel1
-            // 
-            splitContainerMetagramHelp.Panel1.Controls.Add(label5);
-            // 
-            // splitContainerMetagramHelp.Panel2
-            // 
-            splitContainerMetagramHelp.Panel2.Controls.Add(labelMM);
-            splitContainerMetagramHelp.Size = new Size(811, 60);
-            splitContainerMetagramHelp.SplitterDistance = 165;
-            splitContainerMetagramHelp.TabIndex = 9;
-            // 
-            // label5
-            // 
-            label5.BackColor = Color.Silver;
-            label5.Dock = DockStyle.Fill;
-            label5.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            label5.Location = new Point(0, 0);
-            label5.Name = "label5";
-            label5.Size = new Size(165, 60);
-            label5.TabIndex = 2;
-            label5.Text = "Metagram";
-            label5.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // labelMM
-            // 
-            labelMM.BackColor = Color.Silver;
-            labelMM.Dock = DockStyle.Fill;
-            labelMM.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            labelMM.Location = new Point(0, 0);
-            labelMM.Name = "labelMM";
-            labelMM.Size = new Size(642, 60);
-            labelMM.TabIndex = 3;
+            labelAbout.Size = new Size(580, 101);
+            labelAbout.TabIndex = 18;
+            labelAbout.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // label2
             // 
             label2.BackColor = Color.Transparent;
             label2.Dock = DockStyle.Top;
-            label2.Location = new Point(3, 161);
+            label2.Location = new Point(234, 553);
             label2.Name = "label2";
-            label2.Size = new Size(811, 3);
-            label2.TabIndex = 8;
+            label2.Size = new Size(580, 2);
+            label2.TabIndex = 17;
             label2.Text = " ";
             // 
-            // splitContainerAnagramHelp
+            // label1
             // 
-            splitContainerAnagramHelp.Dock = DockStyle.Top;
-            splitContainerAnagramHelp.Location = new Point(3, 101);
-            splitContainerAnagramHelp.Name = "splitContainerAnagramHelp";
+            label1.BackColor = Color.Transparent;
+            label1.Dock = DockStyle.Bottom;
+            label1.Location = new Point(234, 656);
+            label1.Name = "label1";
+            label1.Size = new Size(580, 3);
+            label1.TabIndex = 15;
+            label1.Text = " ";
             // 
-            // splitContainerAnagramHelp.Panel1
+            // textBoxAbout
             // 
-            splitContainerAnagramHelp.Panel1.Controls.Add(label4);
+            textBoxAbout.BackColor = SystemColors.ControlLightLight;
+            textBoxAbout.Dock = DockStyle.Top;
+            textBoxAbout.Enabled = false;
+            textBoxAbout.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            textBoxAbout.ForeColor = SystemColors.InfoText;
+            textBoxAbout.Location = new Point(234, 40);
+            textBoxAbout.Margin = new Padding(3, 6, 3, 3);
+            textBoxAbout.Multiline = true;
+            textBoxAbout.Name = "textBoxAbout";
+            textBoxAbout.Size = new Size(580, 513);
+            textBoxAbout.TabIndex = 14;
             // 
-            // splitContainerAnagramHelp.Panel2
+            // tableLayoutPanel4
             // 
-            splitContainerAnagramHelp.Panel2.Controls.Add(labelAM);
-            splitContainerAnagramHelp.Size = new Size(811, 60);
-            splitContainerAnagramHelp.SplitterDistance = 165;
-            splitContainerAnagramHelp.TabIndex = 7;
+            tableLayoutPanel4.ColumnCount = 1;
+            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanel4.Controls.Add(labelShortcuts, 0, 5);
+            tableLayoutPanel4.Controls.Add(labelUlozSamInfo, 0, 4);
+            tableLayoutPanel4.Controls.Add(labelLengthInfo, 0, 3);
+            tableLayoutPanel4.Controls.Add(labelMetagramInfo, 0, 2);
+            tableLayoutPanel4.Controls.Add(labelAnagramInfo, 0, 1);
+            tableLayoutPanel4.Controls.Add(labelPatternInfo, 0, 0);
+            tableLayoutPanel4.Dock = DockStyle.Left;
+            tableLayoutPanel4.Location = new Point(3, 40);
+            tableLayoutPanel4.Name = "tableLayoutPanel4";
+            tableLayoutPanel4.RowCount = 7;
+            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
+            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
+            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
+            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
+            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
+            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
+            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel4.Size = new Size(231, 619);
+            tableLayoutPanel4.TabIndex = 13;
             // 
-            // label4
+            // labelShortcuts
             // 
-            label4.BackColor = Color.Silver;
-            label4.Dock = DockStyle.Fill;
-            label4.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            label4.Location = new Point(0, 0);
-            label4.Name = "label4";
-            label4.Size = new Size(165, 60);
-            label4.TabIndex = 1;
-            label4.Text = "Anagram";
-            label4.TextAlign = ContentAlignment.MiddleCenter;
+            labelShortcuts.BackColor = Color.Silver;
+            labelShortcuts.Cursor = Cursors.Hand;
+            labelShortcuts.Dock = DockStyle.Fill;
+            labelShortcuts.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            labelShortcuts.Location = new Point(0, 200);
+            labelShortcuts.Margin = new Padding(0, 0, 3, 5);
+            labelShortcuts.Name = "labelShortcuts";
+            labelShortcuts.Size = new Size(228, 35);
+            labelShortcuts.TabIndex = 14;
+            labelShortcuts.Text = "SKRÓTY";
+            labelShortcuts.TextAlign = ContentAlignment.MiddleLeft;
+            labelShortcuts.Click += Shortcuts_Click;
             // 
-            // labelAM
+            // labelUlozSamInfo
             // 
-            labelAM.BackColor = Color.Silver;
-            labelAM.Dock = DockStyle.Fill;
-            labelAM.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            labelAM.Location = new Point(0, 0);
-            labelAM.Name = "labelAM";
-            labelAM.Size = new Size(642, 60);
-            labelAM.TabIndex = 2;
+            labelUlozSamInfo.BackColor = Color.Silver;
+            labelUlozSamInfo.Cursor = Cursors.Hand;
+            labelUlozSamInfo.Dock = DockStyle.Fill;
+            labelUlozSamInfo.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            labelUlozSamInfo.Location = new Point(0, 160);
+            labelUlozSamInfo.Margin = new Padding(0, 0, 3, 5);
+            labelUlozSamInfo.Name = "labelUlozSamInfo";
+            labelUlozSamInfo.Size = new Size(228, 35);
+            labelUlozSamInfo.TabIndex = 4;
+            labelUlozSamInfo.Text = "UŁÓŻ SAM";
+            labelUlozSamInfo.TextAlign = ContentAlignment.MiddleLeft;
+            labelUlozSamInfo.Click += UlozSamInfo;
+            // 
+            // labelLengthInfo
+            // 
+            labelLengthInfo.BackColor = Color.Silver;
+            labelLengthInfo.Cursor = Cursors.Hand;
+            labelLengthInfo.Dock = DockStyle.Fill;
+            labelLengthInfo.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            labelLengthInfo.Location = new Point(0, 120);
+            labelLengthInfo.Margin = new Padding(0, 0, 3, 5);
+            labelLengthInfo.Name = "labelLengthInfo";
+            labelLengthInfo.Size = new Size(228, 35);
+            labelLengthInfo.TabIndex = 3;
+            labelLengthInfo.Text = "DŁUGOŚĆ";
+            labelLengthInfo.TextAlign = ContentAlignment.MiddleLeft;
+            labelLengthInfo.Click += LengthInfo_Click;
+            // 
+            // labelMetagramInfo
+            // 
+            labelMetagramInfo.BackColor = Color.Silver;
+            labelMetagramInfo.Cursor = Cursors.Hand;
+            labelMetagramInfo.Dock = DockStyle.Fill;
+            labelMetagramInfo.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            labelMetagramInfo.Location = new Point(0, 80);
+            labelMetagramInfo.Margin = new Padding(0, 0, 3, 5);
+            labelMetagramInfo.Name = "labelMetagramInfo";
+            labelMetagramInfo.Size = new Size(228, 35);
+            labelMetagramInfo.TabIndex = 2;
+            labelMetagramInfo.Text = "METAGRAM";
+            labelMetagramInfo.TextAlign = ContentAlignment.MiddleLeft;
+            labelMetagramInfo.Click += MetagramInfo_Click;
+            // 
+            // labelAnagramInfo
+            // 
+            labelAnagramInfo.BackColor = Color.Silver;
+            labelAnagramInfo.Cursor = Cursors.Hand;
+            labelAnagramInfo.Dock = DockStyle.Fill;
+            labelAnagramInfo.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            labelAnagramInfo.Location = new Point(0, 40);
+            labelAnagramInfo.Margin = new Padding(0, 0, 3, 5);
+            labelAnagramInfo.Name = "labelAnagramInfo";
+            labelAnagramInfo.Size = new Size(228, 35);
+            labelAnagramInfo.TabIndex = 1;
+            labelAnagramInfo.Text = "ANAGRAM";
+            labelAnagramInfo.TextAlign = ContentAlignment.MiddleLeft;
+            labelAnagramInfo.Click += AnagramInfo_Click;
+            // 
+            // labelPatternInfo
+            // 
+            labelPatternInfo.BackColor = Color.Silver;
+            labelPatternInfo.Cursor = Cursors.Hand;
+            labelPatternInfo.Dock = DockStyle.Fill;
+            labelPatternInfo.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            labelPatternInfo.Location = new Point(0, 0);
+            labelPatternInfo.Margin = new Padding(0, 0, 3, 5);
+            labelPatternInfo.Name = "labelPatternInfo";
+            labelPatternInfo.Size = new Size(228, 35);
+            labelPatternInfo.TabIndex = 0;
+            labelPatternInfo.Text = "WZORZEC";
+            labelPatternInfo.TextAlign = ContentAlignment.MiddleLeft;
+            labelPatternInfo.Click += PatternInfo_Click;
             // 
             // label3
             // 
             label3.BackColor = Color.Transparent;
             label3.Dock = DockStyle.Top;
-            label3.Location = new Point(3, 98);
+            label3.Location = new Point(3, 37);
             label3.Name = "label3";
             label3.Size = new Size(811, 3);
             label3.TabIndex = 6;
             label3.Text = " ";
-            // 
-            // splitContainerPatternHelp
-            // 
-            splitContainerPatternHelp.Dock = DockStyle.Top;
-            splitContainerPatternHelp.Location = new Point(3, 38);
-            splitContainerPatternHelp.Name = "splitContainerPatternHelp";
-            // 
-            // splitContainerPatternHelp.Panel1
-            // 
-            splitContainerPatternHelp.Panel1.Controls.Add(label1);
-            // 
-            // splitContainerPatternHelp.Panel2
-            // 
-            splitContainerPatternHelp.Panel2.Controls.Add(labelPM);
-            splitContainerPatternHelp.Size = new Size(811, 60);
-            splitContainerPatternHelp.SplitterDistance = 165;
-            splitContainerPatternHelp.TabIndex = 5;
-            // 
-            // label1
-            // 
-            label1.BackColor = Color.Silver;
-            label1.Dock = DockStyle.Fill;
-            label1.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            label1.Location = new Point(0, 0);
-            label1.Name = "label1";
-            label1.Size = new Size(165, 60);
-            label1.TabIndex = 0;
-            label1.Text = "Wzorzec";
-            label1.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // labelPM
-            // 
-            labelPM.BackColor = Color.Silver;
-            labelPM.Dock = DockStyle.Fill;
-            labelPM.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            labelPM.Location = new Point(0, 0);
-            labelPM.Name = "labelPM";
-            labelPM.Size = new Size(642, 60);
-            labelPM.TabIndex = 1;
             // 
             // labelSpace2
             // 
@@ -1378,7 +1330,7 @@
             labelSpace2.Dock = DockStyle.Top;
             labelSpace2.Location = new Point(3, 35);
             labelSpace2.Name = "labelSpace2";
-            labelSpace2.Size = new Size(811, 3);
+            labelSpace2.Size = new Size(811, 2);
             labelSpace2.TabIndex = 4;
             labelSpace2.Text = " ";
             // 
@@ -1453,6 +1405,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(825, 700);
             Controls.Add(tabControl);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "MainForm";
             Text = "Pomocnik szaradzisty";
             KeyDown += MainForm_KeyDown;
@@ -1489,22 +1442,8 @@
             groupBoxAddToDict.PerformLayout();
             tableLayoutPanel2.ResumeLayout(false);
             tabPageAbout.ResumeLayout(false);
-            splitContainerLengthHelp.Panel1.ResumeLayout(false);
-            splitContainerLengthHelp.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)splitContainerLengthHelp).EndInit();
-            splitContainerLengthHelp.ResumeLayout(false);
-            splitContainerMetagramHelp.Panel1.ResumeLayout(false);
-            splitContainerMetagramHelp.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)splitContainerMetagramHelp).EndInit();
-            splitContainerMetagramHelp.ResumeLayout(false);
-            splitContainerAnagramHelp.Panel1.ResumeLayout(false);
-            splitContainerAnagramHelp.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)splitContainerAnagramHelp).EndInit();
-            splitContainerAnagramHelp.ResumeLayout(false);
-            splitContainerPatternHelp.Panel1.ResumeLayout(false);
-            splitContainerPatternHelp.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)splitContainerPatternHelp).EndInit();
-            splitContainerPatternHelp.ResumeLayout(false);
+            tabPageAbout.PerformLayout();
+            tableLayoutPanel4.ResumeLayout(false);
             tableLayoutPanel1.ResumeLayout(false);
             ResumeLayout(false);
         }
@@ -1541,22 +1480,7 @@
         private CheckBox checkBoxEndsWith;
         private Label labelHelp;
         private Label labelSpace2;
-        private SplitContainer splitContainerAnagramHelp;
-        private Label label4;
-        private Label labelAM;
         private Label label3;
-        private SplitContainer splitContainerPatternHelp;
-        private Label label1;
-        private Label labelPM;
-        private SplitContainer splitContainerMetagramHelp;
-        private Label label5;
-        private Label labelMM;
-        private Label label2;
-        private SplitContainer splitContainerLengthHelp;
-        private Label label7;
-        private Label labelLM;
-        private Label label6;
-        private Label labelAbout;
         private TabPage tabPageUlozSam;
         private SplitContainer splitContainerUls;
         private Label label8;
@@ -1615,5 +1539,16 @@
         private TextBox textBoxAddToDictionary;
         private Button buttonAddToDictionary;
         private Label label21;
+        private TableLayoutPanel tableLayoutPanel4;
+        private Label labelPatternInfo;
+        private Label labelUlozSamInfo;
+        private Label labelLengthInfo;
+        private Label labelMetagramInfo;
+        private Label labelAnagramInfo;
+        private Label labelShortcuts;
+        private TextBox textBoxAbout;
+        private Label label2;
+        private Label label1;
+        private Label labelAbout;
     }
 }

@@ -8,6 +8,29 @@
         public static string MetagramModeMessage { get; } = "Podaj wyraz i kliknij Szukaj...";
         public static string LengthModeMessage { get; } = "Wybierz dodatkowe filtry i kliknij Szukaj...";
         public static string EmptyPattern { get; } = "Wzorzec nie zawiera żadnych znaków.";
+        public static string PatternInfo { get; } = "Wyszukuje wyrazy posiadające te same litery na tych" +
+            " samych pozycjach co w podanym wzorcu. Znak kropki (.) zastępuje dowolną literę," +
+            " np. do wzorca T..C.A dopasowane zostałaby wyrazy TERCJA, TARCZA, itp.";
+        public static string AnagramInfo { get; } = "Wyszukuje anagramy podanego wyrazu, tzn. wyrazy zawierające" +
+            " dokładnie te same litery, ale w innej kolejności. Na przykład dla wyrazu MONTER dopasowane zostałyby" +
+            " wyrazy REMONT, MENTOR, itp. Dodatkowo znak kropki (.) zastępuję dowolną literę, np. dla wzorca JAKB.." +
+            " znalezione zostałyby wyszystkie wyrazy zawierjące litery J,A,K,B i dwie inne dowolne litery, np." +
+            " JABŁKO, UBIJAK.";
+        public static string MetagramInfo { get; } = "Wyszukuje wszystkie metagramy podango wyrazu, tzn. słowa" +
+            " różniące się od niego dokładnie jedną literą, np. KLATKA, KLAMKA. W tym trybie we wzorcu dopuszczalne" +
+            " są tylko litery.";
+        public static string LengthInfo { get; } = "Wyszukuje wszystkie wyrazy o ilości liter w podanym zakresie." +
+            " Krańce zakresu wliczają się do niego, w szczególności jeśli w polu Od i Do podana zostanie ta sama cyfra, np. 5," +
+            " dopasowane zostaną wszystkie wyrazy pięcioliterowe. W celu ograniczenia liczby dopasowań, zaleca się" +
+            " użyć dodatkowych filtrów. Filtr 'Tylko wyrazy zawierające' może być pomocny przy rozwiązywaniu krzyżówek typu 'Szkotka'.";
+        public static string UlozSamInfo { get; } = "W tym trybie wzorcem jest ciąg cyfr od 1 do 8." +
+            " Cyfry wskazują do której grupy liter należą poszczególne litery szukanego słowa, np. gdyby wzorcem" +
+            " był ciąg 2341, to dopasowane zostałyby wszystkie wyrazy czteroliterowe, dla których pierwsza litera byłaby z grupy 2.," +
+            " druga z grupy 3., itd. Domyślnie 32 litery polskiego alfabetu podzielone zostały na 8 grup po cztery litery." +
+            " Konfigurację grup można dowolnie zmieniać. Nie wszystkie grupy muszą mieć przypisane litery.";
+        public static string Shortcuts { get; } = "Dostępne skróty klawiaturowe:" + Environment.NewLine +
+            "Enter - uruchamia wyszukiwanie dla aktualnego wzorca" + Environment.NewLine +
+            "F6 - zaznacza wzorzec";
 
     }
 }

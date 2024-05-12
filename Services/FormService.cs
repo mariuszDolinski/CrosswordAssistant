@@ -25,5 +25,12 @@
                 textBox.Text = "";
             }
         }
+        public static void ResetLabelsBackColor(List<Label> labels, Color color)
+        {
+            foreach (Label label in labels)
+            {
+                label.BackColor = color;
+            }
+        }
     }
 }

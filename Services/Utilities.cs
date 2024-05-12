@@ -27,13 +27,24 @@ namespace CrosswordAssistant.Services
         /// </summary>
         /// <param name="pattern"></param>
         /// <returns></returns>
-        public static int ValidateUluzSamPattern(string pattern)
+        public static List<int> ValidateUluzSamPattern(string pattern)
         {
-            int result;
-            if (pattern.Length == 0) return -1;
-            if (pattern.Contains('0') || pattern.Contains('9')) return -1;
-            if (int.TryParse(pattern, out result)) return result;
-            return -1;
+            List<int> result = [];
+            if (pattern.Length == 0) return result;
+            if (pattern.Contains('0') || pattern.Contains('9')) return result;
+            int digit;
+            foreach(var ch in pattern)
+            {
+                if (int.TryParse(ch.ToString(), out digit))
+                {
+                    result.Add(digit);
+                }
+                else
+                {
+                    return [];
+                }
+            }
+            return result;
         }
 
         /// <summary>

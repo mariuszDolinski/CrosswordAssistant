@@ -7,6 +7,8 @@ namespace CrosswordAssistant
     public partial class MainForm : Form
     {
         private readonly DictionaryService _dictionaryService;
+        private readonly List<Label> _infoLabels = [];
+        private bool _isEnterSuppressed = true;
         public MainForm()
         {
             InitializeComponent();
@@ -65,8 +67,8 @@ namespace CrosswordAssistant
         {
             textBoxPatternUls.ReadOnly = true;
             _dictionaryService.Mode = SearchMode.UluzSam;
-            int result = Utilities.ValidateUluzSamPattern(textBoxPatternUls.Text);
-            if (result == -1)
+            var digits = Utilities.ValidateUluzSamPattern(textBoxPatternUls.Text);
+            if (digits.Count == 0)
             {
                 MessageBox.Show("Wzorzec zawiera niedozwolone znaki, powinien zawieraæ tylko cyfry 1-8.",
                     "B³¹d wzorca", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -80,7 +82,6 @@ namespace CrosswordAssistant
                 textBoxPatternUls.ReadOnly = false;
                 return;
             }
-            List<int> digits = Utilities.ConvertIntToList(result);
             string[] groups = ConvertGroupsToArray();
             List<string> matches = _dictionaryService.SearchUluzSam(digits, groups);
             matches = Utilities.BoundTo500(matches);
@@ -132,6 +133,7 @@ namespace CrosswordAssistant
                 MessageBox.Show("Wyrazy: " + Environment.NewLine + msg + "dodane poprawnie.", "Dodano wyrazy do s³ownika",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+            SetFileInfo();
         }
         private void RadioPattern_CheckedChanged(object sender, EventArgs e)
         {
@@ -190,7 +192,12 @@ namespace CrosswordAssistant
             switch (e.KeyCode)
             {
                 case Keys.Enter:
-                    SearchPattern_Click(sender, e);
+                    switch (_dictionaryService.Mode)
+                    {
+                        case SearchMode.UluzSam: UluzSamSearch_Click(sender, e); break;
+                        default: SearchPattern_Click(sender, e); break;
+                    }
+                    e.SuppressKeyPress = _isEnterSuppressed; //remove sound when Enter is pressed
                     break;
                 case Keys.F6:
                     textBoxPattern.SelectAll();
@@ -215,6 +222,32 @@ namespace CrosswordAssistant
         {
             var currentPage = (sender as TabControl)!.SelectedIndex;
             SetMode(currentPage);
+            if (currentPage == 2) _isEnterSuppressed = false;
+            else _isEnterSuppressed |= true;
+        }
+        private void PatternInfo_Click(object sender, EventArgs e)
+        {
+            SetInfo((Label)sender, Messages.PatternInfo);
+        }
+        private void AnagramInfo_Click(object sender, EventArgs e)
+        {
+            SetInfo((Label)sender, Messages.AnagramInfo);
+        }
+        private void MetagramInfo_Click(object sender, EventArgs e)
+        {
+            SetInfo((Label)sender, Messages.MetagramInfo);
+        }
+        private void LengthInfo_Click(object sender, EventArgs e)
+        {
+            SetInfo((Label)sender, Messages.LengthInfo);
+        }
+        private void UlozSamInfo(object sender, EventArgs e)
+        {
+            SetInfo((Label)sender, Messages.UlozSamInfo);
+        }
+        private void Shortcuts_Click(object sender, EventArgs e)
+        {
+            SetInfo((Label)sender, Messages.Shortcuts);
         }
         #endregion
 
@@ -224,8 +257,16 @@ namespace CrosswordAssistant
             textBoxPatternResults.Text = Messages.PatternModeMessage + Environment.NewLine;
             textBoxAddToDictionary.PlaceholderText = "Wpisz wyrazy do dodania " + Environment.NewLine +
                 "(po jednym w linii)";
+            _infoLabels.Add(labelPatternInfo);
+            _infoLabels.Add(labelAnagramInfo);
+            _infoLabels.Add(labelMetagramInfo);
+            _infoLabels.Add(labelLengthInfo);
+            _infoLabels.Add(labelUlozSamInfo);
+            _infoLabels.Add(labelShortcuts);
             SetFileInfo();
-            SetHelpLabels();
+            labelAbout.Text = "Pomocnik krzy¿ówkowicza v2.2.5" + Environment.NewLine +
+                "Autor: Mariusz Doliñski" + Environment.NewLine + "© 2024";
+            
         }
         private void SetFileInfo()
         {
@@ -338,24 +379,6 @@ namespace CrosswordAssistant
             }
             return results;
         }
-        private void SetHelpLabels()
-        {
-            string msg = "Wyszukuje wyrazy pasuj¹ce do podanego wzorca. " +
-                "Dozwolone s¹ jedynie litery i kropka (.), która zastêpuje dowoln¹ literê. ";
-            labelPM.Text = msg;
-            msg = "Wyszukuje wyrazy z³o¿one ze wszystkich podanych liter (anagramy). " +
-                "Znak kropki (.) zastêpujê dowoln¹ literê.";
-            labelAM.Text = msg;
-            msg = "Wyszukuje wyrazy ró¿ni¹ce siê dok³adnie jedn¹ liter¹ od wyrazu podanego we wzorcu (metagramy). " +
-                "Dozwolone s¹ tylko litery.";
-            labelMM.Text = msg;
-            msg = "Wyszukuje wyrazy o wskazanej w zakresie od-do iloœci znaków. W tym trybie wzorzec nie jest u¿ywany. " +
-                "W celu ograniczenia iloœci dopasowañ zaleca siê u¿ycie dodatkowych filtrów.";
-            labelLM.Text = msg;
-            msg = "Pomocnik krzy¿ówkowicza v2.2.4" + Environment.NewLine +
-                "Autor: Mariusz Doliñski" + Environment.NewLine + "© 2024";
-            labelAbout.Text = msg;
-        }
         private void SetMode(int tabIndex)
         {
             if (tabIndex == 1)
@@ -404,6 +427,12 @@ namespace CrosswordAssistant
                 return "";
             }
             return searchPhrase;
+        }
+        private void SetInfo(Label lbl, string msg)
+        {
+            FormService.ResetLabelsBackColor(_infoLabels, Color.Silver);
+            lbl.BackColor = Color.LightSteelBlue;
+            textBoxAbout.Text = msg;
         }
         #endregion
     }
