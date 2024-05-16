@@ -30,7 +30,11 @@
             " Konfigurację grup można dowolnie zmieniać. Nie wszystkie grupy muszą mieć przypisane litery.";
         public static string Shortcuts { get; } = "Dostępne skróty klawiaturowe:" + Environment.NewLine +
             "Enter - uruchamia wyszukiwanie dla aktualnego wzorca" + Environment.NewLine +
-            "F6 - zaznacza wzorzec";
+            "F6 - zaznacza wzorzec" + Environment.NewLine +
+            "Ctrl+1 - tryb Wzorzec" + Environment.NewLine +
+            "Ctrl+2 - tryb Anagram" + Environment.NewLine +
+            "Ctrl+3 - tryb Metagram" + Environment.NewLine +
+            "Ctrl+4 - tryb Długość";
 
     }
 }

@@ -189,21 +189,44 @@ namespace CrosswordAssistant
         }
         private void MainForm_KeyDown(object sender, KeyEventArgs e)
         {
-            switch (e.KeyCode)
+            switch (_dictionaryService.Mode)
             {
-                case Keys.Enter:
-                    switch (_dictionaryService.Mode)
+                case SearchMode.UluzSam:
+                    switch (e.KeyCode)
                     {
-                        case SearchMode.UluzSam: UluzSamSearch_Click(sender, e); break;
-                        default: SearchPattern_Click(sender, e); break;
+                        case Keys.Enter: 
+                            UluzSamSearch_Click(sender, e);
+                            e.SuppressKeyPress = true;
+                            break;
+                        case Keys.F6:
+                            textBoxPatternUls.SelectAll();
+                            textBoxPatternUls.Focus();
+                            break;
                     }
-                    e.SuppressKeyPress = _isEnterSuppressed; //remove sound when Enter is pressed
                     break;
-                case Keys.F6:
-                    textBoxPattern.SelectAll();
-                    textBoxPattern.Focus();
+                default:
+                    switch (e.KeyCode)
+                    {
+                        case Keys.Enter: 
+                            SearchPattern_Click(sender, e);
+                            e.SuppressKeyPress = true;
+                            break;
+                        case Keys.F6:
+                            textBoxPattern.SelectAll();
+                            textBoxPattern.Focus();
+                            break;
+                    }
+                    if (e.Control)
+                    {
+                        switch (e.KeyCode)
+                        {
+                            case Keys.D1: radioPatternMode.Checked = true; break;
+                            case Keys.D2: radioAnagramMode.Checked = true; break;
+                            case Keys.D3: radioMetagramMode.Checked = true; break;
+                            case Keys.D4: radioLengthMode.Checked = true; break;
+                        }
+                    }
                     break;
-
             }
         }
         private void SearchGoogle_MenuClick(object sender, EventArgs e)
@@ -264,7 +287,7 @@ namespace CrosswordAssistant
             _infoLabels.Add(labelUlozSamInfo);
             _infoLabels.Add(labelShortcuts);
             SetFileInfo();
-            labelAbout.Text = "Pomocnik krzy¿ówkowicza v2.2.5" + Environment.NewLine +
+            labelAbout.Text = "Pomocnik krzy¿ówkowicza v2.2.6" + Environment.NewLine +
                 "Autor: Mariusz Doliñski" + Environment.NewLine + "© 2024";
             
         }
