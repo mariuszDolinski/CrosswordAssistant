@@ -8,6 +8,8 @@
         public static string MetagramModeMessage { get; } = "Podaj wyraz i kliknij Szukaj...";
         public static string LengthModeMessage { get; } = "Wybierz dodatkowe filtry i kliknij Szukaj...";
         public static string EmptyPattern { get; } = "Wzorzec nie zawiera żadnych znaków.";
+        public static string VersionInfo { get; } = "Pomocnik krzyżówkowicza v2.3.6" + Environment.NewLine +
+                "Autor: Mariusz Doliński" + Environment.NewLine + "© 2024";
         public static string PatternInfo { get; } = "Wyszukuje wyrazy posiadające te same litery na tych" +
             " samych pozycjach co w podanym wzorcu. Znak kropki (.) zastępuje dowolną literę," +
             " np. do wzorca T..C.A dopasowane zostałaby wyrazy TERCJA, TARCZA, itp.";
@@ -28,13 +30,17 @@
             " był ciąg 2341, to dopasowane zostałyby wszystkie wyrazy czteroliterowe, dla których pierwsza litera byłaby z grupy 2.," +
             " druga z grupy 3., itd. Domyślnie 32 litery polskiego alfabetu podzielone zostały na 8 grup po cztery litery." +
             " Konfigurację grup można dowolnie zmieniać. Nie wszystkie grupy muszą mieć przypisane litery.";
+        public static string PlusMinus1Info { get; } = "W tym trybie wyszukiwane są wszystkie wyrazy, które powstają" +
+            " z danego wyrazu, poprzez dodanie lub odjęcie dokładnie jednej litery, np. SALA -> SALWA, PROSTO -> PROSO." +
+            " We wzorcu dozwolone są jedynie litery.";
         public static string Shortcuts { get; } = "Dostępne skróty klawiaturowe:" + Environment.NewLine +
             "Enter - uruchamia wyszukiwanie dla aktualnego wzorca" + Environment.NewLine +
             "F6 - zaznacza wzorzec" + Environment.NewLine +
             "Ctrl+1 - tryb Wzorzec" + Environment.NewLine +
             "Ctrl+2 - tryb Anagram" + Environment.NewLine +
             "Ctrl+3 - tryb Metagram" + Environment.NewLine +
-            "Ctrl+4 - tryb Długość";
+            "Ctrl+4 - tryb Plus/Minus 1" + Environment.NewLine +
+            "Ctrl+5 - tryb Długość";
 
     }
 }

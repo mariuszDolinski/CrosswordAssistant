@@ -68,5 +68,20 @@ namespace CrosswordAssistant
             if (diffCount == 1) return true;
             return false;
         }
+        /// <summary>
+        /// Returns: true if given word is formed from a string by removing one letter; false otherwise
+        /// </summary>
+        /// <param name="text"></param>
+        /// <param name="word"></param>
+        /// <returns></returns>
+        public static bool DiffMinusOne(this string text, string word)
+        {
+            if(text.Length < 2 || text.Length != word.Length + 1) return false;
+            for(int i = 0; i < text.Length; i++)
+            {
+                if(text.Remove(i,1) == word) return true;
+            }
+            return false;
+        }
     }
 }

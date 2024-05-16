@@ -135,6 +135,19 @@ namespace CrosswordAssistant.Services
             }
             return result;
         }
+        public List<string> SearchPlusMinus1Words(string pattern)
+        {
+            List<string> result = [];
+
+            foreach( var word in CurrentDictionary)
+            {
+                if (pattern.DiffMinusOne(word) || word.DiffMinusOne(pattern))
+                {
+                    result.Add(word);
+                }
+            }
+            return result;
+        }
         public List<string> SearchUluzSam(List<int> digits, string[] groups)
         {
             List<string> result = [];

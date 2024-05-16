@@ -57,6 +57,9 @@ namespace CrosswordAssistant
                 case SearchMode.Metagram:
                     matches = _dictionaryService.SearchForMetagrams(pattern);
                     break;
+                case SearchMode.PlusMinus1:
+                    matches = _dictionaryService.SearchPlusMinus1Words(pattern);
+                    break;
             }
             matches = ApplyFilters(matches);
             matches = Utilities.BoundTo500(matches);
@@ -155,7 +158,7 @@ namespace CrosswordAssistant
         {
             if (radioLengthMode.Checked)
             {
-                groupBoxMode.Size = new Size(groupBoxMode.Size.Width, 160);
+                groupBoxMode.Size = new Size(groupBoxMode.Size.Width, 190);
                 _dictionaryService.Mode = SearchMode.Length;
                 textBoxPatternResults.Text = Messages.LengthModeMessage;
                 textBoxPattern.Enabled = false;
@@ -163,7 +166,7 @@ namespace CrosswordAssistant
             }
             else
             {
-                groupBoxMode.Size = new Size(groupBoxMode.Size.Width, 110);
+                groupBoxMode.Size = new Size(groupBoxMode.Size.Width, 140);
                 textBoxPattern.Enabled = true;
             }
         }
@@ -172,6 +175,14 @@ namespace CrosswordAssistant
             if (radioMetagramMode.Checked)
             {
                 _dictionaryService.Mode = SearchMode.Metagram;
+                textBoxPatternResults.Text = Messages.MetagramModeMessage;
+            }
+        }
+        private void RadioPM1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioPM1Mode.Checked)
+            {
+                _dictionaryService.Mode = SearchMode.PlusMinus1;
                 textBoxPatternResults.Text = Messages.MetagramModeMessage;
             }
         }
@@ -194,7 +205,7 @@ namespace CrosswordAssistant
                 case SearchMode.UluzSam:
                     switch (e.KeyCode)
                     {
-                        case Keys.Enter: 
+                        case Keys.Enter:
                             UluzSamSearch_Click(sender, e);
                             e.SuppressKeyPress = true;
                             break;
@@ -207,7 +218,7 @@ namespace CrosswordAssistant
                 default:
                     switch (e.KeyCode)
                     {
-                        case Keys.Enter: 
+                        case Keys.Enter:
                             SearchPattern_Click(sender, e);
                             e.SuppressKeyPress = true;
                             break;
@@ -223,7 +234,8 @@ namespace CrosswordAssistant
                             case Keys.D1: radioPatternMode.Checked = true; break;
                             case Keys.D2: radioAnagramMode.Checked = true; break;
                             case Keys.D3: radioMetagramMode.Checked = true; break;
-                            case Keys.D4: radioLengthMode.Checked = true; break;
+                            case Keys.D4: radioPM1Mode.Checked = true; break;
+                            case Keys.D5: radioLengthMode.Checked = true; break;
                         }
                     }
                     break;
@@ -264,9 +276,13 @@ namespace CrosswordAssistant
         {
             SetInfo((Label)sender, Messages.LengthInfo);
         }
-        private void UlozSamInfo(object sender, EventArgs e)
+        private void UlozSamInfo_Click(object sender, EventArgs e)
         {
             SetInfo((Label)sender, Messages.UlozSamInfo);
+        }
+        private void PlusMinus1Info_Click(object sender, EventArgs e)
+        {
+            SetInfo((Label)sender, Messages.PlusMinus1Info);
         }
         private void Shortcuts_Click(object sender, EventArgs e)
         {
@@ -285,11 +301,9 @@ namespace CrosswordAssistant
             _infoLabels.Add(labelMetagramInfo);
             _infoLabels.Add(labelLengthInfo);
             _infoLabels.Add(labelUlozSamInfo);
-            _infoLabels.Add(labelShortcuts);
+            _infoLabels.Add(labelPM1Info);
             SetFileInfo();
-            labelAbout.Text = "Pomocnik krzy¿ówkowicza v2.2.6" + Environment.NewLine +
-                "Autor: Mariusz Doliñski" + Environment.NewLine + "© 2024";
-            
+            labelAbout.Text = Messages.VersionInfo;
         }
         private void SetFileInfo()
         {
@@ -312,16 +326,14 @@ namespace CrosswordAssistant
             {
                 switch (_dictionaryService.Mode)
                 {
-                    case SearchMode.Pattern:
-                    case SearchMode.Length:
-                    case SearchMode.UluzSam:
-                        textBox.Text = "BRAK DOPASOWAÑ";
-                        break;
                     case SearchMode.Anagram:
                         textBox.Text = "BRAK ANAGRAMÓW";
                         break;
                     case SearchMode.Metagram:
                         textBox.Text = "BRAK METAGRAMÓW";
+                        break;
+                    default:
+                        textBox.Text = "BRAK DOPASOWAÑ";
                         break;
                 }
             }
@@ -414,6 +426,7 @@ namespace CrosswordAssistant
                 else if (radioAnagramMode.Checked) _dictionaryService.Mode = SearchMode.Anagram;
                 else if (radioMetagramMode.Checked) _dictionaryService.Mode = SearchMode.Metagram;
                 else if (radioLengthMode.Checked) _dictionaryService.Mode = SearchMode.Length;
+                else if (radioPM1Mode.Checked) _dictionaryService.Mode = SearchMode.PlusMinus1;
             }
         }
         private string[] ConvertGroupsToArray()

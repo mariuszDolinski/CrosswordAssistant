@@ -46,6 +46,7 @@
             textBoxBeginsWith = new TextBox();
             checkBoxBeginWith = new CheckBox();
             groupBoxMode = new GroupBox();
+            radioPM1Mode = new RadioButton();
             labelLenEnd = new Label();
             textBoxMaxLen = new TextBox();
             labelMaxLen = new Label();
@@ -116,12 +117,13 @@
             label1 = new Label();
             textBoxAbout = new TextBox();
             tableLayoutPanel4 = new TableLayoutPanel();
-            labelShortcuts = new Label();
+            labelPM1Info = new Label();
             labelUlozSamInfo = new Label();
             labelLengthInfo = new Label();
             labelMetagramInfo = new Label();
             labelAnagramInfo = new Label();
             labelPatternInfo = new Label();
+            labelShortcuts = new Label();
             label3 = new Label();
             labelSpace2 = new Label();
             labelHelp = new Label();
@@ -259,9 +261,9 @@
             groupBoxFilters.Controls.Add(textBoxBeginsWith);
             groupBoxFilters.Controls.Add(checkBoxBeginWith);
             groupBoxFilters.Dock = DockStyle.Fill;
-            groupBoxFilters.Location = new Point(0, 110);
+            groupBoxFilters.Location = new Point(0, 140);
             groupBoxFilters.Name = "groupBoxFilters";
-            groupBoxFilters.Size = new Size(328, 471);
+            groupBoxFilters.Size = new Size(328, 441);
             groupBoxFilters.TabIndex = 1;
             groupBoxFilters.TabStop = false;
             groupBoxFilters.Text = "Dodatkowe filtry";
@@ -331,6 +333,7 @@
             // 
             // groupBoxMode
             // 
+            groupBoxMode.Controls.Add(radioPM1Mode);
             groupBoxMode.Controls.Add(labelLenEnd);
             groupBoxMode.Controls.Add(textBoxMaxLen);
             groupBoxMode.Controls.Add(labelMaxLen);
@@ -343,15 +346,27 @@
             groupBoxMode.Dock = DockStyle.Top;
             groupBoxMode.Location = new Point(0, 0);
             groupBoxMode.Name = "groupBoxMode";
-            groupBoxMode.Size = new Size(328, 110);
+            groupBoxMode.Size = new Size(328, 140);
             groupBoxMode.TabIndex = 0;
             groupBoxMode.TabStop = false;
             groupBoxMode.Text = "Tryb";
             // 
+            // radioPM1Mode
+            // 
+            radioPM1Mode.AutoSize = true;
+            radioPM1Mode.Location = new Point(171, 69);
+            radioPM1Mode.Name = "radioPM1Mode";
+            radioPM1Mode.Size = new Size(139, 29);
+            radioPM1Mode.TabIndex = 9;
+            radioPM1Mode.TabStop = true;
+            radioPM1Mode.Text = "Plus/Minus 1";
+            radioPM1Mode.UseVisualStyleBackColor = true;
+            radioPM1Mode.CheckedChanged += RadioPM1_CheckedChanged;
+            // 
             // labelLenEnd
             // 
             labelLenEnd.AutoSize = true;
-            labelLenEnd.Location = new Point(225, 116);
+            labelLenEnd.Location = new Point(225, 147);
             labelLenEnd.Name = "labelLenEnd";
             labelLenEnd.Size = new Size(76, 25);
             labelLenEnd.TabIndex = 8;
@@ -360,7 +375,7 @@
             // textBoxMaxLen
             // 
             textBoxMaxLen.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            textBoxMaxLen.Location = new Point(166, 113);
+            textBoxMaxLen.Location = new Point(166, 144);
             textBoxMaxLen.MaxLength = 2;
             textBoxMaxLen.Name = "textBoxMaxLen";
             textBoxMaxLen.Size = new Size(53, 31);
@@ -369,7 +384,7 @@
             // labelMaxLen
             // 
             labelMaxLen.AutoSize = true;
-            labelMaxLen.Location = new Point(123, 116);
+            labelMaxLen.Location = new Point(123, 147);
             labelMaxLen.Name = "labelMaxLen";
             labelMaxLen.Size = new Size(34, 25);
             labelMaxLen.TabIndex = 6;
@@ -378,7 +393,7 @@
             // textBoxMinLen
             // 
             textBoxMinLen.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            textBoxMinLen.Location = new Point(58, 113);
+            textBoxMinLen.Location = new Point(58, 144);
             textBoxMinLen.MaxLength = 2;
             textBoxMinLen.Name = "textBoxMinLen";
             textBoxMinLen.Size = new Size(53, 31);
@@ -387,7 +402,7 @@
             // labelMinLen
             // 
             labelMinLen.AutoSize = true;
-            labelMinLen.Location = new Point(13, 116);
+            labelMinLen.Location = new Point(13, 147);
             labelMinLen.Name = "labelMinLen";
             labelMinLen.Size = new Size(37, 25);
             labelMinLen.TabIndex = 4;
@@ -397,7 +412,7 @@
             // 
             radioMetagramMode.AutoSize = true;
             radioMetagramMode.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            radioMetagramMode.Location = new Point(171, 69);
+            radioMetagramMode.Location = new Point(26, 69);
             radioMetagramMode.Name = "radioMetagramMode";
             radioMetagramMode.Size = new Size(128, 29);
             radioMetagramMode.TabIndex = 3;
@@ -410,7 +425,7 @@
             // 
             radioLengthMode.AutoSize = true;
             radioLengthMode.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            radioLengthMode.Location = new Point(26, 69);
+            radioLengthMode.Location = new Point(26, 104);
             radioLengthMode.Name = "radioLengthMode";
             radioLengthMode.Size = new Size(103, 29);
             radioLengthMode.TabIndex = 2;
@@ -1204,16 +1219,18 @@
             // 
             tableLayoutPanel4.ColumnCount = 1;
             tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutPanel4.Controls.Add(labelShortcuts, 0, 5);
+            tableLayoutPanel4.Controls.Add(labelPM1Info, 0, 5);
             tableLayoutPanel4.Controls.Add(labelUlozSamInfo, 0, 4);
             tableLayoutPanel4.Controls.Add(labelLengthInfo, 0, 3);
             tableLayoutPanel4.Controls.Add(labelMetagramInfo, 0, 2);
             tableLayoutPanel4.Controls.Add(labelAnagramInfo, 0, 1);
             tableLayoutPanel4.Controls.Add(labelPatternInfo, 0, 0);
+            tableLayoutPanel4.Controls.Add(labelShortcuts, 0, 6);
             tableLayoutPanel4.Dock = DockStyle.Left;
             tableLayoutPanel4.Location = new Point(3, 40);
             tableLayoutPanel4.Name = "tableLayoutPanel4";
-            tableLayoutPanel4.RowCount = 7;
+            tableLayoutPanel4.RowCount = 8;
+            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
@@ -1224,20 +1241,19 @@
             tableLayoutPanel4.Size = new Size(231, 619);
             tableLayoutPanel4.TabIndex = 13;
             // 
-            // labelShortcuts
+            // labelPM1Info
             // 
-            labelShortcuts.BackColor = Color.Silver;
-            labelShortcuts.Cursor = Cursors.Hand;
-            labelShortcuts.Dock = DockStyle.Fill;
-            labelShortcuts.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            labelShortcuts.Location = new Point(0, 200);
-            labelShortcuts.Margin = new Padding(0, 0, 3, 5);
-            labelShortcuts.Name = "labelShortcuts";
-            labelShortcuts.Size = new Size(228, 35);
-            labelShortcuts.TabIndex = 14;
-            labelShortcuts.Text = "SKRÓTY";
-            labelShortcuts.TextAlign = ContentAlignment.MiddleLeft;
-            labelShortcuts.Click += Shortcuts_Click;
+            labelPM1Info.BackColor = Color.Silver;
+            labelPM1Info.Cursor = Cursors.Hand;
+            labelPM1Info.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            labelPM1Info.Location = new Point(0, 200);
+            labelPM1Info.Margin = new Padding(0, 0, 3, 5);
+            labelPM1Info.Name = "labelPM1Info";
+            labelPM1Info.Size = new Size(228, 35);
+            labelPM1Info.TabIndex = 14;
+            labelPM1Info.Text = "PLUS/MINUS 1";
+            labelPM1Info.TextAlign = ContentAlignment.MiddleLeft;
+            labelPM1Info.Click += PlusMinus1Info_Click;
             // 
             // labelUlozSamInfo
             // 
@@ -1252,7 +1268,7 @@
             labelUlozSamInfo.TabIndex = 4;
             labelUlozSamInfo.Text = "UŁÓŻ SAM";
             labelUlozSamInfo.TextAlign = ContentAlignment.MiddleLeft;
-            labelUlozSamInfo.Click += UlozSamInfo;
+            labelUlozSamInfo.Click += UlozSamInfo_Click;
             // 
             // labelLengthInfo
             // 
@@ -1313,6 +1329,21 @@
             labelPatternInfo.Text = "WZORZEC";
             labelPatternInfo.TextAlign = ContentAlignment.MiddleLeft;
             labelPatternInfo.Click += PatternInfo_Click;
+            // 
+            // labelShortcuts
+            // 
+            labelShortcuts.BackColor = Color.Silver;
+            labelShortcuts.Cursor = Cursors.Hand;
+            labelShortcuts.Dock = DockStyle.Fill;
+            labelShortcuts.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            labelShortcuts.Location = new Point(0, 240);
+            labelShortcuts.Margin = new Padding(0, 0, 3, 5);
+            labelShortcuts.Name = "labelShortcuts";
+            labelShortcuts.Size = new Size(228, 35);
+            labelShortcuts.TabIndex = 15;
+            labelShortcuts.Text = "SKRÓTY";
+            labelShortcuts.TextAlign = ContentAlignment.MiddleLeft;
+            labelShortcuts.Click += Shortcuts_Click;
             // 
             // label3
             // 
@@ -1545,10 +1576,12 @@
         private Label labelLengthInfo;
         private Label labelMetagramInfo;
         private Label labelAnagramInfo;
-        private Label labelShortcuts;
+        private Label labelPM1Info;
         private TextBox textBoxAbout;
         private Label label2;
         private Label label1;
         private Label labelAbout;
+        private RadioButton radioPM1Mode;
+        private Label labelShortcuts;
     }
 }
