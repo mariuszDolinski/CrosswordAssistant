@@ -7,6 +7,7 @@
         Metagram = 3,
         Length = 4,
         UluzSam = 5,
-        PlusMinus1 = 6
+        PlusMinus1 = 6,
+        None = 7
     }
 }

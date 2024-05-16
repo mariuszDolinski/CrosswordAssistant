@@ -202,6 +202,8 @@ namespace CrosswordAssistant
         {
             switch (_dictionaryService.Mode)
             {
+                case SearchMode.None:
+                    break;
                 case SearchMode.UluzSam:
                     switch (e.KeyCode)
                     {
@@ -258,7 +260,7 @@ namespace CrosswordAssistant
             var currentPage = (sender as TabControl)!.SelectedIndex;
             SetMode(currentPage);
             if (currentPage == 2) _isEnterSuppressed = false;
-            else _isEnterSuppressed |= true;
+            else _isEnterSuppressed = true;
         }
         private void PatternInfo_Click(object sender, EventArgs e)
         {
@@ -419,6 +421,10 @@ namespace CrosswordAssistant
             if (tabIndex == 1)
             {
                 _dictionaryService.Mode = SearchMode.UluzSam;
+            }
+            else if (tabIndex == 2 || tabIndex == 3)
+            {
+                _dictionaryService.Mode = SearchMode.None;
             }
             else if (tabIndex == 0)
             {
