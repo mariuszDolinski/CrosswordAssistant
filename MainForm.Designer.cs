@@ -39,21 +39,21 @@
             googleToolStripMenuItem = new ToolStripMenuItem();
             sJPToolStripMenuItem = new ToolStripMenuItem();
             groupBoxFilters = new GroupBox();
+            checkBoxLength = new CheckBox();
+            labelLenEnd = new Label();
             textBoxContains = new TextBox();
+            textBoxMaxLen = new TextBox();
             checkBoxContains = new CheckBox();
+            labelMaxLen = new Label();
+            textBoxMinLen = new TextBox();
             textBoxEndsWith = new TextBox();
+            labelMinLen = new Label();
             checkBoxEndsWith = new CheckBox();
             textBoxBeginsWith = new TextBox();
             checkBoxBeginWith = new CheckBox();
             groupBoxMode = new GroupBox();
             radioPM1Mode = new RadioButton();
-            labelLenEnd = new Label();
-            textBoxMaxLen = new TextBox();
-            labelMaxLen = new Label();
-            textBoxMinLen = new TextBox();
-            labelMinLen = new Label();
             radioMetagramMode = new RadioButton();
-            radioLengthMode = new RadioButton();
             radioAnagramMode = new RadioButton();
             radioPatternMode = new RadioButton();
             labelSpace3 = new Label();
@@ -254,34 +254,70 @@
             // 
             // groupBoxFilters
             // 
+            groupBoxFilters.Controls.Add(checkBoxLength);
+            groupBoxFilters.Controls.Add(labelLenEnd);
             groupBoxFilters.Controls.Add(textBoxContains);
+            groupBoxFilters.Controls.Add(textBoxMaxLen);
             groupBoxFilters.Controls.Add(checkBoxContains);
+            groupBoxFilters.Controls.Add(labelMaxLen);
+            groupBoxFilters.Controls.Add(textBoxMinLen);
             groupBoxFilters.Controls.Add(textBoxEndsWith);
+            groupBoxFilters.Controls.Add(labelMinLen);
             groupBoxFilters.Controls.Add(checkBoxEndsWith);
             groupBoxFilters.Controls.Add(textBoxBeginsWith);
             groupBoxFilters.Controls.Add(checkBoxBeginWith);
             groupBoxFilters.Dock = DockStyle.Fill;
-            groupBoxFilters.Location = new Point(0, 140);
+            groupBoxFilters.Location = new Point(0, 115);
             groupBoxFilters.Name = "groupBoxFilters";
-            groupBoxFilters.Size = new Size(328, 441);
+            groupBoxFilters.Size = new Size(328, 466);
             groupBoxFilters.TabIndex = 1;
             groupBoxFilters.TabStop = false;
             groupBoxFilters.Text = "Dodatkowe filtry";
+            // 
+            // checkBoxLength
+            // 
+            checkBoxLength.AutoSize = true;
+            checkBoxLength.Location = new Point(26, 41);
+            checkBoxLength.Name = "checkBoxLength";
+            checkBoxLength.Size = new Size(227, 29);
+            checkBoxLength.TabIndex = 6;
+            checkBoxLength.Text = "Tylko wyrazy o długości";
+            checkBoxLength.UseVisualStyleBackColor = true;
+            checkBoxLength.CheckedChanged += CheckBoxLength_CheckChanged;
+            // 
+            // labelLenEnd
+            // 
+            labelLenEnd.AutoSize = true;
+            labelLenEnd.Location = new Point(237, 77);
+            labelLenEnd.Name = "labelLenEnd";
+            labelLenEnd.Size = new Size(76, 25);
+            labelLenEnd.TabIndex = 8;
+            labelLenEnd.Text = "znaków.";
             // 
             // textBoxContains
             // 
             textBoxContains.Enabled = false;
             textBoxContains.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            textBoxContains.Location = new Point(26, 231);
+            textBoxContains.Location = new Point(26, 330);
             textBoxContains.Name = "textBoxContains";
             textBoxContains.Size = new Size(273, 37);
             textBoxContains.TabIndex = 5;
+            // 
+            // textBoxMaxLen
+            // 
+            textBoxMaxLen.Enabled = false;
+            textBoxMaxLen.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            textBoxMaxLen.Location = new Point(178, 74);
+            textBoxMaxLen.MaxLength = 2;
+            textBoxMaxLen.Name = "textBoxMaxLen";
+            textBoxMaxLen.Size = new Size(53, 31);
+            textBoxMaxLen.TabIndex = 7;
             // 
             // checkBoxContains
             // 
             checkBoxContains.AutoSize = true;
             checkBoxContains.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            checkBoxContains.Location = new Point(26, 196);
+            checkBoxContains.Location = new Point(26, 295);
             checkBoxContains.Name = "checkBoxContains";
             checkBoxContains.Size = new Size(231, 29);
             checkBoxContains.TabIndex = 4;
@@ -289,20 +325,48 @@
             checkBoxContains.UseVisualStyleBackColor = true;
             checkBoxContains.CheckedChanged += CheckBoxContains_CheckedChanged;
             // 
+            // labelMaxLen
+            // 
+            labelMaxLen.AutoSize = true;
+            labelMaxLen.Location = new Point(135, 77);
+            labelMaxLen.Name = "labelMaxLen";
+            labelMaxLen.Size = new Size(34, 25);
+            labelMaxLen.TabIndex = 6;
+            labelMaxLen.Text = "do";
+            // 
+            // textBoxMinLen
+            // 
+            textBoxMinLen.Enabled = false;
+            textBoxMinLen.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            textBoxMinLen.Location = new Point(70, 74);
+            textBoxMinLen.MaxLength = 2;
+            textBoxMinLen.Name = "textBoxMinLen";
+            textBoxMinLen.Size = new Size(53, 31);
+            textBoxMinLen.TabIndex = 5;
+            // 
             // textBoxEndsWith
             // 
             textBoxEndsWith.Enabled = false;
             textBoxEndsWith.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            textBoxEndsWith.Location = new Point(28, 153);
+            textBoxEndsWith.Location = new Point(28, 243);
             textBoxEndsWith.Name = "textBoxEndsWith";
             textBoxEndsWith.Size = new Size(273, 37);
             textBoxEndsWith.TabIndex = 3;
+            // 
+            // labelMinLen
+            // 
+            labelMinLen.AutoSize = true;
+            labelMinLen.Location = new Point(25, 77);
+            labelMinLen.Name = "labelMinLen";
+            labelMinLen.Size = new Size(34, 25);
+            labelMinLen.TabIndex = 4;
+            labelMinLen.Text = "od";
             // 
             // checkBoxEndsWith
             // 
             checkBoxEndsWith.AutoSize = true;
             checkBoxEndsWith.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            checkBoxEndsWith.Location = new Point(26, 118);
+            checkBoxEndsWith.Location = new Point(26, 208);
             checkBoxEndsWith.Name = "checkBoxEndsWith";
             checkBoxEndsWith.Size = new Size(265, 29);
             checkBoxEndsWith.TabIndex = 2;
@@ -314,7 +378,7 @@
             // 
             textBoxBeginsWith.Enabled = false;
             textBoxBeginsWith.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            textBoxBeginsWith.Location = new Point(26, 75);
+            textBoxBeginsWith.Location = new Point(26, 156);
             textBoxBeginsWith.Name = "textBoxBeginsWith";
             textBoxBeginsWith.Size = new Size(273, 37);
             textBoxBeginsWith.TabIndex = 1;
@@ -323,7 +387,7 @@
             // 
             checkBoxBeginWith.AutoSize = true;
             checkBoxBeginWith.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            checkBoxBeginWith.Location = new Point(26, 40);
+            checkBoxBeginWith.Location = new Point(26, 121);
             checkBoxBeginWith.Name = "checkBoxBeginWith";
             checkBoxBeginWith.Size = new Size(287, 29);
             checkBoxBeginWith.TabIndex = 0;
@@ -334,19 +398,13 @@
             // groupBoxMode
             // 
             groupBoxMode.Controls.Add(radioPM1Mode);
-            groupBoxMode.Controls.Add(labelLenEnd);
-            groupBoxMode.Controls.Add(textBoxMaxLen);
-            groupBoxMode.Controls.Add(labelMaxLen);
-            groupBoxMode.Controls.Add(textBoxMinLen);
-            groupBoxMode.Controls.Add(labelMinLen);
             groupBoxMode.Controls.Add(radioMetagramMode);
-            groupBoxMode.Controls.Add(radioLengthMode);
             groupBoxMode.Controls.Add(radioAnagramMode);
             groupBoxMode.Controls.Add(radioPatternMode);
             groupBoxMode.Dock = DockStyle.Top;
             groupBoxMode.Location = new Point(0, 0);
             groupBoxMode.Name = "groupBoxMode";
-            groupBoxMode.Size = new Size(328, 140);
+            groupBoxMode.Size = new Size(328, 115);
             groupBoxMode.TabIndex = 0;
             groupBoxMode.TabStop = false;
             groupBoxMode.Text = "Tryb";
@@ -363,51 +421,6 @@
             radioPM1Mode.UseVisualStyleBackColor = true;
             radioPM1Mode.CheckedChanged += RadioPM1_CheckedChanged;
             // 
-            // labelLenEnd
-            // 
-            labelLenEnd.AutoSize = true;
-            labelLenEnd.Location = new Point(225, 147);
-            labelLenEnd.Name = "labelLenEnd";
-            labelLenEnd.Size = new Size(76, 25);
-            labelLenEnd.TabIndex = 8;
-            labelLenEnd.Text = "znaków.";
-            // 
-            // textBoxMaxLen
-            // 
-            textBoxMaxLen.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            textBoxMaxLen.Location = new Point(166, 144);
-            textBoxMaxLen.MaxLength = 2;
-            textBoxMaxLen.Name = "textBoxMaxLen";
-            textBoxMaxLen.Size = new Size(53, 31);
-            textBoxMaxLen.TabIndex = 7;
-            // 
-            // labelMaxLen
-            // 
-            labelMaxLen.AutoSize = true;
-            labelMaxLen.Location = new Point(123, 147);
-            labelMaxLen.Name = "labelMaxLen";
-            labelMaxLen.Size = new Size(34, 25);
-            labelMaxLen.TabIndex = 6;
-            labelMaxLen.Text = "do";
-            // 
-            // textBoxMinLen
-            // 
-            textBoxMinLen.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            textBoxMinLen.Location = new Point(58, 144);
-            textBoxMinLen.MaxLength = 2;
-            textBoxMinLen.Name = "textBoxMinLen";
-            textBoxMinLen.Size = new Size(53, 31);
-            textBoxMinLen.TabIndex = 5;
-            // 
-            // labelMinLen
-            // 
-            labelMinLen.AutoSize = true;
-            labelMinLen.Location = new Point(13, 147);
-            labelMinLen.Name = "labelMinLen";
-            labelMinLen.Size = new Size(37, 25);
-            labelMinLen.TabIndex = 4;
-            labelMinLen.Text = "Od";
-            // 
             // radioMetagramMode
             // 
             radioMetagramMode.AutoSize = true;
@@ -420,19 +433,6 @@
             radioMetagramMode.Text = "Metagramy";
             radioMetagramMode.UseVisualStyleBackColor = true;
             radioMetagramMode.CheckedChanged += RadioMetagram_CheckedChanged;
-            // 
-            // radioLengthMode
-            // 
-            radioLengthMode.AutoSize = true;
-            radioLengthMode.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            radioLengthMode.Location = new Point(26, 104);
-            radioLengthMode.Name = "radioLengthMode";
-            radioLengthMode.Size = new Size(103, 29);
-            radioLengthMode.TabIndex = 2;
-            radioLengthMode.TabStop = true;
-            radioLengthMode.Text = "Długość";
-            radioLengthMode.UseVisualStyleBackColor = true;
-            radioLengthMode.CheckedChanged += RadioLength_CheckedChanged;
             // 
             // radioAnagramMode
             // 
@@ -1501,7 +1501,6 @@
         private TextBox textBoxMinLen;
         private Label labelMinLen;
         private RadioButton radioMetagramMode;
-        private RadioButton radioLengthMode;
         private GroupBox groupBoxFilters;
         private CheckBox checkBoxBeginWith;
         private TextBox textBoxBeginsWith;
@@ -1583,5 +1582,6 @@
         private Label labelAbout;
         private RadioButton radioPM1Mode;
         private Label labelShortcuts;
+        private CheckBox checkBoxLength;
     }
 }
