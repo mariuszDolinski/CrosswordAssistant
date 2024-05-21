@@ -304,6 +304,7 @@ namespace CrosswordAssistant
             _infoLabels.Add(labelLengthInfo);
             _infoLabels.Add(labelUlozSamInfo);
             _infoLabels.Add(labelPM1Info);
+            _infoLabels.Add(labelShortcuts);
             SetFileInfo();
             labelAbout.Text = Messages.VersionInfo;
         }
