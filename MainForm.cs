@@ -1,7 +1,6 @@
 using CrosswordAssistant.Entities;
 using CrosswordAssistant.Services;
 using System.Diagnostics;
-using System.Text.RegularExpressions;
 
 namespace CrosswordAssistant
 {
@@ -40,6 +39,20 @@ namespace CrosswordAssistant
                     break;
                 case SearchMode.Anagram:
                     matches = _dictionaryService.SearchForAnagrams(pattern);
+                    break;
+                case SearchMode.Length:
+                    int min, max;
+                    bool minOk = int.TryParse(textBoxMinLen.Text, out min);
+                    bool maxOk = int.TryParse(textBoxMaxLen.Text, out max);
+                    if (minOk && maxOk)
+                    {
+                        matches = _dictionaryService.SearchWithGivenLength(min, max);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Podaj poprawny zakres dla iloœci znaków", "B³¹d danych",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                     break;
                 case SearchMode.Metagram:
                     matches = _dictionaryService.SearchForMetagrams(pattern);
@@ -141,6 +154,22 @@ namespace CrosswordAssistant
                 textBoxPatternResults.Text = Messages.AnagramModeMessage;
             }
         }
+        private void RadioLength_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioLengthMode.Checked)
+            {
+                groupBoxMode.Size = new Size(groupBoxMode.Size.Width, 190);
+                _dictionaryService.Mode = SearchMode.Length;
+                textBoxPatternResults.Text = Messages.LengthModeMessage;
+                textBoxPattern.Enabled = false;
+                textBoxPattern.Text = "";
+            }
+            else
+            {
+                groupBoxMode.Size = new Size(groupBoxMode.Size.Width, 140);
+                textBoxPattern.Enabled = true;
+            }
+        }
         private void RadioMetagram_CheckedChanged(object sender, EventArgs e)
         {
             if (radioMetagramMode.Checked)
@@ -159,19 +188,15 @@ namespace CrosswordAssistant
         }
         private void CheckBoxStartWith_CheckedChanged(object sender, EventArgs e)
         {
-            FormService.FilterChecked(checkBoxBeginWith, [textBoxBeginsWith]);
+            FormService.FilterChecked(checkBoxBeginWith, textBoxBeginsWith);
         }
         private void CheckBoxEndsWith_CheckedChanged(object sender, EventArgs e)
         {
-            FormService.FilterChecked(checkBoxEndsWith, [textBoxEndsWith]);
+            FormService.FilterChecked(checkBoxEndsWith, textBoxEndsWith);
         }
         private void CheckBoxContains_CheckedChanged(object sender, EventArgs e)
         {
-            FormService.FilterChecked(checkBoxContains, [textBoxContains]);
-        }
-        private void CheckBoxLength_CheckChanged(object sender, EventArgs e)
-        {
-            FormService.FilterChecked(checkBoxLength, [textBoxMinLen, textBoxMaxLen]);
+            FormService.FilterChecked(checkBoxContains, textBoxContains);
         }
         private void MainForm_KeyDown(object sender, KeyEventArgs e)
         {
@@ -212,6 +237,7 @@ namespace CrosswordAssistant
                             case Keys.D2: radioAnagramMode.Checked = true; break;
                             case Keys.D3: radioMetagramMode.Checked = true; break;
                             case Keys.D4: radioPM1Mode.Checked = true; break;
+                            case Keys.D5: radioLengthMode.Checked = true; break;
                         }
                     }
                     break;
@@ -278,7 +304,6 @@ namespace CrosswordAssistant
             _infoLabels.Add(labelLengthInfo);
             _infoLabels.Add(labelUlozSamInfo);
             _infoLabels.Add(labelPM1Info);
-            _infoLabels.Add(labelShortcuts);
             SetFileInfo();
             labelAbout.Text = Messages.VersionInfo;
         }
@@ -330,15 +355,16 @@ namespace CrosswordAssistant
         }
         private bool ValidatePattern(string pattern)
         {
-            if (EmptyPatternWithoutFilters())
+            if (_dictionaryService.Mode == SearchMode.Length) return true;
+            if (pattern.Length == 0)
             {
-                MessageBox.Show(Messages.EmptyPattern, "Uwaga", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                textBoxPatternResults.Text = Messages.EmptyPattern;
                 return false;
             }
             if (_dictionaryService.Mode == SearchMode.Metagram && pattern.Contains('.')
                 || !DictionaryService.ValidateAllowedChars(pattern, DictionaryService.AllowedPatternChars))
             {
-                MessageBox.Show("Wzorzec zawiera niedozwolone znaki","Uwaga", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Wzorzec zawiera niedozwolone znaki.");
                 return false;
             }
 
@@ -361,67 +387,31 @@ namespace CrosswordAssistant
         private List<string> ApplyFilters(List<string> words)
         {
             List<string> results = words;
-            if (checkBoxLength.Checked)
-            {
-                int min, max;
-                bool minOk = int.TryParse(textBoxMinLen.Text.Trim(), out min);
-                bool maxOk = int.TryParse(textBoxMaxLen.Text.Trim(), out max);
-                if (minOk && maxOk)
-                {
-                    results = results
-                        .Where(w => w.Length >= min && w.Length <= max)
-                        .ToList();
-                }
-                else
-                {
-                    MessageBox.Show("Podano b³êdny zakres iloœci znaków. Filtr nie zosta³ uwzglêdniony.", "B³¹d danych",
-                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return [];
-                }
-            }
             if (checkBoxBeginWith.Checked)
             {
-                if (textBoxBeginsWith.Text.Trim().Length > 0)
+                if (textBoxBeginsWith.Text.Length > 0)
                 {
                     results = results
                         .Where(w => w.StartsWith(textBoxBeginsWith.Text, StringComparison.CurrentCultureIgnoreCase))
                         .ToList();
                 }
-                else
-                {
-                    MessageBox.Show("Podaj tekst w polu filtra", "B³¹d danych",
-                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return [];
-                }
             }
             if (checkBoxEndsWith.Checked)
             {
-                if (textBoxEndsWith.Text.Trim().Length > 0)
+                if (textBoxEndsWith.Text.Length > 0)
                 {
                     results = results
                         .Where(w => w.EndsWith(textBoxEndsWith.Text, StringComparison.CurrentCultureIgnoreCase))
                         .ToList();
                 }
-                else
-                {
-                    MessageBox.Show("Podaj tekst w polu filtra", "B³¹d danych",
-                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return [];
-                }
             }
             if (checkBoxContains.Checked)
             {
-                if (textBoxContains.Text.Trim().Length > 0)
+                if (textBoxContains.Text.Length > 0)
                 {
                     results = results
                         .Where(w => w.Contains(textBoxContains.Text, StringComparison.CurrentCultureIgnoreCase))
                         .ToList();
-                }
-                else
-                {
-                    MessageBox.Show("Podaj tekst w polu filtra", "B³¹d danych",
-                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return [];
                 }
             }
             return results;
@@ -441,6 +431,7 @@ namespace CrosswordAssistant
                 if (radioPatternMode.Checked) _dictionaryService.Mode = SearchMode.Pattern;
                 else if (radioAnagramMode.Checked) _dictionaryService.Mode = SearchMode.Anagram;
                 else if (radioMetagramMode.Checked) _dictionaryService.Mode = SearchMode.Metagram;
+                else if (radioLengthMode.Checked) _dictionaryService.Mode = SearchMode.Length;
                 else if (radioPM1Mode.Checked) _dictionaryService.Mode = SearchMode.PlusMinus1;
             }
         }
@@ -484,14 +475,6 @@ namespace CrosswordAssistant
             FormService.ResetLabelsBackColor(_infoLabels, Color.Silver);
             lbl.BackColor = Color.LightSteelBlue;
             textBoxAbout.Text = msg;
-        }
-        private bool EmptyPatternWithoutFilters()
-        {
-            if (textBoxPattern.Text.Length == 0 && !checkBoxBeginWith.Checked && !checkBoxEndsWith.Checked
-                && !checkBoxContains.Checked && !checkBoxLength.Checked) 
-                return true;
-
-            return false;
         }
         #endregion
     }

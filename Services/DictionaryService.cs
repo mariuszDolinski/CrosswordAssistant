@@ -37,8 +37,6 @@ namespace CrosswordAssistant.Services
         /// <returns></returns>
         public List<string> SearchByPattern(string pattern) 
         {
-            if(pattern.Trim() == string.Empty)
-                return CurrentDictionary;
             List<string> result = [];
             bool isMatch;
 
@@ -71,8 +69,6 @@ namespace CrosswordAssistant.Services
         /// <returns></returns>
         public List<string> SearchForAnagrams(string pattern)
         {
-            if (pattern.Trim() == string.Empty)
-                return CurrentDictionary;
             List<string> result = [];
             bool isAnagram;
 
@@ -104,14 +100,31 @@ namespace CrosswordAssistant.Services
             return result;
         }
         /// <summary>
+        /// Return: list of words in CurrentDictionary with length is in given range.
+        /// </summary>
+        /// <param name="min">range lower boundry</param>
+        /// <param name="max">range upper boundry</param>
+        /// <returns></returns>
+        public List<string> SearchWithGivenLength(int min, int max)
+        {
+            List<string> result = [];
+            foreach(var word in CurrentDictionary)
+            {
+                if (word.Length >= min && word.Length <= max)
+                {
+                    result.Add(word);
+                }
+            }
+
+            return result;  
+        }
+        /// <summary>
         /// Return list of words from CurrentDictionary which are metagrams of given pattern
         /// </summary>
         /// <param name="pattern"></param>
         /// <returns></returns>
         public List<string> SearchForMetagrams(string pattern)
         {
-            if (pattern.Trim() == string.Empty)
-                return CurrentDictionary;
             List<string> result = [];
             foreach (var word in CurrentDictionary)
             {
@@ -124,9 +137,8 @@ namespace CrosswordAssistant.Services
         }
         public List<string> SearchPlusMinus1Words(string pattern)
         {
-            if (pattern.Trim() == string.Empty)
-                return CurrentDictionary;
             List<string> result = [];
+
             foreach( var word in CurrentDictionary)
             {
                 if (pattern.DiffMinusOne(word) || word.DiffMinusOne(pattern))
@@ -230,5 +242,6 @@ namespace CrosswordAssistant.Services
         }
         public int GetWordsCount()
             => CurrentDictionary.Count;
+
     }
 }

@@ -13,20 +13,16 @@
                 control.Visible = true;
             }
         }
-        public static void FilterChecked(CheckBox checkBox, TextBox[] textBox) 
+        public static void FilterChecked(CheckBox checkBox, TextBox textBox) 
         {
             if (checkBox.Checked)
             {
-                for(int i = 0; i < textBox.Length; i++)
-                    textBox[i].Enabled = true;
+                textBox.Enabled = true;
             }
             else
             {
-                for (int i = 0; i < textBox.Length; i++)
-                {
-                    textBox[i].Enabled = false;
-                    textBox[i].Text = "";
-                }
+                textBox.Enabled = false;
+                textBox.Text = "";
             }
         }
         public static void ResetLabelsBackColor(List<Label> labels, Color color)
