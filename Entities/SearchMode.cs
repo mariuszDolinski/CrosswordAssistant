@@ -8,6 +8,7 @@
         Length = 4,
         UluzSam = 5,
         PlusMinus1 = 6,
-        None = 7
+        Scrabble = 7,
+        None = 8
     }
 }

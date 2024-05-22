@@ -97,6 +97,12 @@
             textBoxPatternUls = new TextBox();
             label8 = new Label();
             labelUluzSam = new Label();
+            tabPageScrabble = new TabPage();
+            textBoxScrabbleResults = new TextBox();
+            tableLayoutPanelScrabble = new TableLayoutPanel();
+            searchScrabbleBtn = new Button();
+            textBoxScrabblePattern = new TextBox();
+            label4 = new Label();
             tabPageDictionary = new TabPage();
             tableLayoutPanel3 = new TableLayoutPanel();
             groupBoxAddToDict = new GroupBox();
@@ -152,6 +158,8 @@
             splitContainerUls.SuspendLayout();
             groupBoxUlsGroups.SuspendLayout();
             tableLayoutPanelUsl.SuspendLayout();
+            tabPageScrabble.SuspendLayout();
+            tableLayoutPanelScrabble.SuspendLayout();
             tabPageDictionary.SuspendLayout();
             tableLayoutPanel3.SuspendLayout();
             groupBoxAddToDict.SuspendLayout();
@@ -165,6 +173,7 @@
             // 
             tabControl.Controls.Add(tabPattern);
             tabControl.Controls.Add(tabPageUlozSam);
+            tabControl.Controls.Add(tabPageScrabble);
             tabControl.Controls.Add(tabPageDictionary);
             tabControl.Controls.Add(tabPageAbout);
             tabControl.Dock = DockStyle.Fill;
@@ -188,7 +197,7 @@
             tabPattern.Padding = new Padding(3);
             tabPattern.Size = new Size(817, 662);
             tabPattern.TabIndex = 0;
-            tabPattern.Text = "Wzorzec";
+            tabPattern.Text = "Szaradszista";
             tabPattern.UseVisualStyleBackColor = true;
             // 
             // splitContainerResults
@@ -975,6 +984,87 @@
             labelUluzSam.Text = "UŁÓŻ SAM";
             labelUluzSam.TextAlign = ContentAlignment.TopCenter;
             // 
+            // tabPageScrabble
+            // 
+            tabPageScrabble.Controls.Add(textBoxScrabbleResults);
+            tabPageScrabble.Controls.Add(tableLayoutPanelScrabble);
+            tabPageScrabble.Controls.Add(label4);
+            tabPageScrabble.Location = new Point(4, 34);
+            tabPageScrabble.Name = "tabPageScrabble";
+            tabPageScrabble.Padding = new Padding(3);
+            tabPageScrabble.Size = new Size(817, 662);
+            tabPageScrabble.TabIndex = 4;
+            tabPageScrabble.Text = "Scrabble";
+            tabPageScrabble.UseVisualStyleBackColor = true;
+            // 
+            // textBoxScrabbleResults
+            // 
+            textBoxScrabbleResults.BackColor = SystemColors.ControlLight;
+            textBoxScrabbleResults.BorderStyle = BorderStyle.FixedSingle;
+            textBoxScrabbleResults.ContextMenuStrip = contextMenuStripResults;
+            textBoxScrabbleResults.Dock = DockStyle.Fill;
+            textBoxScrabbleResults.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            textBoxScrabbleResults.Location = new Point(3, 80);
+            textBoxScrabbleResults.Multiline = true;
+            textBoxScrabbleResults.Name = "textBoxScrabbleResults";
+            textBoxScrabbleResults.ReadOnly = true;
+            textBoxScrabbleResults.ScrollBars = ScrollBars.Vertical;
+            textBoxScrabbleResults.Size = new Size(811, 579);
+            textBoxScrabbleResults.TabIndex = 3;
+            // 
+            // tableLayoutPanelScrabble
+            // 
+            tableLayoutPanelScrabble.ColumnCount = 2;
+            tableLayoutPanelScrabble.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 72.87299F));
+            tableLayoutPanelScrabble.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 27.1270046F));
+            tableLayoutPanelScrabble.Controls.Add(searchScrabbleBtn, 0, 0);
+            tableLayoutPanelScrabble.Controls.Add(textBoxScrabblePattern, 0, 0);
+            tableLayoutPanelScrabble.Dock = DockStyle.Top;
+            tableLayoutPanelScrabble.Location = new Point(3, 35);
+            tableLayoutPanelScrabble.Name = "tableLayoutPanelScrabble";
+            tableLayoutPanelScrabble.RowCount = 1;
+            tableLayoutPanelScrabble.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanelScrabble.Size = new Size(811, 45);
+            tableLayoutPanelScrabble.TabIndex = 2;
+            // 
+            // searchScrabbleBtn
+            // 
+            searchScrabbleBtn.Cursor = Cursors.Hand;
+            searchScrabbleBtn.Dock = DockStyle.Fill;
+            searchScrabbleBtn.FlatStyle = FlatStyle.Flat;
+            searchScrabbleBtn.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            searchScrabbleBtn.Location = new Point(592, 4);
+            searchScrabbleBtn.Margin = new Padding(2, 4, 0, 4);
+            searchScrabbleBtn.Name = "searchScrabbleBtn";
+            searchScrabbleBtn.Size = new Size(219, 37);
+            searchScrabbleBtn.TabIndex = 9;
+            searchScrabbleBtn.Text = "SZUKAJ";
+            searchScrabbleBtn.UseVisualStyleBackColor = true;
+            searchScrabbleBtn.Click += SearchScrabble_Click;
+            // 
+            // textBoxScrabblePattern
+            // 
+            textBoxScrabblePattern.CharacterCasing = CharacterCasing.Upper;
+            textBoxScrabblePattern.Dock = DockStyle.Fill;
+            textBoxScrabblePattern.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            textBoxScrabblePattern.Location = new Point(0, 4);
+            textBoxScrabblePattern.Margin = new Padding(0, 4, 2, 4);
+            textBoxScrabblePattern.Name = "textBoxScrabblePattern";
+            textBoxScrabblePattern.Size = new Size(588, 37);
+            textBoxScrabblePattern.TabIndex = 8;
+            // 
+            // label4
+            // 
+            label4.BackColor = Color.BurlyWood;
+            label4.Dock = DockStyle.Top;
+            label4.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            label4.Location = new Point(3, 3);
+            label4.Name = "label4";
+            label4.Size = new Size(811, 32);
+            label4.TabIndex = 1;
+            label4.Text = "SCRABBLE";
+            label4.TextAlign = ContentAlignment.TopCenter;
+            // 
             // tabPageDictionary
             // 
             tabPageDictionary.Controls.Add(tableLayoutPanel3);
@@ -1467,6 +1557,10 @@
             groupBoxUlsGroups.ResumeLayout(false);
             tableLayoutPanelUsl.ResumeLayout(false);
             tableLayoutPanelUsl.PerformLayout();
+            tabPageScrabble.ResumeLayout(false);
+            tabPageScrabble.PerformLayout();
+            tableLayoutPanelScrabble.ResumeLayout(false);
+            tableLayoutPanelScrabble.PerformLayout();
             tabPageDictionary.ResumeLayout(false);
             tableLayoutPanel3.ResumeLayout(false);
             groupBoxAddToDict.ResumeLayout(false);
@@ -1583,5 +1677,11 @@
         private Label labelAbout;
         private RadioButton radioPM1Mode;
         private Label labelShortcuts;
+        private TabPage tabPageScrabble;
+        private Label label4;
+        private TableLayoutPanel tableLayoutPanelScrabble;
+        private Button searchScrabbleBtn;
+        private TextBox textBoxScrabblePattern;
+        private TextBox textBoxScrabbleResults;
     }
 }

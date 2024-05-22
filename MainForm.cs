@@ -29,7 +29,7 @@ namespace CrosswordAssistant
         private void SearchPattern_Click(object sender, EventArgs e)
         {
             string pattern = textBoxPattern.Text.Trim().ToLower();
-            if (!ValidatePattern(pattern)) return;
+            if (!Utilities.ValidatePattern(pattern,_dictionaryService.Mode)) return;
             textBoxPattern.ReadOnly = true;
             List<string> matches = [];
             switch (_dictionaryService.Mode)
@@ -90,6 +90,10 @@ namespace CrosswordAssistant
             matches = Utilities.BoundTo500(matches);
             FillTextBoxResults(matches, textBoxResultsUls);
             textBoxPatternUls.ReadOnly = false;
+        }
+        private void SearchScrabble_Click(object sender, EventArgs e)
+        {
+            //TO DO
         }
         private void LoadDictionaryBtn_Click(object sender, EventArgs e)
         {
@@ -259,7 +263,7 @@ namespace CrosswordAssistant
         {
             var currentPage = (sender as TabControl)!.SelectedIndex;
             SetMode(currentPage);
-            if (currentPage == 2) _isEnterSuppressed = false;
+            if (currentPage == 3) _isEnterSuppressed = false;
             else _isEnterSuppressed = true;
         }
         private void PatternInfo_Click(object sender, EventArgs e)
@@ -354,23 +358,6 @@ namespace CrosswordAssistant
                     "Wyœwietlam pierwsze 500.";
             }
         }
-        private bool ValidatePattern(string pattern)
-        {
-            if (_dictionaryService.Mode == SearchMode.Length) return true;
-            if (pattern.Length == 0)
-            {
-                textBoxPatternResults.Text = Messages.EmptyPattern;
-                return false;
-            }
-            if (_dictionaryService.Mode == SearchMode.Metagram && pattern.Contains('.')
-                || !DictionaryService.ValidateAllowedChars(pattern, DictionaryService.AllowedPatternChars))
-            {
-                MessageBox.Show("Wzorzec zawiera niedozwolone znaki.");
-                return false;
-            }
-
-            return true;
-        }
         private bool ValidateUluzSamGroups()
         {
             if (!DictionaryService.ValidateAllowedChars(textBoxGr1.Text.ToLower(), DictionaryService.AllowedLetters)
@@ -419,21 +406,25 @@ namespace CrosswordAssistant
         }
         private void SetMode(int tabIndex)
         {
-            if (tabIndex == 1)
+            switch (tabIndex)
             {
-                _dictionaryService.Mode = SearchMode.UluzSam;
-            }
-            else if (tabIndex == 2 || tabIndex == 3)
-            {
-                _dictionaryService.Mode = SearchMode.None;
-            }
-            else if (tabIndex == 0)
-            {
-                if (radioPatternMode.Checked) _dictionaryService.Mode = SearchMode.Pattern;
-                else if (radioAnagramMode.Checked) _dictionaryService.Mode = SearchMode.Anagram;
-                else if (radioMetagramMode.Checked) _dictionaryService.Mode = SearchMode.Metagram;
-                else if (radioLengthMode.Checked) _dictionaryService.Mode = SearchMode.Length;
-                else if (radioPM1Mode.Checked) _dictionaryService.Mode = SearchMode.PlusMinus1;
+                case 1:
+                    _dictionaryService.Mode = SearchMode.UluzSam;
+                    break;
+                case 2:
+                    _dictionaryService.Mode = SearchMode.Scrabble;
+                    break;
+                case 3:
+                case 4:
+                    _dictionaryService.Mode = SearchMode.None;
+                    break;
+                default:
+                    if (radioPatternMode.Checked) _dictionaryService.Mode = SearchMode.Pattern;
+                    else if (radioAnagramMode.Checked) _dictionaryService.Mode = SearchMode.Anagram;
+                    else if (radioMetagramMode.Checked) _dictionaryService.Mode = SearchMode.Metagram;
+                    else if (radioLengthMode.Checked) _dictionaryService.Mode = SearchMode.Length;
+                    else if (radioPM1Mode.Checked) _dictionaryService.Mode = SearchMode.PlusMinus1;
+                    break;
             }
         }
         private string[] ConvertGroupsToArray()

@@ -1,4 +1,6 @@
-﻿using System.Diagnostics;
+﻿using CrosswordAssistant.Entities;
+using System.ComponentModel.Design;
+using System.Diagnostics;
 
 namespace CrosswordAssistant.Services
 {
@@ -19,6 +21,24 @@ namespace CrosswordAssistant.Services
             List<string> results = words;
             if (results.Count <= 500) return results;
             return results.Take(500).ToList();
+        }
+
+        public static bool ValidatePattern(string pattern, SearchMode mode)
+        {
+            if (mode == SearchMode.Length) return true;
+            if (pattern.Length == 0)
+            {
+                MessageBox.Show("Wzorzec jest pusty.");
+                return false;
+            }
+            if (mode == SearchMode.Metagram && pattern.Contains('.')
+                || !DictionaryService.ValidateAllowedChars(pattern, DictionaryService.AllowedPatternChars))
+            {
+                MessageBox.Show("Wzorzec zawiera niedozwolone znaki.");
+                return false;
+            }
+
+            return true;
         }
 
         /// <summary>
