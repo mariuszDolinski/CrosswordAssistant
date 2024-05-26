@@ -8,7 +8,7 @@
         public static string MetagramModeMessage { get; } = "Podaj wyraz i kliknij Szukaj...";
         public static string LengthModeMessage { get; } = "Wybierz dodatkowe filtry i kliknij Szukaj...";
         public static string EmptyPattern { get; } = "Wzorzec nie zawiera żadnych znaków.";
-        public static string VersionInfo { get; } = "Pomocnik krzyżówkowicza v2.3.6" + Environment.NewLine +
+        public static string VersionInfo { get; } = "Pomocnik krzyżówkowicza v2.4.6" + Environment.NewLine +
                 "Autor: Mariusz Doliński" + Environment.NewLine + "© 2024";
         public static string PatternInfo { get; } = "Wyszukuje wyrazy posiadające te same litery na tych" +
             " samych pozycjach co w podanym wzorcu. Znak kropki (.) zastępuje dowolną literę," +

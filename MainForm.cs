@@ -63,7 +63,7 @@ namespace CrosswordAssistant
             }
             matches = ApplyFilters(matches);
             matches = Utilities.BoundTo500(matches);
-            FillTextBoxResults(matches, textBoxPatternResults);
+            FillTextBoxResults(matches, textBoxPatternResults, pattern);
             textBoxPattern.ReadOnly = false;
         }
         private void UluzSamSearch_Click(object sender, EventArgs e)
@@ -88,12 +88,28 @@ namespace CrosswordAssistant
             string[] groups = ConvertGroupsToArray();
             List<string> matches = _dictionaryService.SearchUluzSam(digits, groups);
             matches = Utilities.BoundTo500(matches);
-            FillTextBoxResults(matches, textBoxResultsUls);
+            FillTextBoxResults(matches, textBoxResultsUls, "");
             textBoxPatternUls.ReadOnly = false;
         }
         private void SearchScrabble_Click(object sender, EventArgs e)
         {
-            //TO DO
+            textBoxScrabbleResults.ReadOnly = true;
+            string pattern = textBoxScrabblePattern.Text.ToLower();
+            if (pattern.Length < 4 || pattern.Length > 14 || pattern.CountChars('.') > 2)
+            {
+                MessageBox.Show("Wzorzec powinien zawieraæ od 4 do 14 znaków, w tym co najwy¿ej dwa myd³a",
+                    "B³êdny wzorzec", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (!DictionaryService.ValidateAllowedChars(pattern, DictionaryService.AllowedPatternChars))
+            {
+                MessageBox.Show("Wzorzec zawiera niedozwolone znaki", "B³êdny wzorzec",
+                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            List<string> matches = _dictionaryService.SearchScrabble(pattern);
+            FillTextBoxResults(matches, textBoxScrabbleResults, pattern);
+            textBoxScrabbleResults.ReadOnly = false;
         }
         private void LoadDictionaryBtn_Click(object sender, EventArgs e)
         {
@@ -221,6 +237,19 @@ namespace CrosswordAssistant
                             break;
                     }
                     break;
+                case SearchMode.Scrabble:
+                    switch (e.KeyCode)
+                    {
+                        case Keys.Enter:
+                            SearchScrabble_Click(sender, e);
+                            e.SuppressKeyPress = true;
+                            break;
+                        case Keys.F6:
+                            textBoxScrabblePattern.SelectAll();
+                            textBoxScrabblePattern.Focus();
+                            break;
+                    }
+                    break;
                 default:
                     switch (e.KeyCode)
                     {
@@ -326,9 +355,9 @@ namespace CrosswordAssistant
                 labelWordsCount.BackColor = Color.MediumAquamarine;
             }
         }
-        private void FillTextBoxResults(List<string> results, TextBox textBox)
+        private void FillTextBoxResults(List<string> results, TextBox textBox, string pattern)
         {
-            textBox.Text = "";
+            string result = "";
             if (results.Count == 0)
             {
                 switch (_dictionaryService.Mode)
@@ -346,12 +375,20 @@ namespace CrosswordAssistant
             }
             else
             {
-                foreach (string word in results)
+                if(_dictionaryService.Mode != SearchMode.Scrabble) 
                 {
-                    textBox.Text += word + Environment.NewLine;
+                    foreach (string word in results)
+                    {
+                        result += word + Environment.NewLine;
+                    }
+                    textBox.Text = result;
+                }
+                else
+                {
+                    FormService.FillTextBoxScrabbleResults(textBoxScrabbleResults, results, pattern);
                 }
             }
-            if (results.Count == 500)
+            if (results.Count == 500 && _dictionaryService.Mode != SearchMode.Scrabble)
             {
                 textBox.Text += Environment.NewLine;
                 textBox.Text += "Zbyt wiele dopasowañ. " + Environment.NewLine +

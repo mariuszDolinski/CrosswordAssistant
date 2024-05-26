@@ -32,5 +32,27 @@
                 label.BackColor = color;
             }
         }
+        public static void FillTextBoxScrabbleResults(TextBox textBox, List<string> words, string pattern)
+        {
+            string result = "";
+            int maxLength = words.Max(w => w.Length);
+            int score;
+            for (int i = maxLength; i > 3; i--) 
+            {
+                var wordsByLength = words.Where(w => w.Length == i).ToList();
+                if (wordsByLength.Count == 0) continue;
+                result += $"Wyrazy {i}-literowe:" + Environment.NewLine;
+                foreach (var word in wordsByLength)
+                {
+                    score = Utilities.CountScrabblePoints(word, pattern);
+                    if(wordsByLength.IndexOf(word) != wordsByLength.Count - 1)
+                        result += $"{word}({score}), ";
+                    else
+                        result += $"{word}({score})";
+                }
+                result += Environment.NewLine + Environment.NewLine;
+                textBox.Text = result;
+            }
+        }
     }
 }

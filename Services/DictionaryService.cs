@@ -70,28 +70,13 @@ namespace CrosswordAssistant.Services
         public List<string> SearchForAnagrams(string pattern)
         {
             List<string> result = [];
-            bool isAnagram;
 
             foreach(var word in CurrentDictionary)
             {
-                isAnagram = true;
                 if(word is null) continue;
                 if(word.Length != pattern.Length) continue;
                 if(word.Equals(pattern, StringComparison.CurrentCultureIgnoreCase)) continue;
-                string tmp = word.ToLower();
-                for(int i=0; i<pattern.Length; i++)
-                {
-                    if (pattern[i] == '.') continue;
-                    int j = tmp.IndexOf(pattern[i]);
-                    if (j == -1) 
-                    {
-                        isAnagram = false; 
-                        break;
-                    } 
-                    else tmp = tmp.ReplaceAtIndex(j, '+');
-                }
-                if (!isAnagram) continue;
-                if(pattern.CountChars('.',0) == tmp.CountChars('+', 1))
+                if (CheckForAnagram(pattern.ToLower(), word.ToLower()))
                 {
                     result.Add(word);
                 }
@@ -173,6 +158,20 @@ namespace CrosswordAssistant.Services
 
             return result;
         }
+        public List<string> SearchScrabble(string pattern)
+        {
+            List<string> result = [];
+            foreach( var word in CurrentDictionary)
+            {
+                if(word.Length > pattern.Length) continue;
+                if(word.Length < 4 || word.Length > 14) continue;
+                if (CheckForAnagram(pattern.ToLower(), word.ToLower()))
+                {
+                    result.Add(word);
+                }
+            }
+            return result;
+        }
         /// <summary>
         /// Add given list of words to CurrentDictionary. Preserve alphabetical order.
         /// Return list of added words. If empty list is returned, no words was added.
@@ -243,5 +242,23 @@ namespace CrosswordAssistant.Services
         public int GetWordsCount()
             => CurrentDictionary.Count;
 
+
+        private bool CheckForAnagram(string pattern, string word)
+        {
+            int dots = pattern.CountChars('.');
+            int notMatched = 0;
+            for (int i = 0; i < word.Length; i++)
+            {
+                int j = pattern.IndexOf(word[i]);
+                if (j == -1)
+                {
+                    notMatched++;
+                    if(notMatched > dots)
+                        return false;
+                }
+                else pattern = pattern.ReplaceAtIndex(j, '+');
+            }
+            return true;
+        }
     }
 }
