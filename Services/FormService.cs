@@ -2,17 +2,6 @@
 {
     public class FormService
     {
-        public static void SwitchControlVisibility(Control control)
-        {
-            if (control.Visible)
-            {
-                control.Visible = false;
-            }
-            else
-            {
-                control.Visible = true;
-            }
-        }
         public static void FilterChecked(CheckBox checkBox, TextBox textBox) 
         {
             if (checkBox.Checked)
@@ -32,23 +21,21 @@
                 label.BackColor = color;
             }
         }
-        public static void FillTextBoxScrabbleResults(TextBox textBox, List<string> words, string pattern)
+        public static void FillTextBoxScrabbleResults(TextBox textBox, List<string> words)
         {
             string result = "";
-            int maxLength = words.Max(w => w.Length);
-            int score;
+            int maxLength = words.Max(w => w[..w.IndexOf('(')].Length);
             for (int i = maxLength; i > 3; i--) 
             {
-                var wordsByLength = words.Where(w => w.Length == i).ToList();
+                var wordsByLength = words.Where(w => w[..w.IndexOf('(')].Length == i).ToList();
                 if (wordsByLength.Count == 0) continue;
                 result += $"Wyrazy {i}-literowe:" + Environment.NewLine;
                 foreach (var word in wordsByLength)
                 {
-                    score = Utilities.CountScrabblePoints(word, pattern);
                     if(wordsByLength.IndexOf(word) != wordsByLength.Count - 1)
-                        result += $"{word}({score}), ";
+                        result += $"{word}, ";
                     else
-                        result += $"{word}({score})";
+                        result += $"{word}";
                 }
                 result += Environment.NewLine + Environment.NewLine;
                 textBox.Text = result;

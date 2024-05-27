@@ -23,67 +23,6 @@ namespace CrosswordAssistant.Services
             return results.Take(500).ToList();
         }
 
-        public static bool ValidatePattern(string pattern, SearchMode mode)
-        {
-            if (mode == SearchMode.Length) return true;
-            if (pattern.Length == 0)
-            {
-                MessageBox.Show("Wzorzec jest pusty.");
-                return false;
-            }
-            if (mode == SearchMode.Metagram && pattern.Contains('.')
-                || !DictionaryService.ValidateAllowedChars(pattern, DictionaryService.AllowedPatternChars))
-            {
-                MessageBox.Show("Wzorzec zawiera niedozwolone znaki.");
-                return false;
-            }
-            return true;
-        }
-
-        /// <summary>
-        /// Check if given string contains only digits from 1 to 8, i.e. is a proper integer. 
-        /// If true returns this integer. If not returns -1.
-        /// </summary>
-        /// <param name="pattern"></param>
-        /// <returns></returns>
-        public static List<int> ValidateUluzSamPattern(string pattern)
-        {
-            List<int> result = [];
-            if (pattern.Length == 0) return result;
-            if (pattern.Contains('0') || pattern.Contains('9')) return result;
-            int digit;
-            foreach(var ch in pattern)
-            {
-                if (int.TryParse(ch.ToString(), out digit))
-                {
-                    result.Add(digit);
-                }
-                else
-                {
-                    return [];
-                }
-            }
-            return result;
-        }
-
-        /// <summary>
-        /// Returns: list of digits of given integer.
-        /// </summary>
-        /// <param name="number"></param>
-        /// <returns></returns>
-        public static List<int> ConvertIntToList(int number)
-        {
-            List<int> result = [];
-            int digit;
-            while (number > 0)
-            {
-                digit = number % 10;
-                result.Insert(0, digit);
-                number = (number - digit) / 10;
-            }
-            return result;
-        }
-
         /// <summary>
         /// Removes empty lines and trim all lines in given list.
         /// </summary>
@@ -100,55 +39,5 @@ namespace CrosswordAssistant.Services
             return result;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="c"></param>
-        /// <returns>scrabble points for given char</returns>
-        public static int ScrabblePointsForChar(char c)
-        {
-            return c switch
-            {
-                'a' or 'e' or 'i' or 'o' or 'n' or 'z' or 'r' or 's' or 'w' => 1,
-                'y' or 'c' or 'd' or 'k' or 'l' or 'm' or 'p' or 't' => 2,
-                'b' or 'g' or 'h' or 'j' or 'ł' or 'u' => 3,
-                'ą' or 'ę' or 'f' or 'ó' or 'ś' or 'ż' => 5,
-                'ć' => 6,
-                'ń' => 7,
-                'ź' => 9,
-                _ => 0,
-            };
-        }
-
-        /// <summary>
-        /// Calculate scrabble points for given word. If pattern is given only letters which appears
-        /// in pattern are counting in scrabble score.
-        /// </summary>
-        /// <param name="word"></param>
-        /// <param name="pattern"></param>
-        /// <returns>scrabble points for given word</returns>
-        public static int CountScrabblePoints(string word,string pattern = "")
-        {
-            int result = 0;
-            word = word.ToLower();
-            if(pattern == "")
-            {
-                foreach(char c in word)
-                {
-                    result += ScrabblePointsForChar(c);
-                }
-            }
-            else
-            {
-                foreach (char c in word)
-                {
-                    if (pattern.Contains(c))
-                    {
-                        result += ScrabblePointsForChar(c);
-                    }
-                }
-            }
-            return result;
-        }
     }
 }
