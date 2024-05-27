@@ -8,7 +8,7 @@
         public static string MetagramModeMessage { get; } = "Podaj wyraz i kliknij Szukaj...";
         public static string LengthModeMessage { get; } = "Wybierz dodatkowe filtry i kliknij Szukaj...";
         public static string EmptyPattern { get; } = "Wzorzec nie zawiera żadnych znaków.";
-        public static string VersionInfo { get; } = "Pomocnik krzyżówkowicza v2.4.6" + Environment.NewLine +
+        public static string VersionInfo { get; } = "Pomocnik krzyżówkowicza v2.4.7" + Environment.NewLine +
                 "Autor: Mariusz Doliński" + Environment.NewLine + "© 2024";
         public static string PatternInfo { get; } = "Wyszukuje wyrazy posiadające te same litery na tych" +
             " samych pozycjach co w podanym wzorcu. Znak kropki (.) zastępuje dowolną literę," +
@@ -33,6 +33,11 @@
         public static string PlusMinus1Info { get; } = "W tym trybie wyszukiwane są wszystkie wyrazy, które powstają" +
             " z danego wyrazu, poprzez dodanie lub odjęcie dokładnie jednej litery, np. SALA -> SALWA, PROSTO -> PROSO." +
             " We wzorcu dozwolone są jedynie litery.";
+        public static string ScrabbleInfo { get; } = "W tym trybie wyszukiwane są wszystkie wyrazy, które można ułożyć " +
+            "z liter podanych we wzorcu. We wzorcu można użyć maksymalnie dwóch znaków kropki (.) zatępjących dowolną literę. " +
+            "Wzorzec powinien mieć od 4 do 14 znaków. Dopasowane wyrazy pogrupowane są według ilości znaków, " +
+            "w nawiasie podana jest podstawowa punktacja słowa w grze Scrabble (nie uwzględniająca dodatkowych premii). ";
+        
         public static string Shortcuts { get; } = "Dostępne skróty klawiaturowe:" + Environment.NewLine +
             "Enter - uruchamia wyszukiwanie dla aktualnego wzorca" + Environment.NewLine +
             "F6 - zaznacza wzorzec" + Environment.NewLine +

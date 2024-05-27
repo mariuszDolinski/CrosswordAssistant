@@ -62,7 +62,7 @@ namespace CrosswordAssistant.Searches
         /// <param name="word"></param>
         /// <param name="pattern"></param>
         /// <returns>scrabble points for given word</returns>
-        private static int CountScrabblePoints(string word, string pattern = "")
+        private static int CountScrabblePoints(string word, string pattern)
         {
             int result = 0;
             word = word.ToLower();

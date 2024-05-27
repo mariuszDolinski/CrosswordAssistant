@@ -32,8 +32,8 @@ namespace CrosswordAssistant
         private void SearchPattern_Click(object sender, EventArgs e)
         {
             string pattern = textBoxPattern.Text.Trim().ToLower();
-            if(Search.Mode == SearchMode.Length) 
-            { 
+            if (Search.Mode == SearchMode.Length)
+            {
                 pattern = textBoxMinLen.Text + "+" + textBoxMaxLen.Text;
             }
 
@@ -42,7 +42,7 @@ namespace CrosswordAssistant
             if (!search.ValidatePattern(pattern)) return;
             textBoxPattern.ReadOnly = true;
             List<string> matches = search.SearchMatches(pattern);
-        
+
             matches = ApplyFilters(matches);
             matches = Utilities.BoundTo500(matches);
             FillTextBoxResults(matches, textBoxPatternResults);
@@ -69,7 +69,7 @@ namespace CrosswordAssistant
         }
         private void SearchScrabble_Click(object sender, EventArgs e)
         {
-            var search = _searchFactory.CreateSearch(Search.Mode);           
+            var search = _searchFactory.CreateSearch(Search.Mode);
             string pattern = textBoxScrabblePattern.Text.ToLower();
             if (!search.ValidatePattern(pattern)) return;
             textBoxScrabbleResults.ReadOnly = true;
@@ -286,6 +286,10 @@ namespace CrosswordAssistant
         {
             SetInfo((Label)sender, Messages.PlusMinus1Info);
         }
+        private void ScrabbleInfo_Click(object sender, EventArgs e)
+        {
+            SetInfo((Label)sender, Messages.ScrabbleInfo);
+        }
         private void Shortcuts_Click(object sender, EventArgs e)
         {
             SetInfo((Label)sender, Messages.Shortcuts);
@@ -305,6 +309,7 @@ namespace CrosswordAssistant
             _infoLabels.Add(labelUlozSamInfo);
             _infoLabels.Add(labelPM1Info);
             _infoLabels.Add(labelShortcuts);
+            _infoLabels.Add(labelScrabbleInfo);
             SetFileInfo();
             labelAbout.Text = Messages.VersionInfo;
         }
@@ -342,7 +347,7 @@ namespace CrosswordAssistant
             }
             else
             {
-                if(Search.Mode != SearchMode.Scrabble) 
+                if (Search.Mode != SearchMode.Scrabble)
                 {
                     foreach (string word in results)
                     {

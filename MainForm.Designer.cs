@@ -130,6 +130,7 @@
             labelAnagramInfo = new Label();
             labelPatternInfo = new Label();
             labelShortcuts = new Label();
+            labelScrabbleInfo = new Label();
             label3 = new Label();
             labelSpace2 = new Label();
             labelHelp = new Label();
@@ -1315,11 +1316,13 @@
             tableLayoutPanel4.Controls.Add(labelMetagramInfo, 0, 2);
             tableLayoutPanel4.Controls.Add(labelAnagramInfo, 0, 1);
             tableLayoutPanel4.Controls.Add(labelPatternInfo, 0, 0);
-            tableLayoutPanel4.Controls.Add(labelShortcuts, 0, 6);
+            tableLayoutPanel4.Controls.Add(labelShortcuts, 0, 7);
+            tableLayoutPanel4.Controls.Add(labelScrabbleInfo, 0, 6);
             tableLayoutPanel4.Dock = DockStyle.Left;
             tableLayoutPanel4.Location = new Point(3, 40);
             tableLayoutPanel4.Name = "tableLayoutPanel4";
-            tableLayoutPanel4.RowCount = 8;
+            tableLayoutPanel4.RowCount = 9;
+            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
@@ -1426,7 +1429,7 @@
             labelShortcuts.Cursor = Cursors.Hand;
             labelShortcuts.Dock = DockStyle.Fill;
             labelShortcuts.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            labelShortcuts.Location = new Point(0, 240);
+            labelShortcuts.Location = new Point(0, 280);
             labelShortcuts.Margin = new Padding(0, 0, 3, 5);
             labelShortcuts.Name = "labelShortcuts";
             labelShortcuts.Size = new Size(228, 35);
@@ -1434,6 +1437,21 @@
             labelShortcuts.Text = "SKRÓTY";
             labelShortcuts.TextAlign = ContentAlignment.MiddleLeft;
             labelShortcuts.Click += Shortcuts_Click;
+            // 
+            // labelScrabbleInfo
+            // 
+            labelScrabbleInfo.BackColor = Color.Silver;
+            labelScrabbleInfo.Cursor = Cursors.Hand;
+            labelScrabbleInfo.Dock = DockStyle.Fill;
+            labelScrabbleInfo.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            labelScrabbleInfo.Location = new Point(0, 240);
+            labelScrabbleInfo.Margin = new Padding(0, 0, 3, 5);
+            labelScrabbleInfo.Name = "labelScrabbleInfo";
+            labelScrabbleInfo.Size = new Size(228, 35);
+            labelScrabbleInfo.TabIndex = 16;
+            labelScrabbleInfo.Text = "SCRABBLE";
+            labelScrabbleInfo.TextAlign = ContentAlignment.MiddleLeft;
+            labelScrabbleInfo.Click += ScrabbleInfo_Click;
             // 
             // label3
             // 
@@ -1683,5 +1701,6 @@
         private Button searchScrabbleBtn;
         private TextBox textBoxScrabblePattern;
         private TextBox textBoxScrabbleResults;
+        private Label labelScrabbleInfo;
     }
 }

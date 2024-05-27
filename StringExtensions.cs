@@ -83,5 +83,18 @@ namespace CrosswordAssistant
             }
             return false;
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="word">string in format word(<number>)</param>
+        /// <returns>number from given string format</returns>
+        public static int GetWordPoints(this string word)
+        {
+            int first = word.IndexOf('(') + 1;
+            int last = word.LastIndexOf(')');
+            string score = word[first..last];
+
+            return int.Parse(score);
+        }
     }
 }
