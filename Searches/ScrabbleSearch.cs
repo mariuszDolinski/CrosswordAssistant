@@ -20,9 +20,9 @@ namespace CrosswordAssistant.Searches
         }
         public override bool ValidatePattern(string pattern)
         {
-            if (pattern.Length < 4 || pattern.Length > 14 || pattern.CountChars('.') > 2)
+            if (pattern.Length < 4 || pattern.Length > 15 || pattern.CountChars('.') > 2)
             {
-                MessageBox.Show("Wzorzec powinien zawierać od 4 do 14 znaków, w tym co najwyżej dwa mydła",
+                MessageBox.Show("Wzorzec powinien zawierać od 4 do 15 znaków, w tym co najwyżej dwa mydła",
                     "Błędny wzorzec", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }

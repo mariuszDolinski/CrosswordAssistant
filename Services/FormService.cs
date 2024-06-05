@@ -7,6 +7,7 @@
             if (checkBox.Checked)
             {
                 textBox.Enabled = true;
+                textBox.Focus();
             }
             else
             {

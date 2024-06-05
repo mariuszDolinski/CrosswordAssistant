@@ -96,5 +96,22 @@ namespace CrosswordAssistant
 
             return int.Parse(score);
         }
+        /// <summary>
+        /// Split given pattern with coma, and check if word contains any element from that array
+        /// </summary>
+        /// <param name="word"></param>
+        /// <param name="pattern">texts to find separated by comas</param>
+        /// <returns>true if word doesn't contain any of given texts from given pattern, false otherwise</returns>
+        public static bool NotContainsAny(this string word, string pattern)
+        {
+            if(pattern.Length == 0) return true;
+            var txts = pattern.Split(',');
+            foreach(var txt in txts)
+            {
+                if (txt.Length == 0) continue;
+                if (word.Contains(txt, StringComparison.CurrentCultureIgnoreCase)) return false;
+            }
+            return true;
+        }
     }
 }

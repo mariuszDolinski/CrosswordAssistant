@@ -39,6 +39,8 @@
             googleToolStripMenuItem = new ToolStripMenuItem();
             sJPToolStripMenuItem = new ToolStripMenuItem();
             groupBoxFilters = new GroupBox();
+            textBoxNotContains = new TextBox();
+            checkBoxNotContains = new CheckBox();
             textBoxContains = new TextBox();
             checkBoxContains = new CheckBox();
             textBoxEndsWith = new TextBox();
@@ -59,6 +61,8 @@
             labelSpace3 = new Label();
             splitContainerPattern = new SplitContainer();
             textBoxPattern = new TextBox();
+            labelCurrentPatternLen = new Label();
+            label7 = new Label();
             searchPatternBtn = new Button();
             labelSpace1 = new Label();
             labelPattern = new Label();
@@ -100,8 +104,9 @@
             tabPageScrabble = new TabPage();
             textBoxScrabbleResults = new TextBox();
             tableLayoutPanelScrabble = new TableLayoutPanel();
-            searchScrabbleBtn = new Button();
             textBoxScrabblePattern = new TextBox();
+            searchScrabbleBtn = new Button();
+            labelScrabbleCurrentPatternLen = new Label();
             label4 = new Label();
             tabPageDictionary = new TabPage();
             tableLayoutPanel3 = new TableLayoutPanel();
@@ -129,8 +134,9 @@
             labelMetagramInfo = new Label();
             labelAnagramInfo = new Label();
             labelPatternInfo = new Label();
-            labelShortcuts = new Label();
             labelScrabbleInfo = new Label();
+            labelInfoFilters = new Label();
+            labelShortcuts = new Label();
             label3 = new Label();
             labelSpace2 = new Label();
             labelHelp = new Label();
@@ -198,7 +204,7 @@
             tabPattern.Padding = new Padding(3);
             tabPattern.Size = new Size(817, 662);
             tabPattern.TabIndex = 0;
-            tabPattern.Text = "Szaradszista";
+            tabPattern.Text = "Szaradzista";
             tabPattern.UseVisualStyleBackColor = true;
             // 
             // splitContainerResults
@@ -264,6 +270,8 @@
             // 
             // groupBoxFilters
             // 
+            groupBoxFilters.Controls.Add(textBoxNotContains);
+            groupBoxFilters.Controls.Add(checkBoxNotContains);
             groupBoxFilters.Controls.Add(textBoxContains);
             groupBoxFilters.Controls.Add(checkBoxContains);
             groupBoxFilters.Controls.Add(textBoxEndsWith);
@@ -277,6 +285,27 @@
             groupBoxFilters.TabIndex = 1;
             groupBoxFilters.TabStop = false;
             groupBoxFilters.Text = "Dodatkowe filtry";
+            // 
+            // textBoxNotContains
+            // 
+            textBoxNotContains.Enabled = false;
+            textBoxNotContains.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            textBoxNotContains.Location = new Point(26, 309);
+            textBoxNotContains.Name = "textBoxNotContains";
+            textBoxNotContains.Size = new Size(273, 37);
+            textBoxNotContains.TabIndex = 7;
+            // 
+            // checkBoxNotContains
+            // 
+            checkBoxNotContains.AutoSize = true;
+            checkBoxNotContains.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            checkBoxNotContains.Location = new Point(26, 274);
+            checkBoxNotContains.Name = "checkBoxNotContains";
+            checkBoxNotContains.Size = new Size(254, 29);
+            checkBoxNotContains.TabIndex = 6;
+            checkBoxNotContains.Text = "Tylko wyrazy niezawierające";
+            checkBoxNotContains.UseVisualStyleBackColor = true;
+            checkBoxNotContains.CheckedChanged += CheckBoxNotContains_CheckedChange;
             // 
             // textBoxContains
             // 
@@ -492,9 +521,11 @@
             // 
             // splitContainerPattern.Panel2
             // 
+            splitContainerPattern.Panel2.Controls.Add(labelCurrentPatternLen);
+            splitContainerPattern.Panel2.Controls.Add(label7);
             splitContainerPattern.Panel2.Controls.Add(searchPatternBtn);
             splitContainerPattern.Size = new Size(811, 37);
-            splitContainerPattern.SplitterDistance = 588;
+            splitContainerPattern.SplitterDistance = 547;
             splitContainerPattern.TabIndex = 6;
             // 
             // textBoxPattern
@@ -504,18 +535,40 @@
             textBoxPattern.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point, 238);
             textBoxPattern.Location = new Point(0, 0);
             textBoxPattern.Name = "textBoxPattern";
-            textBoxPattern.Size = new Size(588, 37);
+            textBoxPattern.Size = new Size(547, 37);
             textBoxPattern.TabIndex = 7;
+            // 
+            // labelCurrentPatternLen
+            // 
+            labelCurrentPatternLen.BackColor = Color.DarkSeaGreen;
+            labelCurrentPatternLen.BorderStyle = BorderStyle.FixedSingle;
+            labelCurrentPatternLen.Dock = DockStyle.Fill;
+            labelCurrentPatternLen.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            labelCurrentPatternLen.Location = new Point(0, 0);
+            labelCurrentPatternLen.Name = "labelCurrentPatternLen";
+            labelCurrentPatternLen.Padding = new Padding(2, 0, 0, 2);
+            labelCurrentPatternLen.Size = new Size(52, 37);
+            labelCurrentPatternLen.TabIndex = 11;
+            labelCurrentPatternLen.Text = "0";
+            labelCurrentPatternLen.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label7
+            // 
+            label7.Dock = DockStyle.Right;
+            label7.Location = new Point(52, 0);
+            label7.Name = "label7";
+            label7.Size = new Size(3, 37);
+            label7.TabIndex = 10;
             // 
             // searchPatternBtn
             // 
             searchPatternBtn.Cursor = Cursors.Hand;
-            searchPatternBtn.Dock = DockStyle.Fill;
+            searchPatternBtn.Dock = DockStyle.Right;
             searchPatternBtn.FlatStyle = FlatStyle.Flat;
             searchPatternBtn.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            searchPatternBtn.Location = new Point(0, 0);
+            searchPatternBtn.Location = new Point(55, 0);
             searchPatternBtn.Name = "searchPatternBtn";
-            searchPatternBtn.Size = new Size(219, 37);
+            searchPatternBtn.Size = new Size(205, 37);
             searchPatternBtn.TabIndex = 7;
             searchPatternBtn.Text = "SZUKAJ";
             searchPatternBtn.UseVisualStyleBackColor = true;
@@ -540,7 +593,7 @@
             labelPattern.Name = "labelPattern";
             labelPattern.Size = new Size(811, 32);
             labelPattern.TabIndex = 0;
-            labelPattern.Text = "WZORZEC";
+            labelPattern.Text = "SZARADZISTA";
             labelPattern.TextAlign = ContentAlignment.TopCenter;
             // 
             // tabPageUlozSam
@@ -1015,33 +1068,20 @@
             // 
             // tableLayoutPanelScrabble
             // 
-            tableLayoutPanelScrabble.ColumnCount = 2;
-            tableLayoutPanelScrabble.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 72.87299F));
-            tableLayoutPanelScrabble.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 27.1270046F));
-            tableLayoutPanelScrabble.Controls.Add(searchScrabbleBtn, 0, 0);
+            tableLayoutPanelScrabble.ColumnCount = 3;
+            tableLayoutPanelScrabble.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 73.119606F));
+            tableLayoutPanelScrabble.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 6.65844631F));
+            tableLayoutPanelScrabble.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20.2219486F));
             tableLayoutPanelScrabble.Controls.Add(textBoxScrabblePattern, 0, 0);
+            tableLayoutPanelScrabble.Controls.Add(searchScrabbleBtn, 2, 0);
+            tableLayoutPanelScrabble.Controls.Add(labelScrabbleCurrentPatternLen, 1, 0);
             tableLayoutPanelScrabble.Dock = DockStyle.Top;
             tableLayoutPanelScrabble.Location = new Point(3, 35);
             tableLayoutPanelScrabble.Name = "tableLayoutPanelScrabble";
             tableLayoutPanelScrabble.RowCount = 1;
-            tableLayoutPanelScrabble.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanelScrabble.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tableLayoutPanelScrabble.Size = new Size(811, 45);
             tableLayoutPanelScrabble.TabIndex = 2;
-            // 
-            // searchScrabbleBtn
-            // 
-            searchScrabbleBtn.Cursor = Cursors.Hand;
-            searchScrabbleBtn.Dock = DockStyle.Fill;
-            searchScrabbleBtn.FlatStyle = FlatStyle.Flat;
-            searchScrabbleBtn.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            searchScrabbleBtn.Location = new Point(592, 4);
-            searchScrabbleBtn.Margin = new Padding(2, 4, 0, 4);
-            searchScrabbleBtn.Name = "searchScrabbleBtn";
-            searchScrabbleBtn.Size = new Size(219, 37);
-            searchScrabbleBtn.TabIndex = 9;
-            searchScrabbleBtn.Text = "SZUKAJ";
-            searchScrabbleBtn.UseVisualStyleBackColor = true;
-            searchScrabbleBtn.Click += SearchScrabble_Click;
             // 
             // textBoxScrabblePattern
             // 
@@ -1051,12 +1091,42 @@
             textBoxScrabblePattern.Location = new Point(0, 4);
             textBoxScrabblePattern.Margin = new Padding(0, 4, 2, 4);
             textBoxScrabblePattern.Name = "textBoxScrabblePattern";
-            textBoxScrabblePattern.Size = new Size(588, 37);
+            textBoxScrabblePattern.Size = new Size(591, 37);
             textBoxScrabblePattern.TabIndex = 8;
+            // 
+            // searchScrabbleBtn
+            // 
+            searchScrabbleBtn.Cursor = Cursors.Hand;
+            searchScrabbleBtn.Dock = DockStyle.Fill;
+            searchScrabbleBtn.FlatStyle = FlatStyle.Flat;
+            searchScrabbleBtn.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            searchScrabbleBtn.Location = new Point(649, 4);
+            searchScrabbleBtn.Margin = new Padding(2, 4, 0, 4);
+            searchScrabbleBtn.Name = "searchScrabbleBtn";
+            searchScrabbleBtn.Size = new Size(162, 37);
+            searchScrabbleBtn.TabIndex = 9;
+            searchScrabbleBtn.Text = "SZUKAJ";
+            searchScrabbleBtn.UseVisualStyleBackColor = true;
+            searchScrabbleBtn.Click += SearchScrabble_Click;
+            // 
+            // labelScrabbleCurrentPatternLen
+            // 
+            labelScrabbleCurrentPatternLen.BackColor = Color.Tan;
+            labelScrabbleCurrentPatternLen.BorderStyle = BorderStyle.FixedSingle;
+            labelScrabbleCurrentPatternLen.Dock = DockStyle.Fill;
+            labelScrabbleCurrentPatternLen.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            labelScrabbleCurrentPatternLen.Location = new Point(595, 4);
+            labelScrabbleCurrentPatternLen.Margin = new Padding(2, 4, 0, 4);
+            labelScrabbleCurrentPatternLen.Name = "labelScrabbleCurrentPatternLen";
+            labelScrabbleCurrentPatternLen.Padding = new Padding(2, 0, 0, 2);
+            labelScrabbleCurrentPatternLen.Size = new Size(52, 37);
+            labelScrabbleCurrentPatternLen.TabIndex = 10;
+            labelScrabbleCurrentPatternLen.Text = "0";
+            labelScrabbleCurrentPatternLen.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // label4
             // 
-            label4.BackColor = Color.BurlyWood;
+            label4.BackColor = Color.Tan;
             label4.Dock = DockStyle.Top;
             label4.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 238);
             label4.Location = new Point(3, 3);
@@ -1316,12 +1386,14 @@
             tableLayoutPanel4.Controls.Add(labelMetagramInfo, 0, 2);
             tableLayoutPanel4.Controls.Add(labelAnagramInfo, 0, 1);
             tableLayoutPanel4.Controls.Add(labelPatternInfo, 0, 0);
-            tableLayoutPanel4.Controls.Add(labelShortcuts, 0, 7);
             tableLayoutPanel4.Controls.Add(labelScrabbleInfo, 0, 6);
+            tableLayoutPanel4.Controls.Add(labelInfoFilters, 0, 7);
+            tableLayoutPanel4.Controls.Add(labelShortcuts, 0, 8);
             tableLayoutPanel4.Dock = DockStyle.Left;
             tableLayoutPanel4.Location = new Point(3, 40);
             tableLayoutPanel4.Name = "tableLayoutPanel4";
-            tableLayoutPanel4.RowCount = 9;
+            tableLayoutPanel4.RowCount = 10;
+            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
@@ -1423,21 +1495,6 @@
             labelPatternInfo.TextAlign = ContentAlignment.MiddleLeft;
             labelPatternInfo.Click += PatternInfo_Click;
             // 
-            // labelShortcuts
-            // 
-            labelShortcuts.BackColor = Color.Silver;
-            labelShortcuts.Cursor = Cursors.Hand;
-            labelShortcuts.Dock = DockStyle.Fill;
-            labelShortcuts.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            labelShortcuts.Location = new Point(0, 280);
-            labelShortcuts.Margin = new Padding(0, 0, 3, 5);
-            labelShortcuts.Name = "labelShortcuts";
-            labelShortcuts.Size = new Size(228, 35);
-            labelShortcuts.TabIndex = 15;
-            labelShortcuts.Text = "SKRÓTY";
-            labelShortcuts.TextAlign = ContentAlignment.MiddleLeft;
-            labelShortcuts.Click += Shortcuts_Click;
-            // 
             // labelScrabbleInfo
             // 
             labelScrabbleInfo.BackColor = Color.Silver;
@@ -1452,6 +1509,36 @@
             labelScrabbleInfo.Text = "SCRABBLE";
             labelScrabbleInfo.TextAlign = ContentAlignment.MiddleLeft;
             labelScrabbleInfo.Click += ScrabbleInfo_Click;
+            // 
+            // labelInfoFilters
+            // 
+            labelInfoFilters.BackColor = Color.Silver;
+            labelInfoFilters.Cursor = Cursors.Hand;
+            labelInfoFilters.Dock = DockStyle.Fill;
+            labelInfoFilters.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            labelInfoFilters.Location = new Point(0, 280);
+            labelInfoFilters.Margin = new Padding(0, 0, 3, 5);
+            labelInfoFilters.Name = "labelInfoFilters";
+            labelInfoFilters.Size = new Size(228, 35);
+            labelInfoFilters.TabIndex = 17;
+            labelInfoFilters.Text = "DODATKOWE FILTRY";
+            labelInfoFilters.TextAlign = ContentAlignment.MiddleLeft;
+            labelInfoFilters.Click += FiltersInfo_Click;
+            // 
+            // labelShortcuts
+            // 
+            labelShortcuts.BackColor = Color.Silver;
+            labelShortcuts.Cursor = Cursors.Hand;
+            labelShortcuts.Dock = DockStyle.Fill;
+            labelShortcuts.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            labelShortcuts.Location = new Point(0, 320);
+            labelShortcuts.Margin = new Padding(0, 0, 3, 5);
+            labelShortcuts.Name = "labelShortcuts";
+            labelShortcuts.Size = new Size(228, 35);
+            labelShortcuts.TabIndex = 15;
+            labelShortcuts.Text = "SKRÓTY";
+            labelShortcuts.TextAlign = ContentAlignment.MiddleLeft;
+            labelShortcuts.Click += Shortcuts_Click;
             // 
             // label3
             // 
@@ -1482,7 +1569,7 @@
             labelHelp.Name = "labelHelp";
             labelHelp.Size = new Size(811, 32);
             labelHelp.TabIndex = 1;
-            labelHelp.Text = "DOSTĘPNE TRYBY";
+            labelHelp.Text = "DOSTĘPNE TRYBY I OPCJE";
             labelHelp.TextAlign = ContentAlignment.TopCenter;
             // 
             // groupBox1
@@ -1548,6 +1635,7 @@
             Name = "MainForm";
             Text = "Pomocnik szaradzisty";
             KeyDown += MainForm_KeyDown;
+            KeyUp += MainForm_KeyUp;
             tabControl.ResumeLayout(false);
             tabPattern.ResumeLayout(false);
             splitContainerResults.Panel1.ResumeLayout(false);
@@ -1702,5 +1790,11 @@
         private TextBox textBoxScrabblePattern;
         private TextBox textBoxScrabbleResults;
         private Label labelScrabbleInfo;
+        private Label labelCurrentPatternLen;
+        private Label label7;
+        private Label labelScrabbleCurrentPatternLen;
+        private TextBox textBoxNotContains;
+        private CheckBox checkBoxNotContains;
+        private Label labelInfoFilters;
     }
 }

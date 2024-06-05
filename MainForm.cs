@@ -127,6 +127,7 @@ namespace CrosswordAssistant
         }
         private void RadioPattern_CheckedChanged(object sender, EventArgs e)
         {
+            labelCurrentPatternLen.Text = textBoxPattern.Text.Length.ToString();
             if (radioPatternMode.Checked)
             {
                 Search.Mode = SearchMode.Pattern;
@@ -135,6 +136,7 @@ namespace CrosswordAssistant
         }
         private void RadioAnagram_CheckedChanged(object sender, EventArgs e)
         {
+            labelCurrentPatternLen.Text = textBoxPattern.Text.Length.ToString();
             if (radioAnagramMode.Checked)
             {
                 Search.Mode = SearchMode.Anagram;
@@ -143,6 +145,7 @@ namespace CrosswordAssistant
         }
         private void RadioLength_CheckedChanged(object sender, EventArgs e)
         {
+            labelCurrentPatternLen.Text = "0";
             if (radioLengthMode.Checked)
             {
                 groupBoxMode.Size = new Size(groupBoxMode.Size.Width, 190);
@@ -159,6 +162,7 @@ namespace CrosswordAssistant
         }
         private void RadioMetagram_CheckedChanged(object sender, EventArgs e)
         {
+            labelCurrentPatternLen.Text = textBoxPattern.Text.Length.ToString();
             if (radioMetagramMode.Checked)
             {
                 Search.Mode = SearchMode.Metagram;
@@ -167,6 +171,7 @@ namespace CrosswordAssistant
         }
         private void RadioPM1_CheckedChanged(object sender, EventArgs e)
         {
+            labelCurrentPatternLen.Text = textBoxPattern.Text.Length.ToString();
             if (radioPM1Mode.Checked)
             {
                 Search.Mode = SearchMode.PlusMinus1;
@@ -175,15 +180,27 @@ namespace CrosswordAssistant
         }
         private void CheckBoxStartWith_CheckedChanged(object sender, EventArgs e)
         {
+            labelCurrentPatternLen.Text = textBoxPattern.Text.Length.ToString();
             FormService.FilterChecked(checkBoxBeginWith, textBoxBeginsWith);
+            if (!checkBoxBeginWith.Checked) textBoxPattern.Focus();
         }
         private void CheckBoxEndsWith_CheckedChanged(object sender, EventArgs e)
         {
+            labelCurrentPatternLen.Text = textBoxPattern.Text.Length.ToString();
             FormService.FilterChecked(checkBoxEndsWith, textBoxEndsWith);
+            if (!checkBoxEndsWith.Checked) textBoxPattern.Focus();
         }
         private void CheckBoxContains_CheckedChanged(object sender, EventArgs e)
         {
+            labelCurrentPatternLen.Text = textBoxPattern.Text.Length.ToString();
             FormService.FilterChecked(checkBoxContains, textBoxContains);
+            if (!checkBoxContains.Checked) textBoxPattern.Focus();
+        }
+        private void CheckBoxNotContains_CheckedChange(object sender, EventArgs e)
+        {
+            labelCurrentPatternLen.Text = textBoxPattern.Text.Length.ToString();
+            FormService.FilterChecked(checkBoxNotContains, textBoxNotContains);
+            if(!checkBoxNotContains.Checked) textBoxPattern.Focus();
         }
         private void MainForm_KeyDown(object sender, KeyEventArgs e)
         {
@@ -238,10 +255,27 @@ namespace CrosswordAssistant
                             case Keys.D3: radioMetagramMode.Checked = true; break;
                             case Keys.D4: radioPM1Mode.Checked = true; break;
                             case Keys.D5: radioLengthMode.Checked = true; break;
+                            case Keys.D6: 
+                                checkBoxBeginWith.Checked = !checkBoxBeginWith.Checked;
+                                break;
+                            case Keys.D7:
+                                checkBoxEndsWith.Checked = !checkBoxEndsWith.Checked;
+                                break;
+                            case Keys.D8:
+                                checkBoxContains.Checked = !checkBoxContains.Checked;
+                                break;
+                            case Keys.D9:
+                                checkBoxNotContains.Checked = !checkBoxNotContains.Checked;
+                                break;
                         }
                     }
                     break;
             }
+        }
+        private void MainForm_KeyUp(object sender, KeyEventArgs e)
+        {
+            labelCurrentPatternLen.Text = textBoxPattern.Text.Length.ToString();
+            labelScrabbleCurrentPatternLen.Text = textBoxScrabblePattern.Text.Length.ToString();
         }
         private void SearchGoogle_MenuClick(object sender, EventArgs e)
         {
@@ -290,6 +324,10 @@ namespace CrosswordAssistant
         {
             SetInfo((Label)sender, Messages.ScrabbleInfo);
         }
+        private void FiltersInfo_Click(object sender, EventArgs e)
+        {
+            SetInfo((Label)sender, Messages.FiltersInfo);
+        }
         private void Shortcuts_Click(object sender, EventArgs e)
         {
             SetInfo((Label)sender, Messages.Shortcuts);
@@ -310,6 +348,7 @@ namespace CrosswordAssistant
             _infoLabels.Add(labelPM1Info);
             _infoLabels.Add(labelShortcuts);
             _infoLabels.Add(labelScrabbleInfo);
+            _infoLabels.Add(labelInfoFilters);
             SetFileInfo();
             labelAbout.Text = Messages.VersionInfo;
         }
@@ -370,32 +409,29 @@ namespace CrosswordAssistant
         private List<string> ApplyFilters(List<string> words)
         {
             List<string> results = words;
-            if (checkBoxBeginWith.Checked)
+            if (checkBoxBeginWith.Checked && textBoxBeginsWith.Text.Length > 0)
             {
-                if (textBoxBeginsWith.Text.Length > 0)
-                {
-                    results = results
-                        .Where(w => w.StartsWith(textBoxBeginsWith.Text, StringComparison.CurrentCultureIgnoreCase))
-                        .ToList();
-                }
+                results = results
+                    .Where(w => w.StartsWith(textBoxBeginsWith.Text, StringComparison.CurrentCultureIgnoreCase))
+                    .ToList();
             }
-            if (checkBoxEndsWith.Checked)
+            if (checkBoxEndsWith.Checked && textBoxEndsWith.Text.Length > 0)
             {
-                if (textBoxEndsWith.Text.Length > 0)
-                {
-                    results = results
-                        .Where(w => w.EndsWith(textBoxEndsWith.Text, StringComparison.CurrentCultureIgnoreCase))
-                        .ToList();
-                }
+                results = results
+                    .Where(w => w.EndsWith(textBoxEndsWith.Text, StringComparison.CurrentCultureIgnoreCase))
+                    .ToList();
             }
-            if (checkBoxContains.Checked)
+            if (checkBoxContains.Checked && textBoxContains.Text.Length > 0)
             {
-                if (textBoxContains.Text.Length > 0)
-                {
-                    results = results
-                        .Where(w => w.Contains(textBoxContains.Text, StringComparison.CurrentCultureIgnoreCase))
-                        .ToList();
-                }
+                results = results
+                    .Where(w => w.Contains(textBoxContains.Text, StringComparison.CurrentCultureIgnoreCase))
+                    .ToList();
+            }
+            if (checkBoxNotContains.Checked && textBoxNotContains.Text.Length > 0)
+            {
+                results = results
+                    .Where(w => w.NotContainsAny(textBoxNotContains.Text))
+                    .ToList();
             }
             return results;
         }

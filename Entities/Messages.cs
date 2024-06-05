@@ -8,7 +8,7 @@
         public static string MetagramModeMessage { get; } = "Podaj wyraz i kliknij Szukaj...";
         public static string LengthModeMessage { get; } = "Wybierz dodatkowe filtry i kliknij Szukaj...";
         public static string EmptyPattern { get; } = "Wzorzec nie zawiera żadnych znaków.";
-        public static string VersionInfo { get; } = "Pomocnik krzyżówkowicza v2.4.7" + Environment.NewLine +
+        public static string VersionInfo { get; } = "Pomocnik szaradzisty v2.4.9" + Environment.NewLine +
                 "Autor: Mariusz Doliński" + Environment.NewLine + "© 2024";
         public static string PatternInfo { get; } = "Wyszukuje wyrazy posiadające te same litery na tych" +
             " samych pozycjach co w podanym wzorcu. Znak kropki (.) zastępuje dowolną literę," +
@@ -35,8 +35,12 @@
             " We wzorcu dozwolone są jedynie litery.";
         public static string ScrabbleInfo { get; } = "W tym trybie wyszukiwane są wszystkie wyrazy, które można ułożyć " +
             "z liter podanych we wzorcu. We wzorcu można użyć maksymalnie dwóch znaków kropki (.) zatępjących dowolną literę. " +
-            "Wzorzec powinien mieć od 4 do 14 znaków. Dopasowane wyrazy pogrupowane są według ilości znaków, " +
-            "w nawiasie podana jest podstawowa punktacja słowa w grze Scrabble (nie uwzględniająca dodatkowych premii). ";
+            "Wzorzec powinien mieć od 4 do 15 znaków. Dopasowane wyrazy pogrupowane są według ilości znaków, " +
+            "w nawiasie podana jest podstawowa punktacja słowa w grze Scrabble (nie uwzględniająca dodatkowych premii " +
+            "oraz liter użytych jako mydła (znak kropki)). ";
+        public static string FiltersInfo = "Dodatkowe filtry w zakładce Szaradzista pozwalają ograniczyć ilość dopsowań " +
+            "dla wyszukiwan z tej zakładki. Dla filtra 'Tylko wyrazy niezawierające' można po przecinku podać kilka wyrażeń; " +
+            "w takim przypadku dopasowane zostaną wyrazy niezawierające żadnego z podanych po przecinku wyrażeń/liter.";
         
         public static string Shortcuts { get; } = "Dostępne skróty klawiaturowe:" + Environment.NewLine +
             "Enter - uruchamia wyszukiwanie dla aktualnego wzorca" + Environment.NewLine +
@@ -45,7 +49,11 @@
             "Ctrl+2 - tryb Anagram" + Environment.NewLine +
             "Ctrl+3 - tryb Metagram" + Environment.NewLine +
             "Ctrl+4 - tryb Plus/Minus 1" + Environment.NewLine +
-            "Ctrl+5 - tryb Długość";
+            "Ctrl+5 - tryb Długość" + Environment.NewLine +
+            "Ctrl+6 - filtr 'Tylko wyrazy zaczynające się od'" + Environment.NewLine +
+            "Ctrl+7 - filtr 'Tylko wyrazy kończące się na'" + Environment.NewLine +
+            "Ctrl+8 - filtr 'Tylko wyrazy zawierające'" + Environment.NewLine +
+            "Ctrl+9 - filtr 'Tylko wyrazy niezawierające'";
 
     }
 }
