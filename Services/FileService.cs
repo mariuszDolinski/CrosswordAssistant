@@ -7,6 +7,23 @@ namespace CrosswordAssistant.Services
         public static string SavePath { get; private set; } = "Słowniki";
         public static string FileName { get; private set; } = "slownik.txt";
 
+        public static async Task<List<string>> ReadDictionaryAsync()
+        {
+            try
+            {
+                var words = await File.ReadAllLinesAsync(Path.Combine(SavePath, FileName));
+                return new List<string>(words);
+            }
+            catch
+            {
+                MessageBox.Show("Do poprawnego działania aplikacji wymagany jest plik ze słownikiem. " +
+                    "Powinien się znaleźć w folderze 'Słowniki' w tej samej lokalizacji co aplikacja " +
+                    "i nazywać się 'slownik.txt'. Plik powinien zawierać po jednym wyrazie w każdej linii.",
+                    "Brak pliku ze słownikiem",MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return [Messages.NoFile];
+            }
+        }
+
         public static List<string> ReadDictionary()
         {
             try
@@ -19,7 +36,7 @@ namespace CrosswordAssistant.Services
                 MessageBox.Show("Do poprawnego działania aplikacji wymagany jest plik ze słownikiem. " +
                     "Powinien się znaleźć w folderze 'Słowniki' w tej samej lokalizacji co aplikacja " +
                     "i nazywać się 'slownik.txt'. Plik powinien zawierać po jednym wyrazie w każdej linii.",
-                    "Brak pliku ze słownikiem",MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    "Brak pliku ze słownikiem", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return [Messages.NoFile];
             }
         }

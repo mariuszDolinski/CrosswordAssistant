@@ -39,7 +39,7 @@
             "w nawiasie podana jest podstawowa punktacja słowa w grze Scrabble (nie uwzględniająca dodatkowych premii " +
             "oraz liter użytych jako mydła (znak kropki)). ";
         public static string FiltersInfo = "Dodatkowe filtry w zakładce Szaradzista pozwalają ograniczyć ilość dopsowań " +
-            "dla wyszukiwan z tej zakładki. Dla filtra 'Tylko wyrazy niezawierające' można po przecinku podać kilka wyrażeń; " +
+            "dla wyszukiwań z tej zakładki. Dla filtra 'Tylko wyrazy niezawierające' można po przecinku podać kilka wyrażeń; " +
             "w takim przypadku dopasowane zostaną wyrazy niezawierające żadnego z podanych po przecinku wyrażeń/liter.";
         
         public static string Shortcuts { get; } = "Dostępne skróty klawiaturowe:" + Environment.NewLine +

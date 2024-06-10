@@ -78,12 +78,25 @@ namespace CrosswordAssistant
             FillTextBoxResults(matches, textBoxScrabbleResults);
             textBoxScrabbleResults.ReadOnly = false;
         }
-        private void LoadDictionaryBtn_Click(object sender, EventArgs e)
+        private async void LoadDictionaryBtn_Click(object sender, EventArgs e)
         {
             if (FileService.SetFileFromDialog(newDictionaryDialog))
             {
-                _dictionaryService.LoadDictionary();
-                SetFileInfo();
+                int count = 0;
+                SetFileInfo(-1);
+                using (var timer = new System.Windows.Forms.Timer())
+                {
+                    timer.Tick += (s, e) =>
+                    {
+                        SetFileInfo(count + 1);
+                        count++;
+                    };
+                    timer.Interval = 1000;
+                    timer.Enabled = true;
+
+                    await Task.Run(() => _dictionaryService.LoadDictionaryAsync());
+                }                   
+                SetFileInfo(0);
             }
         }
         private void AddToDictionaryBtn_Click(object sender, EventArgs e)
@@ -123,7 +136,7 @@ namespace CrosswordAssistant
                 MessageBox.Show("Wyrazy: " + Environment.NewLine + msg + "dodane poprawnie.", "Dodano wyrazy do s³ownika",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            SetFileInfo();
+            SetFileInfo(0);
         }
         private void RadioPattern_CheckedChanged(object sender, EventArgs e)
         {
@@ -349,14 +362,33 @@ namespace CrosswordAssistant
             _infoLabels.Add(labelShortcuts);
             _infoLabels.Add(labelScrabbleInfo);
             _infoLabels.Add(labelInfoFilters);
-            SetFileInfo();
+            SetFileInfo(0);
             labelAbout.Text = Messages.VersionInfo;
         }
-        private void SetFileInfo()
+        private void SetFileInfo(int mode)
         {
+            if(mode == -1)
+            {
+                labelWordsCount.TextAlign = ContentAlignment.MiddleLeft;
+                labelFileName.TextAlign = ContentAlignment.MiddleLeft;
+                labelWordsCount.BackColor = Color.Khaki;
+                labelFileName.BackColor = Color.Khaki;
+                labelFileName.Text = "Wczytujê nowy s³ownik";
+                labelWordsCount.Text = "Wczytujê nowy s³ownik";
+                return;
+            }
+            if(mode > 0)
+            {
+                labelFileName.Text = "Wczytujê nowy s³ownik".AppendDots(mode);
+                labelWordsCount.Text = "Wczytujê nowy s³ownik".AppendDots(mode);
+                return;
+            }
             labelFileName.Text = FileService.FileName;
             int wordsCount = _dictionaryService.GetWordsCount();
             labelWordsCount.Text = wordsCount.ToString();
+            labelFileName.BackColor = Color.MediumAquamarine;
+            labelWordsCount.TextAlign = ContentAlignment.MiddleCenter;
+            labelFileName.TextAlign = ContentAlignment.MiddleCenter;
             if (wordsCount < 10)
             {
                 labelWordsCount.BackColor = Color.DarkSalmon;

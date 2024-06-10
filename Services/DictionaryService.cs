@@ -19,7 +19,13 @@ namespace CrosswordAssistant.Services
 
         public void LoadDictionary()
         {
+            CurrentDictionary.TrimExcess();//memory optimalization
             CurrentDictionary = FileService.ReadDictionary();
+        }
+        public async Task LoadDictionaryAsync()
+        {
+            CurrentDictionary.TrimExcess();//memory optimalization
+            CurrentDictionary = await FileService.ReadDictionaryAsync();
         }
         /// <summary>
         /// Return true if dictionary was not loaded properly. Return false otherwise.

@@ -113,5 +113,14 @@ namespace CrosswordAssistant
             }
             return true;
         }
+        public static string AppendDots(this string word, int count)
+        {
+            string result = word;
+            for(int i = 0; i < count; i++)
+            {
+                result += ".";
+            }
+            return result;
+        }
     }
 }
