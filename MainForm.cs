@@ -2,6 +2,7 @@ using CrosswordAssistant.Entities;
 using CrosswordAssistant.Searches;
 using CrosswordAssistant.Services;
 using System.Diagnostics;
+using System.Globalization;
 
 namespace CrosswordAssistant
 {
@@ -385,7 +386,9 @@ namespace CrosswordAssistant
             }
             labelFileName.Text = FileService.FileName;
             int wordsCount = _dictionaryService.GetWordsCount();
-            labelWordsCount.Text = wordsCount.ToString();
+            var nfi = new NumberFormatInfo();
+            nfi.NumberGroupSeparator = " ";
+            labelWordsCount.Text = wordsCount.ToString("N0", nfi);
             labelFileName.BackColor = Color.MediumAquamarine;
             labelWordsCount.TextAlign = ContentAlignment.MiddleCenter;
             labelFileName.TextAlign = ContentAlignment.MiddleCenter;
