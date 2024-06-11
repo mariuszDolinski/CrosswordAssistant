@@ -6,6 +6,7 @@ namespace CrosswordAssistant.Services
     public class DictionaryService
     {
         public static List<string> CurrentDictionary { get; private set; } = [];
+        public static bool PendingDictionaryLoading { get; set; } = false;
 
         public const string AllowedPatternChars = "aąbcćdeęfghijklłmnńoópqrsśtuvwxyzźż.";
         public const string AllowedLetters = "aąbcćdeęfghijklłmnńoópqrsśtuvwxyzźżAĄBCĆDEĘFGHIJKLŁMNŃOÓPQRSŚTUVWXYZŹŻ";

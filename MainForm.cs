@@ -12,6 +12,7 @@ namespace CrosswordAssistant
         private readonly List<Label> _infoLabels = [];
         private readonly SearchFactory _searchFactory;
         private bool _isEnterSuppressed = true;
+
         public MainForm()
         {
             InitializeComponent();
@@ -32,6 +33,8 @@ namespace CrosswordAssistant
         #region events handlers
         private void SearchPattern_Click(object sender, EventArgs e)
         {
+            if (DictionaryService.PendingDictionaryLoading) return;
+
             string pattern = textBoxPattern.Text.Trim().ToLower();
             if (Search.Mode == SearchMode.Length)
             {
@@ -51,6 +54,8 @@ namespace CrosswordAssistant
         }
         private void UluzSamSearch_Click(object sender, EventArgs e)
         {
+            if (DictionaryService.PendingDictionaryLoading) return;
+
             var search = _searchFactory.CreateSearch(Search.Mode);
             string pattern = textBoxPatternUls.Text;
             if (!search.ValidatePattern(pattern)) return;
@@ -70,6 +75,8 @@ namespace CrosswordAssistant
         }
         private void SearchScrabble_Click(object sender, EventArgs e)
         {
+            if (DictionaryService.PendingDictionaryLoading) return;
+
             var search = _searchFactory.CreateSearch(Search.Mode);
             string pattern = textBoxScrabblePattern.Text.ToLower();
             if (!search.ValidatePattern(pattern)) return;
@@ -83,6 +90,7 @@ namespace CrosswordAssistant
         {
             if (FileService.SetFileFromDialog(newDictionaryDialog))
             {
+                DictionaryService.PendingDictionaryLoading = true;
                 int count = 0;
                 SetFileInfo(-1);
                 using (var timer = new System.Windows.Forms.Timer())
@@ -98,10 +106,13 @@ namespace CrosswordAssistant
                     await Task.Run(() => _dictionaryService.LoadDictionaryAsync());
                 }                   
                 SetFileInfo(0);
+                DictionaryService.PendingDictionaryLoading = false;
             }
         }
         private void AddToDictionaryBtn_Click(object sender, EventArgs e)
         {
+            if (DictionaryService.PendingDictionaryLoading) return;
+
             if (textBoxAddToDictionary.Text.Length == 0)
             {
                 MessageBox.Show("Nie podano ¿adnych wyrazów do dodania.", "Uwaga", MessageBoxButtons.OK, MessageBoxIcon.Warning);
