@@ -5,7 +5,24 @@ namespace CrosswordAssistant.Searches
     public abstract class Search
     {
         public static SearchMode Mode { get; set; }
-        public abstract bool ValidatePattern(string pattern);
+        public virtual bool ValidatePattern(string pattern)
+        {
+            if (pattern.Length == 0)
+            {
+                MessageBox.Show("Wzorzec jest pusty.", "Błąd wzorca", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            string allowedChars = "aąbcćdeęfghijklłmnńoópqrsśtuvwxyzźż";
+            foreach (var ch in pattern)
+            {
+                if (!allowedChars.Contains(ch))
+                {
+                    MessageBox.Show("Wzorzec zawiera niedozwolone znaki.", "Błąd wzorca", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
+            }
+            return true;
+        }
         public abstract List<string> SearchMatches(string pattern);
 
         protected static bool CheckForAnagram(string pattern, string word)

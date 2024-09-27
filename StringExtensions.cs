@@ -113,6 +113,12 @@ namespace CrosswordAssistant
             }
             return true;
         }
+        /// <summary>
+        /// Add dots at the end of given word
+        /// </summary>
+        /// <param name="word">word to append dots</param>
+        /// <param name="count">number of dotts to append</param>
+        /// <returns></returns>
         public static string AppendDots(this string word, int count)
         {
             string result = word;
@@ -120,6 +126,45 @@ namespace CrosswordAssistant
             {
                 result += ".";
             }
+            return result;
+        }
+        /// <summary>
+        /// Check if given word is subword, i.e. is formed form this string by removing some letters.
+        /// </summary>
+        /// <param name="text"></param>
+        /// <param name="word"></param>
+        /// <returns>true if word is a subword, false otherwise</returns>
+        public static bool IsSubword(this string text, string word)
+        {
+            if(word.Length > text.Length) return false;
+            int charindex = -1;
+            for(int i = 0; i< word.Length;i++)
+            {
+                var ind = text.CharIndexAfterIndex(word[i], charindex + 1);
+                if (ind == -1) return false;
+                else charindex = ind;
+            }
+            return true;
+        }
+        /// <summary>
+        /// Reports the zero-based index of the first occurence of given char from given index in this string
+        /// </summary>
+        /// <param name="word"></param>
+        /// <param name="c">char to find</param>
+        /// <param name="ind">index after which char has to be found</param>
+        /// <returns>zero-based index of the first occurence of given char from given index,
+        /// if given char is not present in this string after given index returns -1</returns>
+        public static int CharIndexAfterIndex(this string word, char c, int ind)
+        {
+            int result = -1;
+            
+            if(ind < 0 || ind >= word.Length) return result;
+
+            for(int i = ind; i < word.Length; i++)
+            {
+                if (word[i] == c) return i;
+            }
+
             return result;
         }
     }

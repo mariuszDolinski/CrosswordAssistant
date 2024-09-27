@@ -9,6 +9,7 @@
         UluzSam = 5,
         PlusMinus1 = 6,
         Scrabble = 7,
-        None = 8
+        SubWord = 8,
+        None = 9
     }
 }

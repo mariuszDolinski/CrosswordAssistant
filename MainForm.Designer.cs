@@ -48,6 +48,7 @@
             textBoxBeginsWith = new TextBox();
             checkBoxBeginWith = new CheckBox();
             groupBoxMode = new GroupBox();
+            radioSubWordMode = new RadioButton();
             radioPM1Mode = new RadioButton();
             labelLenEnd = new Label();
             textBoxMaxLen = new TextBox();
@@ -145,6 +146,7 @@
             label19 = new Label();
             label22 = new Label();
             newDictionaryDialog = new OpenFileDialog();
+            labelSubwordInfo = new Label();
             tabControl.SuspendLayout();
             tabPattern.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainerResults).BeginInit();
@@ -372,6 +374,7 @@
             // 
             // groupBoxMode
             // 
+            groupBoxMode.Controls.Add(radioSubWordMode);
             groupBoxMode.Controls.Add(radioPM1Mode);
             groupBoxMode.Controls.Add(labelLenEnd);
             groupBoxMode.Controls.Add(textBoxMaxLen);
@@ -389,6 +392,18 @@
             groupBoxMode.TabIndex = 0;
             groupBoxMode.TabStop = false;
             groupBoxMode.Text = "Tryb";
+            // 
+            // radioSubWordMode
+            // 
+            radioSubWordMode.AutoSize = true;
+            radioSubWordMode.Location = new Point(171, 104);
+            radioSubWordMode.Name = "radioSubWordMode";
+            radioSubWordMode.Size = new Size(114, 29);
+            radioSubWordMode.TabIndex = 10;
+            radioSubWordMode.TabStop = true;
+            radioSubWordMode.Text = "Podsłowa";
+            radioSubWordMode.UseVisualStyleBackColor = true;
+            radioSubWordMode.CheckedChanged += RadioSubWord_CheckedChanged;
             // 
             // radioPM1Mode
             // 
@@ -1380,19 +1395,21 @@
             // 
             tableLayoutPanel4.ColumnCount = 1;
             tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanel4.Controls.Add(labelSubwordInfo, 0, 6);
             tableLayoutPanel4.Controls.Add(labelPM1Info, 0, 5);
             tableLayoutPanel4.Controls.Add(labelUlozSamInfo, 0, 4);
             tableLayoutPanel4.Controls.Add(labelLengthInfo, 0, 3);
             tableLayoutPanel4.Controls.Add(labelMetagramInfo, 0, 2);
             tableLayoutPanel4.Controls.Add(labelAnagramInfo, 0, 1);
             tableLayoutPanel4.Controls.Add(labelPatternInfo, 0, 0);
-            tableLayoutPanel4.Controls.Add(labelScrabbleInfo, 0, 6);
-            tableLayoutPanel4.Controls.Add(labelInfoFilters, 0, 7);
-            tableLayoutPanel4.Controls.Add(labelShortcuts, 0, 8);
+            tableLayoutPanel4.Controls.Add(labelShortcuts, 0, 9);
+            tableLayoutPanel4.Controls.Add(labelInfoFilters, 0, 8);
+            tableLayoutPanel4.Controls.Add(labelScrabbleInfo, 0, 7);
             tableLayoutPanel4.Dock = DockStyle.Left;
             tableLayoutPanel4.Location = new Point(3, 40);
             tableLayoutPanel4.Name = "tableLayoutPanel4";
-            tableLayoutPanel4.RowCount = 10;
+            tableLayoutPanel4.RowCount = 11;
+            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
@@ -1501,7 +1518,7 @@
             labelScrabbleInfo.Cursor = Cursors.Hand;
             labelScrabbleInfo.Dock = DockStyle.Fill;
             labelScrabbleInfo.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            labelScrabbleInfo.Location = new Point(0, 240);
+            labelScrabbleInfo.Location = new Point(0, 280);
             labelScrabbleInfo.Margin = new Padding(0, 0, 3, 5);
             labelScrabbleInfo.Name = "labelScrabbleInfo";
             labelScrabbleInfo.Size = new Size(228, 35);
@@ -1516,7 +1533,7 @@
             labelInfoFilters.Cursor = Cursors.Hand;
             labelInfoFilters.Dock = DockStyle.Fill;
             labelInfoFilters.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            labelInfoFilters.Location = new Point(0, 280);
+            labelInfoFilters.Location = new Point(0, 320);
             labelInfoFilters.Margin = new Padding(0, 0, 3, 5);
             labelInfoFilters.Name = "labelInfoFilters";
             labelInfoFilters.Size = new Size(228, 35);
@@ -1531,7 +1548,7 @@
             labelShortcuts.Cursor = Cursors.Hand;
             labelShortcuts.Dock = DockStyle.Fill;
             labelShortcuts.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            labelShortcuts.Location = new Point(0, 320);
+            labelShortcuts.Location = new Point(0, 360);
             labelShortcuts.Margin = new Padding(0, 0, 3, 5);
             labelShortcuts.Name = "labelShortcuts";
             labelShortcuts.Size = new Size(228, 35);
@@ -1624,6 +1641,20 @@
             newDictionaryDialog.FileName = "slownik.txt";
             newDictionaryDialog.Filter = "Pliki tekstowe|*.txt";
             newDictionaryDialog.Title = "Wybierz plik ze słownikiem";
+            // 
+            // labelSubwordInfo
+            // 
+            labelSubwordInfo.BackColor = Color.Silver;
+            labelSubwordInfo.Cursor = Cursors.Hand;
+            labelSubwordInfo.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            labelSubwordInfo.Location = new Point(0, 240);
+            labelSubwordInfo.Margin = new Padding(0, 0, 3, 5);
+            labelSubwordInfo.Name = "labelSubwordInfo";
+            labelSubwordInfo.Size = new Size(228, 35);
+            labelSubwordInfo.TabIndex = 18;
+            labelSubwordInfo.Text = "PODSŁOWO";
+            labelSubwordInfo.TextAlign = ContentAlignment.MiddleLeft;
+            labelSubwordInfo.Click += SubwordInfo_Click;
             // 
             // MainForm
             // 
@@ -1796,5 +1827,7 @@
         private TextBox textBoxNotContains;
         private CheckBox checkBoxNotContains;
         private Label labelInfoFilters;
+        private RadioButton radioSubWordMode;
+        private Label labelSubwordInfo;
     }
 }

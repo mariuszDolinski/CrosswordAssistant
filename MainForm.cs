@@ -104,7 +104,7 @@ namespace CrosswordAssistant
                     timer.Enabled = true;
 
                     await Task.Run(() => _dictionaryService.LoadDictionaryAsync());
-                }                   
+                }
                 SetFileInfo(0);
                 DictionaryService.PendingDictionaryLoading = false;
             }
@@ -170,10 +170,12 @@ namespace CrosswordAssistant
         }
         private void RadioLength_CheckedChanged(object sender, EventArgs e)
         {
+            int newHeight;
             labelCurrentPatternLen.Text = "0";
             if (radioLengthMode.Checked)
             {
-                groupBoxMode.Size = new Size(groupBoxMode.Size.Width, 190);
+                newHeight = (int)Math.Round(groupBoxMode.Size.Height * 1.30);
+                groupBoxMode.Size = new Size(groupBoxMode.Size.Width, newHeight);
                 Search.Mode = SearchMode.Length;
                 textBoxPatternResults.Text = Messages.LengthModeMessage;
                 textBoxPattern.Enabled = false;
@@ -181,7 +183,9 @@ namespace CrosswordAssistant
             }
             else
             {
-                groupBoxMode.Size = new Size(groupBoxMode.Size.Width, 140);
+                var ratio = 10.0 / 13;
+                newHeight = (int)Math.Round(groupBoxMode.Size.Height * ratio);
+                groupBoxMode.Size = new Size(groupBoxMode.Size.Width, newHeight);
                 textBoxPattern.Enabled = true;
             }
         }
@@ -200,6 +204,15 @@ namespace CrosswordAssistant
             if (radioPM1Mode.Checked)
             {
                 Search.Mode = SearchMode.PlusMinus1;
+                textBoxPatternResults.Text = Messages.MetagramModeMessage;
+            }
+        }
+        private void RadioSubWord_CheckedChanged(object sender, EventArgs e)
+        {
+            labelCurrentPatternLen.Text = textBoxPattern.Text.Length.ToString();
+            if (radioSubWordMode.Checked)
+            {
+                Search.Mode = SearchMode.SubWord;
                 textBoxPatternResults.Text = Messages.MetagramModeMessage;
             }
         }
@@ -225,7 +238,7 @@ namespace CrosswordAssistant
         {
             labelCurrentPatternLen.Text = textBoxPattern.Text.Length.ToString();
             FormService.FilterChecked(checkBoxNotContains, textBoxNotContains);
-            if(!checkBoxNotContains.Checked) textBoxPattern.Focus();
+            if (!checkBoxNotContains.Checked) textBoxPattern.Focus();
         }
         private void MainForm_KeyDown(object sender, KeyEventArgs e)
         {
@@ -280,7 +293,7 @@ namespace CrosswordAssistant
                             case Keys.D3: radioMetagramMode.Checked = true; break;
                             case Keys.D4: radioPM1Mode.Checked = true; break;
                             case Keys.D5: radioLengthMode.Checked = true; break;
-                            case Keys.D6: 
+                            case Keys.D6:
                                 checkBoxBeginWith.Checked = !checkBoxBeginWith.Checked;
                                 break;
                             case Keys.D7:
@@ -357,6 +370,10 @@ namespace CrosswordAssistant
         {
             SetInfo((Label)sender, Messages.Shortcuts);
         }
+        private void SubwordInfo_Click(object sender, EventArgs e)
+        {
+            SetInfo((Label)sender, Messages.SubwordInfo);
+        }
         #endregion
 
         #region private methods
@@ -374,12 +391,13 @@ namespace CrosswordAssistant
             _infoLabels.Add(labelShortcuts);
             _infoLabels.Add(labelScrabbleInfo);
             _infoLabels.Add(labelInfoFilters);
+            _infoLabels.Add(labelSubwordInfo);
             SetFileInfo(0);
             labelAbout.Text = Messages.VersionInfo;
         }
         private void SetFileInfo(int mode)
         {
-            if(mode == -1)
+            if (mode == -1)
             {
                 labelWordsCount.TextAlign = ContentAlignment.MiddleLeft;
                 labelFileName.TextAlign = ContentAlignment.MiddleLeft;
@@ -389,7 +407,7 @@ namespace CrosswordAssistant
                 labelWordsCount.Text = "Wczytujê nowy s³ownik";
                 return;
             }
-            if(mode > 0)
+            if (mode > 0)
             {
                 labelFileName.Text = "Wczytujê nowy s³ownik".AppendDots(mode);
                 labelWordsCount.Text = "Wczytujê nowy s³ownik".AppendDots(mode);
@@ -547,5 +565,6 @@ namespace CrosswordAssistant
             textBoxAbout.Text = msg;
         }
         #endregion
+
     }
 }

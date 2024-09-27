@@ -1,17 +1,16 @@
-﻿
-using CrosswordAssistant.Services;
+﻿using CrosswordAssistant.Services;
 
 namespace CrosswordAssistant.Searches
 {
-    public class PlusMinus1Search : Search
+    internal class SubWordSearch : Search
     {
         public override List<string> SearchMatches(string pattern)
         {
             List<string> result = [];
-
             foreach (var word in DictionaryService.CurrentDictionary)
             {
-                if (pattern.DiffMinusOne(word) || word.DiffMinusOne(pattern))
+                if(word.Length < 3) continue;
+                if (pattern.IsSubword(word))
                 {
                     result.Add(word);
                 }

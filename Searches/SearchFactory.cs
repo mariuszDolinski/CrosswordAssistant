@@ -16,6 +16,7 @@ namespace CrosswordAssistant.Searches
                 case SearchMode.Length: return new LengthSearch();
                 case SearchMode.UluzSam: return new UlozSamSearch();
                 case SearchMode.Scrabble: return new ScrabbleSearch();
+                case SearchMode.SubWord: return new SubWordSearch();
                 default: throw new NotImplementedException("SearchFactory Error: Search not implememnted");
             }
         }
