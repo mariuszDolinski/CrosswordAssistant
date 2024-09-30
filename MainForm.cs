@@ -38,7 +38,7 @@ namespace CrosswordAssistant
             string pattern = textBoxPattern.Text.Trim().ToLower();
             if (Search.Mode == SearchMode.Length)
             {
-                pattern = textBoxMinLen.Text + "+" + textBoxMaxLen.Text;
+                pattern = "do usuniêcia";
             }
 
             var search = _searchFactory.CreateSearch(Search.Mode);
@@ -170,23 +170,13 @@ namespace CrosswordAssistant
         }
         private void RadioLength_CheckedChanged(object sender, EventArgs e)
         {
-            int newHeight;
-            labelCurrentPatternLen.Text = "0";
-            if (radioLengthMode.Checked)
+            if (radioLength.Checked)
             {
-                newHeight = (int)Math.Round(groupBoxMode.Size.Height * 1.30);
-                groupBoxMode.Size = new Size(groupBoxMode.Size.Width, newHeight);
-                Search.Mode = SearchMode.Length;
-                textBoxPatternResults.Text = Messages.LengthModeMessage;
-                textBoxPattern.Enabled = false;
-                textBoxPattern.Text = "";
+                textBoxLength.Enabled = true;
             }
             else
             {
-                var ratio = 10.0 / 13;
-                newHeight = (int)Math.Round(groupBoxMode.Size.Height * ratio);
-                groupBoxMode.Size = new Size(groupBoxMode.Size.Width, newHeight);
-                textBoxPattern.Enabled = true;
+                textBoxLength.Enabled = false;
             }
         }
         private void RadioMetagram_CheckedChanged(object sender, EventArgs e)
@@ -240,6 +230,32 @@ namespace CrosswordAssistant
             FormService.FilterChecked(checkBoxNotContains, textBoxNotContains);
             if (!checkBoxNotContains.Checked) textBoxPattern.Focus();
         }
+        private void CheckBoxLength_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxLength.Checked)
+            {
+                SetLengthControlsEnabled(true);
+            }
+            else
+            {
+                SetLengthControlsEnabled(false);
+                radioLength.Checked = false;
+                radioLengthInterval.Checked = false;
+            }
+        }
+        private void TextBoxLengthInterval_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioLengthInterval.Checked)
+            {
+                textBoxLengthFrom.Enabled = true;
+                textBoxLengthTo.Enabled = true;
+            }
+            else
+            {
+                textBoxLengthFrom.Enabled = false;
+                textBoxLengthTo.Enabled = false;
+            }
+        }
         private void MainForm_KeyDown(object sender, KeyEventArgs e)
         {
             switch (Search.Mode)
@@ -292,7 +308,9 @@ namespace CrosswordAssistant
                             case Keys.D2: radioAnagramMode.Checked = true; break;
                             case Keys.D3: radioMetagramMode.Checked = true; break;
                             case Keys.D4: radioPM1Mode.Checked = true; break;
-                            case Keys.D5: radioLengthMode.Checked = true; break;
+                            case Keys.D5: 
+                                checkBoxLength.Checked = !checkBoxLength.Checked; 
+                                break;
                             case Keys.D6:
                                 checkBoxBeginWith.Checked = !checkBoxBeginWith.Checked;
                                 break;
@@ -394,6 +412,16 @@ namespace CrosswordAssistant
             _infoLabels.Add(labelSubwordInfo);
             SetFileInfo(0);
             labelAbout.Text = Messages.VersionInfo;
+        }
+        private void SetLengthControlsEnabled(bool isEnabled)
+        {
+            radioLength.Enabled = isEnabled;
+            radioLengthInterval.Enabled = isEnabled;
+            labelLength.Enabled = isEnabled;
+            labelLength2.Enabled = isEnabled;
+            labelLength3.Enabled = isEnabled;
+            labelLength4.Enabled = isEnabled;
+            labelLength5.Enabled = isEnabled;
         }
         private void SetFileInfo(int mode)
         {
@@ -517,7 +545,6 @@ namespace CrosswordAssistant
                     if (radioPatternMode.Checked) Search.Mode = SearchMode.Pattern;
                     else if (radioAnagramMode.Checked) Search.Mode = SearchMode.Anagram;
                     else if (radioMetagramMode.Checked) Search.Mode = SearchMode.Metagram;
-                    else if (radioLengthMode.Checked) Search.Mode = SearchMode.Length;
                     else if (radioPM1Mode.Checked) Search.Mode = SearchMode.PlusMinus1;
                     else Search.Mode = SearchMode.None;
                     break;
@@ -565,6 +592,5 @@ namespace CrosswordAssistant
             textBoxAbout.Text = msg;
         }
         #endregion
-
     }
 }
