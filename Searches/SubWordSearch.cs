@@ -9,7 +9,6 @@ namespace CrosswordAssistant.Searches
             List<string> result = [];
             foreach (var word in DictionaryService.CurrentDictionary)
             {
-                if(word.Length < 3) continue;
                 if (pattern.IsSubword(word))
                 {
                     result.Add(word);

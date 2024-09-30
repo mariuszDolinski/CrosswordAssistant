@@ -5,11 +5,10 @@
         Pattern = 1,
         Anagram = 2,
         Metagram = 3,
-        Length = 4,
-        UluzSam = 5,
-        PlusMinus1 = 6,
-        Scrabble = 7,
-        SubWord = 8,
-        None = 9
+        UluzSam = 4,
+        PlusMinus1 = 5,
+        Scrabble = 6,
+        SubWord = 7,
+        None = 8
     }
 }

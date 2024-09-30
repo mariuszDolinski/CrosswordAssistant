@@ -43,5 +43,18 @@
                 textBox.Text = result;
             }
         }
+        public static int TextBoxPositiveNumber(TextBox textBox)
+        {
+            if (textBox.Text.Length == 0) return 0;
+            if(int.TryParse(textBox.Text, out var result))
+            {
+                if (result <= 0) return -1;
+                return result;
+            }
+            else
+            {
+                return -1;
+            }
+        }
     }
 }

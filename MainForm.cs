@@ -36,10 +36,6 @@ namespace CrosswordAssistant
             if (DictionaryService.PendingDictionaryLoading) return;
 
             string pattern = textBoxPattern.Text.Trim().ToLower();
-            if (Search.Mode == SearchMode.Length)
-            {
-                pattern = "do usuniêcia";
-            }
 
             var search = _searchFactory.CreateSearch(Search.Mode);
 
@@ -235,12 +231,16 @@ namespace CrosswordAssistant
             if (checkBoxLength.Checked)
             {
                 SetLengthControlsEnabled(true);
+                radioLength.Checked = true;
             }
             else
             {
                 SetLengthControlsEnabled(false);
                 radioLength.Checked = false;
                 radioLengthInterval.Checked = false;
+                textBoxLength.Text = "";
+                textBoxLengthFrom.Text = "";
+                textBoxLengthTo.Text = "";
             }
         }
         private void TextBoxLengthInterval_CheckedChanged(object sender, EventArgs e)
@@ -501,6 +501,50 @@ namespace CrosswordAssistant
         private List<string> ApplyFilters(List<string> words)
         {
             List<string> results = words;
+            if (checkBoxLength.Checked)
+            {
+                int min = 0, max = 0;
+                if(radioLength.Checked)
+                {
+                    min = FormService.TextBoxPositiveNumber(textBoxLength);
+                    if (min <= 0)
+                    {
+                        MessageBox.Show("B³êdna d³ugoœæ. Wpisz poprawne liczby.", "B³êdne dane", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return [];
+                    }
+                    else
+                    {
+                        results = results
+                        .Where(w => w.Length == min)
+                        .ToList();
+                    }
+                }
+                else
+                {
+                    min = FormService.TextBoxPositiveNumber(textBoxLengthFrom);
+                    max = FormService.TextBoxPositiveNumber(textBoxLengthTo);
+                    if (min == -1 || max == -1 || (max > 0 && min > max) || (min == 0 && max == 0))
+                    {
+                        MessageBox.Show("B³êdna d³ugoœæ. Wpisz poprawne liczby.", "B³êdne dane", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return [];
+                    }
+                    else
+                    {
+                        if(min != 0 && max != 0)
+                            results = results
+                            .Where(w => w.Length >= min && w.Length <= max)
+                            .ToList();
+                        else if(min == 0)
+                            results = results
+                            .Where(w => w.Length <= max)
+                            .ToList();
+                        else
+                            results = results
+                            .Where(w => w.Length >= min)
+                            .ToList();
+                    }
+                }
+            }
             if (checkBoxBeginWith.Checked && textBoxBeginsWith.Text.Length > 0)
             {
                 results = results
