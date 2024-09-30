@@ -21,10 +21,11 @@
         public static string MetagramInfo { get; } = "Wyszukuje wszystkie metagramy podango wyrazu, tzn. słowa" +
             " różniące się od niego dokładnie jedną literą, np. KLATKA, KLAMKA. W tym trybie we wzorcu dopuszczalne" +
             " są tylko litery.";
-        public static string LengthInfo { get; } = "Wyszukuje wszystkie wyrazy o ilości liter w podanym zakresie." +
-            " Krańce zakresu wliczają się do niego, w szczególności jeśli w polu Od i Do podana zostanie ta sama cyfra, np. 5," +
-            " dopasowane zostaną wszystkie wyrazy pięcioliterowe. W celu ograniczenia liczby dopasowań, zaleca się" +
-            " użyć dodatkowych filtrów. Filtr 'Tylko wyrazy zawierające' może być pomocny przy rozwiązywaniu krzyżówek typu 'Szkotka'.";
+        public static string LengthInfo { get; } = "Wyszukuje wszystkie wyrazy o podanej ilości liter. " +
+            "Można podać dokładną ilość liter lub przedział do którego ma należeć, wliczając jego krańce. " +
+            "W przypadku podawania przedziału, jeden z krańców można pozostawić pusty, np. podając wartość 'od' 5 " +
+            "oraz wartość 'do' pustą, zwrócone zostaną tylko wyrazy o ilości liter 5 lub więcej. Analogicznie zadziała " +
+            "pozostawienie pustego pola 'od'.";
         public static string UlozSamInfo { get; } = "W tym trybie wzorcem jest ciąg cyfr od 1 do 8." +
             " Cyfry wskazują do której grupy liter należą poszczególne litery szukanego słowa, np. gdyby wzorcem" +
             " był ciąg 2341, to dopasowane zostałyby wszystkie wyrazy czteroliterowe, dla których pierwsza litera byłaby z grupy 2.," +
