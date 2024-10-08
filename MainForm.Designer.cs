@@ -119,9 +119,13 @@
             tabPageDictionary = new TabPage();
             tableLayoutPanel3 = new TableLayoutPanel();
             groupBoxAddToDict = new GroupBox();
-            buttonAddToDictionary = new Button();
-            label21 = new Label();
             textBoxAddToDictionary = new TextBox();
+            label5 = new Label();
+            splitContainerEditDictionary = new SplitContainer();
+            buttonAddToDictionary = new Button();
+            buttonRemoveFromDictionary = new Button();
+            labelModifyDictionary = new Label();
+            label21 = new Label();
             buttonLoadDict = new Button();
             label20 = new Label();
             tableLayoutPanel2 = new TableLayoutPanel();
@@ -181,6 +185,10 @@
             tabPageDictionary.SuspendLayout();
             tableLayoutPanel3.SuspendLayout();
             groupBoxAddToDict.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)splitContainerEditDictionary).BeginInit();
+            splitContainerEditDictionary.Panel1.SuspendLayout();
+            splitContainerEditDictionary.Panel2.SuspendLayout();
+            splitContainerEditDictionary.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
             tabPageAbout.SuspendLayout();
             tableLayoutPanel4.SuspendLayout();
@@ -710,7 +718,7 @@
             tabPageUlozSam.Location = new Point(4, 34);
             tabPageUlozSam.Name = "tabPageUlozSam";
             tabPageUlozSam.Padding = new Padding(3);
-            tabPageUlozSam.Size = new Size(817, 769);
+            tabPageUlozSam.Size = new Size(817, 780);
             tabPageUlozSam.TabIndex = 2;
             tabPageUlozSam.Text = "Ułóż sam";
             tabPageUlozSam.UseVisualStyleBackColor = true;
@@ -732,7 +740,7 @@
             splitContainerUls.Panel2.Controls.Add(buttonSearchUls);
             splitContainerUls.Panel2.Controls.Add(label9);
             splitContainerUls.Panel2.Controls.Add(textBoxPatternUls);
-            splitContainerUls.Size = new Size(811, 728);
+            splitContainerUls.Size = new Size(811, 739);
             splitContainerUls.SplitterDistance = 451;
             splitContainerUls.TabIndex = 5;
             // 
@@ -748,7 +756,7 @@
             textBoxResultsUls.Name = "textBoxResultsUls";
             textBoxResultsUls.ReadOnly = true;
             textBoxResultsUls.ScrollBars = ScrollBars.Vertical;
-            textBoxResultsUls.Size = new Size(451, 728);
+            textBoxResultsUls.Size = new Size(451, 739);
             textBoxResultsUls.TabIndex = 1;
             // 
             // groupBoxUlsGroups
@@ -765,7 +773,7 @@
             groupBoxUlsGroups.Dock = DockStyle.Fill;
             groupBoxUlsGroups.Location = new Point(0, 80);
             groupBoxUlsGroups.Name = "groupBoxUlsGroups";
-            groupBoxUlsGroups.Size = new Size(356, 648);
+            groupBoxUlsGroups.Size = new Size(356, 659);
             groupBoxUlsGroups.TabIndex = 12;
             groupBoxUlsGroups.TabStop = false;
             groupBoxUlsGroups.Text = "Grupy znaków";
@@ -1152,7 +1160,7 @@
             tabPageScrabble.Location = new Point(4, 34);
             tabPageScrabble.Name = "tabPageScrabble";
             tabPageScrabble.Padding = new Padding(3);
-            tabPageScrabble.Size = new Size(817, 769);
+            tabPageScrabble.Size = new Size(817, 780);
             tabPageScrabble.TabIndex = 4;
             tabPageScrabble.Text = "Scrabble";
             tabPageScrabble.UseVisualStyleBackColor = true;
@@ -1169,7 +1177,7 @@
             textBoxScrabbleResults.Name = "textBoxScrabbleResults";
             textBoxScrabbleResults.ReadOnly = true;
             textBoxScrabbleResults.ScrollBars = ScrollBars.Vertical;
-            textBoxScrabbleResults.Size = new Size(811, 686);
+            textBoxScrabbleResults.Size = new Size(811, 697);
             textBoxScrabbleResults.TabIndex = 3;
             // 
             // tableLayoutPanelScrabble
@@ -1252,7 +1260,7 @@
             tabPageDictionary.Location = new Point(4, 34);
             tabPageDictionary.Name = "tabPageDictionary";
             tabPageDictionary.Padding = new Padding(3);
-            tabPageDictionary.Size = new Size(817, 769);
+            tabPageDictionary.Size = new Size(817, 780);
             tabPageDictionary.TabIndex = 3;
             tabPageDictionary.Text = "Słownik";
             tabPageDictionary.UseVisualStyleBackColor = true;
@@ -1268,21 +1276,66 @@
             tableLayoutPanel3.Name = "tableLayoutPanel3";
             tableLayoutPanel3.RowCount = 1;
             tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel3.Size = new Size(811, 620);
+            tableLayoutPanel3.Size = new Size(811, 631);
             tableLayoutPanel3.TabIndex = 9;
             // 
             // groupBoxAddToDict
             // 
-            groupBoxAddToDict.Controls.Add(buttonAddToDictionary);
-            groupBoxAddToDict.Controls.Add(label21);
             groupBoxAddToDict.Controls.Add(textBoxAddToDictionary);
+            groupBoxAddToDict.Controls.Add(label5);
+            groupBoxAddToDict.Controls.Add(splitContainerEditDictionary);
+            groupBoxAddToDict.Controls.Add(labelModifyDictionary);
+            groupBoxAddToDict.Controls.Add(label21);
             groupBoxAddToDict.Dock = DockStyle.Fill;
             groupBoxAddToDict.Location = new Point(3, 3);
             groupBoxAddToDict.Name = "groupBoxAddToDict";
-            groupBoxAddToDict.Size = new Size(399, 614);
+            groupBoxAddToDict.Size = new Size(399, 625);
             groupBoxAddToDict.TabIndex = 0;
             groupBoxAddToDict.TabStop = false;
-            groupBoxAddToDict.Text = "Dodaj wyrazy do bieżącego słownika";
+            groupBoxAddToDict.Text = "Modyfikacja bieżącego słownika";
+            // 
+            // textBoxAddToDictionary
+            // 
+            textBoxAddToDictionary.Dock = DockStyle.Fill;
+            textBoxAddToDictionary.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            textBoxAddToDictionary.Location = new Point(3, 125);
+            textBoxAddToDictionary.Multiline = true;
+            textBoxAddToDictionary.Name = "textBoxAddToDictionary";
+            textBoxAddToDictionary.ScrollBars = ScrollBars.Vertical;
+            textBoxAddToDictionary.Size = new Size(393, 454);
+            textBoxAddToDictionary.TabIndex = 14;
+            // 
+            // label5
+            // 
+            label5.Dock = DockStyle.Bottom;
+            label5.Location = new Point(3, 579);
+            label5.MaximumSize = new Size(0, 3);
+            label5.MinimumSize = new Size(0, 3);
+            label5.Name = "label5";
+            label5.Size = new Size(393, 3);
+            label5.TabIndex = 13;
+            // 
+            // splitContainerEditDictionary
+            // 
+            splitContainerEditDictionary.Dock = DockStyle.Bottom;
+            splitContainerEditDictionary.Location = new Point(3, 582);
+            splitContainerEditDictionary.Margin = new Padding(6);
+            splitContainerEditDictionary.MaximumSize = new Size(0, 40);
+            splitContainerEditDictionary.MinimumSize = new Size(0, 40);
+            splitContainerEditDictionary.Name = "splitContainerEditDictionary";
+            // 
+            // splitContainerEditDictionary.Panel1
+            // 
+            splitContainerEditDictionary.Panel1.Controls.Add(buttonAddToDictionary);
+            splitContainerEditDictionary.Panel1MinSize = 50;
+            // 
+            // splitContainerEditDictionary.Panel2
+            // 
+            splitContainerEditDictionary.Panel2.Controls.Add(buttonRemoveFromDictionary);
+            splitContainerEditDictionary.Panel2MinSize = 50;
+            splitContainerEditDictionary.Size = new Size(393, 40);
+            splitContainerEditDictionary.SplitterDistance = 195;
+            splitContainerEditDictionary.TabIndex = 12;
             // 
             // buttonAddToDictionary
             // 
@@ -1290,34 +1343,49 @@
             buttonAddToDictionary.Dock = DockStyle.Fill;
             buttonAddToDictionary.FlatStyle = FlatStyle.Flat;
             buttonAddToDictionary.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            buttonAddToDictionary.Location = new Point(3, 573);
+            buttonAddToDictionary.Location = new Point(0, 0);
             buttonAddToDictionary.MaximumSize = new Size(0, 38);
             buttonAddToDictionary.MinimumSize = new Size(0, 38);
             buttonAddToDictionary.Name = "buttonAddToDictionary";
-            buttonAddToDictionary.Size = new Size(393, 38);
+            buttonAddToDictionary.Size = new Size(195, 38);
             buttonAddToDictionary.TabIndex = 8;
-            buttonAddToDictionary.Text = "DODAJ DO SŁOWNIKA";
+            buttonAddToDictionary.Text = "DODAJ";
             buttonAddToDictionary.UseVisualStyleBackColor = true;
             buttonAddToDictionary.Click += AddToDictionaryBtn_Click;
+            // 
+            // buttonRemoveFromDictionary
+            // 
+            buttonRemoveFromDictionary.Cursor = Cursors.Hand;
+            buttonRemoveFromDictionary.Dock = DockStyle.Fill;
+            buttonRemoveFromDictionary.FlatStyle = FlatStyle.Flat;
+            buttonRemoveFromDictionary.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            buttonRemoveFromDictionary.Location = new Point(0, 0);
+            buttonRemoveFromDictionary.MaximumSize = new Size(0, 38);
+            buttonRemoveFromDictionary.MinimumSize = new Size(0, 38);
+            buttonRemoveFromDictionary.Name = "buttonRemoveFromDictionary";
+            buttonRemoveFromDictionary.Size = new Size(194, 38);
+            buttonRemoveFromDictionary.TabIndex = 9;
+            buttonRemoveFromDictionary.Text = "USUŃ";
+            buttonRemoveFromDictionary.UseVisualStyleBackColor = true;
+            buttonRemoveFromDictionary.Click += RemoveFromDictionaryBtn_Click;
+            // 
+            // labelModifyDictionary
+            // 
+            labelModifyDictionary.Dock = DockStyle.Top;
+            labelModifyDictionary.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            labelModifyDictionary.Location = new Point(3, 30);
+            labelModifyDictionary.Name = "labelModifyDictionary";
+            labelModifyDictionary.Size = new Size(393, 95);
+            labelModifyDictionary.TabIndex = 9;
+            labelModifyDictionary.Text = "Podaj wyrazy, które chcesz dodać do słownika. W każdej linii powinien się znajdować jeden wyraz.";
             // 
             // label21
             // 
             label21.Dock = DockStyle.Top;
-            label21.Location = new Point(3, 570);
+            label21.Location = new Point(3, 27);
             label21.Name = "label21";
             label21.Size = new Size(393, 3);
             label21.TabIndex = 4;
-            // 
-            // textBoxAddToDictionary
-            // 
-            textBoxAddToDictionary.Dock = DockStyle.Top;
-            textBoxAddToDictionary.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            textBoxAddToDictionary.Location = new Point(3, 27);
-            textBoxAddToDictionary.Multiline = true;
-            textBoxAddToDictionary.Name = "textBoxAddToDictionary";
-            textBoxAddToDictionary.ScrollBars = ScrollBars.Vertical;
-            textBoxAddToDictionary.Size = new Size(393, 543);
-            textBoxAddToDictionary.TabIndex = 0;
             // 
             // buttonLoadDict
             // 
@@ -1434,7 +1502,7 @@
             tabPageAbout.Location = new Point(4, 34);
             tabPageAbout.Name = "tabPageAbout";
             tabPageAbout.Padding = new Padding(3);
-            tabPageAbout.Size = new Size(817, 769);
+            tabPageAbout.Size = new Size(817, 780);
             tabPageAbout.TabIndex = 1;
             tabPageAbout.Text = "O aplikacji";
             tabPageAbout.UseVisualStyleBackColor = true;
@@ -1446,7 +1514,7 @@
             labelAbout.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 238);
             labelAbout.Location = new Point(234, 555);
             labelAbout.Name = "labelAbout";
-            labelAbout.Size = new Size(580, 208);
+            labelAbout.Size = new Size(580, 219);
             labelAbout.TabIndex = 18;
             labelAbout.TextAlign = ContentAlignment.MiddleCenter;
             // 
@@ -1464,7 +1532,7 @@
             // 
             label1.BackColor = Color.Transparent;
             label1.Dock = DockStyle.Bottom;
-            label1.Location = new Point(234, 763);
+            label1.Location = new Point(234, 774);
             label1.Name = "label1";
             label1.Size = new Size(580, 3);
             label1.TabIndex = 15;
@@ -1513,7 +1581,7 @@
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel4.Size = new Size(231, 726);
+            tableLayoutPanel4.Size = new Size(231, 737);
             tableLayoutPanel4.TabIndex = 13;
             // 
             // labelSubwordInfo
@@ -1798,6 +1866,10 @@
             tableLayoutPanel3.ResumeLayout(false);
             groupBoxAddToDict.ResumeLayout(false);
             groupBoxAddToDict.PerformLayout();
+            splitContainerEditDictionary.Panel1.ResumeLayout(false);
+            splitContainerEditDictionary.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)splitContainerEditDictionary).EndInit();
+            splitContainerEditDictionary.ResumeLayout(false);
             tableLayoutPanel2.ResumeLayout(false);
             tabPageAbout.ResumeLayout(false);
             tabPageAbout.PerformLayout();
@@ -1889,7 +1961,6 @@
         private Button buttonLoadDict;
         private TableLayoutPanel tableLayoutPanel3;
         private GroupBox groupBoxAddToDict;
-        private TextBox textBoxAddToDictionary;
         private Button buttonAddToDictionary;
         private Label label21;
         private TableLayoutPanel tableLayoutPanel4;
@@ -1932,5 +2003,10 @@
         private Label labelLength5;
         private Label labelLength4;
         private TableLayoutPanel tableLayoutPanel5;
+        private Label labelModifyDictionary;
+        private SplitContainer splitContainerEditDictionary;
+        private Button buttonRemoveFromDictionary;
+        private TextBox textBoxAddToDictionary;
+        private Label label5;
     }
 }

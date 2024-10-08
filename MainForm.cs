@@ -146,6 +146,42 @@ namespace CrosswordAssistant
             }
             SetFileInfo(0);
         }
+        private void RemoveFromDictionaryBtn_Click(object sender, EventArgs e)
+        {
+            if (DictionaryService.PendingDictionaryLoading) return;
+
+            if (textBoxAddToDictionary.Text.Length == 0)
+            {
+                MessageBox.Show("Nie podano ¿adnych wyrazów do usuniêcia.", "Uwaga", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            var response = MessageBox.Show("Czy na pewno chcesz usun¹æ podane wyrazy ze s³ownika? Wciœnij Tak aby kontynuowaæ lub Nie aby anulowaæ."
+                , "Uwaga", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (response == DialogResult.No) return;
+
+            var wordsToRemove = textBoxAddToDictionary.Lines.ToList();
+            wordsToRemove = Utilities.CorrectLines(wordsToRemove);
+            var removedWords = DictionaryService.RemoveWordsFromDictionary(wordsToRemove);
+            if(removedWords.Count == 0)
+            {
+                MessageBox.Show("Podane wyrazy nie wystêpuj¹ w bie¿¹cym s³owniku.", "Uwaga", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            string msg = "";
+            foreach (var word in removedWords)
+            {
+                msg += word + Environment.NewLine;
+            }
+
+            if (FileService.SaveDictionary(DictionaryService.CurrentDictionary))
+            {
+                MessageBox.Show("Wyrazy: " + Environment.NewLine + msg + "usuniête poprawnie.", "Usuniêto wyrazy ze s³ownika",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            SetFileInfo(0);
+        }
         private void RadioPattern_CheckedChanged(object sender, EventArgs e)
         {
             labelCurrentPatternLen.Text = textBoxPattern.Text.Length.ToString();
@@ -308,8 +344,8 @@ namespace CrosswordAssistant
                             case Keys.D2: radioAnagramMode.Checked = true; break;
                             case Keys.D3: radioMetagramMode.Checked = true; break;
                             case Keys.D4: radioPM1Mode.Checked = true; break;
-                            case Keys.D5: 
-                                checkBoxLength.Checked = !checkBoxLength.Checked; 
+                            case Keys.D5:
+                                checkBoxLength.Checked = !checkBoxLength.Checked;
                                 break;
                             case Keys.D6:
                                 checkBoxBeginWith.Checked = !checkBoxBeginWith.Checked;
@@ -398,8 +434,8 @@ namespace CrosswordAssistant
         private void InitControls()
         {
             textBoxPatternResults.Text = Messages.PatternModeMessage + Environment.NewLine;
-            textBoxAddToDictionary.PlaceholderText = "Wpisz wyrazy do dodania " + Environment.NewLine +
-                "(po jednym w linii)";
+            //textBoxAddToDictionary.PlaceholderText = "Wpisz wyrazy do dodania " + Environment.NewLine +
+            //    "(po jednym w linii)";
             _infoLabels.Add(labelPatternInfo);
             _infoLabels.Add(labelAnagramInfo);
             _infoLabels.Add(labelMetagramInfo);
@@ -504,7 +540,7 @@ namespace CrosswordAssistant
             if (checkBoxLength.Checked)
             {
                 int min = 0, max = 0;
-                if(radioLength.Checked)
+                if (radioLength.Checked)
                 {
                     min = FormService.TextBoxPositiveNumber(textBoxLength);
                     if (min <= 0)
@@ -530,11 +566,11 @@ namespace CrosswordAssistant
                     }
                     else
                     {
-                        if(min != 0 && max != 0)
+                        if (min != 0 && max != 0)
                             results = results
                             .Where(w => w.Length >= min && w.Length <= max)
                             .ToList();
-                        else if(min == 0)
+                        else if (min == 0)
                             results = results
                             .Where(w => w.Length <= max)
                             .ToList();

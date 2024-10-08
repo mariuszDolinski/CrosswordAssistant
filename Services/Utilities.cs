@@ -33,8 +33,9 @@ namespace CrosswordAssistant.Services
             List<string> result = [];
             foreach (string line in lines)
             {
-                if(line.Length == 0) continue;
-                result.Add(line.Trim());
+                var tLine = line.Trim();
+                if(tLine.Length == 0) continue;
+                result.Add(tLine);
             }
             return result;
         }

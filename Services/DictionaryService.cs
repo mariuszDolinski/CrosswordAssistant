@@ -28,6 +28,7 @@ namespace CrosswordAssistant.Services
             CurrentDictionary.TrimExcess();//memory optimalization
             CurrentDictionary = await FileService.ReadDictionaryAsync();
         }
+
         /// <summary>
         /// Return true if dictionary was not loaded properly. Return false otherwise.
         /// </summary>
@@ -36,6 +37,7 @@ namespace CrosswordAssistant.Services
         {
             return CurrentDictionary.Count == 1 && CurrentDictionary[0] == Messages.NoFile;
         }
+
         /// <summary>
         /// Add given list of words to CurrentDictionary. Preserve alphabetical order.
         /// Return list of added words. If empty list is returned, no words was added.
@@ -73,6 +75,21 @@ namespace CrosswordAssistant.Services
             }
             return wordsAdded;
         }
+
+        public static List<string> RemoveWordsFromDictionary(List<string> words)
+        {
+            var removedWords = new List<string>();
+            foreach(var word in words)
+            {
+                if(CurrentDictionary.Contains(word))
+                {
+                    removedWords.Add(word);
+                    CurrentDictionary.Remove(word);
+                }
+            }
+            return removedWords;
+        }
+        
         /// <summary>
         /// Return: true if pattern contains only allowed chars, specified in allowedChars string
         /// </summary>
@@ -87,6 +104,7 @@ namespace CrosswordAssistant.Services
             }
             return true;
         }
+
         public static bool ValidateWordsToAdd(List<string> words)
         {
             foreach(var word in words)
@@ -103,6 +121,7 @@ namespace CrosswordAssistant.Services
             }
             return true;
         }
+        
         public int GetWordsCount()
             => CurrentDictionary.Count;
     }
