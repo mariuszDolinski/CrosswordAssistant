@@ -1377,7 +1377,8 @@
             labelModifyDictionary.Name = "labelModifyDictionary";
             labelModifyDictionary.Size = new Size(393, 95);
             labelModifyDictionary.TabIndex = 9;
-            labelModifyDictionary.Text = "Podaj wyrazy, które chcesz dodać do słownika. W każdej linii powinien się znajdować jeden wyraz.";
+            labelModifyDictionary.Text = "Podaj wyrazy, które chcesz dodać lub usunąć ze słownika. W każdej linii powinien się znajdować jeden wyraz.";
+            labelModifyDictionary.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // label21
             // 

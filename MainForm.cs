@@ -3,6 +3,7 @@ using CrosswordAssistant.Searches;
 using CrosswordAssistant.Services;
 using System.Diagnostics;
 using System.Globalization;
+using System.Text.RegularExpressions;
 
 namespace CrosswordAssistant
 {
@@ -39,9 +40,18 @@ namespace CrosswordAssistant
 
             var search = _searchFactory.CreateSearch(Search.Mode);
 
-            if (!search.ValidatePattern(pattern)) return;
-            textBoxPattern.ReadOnly = true;
-            List<string> matches = search.SearchMatches(pattern);
+            List<string> matches;
+            if (checkBoxLength.Checked && pattern.Length == 0)
+            {
+                matches = DictionaryService.CurrentDictionary;
+                textBoxPattern.ReadOnly = true;
+            }
+            else
+            {
+                if (!search.ValidatePattern(pattern)) return;
+                textBoxPattern.ReadOnly = true;
+                matches = search.SearchMatches(pattern);
+            }
 
             matches = ApplyFilters(matches);
             matches = Utilities.BoundTo500(matches);
@@ -479,8 +489,10 @@ namespace CrosswordAssistant
             }
             labelFileName.Text = FileService.FileName;
             int wordsCount = _dictionaryService.GetWordsCount();
-            var nfi = new NumberFormatInfo();
-            nfi.NumberGroupSeparator = " ";
+            var nfi = new NumberFormatInfo
+            {
+                NumberGroupSeparator = " "
+            };
             labelWordsCount.Text = wordsCount.ToString("N0", nfi);
             labelFileName.BackColor = Color.MediumAquamarine;
             labelWordsCount.TextAlign = ContentAlignment.MiddleCenter;
@@ -499,18 +511,12 @@ namespace CrosswordAssistant
             string result = "";
             if (results.Count == 0)
             {
-                switch (Search.Mode)
+                textBox.Text = Search.Mode switch
                 {
-                    case SearchMode.Anagram:
-                        textBox.Text = "BRAK ANAGRAMÓW";
-                        break;
-                    case SearchMode.Metagram:
-                        textBox.Text = "BRAK METAGRAMÓW";
-                        break;
-                    default:
-                        textBox.Text = "BRAK DOPASOWAÑ";
-                        break;
-                }
+                    SearchMode.Anagram => "BRAK ANAGRAMÓW",
+                    SearchMode.Metagram => "BRAK METAGRAMÓW",
+                    _ => "BRAK DOPASOWAÑ",
+                };
             }
             else
             {

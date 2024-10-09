@@ -8,7 +8,7 @@
         public static string MetagramModeMessage { get; } = "Podaj wyraz i kliknij Szukaj...";
         public static string LengthModeMessage { get; } = "Wybierz dodatkowe filtry i kliknij Szukaj...";
         public static string EmptyPattern { get; } = "Wzorzec nie zawiera żadnych znaków.";
-        public static string VersionInfo { get; } = "Pomocnik szaradzisty v2.5.1" + Environment.NewLine +
+        public static string VersionInfo { get; } = "Pomocnik szaradzisty v2.5.2" + Environment.NewLine +
                 "Autor: Mariusz Doliński" + Environment.NewLine + "© 2024";
         public static string PatternInfo { get; } = "Wyszukuje wyrazy posiadające te same litery na tych" +
             " samych pozycjach co w podanym wzorcu. Znak kropki (.) zastępuje dowolną literę," +
@@ -25,7 +25,9 @@
             "Można podać dokładną ilość liter lub przedział do którego ma należeć, wliczając jego krańce. " +
             "W przypadku podawania przedziału, jeden z krańców można pozostawić pusty, np. podając wartość 'od' 5 " +
             "oraz wartość 'do' pustą, zwrócone zostaną tylko wyrazy o ilości liter 5 lub więcej. Analogicznie zadziała " +
-            "pozostawienie pustego pola 'od'.";
+            "pozostawienie pustego pola 'od'." + Environment.NewLine + Environment.NewLine +
+            "UWAGA. Gdy filtr Długość jest zaznaczony, pole ze wzorcem może pozostać puste, wówczas filtrowane są " +
+            "wszystkie wyrazy ze słownika.";
         public static string UlozSamInfo { get; } = "W tym trybie wzorcem jest ciąg cyfr od 1 do 8." +
             " Cyfry wskazują do której grupy liter należą poszczególne litery szukanego słowa, np. gdyby wzorcem" +
             " był ciąg 2341, to dopasowane zostałyby wszystkie wyrazy czteroliterowe, dla których pierwsza litera byłaby z grupy 2.," +
