@@ -6,6 +6,7 @@ namespace CrosswordAssistant.Services
     public class DictionaryService
     {
         public static List<string> CurrentDictionary { get; private set; } = [];
+        public static List<string> DictionaryToMerge { get; private set; } = [];
         public static bool PendingDictionaryLoading { get; set; } = false;
 
         public const string AllowedPatternChars = "aąbcćdeęfghijklłmnńoópqrsśtuvwxyzźż.";
@@ -74,6 +75,20 @@ namespace CrosswordAssistant.Services
                 CurrentDictionary = tmpDictionary;
             }
             return wordsAdded;
+        }
+
+        public async Task<List<string>> MergeWithDictionaryAsync(List<string> newDictionary) 
+        {
+            List<string> results = [];
+            await Task.Run(() =>
+                results = newDictionary.Except(CurrentDictionary).ToList());
+            DictionaryToMerge = results;
+            return results;
+        }
+
+        public void ClearDictionaryToMerge()
+        {
+            DictionaryToMerge.Clear();
         }
 
         public static List<string> RemoveWordsFromDictionary(List<string> words)

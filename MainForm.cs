@@ -3,6 +3,7 @@ using CrosswordAssistant.Searches;
 using CrosswordAssistant.Services;
 using System.Diagnostics;
 using System.Globalization;
+using System.Security.Cryptography;
 using System.Text.RegularExpressions;
 
 namespace CrosswordAssistant
@@ -94,7 +95,7 @@ namespace CrosswordAssistant
         }
         private async void LoadDictionaryBtn_Click(object sender, EventArgs e)
         {
-            if (FileService.SetFileFromDialog(newDictionaryDialog))
+            if (FileService.SetCurrentDictionaryPathFromDialog(newDictionaryDialog))
             {
                 DictionaryService.PendingDictionaryLoading = true;
                 int count = 0;
@@ -115,6 +116,80 @@ namespace CrosswordAssistant
                 DictionaryService.PendingDictionaryLoading = false;
             }
         }
+        private async void LoadToMerge_Click(object sender, EventArgs e)
+        {
+            textBoxWordsToMerge.Text = "Wczytujê plik..." + Environment.NewLine;
+            var wordsToAdd = FileService.LoadTextFile(newDictionaryDialog);
+            textBoxWordsToMerge.Text += "OK" + Environment.NewLine;
+
+            if (wordsToAdd.Count > 0)
+            {
+                textBoxWordsToMerge.Text += "Szukam nowych wyrazów..." + Environment.NewLine;
+                var newWords = await _dictionaryService.MergeWithDictionaryAsync(wordsToAdd);
+                textBoxWordsToMerge.Text += "OK" + Environment.NewLine;
+                if (newWords.Count > 0)
+                {
+                    labelMergeDicts.Text = "Iloœæ wyrazów w pliku: " + wordsToAdd.Count;
+                    labelMergeDicts.Text += Environment.NewLine;
+                    labelMergeDicts.Text += "Iloœæ nowych wyrazów: " + newWords.Count.ToString();
+                    if (wordsToAdd.Count > 10000)
+                    {
+                        textBoxWordsToMerge.Text += Environment.NewLine + "UWAGA. Zbyt wiele nowych wyrazów. " +
+                            "Maksymalna dopuszczalna iloœæ to: 10 000. Kliknij Anuluj i spróbuj ponownie.";
+                        buttonMergeDicts.Enabled = false;
+                    }
+                    else
+                    {
+                        textBoxWordsToMerge.Text += Environment.NewLine + "Wyrazy do dodania: ";
+                        FormService.FillTextBoxWithWords(textBoxWordsToMerge, newWords, true);
+                        buttonMergeDicts.Enabled = true;
+                    }
+                }
+                else
+                {
+                    textBoxWordsToMerge.Text += Environment.NewLine +
+                        "Brak nowych wyrazów we wczytanym pliku. Kliknij Anuluj.";
+                    buttonMergeDicts.Enabled = false;
+                }
+                textBoxWordsToMerge.Select(0, 0);
+                buttonLoadDictToMerge.Enabled = false;
+                buttonCancelMerge.Enabled = true;
+            }
+        }
+        private void CancelMerge_Click(object sender, EventArgs e)
+        {
+            _dictionaryService.ClearDictionaryToMerge();
+            labelMergeDicts.Text = Messages.MergeDictsInfo;
+            textBoxWordsToMerge.Text = "";
+            buttonLoadDictToMerge.Enabled = true;
+            buttonMergeDicts.Enabled = false;
+            buttonCancelMerge.Enabled = false;
+        }
+        private void MergeDicts_Click(object sender, EventArgs e)
+        {
+            textBoxWordsToMerge.Text = "Dodajê nowe wyrazy do s³ownika...";
+            int c = 1;
+            foreach (var newWord in DictionaryService.DictionaryToMerge) 
+            {
+                textBoxWordsToMerge.Text = "Dodajê nowe wyrazy do s³ownika... ";
+                textBoxWordsToMerge.Text += c.ToString() + "/" + DictionaryService.DictionaryToMerge.Count().ToString();
+                c++;
+                List<string> oneWord = [newWord];
+                _dictionaryService.AddWordsToDictionary(oneWord);
+            }
+            textBoxWordsToMerge.Text += Environment.NewLine + "Wykonane";
+            textBoxWordsToMerge.Text += Environment.NewLine + "Zapisujê do pliku... ";
+            if (FileService.SaveDictionary(DictionaryService.CurrentDictionary))
+            {
+                MessageBox.Show("Wyrazy (" + DictionaryService.DictionaryToMerge.Count().ToString() + ") dodane poprawnie",
+                    "Dodawanie wyrazów zakoñczone", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                textBoxWordsToMerge.Text = "";
+                labelMergeDicts.Text = Messages.MergeDictsInfo;
+            }
+            buttonLoadDictToMerge.Enabled = true;
+            buttonMergeDicts.Enabled = false;
+            buttonCancelMerge.Enabled = false;
+        }
         private void AddToDictionaryBtn_Click(object sender, EventArgs e)
         {
             if (DictionaryService.PendingDictionaryLoading) return;
@@ -129,6 +204,11 @@ namespace CrosswordAssistant
             if (wordsToAdd.Count == 0)
             {
                 MessageBox.Show("Nie podano ¿adnych wyrazów do dodania.", "Uwaga", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            else if (wordsToAdd.Count > 10000) 
+            {
+                MessageBox.Show("odano zbyt wiele wyrazów. Proszê ograniczyæ listê do maksymlanie 10 000 s³ów.", "Uwaga", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             if (!DictionaryService.ValidateWordsToAdd(wordsToAdd))
@@ -173,7 +253,7 @@ namespace CrosswordAssistant
             var wordsToRemove = textBoxAddToDictionary.Lines.ToList();
             wordsToRemove = Utilities.CorrectLines(wordsToRemove);
             var removedWords = DictionaryService.RemoveWordsFromDictionary(wordsToRemove);
-            if(removedWords.Count == 0)
+            if (removedWords.Count == 0)
             {
                 MessageBox.Show("Podane wyrazy nie wystêpuj¹ w bie¿¹cym s³owniku.", "Uwaga", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
@@ -458,6 +538,7 @@ namespace CrosswordAssistant
             _infoLabels.Add(labelSubwordInfo);
             SetFileInfo(0);
             labelAbout.Text = Messages.VersionInfo;
+            labelMergeDicts.Text = Messages.MergeDictsInfo;
         }
         private void SetLengthControlsEnabled(bool isEnabled)
         {
@@ -508,7 +589,7 @@ namespace CrosswordAssistant
         }
         private void FillTextBoxResults(List<string> results, TextBox textBox)
         {
-            string result = "";
+
             if (results.Count == 0)
             {
                 textBox.Text = Search.Mode switch
@@ -522,11 +603,7 @@ namespace CrosswordAssistant
             {
                 if (Search.Mode != SearchMode.Scrabble)
                 {
-                    foreach (string word in results)
-                    {
-                        result += word + Environment.NewLine;
-                    }
-                    textBox.Text = result;
+                    FormService.FillTextBoxWithWords(textBox, results, false);
                 }
                 else
                 {

@@ -126,6 +126,14 @@
             buttonRemoveFromDictionary = new Button();
             labelModifyDictionary = new Label();
             label21 = new Label();
+            groupBoxMergeDicts = new GroupBox();
+            tableLayoutPanel6 = new TableLayoutPanel();
+            labelMergeDicts = new Label();
+            buttonLoadDictToMerge = new Button();
+            textBoxWordsToMerge = new TextBox();
+            splitContainer1 = new SplitContainer();
+            buttonMergeDicts = new Button();
+            buttonCancelMerge = new Button();
             buttonLoadDict = new Button();
             label20 = new Label();
             tableLayoutPanel2 = new TableLayoutPanel();
@@ -189,6 +197,12 @@
             splitContainerEditDictionary.Panel1.SuspendLayout();
             splitContainerEditDictionary.Panel2.SuspendLayout();
             splitContainerEditDictionary.SuspendLayout();
+            groupBoxMergeDicts.SuspendLayout();
+            tableLayoutPanel6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
+            splitContainer1.Panel1.SuspendLayout();
+            splitContainer1.Panel2.SuspendLayout();
+            splitContainer1.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
             tabPageAbout.SuspendLayout();
             tableLayoutPanel4.SuspendLayout();
@@ -1271,6 +1285,7 @@
             tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel3.Controls.Add(groupBoxAddToDict, 0, 0);
+            tableLayoutPanel3.Controls.Add(groupBoxMergeDicts, 1, 0);
             tableLayoutPanel3.Dock = DockStyle.Fill;
             tableLayoutPanel3.Location = new Point(3, 146);
             tableLayoutPanel3.Name = "tableLayoutPanel3";
@@ -1302,18 +1317,18 @@
             textBoxAddToDictionary.Multiline = true;
             textBoxAddToDictionary.Name = "textBoxAddToDictionary";
             textBoxAddToDictionary.ScrollBars = ScrollBars.Vertical;
-            textBoxAddToDictionary.Size = new Size(393, 454);
-            textBoxAddToDictionary.TabIndex = 14;
+            textBoxAddToDictionary.Size = new Size(393, 451);
+            textBoxAddToDictionary.TabIndex = 16;
             // 
             // label5
             // 
             label5.Dock = DockStyle.Bottom;
-            label5.Location = new Point(3, 579);
-            label5.MaximumSize = new Size(0, 3);
-            label5.MinimumSize = new Size(0, 3);
+            label5.Location = new Point(3, 576);
+            label5.MaximumSize = new Size(0, 6);
+            label5.MinimumSize = new Size(0, 6);
             label5.Name = "label5";
-            label5.Size = new Size(393, 3);
-            label5.TabIndex = 13;
+            label5.Size = new Size(393, 6);
+            label5.TabIndex = 15;
             // 
             // splitContainerEditDictionary
             // 
@@ -1387,6 +1402,125 @@
             label21.Name = "label21";
             label21.Size = new Size(393, 3);
             label21.TabIndex = 4;
+            // 
+            // groupBoxMergeDicts
+            // 
+            groupBoxMergeDicts.Controls.Add(tableLayoutPanel6);
+            groupBoxMergeDicts.Dock = DockStyle.Fill;
+            groupBoxMergeDicts.Location = new Point(408, 3);
+            groupBoxMergeDicts.Name = "groupBoxMergeDicts";
+            groupBoxMergeDicts.Size = new Size(400, 625);
+            groupBoxMergeDicts.TabIndex = 1;
+            groupBoxMergeDicts.TabStop = false;
+            groupBoxMergeDicts.Text = "Połącz słowniki";
+            // 
+            // tableLayoutPanel6
+            // 
+            tableLayoutPanel6.ColumnCount = 1;
+            tableLayoutPanel6.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanel6.Controls.Add(labelMergeDicts, 0, 0);
+            tableLayoutPanel6.Controls.Add(buttonLoadDictToMerge, 0, 1);
+            tableLayoutPanel6.Controls.Add(textBoxWordsToMerge, 0, 2);
+            tableLayoutPanel6.Controls.Add(splitContainer1, 0, 3);
+            tableLayoutPanel6.Dock = DockStyle.Fill;
+            tableLayoutPanel6.Location = new Point(3, 27);
+            tableLayoutPanel6.Name = "tableLayoutPanel6";
+            tableLayoutPanel6.RowCount = 4;
+            tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Absolute, 78F));
+            tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Absolute, 43F));
+            tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Absolute, 45F));
+            tableLayoutPanel6.Size = new Size(394, 595);
+            tableLayoutPanel6.TabIndex = 12;
+            // 
+            // labelMergeDicts
+            // 
+            labelMergeDicts.Dock = DockStyle.Fill;
+            labelMergeDicts.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            labelMergeDicts.Location = new Point(3, 0);
+            labelMergeDicts.Name = "labelMergeDicts";
+            labelMergeDicts.Size = new Size(388, 78);
+            labelMergeDicts.TabIndex = 11;
+            labelMergeDicts.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // buttonLoadDictToMerge
+            // 
+            buttonLoadDictToMerge.Cursor = Cursors.Hand;
+            buttonLoadDictToMerge.Dock = DockStyle.Fill;
+            buttonLoadDictToMerge.FlatStyle = FlatStyle.Flat;
+            buttonLoadDictToMerge.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            buttonLoadDictToMerge.Location = new Point(3, 81);
+            buttonLoadDictToMerge.MaximumSize = new Size(0, 38);
+            buttonLoadDictToMerge.MinimumSize = new Size(0, 38);
+            buttonLoadDictToMerge.Name = "buttonLoadDictToMerge";
+            buttonLoadDictToMerge.Size = new Size(388, 38);
+            buttonLoadDictToMerge.TabIndex = 10;
+            buttonLoadDictToMerge.Text = "WCZYTAJ PLIK";
+            buttonLoadDictToMerge.UseVisualStyleBackColor = true;
+            buttonLoadDictToMerge.Click += LoadToMerge_Click;
+            // 
+            // textBoxWordsToMerge
+            // 
+            textBoxWordsToMerge.Dock = DockStyle.Fill;
+            textBoxWordsToMerge.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            textBoxWordsToMerge.Location = new Point(3, 124);
+            textBoxWordsToMerge.Multiline = true;
+            textBoxWordsToMerge.Name = "textBoxWordsToMerge";
+            textBoxWordsToMerge.ReadOnly = true;
+            textBoxWordsToMerge.ScrollBars = ScrollBars.Vertical;
+            textBoxWordsToMerge.Size = new Size(388, 423);
+            textBoxWordsToMerge.TabIndex = 13;
+            // 
+            // splitContainer1
+            // 
+            splitContainer1.Dock = DockStyle.Fill;
+            splitContainer1.Location = new Point(3, 553);
+            splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            splitContainer1.Panel1.Controls.Add(buttonMergeDicts);
+            // 
+            // splitContainer1.Panel2
+            // 
+            splitContainer1.Panel2.Controls.Add(buttonCancelMerge);
+            splitContainer1.Size = new Size(388, 39);
+            splitContainer1.SplitterDistance = 212;
+            splitContainer1.TabIndex = 14;
+            // 
+            // buttonMergeDicts
+            // 
+            buttonMergeDicts.Cursor = Cursors.Hand;
+            buttonMergeDicts.Dock = DockStyle.Fill;
+            buttonMergeDicts.Enabled = false;
+            buttonMergeDicts.FlatStyle = FlatStyle.Flat;
+            buttonMergeDicts.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            buttonMergeDicts.Location = new Point(0, 0);
+            buttonMergeDicts.MaximumSize = new Size(0, 38);
+            buttonMergeDicts.MinimumSize = new Size(0, 38);
+            buttonMergeDicts.Name = "buttonMergeDicts";
+            buttonMergeDicts.Size = new Size(212, 38);
+            buttonMergeDicts.TabIndex = 14;
+            buttonMergeDicts.Text = "DODAJ WYRAZY";
+            buttonMergeDicts.UseVisualStyleBackColor = true;
+            buttonMergeDicts.Click += MergeDicts_Click;
+            // 
+            // buttonCancelMerge
+            // 
+            buttonCancelMerge.Cursor = Cursors.Hand;
+            buttonCancelMerge.Dock = DockStyle.Fill;
+            buttonCancelMerge.Enabled = false;
+            buttonCancelMerge.FlatStyle = FlatStyle.Flat;
+            buttonCancelMerge.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            buttonCancelMerge.Location = new Point(0, 0);
+            buttonCancelMerge.MaximumSize = new Size(0, 38);
+            buttonCancelMerge.MinimumSize = new Size(0, 38);
+            buttonCancelMerge.Name = "buttonCancelMerge";
+            buttonCancelMerge.Size = new Size(172, 38);
+            buttonCancelMerge.TabIndex = 17;
+            buttonCancelMerge.Text = "ANULUJ";
+            buttonCancelMerge.UseVisualStyleBackColor = true;
+            buttonCancelMerge.Click += CancelMerge_Click;
             // 
             // buttonLoadDict
             // 
@@ -1871,6 +2005,13 @@
             splitContainerEditDictionary.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)splitContainerEditDictionary).EndInit();
             splitContainerEditDictionary.ResumeLayout(false);
+            groupBoxMergeDicts.ResumeLayout(false);
+            tableLayoutPanel6.ResumeLayout(false);
+            tableLayoutPanel6.PerformLayout();
+            splitContainer1.Panel1.ResumeLayout(false);
+            splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
+            splitContainer1.ResumeLayout(false);
             tableLayoutPanel2.ResumeLayout(false);
             tabPageAbout.ResumeLayout(false);
             tabPageAbout.PerformLayout();
@@ -2007,7 +2148,15 @@
         private Label labelModifyDictionary;
         private SplitContainer splitContainerEditDictionary;
         private Button buttonRemoveFromDictionary;
+        private GroupBox groupBoxMergeDicts;
+        private TableLayoutPanel tableLayoutPanel6;
+        private Button buttonLoadDictToMerge;
+        private Label labelMergeDicts;
+        private TextBox textBoxWordsToMerge;
+        private Button buttonMergeDicts;
         private TextBox textBoxAddToDictionary;
         private Label label5;
+        private Button buttonCancelMerge;
+        private SplitContainer splitContainer1;
     }
 }

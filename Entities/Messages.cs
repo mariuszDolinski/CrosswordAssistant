@@ -10,6 +10,7 @@
         public static string EmptyPattern { get; } = "Wzorzec nie zawiera żadnych znaków.";
         public static string VersionInfo { get; } = "Pomocnik szaradzisty v2.5.2" + Environment.NewLine +
                 "Autor: Mariusz Doliński" + Environment.NewLine + "© 2024";
+        public static string MergeDictsInfo { get; } = "Wczytaj plik z wyrazami, które chcesz dodać do bieżącego słownika";
         public static string PatternInfo { get; } = "Wyszukuje wyrazy posiadające te same litery na tych" +
             " samych pozycjach co w podanym wzorcu. Znak kropki (.) zastępuje dowolną literę," +
             " np. do wzorca T..C.A dopasowane zostałaby wyrazy TERCJA, TARCZA, itp.";

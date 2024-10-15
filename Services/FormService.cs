@@ -43,6 +43,24 @@
                 textBox.Text = result;
             }
         }
+        public static void FillTextBoxWithWords(TextBox textBox, List<string> words, bool appendText)
+        {
+            string result = "";
+            if(words.Count > 500)
+            {
+                result = "Zbyt wiele wyrazów do wyświetlenia. Pokazuję pierwsze 500.";
+                result += Environment.NewLine + Environment.NewLine;
+                words = words.Take(500).ToList();
+            }
+            foreach (string word in words)
+            {
+                result += word + Environment.NewLine;
+            }
+            if(appendText)
+                textBox.Text += Environment.NewLine + result;
+            else
+                textBox.Text = result;
+        }
         public static int TextBoxPositiveNumber(TextBox textBox)
         {
             if (textBox.Text.Length == 0) return 0;

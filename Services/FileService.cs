@@ -54,7 +54,7 @@ namespace CrosswordAssistant.Services
             }
         }
 
-        public static bool SetFileFromDialog(OpenFileDialog ofd)
+        public static bool SetCurrentDictionaryPathFromDialog(OpenFileDialog ofd)
         {
             if (ofd.ShowDialog() == DialogResult.OK)
             {
@@ -71,6 +71,24 @@ namespace CrosswordAssistant.Services
                 }
             }
             return false;
+        }
+
+        public static List<string> LoadTextFile(OpenFileDialog ofd)
+        {
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                if (!ofd.FileName.EndsWith("txt"))
+                {
+                    MessageBox.Show("Wybrany plik nie jest plikiem tekstowym.");
+                    return [];
+                }
+                else
+                {
+                    var words = File.ReadAllLines(Path.Combine(Path.GetDirectoryName(ofd.FileName)!, Path.GetFileName(ofd.FileName)));
+                    return new List<string>(words);
+                }
+            }
+            return [];
         }
 
     }
