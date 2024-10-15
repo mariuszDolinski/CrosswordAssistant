@@ -8,7 +8,7 @@
         public static string MetagramModeMessage { get; } = "Podaj wyraz i kliknij Szukaj...";
         public static string LengthModeMessage { get; } = "Wybierz dodatkowe filtry i kliknij Szukaj...";
         public static string EmptyPattern { get; } = "Wzorzec nie zawiera żadnych znaków.";
-        public static string VersionInfo { get; } = "Pomocnik szaradzisty v2.5.2" + Environment.NewLine +
+        public static string VersionInfo { get; } = "Pomocnik szaradzisty v2.5.3" + Environment.NewLine +
                 "Autor: Mariusz Doliński" + Environment.NewLine + "© 2024";
         public static string MergeDictsInfo { get; } = "Wczytaj plik z wyrazami, które chcesz dodać do bieżącego słownika";
         public static string PatternInfo { get; } = "Wyszukuje wyrazy posiadające te same litery na tych" +
