@@ -132,7 +132,7 @@ namespace CrosswordAssistant
                     labelMergeDicts.Text = "Iloœæ wyrazów w pliku: " + wordsToAdd.Count;
                     labelMergeDicts.Text += Environment.NewLine;
                     labelMergeDicts.Text += "Iloœæ nowych wyrazów: " + newWords.Count.ToString();
-                    if (wordsToAdd.Count > 10000)
+                    if (newWords.Count > 10000)
                     {
                         textBoxWordsToMerge.Text += Environment.NewLine + "UWAGA. Zbyt wiele nowych wyrazów. " +
                             "Maksymalna dopuszczalna iloœæ to: 10 000. Kliknij Anuluj i spróbuj ponownie.";
