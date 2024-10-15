@@ -43,8 +43,8 @@
             "w nawiasie podana jest podstawowa punktacja słowa w grze Scrabble (nie uwzględniająca dodatkowych premii " +
             "oraz liter użytych jako mydła (znak kropki)). ";
         public static string FiltersInfo { get; } = "Dodatkowe filtry w zakładce Szaradzista pozwalają ograniczyć ilość dopsowań " +
-            "dla wyszukiwań z tej zakładki. Dla filtra 'Tylko wyrazy niezawierające' można po przecinku podać kilka wyrażeń; " +
-            "w takim przypadku dopasowane zostaną wyrazy niezawierające żadnego z podanych po przecinku wyrażeń/liter.";
+            "dla wyszukiwań z tej zakładki. Dla filtrów 'Tylko wyrazy niezawierające' oraz 'Tylko wyrazy zawierające' można po przecinku podać kilka wyrażeń; " +
+            "w takim przypadku dopasowane zostaną odpowiednio wyrazy niezawierające żadnego z podanych po przecinku wyrażeń/liter lub zawierające wszystkie podane po przecinku wyrażenia/litery.";
         public static string SubwordInfo { get; } = "W tym trybie wyszukiwane są wyrazy, które można utworzyć z wyrazu wzorca, " +
             "poprzez usunięcie z niego niektórych liter, np. dla wzorca 'tatarak' dopasowane zostaną m. in. wyrazy: " +
             "tata, atak, rak. We wzorcu dozwolone są jedynie litery.";

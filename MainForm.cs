@@ -679,7 +679,7 @@ namespace CrosswordAssistant
             if (checkBoxContains.Checked && textBoxContains.Text.Length > 0)
             {
                 results = results
-                    .Where(w => w.Contains(textBoxContains.Text, StringComparison.CurrentCultureIgnoreCase))
+                    .Where(w => w.ContainsAll(textBoxContains.Text))
                     .ToList();
             }
             if (checkBoxNotContains.Checked && textBoxNotContains.Text.Length > 0)
