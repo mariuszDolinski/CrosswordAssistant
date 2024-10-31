@@ -10,6 +10,7 @@
         Scrabble = 6,
         SubWord = 7,
         SuperWord = 8,
+        StenoAnagram = 9,
         None = 0
     }
 }

@@ -274,20 +274,16 @@ namespace CrosswordAssistant
         }
         private void RadioPattern_CheckedChanged(object sender, EventArgs e)
         {
-            labelCurrentPatternLen.Text = textBoxPattern.Text.Length.ToString();
             if (radioPatternMode.Checked)
             {
-                Search.Mode = SearchMode.Pattern;
-                textBoxPatternResults.Text = Messages.PatternModeMessage;
+                OnModeChanged(Messages.PatternModeMessage);
             }
         }
         private void RadioAnagram_CheckedChanged(object sender, EventArgs e)
         {
-            labelCurrentPatternLen.Text = textBoxPattern.Text.Length.ToString();
             if (radioAnagramMode.Checked)
             {
-                Search.Mode = SearchMode.Anagram;
-                textBoxPatternResults.Text = Messages.AnagramModeMessage;
+                OnModeChanged(Messages.AnagramModeMessage);
             }
         }
         private void RadioLength_CheckedChanged(object sender, EventArgs e)
@@ -303,39 +299,37 @@ namespace CrosswordAssistant
         }
         private void RadioMetagram_CheckedChanged(object sender, EventArgs e)
         {
-            labelCurrentPatternLen.Text = textBoxPattern.Text.Length.ToString();
             if (radioMetagramMode.Checked)
             {
-                Search.Mode = SearchMode.Metagram;
-                textBoxPatternResults.Text = Messages.MetagramModeMessage;
+                OnModeChanged(Messages.MetagramModeMessage);
             }
         }
         private void RadioPM1_CheckedChanged(object sender, EventArgs e)
         {
-            labelCurrentPatternLen.Text = textBoxPattern.Text.Length.ToString();
             if (radioPM1Mode.Checked)
             {
-                Search.Mode = SearchMode.PlusMinus1;
-                textBoxPatternResults.Text = Messages.MetagramModeMessage;
+                OnModeChanged(Messages.MetagramModeMessage);
             }
         }
         private void RadioSubWord_CheckedChanged(object sender, EventArgs e)
         {
-            labelCurrentPatternLen.Text = textBoxPattern.Text.Length.ToString();
             if (radioSubWordMode.Checked)
             {
-                Search.Mode = SearchMode.SubWord;
-                textBoxPatternResults.Text = Messages.MetagramModeMessage;
+                OnModeChanged(Messages.MetagramModeMessage);
             }
         }
-
         private void RadioSuperWord_CheckedChanged(object sender, EventArgs e)
         {
-            labelCurrentPatternLen.Text = textBoxPattern.Text.Length.ToString();
             if (radioSuperWordMode.Checked)
             {
-                Search.Mode = SearchMode.SuperWord;
-                textBoxPatternResults.Text = Messages.MetagramModeMessage;
+                OnModeChanged(Messages.MetagramModeMessage);
+            }
+        }
+        private void RadioStenoAnagram_CheckedChanged(object sender, EventArgs e)
+        {          
+            if (radioStenoAnagramMode.Checked)
+            {
+                OnModeChanged(Messages.MetagramModeMessage);
             }
         }
         private void CheckBoxStartWith_CheckedChanged(object sender, EventArgs e)
@@ -488,6 +482,8 @@ namespace CrosswordAssistant
             if (currentPage == 3) _isEnterSuppressed = false;
             else _isEnterSuppressed = true;
         }
+
+            #region InfoLabels click events
         private void PatternInfo_Click(object sender, EventArgs e)
         {
             SetInfo((Label)sender, Messages.PatternInfo);
@@ -536,6 +532,8 @@ namespace CrosswordAssistant
         {
             SetInfo((Label)sender, Messages.StenoanagramwordInfo);
         }
+        #endregion
+
         #endregion
 
         #region private methods
@@ -729,9 +727,18 @@ namespace CrosswordAssistant
                     else if (radioAnagramMode.Checked) Search.Mode = SearchMode.Anagram;
                     else if (radioMetagramMode.Checked) Search.Mode = SearchMode.Metagram;
                     else if (radioPM1Mode.Checked) Search.Mode = SearchMode.PlusMinus1;
+                    else if (radioSubWordMode.Checked) Search.Mode = SearchMode.SubWord;
+                    else if (radioSuperWordMode.Checked) Search.Mode = SearchMode.SuperWord;
+                    else if (radioStenoAnagramMode.Checked) Search.Mode = SearchMode.StenoAnagram;
                     else Search.Mode = SearchMode.None;
                     break;
             }
+        }
+        private void OnModeChanged(string message)
+        {
+            labelCurrentPatternLen.Text = textBoxPattern.Text.Length.ToString();
+            SetMode(0);
+            textBoxPatternResults.Text = message;
         }
         private string[] ConvertGroupsToArray()
         {

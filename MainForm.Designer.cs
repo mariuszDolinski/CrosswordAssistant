@@ -169,6 +169,7 @@
             label19 = new Label();
             label22 = new Label();
             newDictionaryDialog = new OpenFileDialog();
+            radioStenoAnagramMode = new RadioButton();
             tabControl.SuspendLayout();
             tabPattern.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainerResults).BeginInit();
@@ -224,7 +225,7 @@
             tabControl.Location = new Point(0, 0);
             tabControl.Name = "tabControl";
             tabControl.SelectedIndex = 0;
-            tabControl.Size = new Size(825, 818);
+            tabControl.Size = new Size(825, 842);
             tabControl.TabIndex = 0;
             tabControl.SelectedIndexChanged += TabControl_SelectedIndexChanged;
             // 
@@ -238,7 +239,7 @@
             tabPattern.Location = new Point(4, 34);
             tabPattern.Name = "tabPattern";
             tabPattern.Padding = new Padding(3);
-            tabPattern.Size = new Size(817, 780);
+            tabPattern.Size = new Size(817, 804);
             tabPattern.TabIndex = 0;
             tabPattern.Text = "Szaradzista";
             tabPattern.UseVisualStyleBackColor = true;
@@ -256,8 +257,8 @@
             // splitContainerResults.Panel2
             // 
             splitContainerResults.Panel2.Controls.Add(tableLayoutPanel5);
-            splitContainerResults.Size = new Size(811, 699);
-            splitContainerResults.SplitterDistance = 479;
+            splitContainerResults.Size = new Size(811, 723);
+            splitContainerResults.SplitterDistance = 487;
             splitContainerResults.TabIndex = 8;
             // 
             // textBoxPatternResults
@@ -272,7 +273,7 @@
             textBoxPatternResults.Name = "textBoxPatternResults";
             textBoxPatternResults.ReadOnly = true;
             textBoxPatternResults.ScrollBars = ScrollBars.Vertical;
-            textBoxPatternResults.Size = new Size(479, 699);
+            textBoxPatternResults.Size = new Size(487, 723);
             textBoxPatternResults.TabIndex = 0;
             // 
             // contextMenuStripResults
@@ -314,14 +315,15 @@
             tableLayoutPanel5.Location = new Point(0, 0);
             tableLayoutPanel5.Name = "tableLayoutPanel5";
             tableLayoutPanel5.RowCount = 3;
-            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Absolute, 160F));
+            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Absolute, 180F));
             tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Absolute, 175F));
             tableLayoutPanel5.RowStyles.Add(new RowStyle());
-            tableLayoutPanel5.Size = new Size(328, 699);
+            tableLayoutPanel5.Size = new Size(320, 723);
             tableLayoutPanel5.TabIndex = 0;
             // 
             // groupBoxMode
             // 
+            groupBoxMode.Controls.Add(radioStenoAnagramMode);
             groupBoxMode.Controls.Add(radioSuperWordMode);
             groupBoxMode.Controls.Add(radioSubWordMode);
             groupBoxMode.Controls.Add(radioPM1Mode);
@@ -331,7 +333,7 @@
             groupBoxMode.Dock = DockStyle.Fill;
             groupBoxMode.Location = new Point(3, 3);
             groupBoxMode.Name = "groupBoxMode";
-            groupBoxMode.Size = new Size(322, 154);
+            groupBoxMode.Size = new Size(314, 174);
             groupBoxMode.TabIndex = 0;
             groupBoxMode.TabStop = false;
             groupBoxMode.Text = "Tryb";
@@ -422,9 +424,9 @@
             groupBoxFilters.Controls.Add(textBoxBeginsWith);
             groupBoxFilters.Controls.Add(checkBoxBeginWith);
             groupBoxFilters.Dock = DockStyle.Fill;
-            groupBoxFilters.Location = new Point(3, 338);
+            groupBoxFilters.Location = new Point(3, 358);
             groupBoxFilters.Name = "groupBoxFilters";
-            groupBoxFilters.Size = new Size(322, 360);
+            groupBoxFilters.Size = new Size(314, 362);
             groupBoxFilters.TabIndex = 1;
             groupBoxFilters.TabStop = false;
             groupBoxFilters.Text = "Dodatkowe filtry";
@@ -527,9 +529,9 @@
             groupBoxLength.Controls.Add(radioLength);
             groupBoxLength.Controls.Add(checkBoxLength);
             groupBoxLength.Dock = DockStyle.Fill;
-            groupBoxLength.Location = new Point(3, 163);
+            groupBoxLength.Location = new Point(3, 183);
             groupBoxLength.Name = "groupBoxLength";
-            groupBoxLength.Size = new Size(322, 169);
+            groupBoxLength.Size = new Size(314, 169);
             groupBoxLength.TabIndex = 2;
             groupBoxLength.TabStop = false;
             groupBoxLength.Text = "Długość";
@@ -669,7 +671,7 @@
             splitContainerPattern.Panel2.Controls.Add(label7);
             splitContainerPattern.Panel2.Controls.Add(searchPatternBtn);
             splitContainerPattern.Size = new Size(811, 37);
-            splitContainerPattern.SplitterDistance = 547;
+            splitContainerPattern.SplitterDistance = 556;
             splitContainerPattern.TabIndex = 6;
             // 
             // textBoxPattern
@@ -679,7 +681,7 @@
             textBoxPattern.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point, 238);
             textBoxPattern.Location = new Point(0, 0);
             textBoxPattern.Name = "textBoxPattern";
-            textBoxPattern.Size = new Size(547, 37);
+            textBoxPattern.Size = new Size(556, 37);
             textBoxPattern.TabIndex = 7;
             // 
             // labelCurrentPatternLen
@@ -691,7 +693,7 @@
             labelCurrentPatternLen.Location = new Point(0, 0);
             labelCurrentPatternLen.Name = "labelCurrentPatternLen";
             labelCurrentPatternLen.Padding = new Padding(2, 0, 0, 2);
-            labelCurrentPatternLen.Size = new Size(52, 37);
+            labelCurrentPatternLen.Size = new Size(43, 37);
             labelCurrentPatternLen.TabIndex = 11;
             labelCurrentPatternLen.Text = "0";
             labelCurrentPatternLen.TextAlign = ContentAlignment.MiddleCenter;
@@ -699,7 +701,7 @@
             // label7
             // 
             label7.Dock = DockStyle.Right;
-            label7.Location = new Point(52, 0);
+            label7.Location = new Point(43, 0);
             label7.Name = "label7";
             label7.Size = new Size(3, 37);
             label7.TabIndex = 10;
@@ -710,7 +712,7 @@
             searchPatternBtn.Dock = DockStyle.Right;
             searchPatternBtn.FlatStyle = FlatStyle.Flat;
             searchPatternBtn.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            searchPatternBtn.Location = new Point(55, 0);
+            searchPatternBtn.Location = new Point(46, 0);
             searchPatternBtn.Name = "searchPatternBtn";
             searchPatternBtn.Size = new Size(205, 37);
             searchPatternBtn.TabIndex = 7;
@@ -2004,11 +2006,23 @@
             newDictionaryDialog.Filter = "Pliki tekstowe|*.txt";
             newDictionaryDialog.Title = "Wybierz plik ze słownikiem";
             // 
+            // radioStenoAnagramMode
+            // 
+            radioStenoAnagramMode.AutoSize = true;
+            radioStenoAnagramMode.Location = new Point(26, 139);
+            radioStenoAnagramMode.Name = "radioStenoAnagramMode";
+            radioStenoAnagramMode.Size = new Size(161, 29);
+            radioStenoAnagramMode.TabIndex = 12;
+            radioStenoAnagramMode.TabStop = true;
+            radioStenoAnagramMode.Text = "Stenoanagramy";
+            radioStenoAnagramMode.UseVisualStyleBackColor = true;
+            radioStenoAnagramMode.CheckedChanged += RadioStenoAnagram_CheckedChanged;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(825, 818);
+            ClientSize = new Size(825, 842);
             Controls.Add(tabControl);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "MainForm";
@@ -2213,5 +2227,6 @@
         private RadioButton radioSuperWordMode;
         private Label labelStenoAnagramInfo;
         private Label labelSuperWordInfo;
+        private RadioButton radioStenoAnagramMode;
     }
 }
