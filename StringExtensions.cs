@@ -150,12 +150,14 @@ namespace CrosswordAssistant
         /// </summary>
         /// <param name="text"></param>
         /// <param name="word"></param>
-        /// <returns>true if word is a subword, false otherwise</returns>
+        /// <returns>true if word is a subword and is not the same as this string, false otherwise</returns>
         public static bool IsSubword(this string text, string word)
         {
             if(word.Length > text.Length) return false;
+            if(text == word) return false;
+
             int charindex = -1;
-            for(int i = 0; i< word.Length;i++)
+            for (int i = 0; i< word.Length;i++)
             {
                 var ind = text.CharIndexAfterIndex(word[i], charindex + 1);
                 if (ind == -1) return false;
