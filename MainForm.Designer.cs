@@ -40,6 +40,7 @@
             sJPToolStripMenuItem = new ToolStripMenuItem();
             tableLayoutPanel5 = new TableLayoutPanel();
             groupBoxMode = new GroupBox();
+            radioSuperWordMode = new RadioButton();
             radioSubWordMode = new RadioButton();
             radioPM1Mode = new RadioButton();
             radioMetagramMode = new RadioButton();
@@ -148,6 +149,8 @@
             label1 = new Label();
             textBoxAbout = new TextBox();
             tableLayoutPanel4 = new TableLayoutPanel();
+            labelStenoAnagramInfo = new Label();
+            labelSuperWordInfo = new Label();
             labelSubwordInfo = new Label();
             labelPM1Info = new Label();
             labelUlozSamInfo = new Label();
@@ -319,6 +322,7 @@
             // 
             // groupBoxMode
             // 
+            groupBoxMode.Controls.Add(radioSuperWordMode);
             groupBoxMode.Controls.Add(radioSubWordMode);
             groupBoxMode.Controls.Add(radioPM1Mode);
             groupBoxMode.Controls.Add(radioMetagramMode);
@@ -331,6 +335,18 @@
             groupBoxMode.TabIndex = 0;
             groupBoxMode.TabStop = false;
             groupBoxMode.Text = "Tryb";
+            // 
+            // radioSuperWordMode
+            // 
+            radioSuperWordMode.AutoSize = true;
+            radioSuperWordMode.Location = new Point(171, 104);
+            radioSuperWordMode.Name = "radioSuperWordMode";
+            radioSuperWordMode.Size = new Size(116, 29);
+            radioSuperWordMode.TabIndex = 11;
+            radioSuperWordMode.TabStop = true;
+            radioSuperWordMode.Text = "Nadsłowa";
+            radioSuperWordMode.UseVisualStyleBackColor = true;
+            radioSuperWordMode.CheckedChanged += RadioSuperWord_CheckedChanged;
             // 
             // radioSubWordMode
             // 
@@ -1691,6 +1707,8 @@
             // 
             tableLayoutPanel4.ColumnCount = 1;
             tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanel4.Controls.Add(labelStenoAnagramInfo, 0, 8);
+            tableLayoutPanel4.Controls.Add(labelSuperWordInfo, 0, 7);
             tableLayoutPanel4.Controls.Add(labelSubwordInfo, 0, 6);
             tableLayoutPanel4.Controls.Add(labelPM1Info, 0, 5);
             tableLayoutPanel4.Controls.Add(labelUlozSamInfo, 0, 4);
@@ -1698,13 +1716,15 @@
             tableLayoutPanel4.Controls.Add(labelMetagramInfo, 0, 2);
             tableLayoutPanel4.Controls.Add(labelAnagramInfo, 0, 1);
             tableLayoutPanel4.Controls.Add(labelPatternInfo, 0, 0);
-            tableLayoutPanel4.Controls.Add(labelShortcuts, 0, 9);
-            tableLayoutPanel4.Controls.Add(labelInfoFilters, 0, 8);
-            tableLayoutPanel4.Controls.Add(labelScrabbleInfo, 0, 7);
+            tableLayoutPanel4.Controls.Add(labelShortcuts, 0, 11);
+            tableLayoutPanel4.Controls.Add(labelInfoFilters, 0, 10);
+            tableLayoutPanel4.Controls.Add(labelScrabbleInfo, 0, 9);
             tableLayoutPanel4.Dock = DockStyle.Left;
             tableLayoutPanel4.Location = new Point(3, 40);
             tableLayoutPanel4.Name = "tableLayoutPanel4";
-            tableLayoutPanel4.RowCount = 11;
+            tableLayoutPanel4.RowCount = 13;
+            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
+            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
@@ -1719,10 +1739,41 @@
             tableLayoutPanel4.Size = new Size(231, 737);
             tableLayoutPanel4.TabIndex = 13;
             // 
+            // labelStenoAnagramInfo
+            // 
+            labelStenoAnagramInfo.BackColor = Color.Silver;
+            labelStenoAnagramInfo.Cursor = Cursors.Hand;
+            labelStenoAnagramInfo.Dock = DockStyle.Fill;
+            labelStenoAnagramInfo.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            labelStenoAnagramInfo.Location = new Point(0, 320);
+            labelStenoAnagramInfo.Margin = new Padding(0, 0, 3, 5);
+            labelStenoAnagramInfo.Name = "labelStenoAnagramInfo";
+            labelStenoAnagramInfo.Size = new Size(228, 35);
+            labelStenoAnagramInfo.TabIndex = 19;
+            labelStenoAnagramInfo.Text = "STENOANAGRAM";
+            labelStenoAnagramInfo.TextAlign = ContentAlignment.MiddleLeft;
+            labelStenoAnagramInfo.Click += Stenoanagraminfo_Click;
+            // 
+            // labelSuperWordInfo
+            // 
+            labelSuperWordInfo.BackColor = Color.Silver;
+            labelSuperWordInfo.Cursor = Cursors.Hand;
+            labelSuperWordInfo.Dock = DockStyle.Fill;
+            labelSuperWordInfo.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            labelSuperWordInfo.Location = new Point(0, 280);
+            labelSuperWordInfo.Margin = new Padding(0, 0, 3, 5);
+            labelSuperWordInfo.Name = "labelSuperWordInfo";
+            labelSuperWordInfo.Size = new Size(228, 35);
+            labelSuperWordInfo.TabIndex = 19;
+            labelSuperWordInfo.Text = "NADSŁOWO";
+            labelSuperWordInfo.TextAlign = ContentAlignment.MiddleLeft;
+            labelSuperWordInfo.Click += SuperwordInfo_Click;
+            // 
             // labelSubwordInfo
             // 
             labelSubwordInfo.BackColor = Color.Silver;
             labelSubwordInfo.Cursor = Cursors.Hand;
+            labelSubwordInfo.Dock = DockStyle.Fill;
             labelSubwordInfo.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 238);
             labelSubwordInfo.Location = new Point(0, 240);
             labelSubwordInfo.Margin = new Padding(0, 0, 3, 5);
@@ -1737,6 +1788,7 @@
             // 
             labelPM1Info.BackColor = Color.Silver;
             labelPM1Info.Cursor = Cursors.Hand;
+            labelPM1Info.Dock = DockStyle.Fill;
             labelPM1Info.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 238);
             labelPM1Info.Location = new Point(0, 200);
             labelPM1Info.Margin = new Padding(0, 0, 3, 5);
@@ -1828,7 +1880,7 @@
             labelShortcuts.Cursor = Cursors.Hand;
             labelShortcuts.Dock = DockStyle.Fill;
             labelShortcuts.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            labelShortcuts.Location = new Point(0, 360);
+            labelShortcuts.Location = new Point(0, 440);
             labelShortcuts.Margin = new Padding(0, 0, 3, 5);
             labelShortcuts.Name = "labelShortcuts";
             labelShortcuts.Size = new Size(228, 35);
@@ -1843,7 +1895,7 @@
             labelInfoFilters.Cursor = Cursors.Hand;
             labelInfoFilters.Dock = DockStyle.Fill;
             labelInfoFilters.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            labelInfoFilters.Location = new Point(0, 320);
+            labelInfoFilters.Location = new Point(0, 400);
             labelInfoFilters.Margin = new Padding(0, 0, 3, 5);
             labelInfoFilters.Name = "labelInfoFilters";
             labelInfoFilters.Size = new Size(228, 35);
@@ -1858,7 +1910,7 @@
             labelScrabbleInfo.Cursor = Cursors.Hand;
             labelScrabbleInfo.Dock = DockStyle.Fill;
             labelScrabbleInfo.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            labelScrabbleInfo.Location = new Point(0, 280);
+            labelScrabbleInfo.Location = new Point(0, 360);
             labelScrabbleInfo.Margin = new Padding(0, 0, 3, 5);
             labelScrabbleInfo.Name = "labelScrabbleInfo";
             labelScrabbleInfo.Size = new Size(228, 35);
@@ -2158,5 +2210,8 @@
         private Label label5;
         private Button buttonCancelMerge;
         private SplitContainer splitContainer1;
+        private RadioButton radioSuperWordMode;
+        private Label labelStenoAnagramInfo;
+        private Label labelSuperWordInfo;
     }
 }

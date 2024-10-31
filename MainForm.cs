@@ -169,7 +169,7 @@ namespace CrosswordAssistant
         {
             textBoxWordsToMerge.Text = "Dodajê nowe wyrazy do s³ownika...";
             int c = 1;
-            foreach (var newWord in DictionaryService.DictionaryToMerge) 
+            foreach (var newWord in DictionaryService.DictionaryToMerge)
             {
                 textBoxWordsToMerge.Text = "Dodajê nowe wyrazy do s³ownika... ";
                 textBoxWordsToMerge.Text += c.ToString() + "/" + DictionaryService.DictionaryToMerge.Count().ToString();
@@ -206,7 +206,7 @@ namespace CrosswordAssistant
                 MessageBox.Show("Nie podano ¿adnych wyrazów do dodania.", "Uwaga", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            else if (wordsToAdd.Count > 10000) 
+            else if (wordsToAdd.Count > 10000)
             {
                 MessageBox.Show("odano zbyt wiele wyrazów. Proszê ograniczyæ listê do maksymlanie 10 000 s³ów.", "Uwaga", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -325,6 +325,16 @@ namespace CrosswordAssistant
             if (radioSubWordMode.Checked)
             {
                 Search.Mode = SearchMode.SubWord;
+                textBoxPatternResults.Text = Messages.MetagramModeMessage;
+            }
+        }
+
+        private void RadioSuperWord_CheckedChanged(object sender, EventArgs e)
+        {
+            labelCurrentPatternLen.Text = textBoxPattern.Text.Length.ToString();
+            if (radioSuperWordMode.Checked)
+            {
+                Search.Mode = SearchMode.SuperWord;
                 textBoxPatternResults.Text = Messages.MetagramModeMessage;
             }
         }
@@ -518,6 +528,14 @@ namespace CrosswordAssistant
         {
             SetInfo((Label)sender, Messages.SubwordInfo);
         }
+        private void SuperwordInfo_Click(object sender, EventArgs e)
+        {
+            SetInfo((Label)sender, Messages.SuperwordInfo);
+        }
+        private void Stenoanagraminfo_Click(object sender, EventArgs e)
+        {
+            SetInfo((Label)sender, Messages.StenoanagramwordInfo);
+        }
         #endregion
 
         #region private methods
@@ -536,6 +554,8 @@ namespace CrosswordAssistant
             _infoLabels.Add(labelScrabbleInfo);
             _infoLabels.Add(labelInfoFilters);
             _infoLabels.Add(labelSubwordInfo);
+            _infoLabels.Add(labelSuperWordInfo);
+            _infoLabels.Add(labelStenoAnagramInfo);
             SetFileInfo(0);
             labelAbout.Text = Messages.VersionInfo;
             labelMergeDicts.Text = Messages.MergeDictsInfo;

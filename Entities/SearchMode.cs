@@ -9,6 +9,7 @@
         PlusMinus1 = 5,
         Scrabble = 6,
         SubWord = 7,
-        None = 8
+        SuperWord = 8,
+        None = 0
     }
 }

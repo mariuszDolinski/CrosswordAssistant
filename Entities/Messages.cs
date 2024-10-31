@@ -8,7 +8,7 @@
         public static string MetagramModeMessage { get; } = "Podaj wyraz i kliknij Szukaj...";
         public static string LengthModeMessage { get; } = "Wybierz dodatkowe filtry i kliknij Szukaj...";
         public static string EmptyPattern { get; } = "Wzorzec nie zawiera żadnych znaków.";
-        public static string VersionInfo { get; } = "Pomocnik szaradzisty v2.5.4" + Environment.NewLine +
+        public static string VersionInfo { get; } = "Pomocnik szaradzisty v2.5.5" + Environment.NewLine +
                 "Autor: Mariusz Doliński" + Environment.NewLine + "© 2024";
         public static string MergeDictsInfo { get; } = "Wczytaj plik z wyrazami, które chcesz dodać do bieżącego słownika";
         public static string PatternInfo { get; } = "Wyszukuje wyrazy posiadające te same litery na tych" +
@@ -48,6 +48,10 @@
         public static string SubwordInfo { get; } = "W tym trybie wyszukiwane są wyrazy, które można utworzyć z wyrazu wzorca, " +
             "poprzez usunięcie z niego niektórych liter, np. dla wzorca 'tatarak' dopasowane zostaną m. in. wyrazy: " +
             "tata, atak, rak. We wzorcu dozwolone są jedynie litery.";
+        public static string SuperwordInfo { get; } = "W tym trybie wyszukiwane są wyrazy, które można utworzyć z wyrazu wzorca, " +
+            "poprzez dodanie do niego dodatkowych liter (bez zmiany kolejności liter we wzorcu), np. dla wzorca 'trawa' dopasowane zostaną m. in. wyrazy: " +
+            "TRAtWA, alTeRnAtyWA. We wzorcu dozwolone są jedynie litery.";
+        public static string StenoanagramwordInfo { get; } = "Do zaimplementowania";
         public static string Shortcuts { get; } = "Dostępne skróty klawiaturowe:" + Environment.NewLine +
             "Enter - uruchamia wyszukiwanie dla aktualnego wzorca" + Environment.NewLine +
             "F6 - zaznacza wzorzec" + Environment.NewLine +
