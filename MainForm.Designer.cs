@@ -38,15 +38,11 @@
             szukajWToolStripMenuItem = new ToolStripMenuItem();
             googleToolStripMenuItem = new ToolStripMenuItem();
             sJPToolStripMenuItem = new ToolStripMenuItem();
-            tableLayoutPanel5 = new TableLayoutPanel();
-            groupBoxMode = new GroupBox();
-            radioSuperWordMode = new RadioButton();
-            radioSubWordMode = new RadioButton();
-            radioPM1Mode = new RadioButton();
-            radioMetagramMode = new RadioButton();
-            radioAnagramMode = new RadioButton();
-            radioPatternMode = new RadioButton();
+            panel1 = new Panel();
             groupBoxFilters = new GroupBox();
+            checkBox2 = new CheckBox();
+            checkBox1 = new CheckBox();
+            label6 = new Label();
             textBoxNotContains = new TextBox();
             checkBoxNotContains = new CheckBox();
             textBoxContains = new TextBox();
@@ -55,7 +51,18 @@
             checkBoxEndsWith = new CheckBox();
             textBoxBeginsWith = new TextBox();
             checkBoxBeginWith = new CheckBox();
+            tableLayoutPanel5 = new TableLayoutPanel();
+            groupBoxMode = new GroupBox();
+            radioButton1 = new RadioButton();
+            radioStenoAnagramMode = new RadioButton();
+            radioSuperWordMode = new RadioButton();
+            radioSubWordMode = new RadioButton();
+            radioPM1Mode = new RadioButton();
+            radioMetagramMode = new RadioButton();
+            radioAnagramMode = new RadioButton();
+            radioPatternMode = new RadioButton();
             groupBoxLength = new GroupBox();
+            label23 = new Label();
             labelLength5 = new Label();
             labelLength4 = new Label();
             textBoxLengthTo = new TextBox();
@@ -169,7 +176,6 @@
             label19 = new Label();
             label22 = new Label();
             newDictionaryDialog = new OpenFileDialog();
-            radioStenoAnagramMode = new RadioButton();
             tabControl.SuspendLayout();
             tabPattern.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainerResults).BeginInit();
@@ -177,9 +183,10 @@
             splitContainerResults.Panel2.SuspendLayout();
             splitContainerResults.SuspendLayout();
             contextMenuStripResults.SuspendLayout();
+            panel1.SuspendLayout();
+            groupBoxFilters.SuspendLayout();
             tableLayoutPanel5.SuspendLayout();
             groupBoxMode.SuspendLayout();
-            groupBoxFilters.SuspendLayout();
             groupBoxLength.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainerPattern).BeginInit();
             splitContainerPattern.Panel1.SuspendLayout();
@@ -225,7 +232,7 @@
             tabControl.Location = new Point(0, 0);
             tabControl.Name = "tabControl";
             tabControl.SelectedIndex = 0;
-            tabControl.Size = new Size(825, 842);
+            tabControl.Size = new Size(1285, 742);
             tabControl.TabIndex = 0;
             tabControl.SelectedIndexChanged += TabControl_SelectedIndexChanged;
             // 
@@ -239,7 +246,7 @@
             tabPattern.Location = new Point(4, 34);
             tabPattern.Name = "tabPattern";
             tabPattern.Padding = new Padding(3);
-            tabPattern.Size = new Size(817, 804);
+            tabPattern.Size = new Size(1277, 704);
             tabPattern.TabIndex = 0;
             tabPattern.Text = "Szaradzista";
             tabPattern.UseVisualStyleBackColor = true;
@@ -256,9 +263,10 @@
             // 
             // splitContainerResults.Panel2
             // 
+            splitContainerResults.Panel2.Controls.Add(panel1);
             splitContainerResults.Panel2.Controls.Add(tableLayoutPanel5);
-            splitContainerResults.Size = new Size(811, 723);
-            splitContainerResults.SplitterDistance = 487;
+            splitContainerResults.Size = new Size(1271, 623);
+            splitContainerResults.SplitterDistance = 495;
             splitContainerResults.TabIndex = 8;
             // 
             // textBoxPatternResults
@@ -273,7 +281,7 @@
             textBoxPatternResults.Name = "textBoxPatternResults";
             textBoxPatternResults.ReadOnly = true;
             textBoxPatternResults.ScrollBars = ScrollBars.Vertical;
-            textBoxPatternResults.Size = new Size(487, 723);
+            textBoxPatternResults.Size = new Size(495, 623);
             textBoxPatternResults.TabIndex = 0;
             // 
             // contextMenuStripResults
@@ -304,25 +312,167 @@
             sJPToolStripMenuItem.Text = "SJP";
             sJPToolStripMenuItem.Click += SearchSJP_MenuClick;
             // 
+            // panel1
+            // 
+            panel1.Controls.Add(groupBoxFilters);
+            panel1.Dock = DockStyle.Fill;
+            panel1.Location = new Point(0, 224);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(772, 399);
+            panel1.TabIndex = 1;
+            // 
+            // groupBoxFilters
+            // 
+            groupBoxFilters.Controls.Add(checkBox2);
+            groupBoxFilters.Controls.Add(checkBox1);
+            groupBoxFilters.Controls.Add(label6);
+            groupBoxFilters.Controls.Add(textBoxNotContains);
+            groupBoxFilters.Controls.Add(checkBoxNotContains);
+            groupBoxFilters.Controls.Add(textBoxContains);
+            groupBoxFilters.Controls.Add(checkBoxContains);
+            groupBoxFilters.Controls.Add(textBoxEndsWith);
+            groupBoxFilters.Controls.Add(checkBoxEndsWith);
+            groupBoxFilters.Controls.Add(textBoxBeginsWith);
+            groupBoxFilters.Controls.Add(checkBoxBeginWith);
+            groupBoxFilters.Dock = DockStyle.Fill;
+            groupBoxFilters.Location = new Point(0, 0);
+            groupBoxFilters.Name = "groupBoxFilters";
+            groupBoxFilters.Size = new Size(772, 399);
+            groupBoxFilters.TabIndex = 1;
+            groupBoxFilters.TabStop = false;
+            groupBoxFilters.Text = "Dodatkowe filtry";
+            // 
+            // checkBox2
+            // 
+            checkBox2.AutoSize = true;
+            checkBox2.Location = new Point(384, 99);
+            checkBox2.Name = "checkBox2";
+            checkBox2.Size = new Size(183, 29);
+            checkBox2.TabIndex = 10;
+            checkBox2.Text = "niekończące się na";
+            checkBox2.UseVisualStyleBackColor = true;
+            // 
+            // checkBox1
+            // 
+            checkBox1.AutoSize = true;
+            checkBox1.Location = new Point(26, 99);
+            checkBox1.Name = "checkBox1";
+            checkBox1.Size = new Size(207, 29);
+            checkBox1.TabIndex = 9;
+            checkBox1.Text = "nie zaczynające się na";
+            checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(26, 34);
+            label6.Name = "label6";
+            label6.Size = new Size(202, 25);
+            label6.TabIndex = 8;
+            label6.Text = "Wyświetlaj tylko wyrazy:";
+            // 
+            // textBoxNotContains
+            // 
+            textBoxNotContains.Enabled = false;
+            textBoxNotContains.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            textBoxNotContains.Location = new Point(26, 333);
+            textBoxNotContains.Name = "textBoxNotContains";
+            textBoxNotContains.Size = new Size(273, 37);
+            textBoxNotContains.TabIndex = 7;
+            // 
+            // checkBoxNotContains
+            // 
+            checkBoxNotContains.AutoSize = true;
+            checkBoxNotContains.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            checkBoxNotContains.Location = new Point(26, 298);
+            checkBoxNotContains.Name = "checkBoxNotContains";
+            checkBoxNotContains.Size = new Size(149, 29);
+            checkBoxNotContains.TabIndex = 6;
+            checkBoxNotContains.Text = "niezawierające";
+            checkBoxNotContains.UseVisualStyleBackColor = true;
+            checkBoxNotContains.CheckedChanged += CheckBoxNotContains_CheckedChange;
+            // 
+            // textBoxContains
+            // 
+            textBoxContains.Enabled = false;
+            textBoxContains.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            textBoxContains.Location = new Point(26, 245);
+            textBoxContains.Name = "textBoxContains";
+            textBoxContains.Size = new Size(273, 37);
+            textBoxContains.TabIndex = 5;
+            // 
+            // checkBoxContains
+            // 
+            checkBoxContains.AutoSize = true;
+            checkBoxContains.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            checkBoxContains.Location = new Point(26, 210);
+            checkBoxContains.Name = "checkBoxContains";
+            checkBoxContains.Size = new Size(126, 29);
+            checkBoxContains.TabIndex = 4;
+            checkBoxContains.Text = "zawierające";
+            checkBoxContains.UseVisualStyleBackColor = true;
+            checkBoxContains.CheckedChanged += CheckBoxContains_CheckedChanged;
+            // 
+            // textBoxEndsWith
+            // 
+            textBoxEndsWith.Enabled = false;
+            textBoxEndsWith.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            textBoxEndsWith.Location = new Point(384, 134);
+            textBoxEndsWith.Name = "textBoxEndsWith";
+            textBoxEndsWith.Size = new Size(273, 37);
+            textBoxEndsWith.TabIndex = 3;
+            // 
+            // checkBoxEndsWith
+            // 
+            checkBoxEndsWith.AutoSize = true;
+            checkBoxEndsWith.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            checkBoxEndsWith.Location = new Point(384, 74);
+            checkBoxEndsWith.Name = "checkBoxEndsWith";
+            checkBoxEndsWith.Size = new Size(160, 29);
+            checkBoxEndsWith.TabIndex = 2;
+            checkBoxEndsWith.Text = "kończące się na";
+            checkBoxEndsWith.UseVisualStyleBackColor = true;
+            checkBoxEndsWith.CheckedChanged += CheckBoxEndsWith_CheckedChanged;
+            // 
+            // textBoxBeginsWith
+            // 
+            textBoxBeginsWith.Enabled = false;
+            textBoxBeginsWith.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            textBoxBeginsWith.Location = new Point(26, 134);
+            textBoxBeginsWith.Name = "textBoxBeginsWith";
+            textBoxBeginsWith.Size = new Size(275, 37);
+            textBoxBeginsWith.TabIndex = 1;
+            // 
+            // checkBoxBeginWith
+            // 
+            checkBoxBeginWith.AutoSize = true;
+            checkBoxBeginWith.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            checkBoxBeginWith.Location = new Point(26, 74);
+            checkBoxBeginWith.Name = "checkBoxBeginWith";
+            checkBoxBeginWith.Size = new Size(179, 29);
+            checkBoxBeginWith.TabIndex = 0;
+            checkBoxBeginWith.Text = "zaczynające się na";
+            checkBoxBeginWith.UseVisualStyleBackColor = true;
+            checkBoxBeginWith.CheckedChanged += CheckBoxStartWith_CheckedChanged;
+            // 
             // tableLayoutPanel5
             // 
-            tableLayoutPanel5.ColumnCount = 1;
-            tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanel5.ColumnCount = 2;
+            tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 58.03109F));
+            tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 41.96891F));
             tableLayoutPanel5.Controls.Add(groupBoxMode, 0, 0);
-            tableLayoutPanel5.Controls.Add(groupBoxFilters, 0, 2);
-            tableLayoutPanel5.Controls.Add(groupBoxLength, 0, 1);
-            tableLayoutPanel5.Dock = DockStyle.Fill;
+            tableLayoutPanel5.Controls.Add(groupBoxLength, 1, 0);
+            tableLayoutPanel5.Dock = DockStyle.Top;
             tableLayoutPanel5.Location = new Point(0, 0);
             tableLayoutPanel5.Name = "tableLayoutPanel5";
-            tableLayoutPanel5.RowCount = 3;
+            tableLayoutPanel5.RowCount = 1;
             tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Absolute, 180F));
-            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Absolute, 175F));
-            tableLayoutPanel5.RowStyles.Add(new RowStyle());
-            tableLayoutPanel5.Size = new Size(320, 723);
+            tableLayoutPanel5.Size = new Size(772, 224);
             tableLayoutPanel5.TabIndex = 0;
             // 
             // groupBoxMode
             // 
+            groupBoxMode.Controls.Add(radioButton1);
             groupBoxMode.Controls.Add(radioStenoAnagramMode);
             groupBoxMode.Controls.Add(radioSuperWordMode);
             groupBoxMode.Controls.Add(radioSubWordMode);
@@ -333,15 +483,38 @@
             groupBoxMode.Dock = DockStyle.Fill;
             groupBoxMode.Location = new Point(3, 3);
             groupBoxMode.Name = "groupBoxMode";
-            groupBoxMode.Size = new Size(314, 174);
+            groupBoxMode.Size = new Size(442, 218);
             groupBoxMode.TabIndex = 0;
             groupBoxMode.TabStop = false;
             groupBoxMode.Text = "Tryb";
             // 
+            // radioButton1
+            // 
+            radioButton1.AutoSize = true;
+            radioButton1.Location = new Point(216, 139);
+            radioButton1.Name = "radioButton1";
+            radioButton1.Size = new Size(160, 29);
+            radioButton1.TabIndex = 13;
+            radioButton1.TabStop = true;
+            radioButton1.Text = "Słowo w słowie";
+            radioButton1.UseVisualStyleBackColor = true;
+            // 
+            // radioStenoAnagramMode
+            // 
+            radioStenoAnagramMode.AutoSize = true;
+            radioStenoAnagramMode.Location = new Point(26, 139);
+            radioStenoAnagramMode.Name = "radioStenoAnagramMode";
+            radioStenoAnagramMode.Size = new Size(161, 29);
+            radioStenoAnagramMode.TabIndex = 12;
+            radioStenoAnagramMode.TabStop = true;
+            radioStenoAnagramMode.Text = "Stenoanagramy";
+            radioStenoAnagramMode.UseVisualStyleBackColor = true;
+            radioStenoAnagramMode.CheckedChanged += RadioStenoAnagram_CheckedChanged;
+            // 
             // radioSuperWordMode
             // 
             radioSuperWordMode.AutoSize = true;
-            radioSuperWordMode.Location = new Point(171, 104);
+            radioSuperWordMode.Location = new Point(216, 104);
             radioSuperWordMode.Name = "radioSuperWordMode";
             radioSuperWordMode.Size = new Size(116, 29);
             radioSuperWordMode.TabIndex = 11;
@@ -365,7 +538,7 @@
             // radioPM1Mode
             // 
             radioPM1Mode.AutoSize = true;
-            radioPM1Mode.Location = new Point(171, 69);
+            radioPM1Mode.Location = new Point(216, 69);
             radioPM1Mode.Name = "radioPM1Mode";
             radioPM1Mode.Size = new Size(139, 29);
             radioPM1Mode.TabIndex = 9;
@@ -391,7 +564,7 @@
             // 
             radioAnagramMode.AutoSize = true;
             radioAnagramMode.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            radioAnagramMode.Location = new Point(171, 34);
+            radioAnagramMode.Location = new Point(216, 34);
             radioAnagramMode.Name = "radioAnagramMode";
             radioAnagramMode.Size = new Size(119, 29);
             radioAnagramMode.TabIndex = 1;
@@ -413,110 +586,9 @@
             radioPatternMode.UseVisualStyleBackColor = true;
             radioPatternMode.CheckedChanged += RadioPattern_CheckedChanged;
             // 
-            // groupBoxFilters
-            // 
-            groupBoxFilters.Controls.Add(textBoxNotContains);
-            groupBoxFilters.Controls.Add(checkBoxNotContains);
-            groupBoxFilters.Controls.Add(textBoxContains);
-            groupBoxFilters.Controls.Add(checkBoxContains);
-            groupBoxFilters.Controls.Add(textBoxEndsWith);
-            groupBoxFilters.Controls.Add(checkBoxEndsWith);
-            groupBoxFilters.Controls.Add(textBoxBeginsWith);
-            groupBoxFilters.Controls.Add(checkBoxBeginWith);
-            groupBoxFilters.Dock = DockStyle.Fill;
-            groupBoxFilters.Location = new Point(3, 358);
-            groupBoxFilters.Name = "groupBoxFilters";
-            groupBoxFilters.Size = new Size(314, 362);
-            groupBoxFilters.TabIndex = 1;
-            groupBoxFilters.TabStop = false;
-            groupBoxFilters.Text = "Dodatkowe filtry";
-            // 
-            // textBoxNotContains
-            // 
-            textBoxNotContains.Enabled = false;
-            textBoxNotContains.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            textBoxNotContains.Location = new Point(26, 309);
-            textBoxNotContains.Name = "textBoxNotContains";
-            textBoxNotContains.Size = new Size(273, 37);
-            textBoxNotContains.TabIndex = 7;
-            // 
-            // checkBoxNotContains
-            // 
-            checkBoxNotContains.AutoSize = true;
-            checkBoxNotContains.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            checkBoxNotContains.Location = new Point(26, 274);
-            checkBoxNotContains.Name = "checkBoxNotContains";
-            checkBoxNotContains.Size = new Size(254, 29);
-            checkBoxNotContains.TabIndex = 6;
-            checkBoxNotContains.Text = "Tylko wyrazy niezawierające";
-            checkBoxNotContains.UseVisualStyleBackColor = true;
-            checkBoxNotContains.CheckedChanged += CheckBoxNotContains_CheckedChange;
-            // 
-            // textBoxContains
-            // 
-            textBoxContains.Enabled = false;
-            textBoxContains.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            textBoxContains.Location = new Point(26, 231);
-            textBoxContains.Name = "textBoxContains";
-            textBoxContains.Size = new Size(273, 37);
-            textBoxContains.TabIndex = 5;
-            // 
-            // checkBoxContains
-            // 
-            checkBoxContains.AutoSize = true;
-            checkBoxContains.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            checkBoxContains.Location = new Point(26, 196);
-            checkBoxContains.Name = "checkBoxContains";
-            checkBoxContains.Size = new Size(231, 29);
-            checkBoxContains.TabIndex = 4;
-            checkBoxContains.Text = "Tylko wyrazy zawierające";
-            checkBoxContains.UseVisualStyleBackColor = true;
-            checkBoxContains.CheckedChanged += CheckBoxContains_CheckedChanged;
-            // 
-            // textBoxEndsWith
-            // 
-            textBoxEndsWith.Enabled = false;
-            textBoxEndsWith.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            textBoxEndsWith.Location = new Point(28, 153);
-            textBoxEndsWith.Name = "textBoxEndsWith";
-            textBoxEndsWith.Size = new Size(273, 37);
-            textBoxEndsWith.TabIndex = 3;
-            // 
-            // checkBoxEndsWith
-            // 
-            checkBoxEndsWith.AutoSize = true;
-            checkBoxEndsWith.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            checkBoxEndsWith.Location = new Point(26, 118);
-            checkBoxEndsWith.Name = "checkBoxEndsWith";
-            checkBoxEndsWith.Size = new Size(265, 29);
-            checkBoxEndsWith.TabIndex = 2;
-            checkBoxEndsWith.Text = "Tylko wyrazy kończące się na";
-            checkBoxEndsWith.UseVisualStyleBackColor = true;
-            checkBoxEndsWith.CheckedChanged += CheckBoxEndsWith_CheckedChanged;
-            // 
-            // textBoxBeginsWith
-            // 
-            textBoxBeginsWith.Enabled = false;
-            textBoxBeginsWith.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            textBoxBeginsWith.Location = new Point(26, 75);
-            textBoxBeginsWith.Name = "textBoxBeginsWith";
-            textBoxBeginsWith.Size = new Size(273, 37);
-            textBoxBeginsWith.TabIndex = 1;
-            // 
-            // checkBoxBeginWith
-            // 
-            checkBoxBeginWith.AutoSize = true;
-            checkBoxBeginWith.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            checkBoxBeginWith.Location = new Point(26, 40);
-            checkBoxBeginWith.Name = "checkBoxBeginWith";
-            checkBoxBeginWith.Size = new Size(287, 29);
-            checkBoxBeginWith.TabIndex = 0;
-            checkBoxBeginWith.Text = "Tylko wyrazy zaczynające się od";
-            checkBoxBeginWith.UseVisualStyleBackColor = true;
-            checkBoxBeginWith.CheckedChanged += CheckBoxStartWith_CheckedChanged;
-            // 
             // groupBoxLength
             // 
+            groupBoxLength.Controls.Add(label23);
             groupBoxLength.Controls.Add(labelLength5);
             groupBoxLength.Controls.Add(labelLength4);
             groupBoxLength.Controls.Add(textBoxLengthTo);
@@ -529,18 +601,28 @@
             groupBoxLength.Controls.Add(radioLength);
             groupBoxLength.Controls.Add(checkBoxLength);
             groupBoxLength.Dock = DockStyle.Fill;
-            groupBoxLength.Location = new Point(3, 183);
+            groupBoxLength.Location = new Point(451, 3);
             groupBoxLength.Name = "groupBoxLength";
-            groupBoxLength.Size = new Size(314, 169);
+            groupBoxLength.Size = new Size(318, 218);
             groupBoxLength.TabIndex = 2;
             groupBoxLength.TabStop = false;
             groupBoxLength.Text = "Długość";
+            // 
+            // label23
+            // 
+            label23.AutoSize = true;
+            label23.Enabled = false;
+            label23.Location = new Point(142, 120);
+            label23.Name = "label23";
+            label23.Size = new Size(72, 25);
+            label23.TabIndex = 11;
+            label23.Text = "znaków";
             // 
             // labelLength5
             // 
             labelLength5.AutoSize = true;
             labelLength5.Enabled = false;
-            labelLength5.Location = new Point(56, 119);
+            labelLength5.Location = new Point(52, 119);
             labelLength5.Name = "labelLength5";
             labelLength5.Size = new Size(34, 25);
             labelLength5.TabIndex = 10;
@@ -550,7 +632,7 @@
             // 
             labelLength4.AutoSize = true;
             labelLength4.Enabled = false;
-            labelLength4.Location = new Point(56, 82);
+            labelLength4.Location = new Point(52, 82);
             labelLength4.Name = "labelLength4";
             labelLength4.Size = new Size(91, 25);
             labelLength4.TabIndex = 9;
@@ -559,7 +641,7 @@
             // textBoxLengthTo
             // 
             textBoxLengthTo.Enabled = false;
-            textBoxLengthTo.Location = new Point(184, 117);
+            textBoxLengthTo.Location = new Point(88, 156);
             textBoxLengthTo.Name = "textBoxLengthTo";
             textBoxLengthTo.Size = new Size(49, 31);
             textBoxLengthTo.TabIndex = 7;
@@ -568,7 +650,7 @@
             // 
             labelLength2.AutoSize = true;
             labelLength2.Enabled = false;
-            labelLength2.Location = new Point(147, 120);
+            labelLength2.Location = new Point(51, 159);
             labelLength2.Name = "labelLength2";
             labelLength2.Size = new Size(34, 25);
             labelLength2.TabIndex = 6;
@@ -578,7 +660,7 @@
             // 
             labelLength3.AutoSize = true;
             labelLength3.Enabled = false;
-            labelLength3.Location = new Point(238, 119);
+            labelLength3.Location = new Point(142, 158);
             labelLength3.Name = "labelLength3";
             labelLength3.Size = new Size(72, 25);
             labelLength3.TabIndex = 8;
@@ -587,7 +669,7 @@
             // textBoxLengthFrom
             // 
             textBoxLengthFrom.Enabled = false;
-            textBoxLengthFrom.Location = new Point(92, 117);
+            textBoxLengthFrom.Location = new Point(88, 117);
             textBoxLengthFrom.Name = "textBoxLengthFrom";
             textBoxLengthFrom.Size = new Size(49, 31);
             textBoxLengthFrom.TabIndex = 5;
@@ -596,7 +678,7 @@
             // 
             radioLengthInterval.AutoSize = true;
             radioLengthInterval.Enabled = false;
-            radioLengthInterval.Location = new Point(29, 124);
+            radioLengthInterval.Location = new Point(25, 124);
             radioLengthInterval.Name = "radioLengthInterval";
             radioLengthInterval.Size = new Size(21, 20);
             radioLengthInterval.TabIndex = 4;
@@ -608,7 +690,7 @@
             // 
             labelLength.AutoSize = true;
             labelLength.Enabled = false;
-            labelLength.Location = new Point(201, 82);
+            labelLength.Location = new Point(197, 82);
             labelLength.Name = "labelLength";
             labelLength.Size = new Size(72, 25);
             labelLength.TabIndex = 3;
@@ -617,7 +699,7 @@
             // textBoxLength
             // 
             textBoxLength.Enabled = false;
-            textBoxLength.Location = new Point(149, 80);
+            textBoxLength.Location = new Point(145, 80);
             textBoxLength.Name = "textBoxLength";
             textBoxLength.Size = new Size(49, 31);
             textBoxLength.TabIndex = 2;
@@ -626,7 +708,7 @@
             // 
             radioLength.AutoSize = true;
             radioLength.Enabled = false;
-            radioLength.Location = new Point(29, 87);
+            radioLength.Location = new Point(25, 87);
             radioLength.Name = "radioLength";
             radioLength.Size = new Size(21, 20);
             radioLength.TabIndex = 1;
@@ -637,7 +719,7 @@
             // checkBoxLength
             // 
             checkBoxLength.AutoSize = true;
-            checkBoxLength.Location = new Point(26, 35);
+            checkBoxLength.Location = new Point(22, 35);
             checkBoxLength.Name = "checkBoxLength";
             checkBoxLength.Size = new Size(231, 29);
             checkBoxLength.TabIndex = 0;
@@ -651,7 +733,7 @@
             labelSpace3.Dock = DockStyle.Top;
             labelSpace3.Location = new Point(3, 75);
             labelSpace3.Name = "labelSpace3";
-            labelSpace3.Size = new Size(811, 3);
+            labelSpace3.Size = new Size(1271, 3);
             labelSpace3.TabIndex = 7;
             labelSpace3.Text = " ";
             // 
@@ -670,8 +752,8 @@
             splitContainerPattern.Panel2.Controls.Add(labelCurrentPatternLen);
             splitContainerPattern.Panel2.Controls.Add(label7);
             splitContainerPattern.Panel2.Controls.Add(searchPatternBtn);
-            splitContainerPattern.Size = new Size(811, 37);
-            splitContainerPattern.SplitterDistance = 556;
+            splitContainerPattern.Size = new Size(1271, 37);
+            splitContainerPattern.SplitterDistance = 977;
             splitContainerPattern.TabIndex = 6;
             // 
             // textBoxPattern
@@ -681,7 +763,7 @@
             textBoxPattern.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point, 238);
             textBoxPattern.Location = new Point(0, 0);
             textBoxPattern.Name = "textBoxPattern";
-            textBoxPattern.Size = new Size(556, 37);
+            textBoxPattern.Size = new Size(977, 37);
             textBoxPattern.TabIndex = 7;
             // 
             // labelCurrentPatternLen
@@ -693,7 +775,7 @@
             labelCurrentPatternLen.Location = new Point(0, 0);
             labelCurrentPatternLen.Name = "labelCurrentPatternLen";
             labelCurrentPatternLen.Padding = new Padding(2, 0, 0, 2);
-            labelCurrentPatternLen.Size = new Size(43, 37);
+            labelCurrentPatternLen.Size = new Size(82, 37);
             labelCurrentPatternLen.TabIndex = 11;
             labelCurrentPatternLen.Text = "0";
             labelCurrentPatternLen.TextAlign = ContentAlignment.MiddleCenter;
@@ -701,7 +783,7 @@
             // label7
             // 
             label7.Dock = DockStyle.Right;
-            label7.Location = new Point(43, 0);
+            label7.Location = new Point(82, 0);
             label7.Name = "label7";
             label7.Size = new Size(3, 37);
             label7.TabIndex = 10;
@@ -712,7 +794,7 @@
             searchPatternBtn.Dock = DockStyle.Right;
             searchPatternBtn.FlatStyle = FlatStyle.Flat;
             searchPatternBtn.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            searchPatternBtn.Location = new Point(46, 0);
+            searchPatternBtn.Location = new Point(85, 0);
             searchPatternBtn.Name = "searchPatternBtn";
             searchPatternBtn.Size = new Size(205, 37);
             searchPatternBtn.TabIndex = 7;
@@ -726,7 +808,7 @@
             labelSpace1.Dock = DockStyle.Top;
             labelSpace1.Location = new Point(3, 35);
             labelSpace1.Name = "labelSpace1";
-            labelSpace1.Size = new Size(811, 3);
+            labelSpace1.Size = new Size(1271, 3);
             labelSpace1.TabIndex = 3;
             labelSpace1.Text = " ";
             // 
@@ -737,7 +819,7 @@
             labelPattern.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 238);
             labelPattern.Location = new Point(3, 3);
             labelPattern.Name = "labelPattern";
-            labelPattern.Size = new Size(811, 32);
+            labelPattern.Size = new Size(1271, 32);
             labelPattern.TabIndex = 0;
             labelPattern.Text = "SZARADZISTA";
             labelPattern.TextAlign = ContentAlignment.TopCenter;
@@ -750,7 +832,7 @@
             tabPageUlozSam.Location = new Point(4, 34);
             tabPageUlozSam.Name = "tabPageUlozSam";
             tabPageUlozSam.Padding = new Padding(3);
-            tabPageUlozSam.Size = new Size(817, 780);
+            tabPageUlozSam.Size = new Size(1277, 704);
             tabPageUlozSam.TabIndex = 2;
             tabPageUlozSam.Text = "Ułóż sam";
             tabPageUlozSam.UseVisualStyleBackColor = true;
@@ -772,8 +854,8 @@
             splitContainerUls.Panel2.Controls.Add(buttonSearchUls);
             splitContainerUls.Panel2.Controls.Add(label9);
             splitContainerUls.Panel2.Controls.Add(textBoxPatternUls);
-            splitContainerUls.Size = new Size(811, 739);
-            splitContainerUls.SplitterDistance = 451;
+            splitContainerUls.Size = new Size(1271, 663);
+            splitContainerUls.SplitterDistance = 841;
             splitContainerUls.TabIndex = 5;
             // 
             // textBoxResultsUls
@@ -788,7 +870,7 @@
             textBoxResultsUls.Name = "textBoxResultsUls";
             textBoxResultsUls.ReadOnly = true;
             textBoxResultsUls.ScrollBars = ScrollBars.Vertical;
-            textBoxResultsUls.Size = new Size(451, 739);
+            textBoxResultsUls.Size = new Size(841, 663);
             textBoxResultsUls.TabIndex = 1;
             // 
             // groupBoxUlsGroups
@@ -805,7 +887,7 @@
             groupBoxUlsGroups.Dock = DockStyle.Fill;
             groupBoxUlsGroups.Location = new Point(0, 80);
             groupBoxUlsGroups.Name = "groupBoxUlsGroups";
-            groupBoxUlsGroups.Size = new Size(356, 659);
+            groupBoxUlsGroups.Size = new Size(426, 583);
             groupBoxUlsGroups.TabIndex = 12;
             groupBoxUlsGroups.TabStop = false;
             groupBoxUlsGroups.Text = "Grupy znaków";
@@ -844,17 +926,17 @@
             tableLayoutPanelUsl.RowStyles.Add(new RowStyle(SizeType.Percent, 12.5F));
             tableLayoutPanelUsl.RowStyles.Add(new RowStyle(SizeType.Percent, 12.5F));
             tableLayoutPanelUsl.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutPanelUsl.Size = new Size(350, 320);
+            tableLayoutPanelUsl.Size = new Size(420, 320);
             tableLayoutPanelUsl.TabIndex = 26;
             // 
             // textBoxGr8
             // 
             textBoxGr8.Dock = DockStyle.Fill;
             textBoxGr8.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            textBoxGr8.Location = new Point(108, 281);
+            textBoxGr8.Location = new Point(129, 281);
             textBoxGr8.Margin = new Padding(3, 1, 3, 3);
             textBoxGr8.Name = "textBoxGr8";
-            textBoxGr8.Size = new Size(239, 37);
+            textBoxGr8.Size = new Size(288, 37);
             textBoxGr8.TabIndex = 32;
             textBoxGr8.Text = "YZŹŻ";
             // 
@@ -862,10 +944,10 @@
             // 
             textBoxGr7.Dock = DockStyle.Fill;
             textBoxGr7.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            textBoxGr7.Location = new Point(108, 241);
+            textBoxGr7.Location = new Point(129, 241);
             textBoxGr7.Margin = new Padding(3, 1, 3, 3);
             textBoxGr7.Name = "textBoxGr7";
-            textBoxGr7.Size = new Size(239, 37);
+            textBoxGr7.Size = new Size(288, 37);
             textBoxGr7.TabIndex = 32;
             textBoxGr7.Text = "ŚTUW";
             // 
@@ -873,10 +955,10 @@
             // 
             textBoxGr6.Dock = DockStyle.Fill;
             textBoxGr6.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            textBoxGr6.Location = new Point(108, 201);
+            textBoxGr6.Location = new Point(129, 201);
             textBoxGr6.Margin = new Padding(3, 1, 3, 3);
             textBoxGr6.Name = "textBoxGr6";
-            textBoxGr6.Size = new Size(239, 37);
+            textBoxGr6.Size = new Size(288, 37);
             textBoxGr6.TabIndex = 32;
             textBoxGr6.Text = "ÓPRS";
             // 
@@ -884,10 +966,10 @@
             // 
             textBoxGr5.Dock = DockStyle.Fill;
             textBoxGr5.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            textBoxGr5.Location = new Point(108, 161);
+            textBoxGr5.Location = new Point(129, 161);
             textBoxGr5.Margin = new Padding(3, 1, 3, 3);
             textBoxGr5.Name = "textBoxGr5";
-            textBoxGr5.Size = new Size(239, 37);
+            textBoxGr5.Size = new Size(288, 37);
             textBoxGr5.TabIndex = 32;
             textBoxGr5.Text = "MNŃO";
             // 
@@ -895,10 +977,10 @@
             // 
             textBoxGr4.Dock = DockStyle.Fill;
             textBoxGr4.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            textBoxGr4.Location = new Point(108, 121);
+            textBoxGr4.Location = new Point(129, 121);
             textBoxGr4.Margin = new Padding(3, 1, 3, 3);
             textBoxGr4.Name = "textBoxGr4";
-            textBoxGr4.Size = new Size(239, 37);
+            textBoxGr4.Size = new Size(288, 37);
             textBoxGr4.TabIndex = 32;
             textBoxGr4.Text = "JKLŁ";
             // 
@@ -906,10 +988,10 @@
             // 
             textBoxGr3.Dock = DockStyle.Fill;
             textBoxGr3.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            textBoxGr3.Location = new Point(108, 81);
+            textBoxGr3.Location = new Point(129, 81);
             textBoxGr3.Margin = new Padding(3, 1, 3, 3);
             textBoxGr3.Name = "textBoxGr3";
-            textBoxGr3.Size = new Size(239, 37);
+            textBoxGr3.Size = new Size(288, 37);
             textBoxGr3.TabIndex = 31;
             textBoxGr3.Text = "FGHI";
             // 
@@ -917,10 +999,10 @@
             // 
             textBoxGr2.Dock = DockStyle.Fill;
             textBoxGr2.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            textBoxGr2.Location = new Point(108, 41);
+            textBoxGr2.Location = new Point(129, 41);
             textBoxGr2.Margin = new Padding(3, 1, 3, 3);
             textBoxGr2.Name = "textBoxGr2";
-            textBoxGr2.Size = new Size(239, 37);
+            textBoxGr2.Size = new Size(288, 37);
             textBoxGr2.TabIndex = 31;
             textBoxGr2.Text = "ĆDEĘ";
             // 
@@ -932,7 +1014,7 @@
             labelGr8.Location = new Point(4, 282);
             labelGr8.Margin = new Padding(4, 2, 3, 2);
             labelGr8.Name = "labelGr8";
-            labelGr8.Size = new Size(98, 36);
+            labelGr8.Size = new Size(119, 36);
             labelGr8.TabIndex = 28;
             labelGr8.Text = "8";
             labelGr8.TextAlign = ContentAlignment.MiddleCenter;
@@ -945,7 +1027,7 @@
             labelGr7.Location = new Point(4, 242);
             labelGr7.Margin = new Padding(4, 2, 3, 2);
             labelGr7.Name = "labelGr7";
-            labelGr7.Size = new Size(98, 36);
+            labelGr7.Size = new Size(119, 36);
             labelGr7.TabIndex = 28;
             labelGr7.Text = "7";
             labelGr7.TextAlign = ContentAlignment.MiddleCenter;
@@ -958,7 +1040,7 @@
             labelGr6.Location = new Point(4, 202);
             labelGr6.Margin = new Padding(4, 2, 3, 2);
             labelGr6.Name = "labelGr6";
-            labelGr6.Size = new Size(98, 36);
+            labelGr6.Size = new Size(119, 36);
             labelGr6.TabIndex = 28;
             labelGr6.Text = "6";
             labelGr6.TextAlign = ContentAlignment.MiddleCenter;
@@ -971,7 +1053,7 @@
             labelGr4.Location = new Point(4, 122);
             labelGr4.Margin = new Padding(4, 2, 3, 2);
             labelGr4.Name = "labelGr4";
-            labelGr4.Size = new Size(98, 36);
+            labelGr4.Size = new Size(119, 36);
             labelGr4.TabIndex = 28;
             labelGr4.Text = "4";
             labelGr4.TextAlign = ContentAlignment.MiddleCenter;
@@ -984,7 +1066,7 @@
             labelGr3.Location = new Point(4, 82);
             labelGr3.Margin = new Padding(4, 2, 3, 2);
             labelGr3.Name = "labelGr3";
-            labelGr3.Size = new Size(98, 36);
+            labelGr3.Size = new Size(119, 36);
             labelGr3.TabIndex = 27;
             labelGr3.Text = "3";
             labelGr3.TextAlign = ContentAlignment.MiddleCenter;
@@ -997,7 +1079,7 @@
             labelGr2.Location = new Point(4, 42);
             labelGr2.Margin = new Padding(4, 2, 3, 2);
             labelGr2.Name = "labelGr2";
-            labelGr2.Size = new Size(98, 36);
+            labelGr2.Size = new Size(119, 36);
             labelGr2.TabIndex = 2;
             labelGr2.Text = "2";
             labelGr2.TextAlign = ContentAlignment.MiddleCenter;
@@ -1010,7 +1092,7 @@
             labelGr1.Location = new Point(4, 2);
             labelGr1.Margin = new Padding(4, 2, 3, 2);
             labelGr1.Name = "labelGr1";
-            labelGr1.Size = new Size(98, 36);
+            labelGr1.Size = new Size(119, 36);
             labelGr1.TabIndex = 0;
             labelGr1.Text = "1";
             labelGr1.TextAlign = ContentAlignment.MiddleCenter;
@@ -1023,7 +1105,7 @@
             labelGr5.Location = new Point(4, 162);
             labelGr5.Margin = new Padding(4, 2, 3, 2);
             labelGr5.Name = "labelGr5";
-            labelGr5.Size = new Size(98, 36);
+            labelGr5.Size = new Size(119, 36);
             labelGr5.TabIndex = 29;
             labelGr5.Text = "5";
             labelGr5.TextAlign = ContentAlignment.MiddleCenter;
@@ -1032,10 +1114,10 @@
             // 
             textBoxGr1.Dock = DockStyle.Fill;
             textBoxGr1.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            textBoxGr1.Location = new Point(108, 1);
+            textBoxGr1.Location = new Point(129, 1);
             textBoxGr1.Margin = new Padding(3, 1, 3, 3);
             textBoxGr1.Name = "textBoxGr1";
-            textBoxGr1.Size = new Size(239, 37);
+            textBoxGr1.Size = new Size(288, 37);
             textBoxGr1.TabIndex = 30;
             textBoxGr1.Text = "AĄBC";
             // 
@@ -1045,7 +1127,7 @@
             label18.Dock = DockStyle.Top;
             label18.Location = new Point(3, 48);
             label18.Name = "label18";
-            label18.Size = new Size(350, 3);
+            label18.Size = new Size(420, 3);
             label18.TabIndex = 24;
             label18.Text = " ";
             // 
@@ -1055,7 +1137,7 @@
             label17.Dock = DockStyle.Top;
             label17.Location = new Point(3, 45);
             label17.Name = "label17";
-            label17.Size = new Size(350, 3);
+            label17.Size = new Size(420, 3);
             label17.TabIndex = 22;
             label17.Text = " ";
             // 
@@ -1065,7 +1147,7 @@
             label14.Dock = DockStyle.Top;
             label14.Location = new Point(3, 42);
             label14.Name = "label14";
-            label14.Size = new Size(350, 3);
+            label14.Size = new Size(420, 3);
             label14.TabIndex = 20;
             label14.Text = " ";
             // 
@@ -1075,7 +1157,7 @@
             label16.Dock = DockStyle.Top;
             label16.Location = new Point(3, 39);
             label16.Name = "label16";
-            label16.Size = new Size(350, 3);
+            label16.Size = new Size(420, 3);
             label16.TabIndex = 18;
             label16.Text = " ";
             // 
@@ -1085,7 +1167,7 @@
             label15.Dock = DockStyle.Top;
             label15.Location = new Point(3, 36);
             label15.Name = "label15";
-            label15.Size = new Size(350, 3);
+            label15.Size = new Size(420, 3);
             label15.TabIndex = 16;
             label15.Text = " ";
             // 
@@ -1095,7 +1177,7 @@
             label13.Dock = DockStyle.Top;
             label13.Location = new Point(3, 33);
             label13.Name = "label13";
-            label13.Size = new Size(350, 3);
+            label13.Size = new Size(420, 3);
             label13.TabIndex = 14;
             label13.Text = " ";
             // 
@@ -1105,7 +1187,7 @@
             label12.Dock = DockStyle.Top;
             label12.Location = new Point(3, 30);
             label12.Name = "label12";
-            label12.Size = new Size(350, 3);
+            label12.Size = new Size(420, 3);
             label12.TabIndex = 12;
             label12.Text = " ";
             // 
@@ -1115,7 +1197,7 @@
             label11.Dock = DockStyle.Top;
             label11.Location = new Point(3, 27);
             label11.Name = "label11";
-            label11.Size = new Size(350, 3);
+            label11.Size = new Size(420, 3);
             label11.TabIndex = 10;
             label11.Text = " ";
             // 
@@ -1125,7 +1207,7 @@
             label10.Dock = DockStyle.Top;
             label10.Location = new Point(0, 77);
             label10.Name = "label10";
-            label10.Size = new Size(356, 3);
+            label10.Size = new Size(426, 3);
             label10.TabIndex = 11;
             label10.Text = " ";
             // 
@@ -1137,7 +1219,7 @@
             buttonSearchUls.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
             buttonSearchUls.Location = new Point(0, 40);
             buttonSearchUls.Name = "buttonSearchUls";
-            buttonSearchUls.Size = new Size(356, 37);
+            buttonSearchUls.Size = new Size(426, 37);
             buttonSearchUls.TabIndex = 10;
             buttonSearchUls.Text = "SZUKAJ";
             buttonSearchUls.UseVisualStyleBackColor = true;
@@ -1149,7 +1231,7 @@
             label9.Dock = DockStyle.Top;
             label9.Location = new Point(0, 37);
             label9.Name = "label9";
-            label9.Size = new Size(356, 3);
+            label9.Size = new Size(426, 3);
             label9.TabIndex = 9;
             label9.Text = " ";
             // 
@@ -1159,7 +1241,7 @@
             textBoxPatternUls.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point, 238);
             textBoxPatternUls.Location = new Point(0, 0);
             textBoxPatternUls.Name = "textBoxPatternUls";
-            textBoxPatternUls.Size = new Size(356, 37);
+            textBoxPatternUls.Size = new Size(426, 37);
             textBoxPatternUls.TabIndex = 8;
             // 
             // label8
@@ -1168,7 +1250,7 @@
             label8.Dock = DockStyle.Top;
             label8.Location = new Point(3, 35);
             label8.Name = "label8";
-            label8.Size = new Size(811, 3);
+            label8.Size = new Size(1271, 3);
             label8.TabIndex = 4;
             label8.Text = " ";
             // 
@@ -1179,7 +1261,7 @@
             labelUluzSam.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 238);
             labelUluzSam.Location = new Point(3, 3);
             labelUluzSam.Name = "labelUluzSam";
-            labelUluzSam.Size = new Size(811, 32);
+            labelUluzSam.Size = new Size(1271, 32);
             labelUluzSam.TabIndex = 1;
             labelUluzSam.Text = "UŁÓŻ SAM";
             labelUluzSam.TextAlign = ContentAlignment.TopCenter;
@@ -1192,7 +1274,7 @@
             tabPageScrabble.Location = new Point(4, 34);
             tabPageScrabble.Name = "tabPageScrabble";
             tabPageScrabble.Padding = new Padding(3);
-            tabPageScrabble.Size = new Size(817, 780);
+            tabPageScrabble.Size = new Size(1277, 704);
             tabPageScrabble.TabIndex = 4;
             tabPageScrabble.Text = "Scrabble";
             tabPageScrabble.UseVisualStyleBackColor = true;
@@ -1209,7 +1291,7 @@
             textBoxScrabbleResults.Name = "textBoxScrabbleResults";
             textBoxScrabbleResults.ReadOnly = true;
             textBoxScrabbleResults.ScrollBars = ScrollBars.Vertical;
-            textBoxScrabbleResults.Size = new Size(811, 697);
+            textBoxScrabbleResults.Size = new Size(1271, 621);
             textBoxScrabbleResults.TabIndex = 3;
             // 
             // tableLayoutPanelScrabble
@@ -1226,7 +1308,7 @@
             tableLayoutPanelScrabble.Name = "tableLayoutPanelScrabble";
             tableLayoutPanelScrabble.RowCount = 1;
             tableLayoutPanelScrabble.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanelScrabble.Size = new Size(811, 45);
+            tableLayoutPanelScrabble.Size = new Size(1271, 45);
             tableLayoutPanelScrabble.TabIndex = 2;
             // 
             // textBoxScrabblePattern
@@ -1237,7 +1319,7 @@
             textBoxScrabblePattern.Location = new Point(0, 4);
             textBoxScrabblePattern.Margin = new Padding(0, 4, 2, 4);
             textBoxScrabblePattern.Name = "textBoxScrabblePattern";
-            textBoxScrabblePattern.Size = new Size(591, 37);
+            textBoxScrabblePattern.Size = new Size(927, 37);
             textBoxScrabblePattern.TabIndex = 8;
             // 
             // searchScrabbleBtn
@@ -1246,10 +1328,10 @@
             searchScrabbleBtn.Dock = DockStyle.Fill;
             searchScrabbleBtn.FlatStyle = FlatStyle.Flat;
             searchScrabbleBtn.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            searchScrabbleBtn.Location = new Point(649, 4);
+            searchScrabbleBtn.Location = new Point(1015, 4);
             searchScrabbleBtn.Margin = new Padding(2, 4, 0, 4);
             searchScrabbleBtn.Name = "searchScrabbleBtn";
-            searchScrabbleBtn.Size = new Size(162, 37);
+            searchScrabbleBtn.Size = new Size(256, 37);
             searchScrabbleBtn.TabIndex = 9;
             searchScrabbleBtn.Text = "SZUKAJ";
             searchScrabbleBtn.UseVisualStyleBackColor = true;
@@ -1261,11 +1343,11 @@
             labelScrabbleCurrentPatternLen.BorderStyle = BorderStyle.FixedSingle;
             labelScrabbleCurrentPatternLen.Dock = DockStyle.Fill;
             labelScrabbleCurrentPatternLen.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            labelScrabbleCurrentPatternLen.Location = new Point(595, 4);
+            labelScrabbleCurrentPatternLen.Location = new Point(931, 4);
             labelScrabbleCurrentPatternLen.Margin = new Padding(2, 4, 0, 4);
             labelScrabbleCurrentPatternLen.Name = "labelScrabbleCurrentPatternLen";
             labelScrabbleCurrentPatternLen.Padding = new Padding(2, 0, 0, 2);
-            labelScrabbleCurrentPatternLen.Size = new Size(52, 37);
+            labelScrabbleCurrentPatternLen.Size = new Size(82, 37);
             labelScrabbleCurrentPatternLen.TabIndex = 10;
             labelScrabbleCurrentPatternLen.Text = "0";
             labelScrabbleCurrentPatternLen.TextAlign = ContentAlignment.MiddleCenter;
@@ -1277,7 +1359,7 @@
             label4.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 238);
             label4.Location = new Point(3, 3);
             label4.Name = "label4";
-            label4.Size = new Size(811, 32);
+            label4.Size = new Size(1271, 32);
             label4.TabIndex = 1;
             label4.Text = "SCRABBLE";
             label4.TextAlign = ContentAlignment.TopCenter;
@@ -1292,7 +1374,7 @@
             tabPageDictionary.Location = new Point(4, 34);
             tabPageDictionary.Name = "tabPageDictionary";
             tabPageDictionary.Padding = new Padding(3);
-            tabPageDictionary.Size = new Size(817, 780);
+            tabPageDictionary.Size = new Size(1277, 704);
             tabPageDictionary.TabIndex = 3;
             tabPageDictionary.Text = "Słownik";
             tabPageDictionary.UseVisualStyleBackColor = true;
@@ -1309,7 +1391,7 @@
             tableLayoutPanel3.Name = "tableLayoutPanel3";
             tableLayoutPanel3.RowCount = 1;
             tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel3.Size = new Size(811, 631);
+            tableLayoutPanel3.Size = new Size(1271, 555);
             tableLayoutPanel3.TabIndex = 9;
             // 
             // groupBoxAddToDict
@@ -1322,7 +1404,7 @@
             groupBoxAddToDict.Dock = DockStyle.Fill;
             groupBoxAddToDict.Location = new Point(3, 3);
             groupBoxAddToDict.Name = "groupBoxAddToDict";
-            groupBoxAddToDict.Size = new Size(399, 625);
+            groupBoxAddToDict.Size = new Size(629, 549);
             groupBoxAddToDict.TabIndex = 0;
             groupBoxAddToDict.TabStop = false;
             groupBoxAddToDict.Text = "Modyfikacja bieżącego słownika";
@@ -1335,23 +1417,23 @@
             textBoxAddToDictionary.Multiline = true;
             textBoxAddToDictionary.Name = "textBoxAddToDictionary";
             textBoxAddToDictionary.ScrollBars = ScrollBars.Vertical;
-            textBoxAddToDictionary.Size = new Size(393, 451);
+            textBoxAddToDictionary.Size = new Size(623, 375);
             textBoxAddToDictionary.TabIndex = 16;
             // 
             // label5
             // 
             label5.Dock = DockStyle.Bottom;
-            label5.Location = new Point(3, 576);
+            label5.Location = new Point(3, 500);
             label5.MaximumSize = new Size(0, 6);
             label5.MinimumSize = new Size(0, 6);
             label5.Name = "label5";
-            label5.Size = new Size(393, 6);
+            label5.Size = new Size(623, 6);
             label5.TabIndex = 15;
             // 
             // splitContainerEditDictionary
             // 
             splitContainerEditDictionary.Dock = DockStyle.Bottom;
-            splitContainerEditDictionary.Location = new Point(3, 582);
+            splitContainerEditDictionary.Location = new Point(3, 506);
             splitContainerEditDictionary.Margin = new Padding(6);
             splitContainerEditDictionary.MaximumSize = new Size(0, 40);
             splitContainerEditDictionary.MinimumSize = new Size(0, 40);
@@ -1366,8 +1448,8 @@
             // 
             splitContainerEditDictionary.Panel2.Controls.Add(buttonRemoveFromDictionary);
             splitContainerEditDictionary.Panel2MinSize = 50;
-            splitContainerEditDictionary.Size = new Size(393, 40);
-            splitContainerEditDictionary.SplitterDistance = 195;
+            splitContainerEditDictionary.Size = new Size(623, 40);
+            splitContainerEditDictionary.SplitterDistance = 307;
             splitContainerEditDictionary.TabIndex = 12;
             // 
             // buttonAddToDictionary
@@ -1380,7 +1462,7 @@
             buttonAddToDictionary.MaximumSize = new Size(0, 38);
             buttonAddToDictionary.MinimumSize = new Size(0, 38);
             buttonAddToDictionary.Name = "buttonAddToDictionary";
-            buttonAddToDictionary.Size = new Size(195, 38);
+            buttonAddToDictionary.Size = new Size(307, 38);
             buttonAddToDictionary.TabIndex = 8;
             buttonAddToDictionary.Text = "DODAJ";
             buttonAddToDictionary.UseVisualStyleBackColor = true;
@@ -1396,7 +1478,7 @@
             buttonRemoveFromDictionary.MaximumSize = new Size(0, 38);
             buttonRemoveFromDictionary.MinimumSize = new Size(0, 38);
             buttonRemoveFromDictionary.Name = "buttonRemoveFromDictionary";
-            buttonRemoveFromDictionary.Size = new Size(194, 38);
+            buttonRemoveFromDictionary.Size = new Size(312, 38);
             buttonRemoveFromDictionary.TabIndex = 9;
             buttonRemoveFromDictionary.Text = "USUŃ";
             buttonRemoveFromDictionary.UseVisualStyleBackColor = true;
@@ -1408,7 +1490,7 @@
             labelModifyDictionary.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 238);
             labelModifyDictionary.Location = new Point(3, 30);
             labelModifyDictionary.Name = "labelModifyDictionary";
-            labelModifyDictionary.Size = new Size(393, 95);
+            labelModifyDictionary.Size = new Size(623, 95);
             labelModifyDictionary.TabIndex = 9;
             labelModifyDictionary.Text = "Podaj wyrazy, które chcesz dodać lub usunąć ze słownika. W każdej linii powinien się znajdować jeden wyraz.";
             labelModifyDictionary.TextAlign = ContentAlignment.MiddleCenter;
@@ -1418,16 +1500,16 @@
             label21.Dock = DockStyle.Top;
             label21.Location = new Point(3, 27);
             label21.Name = "label21";
-            label21.Size = new Size(393, 3);
+            label21.Size = new Size(623, 3);
             label21.TabIndex = 4;
             // 
             // groupBoxMergeDicts
             // 
             groupBoxMergeDicts.Controls.Add(tableLayoutPanel6);
             groupBoxMergeDicts.Dock = DockStyle.Fill;
-            groupBoxMergeDicts.Location = new Point(408, 3);
+            groupBoxMergeDicts.Location = new Point(638, 3);
             groupBoxMergeDicts.Name = "groupBoxMergeDicts";
-            groupBoxMergeDicts.Size = new Size(400, 625);
+            groupBoxMergeDicts.Size = new Size(630, 549);
             groupBoxMergeDicts.TabIndex = 1;
             groupBoxMergeDicts.TabStop = false;
             groupBoxMergeDicts.Text = "Połącz słowniki";
@@ -1448,7 +1530,7 @@
             tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Absolute, 43F));
             tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Absolute, 45F));
-            tableLayoutPanel6.Size = new Size(394, 595);
+            tableLayoutPanel6.Size = new Size(624, 519);
             tableLayoutPanel6.TabIndex = 12;
             // 
             // labelMergeDicts
@@ -1457,7 +1539,7 @@
             labelMergeDicts.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 238);
             labelMergeDicts.Location = new Point(3, 0);
             labelMergeDicts.Name = "labelMergeDicts";
-            labelMergeDicts.Size = new Size(388, 78);
+            labelMergeDicts.Size = new Size(618, 78);
             labelMergeDicts.TabIndex = 11;
             labelMergeDicts.TextAlign = ContentAlignment.MiddleCenter;
             // 
@@ -1471,7 +1553,7 @@
             buttonLoadDictToMerge.MaximumSize = new Size(0, 38);
             buttonLoadDictToMerge.MinimumSize = new Size(0, 38);
             buttonLoadDictToMerge.Name = "buttonLoadDictToMerge";
-            buttonLoadDictToMerge.Size = new Size(388, 38);
+            buttonLoadDictToMerge.Size = new Size(618, 38);
             buttonLoadDictToMerge.TabIndex = 10;
             buttonLoadDictToMerge.Text = "WCZYTAJ PLIK";
             buttonLoadDictToMerge.UseVisualStyleBackColor = true;
@@ -1486,13 +1568,13 @@
             textBoxWordsToMerge.Name = "textBoxWordsToMerge";
             textBoxWordsToMerge.ReadOnly = true;
             textBoxWordsToMerge.ScrollBars = ScrollBars.Vertical;
-            textBoxWordsToMerge.Size = new Size(388, 423);
+            textBoxWordsToMerge.Size = new Size(618, 347);
             textBoxWordsToMerge.TabIndex = 13;
             // 
             // splitContainer1
             // 
             splitContainer1.Dock = DockStyle.Fill;
-            splitContainer1.Location = new Point(3, 553);
+            splitContainer1.Location = new Point(3, 477);
             splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -1502,8 +1584,8 @@
             // splitContainer1.Panel2
             // 
             splitContainer1.Panel2.Controls.Add(buttonCancelMerge);
-            splitContainer1.Size = new Size(388, 39);
-            splitContainer1.SplitterDistance = 212;
+            splitContainer1.Size = new Size(618, 39);
+            splitContainer1.SplitterDistance = 337;
             splitContainer1.TabIndex = 14;
             // 
             // buttonMergeDicts
@@ -1517,7 +1599,7 @@
             buttonMergeDicts.MaximumSize = new Size(0, 38);
             buttonMergeDicts.MinimumSize = new Size(0, 38);
             buttonMergeDicts.Name = "buttonMergeDicts";
-            buttonMergeDicts.Size = new Size(212, 38);
+            buttonMergeDicts.Size = new Size(337, 38);
             buttonMergeDicts.TabIndex = 14;
             buttonMergeDicts.Text = "DODAJ WYRAZY";
             buttonMergeDicts.UseVisualStyleBackColor = true;
@@ -1534,7 +1616,7 @@
             buttonCancelMerge.MaximumSize = new Size(0, 38);
             buttonCancelMerge.MinimumSize = new Size(0, 38);
             buttonCancelMerge.Name = "buttonCancelMerge";
-            buttonCancelMerge.Size = new Size(172, 38);
+            buttonCancelMerge.Size = new Size(277, 38);
             buttonCancelMerge.TabIndex = 17;
             buttonCancelMerge.Text = "ANULUJ";
             buttonCancelMerge.UseVisualStyleBackColor = true;
@@ -1548,7 +1630,7 @@
             buttonLoadDict.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
             buttonLoadDict.Location = new Point(3, 109);
             buttonLoadDict.Name = "buttonLoadDict";
-            buttonLoadDict.Size = new Size(811, 37);
+            buttonLoadDict.Size = new Size(1271, 37);
             buttonLoadDict.TabIndex = 8;
             buttonLoadDict.Text = "WCZYTAJ PLIK ZE SŁOWNIKIEM";
             buttonLoadDict.UseVisualStyleBackColor = true;
@@ -1559,7 +1641,7 @@
             label20.Dock = DockStyle.Top;
             label20.Location = new Point(3, 104);
             label20.Name = "label20";
-            label20.Size = new Size(811, 5);
+            label20.Size = new Size(1271, 5);
             label20.TabIndex = 3;
             // 
             // tableLayoutPanel2
@@ -1577,7 +1659,7 @@
             tableLayoutPanel2.RowCount = 2;
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel2.Size = new Size(811, 69);
+            tableLayoutPanel2.Size = new Size(1271, 69);
             tableLayoutPanel2.TabIndex = 2;
             // 
             // labelWordsCount
@@ -1585,10 +1667,10 @@
             labelWordsCount.BackColor = Color.MediumAquamarine;
             labelWordsCount.Dock = DockStyle.Fill;
             labelWordsCount.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            labelWordsCount.Location = new Point(504, 38);
+            labelWordsCount.Location = new Point(788, 38);
             labelWordsCount.Margin = new Padding(2, 4, 0, 0);
             labelWordsCount.Name = "labelWordsCount";
-            labelWordsCount.Size = new Size(307, 31);
+            labelWordsCount.Size = new Size(483, 31);
             labelWordsCount.TabIndex = 3;
             labelWordsCount.TextAlign = ContentAlignment.TopCenter;
             // 
@@ -1600,7 +1682,7 @@
             labelDicLengthInfo.Location = new Point(0, 38);
             labelDicLengthInfo.Margin = new Padding(0, 4, 2, 0);
             labelDicLengthInfo.Name = "labelDicLengthInfo";
-            labelDicLengthInfo.Size = new Size(500, 31);
+            labelDicLengthInfo.Size = new Size(784, 31);
             labelDicLengthInfo.TabIndex = 1;
             labelDicLengthInfo.Text = "Ilość wyrazów w słowniku:";
             labelDicLengthInfo.TextAlign = ContentAlignment.TopRight;
@@ -1613,7 +1695,7 @@
             labelFileNameInfo.Location = new Point(0, 4);
             labelFileNameInfo.Margin = new Padding(0, 4, 2, 0);
             labelFileNameInfo.Name = "labelFileNameInfo";
-            labelFileNameInfo.Size = new Size(500, 30);
+            labelFileNameInfo.Size = new Size(784, 30);
             labelFileNameInfo.TabIndex = 0;
             labelFileNameInfo.Text = "Wczytany plik ze słownikiem:";
             labelFileNameInfo.TextAlign = ContentAlignment.TopRight;
@@ -1623,10 +1705,10 @@
             labelFileName.BackColor = Color.MediumAquamarine;
             labelFileName.Dock = DockStyle.Fill;
             labelFileName.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            labelFileName.Location = new Point(504, 4);
+            labelFileName.Location = new Point(788, 4);
             labelFileName.Margin = new Padding(2, 4, 0, 0);
             labelFileName.Name = "labelFileName";
-            labelFileName.Size = new Size(307, 30);
+            labelFileName.Size = new Size(483, 30);
             labelFileName.TabIndex = 2;
             labelFileName.TextAlign = ContentAlignment.TopCenter;
             // 
@@ -1637,7 +1719,7 @@
             labelDictionary.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 238);
             labelDictionary.Location = new Point(3, 3);
             labelDictionary.Name = "labelDictionary";
-            labelDictionary.Size = new Size(811, 32);
+            labelDictionary.Size = new Size(1271, 32);
             labelDictionary.TabIndex = 1;
             labelDictionary.Text = "ZARZĄDZANIE SŁOWNIKIEM";
             labelDictionary.TextAlign = ContentAlignment.TopCenter;
@@ -1655,7 +1737,7 @@
             tabPageAbout.Location = new Point(4, 34);
             tabPageAbout.Name = "tabPageAbout";
             tabPageAbout.Padding = new Padding(3);
-            tabPageAbout.Size = new Size(817, 780);
+            tabPageAbout.Size = new Size(1277, 704);
             tabPageAbout.TabIndex = 1;
             tabPageAbout.Text = "O aplikacji";
             tabPageAbout.UseVisualStyleBackColor = true;
@@ -1665,9 +1747,9 @@
             labelAbout.BackColor = Color.Silver;
             labelAbout.Dock = DockStyle.Fill;
             labelAbout.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            labelAbout.Location = new Point(234, 555);
+            labelAbout.Location = new Point(234, 560);
             labelAbout.Name = "labelAbout";
-            labelAbout.Size = new Size(580, 219);
+            labelAbout.Size = new Size(1040, 138);
             labelAbout.TabIndex = 18;
             labelAbout.TextAlign = ContentAlignment.MiddleCenter;
             // 
@@ -1675,9 +1757,9 @@
             // 
             label2.BackColor = Color.Transparent;
             label2.Dock = DockStyle.Top;
-            label2.Location = new Point(234, 553);
+            label2.Location = new Point(234, 558);
             label2.Name = "label2";
-            label2.Size = new Size(580, 2);
+            label2.Size = new Size(1040, 2);
             label2.TabIndex = 17;
             label2.Text = " ";
             // 
@@ -1685,9 +1767,9 @@
             // 
             label1.BackColor = Color.Transparent;
             label1.Dock = DockStyle.Bottom;
-            label1.Location = new Point(234, 774);
+            label1.Location = new Point(234, 698);
             label1.Name = "label1";
-            label1.Size = new Size(580, 3);
+            label1.Size = new Size(1040, 3);
             label1.TabIndex = 15;
             label1.Text = " ";
             // 
@@ -1702,7 +1784,7 @@
             textBoxAbout.Margin = new Padding(3, 6, 3, 3);
             textBoxAbout.Multiline = true;
             textBoxAbout.Name = "textBoxAbout";
-            textBoxAbout.Size = new Size(580, 513);
+            textBoxAbout.Size = new Size(1040, 518);
             textBoxAbout.TabIndex = 14;
             // 
             // tableLayoutPanel4
@@ -1738,7 +1820,7 @@
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel4.Size = new Size(231, 737);
+            tableLayoutPanel4.Size = new Size(231, 661);
             tableLayoutPanel4.TabIndex = 13;
             // 
             // labelStenoAnagramInfo
@@ -1927,7 +2009,7 @@
             label3.Dock = DockStyle.Top;
             label3.Location = new Point(3, 37);
             label3.Name = "label3";
-            label3.Size = new Size(811, 3);
+            label3.Size = new Size(1271, 3);
             label3.TabIndex = 6;
             label3.Text = " ";
             // 
@@ -1937,7 +2019,7 @@
             labelSpace2.Dock = DockStyle.Top;
             labelSpace2.Location = new Point(3, 35);
             labelSpace2.Name = "labelSpace2";
-            labelSpace2.Size = new Size(811, 2);
+            labelSpace2.Size = new Size(1271, 2);
             labelSpace2.TabIndex = 4;
             labelSpace2.Text = " ";
             // 
@@ -1948,7 +2030,7 @@
             labelHelp.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 238);
             labelHelp.Location = new Point(3, 3);
             labelHelp.Name = "labelHelp";
-            labelHelp.Size = new Size(811, 32);
+            labelHelp.Size = new Size(1271, 32);
             labelHelp.TabIndex = 1;
             labelHelp.Text = "DOSTĘPNE TRYBY I OPCJE";
             labelHelp.TextAlign = ContentAlignment.TopCenter;
@@ -2006,23 +2088,11 @@
             newDictionaryDialog.Filter = "Pliki tekstowe|*.txt";
             newDictionaryDialog.Title = "Wybierz plik ze słownikiem";
             // 
-            // radioStenoAnagramMode
-            // 
-            radioStenoAnagramMode.AutoSize = true;
-            radioStenoAnagramMode.Location = new Point(26, 139);
-            radioStenoAnagramMode.Name = "radioStenoAnagramMode";
-            radioStenoAnagramMode.Size = new Size(161, 29);
-            radioStenoAnagramMode.TabIndex = 12;
-            radioStenoAnagramMode.TabStop = true;
-            radioStenoAnagramMode.Text = "Stenoanagramy";
-            radioStenoAnagramMode.UseVisualStyleBackColor = true;
-            radioStenoAnagramMode.CheckedChanged += RadioStenoAnagram_CheckedChanged;
-            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(825, 842);
+            ClientSize = new Size(1285, 742);
             Controls.Add(tabControl);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "MainForm";
@@ -2037,11 +2107,12 @@
             ((System.ComponentModel.ISupportInitialize)splitContainerResults).EndInit();
             splitContainerResults.ResumeLayout(false);
             contextMenuStripResults.ResumeLayout(false);
+            panel1.ResumeLayout(false);
+            groupBoxFilters.ResumeLayout(false);
+            groupBoxFilters.PerformLayout();
             tableLayoutPanel5.ResumeLayout(false);
             groupBoxMode.ResumeLayout(false);
             groupBoxMode.PerformLayout();
-            groupBoxFilters.ResumeLayout(false);
-            groupBoxFilters.PerformLayout();
             groupBoxLength.ResumeLayout(false);
             groupBoxLength.PerformLayout();
             splitContainerPattern.Panel1.ResumeLayout(false);
@@ -2104,13 +2175,6 @@
         private RadioButton radioAnagramMode;
         private Label labelLength3;
         private RadioButton radioMetagramMode;
-        private GroupBox groupBoxFilters;
-        private CheckBox checkBoxBeginWith;
-        private TextBox textBoxBeginsWith;
-        private TextBox textBoxContains;
-        private CheckBox checkBoxContains;
-        private TextBox textBoxEndsWith;
-        private CheckBox checkBoxEndsWith;
         private Label labelHelp;
         private Label labelSpace2;
         private Label label3;
@@ -2194,8 +2258,6 @@
         private Label labelCurrentPatternLen;
         private Label label7;
         private Label labelScrabbleCurrentPatternLen;
-        private TextBox textBoxNotContains;
-        private CheckBox checkBoxNotContains;
         private Label labelInfoFilters;
         private RadioButton radioSubWordMode;
         private Label labelSubwordInfo;
@@ -2228,5 +2290,20 @@
         private Label labelStenoAnagramInfo;
         private Label labelSuperWordInfo;
         private RadioButton radioStenoAnagramMode;
+        private GroupBox groupBoxFilters;
+        private Label label6;
+        private TextBox textBoxNotContains;
+        private CheckBox checkBoxNotContains;
+        private TextBox textBoxContains;
+        private CheckBox checkBoxContains;
+        private TextBox textBoxEndsWith;
+        private CheckBox checkBoxEndsWith;
+        private TextBox textBoxBeginsWith;
+        private CheckBox checkBoxBeginWith;
+        private CheckBox checkBox1;
+        private CheckBox checkBox2;
+        private Panel panel1;
+        private RadioButton radioButton1;
+        private Label label23;
     }
 }
