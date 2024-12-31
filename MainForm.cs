@@ -10,13 +10,14 @@ namespace CrosswordAssistant
 {
     public partial class MainForm : Form
     {
-        private const string StartWithFilterName = "StartWith";
+        private const string StartWithFilterName = "STRW";
+        private const string EndWithFilterName = "ENDW";
+        private const string ContainsFilterName = "CNTS";
 
         private readonly DictionaryService _dictionaryService;
         private readonly List<Label> _infoLabels = [];
         private readonly SearchFactory _searchFactory;
         private readonly Dictionary<string, string> _filtersNames = [];
-        //private bool _isEnterSuppressed = true;
 
         public MainForm()
         {
@@ -330,24 +331,26 @@ namespace CrosswordAssistant
                 textBoxLength.Enabled = false;
             }
         }
-        private void Selectedilters_CheckedChanged(object sender, EventArgs e)
+        private void SelectedFilters_CheckedChanged(object sender, EventArgs e)
         {
             var obj = (CheckBox)sender;
             var container = (GroupBox?)obj.Parent;
-            var radioButtons = groupBoxBeginWithFilters.Controls.OfType<RadioButton>().ToList();
             if (container == null) return;
-            if (container.Text == _filtersNames[StartWithFilterName])
-            {
-                labelCurrentPatternLen.Text = textBoxPattern.Text.Length.ToString();
-                FormService.FilterChecked(checkBoxBeginWithActive, textBoxBeginsWith, radioButtons);
-                if (!checkBoxBeginWithActive.Checked) textBoxPattern.Focus();
-            }
-        }
-        private void CheckBoxEndsWith_CheckedChanged(object sender, EventArgs e)
-        {
+            var radioButtons = container.Controls.OfType<RadioButton>().ToList();
+
             labelCurrentPatternLen.Text = textBoxPattern.Text.Length.ToString();
-            //FormService.FilterChecked(checkBoxEndsWith, textBoxEndsWith);
-            if (!checkBoxEndsWith.Checked) textBoxPattern.Focus();
+
+            if (container.Text == _filtersNames[StartWithFilterName])
+            {             
+                FormService.FilterChecked(checkBoxBeginsWithActive, textBoxBeginsWith, radioButtons);
+                if (!checkBoxBeginsWithActive.Checked) textBoxPattern.Focus();
+            }
+            else if (container.Text == _filtersNames[EndWithFilterName]) 
+            {
+                FormService.FilterChecked(checkBoxEndsWithActive, textBoxEndsWith, radioButtons);
+                if (!checkBoxBeginsWithActive.Checked) textBoxPattern.Focus();
+            }
+
         }
         private void CheckBoxContains_CheckedChanged(object sender, EventArgs e)
         {
@@ -444,11 +447,9 @@ namespace CrosswordAssistant
                             case Keys.D3: radioMetagramMode.Checked = true; break;
                             case Keys.D4: radioPM1Mode.Checked = true; break;
                             case Keys.D5: radioSubWordMode.Checked = true; break;
-                            case Keys.D6:
-                                checkBoxLength.Checked = !checkBoxLength.Checked;
-                                break;
+                            case Keys.D6: radioSuperWordMode.Checked = true; break;
                             case Keys.D7:
-                                checkBoxEndsWith.Checked = !checkBoxEndsWith.Checked;
+                                checkBoxLength.Checked = !checkBoxLength.Checked;
                                 break;
                             case Keys.D8:
                                 checkBoxContains.Checked = !checkBoxContains.Checked;
@@ -563,7 +564,10 @@ namespace CrosswordAssistant
             labelMergeDicts.Text = Messages.MergeDictsInfo;
 
             _filtersNames[StartWithFilterName] = "Pocz¹tek";
+            _filtersNames[EndWithFilterName] = "Koniec";
+
             groupBoxBeginWithFilters.Text = _filtersNames[StartWithFilterName];
+            groupBoxEndsWithFilters.Text = _filtersNames[EndWithFilterName];
         }
         private void SetLengthControlsEnabled(bool isEnabled)
         {
@@ -689,15 +693,13 @@ namespace CrosswordAssistant
                     }
                 }
             }
-            if (checkBoxBeginWithActive.Checked) 
+            if (checkBoxBeginsWithActive.Checked)
             {
                 results = ApplyStartWithFilter(results);
             }
-            if (checkBoxEndsWith.Checked && textBoxEndsWith.Text.Length > 0)
+            if (checkBoxEndsWithActive.Checked)
             {
-                results = results
-                    .Where(w => w.EndsWith(textBoxEndsWith.Text, StringComparison.CurrentCultureIgnoreCase))
-                    .ToList();
+                results = ApplyEndsWithFilter(results);
             }
             if (checkBoxContains.Checked && textBoxContains.Text.Length > 0)
             {
@@ -715,7 +717,7 @@ namespace CrosswordAssistant
         }
         private List<string> ApplyStartWithFilter(List<string> results)
         {
-            if (radioButtonBeginWith.Checked && textBoxBeginsWith.Text.Length > 0)
+            if (radioButtonBeginsWith.Checked && textBoxBeginsWith.Text.Length > 0)
             {
                 return results
                     .Where(w => w.StartsWith(textBoxBeginsWith.Text, StringComparison.CurrentCultureIgnoreCase))
@@ -731,9 +733,26 @@ namespace CrosswordAssistant
             {
                 return [];
             }
-
-           
-        } 
+        }
+        private List<string> ApplyEndsWithFilter(List<string> results) 
+        {
+            if (radioButtonEndsWith.Checked && textBoxEndsWith.Text.Length > 0)
+            {
+                return results
+                    .Where(w => w.EndsWith(textBoxEndsWith.Text, StringComparison.CurrentCultureIgnoreCase))
+                    .ToList();
+            }
+            else if (radioButtonEndsWithNot.Checked && textBoxEndsWith.Text.Length > 0)
+            {
+                return  results
+                    .Where(w => !w.EndsWith(textBoxEndsWith.Text, StringComparison.CurrentCultureIgnoreCase))
+                    .ToList();
+            }
+            else
+            {
+                return [];
+            }
+        }
         private void SetMode(int tabIndex)
         {
             switch (tabIndex)
