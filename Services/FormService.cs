@@ -2,15 +2,23 @@
 {
     public class FormService
     {
-        public static void FilterChecked(CheckBox checkBox, TextBox textBox) 
+        public static void FilterChecked(CheckBox checkBox, TextBox textBox, List<RadioButton> radios) 
         {
             if (checkBox.Checked)
             {
+                foreach(var radio in radios)
+                    radio.Enabled = true;
+                radios[1].Checked = true;
                 textBox.Enabled = true;
                 textBox.Focus();
             }
             else
             {
+                foreach (var radio in radios)
+                {
+                    radio.Enabled = false;
+                    radio.Checked = false;
+                }                  
                 textBox.Enabled = false;
                 textBox.Text = "";
             }

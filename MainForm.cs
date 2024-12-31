@@ -10,15 +10,19 @@ namespace CrosswordAssistant
 {
     public partial class MainForm : Form
     {
+        private const string StartWithFilterName = "StartWith";
+
         private readonly DictionaryService _dictionaryService;
         private readonly List<Label> _infoLabels = [];
         private readonly SearchFactory _searchFactory;
+        private readonly Dictionary<string, string> _filtersNames = [];
         //private bool _isEnterSuppressed = true;
 
         public MainForm()
         {
             InitializeComponent();
             MinimumSize = Size;
+            MaximumSize = Size;
             KeyPreview = true;
 
             _dictionaryService = new DictionaryService();
@@ -57,6 +61,7 @@ namespace CrosswordAssistant
                 }
 
                 matches = ApplyFilters(matches);
+                labelResultsCount.Text = "Znalezionych dopasowañ: " + matches.Count;
                 matches = Utilities.BoundTo500(matches);
                 FillTextBoxResults(matches, textBoxPatternResults);
                 textBoxPattern.ReadOnly = false;
@@ -325,28 +330,35 @@ namespace CrosswordAssistant
                 textBoxLength.Enabled = false;
             }
         }
-        private void CheckBoxStartWith_CheckedChanged(object sender, EventArgs e)
+        private void Selectedilters_CheckedChanged(object sender, EventArgs e)
         {
-            labelCurrentPatternLen.Text = textBoxPattern.Text.Length.ToString();
-            FormService.FilterChecked(checkBoxBeginWith, textBoxBeginsWith);
-            if (!checkBoxBeginWith.Checked) textBoxPattern.Focus();
+            var obj = (CheckBox)sender;
+            var container = (GroupBox?)obj.Parent;
+            var radioButtons = groupBoxBeginWithFilters.Controls.OfType<RadioButton>().ToList();
+            if (container == null) return;
+            if (container.Text == _filtersNames[StartWithFilterName])
+            {
+                labelCurrentPatternLen.Text = textBoxPattern.Text.Length.ToString();
+                FormService.FilterChecked(checkBoxBeginWithActive, textBoxBeginsWith, radioButtons);
+                if (!checkBoxBeginWithActive.Checked) textBoxPattern.Focus();
+            }
         }
         private void CheckBoxEndsWith_CheckedChanged(object sender, EventArgs e)
         {
             labelCurrentPatternLen.Text = textBoxPattern.Text.Length.ToString();
-            FormService.FilterChecked(checkBoxEndsWith, textBoxEndsWith);
+            //FormService.FilterChecked(checkBoxEndsWith, textBoxEndsWith);
             if (!checkBoxEndsWith.Checked) textBoxPattern.Focus();
         }
         private void CheckBoxContains_CheckedChanged(object sender, EventArgs e)
         {
             labelCurrentPatternLen.Text = textBoxPattern.Text.Length.ToString();
-            FormService.FilterChecked(checkBoxContains, textBoxContains);
+            //FormService.FilterChecked(checkBoxContains, textBoxContains);
             if (!checkBoxContains.Checked) textBoxPattern.Focus();
         }
         private void CheckBoxNotContains_CheckedChange(object sender, EventArgs e)
         {
             labelCurrentPatternLen.Text = textBoxPattern.Text.Length.ToString();
-            FormService.FilterChecked(checkBoxNotContains, textBoxNotContains);
+            //FormService.FilterChecked(checkBoxNotContains, textBoxNotContains);
             if (!checkBoxNotContains.Checked) textBoxPattern.Focus();
         }
         private void CheckBoxLength_CheckedChanged(object sender, EventArgs e)
@@ -431,11 +443,9 @@ namespace CrosswordAssistant
                             case Keys.D2: radioAnagramMode.Checked = true; break;
                             case Keys.D3: radioMetagramMode.Checked = true; break;
                             case Keys.D4: radioPM1Mode.Checked = true; break;
-                            case Keys.D5:
-                                checkBoxLength.Checked = !checkBoxLength.Checked;
-                                break;
+                            case Keys.D5: radioSubWordMode.Checked = true; break;
                             case Keys.D6:
-                                checkBoxBeginWith.Checked = !checkBoxBeginWith.Checked;
+                                checkBoxLength.Checked = !checkBoxLength.Checked;
                                 break;
                             case Keys.D7:
                                 checkBoxEndsWith.Checked = !checkBoxEndsWith.Checked;
@@ -472,8 +482,6 @@ namespace CrosswordAssistant
         {
             var currentPage = (sender as TabControl)!.SelectedIndex;
             SetMode(currentPage);
-            //if (currentPage == 3) _isEnterSuppressed = false;
-            //else _isEnterSuppressed = true;
         }
 
         #region InfoLabels click events
@@ -537,8 +545,6 @@ namespace CrosswordAssistant
         private void InitControls()
         {
             textBoxPatternResults.Text = Messages.PatternModeMessage + Environment.NewLine;
-            //textBoxAddToDictionary.PlaceholderText = "Wpisz wyrazy do dodania " + Environment.NewLine +
-            //    "(po jednym w linii)";
             _infoLabels.Add(labelPatternInfo);
             _infoLabels.Add(labelAnagramInfo);
             _infoLabels.Add(labelMetagramInfo);
@@ -555,6 +561,9 @@ namespace CrosswordAssistant
             SetFileInfo(0);
             labelAbout.Text = Messages.VersionInfo;
             labelMergeDicts.Text = Messages.MergeDictsInfo;
+
+            _filtersNames[StartWithFilterName] = "Pocz¹tek";
+            groupBoxBeginWithFilters.Text = _filtersNames[StartWithFilterName];
         }
         private void SetLengthControlsEnabled(bool isEnabled)
         {
@@ -680,11 +689,9 @@ namespace CrosswordAssistant
                     }
                 }
             }
-            if (checkBoxBeginWith.Checked && textBoxBeginsWith.Text.Length > 0)
+            if (checkBoxBeginWithActive.Checked) 
             {
-                results = results
-                    .Where(w => w.StartsWith(textBoxBeginsWith.Text, StringComparison.CurrentCultureIgnoreCase))
-                    .ToList();
+                results = ApplyStartWithFilter(results);
             }
             if (checkBoxEndsWith.Checked && textBoxEndsWith.Text.Length > 0)
             {
@@ -706,6 +713,27 @@ namespace CrosswordAssistant
             }
             return results;
         }
+        private List<string> ApplyStartWithFilter(List<string> results)
+        {
+            if (radioButtonBeginWith.Checked && textBoxBeginsWith.Text.Length > 0)
+            {
+                return results
+                    .Where(w => w.StartsWith(textBoxBeginsWith.Text, StringComparison.CurrentCultureIgnoreCase))
+                    .ToList();
+            }
+            else if (radioButtonBeginWithNot.Checked && textBoxBeginsWith.Text.Length > 0)
+            {
+                return results
+                    .Where(w => !w.StartsWith(textBoxBeginsWith.Text, StringComparison.CurrentCultureIgnoreCase))
+                    .ToList();
+            }
+            else
+            {
+                return [];
+            }
+
+           
+        } 
         private void SetMode(int tabIndex)
         {
             switch (tabIndex)
