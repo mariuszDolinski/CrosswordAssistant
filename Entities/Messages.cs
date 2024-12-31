@@ -55,6 +55,11 @@
             "dla których podany we wzorcu wyraz jest stenoanagramem. Stenoanagramy to wyrazy powstałe z " +
             "niepowtarzalnych liter danego wyrazu, np. stenoanagramem wyrazu 'brakarka' jest np. wyraz 'bark'. " +
             "We wzorcu dozwolone są tylko litery. Dodatkowo litery we wzorcu nie mogą się powtarzać.";
+        public static string WordInWordInfo { get; } = "W tym trybie wyszukiwane są wyrazy pasujące do podanego wzorca. " +
+            "Ponadto litery, które we wzorcu były oznaczone kropką muszą również tworzyć słowo ze słownika, np. " +
+            "dla wzorca SZ.... dopasowane zostaną m. in. wyrazy SZRAMA, SZKRAB; natomiast np. wyraz SZAŁAS nie zostaie " +
+            "dopasowany, gdyż wyraz AŁAS nie występuje w słowniku.";
+        
         public static string Shortcuts { get; } = "Dostępne skróty klawiaturowe:" + Environment.NewLine +
             "Enter - uruchamia wyszukiwanie dla aktualnego wzorca" + Environment.NewLine +
             "F6 - zaznacza wzorzec" + Environment.NewLine +

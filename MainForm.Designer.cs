@@ -142,13 +142,13 @@
             splitContainer1 = new SplitContainer();
             buttonMergeDicts = new Button();
             buttonCancelMerge = new Button();
-            buttonLoadDict = new Button();
             label20 = new Label();
             tableLayoutPanel2 = new TableLayoutPanel();
             labelWordsCount = new Label();
             labelDicLengthInfo = new Label();
             labelFileNameInfo = new Label();
             labelFileName = new Label();
+            buttonLoadDict = new Button();
             labelDictionary = new Label();
             tabPageAbout = new TabPage();
             labelAbout = new Label();
@@ -156,6 +156,7 @@
             label1 = new Label();
             textBoxAbout = new TextBox();
             tableLayoutPanel4 = new TableLayoutPanel();
+            labelWordInWordInfo = new Label();
             labelStenoAnagramInfo = new Label();
             labelSuperWordInfo = new Label();
             labelSubwordInfo = new Label();
@@ -165,9 +166,9 @@
             labelMetagramInfo = new Label();
             labelAnagramInfo = new Label();
             labelPatternInfo = new Label();
+            labelScrabbleInfo = new Label();
             labelShortcuts = new Label();
             labelInfoFilters = new Label();
-            labelScrabbleInfo = new Label();
             label3 = new Label();
             labelSpace2 = new Label();
             labelHelp = new Label();
@@ -1368,7 +1369,6 @@
             // tabPageDictionary
             // 
             tabPageDictionary.Controls.Add(tableLayoutPanel3);
-            tabPageDictionary.Controls.Add(buttonLoadDict);
             tabPageDictionary.Controls.Add(label20);
             tabPageDictionary.Controls.Add(tableLayoutPanel2);
             tabPageDictionary.Controls.Add(labelDictionary);
@@ -1388,11 +1388,11 @@
             tableLayoutPanel3.Controls.Add(groupBoxAddToDict, 0, 0);
             tableLayoutPanel3.Controls.Add(groupBoxMergeDicts, 1, 0);
             tableLayoutPanel3.Dock = DockStyle.Fill;
-            tableLayoutPanel3.Location = new Point(3, 146);
+            tableLayoutPanel3.Location = new Point(3, 109);
             tableLayoutPanel3.Name = "tableLayoutPanel3";
             tableLayoutPanel3.RowCount = 1;
             tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel3.Size = new Size(1271, 555);
+            tableLayoutPanel3.Size = new Size(1271, 592);
             tableLayoutPanel3.TabIndex = 9;
             // 
             // groupBoxAddToDict
@@ -1405,7 +1405,7 @@
             groupBoxAddToDict.Dock = DockStyle.Fill;
             groupBoxAddToDict.Location = new Point(3, 3);
             groupBoxAddToDict.Name = "groupBoxAddToDict";
-            groupBoxAddToDict.Size = new Size(629, 549);
+            groupBoxAddToDict.Size = new Size(629, 586);
             groupBoxAddToDict.TabIndex = 0;
             groupBoxAddToDict.TabStop = false;
             groupBoxAddToDict.Text = "Modyfikacja bieżącego słownika";
@@ -1418,13 +1418,13 @@
             textBoxAddToDictionary.Multiline = true;
             textBoxAddToDictionary.Name = "textBoxAddToDictionary";
             textBoxAddToDictionary.ScrollBars = ScrollBars.Vertical;
-            textBoxAddToDictionary.Size = new Size(623, 375);
+            textBoxAddToDictionary.Size = new Size(623, 412);
             textBoxAddToDictionary.TabIndex = 16;
             // 
             // label5
             // 
             label5.Dock = DockStyle.Bottom;
-            label5.Location = new Point(3, 500);
+            label5.Location = new Point(3, 537);
             label5.MaximumSize = new Size(0, 6);
             label5.MinimumSize = new Size(0, 6);
             label5.Name = "label5";
@@ -1434,7 +1434,7 @@
             // splitContainerEditDictionary
             // 
             splitContainerEditDictionary.Dock = DockStyle.Bottom;
-            splitContainerEditDictionary.Location = new Point(3, 506);
+            splitContainerEditDictionary.Location = new Point(3, 543);
             splitContainerEditDictionary.Margin = new Padding(6);
             splitContainerEditDictionary.MaximumSize = new Size(0, 40);
             splitContainerEditDictionary.MinimumSize = new Size(0, 40);
@@ -1510,7 +1510,7 @@
             groupBoxMergeDicts.Dock = DockStyle.Fill;
             groupBoxMergeDicts.Location = new Point(638, 3);
             groupBoxMergeDicts.Name = "groupBoxMergeDicts";
-            groupBoxMergeDicts.Size = new Size(630, 549);
+            groupBoxMergeDicts.Size = new Size(630, 586);
             groupBoxMergeDicts.TabIndex = 1;
             groupBoxMergeDicts.TabStop = false;
             groupBoxMergeDicts.Text = "Połącz słowniki";
@@ -1531,7 +1531,7 @@
             tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Absolute, 43F));
             tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Absolute, 45F));
-            tableLayoutPanel6.Size = new Size(624, 519);
+            tableLayoutPanel6.Size = new Size(624, 556);
             tableLayoutPanel6.TabIndex = 12;
             // 
             // labelMergeDicts
@@ -1569,13 +1569,13 @@
             textBoxWordsToMerge.Name = "textBoxWordsToMerge";
             textBoxWordsToMerge.ReadOnly = true;
             textBoxWordsToMerge.ScrollBars = ScrollBars.Vertical;
-            textBoxWordsToMerge.Size = new Size(618, 347);
+            textBoxWordsToMerge.Size = new Size(618, 384);
             textBoxWordsToMerge.TabIndex = 13;
             // 
             // splitContainer1
             // 
             splitContainer1.Dock = DockStyle.Fill;
-            splitContainer1.Location = new Point(3, 477);
+            splitContainer1.Location = new Point(3, 514);
             splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -1623,20 +1623,6 @@
             buttonCancelMerge.UseVisualStyleBackColor = true;
             buttonCancelMerge.Click += CancelMerge_Click;
             // 
-            // buttonLoadDict
-            // 
-            buttonLoadDict.Cursor = Cursors.Hand;
-            buttonLoadDict.Dock = DockStyle.Top;
-            buttonLoadDict.FlatStyle = FlatStyle.Flat;
-            buttonLoadDict.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            buttonLoadDict.Location = new Point(3, 109);
-            buttonLoadDict.Name = "buttonLoadDict";
-            buttonLoadDict.Size = new Size(1271, 37);
-            buttonLoadDict.TabIndex = 8;
-            buttonLoadDict.Text = "WCZYTAJ PLIK ZE SŁOWNIKIEM";
-            buttonLoadDict.UseVisualStyleBackColor = true;
-            buttonLoadDict.Click += LoadDictionaryBtn_Click;
-            // 
             // label20
             // 
             label20.Dock = DockStyle.Top;
@@ -1647,19 +1633,22 @@
             // 
             // tableLayoutPanel2
             // 
-            tableLayoutPanel2.ColumnCount = 2;
-            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 61.89889F));
-            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 38.10111F));
+            tableLayoutPanel2.ColumnCount = 3;
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 55F));
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
             tableLayoutPanel2.Controls.Add(labelWordsCount, 1, 1);
             tableLayoutPanel2.Controls.Add(labelDicLengthInfo, 0, 1);
             tableLayoutPanel2.Controls.Add(labelFileNameInfo, 0, 0);
             tableLayoutPanel2.Controls.Add(labelFileName, 1, 0);
+            tableLayoutPanel2.Controls.Add(buttonLoadDict, 2, 0);
             tableLayoutPanel2.Dock = DockStyle.Top;
             tableLayoutPanel2.Location = new Point(3, 35);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
             tableLayoutPanel2.RowCount = 2;
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
             tableLayoutPanel2.Size = new Size(1271, 69);
             tableLayoutPanel2.TabIndex = 2;
             // 
@@ -1668,10 +1657,10 @@
             labelWordsCount.BackColor = Color.MediumAquamarine;
             labelWordsCount.Dock = DockStyle.Fill;
             labelWordsCount.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            labelWordsCount.Location = new Point(788, 38);
+            labelWordsCount.Location = new Point(701, 38);
             labelWordsCount.Margin = new Padding(2, 4, 0, 0);
             labelWordsCount.Name = "labelWordsCount";
-            labelWordsCount.Size = new Size(483, 31);
+            labelWordsCount.Size = new Size(252, 31);
             labelWordsCount.TabIndex = 3;
             labelWordsCount.TextAlign = ContentAlignment.TopCenter;
             // 
@@ -1683,7 +1672,7 @@
             labelDicLengthInfo.Location = new Point(0, 38);
             labelDicLengthInfo.Margin = new Padding(0, 4, 2, 0);
             labelDicLengthInfo.Name = "labelDicLengthInfo";
-            labelDicLengthInfo.Size = new Size(784, 31);
+            labelDicLengthInfo.Size = new Size(697, 31);
             labelDicLengthInfo.TabIndex = 1;
             labelDicLengthInfo.Text = "Ilość wyrazów w słowniku:";
             labelDicLengthInfo.TextAlign = ContentAlignment.TopRight;
@@ -1696,7 +1685,7 @@
             labelFileNameInfo.Location = new Point(0, 4);
             labelFileNameInfo.Margin = new Padding(0, 4, 2, 0);
             labelFileNameInfo.Name = "labelFileNameInfo";
-            labelFileNameInfo.Size = new Size(784, 30);
+            labelFileNameInfo.Size = new Size(697, 30);
             labelFileNameInfo.TabIndex = 0;
             labelFileNameInfo.Text = "Wczytany plik ze słownikiem:";
             labelFileNameInfo.TextAlign = ContentAlignment.TopRight;
@@ -1706,12 +1695,28 @@
             labelFileName.BackColor = Color.MediumAquamarine;
             labelFileName.Dock = DockStyle.Fill;
             labelFileName.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            labelFileName.Location = new Point(788, 4);
+            labelFileName.Location = new Point(701, 4);
             labelFileName.Margin = new Padding(2, 4, 0, 0);
             labelFileName.Name = "labelFileName";
-            labelFileName.Size = new Size(483, 30);
+            labelFileName.Size = new Size(252, 30);
             labelFileName.TabIndex = 2;
             labelFileName.TextAlign = ContentAlignment.TopCenter;
+            // 
+            // buttonLoadDict
+            // 
+            buttonLoadDict.Cursor = Cursors.Hand;
+            buttonLoadDict.Dock = DockStyle.Fill;
+            buttonLoadDict.FlatStyle = FlatStyle.Flat;
+            buttonLoadDict.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            buttonLoadDict.Location = new Point(956, 4);
+            buttonLoadDict.Margin = new Padding(3, 4, 3, 0);
+            buttonLoadDict.Name = "buttonLoadDict";
+            tableLayoutPanel2.SetRowSpan(buttonLoadDict, 2);
+            buttonLoadDict.Size = new Size(312, 65);
+            buttonLoadDict.TabIndex = 8;
+            buttonLoadDict.Text = "WCZYTAJ PLIK ZE SŁOWNIKIEM";
+            buttonLoadDict.UseVisualStyleBackColor = true;
+            buttonLoadDict.Click += LoadDictionaryBtn_Click;
             // 
             // labelDictionary
             // 
@@ -1792,6 +1797,7 @@
             // 
             tableLayoutPanel4.ColumnCount = 1;
             tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanel4.Controls.Add(labelWordInWordInfo, 0, 10);
             tableLayoutPanel4.Controls.Add(labelStenoAnagramInfo, 0, 8);
             tableLayoutPanel4.Controls.Add(labelSuperWordInfo, 0, 7);
             tableLayoutPanel4.Controls.Add(labelSubwordInfo, 0, 6);
@@ -1801,13 +1807,14 @@
             tableLayoutPanel4.Controls.Add(labelMetagramInfo, 0, 2);
             tableLayoutPanel4.Controls.Add(labelAnagramInfo, 0, 1);
             tableLayoutPanel4.Controls.Add(labelPatternInfo, 0, 0);
-            tableLayoutPanel4.Controls.Add(labelShortcuts, 0, 11);
-            tableLayoutPanel4.Controls.Add(labelInfoFilters, 0, 10);
             tableLayoutPanel4.Controls.Add(labelScrabbleInfo, 0, 9);
+            tableLayoutPanel4.Controls.Add(labelShortcuts, 0, 12);
+            tableLayoutPanel4.Controls.Add(labelInfoFilters, 0, 11);
             tableLayoutPanel4.Dock = DockStyle.Left;
             tableLayoutPanel4.Location = new Point(3, 40);
             tableLayoutPanel4.Name = "tableLayoutPanel4";
-            tableLayoutPanel4.RowCount = 13;
+            tableLayoutPanel4.RowCount = 14;
+            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
@@ -1823,6 +1830,21 @@
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
             tableLayoutPanel4.Size = new Size(231, 661);
             tableLayoutPanel4.TabIndex = 13;
+            // 
+            // labelWordInWordInfo
+            // 
+            labelWordInWordInfo.BackColor = Color.Silver;
+            labelWordInWordInfo.Cursor = Cursors.Hand;
+            labelWordInWordInfo.Dock = DockStyle.Fill;
+            labelWordInWordInfo.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            labelWordInWordInfo.Location = new Point(0, 400);
+            labelWordInWordInfo.Margin = new Padding(0, 0, 3, 5);
+            labelWordInWordInfo.Name = "labelWordInWordInfo";
+            labelWordInWordInfo.Size = new Size(228, 35);
+            labelWordInWordInfo.TabIndex = 20;
+            labelWordInWordInfo.Text = "SŁOWO W SŁOWIE";
+            labelWordInWordInfo.TextAlign = ContentAlignment.MiddleLeft;
+            labelWordInWordInfo.Click += WordInWordInfo_Click;
             // 
             // labelStenoAnagramInfo
             // 
@@ -1959,36 +1981,6 @@
             labelPatternInfo.TextAlign = ContentAlignment.MiddleLeft;
             labelPatternInfo.Click += PatternInfo_Click;
             // 
-            // labelShortcuts
-            // 
-            labelShortcuts.BackColor = Color.Silver;
-            labelShortcuts.Cursor = Cursors.Hand;
-            labelShortcuts.Dock = DockStyle.Fill;
-            labelShortcuts.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            labelShortcuts.Location = new Point(0, 440);
-            labelShortcuts.Margin = new Padding(0, 0, 3, 5);
-            labelShortcuts.Name = "labelShortcuts";
-            labelShortcuts.Size = new Size(228, 35);
-            labelShortcuts.TabIndex = 15;
-            labelShortcuts.Text = "SKRÓTY";
-            labelShortcuts.TextAlign = ContentAlignment.MiddleLeft;
-            labelShortcuts.Click += Shortcuts_Click;
-            // 
-            // labelInfoFilters
-            // 
-            labelInfoFilters.BackColor = Color.Silver;
-            labelInfoFilters.Cursor = Cursors.Hand;
-            labelInfoFilters.Dock = DockStyle.Fill;
-            labelInfoFilters.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            labelInfoFilters.Location = new Point(0, 400);
-            labelInfoFilters.Margin = new Padding(0, 0, 3, 5);
-            labelInfoFilters.Name = "labelInfoFilters";
-            labelInfoFilters.Size = new Size(228, 35);
-            labelInfoFilters.TabIndex = 17;
-            labelInfoFilters.Text = "DODATKOWE FILTRY";
-            labelInfoFilters.TextAlign = ContentAlignment.MiddleLeft;
-            labelInfoFilters.Click += FiltersInfo_Click;
-            // 
             // labelScrabbleInfo
             // 
             labelScrabbleInfo.BackColor = Color.Silver;
@@ -2003,6 +1995,36 @@
             labelScrabbleInfo.Text = "SCRABBLE";
             labelScrabbleInfo.TextAlign = ContentAlignment.MiddleLeft;
             labelScrabbleInfo.Click += ScrabbleInfo_Click;
+            // 
+            // labelShortcuts
+            // 
+            labelShortcuts.BackColor = Color.Silver;
+            labelShortcuts.Cursor = Cursors.Hand;
+            labelShortcuts.Dock = DockStyle.Fill;
+            labelShortcuts.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            labelShortcuts.Location = new Point(0, 480);
+            labelShortcuts.Margin = new Padding(0, 0, 3, 5);
+            labelShortcuts.Name = "labelShortcuts";
+            labelShortcuts.Size = new Size(228, 35);
+            labelShortcuts.TabIndex = 15;
+            labelShortcuts.Text = "SKRÓTY";
+            labelShortcuts.TextAlign = ContentAlignment.MiddleLeft;
+            labelShortcuts.Click += Shortcuts_Click;
+            // 
+            // labelInfoFilters
+            // 
+            labelInfoFilters.BackColor = Color.Silver;
+            labelInfoFilters.Cursor = Cursors.Hand;
+            labelInfoFilters.Dock = DockStyle.Fill;
+            labelInfoFilters.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            labelInfoFilters.Location = new Point(0, 440);
+            labelInfoFilters.Margin = new Padding(0, 0, 3, 5);
+            labelInfoFilters.Name = "labelInfoFilters";
+            labelInfoFilters.Size = new Size(228, 35);
+            labelInfoFilters.TabIndex = 17;
+            labelInfoFilters.Text = "DODATKOWE FILTRY";
+            labelInfoFilters.TextAlign = ContentAlignment.MiddleLeft;
+            labelInfoFilters.Click += FiltersInfo_Click;
             // 
             // label3
             // 
@@ -2306,5 +2328,6 @@
         private Panel panel1;
         private RadioButton radioWordInWord;
         private Label label23;
+        private Label labelWordInWordInfo;
     }
 }

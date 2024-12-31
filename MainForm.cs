@@ -476,7 +476,7 @@ namespace CrosswordAssistant
             //else _isEnterSuppressed = true;
         }
 
-            #region InfoLabels click events
+        #region InfoLabels click events
         private void PatternInfo_Click(object sender, EventArgs e)
         {
             SetInfo((Label)sender, Messages.PatternInfo);
@@ -525,6 +525,10 @@ namespace CrosswordAssistant
         {
             SetInfo((Label)sender, Messages.StenoanagramwordInfo);
         }
+        private void WordInWordInfo_Click(object sender, EventArgs e)
+        {
+            SetInfo((Label)sender, Messages.WordInWordInfo);
+        }
         #endregion
 
         #endregion
@@ -547,6 +551,7 @@ namespace CrosswordAssistant
             _infoLabels.Add(labelSubwordInfo);
             _infoLabels.Add(labelSuperWordInfo);
             _infoLabels.Add(labelStenoAnagramInfo);
+            _infoLabels.Add(labelWordInWordInfo);
             SetFileInfo(0);
             labelAbout.Text = Messages.VersionInfo;
             labelMergeDicts.Text = Messages.MergeDictsInfo;
