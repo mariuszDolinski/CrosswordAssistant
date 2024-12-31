@@ -18,6 +18,7 @@ namespace CrosswordAssistant.Searches
                 case SearchMode.SubWord: return new SubWordSearch();
                 case SearchMode.SuperWord: return new SuperWordSearch();
                 case SearchMode.StenoAnagram: return new StenoAnagramSearch();
+                case SearchMode.WordInWord: return new WordInWordSearch();
                 default: throw new NotImplementedException("SearchFactory Error: Search not implemented");
             }
         }

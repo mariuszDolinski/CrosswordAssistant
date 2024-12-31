@@ -53,7 +53,7 @@
             checkBoxBeginWith = new CheckBox();
             tableLayoutPanel5 = new TableLayoutPanel();
             groupBoxMode = new GroupBox();
-            radioButton1 = new RadioButton();
+            radioWordInWord = new RadioButton();
             radioStenoAnagramMode = new RadioButton();
             radioSuperWordMode = new RadioButton();
             radioSubWordMode = new RadioButton();
@@ -472,7 +472,7 @@
             // 
             // groupBoxMode
             // 
-            groupBoxMode.Controls.Add(radioButton1);
+            groupBoxMode.Controls.Add(radioWordInWord);
             groupBoxMode.Controls.Add(radioStenoAnagramMode);
             groupBoxMode.Controls.Add(radioSuperWordMode);
             groupBoxMode.Controls.Add(radioSubWordMode);
@@ -488,16 +488,17 @@
             groupBoxMode.TabStop = false;
             groupBoxMode.Text = "Tryb";
             // 
-            // radioButton1
+            // radioWordInWord
             // 
-            radioButton1.AutoSize = true;
-            radioButton1.Location = new Point(216, 139);
-            radioButton1.Name = "radioButton1";
-            radioButton1.Size = new Size(160, 29);
-            radioButton1.TabIndex = 13;
-            radioButton1.TabStop = true;
-            radioButton1.Text = "Słowo w słowie";
-            radioButton1.UseVisualStyleBackColor = true;
+            radioWordInWord.AutoSize = true;
+            radioWordInWord.Location = new Point(216, 139);
+            radioWordInWord.Name = "radioWordInWord";
+            radioWordInWord.Size = new Size(160, 29);
+            radioWordInWord.TabIndex = 13;
+            radioWordInWord.TabStop = true;
+            radioWordInWord.Text = "Słowo w słowie";
+            radioWordInWord.UseVisualStyleBackColor = true;
+            radioWordInWord.CheckedChanged += RadioButtonMode_CheckedChanged;
             // 
             // radioStenoAnagramMode
             // 
@@ -509,7 +510,7 @@
             radioStenoAnagramMode.TabStop = true;
             radioStenoAnagramMode.Text = "Stenoanagramy";
             radioStenoAnagramMode.UseVisualStyleBackColor = true;
-            radioStenoAnagramMode.CheckedChanged += RadioStenoAnagram_CheckedChanged;
+            radioStenoAnagramMode.CheckedChanged += RadioButtonMode_CheckedChanged;
             // 
             // radioSuperWordMode
             // 
@@ -521,7 +522,7 @@
             radioSuperWordMode.TabStop = true;
             radioSuperWordMode.Text = "Nadsłowa";
             radioSuperWordMode.UseVisualStyleBackColor = true;
-            radioSuperWordMode.CheckedChanged += RadioSuperWord_CheckedChanged;
+            radioSuperWordMode.CheckedChanged += RadioButtonMode_CheckedChanged;
             // 
             // radioSubWordMode
             // 
@@ -533,7 +534,7 @@
             radioSubWordMode.TabStop = true;
             radioSubWordMode.Text = "Podsłowa";
             radioSubWordMode.UseVisualStyleBackColor = true;
-            radioSubWordMode.CheckedChanged += RadioSubWord_CheckedChanged;
+            radioSubWordMode.CheckedChanged += RadioButtonMode_CheckedChanged;
             // 
             // radioPM1Mode
             // 
@@ -545,7 +546,7 @@
             radioPM1Mode.TabStop = true;
             radioPM1Mode.Text = "Plus/Minus 1";
             radioPM1Mode.UseVisualStyleBackColor = true;
-            radioPM1Mode.CheckedChanged += RadioPM1_CheckedChanged;
+            radioPM1Mode.CheckedChanged += RadioButtonMode_CheckedChanged;
             // 
             // radioMetagramMode
             // 
@@ -558,7 +559,7 @@
             radioMetagramMode.TabStop = true;
             radioMetagramMode.Text = "Metagramy";
             radioMetagramMode.UseVisualStyleBackColor = true;
-            radioMetagramMode.CheckedChanged += RadioMetagram_CheckedChanged;
+            radioMetagramMode.CheckedChanged += RadioButtonMode_CheckedChanged;
             // 
             // radioAnagramMode
             // 
@@ -570,7 +571,7 @@
             radioAnagramMode.TabIndex = 1;
             radioAnagramMode.Text = "Anagramy";
             radioAnagramMode.UseVisualStyleBackColor = true;
-            radioAnagramMode.CheckedChanged += RadioAnagram_CheckedChanged;
+            radioAnagramMode.CheckedChanged += RadioButtonMode_CheckedChanged;
             // 
             // radioPatternMode
             // 
@@ -584,7 +585,7 @@
             radioPatternMode.TabStop = true;
             radioPatternMode.Text = "Wzorzec";
             radioPatternMode.UseVisualStyleBackColor = true;
-            radioPatternMode.CheckedChanged += RadioPattern_CheckedChanged;
+            radioPatternMode.CheckedChanged += RadioButtonMode_CheckedChanged;
             // 
             // groupBoxLength
             // 
@@ -2303,7 +2304,7 @@
         private CheckBox checkBox1;
         private CheckBox checkBox2;
         private Panel panel1;
-        private RadioButton radioButton1;
+        private RadioButton radioWordInWord;
         private Label label23;
     }
 }

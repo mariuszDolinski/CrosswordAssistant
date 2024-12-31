@@ -11,6 +11,7 @@
         SubWord = 7,
         SuperWord = 8,
         StenoAnagram = 9,
+        WordInWord = 10,
         None = 0
     }
 }

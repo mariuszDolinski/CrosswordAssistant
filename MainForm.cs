@@ -13,7 +13,7 @@ namespace CrosswordAssistant
         private readonly DictionaryService _dictionaryService;
         private readonly List<Label> _infoLabels = [];
         private readonly SearchFactory _searchFactory;
-        private bool _isEnterSuppressed = true;
+        //private bool _isEnterSuppressed = true;
 
         public MainForm()
         {
@@ -39,25 +39,32 @@ namespace CrosswordAssistant
 
             string pattern = textBoxPattern.Text.Trim().ToLower();
 
-            var search = _searchFactory.CreateSearch(Search.Mode);
-
-            List<string> matches;
-            if (checkBoxLength.Checked && pattern.Length == 0)
+            try
             {
-                matches = DictionaryService.CurrentDictionary;
-                textBoxPattern.ReadOnly = true;
-            }
-            else
-            {
-                if (!search.ValidatePattern(pattern)) return;
-                textBoxPattern.ReadOnly = true;
-                matches = search.SearchMatches(pattern);
-            }
+                var search = _searchFactory.CreateSearch(Search.Mode);
 
-            matches = ApplyFilters(matches);
-            matches = Utilities.BoundTo500(matches);
-            FillTextBoxResults(matches, textBoxPatternResults);
-            textBoxPattern.ReadOnly = false;
+                List<string> matches;
+                if (checkBoxLength.Checked && pattern.Length == 0)
+                {
+                    matches = DictionaryService.CurrentDictionary;
+                    textBoxPattern.ReadOnly = true;
+                }
+                else
+                {
+                    if (!search.ValidatePattern(pattern)) return;
+                    textBoxPattern.ReadOnly = true;
+                    matches = search.SearchMatches(pattern);
+                }
+
+                matches = ApplyFilters(matches);
+                matches = Utilities.BoundTo500(matches);
+                FillTextBoxResults(matches, textBoxPatternResults);
+                textBoxPattern.ReadOnly = false;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Podany tryb nie zosta³ jeszcze zaimplementowany");
+            }
         }
         private void UluzSamSearch_Click(object sender, EventArgs e)
         {
@@ -172,7 +179,7 @@ namespace CrosswordAssistant
             foreach (var newWord in DictionaryService.DictionaryToMerge)
             {
                 textBoxWordsToMerge.Text = "Dodajê nowe wyrazy do s³ownika... ";
-                textBoxWordsToMerge.Text += c.ToString() + "/" + DictionaryService.DictionaryToMerge.Count().ToString();
+                textBoxWordsToMerge.Text += c.ToString() + "/" + DictionaryService.DictionaryToMerge.Count.ToString();
                 c++;
                 List<string> oneWord = [newWord];
                 _dictionaryService.AddWordsToDictionary(oneWord);
@@ -181,7 +188,7 @@ namespace CrosswordAssistant
             textBoxWordsToMerge.Text += Environment.NewLine + "Zapisujê do pliku... ";
             if (FileService.SaveDictionary(DictionaryService.CurrentDictionary))
             {
-                MessageBox.Show("Wyrazy (" + DictionaryService.DictionaryToMerge.Count().ToString() + ") dodane poprawnie",
+                MessageBox.Show("Wyrazy (" + DictionaryService.DictionaryToMerge.Count.ToString() + ") dodane poprawnie",
                     "Dodawanie wyrazów zakoñczone", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 textBoxWordsToMerge.Text = "";
                 labelMergeDicts.Text = Messages.MergeDictsInfo;
@@ -272,18 +279,39 @@ namespace CrosswordAssistant
             }
             SetFileInfo(0);
         }
-        private void RadioPattern_CheckedChanged(object sender, EventArgs e)
+        private void RadioButtonMode_CheckedChanged(object sender, EventArgs e)
         {
             if (radioPatternMode.Checked)
             {
                 OnModeChanged(Messages.PatternModeMessage);
             }
-        }
-        private void RadioAnagram_CheckedChanged(object sender, EventArgs e)
-        {
-            if (radioAnagramMode.Checked)
+            else if (radioAnagramMode.Checked)
             {
                 OnModeChanged(Messages.AnagramModeMessage);
+            }
+            else if (radioMetagramMode.Checked)
+            {
+                OnModeChanged(Messages.MetagramModeMessage);
+            }
+            else if (radioPM1Mode.Checked)
+            {
+                OnModeChanged(Messages.MetagramModeMessage);
+            }
+            else if (radioSubWordMode.Checked)
+            {
+                OnModeChanged(Messages.MetagramModeMessage);
+            }
+            else if (radioSuperWordMode.Checked)
+            {
+                OnModeChanged(Messages.MetagramModeMessage);
+            }
+            else if (radioStenoAnagramMode.Checked)
+            {
+                OnModeChanged(Messages.MetagramModeMessage);
+            }
+            else if (radioWordInWord.Checked)
+            {
+                OnModeChanged(Messages.PatternModeMessage);
             }
         }
         private void RadioLength_CheckedChanged(object sender, EventArgs e)
@@ -295,41 +323,6 @@ namespace CrosswordAssistant
             else
             {
                 textBoxLength.Enabled = false;
-            }
-        }
-        private void RadioMetagram_CheckedChanged(object sender, EventArgs e)
-        {
-            if (radioMetagramMode.Checked)
-            {
-                OnModeChanged(Messages.MetagramModeMessage);
-            }
-        }
-        private void RadioPM1_CheckedChanged(object sender, EventArgs e)
-        {
-            if (radioPM1Mode.Checked)
-            {
-                OnModeChanged(Messages.MetagramModeMessage);
-            }
-        }
-        private void RadioSubWord_CheckedChanged(object sender, EventArgs e)
-        {
-            if (radioSubWordMode.Checked)
-            {
-                OnModeChanged(Messages.MetagramModeMessage);
-            }
-        }
-        private void RadioSuperWord_CheckedChanged(object sender, EventArgs e)
-        {
-            if (radioSuperWordMode.Checked)
-            {
-                OnModeChanged(Messages.MetagramModeMessage);
-            }
-        }
-        private void RadioStenoAnagram_CheckedChanged(object sender, EventArgs e)
-        {          
-            if (radioStenoAnagramMode.Checked)
-            {
-                OnModeChanged(Messages.MetagramModeMessage);
             }
         }
         private void CheckBoxStartWith_CheckedChanged(object sender, EventArgs e)
@@ -479,8 +472,8 @@ namespace CrosswordAssistant
         {
             var currentPage = (sender as TabControl)!.SelectedIndex;
             SetMode(currentPage);
-            if (currentPage == 3) _isEnterSuppressed = false;
-            else _isEnterSuppressed = true;
+            //if (currentPage == 3) _isEnterSuppressed = false;
+            //else _isEnterSuppressed = true;
         }
 
             #region InfoLabels click events
@@ -730,6 +723,7 @@ namespace CrosswordAssistant
                     else if (radioSubWordMode.Checked) Search.Mode = SearchMode.SubWord;
                     else if (radioSuperWordMode.Checked) Search.Mode = SearchMode.SuperWord;
                     else if (radioStenoAnagramMode.Checked) Search.Mode = SearchMode.StenoAnagram;
+                    else if (radioWordInWord.Checked) Search.Mode = SearchMode.WordInWord;
                     else Search.Mode = SearchMode.None;
                     break;
             }
