@@ -114,11 +114,28 @@ namespace CrosswordAssistant
             return true;
         }
         /// <summary>
-         /// Split given pattern with coma, and check if word contains any element from that array
-         /// </summary>
-         /// <param name="word"></param>
-         /// <param name="pattern">texts to find separated by comas</param>
-         /// <returns>true if word contain all of given texts from given pattern, false otherwise</returns>
+        /// Split given pattern with coma, and check if word contains any element from that array
+        /// </summary>
+        /// <param name="word"></param>
+        /// <param name="pattern">texts to find separated by comas</param>
+        /// <returns>true if word doesn't contains at least one of given texts from given pattern, false otherwise</returns>
+        public static bool NotContainsSome(this string word, string pattern)
+        {
+            if (pattern.Length == 0) return true;
+            var txts = pattern.Split(',');
+            foreach (var txt in txts)
+            {
+                if (txt.Length == 0) continue;
+                if (!word.Contains(txt, StringComparison.CurrentCultureIgnoreCase)) return true;
+            }
+            return false;
+        }
+        /// <summary>
+        /// Split given pattern with coma, and check if word contains all element from that array
+        /// </summary>
+        /// <param name="word"></param>
+        /// <param name="pattern">texts to find separated by comas</param>
+        /// <returns>true if word contain all of given texts from given pattern, false otherwise</returns>
         public static bool ContainsAll(this string word, string pattern)
         {
             if (pattern.Length == 0) return true;
@@ -129,6 +146,23 @@ namespace CrosswordAssistant
                 if (!word.Contains(txt, StringComparison.CurrentCultureIgnoreCase)) return false;
             }
             return true;
+        }
+        /// <summary>
+        /// Split given pattern with coma, and check if word contains any element from that array
+        /// </summary>
+        /// <param name="word"></param>
+        /// <param name="pattern">texts to find separated by comas</param>
+        /// <returns>true if word contain at least one of given texts from given pattern, false otherwise</returns>
+        public static bool ContainsAny(this string word, string pattern)
+        {
+            if (pattern.Length == 0) return true;
+            var txts = pattern.Split(',');
+            foreach (var txt in txts)
+            {
+                if (txt.Length == 0) continue;
+                if (word.Contains(txt, StringComparison.CurrentCultureIgnoreCase)) return true;
+            }
+            return false;
         }
         /// <summary>
         /// Add dots at the end of given word

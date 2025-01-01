@@ -331,38 +331,39 @@ namespace CrosswordAssistant
                 textBoxLength.Enabled = false;
             }
         }
-        private void SelectedFilters_CheckedChanged(object sender, EventArgs e)
+        private void ActiveFilters_CheckedChanged(object sender, EventArgs e)
         {
             var obj = (CheckBox)sender;
             var container = (GroupBox?)obj.Parent;
             if (container == null) return;
             var radioButtons = container.Controls.OfType<RadioButton>().ToList();
+            var textBox = container.Controls.OfType<TextBox>().ToList();
+            var checkBoxes = container.Controls.OfType<CheckBox>().ToList();
+            var checkBoxActive = checkBoxes.First(c => c.Text == "Aktywny");
+            var checkBoxOthers = checkBoxes.FindAll(c => c.Text != "Aktywny").ToList();
+
 
             labelCurrentPatternLen.Text = textBoxPattern.Text.Length.ToString();
-
-            if (container.Text == _filtersNames[StartWithFilterName])
-            {             
-                FormService.FilterChecked(checkBoxBeginsWithActive, textBoxBeginsWith, radioButtons);
-                if (!checkBoxBeginsWithActive.Checked) textBoxPattern.Focus();
-            }
-            else if (container.Text == _filtersNames[EndWithFilterName]) 
+            FormService.FilterChecked(checkBoxActive, checkBoxOthers, textBox, radioButtons);
+            if (!checkBoxActive.Checked) textBoxPattern.Focus();
+        }
+        private void SelectedFilters_CheckedChanged(object sender, EventArgs e)
+        {
+            if (sender is RadioButton radio)
             {
-                FormService.FilterChecked(checkBoxEndsWithActive, textBoxEndsWith, radioButtons);
-                if (!checkBoxBeginsWithActive.Checked) textBoxPattern.Focus();
+                var container = (GroupBox?)radio.Parent;
+                if (container == null) return;
+                var textBoxes = container.Controls.OfType<TextBox>().ToList();
+                foreach (var c in textBoxes) c.Focus();
             }
 
-        }
-        private void CheckBoxContains_CheckedChanged(object sender, EventArgs e)
-        {
-            labelCurrentPatternLen.Text = textBoxPattern.Text.Length.ToString();
-            //FormService.FilterChecked(checkBoxContains, textBoxContains);
-            if (!checkBoxContains.Checked) textBoxPattern.Focus();
-        }
-        private void CheckBoxNotContains_CheckedChange(object sender, EventArgs e)
-        {
-            labelCurrentPatternLen.Text = textBoxPattern.Text.Length.ToString();
-            //FormService.FilterChecked(checkBoxNotContains, textBoxNotContains);
-            if (!checkBoxNotContains.Checked) textBoxPattern.Focus();
+            if (sender is CheckBox cb)
+            {
+                var container = (GroupBox?)cb.Parent;
+                if (container == null) return;
+                var textBoxes = container.Controls.OfType<TextBox>().ToList();
+                foreach (var c in textBoxes) c.Focus();
+            }
         }
         private void CheckBoxLength_CheckedChanged(object sender, EventArgs e)
         {
@@ -565,9 +566,11 @@ namespace CrosswordAssistant
 
             _filtersNames[StartWithFilterName] = "Pocz¹tek";
             _filtersNames[EndWithFilterName] = "Koniec";
+            _filtersNames[ContainsFilterName] = "Zawiera";
 
             groupBoxBeginWithFilters.Text = _filtersNames[StartWithFilterName];
             groupBoxEndsWithFilters.Text = _filtersNames[EndWithFilterName];
+
         }
         private void SetLengthControlsEnabled(bool isEnabled)
         {
@@ -701,17 +704,9 @@ namespace CrosswordAssistant
             {
                 results = ApplyEndsWithFilter(results);
             }
-            if (checkBoxContains.Checked && textBoxContains.Text.Length > 0)
-            {
-                results = results
-                    .Where(w => w.ContainsAll(textBoxContains.Text))
-                    .ToList();
-            }
-            if (checkBoxNotContains.Checked && textBoxNotContains.Text.Length > 0)
-            {
-                results = results
-                    .Where(w => w.NotContainsAny(textBoxNotContains.Text))
-                    .ToList();
+            if (checkBoxContainsActive.Checked) 
+            { 
+                results = ApplyContainsFilters(results);
             }
             return results;
         }
@@ -734,7 +729,7 @@ namespace CrosswordAssistant
                 return [];
             }
         }
-        private List<string> ApplyEndsWithFilter(List<string> results) 
+        private List<string> ApplyEndsWithFilter(List<string> results)
         {
             if (radioButtonEndsWith.Checked && textBoxEndsWith.Text.Length > 0)
             {
@@ -744,7 +739,7 @@ namespace CrosswordAssistant
             }
             else if (radioButtonEndsWithNot.Checked && textBoxEndsWith.Text.Length > 0)
             {
-                return  results
+                return results
                     .Where(w => !w.EndsWith(textBoxEndsWith.Text, StringComparison.CurrentCultureIgnoreCase))
                     .ToList();
             }
@@ -752,6 +747,33 @@ namespace CrosswordAssistant
             {
                 return [];
             }
+        }
+        private List<string> ApplyContainsFilters(List<string> results) 
+        {
+            if (checkBoxContains.Checked && textBoxContains.Text.Length > 0)
+            {
+                if(radioButtonContainsAnd.Checked)
+                results = results
+                    .Where(w => w.ContainsAll(textBoxContains.Text))
+                    .ToList();
+                if (radioButtonContainsOr.Checked)
+                    results = results
+                    .Where(w => w.ContainsAny(textBoxContains.Text))
+                    .ToList();
+            }
+            if (checkBoxNotContains.Checked && textBoxNotContains.Text.Length > 0)
+            {
+                if (radioButtonContainsAnd.Checked)
+                    results = results
+                    .Where(w => w.NotContainsAny(textBoxNotContains.Text))
+                    .ToList();
+                if(radioButtonContainsOr.Checked)
+                    results = results
+                    .Where(w => w.NotContainsSome(textBoxNotContains.Text))
+                    .ToList();
+            }
+
+            return results;
         }
         private void SetMode(int tabIndex)
         {

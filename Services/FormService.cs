@@ -2,25 +2,25 @@
 {
     public class FormService
     {
-        public static void FilterChecked(CheckBox checkBox, TextBox textBox, List<RadioButton> radios) 
+        public static void FilterChecked(CheckBox checkBox, List<CheckBox> checkBoxes, List<TextBox> textBoxes, List<RadioButton> radios) 
         {
-            if (checkBox.Checked)
-            {
-                foreach(var radio in radios)
-                    radio.Enabled = true;
-                radios[1].Checked = true;
-                textBox.Enabled = true;
-                textBox.Focus();
-            }
+            foreach(var radio in radios)
+                radio.Enabled = checkBox.Checked;
+            if(checkBox.Checked)
+                radios[1].Checked = checkBox.Checked;
             else
-            {
                 foreach (var radio in radios)
-                {
-                    radio.Enabled = false;
-                    radio.Checked = false;
-                }                  
-                textBox.Enabled = false;
-                textBox.Text = "";
+                    radio.Checked = checkBox.Checked;
+            foreach (var tb in textBoxes)
+            {
+                tb.Enabled = checkBox.Checked;
+                tb.Text = "";
+                tb.Focus();
+            }
+            foreach(var cb in checkBoxes)
+            {
+                cb.Enabled = checkBox.Checked;
+                cb.Checked = false;
             }
         }
         public static void ResetLabelsBackColor(List<Label> labels, Color color)
