@@ -7,20 +7,20 @@ namespace CrosswordAssistant.Searches
     {
         public Search CreateSearch(SearchMode mode)
         {
-            switch(mode)
+            return mode switch
             {
-                case SearchMode.Pattern: return new PatternSearch();
-                case SearchMode.Anagram: return new AnagramSearch();
-                case SearchMode.Metagram: return new MetagramSearch();
-                case SearchMode.PlusMinus1: return new PlusMinus1Search();
-                case SearchMode.UluzSam: return new UlozSamSearch();
-                case SearchMode.Scrabble: return new ScrabbleSearch();
-                case SearchMode.SubWord: return new SubWordSearch();
-                case SearchMode.SuperWord: return new SuperWordSearch();
-                case SearchMode.StenoAnagram: return new StenoAnagramSearch();
-                case SearchMode.WordInWord: return new WordInWordSearch();
-                default: throw new NotImplementedException("SearchFactory Error: Search not implemented");
-            }
+                SearchMode.Pattern => new PatternSearch(),
+                SearchMode.Anagram => new AnagramSearch(),
+                SearchMode.Metagram => new MetagramSearch(),
+                SearchMode.PlusMinus1 => new PlusMinus1Search(),
+                SearchMode.UluzSam => new UlozSamSearch(),
+                SearchMode.Scrabble => new ScrabbleSearch(),
+                SearchMode.SubWord => new SubWordSearch(),
+                SearchMode.SuperWord => new SuperWordSearch(),
+                SearchMode.StenoAnagram => new StenoAnagramSearch(),
+                SearchMode.WordInWord => new WordInWordSearch(),
+                _ => throw new NotImplementedException("SearchFactory Error: Search not implemented"),
+            };
         }
     }
 }

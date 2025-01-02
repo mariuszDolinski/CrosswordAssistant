@@ -449,14 +449,10 @@ namespace CrosswordAssistant
                             case Keys.D4: radioPM1Mode.Checked = true; break;
                             case Keys.D5: radioSubWordMode.Checked = true; break;
                             case Keys.D6: radioSuperWordMode.Checked = true; break;
-                            case Keys.D7:
-                                checkBoxLength.Checked = !checkBoxLength.Checked;
-                                break;
-                            case Keys.D8:
-                                checkBoxContains.Checked = !checkBoxContains.Checked;
-                                break;
+                            case Keys.D7: radioStenoAnagramMode.Checked = true; break;
+                            case Keys.D8: radioWordInWord.Checked = true; break;
                             case Keys.D9:
-                                checkBoxNotContains.Checked = !checkBoxNotContains.Checked;
+                                checkBoxLength.Checked = !checkBoxLength.Checked;
                                 break;
                         }
                     }
@@ -485,61 +481,13 @@ namespace CrosswordAssistant
             var currentPage = (sender as TabControl)!.SelectedIndex;
             SetMode(currentPage);
         }
-
-        #region InfoLabels click events
-        private void PatternInfo_Click(object sender, EventArgs e)
+        private void InfoLabel_Click(object sender, EventArgs e)
         {
-            SetInfo((Label)sender, Messages.PatternInfo);
+            var label = (Label)sender;
+            var container = (TableLayoutPanel?)label.Parent;
+            if (container == null) return;
+            SetInfo(label, Messages.GetInfoMessage(container.GetRow(label)));
         }
-        private void AnagramInfo_Click(object sender, EventArgs e)
-        {
-            SetInfo((Label)sender, Messages.AnagramInfo);
-        }
-        private void MetagramInfo_Click(object sender, EventArgs e)
-        {
-            SetInfo((Label)sender, Messages.MetagramInfo);
-        }
-        private void LengthInfo_Click(object sender, EventArgs e)
-        {
-            SetInfo((Label)sender, Messages.LengthInfo);
-        }
-        private void UlozSamInfo_Click(object sender, EventArgs e)
-        {
-            SetInfo((Label)sender, Messages.UlozSamInfo);
-        }
-        private void PlusMinus1Info_Click(object sender, EventArgs e)
-        {
-            SetInfo((Label)sender, Messages.PlusMinus1Info);
-        }
-        private void ScrabbleInfo_Click(object sender, EventArgs e)
-        {
-            SetInfo((Label)sender, Messages.ScrabbleInfo);
-        }
-        private void FiltersInfo_Click(object sender, EventArgs e)
-        {
-            SetInfo((Label)sender, Messages.FiltersInfo);
-        }
-        private void Shortcuts_Click(object sender, EventArgs e)
-        {
-            SetInfo((Label)sender, Messages.Shortcuts);
-        }
-        private void SubwordInfo_Click(object sender, EventArgs e)
-        {
-            SetInfo((Label)sender, Messages.SubwordInfo);
-        }
-        private void SuperwordInfo_Click(object sender, EventArgs e)
-        {
-            SetInfo((Label)sender, Messages.SuperwordInfo);
-        }
-        private void Stenoanagraminfo_Click(object sender, EventArgs e)
-        {
-            SetInfo((Label)sender, Messages.StenoanagramwordInfo);
-        }
-        private void WordInWordInfo_Click(object sender, EventArgs e)
-        {
-            SetInfo((Label)sender, Messages.WordInWordInfo);
-        }
-        #endregion
 
         #endregion
 

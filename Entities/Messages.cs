@@ -9,7 +9,7 @@
         public static string LengthModeMessage { get; } = "Wybierz dodatkowe filtry i kliknij Szukaj...";
         public static string EmptyPattern { get; } = "Wzorzec nie zawiera żadnych znaków.";
         public static string VersionInfo { get; } = "Pomocnik szaradzisty v2.7.4" + Environment.NewLine +
-                "Autor: Mariusz Doliński" + Environment.NewLine + "© 2024";
+                "Autor: Mariusz Doliński" + Environment.NewLine + "© 2025";
         public static string MergeDictsInfo { get; } = "Wczytaj plik z wyrazami, które chcesz dodać do bieżącego słownika";
         public static string PatternInfo { get; } = "Wyszukuje wyrazy posiadające te same litery na tych" +
             " samych pozycjach co w podanym wzorcu. Znak kropki (.) zastępuje dowolną literę," +
@@ -38,28 +38,37 @@
             " z danego wyrazu, poprzez dodanie lub odjęcie dokładnie jednej litery, np. SALA -> SALWA, PROSTO -> PROSO." +
             " We wzorcu dozwolone są jedynie litery.";
         public static string ScrabbleInfo { get; } = "W tym trybie wyszukiwane są wszystkie wyrazy, które można ułożyć " +
-            "z liter podanych we wzorcu. We wzorcu można użyć maksymalnie dwóch znaków kropki (.) zatępjących dowolną literę. " +
+            "z liter podanych we wzorcu (niekoniecznie wszystkich). We wzorcu można użyć maksymalnie dwóch znaków kropki (.) zatępjących dowolną literę. " +
             "Wzorzec powinien mieć od 4 do 15 znaków. Dopasowane wyrazy pogrupowane są według ilości znaków, " +
             "w nawiasie podana jest podstawowa punktacja słowa w grze Scrabble (nie uwzględniająca dodatkowych premii " +
             "oraz liter użytych jako mydła (znak kropki)). ";
         public static string FiltersInfo { get; } = "Dodatkowe filtry w zakładce Szaradzista pozwalają ograniczyć ilość dopsowań " +
-            "dla wyszukiwań z tej zakładki. Dla filtrów 'Tylko wyrazy niezawierające' oraz 'Tylko wyrazy zawierające' można po przecinku podać kilka wyrażeń; " +
-            "w takim przypadku dopasowane zostaną odpowiednio wyrazy niezawierające żadnego z podanych po przecinku wyrażeń/liter lub zawierające wszystkie podane po przecinku wyrażenia/litery.";
+            "dla wyszukiwań z tej zakładki. Aby aktywować daną grupę filtrów należy zaznaczyć w niej przycisk 'Aktywny'" +
+            Environment.NewLine + Environment.NewLine + "Dostępne grupy filtrów:" + Environment.NewLine +
+            "Początek - filtruje tylko wyrazy zaczynające lub niezaczynające się na podaną literę lub grupę liter" + Environment.NewLine +
+            "Koniec - filtruje tylko wyrazy kończące lub niekończące się na podaną literę lub grupę liter" + Environment.NewLine +
+            "Zawiera - filtruje tylko wyrazy zawierające oraz\\lub niezawierające podane litery lub wyrażenia. " +
+            "Dla filtrów 'Zawiera' można podać po przecinku kilka liter lub wyrażeń. W takim przypadku dopasowane zostaną odpowiednio wyrazy, " +
+            "które zawierają/niezwierają każde lub conajmniej jedno z podanych po przecinku wyrażeń/liter, " +
+            "w zależności od zaznaczenia opcji ORAZ/LUB. " +
+            "W przypadku zaznaczenia jednoczesnie filtru zawiera i niezawiera, pomiędzy tymi filtrami zwasze stosowany jest spójnik ORAZ. " +
+            "Opcje ORAZ/LUB mają zastosowania do każdego filtru zawiera/niezawiera oddzielnie, jeśli podanych jest kilka wyrażeń po przecinku." +
+            "W przypadku wpisania jedego wyrażenia opcje ORAZ/LUB nie mają zastosowania.";
         public static string SubwordInfo { get; } = "W tym trybie wyszukiwane są wyrazy, które można utworzyć z wyrazu wzorca, " +
-            "poprzez usunięcie z niego niektórych liter, np. dla wzorca 'tatarak' dopasowane zostaną m. in. wyrazy: " +
-            "tata, atak, rak. We wzorcu dozwolone są jedynie litery.";
+            "poprzez usunięcie z niego niektórych liter, np. dla wzorca TTATARAK dopasowane zostaną m. in. wyrazy: " +
+            "TATA, ATAK, RAK. We wzorcu dozwolone są jedynie litery.";
         public static string SuperwordInfo { get; } = "W tym trybie wyszukiwane są wyrazy, które można utworzyć z wyrazu wzorca, " +
-            "poprzez dodanie do niego dodatkowych liter (bez zmiany kolejności liter we wzorcu), np. dla wzorca 'trawa' dopasowane zostaną m. in. wyrazy: " +
+            "poprzez dodanie do niego dodatkowych liter (bez zmiany kolejności liter we wzorcu), np. dla wzorca TRAWA dopasowane zostaną m. in. wyrazy: " +
             "TRAtWA, alTeRnAtyWA. We wzorcu dozwolone są jedynie litery.";
         public static string StenoanagramwordInfo { get; } = "W tym trybie zwracane są wszystkie wyrazy, " +
             "dla których podany we wzorcu wyraz jest stenoanagramem. Stenoanagramy to wyrazy powstałe z " +
-            "niepowtarzalnych liter danego wyrazu, np. stenoanagramem wyrazu 'brakarka' jest np. wyraz 'bark'. " +
+            "niepowtarzalnych liter danego wyrazu, np. stenoanagramem wyrazu BRAK jest m. in. wyraz BRAKARKA. " +
             "We wzorcu dozwolone są tylko litery. Dodatkowo litery we wzorcu nie mogą się powtarzać.";
         public static string WordInWordInfo { get; } = "W tym trybie wyszukiwane są wyrazy pasujące do podanego wzorca. " +
             "Ponadto litery, które we wzorcu były oznaczone kropką muszą również tworzyć słowo ze słownika, np. " +
             "dla wzorca SZ.... dopasowane zostaną m. in. wyrazy SZRAMA, SZKRAB; natomiast np. wyraz SZAŁAS nie zostaie " +
-            "dopasowany, gdyż wyraz AŁAS nie występuje w słowniku.";
-        
+            "dopasowany, gdyż wyrażenie AŁAS nie występuje w słowniku.";
+
         public static string Shortcuts { get; } = "Dostępne skróty klawiaturowe:" + Environment.NewLine +
             "Enter - uruchamia wyszukiwanie dla aktualnego wzorca" + Environment.NewLine +
             "F6 - zaznacza wzorzec" + Environment.NewLine +
@@ -67,11 +76,31 @@
             "Ctrl+2 - tryb Anagram" + Environment.NewLine +
             "Ctrl+3 - tryb Metagram" + Environment.NewLine +
             "Ctrl+4 - tryb Plus/Minus 1" + Environment.NewLine +
-            "Ctrl+5 - tryb Długość" + Environment.NewLine +
-            "Ctrl+6 - filtr 'Tylko wyrazy zaczynające się od'" + Environment.NewLine +
-            "Ctrl+7 - filtr 'Tylko wyrazy kończące się na'" + Environment.NewLine +
-            "Ctrl+8 - filtr 'Tylko wyrazy zawierające'" + Environment.NewLine +
-            "Ctrl+9 - filtr 'Tylko wyrazy niezawierające'";
+            "Ctrl+5 - tryb Podsłowa" + Environment.NewLine +
+            "Ctrl+6 - tryb Nadsłowa" + Environment.NewLine +
+            "Ctrl+7 - tryb Stenoangram" + Environment.NewLine +
+            "Ctrl+8 - tryb Słowo w słowie" + Environment.NewLine +
+            "Ctrl+9 - tryb Długość";
 
+        public static string GetInfoMessage(int index)
+        {
+            return index switch
+            {
+                0 => PatternInfo,
+                1 => AnagramInfo,
+                2 => MetagramInfo,
+                3 => LengthInfo,
+                4 => UlozSamInfo,
+                5 => PlusMinus1Info,
+                6 => SubwordInfo,
+                7 => SuperwordInfo,
+                8 => StenoanagramwordInfo,
+                9 => ScrabbleInfo,
+                10 => WordInWordInfo,
+                11 => FiltersInfo,
+                12 => Shortcuts,
+                _ => "Nie ma takiego trybu",
+            };
+        }
     }
 }

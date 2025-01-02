@@ -1797,8 +1797,8 @@
             // tableLayoutPanel2
             // 
             tableLayoutPanel2.ColumnCount = 3;
-            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 55F));
-            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 45F));
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 30F));
             tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
             tableLayoutPanel2.Controls.Add(labelWordsCount, 1, 1);
             tableLayoutPanel2.Controls.Add(labelDicLengthInfo, 0, 1);
@@ -1811,7 +1811,6 @@
             tableLayoutPanel2.RowCount = 2;
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
             tableLayoutPanel2.Size = new Size(1156, 69);
             tableLayoutPanel2.TabIndex = 2;
             // 
@@ -1820,10 +1819,10 @@
             labelWordsCount.BackColor = Color.MediumAquamarine;
             labelWordsCount.Dock = DockStyle.Fill;
             labelWordsCount.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            labelWordsCount.Location = new Point(637, 38);
+            labelWordsCount.Location = new Point(522, 38);
             labelWordsCount.Margin = new Padding(2, 4, 0, 0);
             labelWordsCount.Name = "labelWordsCount";
-            labelWordsCount.Size = new Size(229, 31);
+            labelWordsCount.Size = new Size(344, 31);
             labelWordsCount.TabIndex = 3;
             labelWordsCount.TextAlign = ContentAlignment.TopCenter;
             // 
@@ -1835,7 +1834,7 @@
             labelDicLengthInfo.Location = new Point(0, 38);
             labelDicLengthInfo.Margin = new Padding(0, 4, 2, 0);
             labelDicLengthInfo.Name = "labelDicLengthInfo";
-            labelDicLengthInfo.Size = new Size(633, 31);
+            labelDicLengthInfo.Size = new Size(518, 31);
             labelDicLengthInfo.TabIndex = 1;
             labelDicLengthInfo.Text = "Ilość wyrazów w słowniku:";
             labelDicLengthInfo.TextAlign = ContentAlignment.TopRight;
@@ -1848,7 +1847,7 @@
             labelFileNameInfo.Location = new Point(0, 4);
             labelFileNameInfo.Margin = new Padding(0, 4, 2, 0);
             labelFileNameInfo.Name = "labelFileNameInfo";
-            labelFileNameInfo.Size = new Size(633, 30);
+            labelFileNameInfo.Size = new Size(518, 30);
             labelFileNameInfo.TabIndex = 0;
             labelFileNameInfo.Text = "Wczytany plik ze słownikiem:";
             labelFileNameInfo.TextAlign = ContentAlignment.TopRight;
@@ -1858,10 +1857,10 @@
             labelFileName.BackColor = Color.MediumAquamarine;
             labelFileName.Dock = DockStyle.Fill;
             labelFileName.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            labelFileName.Location = new Point(637, 4);
+            labelFileName.Location = new Point(522, 4);
             labelFileName.Margin = new Padding(2, 4, 0, 0);
             labelFileName.Name = "labelFileName";
-            labelFileName.Size = new Size(229, 30);
+            labelFileName.Size = new Size(344, 30);
             labelFileName.TabIndex = 2;
             labelFileName.TextAlign = ContentAlignment.TopCenter;
             // 
@@ -1916,9 +1915,9 @@
             labelAbout.BackColor = Color.Silver;
             labelAbout.Dock = DockStyle.Fill;
             labelAbout.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            labelAbout.Location = new Point(234, 560);
+            labelAbout.Location = new Point(234, 642);
             labelAbout.Name = "labelAbout";
-            labelAbout.Size = new Size(925, 188);
+            labelAbout.Size = new Size(925, 106);
             labelAbout.TabIndex = 18;
             labelAbout.TextAlign = ContentAlignment.MiddleCenter;
             // 
@@ -1926,7 +1925,7 @@
             // 
             label2.BackColor = Color.Transparent;
             label2.Dock = DockStyle.Top;
-            label2.Location = new Point(234, 558);
+            label2.Location = new Point(234, 640);
             label2.Name = "label2";
             label2.Size = new Size(925, 2);
             label2.TabIndex = 17;
@@ -1953,7 +1952,7 @@
             textBoxAbout.Margin = new Padding(3, 6, 3, 3);
             textBoxAbout.Multiline = true;
             textBoxAbout.Name = "textBoxAbout";
-            textBoxAbout.Size = new Size(925, 518);
+            textBoxAbout.Size = new Size(925, 600);
             textBoxAbout.TabIndex = 14;
             // 
             // tableLayoutPanel4
@@ -2007,7 +2006,7 @@
             labelWordInWordInfo.TabIndex = 20;
             labelWordInWordInfo.Text = "SŁOWO W SŁOWIE";
             labelWordInWordInfo.TextAlign = ContentAlignment.MiddleLeft;
-            labelWordInWordInfo.Click += WordInWordInfo_Click;
+            labelWordInWordInfo.Click += InfoLabel_Click;
             // 
             // labelStenoAnagramInfo
             // 
@@ -2022,7 +2021,7 @@
             labelStenoAnagramInfo.TabIndex = 19;
             labelStenoAnagramInfo.Text = "STENOANAGRAM";
             labelStenoAnagramInfo.TextAlign = ContentAlignment.MiddleLeft;
-            labelStenoAnagramInfo.Click += Stenoanagraminfo_Click;
+            labelStenoAnagramInfo.Click += InfoLabel_Click;
             // 
             // labelSuperWordInfo
             // 
@@ -2037,7 +2036,7 @@
             labelSuperWordInfo.TabIndex = 19;
             labelSuperWordInfo.Text = "NADSŁOWO";
             labelSuperWordInfo.TextAlign = ContentAlignment.MiddleLeft;
-            labelSuperWordInfo.Click += SuperwordInfo_Click;
+            labelSuperWordInfo.Click += InfoLabel_Click;
             // 
             // labelSubwordInfo
             // 
@@ -2052,7 +2051,7 @@
             labelSubwordInfo.TabIndex = 18;
             labelSubwordInfo.Text = "PODSŁOWO";
             labelSubwordInfo.TextAlign = ContentAlignment.MiddleLeft;
-            labelSubwordInfo.Click += SubwordInfo_Click;
+            labelSubwordInfo.Click += InfoLabel_Click;
             // 
             // labelPM1Info
             // 
@@ -2067,7 +2066,7 @@
             labelPM1Info.TabIndex = 14;
             labelPM1Info.Text = "PLUS/MINUS 1";
             labelPM1Info.TextAlign = ContentAlignment.MiddleLeft;
-            labelPM1Info.Click += PlusMinus1Info_Click;
+            labelPM1Info.Click += InfoLabel_Click;
             // 
             // labelUlozSamInfo
             // 
@@ -2082,7 +2081,7 @@
             labelUlozSamInfo.TabIndex = 4;
             labelUlozSamInfo.Text = "UŁÓŻ SAM";
             labelUlozSamInfo.TextAlign = ContentAlignment.MiddleLeft;
-            labelUlozSamInfo.Click += UlozSamInfo_Click;
+            labelUlozSamInfo.Click += InfoLabel_Click;
             // 
             // labelLengthInfo
             // 
@@ -2097,7 +2096,7 @@
             labelLengthInfo.TabIndex = 3;
             labelLengthInfo.Text = "DŁUGOŚĆ";
             labelLengthInfo.TextAlign = ContentAlignment.MiddleLeft;
-            labelLengthInfo.Click += LengthInfo_Click;
+            labelLengthInfo.Click += InfoLabel_Click;
             // 
             // labelMetagramInfo
             // 
@@ -2112,7 +2111,7 @@
             labelMetagramInfo.TabIndex = 2;
             labelMetagramInfo.Text = "METAGRAM";
             labelMetagramInfo.TextAlign = ContentAlignment.MiddleLeft;
-            labelMetagramInfo.Click += MetagramInfo_Click;
+            labelMetagramInfo.Click += InfoLabel_Click;
             // 
             // labelAnagramInfo
             // 
@@ -2127,7 +2126,7 @@
             labelAnagramInfo.TabIndex = 1;
             labelAnagramInfo.Text = "ANAGRAM";
             labelAnagramInfo.TextAlign = ContentAlignment.MiddleLeft;
-            labelAnagramInfo.Click += AnagramInfo_Click;
+            labelAnagramInfo.Click += InfoLabel_Click;
             // 
             // labelPatternInfo
             // 
@@ -2142,7 +2141,7 @@
             labelPatternInfo.TabIndex = 0;
             labelPatternInfo.Text = "WZORZEC";
             labelPatternInfo.TextAlign = ContentAlignment.MiddleLeft;
-            labelPatternInfo.Click += PatternInfo_Click;
+            labelPatternInfo.Click += InfoLabel_Click;
             // 
             // labelScrabbleInfo
             // 
@@ -2157,7 +2156,7 @@
             labelScrabbleInfo.TabIndex = 16;
             labelScrabbleInfo.Text = "SCRABBLE";
             labelScrabbleInfo.TextAlign = ContentAlignment.MiddleLeft;
-            labelScrabbleInfo.Click += ScrabbleInfo_Click;
+            labelScrabbleInfo.Click += InfoLabel_Click;
             // 
             // labelShortcuts
             // 
@@ -2172,7 +2171,7 @@
             labelShortcuts.TabIndex = 15;
             labelShortcuts.Text = "SKRÓTY";
             labelShortcuts.TextAlign = ContentAlignment.MiddleLeft;
-            labelShortcuts.Click += Shortcuts_Click;
+            labelShortcuts.Click += InfoLabel_Click;
             // 
             // labelInfoFilters
             // 
@@ -2187,7 +2186,7 @@
             labelInfoFilters.TabIndex = 17;
             labelInfoFilters.Text = "DODATKOWE FILTRY";
             labelInfoFilters.TextAlign = ContentAlignment.MiddleLeft;
-            labelInfoFilters.Click += FiltersInfo_Click;
+            labelInfoFilters.Click += InfoLabel_Click;
             // 
             // label3
             // 
