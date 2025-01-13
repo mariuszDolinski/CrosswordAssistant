@@ -74,10 +74,12 @@
             saveDictLocBtn.TabIndex = 2;
             saveDictLocBtn.Text = "Zmień";
             saveDictLocBtn.UseVisualStyleBackColor = true;
-            saveDictLocBtn.Click += saveNewDictionaryPathBtn_Click;
+            saveDictLocBtn.Click += SaveNewDictionaryPathBtn_Click;
             // 
             // textBoxDefaultDictPath
             // 
+            textBoxDefaultDictPath.BackColor = SystemColors.HighlightText;
+            textBoxDefaultDictPath.Enabled = false;
             textBoxDefaultDictPath.Location = new Point(15, 44);
             textBoxDefaultDictPath.Name = "textBoxDefaultDictPath";
             textBoxDefaultDictPath.Size = new Size(772, 31);
@@ -114,6 +116,7 @@
             Controls.Add(tabControl1);
             Name = "SettingsForm";
             Text = "Ustawienia";
+            FormClosing += Settings_OnClosed;
             tabControl1.ResumeLayout(false);
             tabPageSettingsDictionary.ResumeLayout(false);
             tabPageSettingsDictionary.PerformLayout();

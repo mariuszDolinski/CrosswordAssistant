@@ -487,6 +487,7 @@ namespace CrosswordAssistant
         {
             SettingsForm settingsForm = new(this);
             settingsForm.Show();
+            Enabled = false;
         }
 
         #endregion

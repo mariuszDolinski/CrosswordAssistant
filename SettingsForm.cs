@@ -14,10 +14,10 @@ namespace CrosswordAssistant
 {
     public partial class SettingsForm : Form
     {
-        //private readonly MainForm currentMainForm;
+        private readonly MainForm _currentMainForm;
         public SettingsForm(MainForm form)
         {
-            //currentMainForm = form;
+            _currentMainForm = form;
             InitializeComponent();
             SetDictionaryPath();
         }
@@ -27,7 +27,7 @@ namespace CrosswordAssistant
             textBoxDefaultDictPath.Text = Path.GetFullPath(FileService.SavePath) + "\\" + FileService.FileName;
         }
 
-        private void saveNewDictionaryPathBtn_Click(object sender, EventArgs e)
+        private void SaveNewDictionaryPathBtn_Click(object sender, EventArgs e)
         {
             if (FileService.SetCurrentDictionaryPathFromDialog(openFileDialogNewDefaultDictPath))
             {
@@ -38,6 +38,11 @@ namespace CrosswordAssistant
                 FileService.SetDictionaryPathToAppConfig();
                 SetDictionaryPath();
             }
+        }
+
+        private void Settings_OnClosed(object sender, FormClosingEventArgs e)
+        {
+            _currentMainForm.Enabled = true;
         }
     }
 }

@@ -2001,9 +2001,9 @@
             buttonSettings.Dock = DockStyle.Bottom;
             buttonSettings.FlatStyle = FlatStyle.Flat;
             buttonSettings.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            buttonSettings.Location = new Point(3, 676);
+            buttonSettings.Location = new Point(3, 673);
             buttonSettings.Name = "buttonSettings";
-            buttonSettings.Size = new Size(225, 32);
+            buttonSettings.Size = new Size(225, 35);
             buttonSettings.TabIndex = 19;
             buttonSettings.Text = "Ustawienia";
             buttonSettings.UseVisualStyleBackColor = false;
