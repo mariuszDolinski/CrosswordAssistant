@@ -1,10 +1,7 @@
 using CrosswordAssistant.Entities;
 using CrosswordAssistant.Searches;
 using CrosswordAssistant.Services;
-using System.Diagnostics;
 using System.Globalization;
-using System.Security.Cryptography;
-using System.Text.RegularExpressions;
 
 namespace CrosswordAssistant
 {
@@ -16,7 +13,6 @@ namespace CrosswordAssistant
 
         private readonly DictionaryService _dictionaryService;
         private readonly List<Label> _infoLabels = [];
-        private readonly SearchFactory _searchFactory;
         private readonly Dictionary<string, string> _filtersNames = [];
 
         public MainForm()
@@ -27,7 +23,6 @@ namespace CrosswordAssistant
             KeyPreview = true;
 
             _dictionaryService = new DictionaryService();
-            _searchFactory = new SearchFactory();
             if (_dictionaryService.DictionaryLoadError())
             {
                 Load += (s, e) => Close();
@@ -46,7 +41,7 @@ namespace CrosswordAssistant
 
             try
             {
-                var search = _searchFactory.CreateSearch(Search.Mode);
+                var search = SearchFactory.CreateSearch(Search.Mode);
 
                 List<string> matches;
                 if (checkBoxLength.Checked && pattern.Length == 0)
@@ -76,7 +71,7 @@ namespace CrosswordAssistant
         {
             if (DictionaryService.PendingDictionaryLoading) return;
 
-            var search = _searchFactory.CreateSearch(Search.Mode);
+            var search = SearchFactory.CreateSearch(Search.Mode);
             string pattern = textBoxPatternUls.Text;
             if (!search.ValidatePattern(pattern)) return;
 
@@ -97,7 +92,7 @@ namespace CrosswordAssistant
         {
             if (DictionaryService.PendingDictionaryLoading) return;
 
-            var search = _searchFactory.CreateSearch(Search.Mode);
+            var search = SearchFactory.CreateSearch(Search.Mode);
             string pattern = textBoxScrabblePattern.Text.ToLower();
             if (!search.ValidatePattern(pattern)) return;
             textBoxScrabbleResults.ReadOnly = true;
@@ -488,6 +483,11 @@ namespace CrosswordAssistant
             if (container == null) return;
             SetInfo(label, Messages.GetInfoMessage(container.GetRow(label)));
         }
+        private void OpenSettings_Click(object sender, EventArgs e)
+        {
+            SettingsForm settingsForm = new(this);
+            settingsForm.Show();
+        }
 
         #endregion
 
@@ -530,7 +530,7 @@ namespace CrosswordAssistant
             labelLength4.Enabled = isEnabled;
             labelLength5.Enabled = isEnabled;
         }
-        private void SetFileInfo(int mode)
+        public void SetFileInfo(int mode)
         {
             if (mode == -1)
             {
@@ -652,8 +652,8 @@ namespace CrosswordAssistant
             {
                 results = ApplyEndsWithFilter(results);
             }
-            if (checkBoxContainsActive.Checked) 
-            { 
+            if (checkBoxContainsActive.Checked)
+            {
                 results = ApplyContainsFilters(results);
             }
             return results;
@@ -696,14 +696,14 @@ namespace CrosswordAssistant
                 return [];
             }
         }
-        private List<string> ApplyContainsFilters(List<string> results) 
+        private List<string> ApplyContainsFilters(List<string> results)
         {
             if (checkBoxContains.Checked && textBoxContains.Text.Length > 0)
             {
-                if(radioButtonContainsAnd.Checked)
-                results = results
-                    .Where(w => w.ContainsAll(textBoxContains.Text))
-                    .ToList();
+                if (radioButtonContainsAnd.Checked)
+                    results = results
+                        .Where(w => w.ContainsAll(textBoxContains.Text))
+                        .ToList();
                 if (radioButtonContainsOr.Checked)
                     results = results
                     .Where(w => w.ContainsAny(textBoxContains.Text))
@@ -715,7 +715,7 @@ namespace CrosswordAssistant
                     results = results
                     .Where(w => w.NotContainsAny(textBoxNotContains.Text))
                     .ToList();
-                if(radioButtonContainsOr.Checked)
+                if (radioButtonContainsOr.Checked)
                     results = results
                     .Where(w => w.NotContainsSome(textBoxNotContains.Text))
                     .ToList();
@@ -797,6 +797,7 @@ namespace CrosswordAssistant
             lbl.BackColor = Color.LightSteelBlue;
             textBoxAbout.Text = msg;
         }
+
         #endregion
     }
 }

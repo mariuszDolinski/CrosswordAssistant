@@ -5,7 +5,7 @@ namespace CrosswordAssistant.Searches
 {
     public class SearchFactory()
     {
-        public Search CreateSearch(SearchMode mode)
+        public static Search CreateSearch(SearchMode mode)
         {
             return mode switch
             {

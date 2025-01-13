@@ -37,7 +37,7 @@
             for (int i = maxLength; i > 3; i--) 
             {
                 var wordsByLength = words.Where(w => w[..w.IndexOf('(')].Length == i).ToList();
-                wordsByLength = wordsByLength.OrderByDescending(w => w.GetWordPoints()).ToList();
+                wordsByLength = [..wordsByLength.OrderByDescending(w => w.GetWordPoints())];
                 if (wordsByLength.Count == 0) continue;
                 result += $"Wyrazy {i}-literowe:" + Environment.NewLine;
                 foreach (var word in wordsByLength)

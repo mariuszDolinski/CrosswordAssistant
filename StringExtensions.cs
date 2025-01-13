@@ -14,7 +14,7 @@ namespace CrosswordAssistant
         /// <returns></returns>
         public static string ReplaceAtIndex(this string text, int index, char c)
         {
-            StringBuilder sb = new StringBuilder(text);
+            StringBuilder sb = new(text);
             sb[index] = c;
             return sb.ToString();
         }

@@ -1,11 +1,13 @@
 ﻿using CrosswordAssistant.Entities;
+using System.Configuration;
+using System.Windows.Forms;
 
 namespace CrosswordAssistant.Services
 {
     public class FileService
     {
-        public static string SavePath { get; private set; } = "Słowniki";
-        public static string FileName { get; private set; } = "slownik.txt";
+        public static string SavePath { get; private set; } = ConfigurationManager.AppSettings["dictionaryLocation"]! ?? "Słowniki";
+        public static string FileName { get; private set; } = ConfigurationManager.AppSettings["dictionaryName"] ?? "slownik.txt";
 
         public static async Task<List<string>> ReadDictionaryAsync()
         {
@@ -89,6 +91,30 @@ namespace CrosswordAssistant.Services
                 }
             }
             return [];
+        }
+
+        public static void SetDictionaryPathToAppConfig()
+        {
+            try
+            {
+                var configFile = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+                var settings = configFile.AppSettings.Settings;
+                if (settings["dictionaryLocation"] is not null)
+                {
+                    settings["dictionaryLocation"].Value = SavePath;
+                }
+                if (settings["dictionaryName"] is not null)
+                {
+                    settings["dictionaryName"].Value = FileName;
+                }
+
+                configFile.Save(ConfigurationSaveMode.Modified);
+                ConfigurationManager.RefreshSection(configFile.AppSettings.SectionInformation.Name);
+            }
+            catch (ConfigurationErrorsException)
+            {
+                Console.WriteLine("Błąd zapisu ścieżki słownika do pliku onfiguracyjnego. Spróbuj ponownie.");
+            }
         }
 
     }

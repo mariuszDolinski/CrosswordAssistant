@@ -168,6 +168,7 @@
             label1 = new Label();
             textBoxAbout = new TextBox();
             tableLayoutPanel4 = new TableLayoutPanel();
+            buttonSettings = new Button();
             labelWordInWordInfo = new Label();
             labelStenoAnagramInfo = new Label();
             labelSuperWordInfo = new Label();
@@ -1959,6 +1960,7 @@
             // 
             tableLayoutPanel4.ColumnCount = 1;
             tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanel4.Controls.Add(buttonSettings, 0, 13);
             tableLayoutPanel4.Controls.Add(labelWordInWordInfo, 0, 10);
             tableLayoutPanel4.Controls.Add(labelStenoAnagramInfo, 0, 8);
             tableLayoutPanel4.Controls.Add(labelSuperWordInfo, 0, 7);
@@ -1992,6 +1994,20 @@
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
             tableLayoutPanel4.Size = new Size(231, 711);
             tableLayoutPanel4.TabIndex = 13;
+            // 
+            // buttonSettings
+            // 
+            buttonSettings.BackColor = Color.PaleGoldenrod;
+            buttonSettings.Dock = DockStyle.Bottom;
+            buttonSettings.FlatStyle = FlatStyle.Flat;
+            buttonSettings.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            buttonSettings.Location = new Point(3, 676);
+            buttonSettings.Name = "buttonSettings";
+            buttonSettings.Size = new Size(225, 32);
+            buttonSettings.TabIndex = 19;
+            buttonSettings.Text = "Ustawienia";
+            buttonSettings.UseVisualStyleBackColor = false;
+            buttonSettings.Click += OpenSettings_Click;
             // 
             // labelWordInWordInfo
             // 
@@ -2508,5 +2524,6 @@
         private Label label26;
         private RadioButton radioButtonContainsOr;
         private RadioButton radioButtonContainsAnd;
+        private Button buttonSettings;
     }
 }
