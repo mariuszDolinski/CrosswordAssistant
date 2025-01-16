@@ -33,13 +33,10 @@ namespace CrosswordAssistant
             {
                 MessageBox.Show("Nowy domyślna lokalizacja pliku ze słownikiem zastała ustawiona." +
                     Environment.NewLine + "Zmiany będą widoczne po ponownym uruchomieniu aplikacji.");
-                ConfigurationManager.AppSettings["dictionaryLocation"] = FileService.SavePath;
-                ConfigurationManager.AppSettings["dictionaryName"] = FileService.FileName;
                 FileService.SetDictionaryPathToAppConfig();
                 SetDictionaryPath();
             }
         }
-
         private void Settings_OnClosed(object sender, FormClosingEventArgs e)
         {
             _currentMainForm.Enabled = true;
