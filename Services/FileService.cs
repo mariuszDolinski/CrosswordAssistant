@@ -114,9 +114,17 @@ namespace CrosswordAssistant.Services
                 {
                     settings["dictionaryLocation"].Value = SavePath;
                 }
+                else
+                {
+                    settings.Add("dictionaryLocation", "Słowniki");
+                }
                 if (settings["dictionaryName"] is not null)
                 {
                     settings["dictionaryName"].Value = FileName;
+                }
+                else
+                {
+                    settings.Add("dictionaryName", "slownik.txt");
                 }
 
                 configFile.Save(ConfigurationSaveMode.Modified);
