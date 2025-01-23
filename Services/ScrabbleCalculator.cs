@@ -47,11 +47,13 @@ namespace CrosswordAssistant.Services
             }
             else
             {
+                var temp = pattern.ToLower();
                 foreach (char c in word)
                 {
-                    if (pattern.Contains(c))
+                    if (temp.Contains(c))
                     {
                         result += ScrabblePointsForLetter(c);
+                        temp = temp.ReplaceAtIndex(temp.IndexOf(c),'.');
                     }
                 }
             }
@@ -62,7 +64,32 @@ namespace CrosswordAssistant.Services
             if(!ValidateScrabbleBonuses(request))
                 return 0;
 
-            return 1;
+            var score = CountBaseScrabblePoints(request.Word, "");
+            if (request.Blanks.Length > 0) 
+            {
+                foreach( var b in request.Blanks)
+                {
+                    score -= ScrabblePointsForLetter(b);
+                }
+            }
+            if (request.DoubleBonusLetters.Length > 0)
+            {
+                foreach(var c in request.DoubleBonusLetters)
+                {
+                    score += ScrabblePointsForLetter(c);
+                }
+            }
+            if (request.TripleBonusLetters.Length > 0)
+            {
+                foreach (var c in request.TripleBonusLetters)
+                {
+                    score += 2 * ScrabblePointsForLetter(c);
+                }
+            }
+            score *= (int)Math.Pow(2, request.DoubleWordBonus);
+            score *= (int)Math.Pow(3, request.TripleWordBonus);
+
+            return score;
         }
 
 
@@ -126,9 +153,9 @@ namespace CrosswordAssistant.Services
                     "Błąd premii wyrazowej", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
-            if (request.DoubleWordBonus == 2 && request.Word.Length != 7 && request.Word.Length != 9 && request.Word.Length != 11 && request.Word.Length != 13)
+            if (request.DoubleWordBonus == 2 && request.Word.Length < 7)
             {
-                MessageBox.Show("W podanym wyrazie nie można zastosować dwóch podwójnych premii wyrazowych.",
+                MessageBox.Show("W podanym wyrazie nie można zastosować dwóch podwójnych premii wyrazowych. Wyraz jest za krótki.",
                     "Błąd premii wyrazowej", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
@@ -145,7 +172,6 @@ namespace CrosswordAssistant.Services
                 MessageBox.Show("W premii literowej znajdują się znaki inne niż litery.", "Błąd premii literowej", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
-
             if (!request.Word.ContainsAllLetters(request.DoubleBonusLetters) || !request.Word.ContainsAllLetters(request.TripleBonusLetters))
             {
                 MessageBox.Show("W premii literowej znajdują się znaki, których nie ma w podanym wyrazie.", "Błąd premii literowej", MessageBoxButtons.OK, MessageBoxIcon.Warning);
