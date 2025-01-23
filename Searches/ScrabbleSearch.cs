@@ -13,7 +13,7 @@ namespace CrosswordAssistant.Searches
                 if (word.Length < 4 || word.Length > 14) continue;
                 if (CheckForAnagram(pattern.ToLower(), word.ToLower()))
                 {
-                    result.Add($"{word}({ScrabbleCalculator.CountScrabblePoints(word,pattern)})");
+                    result.Add($"{word}({ScrabbleCalculator.CountBaseScrabblePoints(word,pattern)})");
                 }
             }
             return result;

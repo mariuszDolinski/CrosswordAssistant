@@ -489,65 +489,22 @@ namespace CrosswordAssistant
             settingsForm.Show();
             Enabled = false;
         }
-        private void LetterBonus_CountChanged(object sender, EventArgs e)
-        {
-            var bonus = (NumericUpDown)sender;
-            if (bonus.TabIndex == numericUpDownDoubleCharBonus.TabIndex)
-            {
-                if (bonus.Value > 0)
-                {
-                    textBoxDoubleBonusLetters.Enabled = true;
-                }
-                else
-                {
-                    textBoxDoubleBonusLetters.Enabled = false;
-                    textBoxDoubleBonusLetters.Text = string.Empty;
-                }
-
-            }
-            if (bonus.TabIndex == numericUpDownTripleCharBonus.TabIndex)
-            {
-                if (bonus.Value > 0)
-                {
-                    textBoxTripleBonusLetters.Enabled = true;
-                }
-                else
-                {
-                    textBoxTripleBonusLetters.Enabled = false;
-                    textBoxTripleBonusLetters.Text = string.Empty;
-                }
-
-            }
-            if (bonus.TabIndex == numericUpDownBlanks.TabIndex)
-            {
-                if (bonus.Value == 1)
-                {
-                    textBoxBlankLetter1.Enabled = true;
-                    textBoxBlankLetter2.Enabled = false;
-                    textBoxBlankLetter2.Text = string.Empty;
-                }
-                else if (bonus.Value == 2)
-                {
-                    textBoxBlankLetter1.Enabled = true;
-                    textBoxBlankLetter2.Enabled = true;
-                }
-                else
-                {
-                    textBoxBlankLetter1.Enabled = false;
-                    textBoxBlankLetter2.Enabled = false;
-                    textBoxBlankLetter1.Text = string.Empty;
-                    textBoxBlankLetter2.Text = string.Empty;
-                }
-            }
-        }
         private void CalculateScrabbleScore_Click(object sender, EventArgs e)
         {
             var word = textBoxScrabbleCalc.Text.ToLower();
+            var doubleWordBonus = (int)numericUpDownDoubleBonus.Value;
+            var tripleWordBonus = (int)numericUpDownTripleBonus.Value;
+            var doubleBonusLetters = textBoxDoubleBonusLetters.Text.ToLower();
+            var tripleBonusLetters = textBoxTripleBonusLetters.Text.ToLower();
+            var blanksLetters = (textBoxBlankLetter1.Text + textBoxBlankLetter2.Text).ToLower();
+            var request = new ScrabbleCalculatorRequest(word, doubleWordBonus, tripleWordBonus, doubleBonusLetters, tripleBonusLetters, blanksLetters);
+
             if (!ScrabbleCalculator.ValidateScrabbleWord(word))
             {
                 return;
             }
 
+            labelScrabbePoints.Text = ScrabbleCalculator.CalculateScrabbleScoreForWord(request).ToString();
 
         }
 

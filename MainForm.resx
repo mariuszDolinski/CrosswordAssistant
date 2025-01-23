@@ -120,10 +120,6 @@
   <metadata name="contextMenuStripResults.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 0</value>
   </metadata>
-  <data name="label28.Text" xml:space="preserve">
-    <value>Podaj wyraz i wybierz premie oraz litery użyte jako blanka, aby wyznaczyć jego wartość punktową w Scrabble. 
-(w przypadku premii literowej podaj premiowane litery ciągiem bez żadnych dodatkowych znaków) </value>
-  </data>
   <metadata name="newDictionaryDialog.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>278, 0</value>
   </metadata>

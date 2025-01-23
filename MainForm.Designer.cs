@@ -137,17 +137,17 @@
             buttonCalcuateSrabblePoints = new Button();
             label33 = new Label();
             groupBoxScrabbleBlanks = new GroupBox();
+            label36 = new Label();
             textBoxBlankLetter2 = new TextBox();
             textBoxBlankLetter1 = new TextBox();
-            numericUpDownBlanks = new NumericUpDown();
             groupBoxScrabbleCharBonuses = new GroupBox();
+            label35 = new Label();
             textBoxDoubleBonusLetters = new TextBox();
-            numericUpDownDoubleCharBonus = new NumericUpDown();
             label32 = new Label();
             textBoxTripleBonusLetters = new TextBox();
-            numericUpDownTripleCharBonus = new NumericUpDown();
             label31 = new Label();
             groupBoxScrabbleBonuses = new GroupBox();
+            label37 = new Label();
             numericUpDownDoubleBonus = new NumericUpDown();
             label30 = new Label();
             label29 = new Label();
@@ -246,10 +246,7 @@
             splitContainerScrabble.Panel2.SuspendLayout();
             splitContainerScrabble.SuspendLayout();
             groupBoxScrabbleBlanks.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDownBlanks).BeginInit();
             groupBoxScrabbleCharBonuses.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDownDoubleCharBonus).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDownTripleCharBonus).BeginInit();
             groupBoxScrabbleBonuses.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numericUpDownDoubleBonus).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDownTripleBonus).BeginInit();
@@ -1504,7 +1501,7 @@
             splitContainerScrabble.Panel2.Controls.Add(label28);
             splitContainerScrabble.Panel2.Controls.Add(label27);
             splitContainerScrabble.Size = new Size(1156, 671);
-            splitContainerScrabble.SplitterDistance = 814;
+            splitContainerScrabble.SplitterDistance = 796;
             splitContainerScrabble.TabIndex = 4;
             // 
             // textBoxScrabbleResults
@@ -1519,7 +1516,7 @@
             textBoxScrabbleResults.Name = "textBoxScrabbleResults";
             textBoxScrabbleResults.ReadOnly = true;
             textBoxScrabbleResults.ScrollBars = ScrollBars.Vertical;
-            textBoxScrabbleResults.Size = new Size(814, 671);
+            textBoxScrabbleResults.Size = new Size(796, 671);
             textBoxScrabbleResults.TabIndex = 3;
             // 
             // labelScrabbePoints
@@ -1527,9 +1524,9 @@
             labelScrabbePoints.BackColor = Color.Tan;
             labelScrabbePoints.Dock = DockStyle.Fill;
             labelScrabbePoints.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            labelScrabbePoints.Location = new Point(236, 624);
+            labelScrabbePoints.Location = new Point(236, 632);
             labelScrabbePoints.Name = "labelScrabbePoints";
-            labelScrabbePoints.Size = new Size(102, 47);
+            labelScrabbePoints.Size = new Size(120, 39);
             labelScrabbePoints.TabIndex = 16;
             labelScrabbePoints.Text = "0";
             labelScrabbePoints.TextAlign = ContentAlignment.MiddleCenter;
@@ -1537,9 +1534,9 @@
             // label34
             // 
             label34.Dock = DockStyle.Left;
-            label34.Location = new Point(233, 624);
+            label34.Location = new Point(233, 632);
             label34.Name = "label34";
-            label34.Size = new Size(3, 47);
+            label34.Size = new Size(3, 39);
             label34.TabIndex = 15;
             // 
             // buttonCalcuateSrabblePoints
@@ -1548,10 +1545,10 @@
             buttonCalcuateSrabblePoints.Dock = DockStyle.Left;
             buttonCalcuateSrabblePoints.FlatStyle = FlatStyle.Flat;
             buttonCalcuateSrabblePoints.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            buttonCalcuateSrabblePoints.Location = new Point(0, 624);
+            buttonCalcuateSrabblePoints.Location = new Point(0, 632);
             buttonCalcuateSrabblePoints.Margin = new Padding(2, 4, 0, 4);
             buttonCalcuateSrabblePoints.Name = "buttonCalcuateSrabblePoints";
-            buttonCalcuateSrabblePoints.Size = new Size(233, 47);
+            buttonCalcuateSrabblePoints.Size = new Size(233, 39);
             buttonCalcuateSrabblePoints.TabIndex = 14;
             buttonCalcuateSrabblePoints.Text = "OBLICZ";
             buttonCalcuateSrabblePoints.UseVisualStyleBackColor = true;
@@ -1560,29 +1557,37 @@
             // label33
             // 
             label33.Dock = DockStyle.Top;
-            label33.Location = new Point(0, 621);
+            label33.Location = new Point(0, 629);
             label33.Name = "label33";
-            label33.Size = new Size(338, 3);
+            label33.Size = new Size(356, 3);
             label33.TabIndex = 13;
             // 
             // groupBoxScrabbleBlanks
             // 
+            groupBoxScrabbleBlanks.Controls.Add(label36);
             groupBoxScrabbleBlanks.Controls.Add(textBoxBlankLetter2);
             groupBoxScrabbleBlanks.Controls.Add(textBoxBlankLetter1);
-            groupBoxScrabbleBlanks.Controls.Add(numericUpDownBlanks);
             groupBoxScrabbleBlanks.Dock = DockStyle.Top;
-            groupBoxScrabbleBlanks.Location = new Point(0, 525);
+            groupBoxScrabbleBlanks.Location = new Point(0, 472);
             groupBoxScrabbleBlanks.Name = "groupBoxScrabbleBlanks";
-            groupBoxScrabbleBlanks.Size = new Size(338, 96);
+            groupBoxScrabbleBlanks.Size = new Size(356, 157);
             groupBoxScrabbleBlanks.TabIndex = 12;
             groupBoxScrabbleBlanks.TabStop = false;
             groupBoxScrabbleBlanks.Text = "Blanka";
             // 
+            // label36
+            // 
+            label36.AutoSize = true;
+            label36.Location = new Point(10, 27);
+            label36.Name = "label36";
+            label36.Size = new Size(324, 75);
+            label36.TabIndex = 9;
+            label36.Text = "Podaj litery użyte jako blanka, po jednej\r\nw każdym polu. Pozostaw oba pola\r\npuste, jeśli blanka nie zostały użyte.";
+            // 
             // textBoxBlankLetter2
             // 
             textBoxBlankLetter2.CharacterCasing = CharacterCasing.Upper;
-            textBoxBlankLetter2.Enabled = false;
-            textBoxBlankLetter2.Location = new Point(271, 39);
+            textBoxBlankLetter2.Location = new Point(206, 111);
             textBoxBlankLetter2.MaxLength = 1;
             textBoxBlankLetter2.Name = "textBoxBlankLetter2";
             textBoxBlankLetter2.Size = new Size(61, 31);
@@ -1592,102 +1597,70 @@
             // textBoxBlankLetter1
             // 
             textBoxBlankLetter1.CharacterCasing = CharacterCasing.Upper;
-            textBoxBlankLetter1.Enabled = false;
-            textBoxBlankLetter1.Location = new Point(188, 39);
+            textBoxBlankLetter1.Location = new Point(91, 111);
             textBoxBlankLetter1.MaxLength = 1;
             textBoxBlankLetter1.Name = "textBoxBlankLetter1";
             textBoxBlankLetter1.Size = new Size(61, 31);
             textBoxBlankLetter1.TabIndex = 7;
             textBoxBlankLetter1.TextAlign = HorizontalAlignment.Center;
             // 
-            // numericUpDownBlanks
-            // 
-            numericUpDownBlanks.BackColor = Color.White;
-            numericUpDownBlanks.BorderStyle = BorderStyle.FixedSingle;
-            numericUpDownBlanks.Location = new Point(105, 40);
-            numericUpDownBlanks.Maximum = new decimal(new int[] { 2, 0, 0, 0 });
-            numericUpDownBlanks.Name = "numericUpDownBlanks";
-            numericUpDownBlanks.ReadOnly = true;
-            numericUpDownBlanks.Size = new Size(74, 31);
-            numericUpDownBlanks.TabIndex = 6;
-            numericUpDownBlanks.TextAlign = HorizontalAlignment.Center;
-            numericUpDownBlanks.ValueChanged += LetterBonus_CountChanged;
-            // 
             // groupBoxScrabbleCharBonuses
             // 
+            groupBoxScrabbleCharBonuses.Controls.Add(label35);
             groupBoxScrabbleCharBonuses.Controls.Add(textBoxDoubleBonusLetters);
-            groupBoxScrabbleCharBonuses.Controls.Add(numericUpDownDoubleCharBonus);
             groupBoxScrabbleCharBonuses.Controls.Add(label32);
             groupBoxScrabbleCharBonuses.Controls.Add(textBoxTripleBonusLetters);
-            groupBoxScrabbleCharBonuses.Controls.Add(numericUpDownTripleCharBonus);
             groupBoxScrabbleCharBonuses.Controls.Add(label31);
             groupBoxScrabbleCharBonuses.Dock = DockStyle.Top;
-            groupBoxScrabbleCharBonuses.Location = new Point(0, 377);
+            groupBoxScrabbleCharBonuses.Location = new Point(0, 270);
             groupBoxScrabbleCharBonuses.Name = "groupBoxScrabbleCharBonuses";
-            groupBoxScrabbleCharBonuses.Size = new Size(338, 148);
+            groupBoxScrabbleCharBonuses.Size = new Size(356, 202);
             groupBoxScrabbleCharBonuses.TabIndex = 11;
             groupBoxScrabbleCharBonuses.TabStop = false;
             groupBoxScrabbleCharBonuses.Text = "Premie literowe";
             // 
+            // label35
+            // 
+            label35.AutoSize = true;
+            label35.Location = new Point(10, 27);
+            label35.Name = "label35";
+            label35.Size = new Size(327, 75);
+            label35.TabIndex = 10;
+            label35.Text = "Wpisz litery, znajdujące się na premiach \r\n(bez spacji i innych znaków). \r\nPuste pole oznacza brak premii.";
+            // 
             // textBoxDoubleBonusLetters
             // 
             textBoxDoubleBonusLetters.CharacterCasing = CharacterCasing.Upper;
-            textBoxDoubleBonusLetters.Enabled = false;
-            textBoxDoubleBonusLetters.Location = new Point(188, 84);
+            textBoxDoubleBonusLetters.Location = new Point(140, 160);
+            textBoxDoubleBonusLetters.MaxLength = 4;
             textBoxDoubleBonusLetters.Name = "textBoxDoubleBonusLetters";
             textBoxDoubleBonusLetters.Size = new Size(147, 31);
             textBoxDoubleBonusLetters.TabIndex = 9;
-            // 
-            // numericUpDownDoubleCharBonus
-            // 
-            numericUpDownDoubleCharBonus.BackColor = Color.White;
-            numericUpDownDoubleCharBonus.BorderStyle = BorderStyle.FixedSingle;
-            numericUpDownDoubleCharBonus.Location = new Point(105, 85);
-            numericUpDownDoubleCharBonus.Maximum = new decimal(new int[] { 4, 0, 0, 0 });
-            numericUpDownDoubleCharBonus.Name = "numericUpDownDoubleCharBonus";
-            numericUpDownDoubleCharBonus.ReadOnly = true;
-            numericUpDownDoubleCharBonus.Size = new Size(74, 31);
-            numericUpDownDoubleCharBonus.TabIndex = 8;
-            numericUpDownDoubleCharBonus.TextAlign = HorizontalAlignment.Center;
-            numericUpDownDoubleCharBonus.ValueChanged += LetterBonus_CountChanged;
             // 
             // label32
             // 
             label32.AutoSize = true;
             label32.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            label32.Location = new Point(21, 87);
+            label32.Location = new Point(8, 160);
             label32.Name = "label32";
-            label32.Size = new Size(82, 25);
+            label32.Size = new Size(94, 25);
             label32.TabIndex = 7;
-            label32.Text = "Potrójna:";
+            label32.Text = "Podwójna:";
             // 
             // textBoxTripleBonusLetters
             // 
             textBoxTripleBonusLetters.CharacterCasing = CharacterCasing.Upper;
-            textBoxTripleBonusLetters.Enabled = false;
-            textBoxTripleBonusLetters.Location = new Point(188, 41);
+            textBoxTripleBonusLetters.Location = new Point(140, 122);
+            textBoxTripleBonusLetters.MaxLength = 4;
             textBoxTripleBonusLetters.Name = "textBoxTripleBonusLetters";
             textBoxTripleBonusLetters.Size = new Size(147, 31);
             textBoxTripleBonusLetters.TabIndex = 6;
-            // 
-            // numericUpDownTripleCharBonus
-            // 
-            numericUpDownTripleCharBonus.BackColor = Color.White;
-            numericUpDownTripleCharBonus.BorderStyle = BorderStyle.FixedSingle;
-            numericUpDownTripleCharBonus.Location = new Point(105, 41);
-            numericUpDownTripleCharBonus.Maximum = new decimal(new int[] { 4, 0, 0, 0 });
-            numericUpDownTripleCharBonus.Name = "numericUpDownTripleCharBonus";
-            numericUpDownTripleCharBonus.ReadOnly = true;
-            numericUpDownTripleCharBonus.Size = new Size(74, 31);
-            numericUpDownTripleCharBonus.TabIndex = 5;
-            numericUpDownTripleCharBonus.TextAlign = HorizontalAlignment.Center;
-            numericUpDownTripleCharBonus.ValueChanged += LetterBonus_CountChanged;
             // 
             // label31
             // 
             label31.AutoSize = true;
             label31.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            label31.Location = new Point(21, 44);
+            label31.Location = new Point(8, 125);
             label31.Name = "label31";
             label31.Size = new Size(82, 25);
             label31.TabIndex = 4;
@@ -1695,26 +1668,36 @@
             // 
             // groupBoxScrabbleBonuses
             // 
+            groupBoxScrabbleBonuses.Controls.Add(label37);
             groupBoxScrabbleBonuses.Controls.Add(numericUpDownDoubleBonus);
             groupBoxScrabbleBonuses.Controls.Add(label30);
             groupBoxScrabbleBonuses.Controls.Add(label29);
             groupBoxScrabbleBonuses.Controls.Add(numericUpDownTripleBonus);
             groupBoxScrabbleBonuses.Dock = DockStyle.Top;
-            groupBoxScrabbleBonuses.Location = new Point(0, 235);
+            groupBoxScrabbleBonuses.Location = new Point(0, 151);
             groupBoxScrabbleBonuses.Name = "groupBoxScrabbleBonuses";
-            groupBoxScrabbleBonuses.Size = new Size(338, 142);
+            groupBoxScrabbleBonuses.Size = new Size(356, 119);
             groupBoxScrabbleBonuses.TabIndex = 10;
             groupBoxScrabbleBonuses.TabStop = false;
             groupBoxScrabbleBonuses.Text = "Premie wyrazowe";
             // 
+            // label37
+            // 
+            label37.AutoSize = true;
+            label37.Location = new Point(10, 27);
+            label37.Name = "label37";
+            label37.Size = new Size(344, 25);
+            label37.TabIndex = 6;
+            label37.Text = "Podaj ilość aktywnych premii wyrazowych.";
+            // 
             // numericUpDownDoubleBonus
             // 
             numericUpDownDoubleBonus.BackColor = Color.White;
-            numericUpDownDoubleBonus.Location = new Point(148, 79);
+            numericUpDownDoubleBonus.Location = new Point(109, 67);
             numericUpDownDoubleBonus.Maximum = new decimal(new int[] { 2, 0, 0, 0 });
             numericUpDownDoubleBonus.Name = "numericUpDownDoubleBonus";
             numericUpDownDoubleBonus.ReadOnly = true;
-            numericUpDownDoubleBonus.Size = new Size(74, 31);
+            numericUpDownDoubleBonus.Size = new Size(60, 31);
             numericUpDownDoubleBonus.TabIndex = 5;
             numericUpDownDoubleBonus.TextAlign = HorizontalAlignment.Center;
             // 
@@ -1722,7 +1705,7 @@
             // 
             label30.AutoSize = true;
             label30.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            label30.Location = new Point(21, 81);
+            label30.Location = new Point(10, 69);
             label30.Name = "label30";
             label30.Size = new Size(94, 25);
             label30.TabIndex = 4;
@@ -1732,7 +1715,7 @@
             // 
             label29.AutoSize = true;
             label29.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            label29.Location = new Point(21, 44);
+            label29.Location = new Point(185, 69);
             label29.Name = "label29";
             label29.Size = new Size(82, 25);
             label29.TabIndex = 3;
@@ -1742,11 +1725,11 @@
             // 
             numericUpDownTripleBonus.BackColor = Color.White;
             numericUpDownTripleBonus.BorderStyle = BorderStyle.FixedSingle;
-            numericUpDownTripleBonus.Location = new Point(148, 42);
+            numericUpDownTripleBonus.Location = new Point(273, 67);
             numericUpDownTripleBonus.Maximum = new decimal(new int[] { 3, 0, 0, 0 });
             numericUpDownTripleBonus.Name = "numericUpDownTripleBonus";
             numericUpDownTripleBonus.ReadOnly = true;
-            numericUpDownTripleBonus.Size = new Size(74, 31);
+            numericUpDownTripleBonus.Size = new Size(60, 31);
             numericUpDownTripleBonus.TabIndex = 2;
             numericUpDownTripleBonus.TextAlign = HorizontalAlignment.Center;
             // 
@@ -1755,10 +1738,10 @@
             textBoxScrabbleCalc.CharacterCasing = CharacterCasing.Upper;
             textBoxScrabbleCalc.Dock = DockStyle.Top;
             textBoxScrabbleCalc.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            textBoxScrabbleCalc.Location = new Point(0, 198);
+            textBoxScrabbleCalc.Location = new Point(0, 114);
             textBoxScrabbleCalc.Margin = new Padding(0, 4, 2, 4);
             textBoxScrabbleCalc.Name = "textBoxScrabbleCalc";
-            textBoxScrabbleCalc.Size = new Size(338, 37);
+            textBoxScrabbleCalc.Size = new Size(356, 37);
             textBoxScrabbleCalc.TabIndex = 9;
             // 
             // label28
@@ -1766,9 +1749,9 @@
             label28.Dock = DockStyle.Top;
             label28.Location = new Point(0, 32);
             label28.Name = "label28";
-            label28.Size = new Size(338, 166);
+            label28.Size = new Size(356, 82);
             label28.TabIndex = 1;
-            label28.Text = resources.GetString("label28.Text");
+            label28.Text = "Podaj wyraz i wybierz premie oraz litery użyte jako blanka, aby wyznaczyć jego wartość punktową w Scrabble.";
             // 
             // label27
             // 
@@ -1777,7 +1760,7 @@
             label27.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 238);
             label27.Location = new Point(0, 0);
             label27.Name = "label27";
-            label27.Size = new Size(338, 32);
+            label27.Size = new Size(356, 32);
             label27.TabIndex = 0;
             label27.Text = "KALKULATOR PUNKTÓW";
             label27.TextAlign = ContentAlignment.MiddleCenter;
@@ -2667,11 +2650,8 @@
             splitContainerScrabble.ResumeLayout(false);
             groupBoxScrabbleBlanks.ResumeLayout(false);
             groupBoxScrabbleBlanks.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDownBlanks).EndInit();
             groupBoxScrabbleCharBonuses.ResumeLayout(false);
             groupBoxScrabbleCharBonuses.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDownDoubleCharBonus).EndInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDownTripleCharBonus).EndInit();
             groupBoxScrabbleBonuses.ResumeLayout(false);
             groupBoxScrabbleBonuses.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)numericUpDownDoubleBonus).EndInit();
@@ -2874,18 +2854,18 @@
         private Label label29;
         private GroupBox groupBoxScrabbleCharBonuses;
         private TextBox textBoxTripleBonusLetters;
-        private NumericUpDown numericUpDownTripleCharBonus;
         private Label label31;
         private TextBox textBoxDoubleBonusLetters;
-        private NumericUpDown numericUpDownDoubleCharBonus;
         private Label label32;
         private GroupBox groupBoxScrabbleBlanks;
         private TextBox textBoxBlankLetter1;
-        private NumericUpDown numericUpDownBlanks;
         private TextBox textBoxBlankLetter2;
         private Label labelScrabbePoints;
         private Label label34;
         private Button buttonCalcuateSrabblePoints;
         private Label label33;
+        private Label label35;
+        private Label label36;
+        private Label label37;
     }
 }

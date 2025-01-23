@@ -234,5 +234,20 @@ namespace CrosswordAssistant
             }
             return true;
         }
+        /// <summary>
+        /// Check if all of chars in string letters appear in this string, including repeats.
+        /// </summary>
+        /// <param name="word"></param>
+        /// <param name="letters"></param>
+        /// <returns>true if all char in letters apear in this string or when letters is an empty string, false otherwise</returns>
+        public static bool ContainsAllLetters(this string word, string letters)
+        {
+            foreach (char c in letters)
+            {
+                if(!word.Contains(c)) return false;
+                if(letters.CountChars(c) > word.CountChars(c)) return false;
+            }
+            return true;
+        }
     }
 }

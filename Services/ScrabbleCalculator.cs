@@ -1,4 +1,7 @@
-﻿namespace CrosswordAssistant.Services
+﻿using CrosswordAssistant.Entities;
+using System.Linq;
+
+namespace CrosswordAssistant.Services
 {
     public static class ScrabbleCalculator
     {
@@ -31,8 +34,7 @@
             }
             return true;
         }
-
-        public static int CountScrabblePoints(string word, string pattern)
+        public static int CountBaseScrabblePoints(string word, string pattern)
         {
             int result = 0;
             word = word.ToLower();
@@ -55,6 +57,14 @@
             }
             return result;
         }
+        public static int CalculateScrabbleScoreForWord(ScrabbleCalculatorRequest request)
+        {
+            if(!ValidateScrabbleBonuses(request))
+                return 0;
+
+            return 1;
+        }
+
 
         /// <summary>
         /// 
@@ -75,7 +85,6 @@
                 _ => 0,
             };
         }
-
         /// <summary>
         /// 
         /// </summary>
@@ -96,6 +105,68 @@
                 'a' => 9,
                 _ => 0,
             };
+        }
+        private static bool ValidateScrabbleBonuses(ScrabbleCalculatorRequest request)
+        {
+            //walidacja premi wyrazowych
+            if (request.TripleWordBonus > 0 && request.DoubleWordBonus > 0)
+            {
+                MessageBox.Show("Obie premie wyrazowe nie mogą być aktywne jednocześnie.", "Błąd premii wyrazowej", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            if (request.TripleWordBonus == 2 && request.Word.Length < 8)
+            {
+                MessageBox.Show("W podanym wyrazie nie można zastosować dwóch potrójnych premii wyrazowych. Wyraz jest za krótki.", 
+                    "Błąd premii wyrazowej", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            } 
+            if (request.TripleWordBonus == 3 && request.Word.Length < 15)
+            {
+                MessageBox.Show("W podanym wyrazie nie można zastosować trzech potrójnych premii wyrazowych. Wyraz jest za krótki.",
+                    "Błąd premii wyrazowej", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            if (request.DoubleWordBonus == 2 && request.Word.Length != 7 && request.Word.Length != 9 && request.Word.Length != 11 && request.Word.Length != 13)
+            {
+                MessageBox.Show("W podanym wyrazie nie można zastosować dwóch podwójnych premii wyrazowych.",
+                    "Błąd premii wyrazowej", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            //walidacja premii literowych
+            if (request.DoubleBonusLetters.Length > 0 && request.TripleBonusLetters.Length > 0) 
+            {
+                MessageBox.Show("Obie premie literowe nie mogą być aktywne jednocześnie.", "Błąd premii literowej", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            if((request.DoubleBonusLetters.Length > 0 && !request.DoubleBonusLetters.OnlyLetters())
+                || (request.TripleBonusLetters.Length > 0 && !request.TripleBonusLetters.OnlyLetters()))
+            {
+                MessageBox.Show("W premii literowej znajdują się znaki inne niż litery.", "Błąd premii literowej", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            if (!request.Word.ContainsAllLetters(request.DoubleBonusLetters) || !request.Word.ContainsAllLetters(request.TripleBonusLetters))
+            {
+                MessageBox.Show("W premii literowej znajdują się znaki, których nie ma w podanym wyrazie.", "Błąd premii literowej", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            //walidacje blank
+            foreach (var c in request.Blanks)
+            {
+                if (!Char.IsLetter(c))
+                {
+                    MessageBox.Show("Blank powinien być literą.", "Błąd blanka", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
+                if (!request.Word.Contains(c))
+                {
+                    MessageBox.Show("Litera podana jako blank, nie występuje w podanym wyrazie.", "Błąd blanka", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
+            }
+            return true;
         }
     }
 }
