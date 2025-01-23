@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Runtime.CompilerServices;
+using System.Text;
 
 namespace CrosswordAssistant
 {
@@ -219,6 +220,19 @@ namespace CrosswordAssistant
             }
 
             return result;
+        }
+        /// <summary>
+        /// Check if string contains only Unicode letters
+        /// </summary>
+        /// <param name="word"></param>
+        /// <returns>true if string contains only Unicode letters, alse otherwise</returns>
+        public static bool OnlyLetters(this string word)
+        {
+            foreach(char c in word)
+            {
+                if(!Char.IsLetter(c)) return false;
+            }
+            return true;
         }
     }
 }

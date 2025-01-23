@@ -132,6 +132,10 @@
             tabPageScrabble = new TabPage();
             splitContainerScrabble = new SplitContainer();
             textBoxScrabbleResults = new TextBox();
+            labelScrabbePoints = new Label();
+            label34 = new Label();
+            buttonCalcuateSrabblePoints = new Button();
+            label33 = new Label();
             groupBoxScrabbleBlanks = new GroupBox();
             textBoxBlankLetter2 = new TextBox();
             textBoxBlankLetter1 = new TextBox();
@@ -210,10 +214,6 @@
             label19 = new Label();
             label22 = new Label();
             newDictionaryDialog = new OpenFileDialog();
-            label33 = new Label();
-            buttonCalcuateSrabblePoints = new Button();
-            label34 = new Label();
-            labelScrabbePoints = new Label();
             tabControl.SuspendLayout();
             tabPattern.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainerResults).BeginInit();
@@ -1522,6 +1522,49 @@
             textBoxScrabbleResults.Size = new Size(814, 671);
             textBoxScrabbleResults.TabIndex = 3;
             // 
+            // labelScrabbePoints
+            // 
+            labelScrabbePoints.BackColor = Color.Tan;
+            labelScrabbePoints.Dock = DockStyle.Fill;
+            labelScrabbePoints.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            labelScrabbePoints.Location = new Point(236, 624);
+            labelScrabbePoints.Name = "labelScrabbePoints";
+            labelScrabbePoints.Size = new Size(102, 47);
+            labelScrabbePoints.TabIndex = 16;
+            labelScrabbePoints.Text = "0";
+            labelScrabbePoints.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label34
+            // 
+            label34.Dock = DockStyle.Left;
+            label34.Location = new Point(233, 624);
+            label34.Name = "label34";
+            label34.Size = new Size(3, 47);
+            label34.TabIndex = 15;
+            // 
+            // buttonCalcuateSrabblePoints
+            // 
+            buttonCalcuateSrabblePoints.Cursor = Cursors.Hand;
+            buttonCalcuateSrabblePoints.Dock = DockStyle.Left;
+            buttonCalcuateSrabblePoints.FlatStyle = FlatStyle.Flat;
+            buttonCalcuateSrabblePoints.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            buttonCalcuateSrabblePoints.Location = new Point(0, 624);
+            buttonCalcuateSrabblePoints.Margin = new Padding(2, 4, 0, 4);
+            buttonCalcuateSrabblePoints.Name = "buttonCalcuateSrabblePoints";
+            buttonCalcuateSrabblePoints.Size = new Size(233, 47);
+            buttonCalcuateSrabblePoints.TabIndex = 14;
+            buttonCalcuateSrabblePoints.Text = "OBLICZ";
+            buttonCalcuateSrabblePoints.UseVisualStyleBackColor = true;
+            buttonCalcuateSrabblePoints.Click += CalculateScrabbleScore_Click;
+            // 
+            // label33
+            // 
+            label33.Dock = DockStyle.Top;
+            label33.Location = new Point(0, 621);
+            label33.Name = "label33";
+            label33.Size = new Size(338, 3);
+            label33.TabIndex = 13;
+            // 
             // groupBoxScrabbleBlanks
             // 
             groupBoxScrabbleBlanks.Controls.Add(textBoxBlankLetter2);
@@ -2567,48 +2610,6 @@
             newDictionaryDialog.FileName = "slownik.txt";
             newDictionaryDialog.Filter = "Pliki tekstowe|*.txt";
             newDictionaryDialog.Title = "Wybierz plik ze słownikiem";
-            // 
-            // label33
-            // 
-            label33.Dock = DockStyle.Top;
-            label33.Location = new Point(0, 621);
-            label33.Name = "label33";
-            label33.Size = new Size(338, 3);
-            label33.TabIndex = 13;
-            // 
-            // buttonCalcuateSrabblePoints
-            // 
-            buttonCalcuateSrabblePoints.Cursor = Cursors.Hand;
-            buttonCalcuateSrabblePoints.Dock = DockStyle.Left;
-            buttonCalcuateSrabblePoints.FlatStyle = FlatStyle.Flat;
-            buttonCalcuateSrabblePoints.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            buttonCalcuateSrabblePoints.Location = new Point(0, 624);
-            buttonCalcuateSrabblePoints.Margin = new Padding(2, 4, 0, 4);
-            buttonCalcuateSrabblePoints.Name = "buttonCalcuateSrabblePoints";
-            buttonCalcuateSrabblePoints.Size = new Size(233, 47);
-            buttonCalcuateSrabblePoints.TabIndex = 14;
-            buttonCalcuateSrabblePoints.Text = "OBLICZ";
-            buttonCalcuateSrabblePoints.UseVisualStyleBackColor = true;
-            // 
-            // label34
-            // 
-            label34.Dock = DockStyle.Left;
-            label34.Location = new Point(233, 624);
-            label34.Name = "label34";
-            label34.Size = new Size(3, 47);
-            label34.TabIndex = 15;
-            // 
-            // labelScrabbePoints
-            // 
-            labelScrabbePoints.BackColor = Color.Tan;
-            labelScrabbePoints.Dock = DockStyle.Fill;
-            labelScrabbePoints.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            labelScrabbePoints.Location = new Point(236, 624);
-            labelScrabbePoints.Name = "labelScrabbePoints";
-            labelScrabbePoints.Size = new Size(102, 47);
-            labelScrabbePoints.TabIndex = 16;
-            labelScrabbePoints.Text = "0";
-            labelScrabbePoints.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // MainForm
             // 

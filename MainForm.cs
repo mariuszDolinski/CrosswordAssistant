@@ -518,15 +518,15 @@ namespace CrosswordAssistant
                 }
 
             }
-            if (bonus.TabIndex == numericUpDownBlanks.TabIndex) 
-            { 
-                if(bonus.Value == 1)
+            if (bonus.TabIndex == numericUpDownBlanks.TabIndex)
+            {
+                if (bonus.Value == 1)
                 {
                     textBoxBlankLetter1.Enabled = true;
                     textBoxBlankLetter2.Enabled = false;
                     textBoxBlankLetter2.Text = string.Empty;
                 }
-                else if(bonus.Value == 2)
+                else if (bonus.Value == 2)
                 {
                     textBoxBlankLetter1.Enabled = true;
                     textBoxBlankLetter2.Enabled = true;
@@ -539,6 +539,16 @@ namespace CrosswordAssistant
                     textBoxBlankLetter2.Text = string.Empty;
                 }
             }
+        }
+        private void CalculateScrabbleScore_Click(object sender, EventArgs e)
+        {
+            var word = textBoxScrabbleCalc.Text.ToLower();
+            if (!ScrabbleCalculator.ValidateScrabbleWord(word))
+            {
+                return;
+            }
+
+
         }
 
         #endregion
