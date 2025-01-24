@@ -499,11 +499,6 @@ namespace CrosswordAssistant
             var blanksLetters = (textBoxBlankLetter1.Text + textBoxBlankLetter2.Text).ToLower();
             var request = new ScrabbleCalculatorRequest(word, doubleWordBonus, tripleWordBonus, doubleBonusLetters, tripleBonusLetters, blanksLetters);
 
-            if (!ScrabbleCalculator.ValidateScrabbleWord(word))
-            {
-                return;
-            }
-
             labelScrabbePoints.Text = ScrabbleCalculator.CalculateScrabbleScoreForWord(request).ToString();
 
         }

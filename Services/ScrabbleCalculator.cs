@@ -10,7 +10,7 @@ namespace CrosswordAssistant.Services
         public static int TripleLetterBonus { get; set; }
         public static int DoubleLetterBonus { get; set; }
 
-        public static bool ValidateScrabbleWord(string word)
+        public static bool ValidateScrabbleWord(string word, string blanks)
         {
             if(word.Length < 1 || word.Length > 15)
             {
@@ -24,6 +24,13 @@ namespace CrosswordAssistant.Services
                 return false;
             }
 
+            foreach (char c in blanks)
+            {
+                if (word.Contains(c))
+                {
+                    word = word.Remove(word.IndexOf(c), 1);
+                }
+            }
             foreach (char c in word) 
             {
                 if (word.CountChars(c) > ScrabbleLettersCount(c)) 
@@ -135,7 +142,10 @@ namespace CrosswordAssistant.Services
         }
         private static bool ValidateScrabbleBonuses(ScrabbleCalculatorRequest request)
         {
-            //walidacja premi wyrazowych
+            //walidacja wyrazu
+            if (!ValidateScrabbleWord(request.Word, request.Blanks)) return false;
+
+            //walidacje premi wyrazowych
             if (request.TripleWordBonus > 0 && request.DoubleWordBonus > 0)
             {
                 MessageBox.Show("Obie premie wyrazowe nie mogą być aktywne jednocześnie.", "Błąd premii wyrazowej", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -160,7 +170,7 @@ namespace CrosswordAssistant.Services
                 return false;
             }
 
-            //walidacja premii literowych
+            //walidacje premii literowych
             if (request.DoubleBonusLetters.Length > 0 && request.TripleBonusLetters.Length > 0) 
             {
                 MessageBox.Show("Obie premie literowe nie mogą być aktywne jednocześnie.", "Błąd premii literowej", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -189,6 +199,15 @@ namespace CrosswordAssistant.Services
                 if (!request.Word.Contains(c))
                 {
                     MessageBox.Show("Litera podana jako blank, nie występuje w podanym wyrazie.", "Błąd blanka", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
+            }
+            if(request.Blanks.Length == 2)
+            {
+                if (request.Blanks[0] == request.Blanks[1] 
+                    && request.Word.CountChars(request.Blanks[0]) < 2)
+                {
+                    MessageBox.Show("Nie wszystkie blanki występują w wyrazie.", "Błąd blanka", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return false;
                 }
             }
