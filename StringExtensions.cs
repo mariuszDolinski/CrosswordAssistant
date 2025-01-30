@@ -249,5 +249,23 @@ namespace CrosswordAssistant
             }
             return true;
         }
+        /// <summary>
+        /// Remove from this string first ocourence of each char in letters
+        /// </summary>
+        /// <param name="word"></param>
+        /// <param name="letters"></param>
+        /// <returns>new string made from this string without first ocourence of each char in letters</returns>
+        public static string RemoveLettersFromString(this string word, string letters)
+        {
+            var result = word;
+            foreach (var l in letters)
+            {
+                if (result.Contains(l))
+                {
+                    result = result.Remove(result.IndexOf(l), 1);
+                }
+            }
+            return result;
+        }
     }
 }

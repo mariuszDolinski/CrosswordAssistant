@@ -500,7 +500,6 @@ namespace CrosswordAssistant
             var request = new ScrabbleCalculatorRequest(word, doubleWordBonus, tripleWordBonus, doubleBonusLetters, tripleBonusLetters, blanksLetters);
 
             labelScrabbePoints.Text = ScrabbleCalculator.CalculateScrabbleScoreForWord(request).ToString();
-
         }
 
         #endregion

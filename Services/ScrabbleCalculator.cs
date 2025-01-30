@@ -71,21 +71,18 @@ namespace CrosswordAssistant.Services
             if(!ValidateScrabbleBonuses(request))
                 return 0;
 
-            var score = CountBaseScrabblePoints(request.Word, "");
-            if (request.Blanks.Length > 0) 
-            {
-                foreach( var b in request.Blanks)
-                {
-                    score -= ScrabblePointsForLetter(b);
-                }
-            }
+            var wordToCalculate = request.Word.RemoveLettersFromString(request.Blanks);
+
+            var score = CountBaseScrabblePoints(wordToCalculate, "");
+
             if (request.DoubleBonusLetters.Length > 0)
             {
-                foreach(var c in request.DoubleBonusLetters)
+                foreach (var c in request.DoubleBonusLetters)
                 {
                     score += ScrabblePointsForLetter(c);
                 }
             }
+
             if (request.TripleBonusLetters.Length > 0)
             {
                 foreach (var c in request.TripleBonusLetters)
@@ -209,6 +206,30 @@ namespace CrosswordAssistant.Services
                 {
                     MessageBox.Show("Nie wszystkie blanki występują w wyrazie.", "Błąd blanka", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return false;
+                }
+            }
+
+            //ilość powtórzeń litery łącznie na premii i blankach nie może przekraczać łącznej
+            //liczby wystapień tej litery w wyrazie
+            foreach (var c in request.Word)
+            {
+                if (request.DoubleBonusLetters.Length > 0)
+                {
+                    if (request.Blanks.CountChars(c) + request.DoubleBonusLetters.CountChars(c) > request.Word.CountChars(c))
+                    {
+                        MessageBox.Show($"Litera {c.ToString().ToUpper()} występuje zbyt wiele razy na premii literowej i/lub jako blank",
+                            "Błąd blanka/premii literowej", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return false;
+                    }
+                }
+                if (request.TripleBonusLetters.Length > 0)
+                {
+                    if (request.Blanks.CountChars(c) + request.TripleBonusLetters.CountChars(c) > request.Word.CountChars(c))
+                    {
+                        MessageBox.Show($"Litera {c.ToString().ToUpper()} występuje zbyt wiele razy na premii literowej i/lub jako blank",
+                            "Błąd blanka/premii literowej", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return false;
+                    }
                 }
             }
             return true;
