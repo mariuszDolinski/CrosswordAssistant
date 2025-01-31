@@ -8,7 +8,7 @@
         public static string MetagramModeMessage { get; } = "Podaj wyraz i kliknij Szukaj...";
         public static string LengthModeMessage { get; } = "Wybierz dodatkowe filtry i kliknij Szukaj...";
         public static string EmptyPattern { get; } = "Wzorzec nie zawiera żadnych znaków.";
-        public static string VersionInfo { get; } = "Pomocnik szaradzisty v2.8.1" + Environment.NewLine +
+        public static string VersionInfo { get; } = "Pomocnik szaradzisty v2.8.2" + Environment.NewLine +
                 "Autor: Mariusz Doliński" + Environment.NewLine + "© 2025";
         public static string MergeDictsInfo { get; } = "Wczytaj plik z wyrazami, które chcesz dodać do bieżącego słownika";
         public static string PatternInfo { get; } = "Wyszukuje wyrazy posiadające te same litery na tych" +
@@ -71,6 +71,7 @@
 
         public static string Shortcuts { get; } = "Dostępne skróty klawiaturowe:" + Environment.NewLine +
             "Enter - uruchamia wyszukiwanie dla aktualnego wzorca" + Environment.NewLine +
+            "F5 - przejście do następnej zakładki" + Environment.NewLine +
             "F6 - zaznacza wzorzec" + Environment.NewLine +
             "Ctrl+1 - tryb Wzorzec" + Environment.NewLine +
             "Ctrl+2 - tryb Anagram" + Environment.NewLine +

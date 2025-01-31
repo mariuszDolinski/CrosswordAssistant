@@ -392,6 +392,19 @@ namespace CrosswordAssistant
         }
         private void MainForm_KeyDown(object sender, KeyEventArgs e)
         {
+            if (e.KeyCode == Keys.F5)
+            {
+                var currentTabIndex = tabControl.SelectedIndex;
+                var currentFont = tabControl.SelectedTab!.Font;
+                switch (currentTabIndex) 
+                {
+                    case 0: tabControl.SelectedTab = tabPageUlozSam; break;
+                    case 1: tabControl.SelectedTab = tabPageScrabble; break;
+                    case 2: tabControl.SelectedTab = tabPageDictionary; break;
+                    case 3: tabControl.SelectedTab = tabPageAbout; break;
+                    default: tabControl.SelectedTab = tabPattern; break;
+                }
+            }
             switch (Search.Mode)
             {
                 case SearchMode.None:
