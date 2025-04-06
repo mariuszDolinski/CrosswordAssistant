@@ -395,15 +395,14 @@ namespace CrosswordAssistant
             if (e.KeyCode == Keys.F5)
             {
                 var currentTabIndex = tabControl.SelectedIndex;
-                var currentFont = tabControl.SelectedTab!.Font;
-                switch (currentTabIndex) 
+                tabControl.SelectedTab = currentTabIndex switch
                 {
-                    case 0: tabControl.SelectedTab = tabPageUlozSam; break;
-                    case 1: tabControl.SelectedTab = tabPageScrabble; break;
-                    case 2: tabControl.SelectedTab = tabPageDictionary; break;
-                    case 3: tabControl.SelectedTab = tabPageAbout; break;
-                    default: tabControl.SelectedTab = tabPattern; break;
-                }
+                    0 => tabPageUlozSam,
+                    1 => tabPageScrabble,
+                    2 => tabPageDictionary,
+                    3 => tabPageAbout,
+                    _ => tabPattern,
+                };
             }
             switch (Search.Mode)
             {
@@ -708,13 +707,13 @@ namespace CrosswordAssistant
             if (radioButtonEndsWith.Checked && textBoxEndsWith.Text.Length > 0)
             {
                 return results
-                    .Where(w => w.EndsWith(textBoxEndsWith.Text, StringComparison.CurrentCultureIgnoreCase))
+                    .Where(w => w.EndsWithAny(textBoxEndsWith.Text))
                     .ToList();
             }
             else if (radioButtonEndsWithNot.Checked && textBoxEndsWith.Text.Length > 0)
             {
                 return results
-                    .Where(w => !w.EndsWith(textBoxEndsWith.Text, StringComparison.CurrentCultureIgnoreCase))
+                    .Where(w => w.NotEndsWithAll(textBoxEndsWith.Text))
                     .ToList();
             }
             else
