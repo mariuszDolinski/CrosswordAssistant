@@ -688,13 +688,13 @@ namespace CrosswordAssistant
             if (radioButtonBeginsWith.Checked && textBoxBeginsWith.Text.Length > 0)
             {
                 return results
-                    .Where(w => w.StartsWith(textBoxBeginsWith.Text, StringComparison.CurrentCultureIgnoreCase))
+                    .Where(w => w.BeginsWithAny(textBoxBeginsWith.Text))
                     .ToList();
             }
             else if (radioButtonBeginWithNot.Checked && textBoxBeginsWith.Text.Length > 0)
             {
                 return results
-                    .Where(w => !w.StartsWith(textBoxBeginsWith.Text, StringComparison.CurrentCultureIgnoreCase))
+                    .Where(w => w.NotBeginsWithAll(textBoxBeginsWith.Text))
                     .ToList();
             }
             else

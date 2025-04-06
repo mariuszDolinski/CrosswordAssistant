@@ -200,6 +200,40 @@ namespace CrosswordAssistant
             return true;
         }
         /// <summary>
+        /// Split given pattern with coma, and check if word begins with any element from that array
+        /// </summary>
+        /// <param name="word"></param>
+        /// <param name="pattern">texts to find separated by comas</param>
+        /// <returns>true if word begins with at least one of given texts from given pattern, false otherwise</returns>
+        public static bool BeginsWithAny(this string word, string pattern)
+        {
+            if (pattern.Length == 0) return true;
+            var txts = pattern.Split(',');
+            foreach (var txt in txts)
+            {
+                if (txt.Length == 0) continue;
+                if (word.StartsWith(txt, StringComparison.CurrentCultureIgnoreCase)) return true;
+            }
+            return false;
+        }
+        /// <summary>
+        /// Split given pattern with coma, and check if word begins with any element from that array
+        /// </summary>
+        /// <param name="word"></param>
+        /// <param name="pattern">texts to find separated by comas</param>
+        /// <returns>true if word not begins with any of given texts from given pattern, false otherwise</returns>
+        public static bool NotBeginsWithAll(this string word, string pattern)
+        {
+            if (pattern.Length == 0) return true;
+            var txts = pattern.Split(',');
+            foreach (var txt in txts)
+            {
+                if (txt.Length == 0) continue;
+                if (word.StartsWith(txt, StringComparison.CurrentCultureIgnoreCase)) return false;
+            }
+            return true;
+        }
+        /// <summary>
         /// Add dots at the end of given word
         /// </summary>
         /// <param name="word">word to append dots</param>
