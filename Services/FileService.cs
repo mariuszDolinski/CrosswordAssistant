@@ -1,4 +1,5 @@
-﻿using CrosswordAssistant.Entities;
+﻿using CrosswordAssistant.AppSettings;
+using CrosswordAssistant.Entities;
 using System.Configuration;
 using System.Windows.Forms;
 
@@ -6,10 +7,8 @@ namespace CrosswordAssistant.Services
 {
     public class FileService
     {
-        private const string _deafultSavePath = "Słowniki";
-        private const string _defaultFileName = "slownik.txt";
-        public static string SavePath { get; private set; } = ConfigurationManager.AppSettings["dictionaryLocation"] ?? _deafultSavePath;
-        public static string FileName { get; private set; } = ConfigurationManager.AppSettings["dictionaryName"] ?? _defaultFileName;
+        public static string SavePath { get; private set; } = Settings.DictionaryPath;
+        public static string FileName { get; private set; } = Settings.DictionaryFileName;
 
         public static async Task<List<string>> ReadDictionaryAsync()
         {
@@ -46,8 +45,9 @@ namespace CrosswordAssistant.Services
                     "Błąd pliku ze słownikiem", MessageBoxButtons.YesNo, MessageBoxIcon.Error);
                 if(resp == DialogResult.Yes)
                 {
-                    SavePath = _deafultSavePath; FileName = _defaultFileName;
-                    SetDictionaryPathToAppConfig();
+                    SavePath = Settings.DeafultSavePath; FileName = Settings.DefaultFileName;
+                    Settings.SetToAppConfig(new SettingsEntry(Settings.DictionaryPathEntry, Settings.DictionaryPath, Settings.DeafultSavePath));
+                    Settings.SetToAppConfig(new SettingsEntry(Settings.DictionaryFileNameEntry, Settings.DictionaryFileName, Settings.DefaultFileName));
                     MessageBox.Show("Domyślne ustawienia zostały zmienione. Uruchom aplikację ponownie", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 return [Messages.NoFile];
@@ -67,7 +67,7 @@ namespace CrosswordAssistant.Services
             }
         }
 
-        public static bool SetCurrentDictionaryPathFromDialog(OpenFileDialog ofd)
+        public static bool SetCurrentDictionaryPathFromDialog(OpenFileDialog ofd, DictionaryMode mode)
         {
             if (ofd.ShowDialog() == DialogResult.OK)
             {
@@ -78,8 +78,17 @@ namespace CrosswordAssistant.Services
                 }
                 else
                 {
-                    FileName = Path.GetFileName(ofd.FileName);
-                    SavePath = Path.GetDirectoryName(ofd.FileName)!;
+                    switch (mode)
+                    {
+                        case DictionaryMode.NewFile:
+                            FileName = Path.GetFileName(ofd.FileName);
+                            SavePath = Path.GetDirectoryName(ofd.FileName)!;
+                            break;
+                        case DictionaryMode.NewPath:
+                            Settings.DictionaryPath = Path.GetDirectoryName(ofd.FileName)!;
+                            Settings.DictionaryFileName = Path.GetFileName(ofd.FileName);
+                            break;
+                    }
                     return true;
                 }
             }
@@ -102,38 +111,6 @@ namespace CrosswordAssistant.Services
                 }
             }
             return [];
-        }
-
-        public static void SetDictionaryPathToAppConfig()
-        {
-            try
-            {
-                var configFile = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-                var settings = configFile.AppSettings.Settings;
-                if (settings["dictionaryLocation"] is not null)
-                {
-                    settings["dictionaryLocation"].Value = SavePath;
-                }
-                else
-                {
-                    settings.Add("dictionaryLocation", "Słowniki");
-                }
-                if (settings["dictionaryName"] is not null)
-                {
-                    settings["dictionaryName"].Value = FileName;
-                }
-                else
-                {
-                    settings.Add("dictionaryName", "slownik.txt");
-                }
-
-                configFile.Save(ConfigurationSaveMode.Modified);
-                ConfigurationManager.RefreshSection(configFile.AppSettings.SectionInformation.Name);
-            }
-            catch (ConfigurationErrorsException)
-            {
-                Console.WriteLine("Błąd zapisu ścieżki słownika do pliku konfiguracyjnego. Spróbuj ponownie.");
-            }
         }
 
     }

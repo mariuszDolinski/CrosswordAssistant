@@ -499,6 +499,7 @@
             // 
             // textBoxNotContains
             // 
+            textBoxNotContains.CharacterCasing = CharacterCasing.Upper;
             textBoxNotContains.Enabled = false;
             textBoxNotContains.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point, 238);
             textBoxNotContains.Location = new Point(171, 119);
@@ -508,6 +509,7 @@
             // 
             // textBoxContains
             // 
+            textBoxContains.CharacterCasing = CharacterCasing.Upper;
             textBoxContains.Enabled = false;
             textBoxContains.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point, 238);
             textBoxContains.Location = new Point(171, 76);
@@ -577,6 +579,7 @@
             // 
             // textBoxEndsWith
             // 
+            textBoxEndsWith.CharacterCasing = CharacterCasing.Upper;
             textBoxEndsWith.Enabled = false;
             textBoxEndsWith.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point, 238);
             textBoxEndsWith.Location = new Point(16, 163);
@@ -646,6 +649,7 @@
             // 
             // textBoxBeginsWith
             // 
+            textBoxBeginsWith.CharacterCasing = CharacterCasing.Upper;
             textBoxBeginsWith.Enabled = false;
             textBoxBeginsWith.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point, 238);
             textBoxBeginsWith.Location = new Point(16, 163);
@@ -1436,6 +1440,7 @@
             // 
             // textBoxPatternUls
             // 
+            textBoxPatternUls.CharacterCasing = CharacterCasing.Upper;
             textBoxPatternUls.Dock = DockStyle.Top;
             textBoxPatternUls.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point, 238);
             textBoxPatternUls.Location = new Point(0, 0);

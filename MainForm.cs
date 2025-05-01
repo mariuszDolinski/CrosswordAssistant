@@ -103,7 +103,7 @@ namespace CrosswordAssistant
         }
         private async void LoadDictionaryBtn_Click(object sender, EventArgs e)
         {
-            if (FileService.SetCurrentDictionaryPathFromDialog(newDictionaryDialog))
+            if (FileService.SetCurrentDictionaryPathFromDialog(newDictionaryDialog, DictionaryMode.NewFile))
             {
                 DictionaryService.PendingDictionaryLoading = true;
                 int count = 0;
