@@ -11,12 +11,13 @@ namespace CrosswordAssistant
         {
             _currentMainForm = form;
             InitializeComponent();
-            SetDictionaryPath();
+            SetCurrentSettings();
         }
 
-        private void SetDictionaryPath()
+        private void SetCurrentSettings()
         {
             textBoxDefaultDictPath.Text = Path.GetFullPath(Settings.DictionaryPath) + "\\" + Settings.DictionaryFileName;
+            textBoxMaxResultsCount.Text = Settings.MaxResultsDisplay.ToString();
         }
         private void SaveNewDictionaryPathBtn_Click(object sender, EventArgs e)
         {
@@ -24,7 +25,7 @@ namespace CrosswordAssistant
             {
                 MessageBox.Show("Nowy domyślna lokalizacja pliku ze słownikiem zastała ustawiona." +
                     Environment.NewLine + "Zmiany będą widoczne po ponownym uruchomieniu aplikacji.");
-                SetDictionaryPath();
+                SetCurrentSettings();
                 buttonSettingsApply.Enabled = true;
                 buttonSettingsOK.Enabled = true;
             }
@@ -41,8 +42,10 @@ namespace CrosswordAssistant
 
         private void SettingsApply_Click(object sender, EventArgs e)
         {
-            Settings.SetToAppConfig(new SettingsEntry(Settings.DictionaryPathEntry, Settings.DictionaryPath, Settings.DeafultSavePath));
-            Settings.SetToAppConfig(new SettingsEntry(Settings.DictionaryFileNameEntry, Settings.DictionaryFileName, Settings.DefaultFileName));
+            Settings.MaxResultsDisplay = int.Parse(textBoxMaxResultsCount.Text);
+            Settings.SetToAppConfig(new SettingsEntry(Settings.DictionaryPathEntry, Settings.DictionaryPath));
+            Settings.SetToAppConfig(new SettingsEntry(Settings.DictionaryFileNameEntry, Settings.DictionaryFileName));
+            Settings.SetToAppConfig(new SettingsEntry(Settings.MaxResultsEntry, Settings.MaxResultsDisplay.ToString()));
             buttonSettingsApply.Enabled = false;
             buttonSettingsOK.Enabled = false;
         }
@@ -51,6 +54,16 @@ namespace CrosswordAssistant
         {
             SettingsApply_Click(sender, e);
             SettingsCancel_Click(sender, e);
+        }
+
+        private void MaxResults_TextChanged(object sender, EventArgs e)
+        {
+            bool isInt = int.TryParse(textBoxMaxResultsCount.Text, out int currentMax);
+            if (isInt)
+            {
+                buttonSettingsApply.Enabled = currentMax != Settings.MaxResultsDisplay;
+                buttonSettingsOK.Enabled = currentMax != Settings.MaxResultsDisplay;
+            }
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using CrosswordAssistant.Entities;
+﻿using CrosswordAssistant.AppSettings;
+using CrosswordAssistant.Entities;
 using System.ComponentModel.Design;
 using System.Diagnostics;
 
@@ -6,6 +7,7 @@ namespace CrosswordAssistant.Services
 {
     public class Utilities
     {
+        private static readonly int BoundCount = Settings.MaxResultsDisplay;
         public static void SearchInWeb(string web, string searchPhrase)
         {
             ProcessStartInfo processInfo = new()
@@ -16,11 +18,11 @@ namespace CrosswordAssistant.Services
             Process.Start(processInfo);
         }
 
-        public static List<string> BoundTo500(List<string> words)
+        public static List<string> BoundResults(List<string> words)
         {
             List<string> results = words;
-            if (results.Count <= 500) return results;
-            return results.Take(500).ToList();
+            if (results.Count <= BoundCount) return results;
+            return results.Take(BoundCount).ToList();
         }
 
         /// <summary>

@@ -1,4 +1,6 @@
-﻿namespace CrosswordAssistant.Services
+﻿using CrosswordAssistant.AppSettings;
+
+namespace CrosswordAssistant.Services
 {
     public class FormService
     {
@@ -54,11 +56,11 @@
         public static void FillTextBoxWithWords(TextBox textBox, List<string> words, bool appendText)
         {
             string result = "";
-            if(words.Count > 500)
+            if(words.Count > Settings.MaxResultsDisplay)
             {
-                result = "Zbyt wiele wyrazów do wyświetlenia. Pokazuję pierwsze 500.";
+                result = "Zbyt wiele wyrazów do wyświetlenia. Pokazuję pierwsze " + Settings.MaxResultsDisplay.ToString();
                 result += Environment.NewLine + Environment.NewLine;
-                words = words.Take(500).ToList();
+                words = words.Take(Settings.MaxResultsDisplay).ToList();
             }
             foreach (string word in words)
             {

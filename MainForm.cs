@@ -1,3 +1,4 @@
+using CrosswordAssistant.AppSettings;
 using CrosswordAssistant.Entities;
 using CrosswordAssistant.Searches;
 using CrosswordAssistant.Services;
@@ -58,7 +59,7 @@ namespace CrosswordAssistant
 
                 matches = ApplyFilters(matches);
                 labelResultsCount.Text = "Znalezionych dopasowañ: " + matches.Count;
-                matches = Utilities.BoundTo500(matches);
+                matches = Utilities.BoundResults(matches);
                 FillTextBoxResults(matches, textBoxPatternResults);
                 textBoxPattern.ReadOnly = false;
             }
@@ -84,7 +85,7 @@ namespace CrosswordAssistant
             }
             List<string> matches = search.SearchMatches(pattern);
 
-            matches = Utilities.BoundTo500(matches);
+            matches = Utilities.BoundResults(matches);
             FillTextBoxResults(matches, textBoxResultsUls);
             textBoxPatternUls.ReadOnly = false;
         }
@@ -615,11 +616,11 @@ namespace CrosswordAssistant
                     FormService.FillTextBoxScrabbleResults(textBoxScrabbleResults, results);
                 }
             }
-            if (results.Count == 500 && Search.Mode != SearchMode.Scrabble)
+            if (results.Count == Settings.MaxResultsDisplay && Search.Mode != SearchMode.Scrabble)
             {
                 textBox.Text += Environment.NewLine;
                 textBox.Text += "Zbyt wiele dopasowañ. " + Environment.NewLine +
-                    "Wyœwietlam pierwsze 500.";
+                    "Wyœwietlam pierwsze " + Settings.MaxResultsDisplay.ToString();
             }
         }
         private List<string> ApplyFilters(List<string> words)

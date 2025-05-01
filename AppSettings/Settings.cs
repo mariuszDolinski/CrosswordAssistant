@@ -11,9 +11,11 @@ namespace CrosswordAssistant.AppSettings
 
         public const string DeafultSavePath = "Słowniki";
         public const string DefaultFileName = "slownik.txt";
+        public const int DefaultResultDisplay = 500;
 
-        public static string DictionaryPath { get; set; } = ConfigurationManager.AppSettings["dictionaryLocation"] ?? DeafultSavePath;
-        public static string DictionaryFileName { get; set; } = ConfigurationManager.AppSettings["dictionaryName"] ?? DefaultFileName;
+        public static string DictionaryPath { get; set; } = ConfigurationManager.AppSettings[DictionaryPathEntry] ?? DeafultSavePath;
+        public static string DictionaryFileName { get; set; } = ConfigurationManager.AppSettings[DictionaryFileNameEntry] ?? DefaultFileName;
+        public static int MaxResultsDisplay { get; set; } = ConfigurationManager.AppSettings[MaxResultsEntry] is null ? DefaultResultDisplay : int.Parse(ConfigurationManager.AppSettings[MaxResultsEntry]!);
 
 
         public static void SetToAppConfig(SettingsEntry entry)
@@ -28,7 +30,7 @@ namespace CrosswordAssistant.AppSettings
                 }
                 else
                 {
-                    settings.Add(entry.Name, entry.DefaultValue);
+                    settings.Add(entry.Name, entry.Value);
                 }
 
                 configFile.Save(ConfigurationSaveMode.Modified);

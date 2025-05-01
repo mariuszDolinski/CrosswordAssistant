@@ -172,6 +172,7 @@
             textBoxMaxResultsCount.Name = "textBoxMaxResultsCount";
             textBoxMaxResultsCount.Size = new Size(102, 31);
             textBoxMaxResultsCount.TabIndex = 1;
+            textBoxMaxResultsCount.TextChanged += MaxResults_TextChanged;
             // 
             // labelMaxResultsCount
             // 

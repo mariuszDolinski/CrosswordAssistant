@@ -46,8 +46,8 @@ namespace CrosswordAssistant.Services
                 if(resp == DialogResult.Yes)
                 {
                     SavePath = Settings.DeafultSavePath; FileName = Settings.DefaultFileName;
-                    Settings.SetToAppConfig(new SettingsEntry(Settings.DictionaryPathEntry, Settings.DictionaryPath, Settings.DeafultSavePath));
-                    Settings.SetToAppConfig(new SettingsEntry(Settings.DictionaryFileNameEntry, Settings.DictionaryFileName, Settings.DefaultFileName));
+                    Settings.SetToAppConfig(new SettingsEntry(Settings.DictionaryPathEntry, Settings.DictionaryPath));
+                    Settings.SetToAppConfig(new SettingsEntry(Settings.DictionaryFileNameEntry, Settings.DictionaryFileName));
                     MessageBox.Show("Domyślne ustawienia zostały zmienione. Uruchom aplikację ponownie", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 return [Messages.NoFile];
