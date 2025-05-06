@@ -7,8 +7,13 @@ namespace CrosswordAssistant.Services
 {
     public class FileService
     {
-        public static string SavePath { get; private set; } = Settings.DictionaryPath;
-        public static string FileName { get; private set; } = Settings.DictionaryFileName;
+        private static readonly string SettingsSavePath = (string)Settings.SavedSettings[Settings.DictPathKey];
+        private static readonly string SettingsFileNamePath = (string)Settings.SavedSettings[Settings.DictFileKey];
+        private static readonly string SettingsDefaultSavePath = (string)Settings.DefaultSettings[Settings.DictPathKey];
+        private static readonly string SettingsDefaultFileNamePath = (string)Settings.DefaultSettings[Settings.DictFileKey];
+
+        public static string SavePath { get; private set; } = SettingsSavePath;
+        public static string FileName { get; private set; } = SettingsFileNamePath;
 
         public static async Task<List<string>> ReadDictionaryAsync()
         {
@@ -45,9 +50,10 @@ namespace CrosswordAssistant.Services
                     "Błąd pliku ze słownikiem", MessageBoxButtons.YesNo, MessageBoxIcon.Error);
                 if(resp == DialogResult.Yes)
                 {
-                    SavePath = Settings.DeafultSavePath; FileName = Settings.DefaultFileName;
-                    Settings.SetToAppConfig(new SettingsEntry(Settings.DictionaryPathEntry, Settings.DictionaryPath));
-                    Settings.SetToAppConfig(new SettingsEntry(Settings.DictionaryFileNameEntry, Settings.DictionaryFileName));
+                    SavePath = SettingsDefaultSavePath; FileName = SettingsDefaultFileNamePath;
+                    Settings.SavedSettings[Settings.DictPathKey] = SavePath;
+                    Settings.SavedSettings[Settings.DictFileKey] = FileName;
+                    Settings.SaveSettingToAppConfig();
                     MessageBox.Show("Domyślne ustawienia zostały zmienione. Uruchom aplikację ponownie", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 return [Messages.NoFile];
@@ -85,8 +91,8 @@ namespace CrosswordAssistant.Services
                             SavePath = Path.GetDirectoryName(ofd.FileName)!;
                             break;
                         case DictionaryMode.NewPath:
-                            Settings.DictionaryPath = Path.GetDirectoryName(ofd.FileName)!;
-                            Settings.DictionaryFileName = Path.GetFileName(ofd.FileName);
+                            Settings.CurrentSettings[Settings.DictPathKey] = Path.GetDirectoryName(ofd.FileName)!;
+                            Settings.CurrentSettings[Settings.DictFileKey] = Path.GetFileName(ofd.FileName);
                             break;
                     }
                     return true;

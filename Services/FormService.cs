@@ -55,12 +55,13 @@ namespace CrosswordAssistant.Services
         }
         public static void FillTextBoxWithWords(TextBox textBox, List<string> words, bool appendText)
         {
+            int MaxResultDisplay = (int)Settings.SavedSettings[Settings.MaxResultsKey];
             string result = "";
-            if(words.Count > Settings.MaxResultsDisplay)
+            if(words.Count > MaxResultDisplay)
             {
-                result = "Zbyt wiele wyrazów do wyświetlenia. Pokazuję pierwsze " + Settings.MaxResultsDisplay.ToString();
+                result = "Zbyt wiele wyrazów do wyświetlenia. Pokazuję pierwsze " + MaxResultDisplay.ToString();
                 result += Environment.NewLine + Environment.NewLine;
-                words = words.Take(Settings.MaxResultsDisplay).ToList();
+                words = words.Take(MaxResultDisplay).ToList();
             }
             foreach (string word in words)
             {

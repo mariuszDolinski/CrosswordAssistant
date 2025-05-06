@@ -12,6 +12,8 @@ namespace CrosswordAssistant
         private const string EndWithFilterName = "ENDW";
         private const string ContainsFilterName = "CNTS";
 
+        public int MaxResultDisplay { get; set; }
+
         private readonly DictionaryService _dictionaryService;
         private readonly List<Label> _infoLabels = [];
         private readonly Dictionary<string, string> _filtersNames = [];
@@ -22,6 +24,9 @@ namespace CrosswordAssistant
             MinimumSize = Size;
             MaximumSize = Size;
             KeyPreview = true;
+
+            Settings.Init();
+            MaxResultDisplay = (int)Settings.SavedSettings[Settings.MaxResultsKey];
 
             _dictionaryService = new DictionaryService();
             if (_dictionaryService.DictionaryLoadError())
@@ -616,11 +621,11 @@ namespace CrosswordAssistant
                     FormService.FillTextBoxScrabbleResults(textBoxScrabbleResults, results);
                 }
             }
-            if (results.Count == Settings.MaxResultsDisplay && Search.Mode != SearchMode.Scrabble)
+            if (results.Count == MaxResultDisplay && Search.Mode != SearchMode.Scrabble)
             {
                 textBox.Text += Environment.NewLine;
                 textBox.Text += "Zbyt wiele dopasowañ. " + Environment.NewLine +
-                    "Wyœwietlam pierwsze " + Settings.MaxResultsDisplay.ToString();
+                    "Wyœwietlam pierwsze " + MaxResultDisplay.ToString();
             }
         }
         private List<string> ApplyFilters(List<string> words)
