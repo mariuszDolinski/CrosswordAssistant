@@ -13,6 +13,7 @@ namespace CrosswordAssistant.AppSettings
         public const string DictPathKey = "dictionaryLocation";
         public const string DictFileKey = "dictionaryName";
         public const string MaxResultsKey = "maxResultsDisplay";
+        public const string PatternColorKey = "patternColor";
 
         //public const string DeafultSavePath = "Słowniki";
         //public const string DefaultFileName = "slownik.txt";
@@ -33,6 +34,7 @@ namespace CrosswordAssistant.AppSettings
             DefaultSettings[DictPathKey] = "Słowniki";
             DefaultSettings[DictFileKey] = "slownik.txt";
             DefaultSettings[MaxResultsKey] = 500;
+            DefaultSettings[PatternColorKey] = -7357297;
         }
         public static void CancelCurrentSettings()
         {
@@ -65,12 +67,20 @@ namespace CrosswordAssistant.AppSettings
             SavedSettings[DictPathKey] = ConfigurationManager.AppSettings[DictPathKey] ?? DefaultSettings[DictPathKey];
             SavedSettings[DictFileKey]= ConfigurationManager.AppSettings[DictFileKey] ?? DefaultSettings[DictFileKey];
             SavedSettings[MaxResultsKey] = ConfigurationManager.AppSettings[MaxResultsKey] is null ? DefaultSettings[MaxResultsKey] : int.Parse(ConfigurationManager.AppSettings[MaxResultsKey]!);
+            SavedSettings[PatternColorKey] = ConfigurationManager.AppSettings[PatternColorKey] is null ? DefaultSettings[PatternColorKey] : int.Parse(ConfigurationManager.AppSettings[PatternColorKey]!);
+        }
+        public static void ReturnToDefaultSettings()
+        {
+            foreach (var ss in SavedSettings)
+            {
+                CurrentSettings[ss.Key] = DefaultSettings[ss.Key];
+            }
         }
         private static void InitCurrentSettings()
         {
-            foreach (var cs in SavedSettings)
+            foreach (var ss in SavedSettings)
             {
-                CurrentSettings.Add(cs.Key, cs.Value);
+                CurrentSettings.Add(ss.Key, ss.Value);
             }
         }
 

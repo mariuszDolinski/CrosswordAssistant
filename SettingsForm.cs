@@ -20,6 +20,7 @@ namespace CrosswordAssistant
         {
             textBoxDefaultDictPath.Text = Path.GetFullPath((string)Settings.CurrentSettings[Settings.DictPathKey]) + "\\" + Settings.CurrentSettings[Settings.DictFileKey];
             textBoxMaxResultsCount.Text = Settings.CurrentSettings[Settings.MaxResultsKey].ToString();
+            labelColorPattern.BackColor = Color.FromArgb((int)Settings.CurrentSettings[Settings.PatternColorKey]);
         }
         private void SetButtonsVisibility()
         {
@@ -35,7 +36,7 @@ namespace CrosswordAssistant
                 MessageBox.Show("Maksymalna ilość dopasowań powinna być liczbą.", "Maksymalna ilość dopasowań", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
-            else if (currentMax < 10 || currentMax > 1000) 
+            else if (currentMax < 10 || currentMax > 1000)
             {
                 MessageBox.Show("Maksymalna ilość dopasowań powinna być liczbą z przedziału [10,1000].", "Maksymalna ilość dopasowań", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
@@ -43,6 +44,8 @@ namespace CrosswordAssistant
 
             return true;
         }
+
+
         private void Settings_OnClosed(object sender, FormClosingEventArgs e)
         {
             Settings.CancelCurrentSettings();
@@ -70,17 +73,15 @@ namespace CrosswordAssistant
                 _isValidateOk = false;
             }
         }
-
         private void SettingsSave_Click(object sender, EventArgs e)
         {
             SettingsApply_Click(sender, e);
-            if (_isValidateOk) 
+            if (_isValidateOk)
             {
                 Close();
                 Dispose();
             }
         }
-
         private void SaveNewDictionaryPathBtn_Click(object sender, EventArgs e)
         {
             if (FileService.SetCurrentDictionaryPathFromDialog(openFileDialogNewDefaultDictPath, DictionaryMode.NewPath))
@@ -98,6 +99,30 @@ namespace CrosswordAssistant
             {
                 Settings.CurrentSettings[Settings.MaxResultsKey] = currentMax;
                 SetButtonsVisibility();
+            }
+        }
+        private void PatternColor_Click(object sender, EventArgs e)
+        {
+            if (setColorDialog.ShowDialog() == DialogResult.OK)
+            {
+                Settings.CurrentSettings[Settings.PatternColorKey] = setColorDialog.Color.ToArgb();
+                labelColorPattern.BackColor = setColorDialog.Color;
+                SetButtonsVisibility();
+            }
+        }
+
+        private void BackToDefaultSettings_Click(object sender, EventArgs e)
+        {
+            var response = MessageBox.Show("Czy na pewno chcesz przywrócić domyślne ustawienia aplikacji?", 
+                "Przywracanie ustawień domyślnych", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (response == DialogResult.Yes) 
+            {
+                Settings.ReturnToDefaultSettings();
+                Settings.SaveCurrentSettings();
+                Settings.SaveSettingToAppConfig();
+
+                MessageBox.Show("Ustawienia domyślne zostały przywrócone. Niektóre zmiany mogą być widoczne dopiero po ponownym uruchomieniu aplikacji.",
+                "Przywracanie ustawień domyślnych", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
     }

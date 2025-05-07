@@ -30,6 +30,7 @@
         {
             openFileDialogNewDefaultDictPath = new OpenFileDialog();
             panelSettingsControls = new Panel();
+            buttonResetToDefault = new Button();
             buttonSettingsApply = new Button();
             buttonSettingsCancel = new Button();
             buttonSettingsOK = new Button();
@@ -42,10 +43,18 @@
             textBoxMaxResultsCount = new TextBox();
             labelMaxResultsCount = new Label();
             tabPageApparence = new TabPage();
+            groupBoxColorsSettings = new GroupBox();
+            buttonPatternColor = new Button();
+            labelColorPattern = new Label();
+            labelPatternColor = new Label();
+            labelColorSettings = new Label();
+            setColorDialog = new ColorDialog();
             panelSettingsControls.SuspendLayout();
             tabControl1.SuspendLayout();
             tabPageGeneral.SuspendLayout();
             groupBoxDictSettings.SuspendLayout();
+            tabPageApparence.SuspendLayout();
+            groupBoxColorsSettings.SuspendLayout();
             SuspendLayout();
             // 
             // openFileDialogNewDefaultDictPath
@@ -54,6 +63,7 @@
             // 
             // panelSettingsControls
             // 
+            panelSettingsControls.Controls.Add(buttonResetToDefault);
             panelSettingsControls.Controls.Add(buttonSettingsApply);
             panelSettingsControls.Controls.Add(buttonSettingsCancel);
             panelSettingsControls.Controls.Add(buttonSettingsOK);
@@ -62,6 +72,17 @@
             panelSettingsControls.Name = "panelSettingsControls";
             panelSettingsControls.Size = new Size(896, 56);
             panelSettingsControls.TabIndex = 1;
+            // 
+            // buttonResetToDefault
+            // 
+            buttonResetToDefault.FlatStyle = FlatStyle.Flat;
+            buttonResetToDefault.Location = new Point(7, 11);
+            buttonResetToDefault.Name = "buttonResetToDefault";
+            buttonResetToDefault.Size = new Size(269, 34);
+            buttonResetToDefault.TabIndex = 3;
+            buttonResetToDefault.Text = "Przywróć ustawienia domyślne";
+            buttonResetToDefault.UseVisualStyleBackColor = true;
+            buttonResetToDefault.Click += BackToDefaultSettings_Click;
             // 
             // buttonSettingsApply
             // 
@@ -185,6 +206,7 @@
             // 
             // tabPageApparence
             // 
+            tabPageApparence.Controls.Add(groupBoxColorsSettings);
             tabPageApparence.Location = new Point(4, 37);
             tabPageApparence.Name = "tabPageApparence";
             tabPageApparence.Padding = new Padding(3);
@@ -192,6 +214,57 @@
             tabPageApparence.TabIndex = 1;
             tabPageApparence.Text = "Wygląd";
             tabPageApparence.UseVisualStyleBackColor = true;
+            // 
+            // groupBoxColorsSettings
+            // 
+            groupBoxColorsSettings.Controls.Add(buttonPatternColor);
+            groupBoxColorsSettings.Controls.Add(labelColorPattern);
+            groupBoxColorsSettings.Controls.Add(labelPatternColor);
+            groupBoxColorsSettings.Controls.Add(labelColorSettings);
+            groupBoxColorsSettings.Dock = DockStyle.Top;
+            groupBoxColorsSettings.Location = new Point(3, 3);
+            groupBoxColorsSettings.Name = "groupBoxColorsSettings";
+            groupBoxColorsSettings.Size = new Size(882, 150);
+            groupBoxColorsSettings.TabIndex = 0;
+            groupBoxColorsSettings.TabStop = false;
+            groupBoxColorsSettings.Text = "Kolory";
+            // 
+            // buttonPatternColor
+            // 
+            buttonPatternColor.FlatStyle = FlatStyle.Flat;
+            buttonPatternColor.Location = new Point(62, 100);
+            buttonPatternColor.Name = "buttonPatternColor";
+            buttonPatternColor.Size = new Size(112, 34);
+            buttonPatternColor.TabIndex = 3;
+            buttonPatternColor.Text = "Zmień";
+            buttonPatternColor.UseVisualStyleBackColor = true;
+            buttonPatternColor.Click += PatternColor_Click;
+            // 
+            // labelColorPattern
+            // 
+            labelColorPattern.BackColor = Color.DarkSeaGreen;
+            labelColorPattern.Location = new Point(11, 100);
+            labelColorPattern.Name = "labelColorPattern";
+            labelColorPattern.Size = new Size(45, 34);
+            labelColorPattern.TabIndex = 2;
+            // 
+            // labelPatternColor
+            // 
+            labelPatternColor.AutoSize = true;
+            labelPatternColor.Location = new Point(11, 72);
+            labelPatternColor.Name = "labelPatternColor";
+            labelPatternColor.Size = new Size(103, 25);
+            labelPatternColor.TabIndex = 1;
+            labelPatternColor.Text = "Szaradzista:";
+            // 
+            // labelColorSettings
+            // 
+            labelColorSettings.AutoSize = true;
+            labelColorSettings.Location = new Point(6, 37);
+            labelColorSettings.Name = "labelColorSettings";
+            labelColorSettings.Size = new Size(635, 25);
+            labelColorSettings.TabIndex = 0;
+            labelColorSettings.Text = "Zmień kolorystykę wybranych zakładek (zmiany widoczne po restarcie aplikacji)";
             // 
             // SettingsForm
             // 
@@ -209,6 +282,9 @@
             tabPageGeneral.PerformLayout();
             groupBoxDictSettings.ResumeLayout(false);
             groupBoxDictSettings.PerformLayout();
+            tabPageApparence.ResumeLayout(false);
+            groupBoxColorsSettings.ResumeLayout(false);
+            groupBoxColorsSettings.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -227,5 +303,12 @@
         private Button buttonSettingsApply;
         private Button buttonSettingsCancel;
         private Button buttonSettingsOK;
+        private GroupBox groupBoxColorsSettings;
+        private Label labelColorSettings;
+        private ColorDialog setColorDialog;
+        private Label labelPatternColor;
+        private Label labelColorPattern;
+        private Button buttonPatternColor;
+        private Button buttonResetToDefault;
     }
 }

@@ -550,6 +550,15 @@ namespace CrosswordAssistant
             groupBoxBeginWithFilters.Text = _filtersNames[StartWithFilterName];
             groupBoxEndsWithFilters.Text = _filtersNames[EndWithFilterName];
 
+            SetCustomColors();
+        }
+
+        private void SetCustomColors()
+        {
+            var patternColor = Color.FromArgb((int)Settings.SavedSettings[Settings.PatternColorKey]);
+            labelPattern.BackColor = patternColor;
+            labelCurrentPatternLen.BackColor = patternColor;
+            labelResultsCount.BackColor = patternColor;
         }
         private void SetLengthControlsEnabled(bool isEnabled)
         {
