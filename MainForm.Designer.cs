@@ -2691,7 +2691,6 @@
         private TabControl tabControl;
         private TabPage tabPattern;
         private TabPage tabPageAbout;
-        private Label labelPattern;
         private Label labelSpace1;
         private SplitContainer splitContainerPattern;
         private TextBox textBoxPattern;
@@ -2710,7 +2709,6 @@
         private TabPage tabPageUlozSam;
         private SplitContainer splitContainerUls;
         private Label label8;
-        private Label labelUluzSam;
         private TextBox textBoxResultsUls;
         private TextBox textBoxPatternUls;
         private Button buttonSearchUls;
@@ -2728,14 +2726,6 @@
         private TabPage tabPageDictionary;
         private Label labelDictionary;
         private TableLayoutPanel tableLayoutPanelUsl;
-        private Label labelGr1;
-        private Label labelGr2;
-        private Label labelGr8;
-        private Label labelGr7;
-        private Label labelGr6;
-        private Label labelGr4;
-        private Label labelGr3;
-        private Label labelGr5;
         private GroupBox groupBox1;
         private TableLayoutPanel tableLayoutPanel1;
         private Label label19;
@@ -2778,15 +2768,12 @@
         private RadioButton radioPM1Mode;
         private Label labelShortcuts;
         private TabPage tabPageScrabble;
-        private Label label4;
         private TableLayoutPanel tableLayoutPanelScrabble;
         private Button searchScrabbleBtn;
         private TextBox textBoxScrabblePattern;
         private TextBox textBoxScrabbleResults;
         private Label labelScrabbleInfo;
-        private Label labelCurrentPatternLen;
         private Label label7;
-        private Label labelScrabbleCurrentPatternLen;
         private Label labelInfoFilters;
         private RadioButton radioSubWordMode;
         private Label labelSubwordInfo;
@@ -2835,7 +2822,6 @@
         private RadioButton radioButtonBeginWithNot;
         private RadioButton radioButtonBeginsWith;
         private CheckBox checkBoxBeginsWithActive;
-        private Label labelResultsCount;
         private Label label24;
         private GroupBox groupBoxEndsWithFilters;
         private CheckBox checkBoxEndsWithActive;
@@ -2849,7 +2835,6 @@
         private RadioButton radioButtonContainsAnd;
         private Button buttonSettings;
         private SplitContainer splitContainerScrabble;
-        private Label label27;
         private Label label28;
         private GroupBox groupBoxScrabbleBonuses;
         private NumericUpDown numericUpDownTripleBonus;
@@ -2865,12 +2850,27 @@
         private GroupBox groupBoxScrabbleBlanks;
         private TextBox textBoxBlankLetter1;
         private TextBox textBoxBlankLetter2;
-        private Label labelScrabbePoints;
         private Label label34;
         private Button buttonCalcuateSrabblePoints;
         private Label label33;
         private Label label35;
         private Label label36;
         private Label label37;
+        internal Label labelPattern;
+        internal Label labelUluzSam;
+        internal Label labelGr1;
+        internal Label labelGr2;
+        internal Label labelGr8;
+        internal Label labelGr7;
+        internal Label labelGr6;
+        internal Label labelGr4;
+        internal Label labelGr3;
+        internal Label labelGr5;
+        internal Label labelCurrentPatternLen;
+        internal Label labelResultsCount;
+        internal Label label4;
+        internal Label labelScrabbleCurrentPatternLen;
+        internal Label label27;
+        internal Label labelScrabbePoints;
     }
 }

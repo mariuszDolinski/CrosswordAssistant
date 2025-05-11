@@ -12,11 +12,12 @@ namespace CrosswordAssistant
         private const string EndWithFilterName = "ENDW";
         private const string ContainsFilterName = "CNTS";
 
-        public int MaxResultDisplay { get; set; }
-
+        private readonly AppearanceSettings _appearance;
         private readonly DictionaryService _dictionaryService;
         private readonly List<Label> _infoLabels = [];
         private readonly Dictionary<string, string> _filtersNames = [];
+
+        public int MaxResultDisplay { get; set; }
 
         public MainForm()
         {
@@ -28,6 +29,7 @@ namespace CrosswordAssistant
             Settings.Init();
             MaxResultDisplay = (int)Settings.SavedSettings[Settings.MaxResultsKey];
 
+            _appearance = new AppearanceSettings(this);
             _dictionaryService = new DictionaryService();
             if (_dictionaryService.DictionaryLoadError())
             {
@@ -550,16 +552,9 @@ namespace CrosswordAssistant
             groupBoxBeginWithFilters.Text = _filtersNames[StartWithFilterName];
             groupBoxEndsWithFilters.Text = _filtersNames[EndWithFilterName];
 
-            SetCustomColors();
+            _appearance.SetBackgroundColor();
         }
 
-        private void SetCustomColors()
-        {
-            var patternColor = Color.FromArgb((int)Settings.SavedSettings[Settings.PatternColorKey]);
-            labelPattern.BackColor = patternColor;
-            labelCurrentPatternLen.BackColor = patternColor;
-            labelResultsCount.BackColor = patternColor;
-        }
         private void SetLengthControlsEnabled(bool isEnabled)
         {
             radioLength.Enabled = isEnabled;
