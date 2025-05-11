@@ -14,6 +14,7 @@ namespace CrosswordAssistant.AppSettings
         public const string DictFileKey = "dictionaryName";
         public const string MaxResultsKey = "maxResultsDisplay";
         public const string PatternColorKey = "patternColor";
+        public const string UlozSamColorKey = "ulozSamColor";
 
         //public const string DeafultSavePath = "Słowniki";
         //public const string DefaultFileName = "slownik.txt";
@@ -35,6 +36,7 @@ namespace CrosswordAssistant.AppSettings
             DefaultSettings[DictFileKey] = "slownik.txt";
             DefaultSettings[MaxResultsKey] = 500;
             DefaultSettings[PatternColorKey] = -7357297;
+            DefaultSettings[UlozSamColorKey] = -7114533;
         }
         public static void CancelCurrentSettings()
         {
@@ -68,6 +70,7 @@ namespace CrosswordAssistant.AppSettings
             SavedSettings[DictFileKey]= ConfigurationManager.AppSettings[DictFileKey] ?? DefaultSettings[DictFileKey];
             SavedSettings[MaxResultsKey] = ConfigurationManager.AppSettings[MaxResultsKey] is null ? DefaultSettings[MaxResultsKey] : int.Parse(ConfigurationManager.AppSettings[MaxResultsKey]!);
             SavedSettings[PatternColorKey] = ConfigurationManager.AppSettings[PatternColorKey] is null ? DefaultSettings[PatternColorKey] : int.Parse(ConfigurationManager.AppSettings[PatternColorKey]!);
+            SavedSettings[UlozSamColorKey] = ConfigurationManager.AppSettings[UlozSamColorKey] is null ? DefaultSettings[UlozSamColorKey] : int.Parse(ConfigurationManager.AppSettings[UlozSamColorKey]!);
         }
         public static void ReturnToDefaultSettings()
         {

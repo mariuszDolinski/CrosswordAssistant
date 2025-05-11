@@ -6,29 +6,46 @@ namespace CrosswordAssistant.AppSettings
     {
         private readonly MainForm _mainForm = form;
 
-        private Dictionary<Color, List<Label>> GetColorSettings()
+        private List< List<Label>> GetLabelsToSetColor()
         {
-            return new Dictionary<Color, List<Label>>()
-            {
-                {
-                    Color.FromArgb((int)Settings.SavedSettings[Settings.PatternColorKey]),
-                    new List<Label>() 
-                    {
+            return
+                [
+                    [
                         _mainForm.labelPattern,
                         _mainForm.labelCurrentPatternLen,
                         _mainForm.labelResultsCount
-                    }
-                }
-            };
+                    ],
+                    [
+                        _mainForm.labelUluzSam,
+                        _mainForm.labelGr1,
+                        _mainForm.labelGr2,
+                        _mainForm.labelGr3,
+                        _mainForm.labelGr4,
+                        _mainForm.labelGr5,
+                        _mainForm.labelGr6,
+                        _mainForm.labelGr7,
+                        _mainForm.labelGr8
+                    ]
+                ];
+        }
+        private List<Color> GetSettingsColors()
+        {
+            return
+                [
+                    Color.FromArgb((int)Settings.SavedSettings[Settings.PatternColorKey]),
+                    Color.FromArgb((int)Settings.SavedSettings[Settings.UlozSamColorKey])
+                ];
         }
 
         public void SetBackgroundColor()
         {
-            foreach (var cs in GetColorSettings())
+            var colorSettings = GetSettingsColors();
+            var labelsToColor = GetLabelsToSetColor();
+            foreach (var labels in labelsToColor)
             {
-                foreach(var label in cs.Value)
+                foreach(var label in labels)
                 {
-                    label.BackColor = cs.Key;
+                    label.BackColor = colorSettings[labelsToColor.IndexOf(labels)];
                 }
             }
         }

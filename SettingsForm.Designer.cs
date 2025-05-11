@@ -49,6 +49,9 @@
             labelPatternColor = new Label();
             labelColorSettings = new Label();
             setColorDialog = new ColorDialog();
+            label1 = new Label();
+            labelColorUlozSam = new Label();
+            buttonUlozSamColor = new Button();
             panelSettingsControls.SuspendLayout();
             tabControl1.SuspendLayout();
             tabPageGeneral.SuspendLayout();
@@ -217,6 +220,9 @@
             // 
             // groupBoxColorsSettings
             // 
+            groupBoxColorsSettings.Controls.Add(buttonUlozSamColor);
+            groupBoxColorsSettings.Controls.Add(labelColorUlozSam);
+            groupBoxColorsSettings.Controls.Add(label1);
             groupBoxColorsSettings.Controls.Add(buttonPatternColor);
             groupBoxColorsSettings.Controls.Add(labelColorPattern);
             groupBoxColorsSettings.Controls.Add(labelPatternColor);
@@ -266,6 +272,34 @@
             labelColorSettings.TabIndex = 0;
             labelColorSettings.Text = "Zmień kolorystykę wybranych zakładek (zmiany widoczne po restarcie aplikacji)";
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(244, 72);
+            label1.Name = "label1";
+            label1.Size = new Size(86, 25);
+            label1.TabIndex = 4;
+            label1.Text = "Ułóż sam";
+            // 
+            // labelColorUlozSam
+            // 
+            labelColorUlozSam.BackColor = Color.DarkSeaGreen;
+            labelColorUlozSam.Location = new Point(244, 100);
+            labelColorUlozSam.Name = "labelColorUlozSam";
+            labelColorUlozSam.Size = new Size(45, 34);
+            labelColorUlozSam.TabIndex = 5;
+            // 
+            // buttonUlozSamColor
+            // 
+            buttonUlozSamColor.FlatStyle = FlatStyle.Flat;
+            buttonUlozSamColor.Location = new Point(295, 100);
+            buttonUlozSamColor.Name = "buttonUlozSamColor";
+            buttonUlozSamColor.Size = new Size(112, 34);
+            buttonUlozSamColor.TabIndex = 6;
+            buttonUlozSamColor.Text = "Zmień";
+            buttonUlozSamColor.UseVisualStyleBackColor = true;
+            buttonUlozSamColor.Click += UlozSamColor_Click;
+            // 
             // SettingsForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -310,5 +344,8 @@
         private Label labelColorPattern;
         private Button buttonPatternColor;
         private Button buttonResetToDefault;
+        private Button buttonUlozSamColor;
+        private Label labelColorUlozSam;
+        private Label label1;
     }
 }

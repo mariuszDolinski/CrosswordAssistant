@@ -21,6 +21,7 @@ namespace CrosswordAssistant
             textBoxDefaultDictPath.Text = Path.GetFullPath((string)Settings.CurrentSettings[Settings.DictPathKey]) + "\\" + Settings.CurrentSettings[Settings.DictFileKey];
             textBoxMaxResultsCount.Text = Settings.CurrentSettings[Settings.MaxResultsKey].ToString();
             labelColorPattern.BackColor = Color.FromArgb((int)Settings.CurrentSettings[Settings.PatternColorKey]);
+            labelColorUlozSam.BackColor = Color.FromArgb((int)Settings.CurrentSettings[Settings.UlozSamColorKey]);
         }
         private void SetButtonsVisibility()
         {
@@ -50,6 +51,15 @@ namespace CrosswordAssistant
         {
             Settings.CancelCurrentSettings();
             _currentMainForm.Enabled = true;
+        }
+        private void MaxResults_TextChanged(object sender, EventArgs e)
+        {
+            bool isInt = int.TryParse(textBoxMaxResultsCount.Text, out int currentMax);
+            if (isInt)
+            {
+                Settings.CurrentSettings[Settings.MaxResultsKey] = currentMax;
+                SetButtonsVisibility();
+            }
         }
         private void SettingsCancel_Click(object sender, EventArgs e)
         {
@@ -92,30 +102,11 @@ namespace CrosswordAssistant
                 SetButtonsVisibility();
             }
         }
-        private void MaxResults_TextChanged(object sender, EventArgs e)
-        {
-            bool isInt = int.TryParse(textBoxMaxResultsCount.Text, out int currentMax);
-            if (isInt)
-            {
-                Settings.CurrentSettings[Settings.MaxResultsKey] = currentMax;
-                SetButtonsVisibility();
-            }
-        }
-        private void PatternColor_Click(object sender, EventArgs e)
-        {
-            if (setColorDialog.ShowDialog() == DialogResult.OK)
-            {
-                Settings.CurrentSettings[Settings.PatternColorKey] = setColorDialog.Color.ToArgb();
-                labelColorPattern.BackColor = setColorDialog.Color;
-                SetButtonsVisibility();
-            }
-        }
-
         private void BackToDefaultSettings_Click(object sender, EventArgs e)
         {
-            var response = MessageBox.Show("Czy na pewno chcesz przywrócić domyślne ustawienia aplikacji?", 
+            var response = MessageBox.Show("Czy na pewno chcesz przywrócić domyślne ustawienia aplikacji?",
                 "Przywracanie ustawień domyślnych", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-            if (response == DialogResult.Yes) 
+            if (response == DialogResult.Yes)
             {
                 Settings.ReturnToDefaultSettings();
                 Settings.SaveCurrentSettings();
@@ -125,5 +116,25 @@ namespace CrosswordAssistant
                 "Przywracanie ustawień domyślnych", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
+
+        private void PatternColor_Click(object sender, EventArgs e)
+        {
+            if (setColorDialog.ShowDialog() == DialogResult.OK)
+            {
+                Settings.CurrentSettings[Settings.PatternColorKey] = setColorDialog.Color.ToArgb();
+                labelColorPattern.BackColor = setColorDialog.Color;
+                SetButtonsVisibility();
+            }
+        }
+        private void UlozSamColor_Click(object sender, EventArgs e)
+        {
+            if (setColorDialog.ShowDialog() == DialogResult.OK)
+            {
+                Settings.CurrentSettings[Settings.UlozSamColorKey] = setColorDialog.Color.ToArgb();
+                labelColorUlozSam.BackColor = setColorDialog.Color;
+                SetButtonsVisibility();
+            }
+        }
+
     }
 }
