@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using CrosswordAssistant.Services;
+using System.Drawing;
 
 namespace CrosswordAssistant.AppSettings
 {
@@ -25,6 +26,12 @@ namespace CrosswordAssistant.AppSettings
                         _mainForm.labelGr6,
                         _mainForm.labelGr7,
                         _mainForm.labelGr8
+                    ],
+                    [
+                        _mainForm.labelScrabble,
+                        _mainForm.labelScrabbleCurrentPatternLen,
+                        _mainForm.labelScrabbleCalc,
+                        _mainForm.labelScrabbePoints
                     ]
                 ];
         }
@@ -33,7 +40,9 @@ namespace CrosswordAssistant.AppSettings
             return
                 [
                     Color.FromArgb((int)Settings.SavedSettings[Settings.PatternColorKey]),
-                    Color.FromArgb((int)Settings.SavedSettings[Settings.UlozSamColorKey])
+                    Color.FromArgb((int)Settings.SavedSettings[Settings.UlozSamColorKey]),
+                    Color.FromArgb((int)Settings.SavedSettings[Settings.ScrabbleColorKey])
+
                 ];
         }
 
@@ -43,10 +52,7 @@ namespace CrosswordAssistant.AppSettings
             var labelsToColor = GetLabelsToSetColor();
             foreach (var labels in labelsToColor)
             {
-                foreach(var label in labels)
-                {
-                    label.BackColor = colorSettings[labelsToColor.IndexOf(labels)];
-                }
+                FormService.SetLabelsBackColor(labels, colorSettings[labelsToColor.IndexOf(labels)]);
             }
         }
     }

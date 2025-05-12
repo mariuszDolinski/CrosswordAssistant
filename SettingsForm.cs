@@ -22,6 +22,7 @@ namespace CrosswordAssistant
             textBoxMaxResultsCount.Text = Settings.CurrentSettings[Settings.MaxResultsKey].ToString();
             labelColorPattern.BackColor = Color.FromArgb((int)Settings.CurrentSettings[Settings.PatternColorKey]);
             labelColorUlozSam.BackColor = Color.FromArgb((int)Settings.CurrentSettings[Settings.UlozSamColorKey]);
+            labelColorScrabble.BackColor = Color.FromArgb((int)Settings.CurrentSettings[Settings.ScrabbleColorKey]);
         }
         private void SetButtonsVisibility()
         {
@@ -44,6 +45,25 @@ namespace CrosswordAssistant
             }
 
             return true;
+        }
+        private void SetCustomColors()
+        {
+            setColorDialog.CustomColors =
+            [
+                ColorTranslator.ToOle(labelColorPattern.BackColor),
+                ColorTranslator.ToOle(labelColorUlozSam.BackColor),
+                ColorTranslator.ToOle(labelColorScrabble.BackColor)
+            ];
+        }
+        private void SetNewColor(Label label, string key)
+        {
+            SetCustomColors();
+            if (setColorDialog.ShowDialog() == DialogResult.OK)
+            {
+                Settings.CurrentSettings[key] = setColorDialog.Color.ToArgb();
+                label.BackColor = setColorDialog.Color;
+                SetButtonsVisibility();
+            }
         }
 
 
@@ -116,25 +136,17 @@ namespace CrosswordAssistant
                 "Przywracanie ustawień domyślnych", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
-
         private void PatternColor_Click(object sender, EventArgs e)
         {
-            if (setColorDialog.ShowDialog() == DialogResult.OK)
-            {
-                Settings.CurrentSettings[Settings.PatternColorKey] = setColorDialog.Color.ToArgb();
-                labelColorPattern.BackColor = setColorDialog.Color;
-                SetButtonsVisibility();
-            }
+            SetNewColor(labelColorPattern, Settings.PatternColorKey);
         }
         private void UlozSamColor_Click(object sender, EventArgs e)
         {
-            if (setColorDialog.ShowDialog() == DialogResult.OK)
-            {
-                Settings.CurrentSettings[Settings.UlozSamColorKey] = setColorDialog.Color.ToArgb();
-                labelColorUlozSam.BackColor = setColorDialog.Color;
-                SetButtonsVisibility();
-            }
+            SetNewColor(labelColorUlozSam, Settings.UlozSamColorKey);
         }
-
+        private void ScrabbleColor_Click(object sender, EventArgs e)
+        {
+            SetNewColor(labelColorScrabble, Settings.ScrabbleColorKey);
+        }
     }
 }

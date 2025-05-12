@@ -9,21 +9,13 @@ namespace CrosswordAssistant.AppSettings
         public static Dictionary<string, object> SavedSettings { get; private set; } = [];
         public static Dictionary<string, object> CurrentSettings { get; private set; } = [];
 
-
         public const string DictPathKey = "dictionaryLocation";
         public const string DictFileKey = "dictionaryName";
         public const string MaxResultsKey = "maxResultsDisplay";
         public const string PatternColorKey = "patternColor";
         public const string UlozSamColorKey = "ulozSamColor";
-
-        //public const string DeafultSavePath = "Słowniki";
-        //public const string DefaultFileName = "slownik.txt";
-        //public const int DefaultResultDisplay = 500;
-
-        //public static string DictionaryPath { get; set; } = ConfigurationManager.AppSettings[DictPathKey] ?? DeafultSavePath;
-        //public static string DictionaryFileName { get; set; } = ConfigurationManager.AppSettings[DictFileKey] ?? DefaultFileName;
-        //public static int MaxResultsDisplay { get; set; } = ConfigurationManager.AppSettings[MaxResultsKey] is null ? DefaultResultDisplay : int.Parse(ConfigurationManager.AppSettings[MaxResultsKey]!);
-
+        public const string ScrabbleColorKey = "scrabbleColor";
+      
         public static void Init()
         {
             SetDefaultSettings();
@@ -37,6 +29,7 @@ namespace CrosswordAssistant.AppSettings
             DefaultSettings[MaxResultsKey] = 500;
             DefaultSettings[PatternColorKey] = -7357297;
             DefaultSettings[UlozSamColorKey] = -7114533;
+            DefaultSettings[ScrabbleColorKey] = -2968436;
         }
         public static void CancelCurrentSettings()
         {
@@ -71,6 +64,7 @@ namespace CrosswordAssistant.AppSettings
             SavedSettings[MaxResultsKey] = ConfigurationManager.AppSettings[MaxResultsKey] is null ? DefaultSettings[MaxResultsKey] : int.Parse(ConfigurationManager.AppSettings[MaxResultsKey]!);
             SavedSettings[PatternColorKey] = ConfigurationManager.AppSettings[PatternColorKey] is null ? DefaultSettings[PatternColorKey] : int.Parse(ConfigurationManager.AppSettings[PatternColorKey]!);
             SavedSettings[UlozSamColorKey] = ConfigurationManager.AppSettings[UlozSamColorKey] is null ? DefaultSettings[UlozSamColorKey] : int.Parse(ConfigurationManager.AppSettings[UlozSamColorKey]!);
+            SavedSettings[ScrabbleColorKey] = ConfigurationManager.AppSettings[ScrabbleColorKey] is null ? DefaultSettings[ScrabbleColorKey] : int.Parse(ConfigurationManager.AppSettings[ScrabbleColorKey]!);
         }
         public static void ReturnToDefaultSettings()
         {

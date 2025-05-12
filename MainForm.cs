@@ -828,7 +828,7 @@ namespace CrosswordAssistant
         }
         private void SetInfo(Label lbl, string msg)
         {
-            FormService.ResetLabelsBackColor(_infoLabels, Color.Silver);
+            FormService.SetLabelsBackColor(_infoLabels, Color.Silver);
             lbl.BackColor = Color.LightSteelBlue;
             textBoxAbout.Text = msg;
         }

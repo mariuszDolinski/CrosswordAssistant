@@ -154,12 +154,12 @@
             numericUpDownTripleBonus = new NumericUpDown();
             textBoxScrabbleCalc = new TextBox();
             label28 = new Label();
-            label27 = new Label();
+            labelScrabbleCalc = new Label();
             tableLayoutPanelScrabble = new TableLayoutPanel();
             textBoxScrabblePattern = new TextBox();
             searchScrabbleBtn = new Button();
             labelScrabbleCurrentPatternLen = new Label();
-            label4 = new Label();
+            labelScrabble = new Label();
             tabPageDictionary = new TabPage();
             tableLayoutPanel3 = new TableLayoutPanel();
             groupBoxAddToDict = new GroupBox();
@@ -418,9 +418,10 @@
             groupBoxContainsFilter.Controls.Add(checkBoxContains);
             groupBoxContainsFilter.Controls.Add(textBoxNotContains);
             groupBoxContainsFilter.Controls.Add(textBoxContains);
-            groupBoxContainsFilter.Location = new Point(17, 250);
+            groupBoxContainsFilter.Dock = DockStyle.Bottom;
+            groupBoxContainsFilter.Location = new Point(3, 250);
             groupBoxContainsFilter.Name = "groupBoxContainsFilter";
-            groupBoxContainsFilter.Size = new Size(537, 193);
+            groupBoxContainsFilter.Size = new Size(703, 220);
             groupBoxContainsFilter.TabIndex = 13;
             groupBoxContainsFilter.TabStop = false;
             groupBoxContainsFilter.Text = "Zawiera";
@@ -429,7 +430,7 @@
             // 
             radioButtonContainsOr.AutoSize = true;
             radioButtonContainsOr.Enabled = false;
-            radioButtonContainsOr.Location = new Point(436, 125);
+            radioButtonContainsOr.Location = new Point(540, 125);
             radioButtonContainsOr.Name = "radioButtonContainsOr";
             radioButtonContainsOr.Size = new Size(67, 29);
             radioButtonContainsOr.TabIndex = 14;
@@ -442,7 +443,7 @@
             // 
             radioButtonContainsAnd.AutoSize = true;
             radioButtonContainsAnd.Enabled = false;
-            radioButtonContainsAnd.Location = new Point(436, 84);
+            radioButtonContainsAnd.Location = new Point(540, 84);
             radioButtonContainsAnd.Name = "radioButtonContainsAnd";
             radioButtonContainsAnd.Size = new Size(85, 29);
             radioButtonContainsAnd.TabIndex = 13;
@@ -454,7 +455,7 @@
             // checkBoxContainsActive
             // 
             checkBoxContainsActive.AutoSize = true;
-            checkBoxContainsActive.Location = new Point(415, 33);
+            checkBoxContainsActive.Location = new Point(574, 33);
             checkBoxContainsActive.Name = "checkBoxContainsActive";
             checkBoxContainsActive.Size = new Size(106, 29);
             checkBoxContainsActive.TabIndex = 12;
@@ -504,7 +505,7 @@
             textBoxNotContains.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point, 238);
             textBoxNotContains.Location = new Point(171, 119);
             textBoxNotContains.Name = "textBoxNotContains";
-            textBoxNotContains.Size = new Size(226, 37);
+            textBoxNotContains.Size = new Size(306, 37);
             textBoxNotContains.TabIndex = 7;
             // 
             // textBoxContains
@@ -514,7 +515,7 @@
             textBoxContains.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point, 238);
             textBoxContains.Location = new Point(171, 76);
             textBoxContains.Name = "textBoxContains";
-            textBoxContains.Size = new Size(226, 37);
+            textBoxContains.Size = new Size(306, 37);
             textBoxContains.TabIndex = 5;
             // 
             // groupBoxEndsWithFilters
@@ -524,9 +525,9 @@
             groupBoxEndsWithFilters.Controls.Add(label25);
             groupBoxEndsWithFilters.Controls.Add(checkBoxEndsWithActive);
             groupBoxEndsWithFilters.Controls.Add(textBoxEndsWith);
-            groupBoxEndsWithFilters.Location = new Point(294, 30);
+            groupBoxEndsWithFilters.Location = new Point(359, 30);
             groupBoxEndsWithFilters.Name = "groupBoxEndsWithFilters";
-            groupBoxEndsWithFilters.Size = new Size(260, 214);
+            groupBoxEndsWithFilters.Size = new Size(348, 214);
             groupBoxEndsWithFilters.TabIndex = 12;
             groupBoxEndsWithFilters.TabStop = false;
             groupBoxEndsWithFilters.Text = "Koniec";
@@ -569,7 +570,7 @@
             // checkBoxEndsWithActive
             // 
             checkBoxEndsWithActive.AutoSize = true;
-            checkBoxEndsWithActive.Location = new Point(121, 30);
+            checkBoxEndsWithActive.Location = new Point(212, 30);
             checkBoxEndsWithActive.Name = "checkBoxEndsWithActive";
             checkBoxEndsWithActive.Size = new Size(106, 29);
             checkBoxEndsWithActive.TabIndex = 4;
@@ -594,9 +595,9 @@
             groupBoxBeginWithFilters.Controls.Add(radioButtonBeginsWith);
             groupBoxBeginWithFilters.Controls.Add(label6);
             groupBoxBeginWithFilters.Controls.Add(textBoxBeginsWith);
-            groupBoxBeginWithFilters.Location = new Point(17, 30);
+            groupBoxBeginWithFilters.Location = new Point(3, 30);
             groupBoxBeginWithFilters.Name = "groupBoxBeginWithFilters";
-            groupBoxBeginWithFilters.Size = new Size(260, 214);
+            groupBoxBeginWithFilters.Size = new Size(348, 214);
             groupBoxBeginWithFilters.TabIndex = 11;
             groupBoxBeginWithFilters.TabStop = false;
             groupBoxBeginWithFilters.Text = "Początek";
@@ -604,7 +605,7 @@
             // checkBoxBeginsWithActive
             // 
             checkBoxBeginsWithActive.AutoSize = true;
-            checkBoxBeginsWithActive.Location = new Point(137, 33);
+            checkBoxBeginsWithActive.Location = new Point(212, 30);
             checkBoxBeginsWithActive.Name = "checkBoxBeginsWithActive";
             checkBoxBeginsWithActive.Size = new Size(106, 29);
             checkBoxBeginsWithActive.TabIndex = 11;
@@ -1474,7 +1475,7 @@
             // 
             tabPageScrabble.Controls.Add(splitContainerScrabble);
             tabPageScrabble.Controls.Add(tableLayoutPanelScrabble);
-            tabPageScrabble.Controls.Add(label4);
+            tabPageScrabble.Controls.Add(labelScrabble);
             tabPageScrabble.Location = new Point(4, 34);
             tabPageScrabble.Name = "tabPageScrabble";
             tabPageScrabble.Padding = new Padding(3);
@@ -1504,7 +1505,7 @@
             splitContainerScrabble.Panel2.Controls.Add(groupBoxScrabbleBonuses);
             splitContainerScrabble.Panel2.Controls.Add(textBoxScrabbleCalc);
             splitContainerScrabble.Panel2.Controls.Add(label28);
-            splitContainerScrabble.Panel2.Controls.Add(label27);
+            splitContainerScrabble.Panel2.Controls.Add(labelScrabbleCalc);
             splitContainerScrabble.Size = new Size(1167, 695);
             splitContainerScrabble.SplitterDistance = 803;
             splitContainerScrabble.TabIndex = 4;
@@ -1758,17 +1759,17 @@
             label28.TabIndex = 1;
             label28.Text = "Podaj wyraz i wybierz premie oraz litery użyte jako blanka, aby wyznaczyć jego wartość punktową w Scrabble.";
             // 
-            // label27
+            // labelScrabbleCalc
             // 
-            label27.BackColor = Color.Tan;
-            label27.Dock = DockStyle.Top;
-            label27.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            label27.Location = new Point(0, 0);
-            label27.Name = "label27";
-            label27.Size = new Size(360, 32);
-            label27.TabIndex = 0;
-            label27.Text = "KALKULATOR PUNKTÓW";
-            label27.TextAlign = ContentAlignment.MiddleCenter;
+            labelScrabbleCalc.BackColor = Color.Tan;
+            labelScrabbleCalc.Dock = DockStyle.Top;
+            labelScrabbleCalc.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            labelScrabbleCalc.Location = new Point(0, 0);
+            labelScrabbleCalc.Name = "labelScrabbleCalc";
+            labelScrabbleCalc.Size = new Size(360, 32);
+            labelScrabbleCalc.TabIndex = 0;
+            labelScrabbleCalc.Text = "KALKULATOR PUNKTÓW";
+            labelScrabbleCalc.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // tableLayoutPanelScrabble
             // 
@@ -1828,17 +1829,17 @@
             labelScrabbleCurrentPatternLen.Text = "0";
             labelScrabbleCurrentPatternLen.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // label4
+            // labelScrabble
             // 
-            label4.BackColor = Color.Tan;
-            label4.Dock = DockStyle.Top;
-            label4.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            label4.Location = new Point(3, 3);
-            label4.Name = "label4";
-            label4.Size = new Size(1167, 32);
-            label4.TabIndex = 1;
-            label4.Text = "SCRABBLE";
-            label4.TextAlign = ContentAlignment.TopCenter;
+            labelScrabble.BackColor = Color.Tan;
+            labelScrabble.Dock = DockStyle.Top;
+            labelScrabble.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            labelScrabble.Location = new Point(3, 3);
+            labelScrabble.Name = "labelScrabble";
+            labelScrabble.Size = new Size(1167, 32);
+            labelScrabble.TabIndex = 1;
+            labelScrabble.Text = "SCRABBLE";
+            labelScrabble.TextAlign = ContentAlignment.TopCenter;
             // 
             // tabPageDictionary
             // 
@@ -2868,9 +2869,9 @@
         internal Label labelGr5;
         internal Label labelCurrentPatternLen;
         internal Label labelResultsCount;
-        internal Label label4;
+        internal Label labelScrabble;
         internal Label labelScrabbleCurrentPatternLen;
-        internal Label label27;
+        internal Label labelScrabbleCalc;
         internal Label labelScrabbePoints;
     }
 }

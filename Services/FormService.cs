@@ -25,7 +25,7 @@ namespace CrosswordAssistant.Services
                 cb.Checked = false;
             }
         }
-        public static void ResetLabelsBackColor(List<Label> labels, Color color)
+        public static void SetLabelsBackColor(List<Label> labels, Color color)
         {
             foreach (Label label in labels)
             {
