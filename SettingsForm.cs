@@ -23,6 +23,7 @@ namespace CrosswordAssistant
             labelColorPattern.BackColor = Color.FromArgb((int)Settings.CurrentSettings[Settings.PatternColorKey]);
             labelColorUlozSam.BackColor = Color.FromArgb((int)Settings.CurrentSettings[Settings.UlozSamColorKey]);
             labelColorScrabble.BackColor = Color.FromArgb((int)Settings.CurrentSettings[Settings.ScrabbleColorKey]);
+            SetMainFormPositionRadioButtons();
         }
         private void SetButtonsVisibility()
         {
@@ -63,6 +64,16 @@ namespace CrosswordAssistant
                 Settings.CurrentSettings[key] = setColorDialog.Color.ToArgb();
                 label.BackColor = setColorDialog.Color;
                 SetButtonsVisibility();
+            }
+        }
+        private void SetMainFormPositionRadioButtons()
+        {
+            switch ((int)Settings.SavedSettings[Settings.MainFormPosKey])
+            {
+                case 1: radioBtnPosTL.Checked = true; break;
+                case 2: radioBtnPosTR.Checked = true; break;
+                case 3: radioBtnPosC.Checked = true; break;
+                default: radioBtnPosC.Checked = true; break;
             }
         }
 
@@ -147,6 +158,40 @@ namespace CrosswordAssistant
         private void ScrabbleColor_Click(object sender, EventArgs e)
         {
             SetNewColor(labelColorScrabble, Settings.ScrabbleColorKey);
+        }
+        //private void RadioBtnTL_CheckedChange(object sender, EventArgs e)
+        //{
+        //    if (radioBtnPosTL.Checked)
+        //    {
+        //        Settings.CurrentSettings[Settings.MainFormPosKey] = (int)MainFormPosition.TopLeft;
+        //        SetButtonsVisibility();
+        //    }
+        //}
+        //private void RadioBtnTR_CheckedChange(object sender, EventArgs e)
+        //{
+        //    if (radioBtnPosTR.Checked)
+        //    {
+        //        Settings.CurrentSettings[Settings.MainFormPosKey] = (int)MainFormPosition.TopRight;
+        //        SetButtonsVisibility();
+        //    }
+        //}
+        //private void RadioBtnC_CheckedChange(object sender, EventArgs e)
+        //{
+        //    if (radioBtnPosC.Checked)
+        //    {
+        //        Settings.CurrentSettings[Settings.MainFormPosKey] = (int)MainFormPosition.Center;
+        //        SetButtonsVisibility();
+        //    }
+        //}
+
+        private void RadioBtnPos_CheckedChange(object sender, EventArgs e)
+        {
+            var radioBtn = (RadioButton)sender;
+            if (radioBtn.Checked)
+            {
+                Settings.CurrentSettings[Settings.MainFormPosKey] = radioBtn.TabIndex - 3;
+                SetButtonsVisibility();
+            }
         }
     }
 }

@@ -36,6 +36,11 @@
             buttonSettingsOK = new Button();
             tabControl1 = new TabControl();
             tabPageGeneral = new TabPage();
+            groupBoxMainFormPosition = new GroupBox();
+            label3 = new Label();
+            radioBtnPosC = new RadioButton();
+            radioBtnPosTL = new RadioButton();
+            radioBtnPosTR = new RadioButton();
             groupBoxDictSettings = new GroupBox();
             saveDictLocBtn = new Button();
             textBoxDefaultDictPath = new TextBox();
@@ -58,6 +63,7 @@
             panelSettingsControls.SuspendLayout();
             tabControl1.SuspendLayout();
             tabPageGeneral.SuspendLayout();
+            groupBoxMainFormPosition.SuspendLayout();
             groupBoxDictSettings.SuspendLayout();
             tabPageApparence.SuspendLayout();
             groupBoxColorsSettings.SuspendLayout();
@@ -139,6 +145,7 @@
             // 
             // tabPageGeneral
             // 
+            tabPageGeneral.Controls.Add(groupBoxMainFormPosition);
             tabPageGeneral.Controls.Add(groupBoxDictSettings);
             tabPageGeneral.Controls.Add(textBoxMaxResultsCount);
             tabPageGeneral.Controls.Add(labelMaxResultsCount);
@@ -149,6 +156,64 @@
             tabPageGeneral.TabIndex = 0;
             tabPageGeneral.Text = "Ogólne";
             tabPageGeneral.UseVisualStyleBackColor = true;
+            // 
+            // groupBoxMainFormPosition
+            // 
+            groupBoxMainFormPosition.Controls.Add(label3);
+            groupBoxMainFormPosition.Controls.Add(radioBtnPosC);
+            groupBoxMainFormPosition.Controls.Add(radioBtnPosTL);
+            groupBoxMainFormPosition.Controls.Add(radioBtnPosTR);
+            groupBoxMainFormPosition.Dock = DockStyle.Bottom;
+            groupBoxMainFormPosition.Location = new Point(3, 117);
+            groupBoxMainFormPosition.Name = "groupBoxMainFormPosition";
+            groupBoxMainFormPosition.Size = new Size(882, 107);
+            groupBoxMainFormPosition.TabIndex = 7;
+            groupBoxMainFormPosition.TabStop = false;
+            groupBoxMainFormPosition.Text = "Okno główne";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(6, 36);
+            label3.Name = "label3";
+            label3.Size = new Size(605, 25);
+            label3.TabIndex = 3;
+            label3.Text = "Domyślna pozycja okna głównego (zmiany widoczne po restarcie aplikacji):";
+            // 
+            // radioBtnPosC
+            // 
+            radioBtnPosC.AutoSize = true;
+            radioBtnPosC.Checked = true;
+            radioBtnPosC.Location = new Point(461, 72);
+            radioBtnPosC.Name = "radioBtnPosC";
+            radioBtnPosC.Size = new Size(156, 29);
+            radioBtnPosC.TabIndex = 6;
+            radioBtnPosC.TabStop = true;
+            radioBtnPosC.Text = "wyśrodkowane";
+            radioBtnPosC.UseVisualStyleBackColor = true;
+            radioBtnPosC.CheckedChanged += RadioBtnPos_CheckedChange;
+            // 
+            // radioBtnPosTL
+            // 
+            radioBtnPosTL.AutoSize = true;
+            radioBtnPosTL.Location = new Point(76, 72);
+            radioBtnPosTL.Name = "radioBtnPosTL";
+            radioBtnPosTL.Size = new Size(157, 29);
+            radioBtnPosTL.TabIndex = 4;
+            radioBtnPosTL.Text = "lewy górny róg";
+            radioBtnPosTL.UseVisualStyleBackColor = true;
+            radioBtnPosTL.CheckedChanged += RadioBtnPos_CheckedChange;
+            // 
+            // radioBtnPosTR
+            // 
+            radioBtnPosTR.AutoSize = true;
+            radioBtnPosTR.Location = new Point(259, 72);
+            radioBtnPosTR.Name = "radioBtnPosTR";
+            radioBtnPosTR.Size = new Size(170, 29);
+            radioBtnPosTR.TabIndex = 5;
+            radioBtnPosTR.Text = "prawy górny róg";
+            radioBtnPosTR.UseVisualStyleBackColor = true;
+            radioBtnPosTR.CheckedChanged += RadioBtnPos_CheckedChange;
             // 
             // groupBoxDictSettings
             // 
@@ -348,6 +413,8 @@
             tabControl1.ResumeLayout(false);
             tabPageGeneral.ResumeLayout(false);
             tabPageGeneral.PerformLayout();
+            groupBoxMainFormPosition.ResumeLayout(false);
+            groupBoxMainFormPosition.PerformLayout();
             groupBoxDictSettings.ResumeLayout(false);
             groupBoxDictSettings.PerformLayout();
             tabPageApparence.ResumeLayout(false);
@@ -384,5 +451,10 @@
         private Button buttonScrabbleColor;
         private Label labelColorScrabble;
         private Label label2;
+        private Label label3;
+        private RadioButton radioBtnPosTR;
+        private RadioButton radioBtnPosTL;
+        private RadioButton radioBtnPosC;
+        private GroupBox groupBoxMainFormPosition;
     }
 }

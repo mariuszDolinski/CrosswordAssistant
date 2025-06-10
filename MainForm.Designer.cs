@@ -2609,6 +2609,7 @@
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "MainForm";
             Text = "Pomocnik szaradzisty";
+            Load += MainForm_Load;
             KeyDown += MainForm_KeyDown;
             KeyUp += MainForm_KeyUp;
             tabControl.ResumeLayout(false);

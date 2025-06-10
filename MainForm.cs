@@ -835,5 +835,9 @@ namespace CrosswordAssistant
 
         #endregion
 
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            _appearance.SetMainFormLocation();
+        }
     }
 }

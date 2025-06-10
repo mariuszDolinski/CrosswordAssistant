@@ -1,4 +1,5 @@
-﻿using CrosswordAssistant.Services;
+﻿using CrosswordAssistant.Entities;
+using CrosswordAssistant.Services;
 using System.Configuration;
 
 namespace CrosswordAssistant.AppSettings
@@ -15,6 +16,7 @@ namespace CrosswordAssistant.AppSettings
         public const string PatternColorKey = "patternColor";
         public const string UlozSamColorKey = "ulozSamColor";
         public const string ScrabbleColorKey = "scrabbleColor";
+        public const string MainFormPosKey = "mainFormPosition";
       
         public static void Init()
         {
@@ -30,6 +32,7 @@ namespace CrosswordAssistant.AppSettings
             DefaultSettings[PatternColorKey] = -7357297;
             DefaultSettings[UlozSamColorKey] = -7114533;
             DefaultSettings[ScrabbleColorKey] = -2968436;
+            DefaultSettings[MainFormPosKey] = (int)MainFormPosition.Center;
         }
         public static void CancelCurrentSettings()
         {
@@ -65,6 +68,7 @@ namespace CrosswordAssistant.AppSettings
             SavedSettings[PatternColorKey] = ConfigurationManager.AppSettings[PatternColorKey] is null ? DefaultSettings[PatternColorKey] : int.Parse(ConfigurationManager.AppSettings[PatternColorKey]!);
             SavedSettings[UlozSamColorKey] = ConfigurationManager.AppSettings[UlozSamColorKey] is null ? DefaultSettings[UlozSamColorKey] : int.Parse(ConfigurationManager.AppSettings[UlozSamColorKey]!);
             SavedSettings[ScrabbleColorKey] = ConfigurationManager.AppSettings[ScrabbleColorKey] is null ? DefaultSettings[ScrabbleColorKey] : int.Parse(ConfigurationManager.AppSettings[ScrabbleColorKey]!);
+            SavedSettings[MainFormPosKey] = ConfigurationManager.AppSettings[MainFormPosKey] is null ? DefaultSettings[MainFormPosKey] : int.Parse(ConfigurationManager.AppSettings[MainFormPosKey]!);
         }
         public static void ReturnToDefaultSettings()
         {
