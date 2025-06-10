@@ -159,31 +159,6 @@ namespace CrosswordAssistant
         {
             SetNewColor(labelColorScrabble, Settings.ScrabbleColorKey);
         }
-        //private void RadioBtnTL_CheckedChange(object sender, EventArgs e)
-        //{
-        //    if (radioBtnPosTL.Checked)
-        //    {
-        //        Settings.CurrentSettings[Settings.MainFormPosKey] = (int)MainFormPosition.TopLeft;
-        //        SetButtonsVisibility();
-        //    }
-        //}
-        //private void RadioBtnTR_CheckedChange(object sender, EventArgs e)
-        //{
-        //    if (radioBtnPosTR.Checked)
-        //    {
-        //        Settings.CurrentSettings[Settings.MainFormPosKey] = (int)MainFormPosition.TopRight;
-        //        SetButtonsVisibility();
-        //    }
-        //}
-        //private void RadioBtnC_CheckedChange(object sender, EventArgs e)
-        //{
-        //    if (radioBtnPosC.Checked)
-        //    {
-        //        Settings.CurrentSettings[Settings.MainFormPosKey] = (int)MainFormPosition.Center;
-        //        SetButtonsVisibility();
-        //    }
-        //}
-
         private void RadioBtnPos_CheckedChange(object sender, EventArgs e)
         {
             var radioBtn = (RadioButton)sender;
