@@ -1,4 +1,5 @@
 ﻿using CrosswordAssistant.Services;
+using System.Text.RegularExpressions;
 
 namespace CrosswordAssistant.Searches
 {
@@ -13,23 +14,18 @@ namespace CrosswordAssistant.Searches
         public override List<string> SearchMatches(string pattern)
         {
             List<string> result = [];
-            bool isMatch;
+            string regexPattern = "^";
 
+            foreach (var ch in pattern)
+            {
+                if (ch == '.') regexPattern += "[a-ząćęńóśłżźA-ZĄĆĘŃÓŚŻŹ]";
+                else if (ch == '?') regexPattern += "[a-ząćęńóśłżźA-ZĄĆĘŃÓŚŻŹ]+";
+                else regexPattern += ch;
+            }
+            regexPattern += "$";
             foreach (var word in DictionaryService.CurrentDictionary)
             {
-                if (word is null) continue;
-                if (word.Length != pattern.Length) continue;
-                isMatch = true;
-                for (int i = 0; i < word.Length; i++)
-                {
-                    if (pattern[i] == '.') continue;
-                    else if (pattern[i] != word.ToLower()[i])
-                    {
-                        isMatch = false;
-                        break;
-                    }
-                }
-                if (isMatch)
+                if (Regex.IsMatch(word, regexPattern, RegexOptions.IgnoreCase))
                 {
                     result.Add(word);
                 }
@@ -44,7 +40,7 @@ namespace CrosswordAssistant.Searches
                 MessageBox.Show("Wzorzec jest pusty.", "Błąd wzorca", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
-            string allowedChars = "aąbcćdeęfghijklłmnńoópqrsśtuvwxyzźż.";
+            string allowedChars = "aąbcćdeęfghijklłmnńoópqrsśtuvwxyzźż.?";
             foreach (var ch in pattern)
             {
                 if (!allowedChars.Contains(ch))
