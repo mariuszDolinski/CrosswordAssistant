@@ -17,6 +17,7 @@ namespace CrosswordAssistant.AppSettings
         public const string UlozSamColorKey = "ulozSamColor";
         public const string ScrabbleColorKey = "scrabbleColor";
         public const string MainFormPosKey = "mainFormPosition";
+        public const string CaseSensitiveKey = "caseSensitive";
       
         public static void Init()
         {
@@ -33,6 +34,7 @@ namespace CrosswordAssistant.AppSettings
             DefaultSettings[UlozSamColorKey] = -7114533;
             DefaultSettings[ScrabbleColorKey] = -2968436;
             DefaultSettings[MainFormPosKey] = (int)MainFormPosition.Center;
+            DefaultSettings[CaseSensitiveKey] = 0;
         }
         public static void CancelCurrentSettings()
         {
@@ -69,6 +71,7 @@ namespace CrosswordAssistant.AppSettings
             SavedSettings[UlozSamColorKey] = ConfigurationManager.AppSettings[UlozSamColorKey] is null ? DefaultSettings[UlozSamColorKey] : int.Parse(ConfigurationManager.AppSettings[UlozSamColorKey]!);
             SavedSettings[ScrabbleColorKey] = ConfigurationManager.AppSettings[ScrabbleColorKey] is null ? DefaultSettings[ScrabbleColorKey] : int.Parse(ConfigurationManager.AppSettings[ScrabbleColorKey]!);
             SavedSettings[MainFormPosKey] = ConfigurationManager.AppSettings[MainFormPosKey] is null ? DefaultSettings[MainFormPosKey] : int.Parse(ConfigurationManager.AppSettings[MainFormPosKey]!);
+            SavedSettings[CaseSensitiveKey] = ConfigurationManager.AppSettings[CaseSensitiveKey] is null ? DefaultSettings[CaseSensitiveKey] : byte.Parse(ConfigurationManager.AppSettings[CaseSensitiveKey]!);
         }
         public static void ReturnToDefaultSettings()
         {

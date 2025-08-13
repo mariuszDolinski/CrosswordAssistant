@@ -36,6 +36,9 @@
             buttonSettingsOK = new Button();
             tabControl1 = new TabControl();
             tabPageGeneral = new TabPage();
+            radioBtnCaseSensitiveNo = new RadioButton();
+            radioBtnCaseSensitiveYes = new RadioButton();
+            labelCaseSensitive = new Label();
             groupBoxMainFormPosition = new GroupBox();
             label3 = new Label();
             radioBtnPosC = new RadioButton();
@@ -145,6 +148,9 @@
             // 
             // tabPageGeneral
             // 
+            tabPageGeneral.Controls.Add(radioBtnCaseSensitiveNo);
+            tabPageGeneral.Controls.Add(radioBtnCaseSensitiveYes);
+            tabPageGeneral.Controls.Add(labelCaseSensitive);
             tabPageGeneral.Controls.Add(groupBoxMainFormPosition);
             tabPageGeneral.Controls.Add(groupBoxDictSettings);
             tabPageGeneral.Controls.Add(textBoxMaxResultsCount);
@@ -156,6 +162,39 @@
             tabPageGeneral.TabIndex = 0;
             tabPageGeneral.Text = "Ogólne";
             tabPageGeneral.UseVisualStyleBackColor = true;
+            // 
+            // radioBtnCaseSensitiveNo
+            // 
+            radioBtnCaseSensitiveNo.AutoSize = true;
+            radioBtnCaseSensitiveNo.Checked = true;
+            radioBtnCaseSensitiveNo.Location = new Point(282, 52);
+            radioBtnCaseSensitiveNo.Name = "radioBtnCaseSensitiveNo";
+            radioBtnCaseSensitiveNo.Size = new Size(63, 29);
+            radioBtnCaseSensitiveNo.TabIndex = 9;
+            radioBtnCaseSensitiveNo.TabStop = true;
+            radioBtnCaseSensitiveNo.Text = "Nie";
+            radioBtnCaseSensitiveNo.UseVisualStyleBackColor = true;
+            radioBtnCaseSensitiveNo.CheckedChanged += RadioBtnCaseSensitive_CheckedChaged;
+            // 
+            // radioBtnCaseSensitiveYes
+            // 
+            radioBtnCaseSensitiveYes.AutoSize = true;
+            radioBtnCaseSensitiveYes.Location = new Point(389, 52);
+            radioBtnCaseSensitiveYes.Name = "radioBtnCaseSensitiveYes";
+            radioBtnCaseSensitiveYes.Size = new Size(62, 29);
+            radioBtnCaseSensitiveYes.TabIndex = 10;
+            radioBtnCaseSensitiveYes.Text = "Tak";
+            radioBtnCaseSensitiveYes.UseVisualStyleBackColor = true;
+            radioBtnCaseSensitiveYes.CheckedChanged += RadioBtnCaseSensitive_CheckedChaged;
+            // 
+            // labelCaseSensitive
+            // 
+            labelCaseSensitive.AutoSize = true;
+            labelCaseSensitive.Location = new Point(9, 54);
+            labelCaseSensitive.Name = "labelCaseSensitive";
+            labelCaseSensitive.Size = new Size(225, 25);
+            labelCaseSensitive.TabIndex = 8;
+            labelCaseSensitive.Text = "Rozróżnianie wielkości liter:";
             // 
             // groupBoxMainFormPosition
             // 
@@ -260,7 +299,7 @@
             // 
             // textBoxMaxResultsCount
             // 
-            textBoxMaxResultsCount.Location = new Point(507, 10);
+            textBoxMaxResultsCount.Location = new Point(389, 10);
             textBoxMaxResultsCount.Name = "textBoxMaxResultsCount";
             textBoxMaxResultsCount.Size = new Size(102, 31);
             textBoxMaxResultsCount.TabIndex = 1;
@@ -456,5 +495,8 @@
         private RadioButton radioBtnPosTL;
         private RadioButton radioBtnPosC;
         private GroupBox groupBoxMainFormPosition;
+        private Label labelCaseSensitive;
+        private RadioButton radioBtnCaseSensitiveNo;
+        private RadioButton radioBtnCaseSensitiveYes;
     }
 }

@@ -24,6 +24,7 @@ namespace CrosswordAssistant
             labelColorUlozSam.BackColor = Color.FromArgb((int)Settings.CurrentSettings[Settings.UlozSamColorKey]);
             labelColorScrabble.BackColor = Color.FromArgb((int)Settings.CurrentSettings[Settings.ScrabbleColorKey]);
             SetMainFormPositionRadioButtons();
+            SetCaseSensitiveRdioButtons();
         }
         private void SetButtonsVisibility()
         {
@@ -74,6 +75,15 @@ namespace CrosswordAssistant
                 case 2: radioBtnPosTR.Checked = true; break;
                 case 3: radioBtnPosC.Checked = true; break;
                 default: radioBtnPosC.Checked = true; break;
+            }
+        }
+        private void SetCaseSensitiveRdioButtons()
+        {
+            switch ((byte)Settings.SavedSettings[Settings.CaseSensitiveKey])
+            {
+                case 0: radioBtnCaseSensitiveNo.Checked = true; break;
+                case 1: radioBtnCaseSensitiveYes.Checked = true; break;
+                default: radioBtnCaseSensitiveNo.Checked = true; break;
             }
         }
 
@@ -165,6 +175,15 @@ namespace CrosswordAssistant
             if (radioBtn.Checked)
             {
                 Settings.CurrentSettings[Settings.MainFormPosKey] = radioBtn.TabIndex - 3;
+                SetButtonsVisibility();
+            }
+        }
+        private void RadioBtnCaseSensitive_CheckedChaged(object sender, EventArgs e)
+        {
+            var radioBtn = (RadioButton)sender;
+            if (radioBtn.Checked)
+            {
+                Settings.CurrentSettings[Settings.CaseSensitiveKey] = radioBtn.TabIndex - 9;
                 SetButtonsVisibility();
             }
         }
