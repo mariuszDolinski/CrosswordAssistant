@@ -1,10 +1,13 @@
-﻿using CrosswordAssistant.Entities;
+﻿using CrosswordAssistant.AppSettings;
+using CrosswordAssistant.Entities;
 
 namespace CrosswordAssistant.Searches
 {
     public abstract class Search
     {
+        protected bool CaseSensitive = (byte)Settings.SavedSettings[Settings.CaseSensitiveKey] == 1;
         public static SearchMode Mode { get; set; }
+
         public virtual bool ValidatePattern(string pattern)
         {
             if (pattern.Length == 0)

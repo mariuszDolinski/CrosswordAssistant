@@ -3,6 +3,7 @@ using CrosswordAssistant.Entities;
 using CrosswordAssistant.Searches;
 using CrosswordAssistant.Services;
 using System.Globalization;
+using System.Linq.Expressions;
 
 namespace CrosswordAssistant
 {
@@ -16,9 +17,10 @@ namespace CrosswordAssistant
         private readonly DictionaryService _dictionaryService;
         private readonly List<Label> _infoLabels = [];
         private readonly Dictionary<string, string> _filtersNames = [];
+        private readonly bool CaseSensitive;
 
         public int MaxResultDisplay { get; set; }
-
+        
         public MainForm()
         {
             InitializeComponent();
@@ -28,6 +30,7 @@ namespace CrosswordAssistant
 
             Settings.Init();
             MaxResultDisplay = (int)Settings.SavedSettings[Settings.MaxResultsKey];
+            CaseSensitive = (byte)Settings.SavedSettings[Settings.CaseSensitiveKey] == 1;
 
             _appearance = new AppearanceSettings(this);
             _dictionaryService = new DictionaryService();
@@ -45,7 +48,8 @@ namespace CrosswordAssistant
         {
             if (DictionaryService.PendingDictionaryLoading) return;
 
-            string pattern = textBoxPattern.Text.Trim().ToLower();
+            string pattern = textBoxPattern.Text.Trim();
+            if(!CaseSensitive) pattern = pattern.ToLower();
 
             try
             {
@@ -553,15 +557,15 @@ namespace CrosswordAssistant
             groupBoxEndsWithFilters.Text = _filtersNames[EndWithFilterName];
 
             _appearance.SetBackgroundColor();
-            SetTextBoxesCasing((byte)Settings.SavedSettings[Settings.CaseSensitiveKey]);
+            SetTextBoxesCasing(CaseSensitive);
         }
-        private void SetTextBoxesCasing(byte caseSensitive)
+        private void SetTextBoxesCasing(bool caseSensitive)
         {
-            textBoxPattern.CharacterCasing = caseSensitive == 1 ? CharacterCasing.Normal : CharacterCasing.Upper;
-            textBoxBeginsWith.CharacterCasing = caseSensitive == 1 ? CharacterCasing.Normal : CharacterCasing.Upper;
-            textBoxEndsWith.CharacterCasing = caseSensitive == 1 ? CharacterCasing.Normal : CharacterCasing.Upper;
-            textBoxContains.CharacterCasing = caseSensitive == 1 ? CharacterCasing.Normal : CharacterCasing.Upper;
-            textBoxNotContains.CharacterCasing = caseSensitive == 1 ? CharacterCasing.Normal : CharacterCasing.Upper;
+            textBoxPattern.CharacterCasing = caseSensitive ? CharacterCasing.Normal : CharacterCasing.Upper;
+            textBoxBeginsWith.CharacterCasing = caseSensitive ? CharacterCasing.Normal : CharacterCasing.Upper;
+            textBoxEndsWith.CharacterCasing = caseSensitive ? CharacterCasing.Normal : CharacterCasing.Upper;
+            textBoxContains.CharacterCasing = caseSensitive ? CharacterCasing.Normal : CharacterCasing.Upper;
+            textBoxNotContains.CharacterCasing = caseSensitive ? CharacterCasing.Normal : CharacterCasing.Upper;
         }
         private void SetLengthControlsEnabled(bool isEnabled)
         {
@@ -656,9 +660,7 @@ namespace CrosswordAssistant
                     }
                     else
                     {
-                        results = results
-                        .Where(w => w.Length == min)
-                        .ToList();
+                        results = [.. results.Where(w => w.Length == min)];
                     }
                 }
                 else
@@ -673,17 +675,11 @@ namespace CrosswordAssistant
                     else
                     {
                         if (min != 0 && max != 0)
-                            results = results
-                            .Where(w => w.Length >= min && w.Length <= max)
-                            .ToList();
+                            results = [.. results.Where(w => w.Length >= min && w.Length <= max)];
                         else if (min == 0)
-                            results = results
-                            .Where(w => w.Length <= max)
-                            .ToList();
+                            results = [.. results.Where(w => w.Length <= max)];
                         else
-                            results = results
-                            .Where(w => w.Length >= min)
-                            .ToList();
+                            results = [.. results.Where(w => w.Length >= min)];
                     }
                 }
             }

@@ -23,11 +23,24 @@ namespace CrosswordAssistant.Searches
                 else regexPattern += ch;
             }
             regexPattern += "$";
-            foreach (var word in DictionaryService.CurrentDictionary)
+            if (CaseSensitive)
             {
-                if (Regex.IsMatch(word, regexPattern, RegexOptions.IgnoreCase))
+                foreach (var word in DictionaryService.CurrentDictionary)
                 {
-                    result.Add(word);
+                    if (Regex.IsMatch(word, regexPattern))
+                    {
+                        result.Add(word);
+                    }
+                }
+            }
+            else
+            {
+                foreach (var word in DictionaryService.CurrentDictionary)
+                {
+                    if (Regex.IsMatch(word, regexPattern, RegexOptions.IgnoreCase))
+                    {
+                        result.Add(word);
+                    }
                 }
             }
             return result;
@@ -41,6 +54,7 @@ namespace CrosswordAssistant.Searches
                 return false;
             }
             string allowedChars = "aąbcćdeęfghijklłmnńoópqrsśtuvwxyzźż.?";
+            if (CaseSensitive) allowedChars += "AĄBCĆDEĘFGHIJKLŁMNŃOÓPQRSŚTUVWXYZŹŻ";
             foreach (var ch in pattern)
             {
                 if (!allowedChars.Contains(ch))
