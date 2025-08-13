@@ -553,8 +553,16 @@ namespace CrosswordAssistant
             groupBoxEndsWithFilters.Text = _filtersNames[EndWithFilterName];
 
             _appearance.SetBackgroundColor();
+            SetTextBoxesCasing((byte)Settings.SavedSettings[Settings.CaseSensitiveKey]);
         }
-
+        private void SetTextBoxesCasing(byte caseSensitive)
+        {
+            textBoxPattern.CharacterCasing = caseSensitive == 1 ? CharacterCasing.Normal : CharacterCasing.Upper;
+            textBoxBeginsWith.CharacterCasing = caseSensitive == 1 ? CharacterCasing.Normal : CharacterCasing.Upper;
+            textBoxEndsWith.CharacterCasing = caseSensitive == 1 ? CharacterCasing.Normal : CharacterCasing.Upper;
+            textBoxContains.CharacterCasing = caseSensitive == 1 ? CharacterCasing.Normal : CharacterCasing.Upper;
+            textBoxNotContains.CharacterCasing = caseSensitive == 1 ? CharacterCasing.Normal : CharacterCasing.Upper;
+        }
         private void SetLengthControlsEnabled(bool isEnabled)
         {
             radioLength.Enabled = isEnabled;

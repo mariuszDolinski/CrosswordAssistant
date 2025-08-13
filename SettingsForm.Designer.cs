@@ -167,7 +167,7 @@
             // 
             radioBtnCaseSensitiveNo.AutoSize = true;
             radioBtnCaseSensitiveNo.Checked = true;
-            radioBtnCaseSensitiveNo.Location = new Point(282, 52);
+            radioBtnCaseSensitiveNo.Location = new Point(497, 54);
             radioBtnCaseSensitiveNo.Name = "radioBtnCaseSensitiveNo";
             radioBtnCaseSensitiveNo.Size = new Size(63, 29);
             radioBtnCaseSensitiveNo.TabIndex = 9;
@@ -179,7 +179,7 @@
             // radioBtnCaseSensitiveYes
             // 
             radioBtnCaseSensitiveYes.AutoSize = true;
-            radioBtnCaseSensitiveYes.Location = new Point(389, 52);
+            radioBtnCaseSensitiveYes.Location = new Point(604, 54);
             radioBtnCaseSensitiveYes.Name = "radioBtnCaseSensitiveYes";
             radioBtnCaseSensitiveYes.Size = new Size(62, 29);
             radioBtnCaseSensitiveYes.TabIndex = 10;
@@ -192,9 +192,9 @@
             labelCaseSensitive.AutoSize = true;
             labelCaseSensitive.Location = new Point(9, 54);
             labelCaseSensitive.Name = "labelCaseSensitive";
-            labelCaseSensitive.Size = new Size(225, 25);
+            labelCaseSensitive.Size = new Size(463, 25);
             labelCaseSensitive.TabIndex = 8;
-            labelCaseSensitive.Text = "Rozróżnianie wielkości liter:";
+            labelCaseSensitive.Text = "Rozróżnianie wielkości liter (dotyczy zakładki Szaradzista):";
             // 
             // groupBoxMainFormPosition
             // 
@@ -215,9 +215,9 @@
             label3.AutoSize = true;
             label3.Location = new Point(6, 36);
             label3.Name = "label3";
-            label3.Size = new Size(605, 25);
+            label3.Size = new Size(291, 25);
             label3.TabIndex = 3;
-            label3.Text = "Domyślna pozycja okna głównego (zmiany widoczne po restarcie aplikacji):";
+            label3.Text = "Domyślna pozycja okna głównego:";
             // 
             // radioBtnPosC
             // 
@@ -299,7 +299,7 @@
             // 
             // textBoxMaxResultsCount
             // 
-            textBoxMaxResultsCount.Location = new Point(389, 10);
+            textBoxMaxResultsCount.Location = new Point(497, 13);
             textBoxMaxResultsCount.Name = "textBoxMaxResultsCount";
             textBoxMaxResultsCount.Size = new Size(102, 31);
             textBoxMaxResultsCount.TabIndex = 1;
@@ -308,7 +308,7 @@
             // labelMaxResultsCount
             // 
             labelMaxResultsCount.AutoSize = true;
-            labelMaxResultsCount.Location = new Point(8, 13);
+            labelMaxResultsCount.Location = new Point(9, 16);
             labelMaxResultsCount.Name = "labelMaxResultsCount";
             labelMaxResultsCount.Size = new Size(375, 25);
             labelMaxResultsCount.TabIndex = 0;
@@ -434,9 +434,9 @@
             labelColorSettings.AutoSize = true;
             labelColorSettings.Location = new Point(6, 37);
             labelColorSettings.Name = "labelColorSettings";
-            labelColorSettings.Size = new Size(635, 25);
+            labelColorSettings.Size = new Size(325, 25);
             labelColorSettings.TabIndex = 0;
-            labelColorSettings.Text = "Zmień kolorystykę wybranych zakładek (zmiany widoczne po restarcie aplikacji)";
+            labelColorSettings.Text = "Zmień kolorystykę wybranych zakładek:";
             // 
             // SettingsForm
             // 

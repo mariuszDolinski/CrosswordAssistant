@@ -6,6 +6,12 @@ namespace CrosswordAssistant.AppSettings
 {
     public class Settings
     {
+        private readonly static List<string> SettingsRequiredRestart =
+        [
+            "dictionaryLocation", "dictionaryName", "caseSensitive",
+            "patternColor", "ulozSamColor", "scrabbleColor"
+        ];
+
         public static Dictionary<string, object> DefaultSettings { get; private set; } = [];
         public static Dictionary<string, object> SavedSettings { get; private set; } = [];
         public static Dictionary<string, object> CurrentSettings { get; private set; } = [];
@@ -50,7 +56,18 @@ namespace CrosswordAssistant.AppSettings
                 SavedSettings[cs.Key] = CurrentSettings[cs.Key];
             }
         }
-        public static bool ExistsUnsavedSeting()
+        public static bool ExistsSettingsRequiredRestart()
+        {
+            foreach (var cs in CurrentSettings)
+            {
+                if (SavedSettings[cs.Key].ToString() != CurrentSettings[cs.Key].ToString())
+                {
+                    if (SettingsRequiredRestart.Contains(cs.Key)) return true;
+                }
+            }
+            return false;
+        }
+        public static bool ExistsUnsavedSetting()
         {
             foreach (var cs in CurrentSettings)
             {
@@ -59,7 +76,6 @@ namespace CrosswordAssistant.AppSettings
                     return true;
                 }
             }
-
             return false;
         }
         public static void GetSavedSettings()

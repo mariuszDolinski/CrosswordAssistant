@@ -28,12 +28,19 @@ namespace CrosswordAssistant
         }
         private void SetButtonsVisibility()
         {
-            bool isChange = Settings.ExistsUnsavedSeting();
+            bool isChange = Settings.ExistsUnsavedSetting();
             buttonSettingsApply.Enabled = isChange;
             buttonSettingsOK.Enabled = isChange;
         }
         private bool ValidateSettings()
         {
+            if (Settings.ExistsSettingsRequiredRestart())
+            {
+                var response = MessageBox.Show("Niektóre ze zmienionych ustawień wymagają restartu aplikacji. Wybierz 'Tak' jeśli chcesz kontynuować, " +
+                    "a następnie zamknij aplikację. Wybierz 'Nie' aby anulować zmiany.", "Wymagane ponowne uruchomienie", 
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                if (response == DialogResult.No) return false;
+            }
             bool isInt = int.TryParse(textBoxMaxResultsCount.Text, out int currentMax);
             if (!isInt)
             {
