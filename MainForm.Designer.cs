@@ -2695,7 +2695,6 @@
         private TabPage tabPageAbout;
         private Label labelSpace1;
         private SplitContainer splitContainerPattern;
-        private TextBox textBoxPattern;
         private Button searchPatternBtn;
         private Label labelSpace3;
         private SplitContainer splitContainerResults;
@@ -2810,12 +2809,8 @@
         private RadioButton radioStenoAnagramMode;
         private GroupBox groupBoxFilters;
         private Label label6;
-        private TextBox textBoxNotContains;
         private CheckBox checkBoxNotContains;
-        private TextBox textBoxContains;
         private CheckBox checkBoxContains;
-        private TextBox textBoxEndsWith;
-        private TextBox textBoxBeginsWith;
         private Panel panel1;
         private RadioButton radioWordInWord;
         private Label label23;
@@ -2874,5 +2869,10 @@
         internal Label labelScrabbleCurrentPatternLen;
         internal Label labelScrabbleCalc;
         internal Label labelScrabbePoints;
+        internal TextBox textBoxPattern;
+        internal TextBox textBoxNotContains;
+        internal TextBox textBoxContains;
+        internal TextBox textBoxEndsWith;
+        internal TextBox textBoxBeginsWith;
     }
 }

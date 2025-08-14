@@ -17,9 +17,6 @@ namespace CrosswordAssistant
         private readonly DictionaryService _dictionaryService;
         private readonly List<Label> _infoLabels = [];
         private readonly Dictionary<string, string> _filtersNames = [];
-        private readonly bool CaseSensitive;
-
-        public int MaxResultDisplay { get; set; }
         
         public MainForm()
         {
@@ -29,8 +26,6 @@ namespace CrosswordAssistant
             KeyPreview = true;
 
             Settings.Init();
-            MaxResultDisplay = (int)Settings.SavedSettings[Settings.MaxResultsKey];
-            CaseSensitive = (byte)Settings.SavedSettings[Settings.CaseSensitiveKey] == 1;
 
             _appearance = new AppearanceSettings(this);
             _dictionaryService = new DictionaryService();
@@ -49,7 +44,7 @@ namespace CrosswordAssistant
             if (DictionaryService.PendingDictionaryLoading) return;
 
             string pattern = textBoxPattern.Text.Trim();
-            if(!CaseSensitive) pattern = pattern.ToLower();
+            if (!BaseSettings.CaseSensitive) pattern = pattern.ToLower();
 
             try
             {
@@ -96,7 +91,6 @@ namespace CrosswordAssistant
             }
             List<string> matches = search.SearchMatches(pattern);
 
-            matches = Utilities.BoundResults(matches);
             FillTextBoxResults(matches, textBoxResultsUls);
             textBoxPatternUls.ReadOnly = false;
         }
@@ -557,15 +551,7 @@ namespace CrosswordAssistant
             groupBoxEndsWithFilters.Text = _filtersNames[EndWithFilterName];
 
             _appearance.SetBackgroundColor();
-            SetTextBoxesCasing(CaseSensitive);
-        }
-        private void SetTextBoxesCasing(bool caseSensitive)
-        {
-            textBoxPattern.CharacterCasing = caseSensitive ? CharacterCasing.Normal : CharacterCasing.Upper;
-            textBoxBeginsWith.CharacterCasing = caseSensitive ? CharacterCasing.Normal : CharacterCasing.Upper;
-            textBoxEndsWith.CharacterCasing = caseSensitive ? CharacterCasing.Normal : CharacterCasing.Upper;
-            textBoxContains.CharacterCasing = caseSensitive ? CharacterCasing.Normal : CharacterCasing.Upper;
-            textBoxNotContains.CharacterCasing = caseSensitive ? CharacterCasing.Normal : CharacterCasing.Upper;
+            _appearance.SetTextBoxesCasing(BaseSettings.CaseSensitive);
         }
         private void SetLengthControlsEnabled(bool isEnabled)
         {
@@ -637,11 +623,11 @@ namespace CrosswordAssistant
                     FormService.FillTextBoxScrabbleResults(textBoxScrabbleResults, results);
                 }
             }
-            if (results.Count == MaxResultDisplay && Search.Mode != SearchMode.Scrabble)
+            if (results.Count == BaseSettings.MaxResultDisplay && Search.Mode != SearchMode.Scrabble)
             {
                 textBox.Text += Environment.NewLine;
                 textBox.Text += "Zbyt wiele dopasowañ. " + Environment.NewLine +
-                    "Wyœwietlam pierwsze " + MaxResultDisplay.ToString();
+                    "Wyœwietlam pierwsze " + BaseSettings.MaxResultDisplay.ToString();
             }
         }
         private List<string> ApplyFilters(List<string> words)

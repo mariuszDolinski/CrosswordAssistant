@@ -35,13 +35,13 @@ namespace CrosswordAssistant.AppSettings
                     ]
                 ];
         }
-        private List<Color> GetSettingsColors()
+        private static List<Color> GetSettingsColors()
         {
             return
                 [
-                    Color.FromArgb((int)Settings.SavedSettings[Settings.PatternColorKey]),
-                    Color.FromArgb((int)Settings.SavedSettings[Settings.UlozSamColorKey]),
-                    Color.FromArgb((int)Settings.SavedSettings[Settings.ScrabbleColorKey])
+                    Color.FromArgb((int)Settings.SavedSettings[BaseSettings.PatternColorKey]),
+                    Color.FromArgb((int)Settings.SavedSettings[BaseSettings.UlozSamColorKey]),
+                    Color.FromArgb((int)Settings.SavedSettings[BaseSettings.ScrabbleColorKey])
                 ];
         }
 
@@ -56,7 +56,7 @@ namespace CrosswordAssistant.AppSettings
         }
         public void SetMainFormLocation()
         {
-            var setLocation = (int)Settings.SavedSettings[Settings.MainFormPosKey];
+            var setLocation = (int)Settings.SavedSettings[BaseSettings.MainFormPosKey];
             var scr = Screen.PrimaryScreen;
             int screenWidth = scr is null ? 0 : scr.Bounds.Width;
             int screenHeight = scr is null ? 0 : scr.Bounds.Height;
@@ -69,6 +69,14 @@ namespace CrosswordAssistant.AppSettings
                 3 => new Point((screenWidth - formWidth) / 2, (screenHeight - formHeight) / 2),
                 _ => new Point(0, 0),
             };
+        }
+        public void SetTextBoxesCasing(bool caseSensitive)
+        {
+            _mainForm.textBoxPattern.CharacterCasing = caseSensitive ? CharacterCasing.Normal : CharacterCasing.Upper;
+            _mainForm.textBoxBeginsWith.CharacterCasing = caseSensitive ? CharacterCasing.Normal : CharacterCasing.Upper;
+            _mainForm.textBoxEndsWith.CharacterCasing = caseSensitive ? CharacterCasing.Normal : CharacterCasing.Upper;
+            _mainForm.textBoxContains.CharacterCasing = caseSensitive ? CharacterCasing.Normal : CharacterCasing.Upper;
+            _mainForm.textBoxNotContains.CharacterCasing = caseSensitive ? CharacterCasing.Normal : CharacterCasing.Upper;
         }
     }
 }

@@ -4,32 +4,18 @@ using System.Configuration;
 
 namespace CrosswordAssistant.AppSettings
 {
-    public class Settings
+    public class Settings : BaseSettings
     {
-        private readonly static List<string> SettingsRequiredRestart =
-        [
-            "dictionaryLocation", "dictionaryName", "caseSensitive",
-            "patternColor", "ulozSamColor", "scrabbleColor"
-        ];
-
         public static Dictionary<string, object> DefaultSettings { get; private set; } = [];
         public static Dictionary<string, object> SavedSettings { get; private set; } = [];
         public static Dictionary<string, object> CurrentSettings { get; private set; } = [];
-
-        public const string DictPathKey = "dictionaryLocation";
-        public const string DictFileKey = "dictionaryName";
-        public const string MaxResultsKey = "maxResultsDisplay";
-        public const string PatternColorKey = "patternColor";
-        public const string UlozSamColorKey = "ulozSamColor";
-        public const string ScrabbleColorKey = "scrabbleColor";
-        public const string MainFormPosKey = "mainFormPosition";
-        public const string CaseSensitiveKey = "caseSensitive";
       
         public static void Init()
         {
             SetDefaultSettings();
             GetSavedSettings();
             InitCurrentSettings();
+            SetCurrentSettings();
         }
         private static void SetDefaultSettings()
         {
@@ -42,6 +28,14 @@ namespace CrosswordAssistant.AppSettings
             DefaultSettings[MainFormPosKey] = (int)MainFormPosition.Center;
             DefaultSettings[CaseSensitiveKey] = 0;
         }
+        private static void InitCurrentSettings()
+        {
+            foreach (var ss in SavedSettings)
+            {
+                CurrentSettings.Add(ss.Key, ss.Value);
+            }
+        }
+
         public static void CancelCurrentSettings()
         {
             foreach (var cs in CurrentSettings)
@@ -96,13 +90,12 @@ namespace CrosswordAssistant.AppSettings
                 CurrentSettings[ss.Key] = DefaultSettings[ss.Key];
             }
         }
-        private static void InitCurrentSettings()
+        public static void SetCurrentSettings()
         {
-            foreach (var ss in SavedSettings)
-            {
-                CurrentSettings.Add(ss.Key, ss.Value);
-            }
+            MaxResultDisplay = (int)SavedSettings[MaxResultsKey];
+            CaseSensitive = (byte)SavedSettings[CaseSensitiveKey] == 1;
         }
+        
 
         public static void SaveSettingToAppConfig()
         {

@@ -8,10 +8,13 @@ namespace CrosswordAssistant
     {
         private readonly MainForm _currentMainForm;
         private bool _isValidateOk;
+        private AppearanceSettings _appearanceSettings;
         public SettingsForm(MainForm form)
         {
             _currentMainForm = form;
             _isValidateOk = true;
+            _appearanceSettings = new AppearanceSettings(_currentMainForm);
+
             InitializeComponent();
             SetCurrentSettings();
         }
@@ -123,7 +126,8 @@ namespace CrosswordAssistant
                 Settings.SaveSettingToAppConfig();
                 buttonSettingsApply.Enabled = false;
                 buttonSettingsOK.Enabled = false;
-                _currentMainForm.MaxResultDisplay = (int)Settings.SavedSettings[Settings.MaxResultsKey];
+                Settings.SetCurrentSettings();
+                _appearanceSettings.SetTextBoxesCasing(BaseSettings.CaseSensitive);
                 _isValidateOk = true;
             }
             else
@@ -190,7 +194,7 @@ namespace CrosswordAssistant
             var radioBtn = (RadioButton)sender;
             if (radioBtn.Checked)
             {
-                Settings.CurrentSettings[Settings.CaseSensitiveKey] = radioBtn.TabIndex - 9;
+                Settings.CurrentSettings[Settings.CaseSensitiveKey] = (byte)(radioBtn.TabIndex - 9);
                 SetButtonsVisibility();
             }
         }

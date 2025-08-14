@@ -19,10 +19,9 @@ namespace CrosswordAssistant.Services
 
         public static List<string> BoundResults(List<string> words)
         {
-            int BoundCount = (int)Settings.SavedSettings[Settings.MaxResultsKey];
             List<string> results = words;
-            if (results.Count <= BoundCount) return results;
-            return results.Take(BoundCount).ToList();
+            if (results.Count <= BaseSettings.MaxResultDisplay) return results;
+            return [.. results.Take(BaseSettings.MaxResultDisplay)];
         }
 
         /// <summary>
