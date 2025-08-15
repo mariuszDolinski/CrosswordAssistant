@@ -1,4 +1,5 @@
 ﻿
+using CrosswordAssistant.AppSettings;
 using CrosswordAssistant.Services;
 
 namespace CrosswordAssistant.Searches
@@ -9,11 +10,24 @@ namespace CrosswordAssistant.Searches
         {
             List<string> result = [];
 
-            foreach (var word in DictionaryService.CurrentDictionary)
+            if (!BaseSettings.CaseSensitive)
             {
-                if (pattern.DiffMinusOne(word) || word.DiffMinusOne(pattern))
+                foreach (var word in DictionaryService.CurrentDictionary)
                 {
-                    result.Add(word);
+                    if (pattern.DiffMinusOne(word.ToLower()) || word.ToLower().DiffMinusOne(pattern))
+                    {
+                        result.Add(word);
+                    }
+                }
+            }
+            else
+            {
+                foreach (var word in DictionaryService.CurrentDictionary)
+                {
+                    if (pattern.DiffMinusOne(word) || word.DiffMinusOne(pattern))
+                    {
+                        result.Add(word);
+                    }
                 }
             }
             return result;

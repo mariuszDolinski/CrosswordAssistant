@@ -1,5 +1,7 @@
 ﻿
+using CrosswordAssistant.AppSettings;
 using CrosswordAssistant.Services;
+using System.Collections.Generic;
 
 namespace CrosswordAssistant.Searches
 {
@@ -8,45 +10,63 @@ namespace CrosswordAssistant.Searches
         public override List<string> SearchMatches(string pattern)
         {
             List<string> result = [];
-            bool isCorrect;
-            foreach (var word in DictionaryService.CurrentDictionary)
+            if(BaseSettings.CaseSensitive)
             {
-                if (word == pattern) continue;
-                isCorrect = true;
-                var tmp = pattern;
-                foreach (char c in word) 
+                foreach (var word in DictionaryService.CurrentDictionary)
                 {
-                       if (!pattern.Contains(c))
-                    {
-                        isCorrect = false;
-                        break;
-                    }
-                    else
-                    {
-                        tmp = tmp.Replace(c, ' ');
-                    }
+                    StenoAnagramCheck(pattern, word, word, result);
                 }
-                if (isCorrect && tmp.Trim().Length == 0) result.Add(word);
             }
+            else
+            {
+                pattern = pattern.ToLower();
+                foreach (var word in DictionaryService.CurrentDictionary)
+                {
+                    StenoAnagramCheck(pattern, word, word.ToLower(), result);
+                }
+            }
+            
             return result;
         }
 
         public override bool ValidatePattern(string pattern)
         {
-            if (base.ValidatePattern(pattern))
+            if (!base.ValidatePattern(pattern))
             {
-                foreach (char c in pattern) 
+                return false;
+            }
+            else
+            {
+                foreach (char c in pattern)
                 {
                     if (pattern.CountChars(c) > 1)
                     {
                         MessageBox.Show("Wzorzec zawiera powtórzone litery.", "Błąd wzorca", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return false;
                     }
-                    
                 }
             }
-
             return true;
+        }
+
+        private static void StenoAnagramCheck(string pattern, string word, string csWord, List<string> result)
+        {
+            if (csWord == pattern) return;
+            bool isCorrect = true;
+            var tmp = pattern;
+            foreach (char c in csWord)
+            {
+                if (!pattern.Contains(c))
+                {
+                    isCorrect = false;
+                    break;
+                }
+                else
+                {
+                    tmp = tmp.Replace(c, ' ');
+                }
+            }
+            if (isCorrect && tmp.Trim().Length == 0) result.Add(word);
         }
     }
 }

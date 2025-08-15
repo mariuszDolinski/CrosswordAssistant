@@ -1,4 +1,4 @@
-﻿
+﻿using CrosswordAssistant.AppSettings;
 using CrosswordAssistant.Services;
 
 namespace CrosswordAssistant.Searches
@@ -13,14 +13,27 @@ namespace CrosswordAssistant.Searches
         public override List<string> SearchMatches(string pattern)
         {
             List<string> result = [];
-            foreach (var word in DictionaryService.CurrentDictionary)
+            if (!BaseSettings.CaseSensitive)
             {
-                if (word.IsMetagram(pattern))
+                foreach (var word in DictionaryService.CurrentDictionary)
                 {
-                    result.Add(word);
+                    if (word.ToLower().IsMetagram(pattern))
+                    {
+                        result.Add(word);
+                    }
                 }
             }
-            return result;
+            else
+            {
+                foreach (var word in DictionaryService.CurrentDictionary)
+                {
+                    if (word.IsMetagram(pattern))
+                    {
+                        result.Add(word);
+                    }
+                }
+            }
+                return result;
         }
     }
 }

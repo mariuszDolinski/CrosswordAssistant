@@ -5,6 +5,7 @@ namespace CrosswordAssistant.Searches
 {
     public abstract class Search
     {
+        protected string AllowedLetters = "aąbcćdeęfghijklłmnńoópqrsśtuvwxyzźż";
         protected bool CaseSensitive = (byte)Settings.SavedSettings[Settings.CaseSensitiveKey] == 1;
         public static SearchMode Mode { get; set; }
 
@@ -15,7 +16,8 @@ namespace CrosswordAssistant.Searches
                 MessageBox.Show("Wzorzec jest pusty.", "Błąd wzorca", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
-            string allowedChars = "aąbcćdeęfghijklłmnńoópqrsśtuvwxyzźż";
+            string allowedChars = AllowedLetters;
+            if (BaseSettings.CaseSensitive) allowedChars += AllowedLetters.ToUpper();
             foreach (var ch in pattern)
             {
                 if (!allowedChars.Contains(ch))
@@ -30,6 +32,10 @@ namespace CrosswordAssistant.Searches
 
         protected static bool CheckForAnagram(string pattern, string word)
         {
+            if (!BaseSettings.CaseSensitive)
+            {
+                word = word.ToLower();
+            }
             int dots = pattern.CountChars('.');
             int notMatched = 0;
             for (int i = 0; i < word.Length; i++)

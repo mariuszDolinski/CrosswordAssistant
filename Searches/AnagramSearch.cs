@@ -1,4 +1,5 @@
 ﻿
+using CrosswordAssistant.AppSettings;
 using CrosswordAssistant.Services;
 
 namespace CrosswordAssistant.Searches
@@ -19,8 +20,8 @@ namespace CrosswordAssistant.Searches
             {
                 if (word is null) continue;
                 if (word.Length != pattern.Length) continue;
-                if (word.Equals(pattern, StringComparison.CurrentCultureIgnoreCase)) continue;
-                if (CheckForAnagram(pattern.ToLower(), word.ToLower()))
+                if (word.Equals(pattern)) continue;
+                if (CheckForAnagram(pattern, word))
                 {
                     result.Add(word);
                 }
@@ -36,7 +37,8 @@ namespace CrosswordAssistant.Searches
                 MessageBox.Show("Wzorzec jest pusty.", "Błąd wzorca", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
-            string allowedChars = "aąbcćdeęfghijklłmnńoópqrsśtuvwxyzźż.";
+            string allowedChars = AllowedLetters + ".";
+            if (BaseSettings.CaseSensitive) allowedChars += AllowedLetters.ToUpper();
             foreach (var ch in pattern)
             {
                 if (!allowedChars.Contains(ch))

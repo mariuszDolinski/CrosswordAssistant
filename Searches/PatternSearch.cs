@@ -1,4 +1,5 @@
-﻿using CrosswordAssistant.Services;
+﻿using CrosswordAssistant.AppSettings;
+using CrosswordAssistant.Services;
 using System.Text.RegularExpressions;
 
 namespace CrosswordAssistant.Searches
@@ -53,8 +54,8 @@ namespace CrosswordAssistant.Searches
                 MessageBox.Show("Wzorzec jest pusty.", "Błąd wzorca", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
-            string allowedChars = "aąbcćdeęfghijklłmnńoópqrsśtuvwxyzźż.?";
-            if (CaseSensitive) allowedChars += "AĄBCĆDEĘFGHIJKLŁMNŃOÓPQRSŚTUVWXYZŹŻ";
+            string allowedChars = AllowedLetters + ".?";
+            if (BaseSettings.CaseSensitive) allowedChars += AllowedLetters.ToUpper();
             foreach (var ch in pattern)
             {
                 if (!allowedChars.Contains(ch))

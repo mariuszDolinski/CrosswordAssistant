@@ -1,4 +1,5 @@
 ﻿
+using CrosswordAssistant.AppSettings;
 using CrosswordAssistant.Services;
 using System.CodeDom.Compiler;
 using System.Text;
@@ -15,7 +16,6 @@ namespace CrosswordAssistant.Searches
             var patternSearch = new PatternSearch();
             preResult = patternSearch.SearchMatches(pattern);
 
-            //int kropkiCount = pattern.Count(c => c == '.');
             foreach (var word in preResult) 
             { 
                 var wordBuilder = new StringBuilder(word);
@@ -44,7 +44,8 @@ namespace CrosswordAssistant.Searches
                 MessageBox.Show("Wzorzec jest pusty.", "Błąd wzorca", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
-            string allowedChars = "aąbcćdeęfghijklłmnńoópqrsśtuvwxyzźż.";
+            string allowedChars = AllowedLetters + ".";
+            if (BaseSettings.CaseSensitive) allowedChars += AllowedLetters.ToUpper();
             foreach (var ch in pattern)
             {
                 if (!allowedChars.Contains(ch))
