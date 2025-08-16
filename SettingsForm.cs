@@ -7,8 +7,8 @@ namespace CrosswordAssistant
     public partial class SettingsForm : Form
     {
         private readonly MainForm _currentMainForm;
+        private readonly AppearanceSettings _appearanceSettings;
         private bool _isValidateOk;
-        private AppearanceSettings _appearanceSettings;
         public SettingsForm(MainForm form)
         {
             _currentMainForm = form;
@@ -27,7 +27,7 @@ namespace CrosswordAssistant
             labelColorUlozSam.BackColor = Color.FromArgb((int)Settings.CurrentSettings[Settings.UlozSamColorKey]);
             labelColorScrabble.BackColor = Color.FromArgb((int)Settings.CurrentSettings[Settings.ScrabbleColorKey]);
             SetMainFormPositionRadioButtons();
-            SetCaseSensitiveRdioButtons();
+            SetCaseSensitiveRadioButtons();
         }
         private void SetButtonsVisibility()
         {
@@ -87,16 +87,11 @@ namespace CrosswordAssistant
                 default: radioBtnPosC.Checked = true; break;
             }
         }
-        private void SetCaseSensitiveRdioButtons()
+        private void SetCaseSensitiveRadioButtons()
         {
-            switch ((byte)Settings.SavedSettings[Settings.CaseSensitiveKey])
-            {
-                case 0: radioBtnCaseSensitiveNo.Checked = true; break;
-                case 1: radioBtnCaseSensitiveYes.Checked = true; break;
-                default: radioBtnCaseSensitiveNo.Checked = true; break;
-            }
+            if (BaseSettings.CaseSensitive) radioBtnCaseSensitiveYes.Checked = true;
+            else radioBtnCaseSensitiveNo.Checked = true;
         }
-
 
         private void Settings_OnClosed(object sender, FormClosingEventArgs e)
         {
@@ -194,7 +189,7 @@ namespace CrosswordAssistant
             var radioBtn = (RadioButton)sender;
             if (radioBtn.Checked)
             {
-                Settings.CurrentSettings[Settings.CaseSensitiveKey] = (byte)(radioBtn.TabIndex - 9);
+                Settings.CurrentSettings[BaseSettings.CaseSensitiveKey] = radioBtn.TabIndex - 9;
                 SetButtonsVisibility();
             }
         }

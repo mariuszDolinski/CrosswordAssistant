@@ -687,15 +687,11 @@ namespace CrosswordAssistant
         {
             if (radioButtonBeginsWith.Checked && textBoxBeginsWith.Text.Length > 0)
             {
-                return results
-                    .Where(w => w.BeginsWithAny(textBoxBeginsWith.Text))
-                    .ToList();
+                return [.. results.Where(w => w.BeginsWithAny(textBoxBeginsWith.Text))];
             }
             else if (radioButtonBeginWithNot.Checked && textBoxBeginsWith.Text.Length > 0)
             {
-                return results
-                    .Where(w => w.NotBeginsWithAll(textBoxBeginsWith.Text))
-                    .ToList();
+                return [.. results.Where(w => w.NotBeginsWithAll(textBoxBeginsWith.Text))];
             }
             else
             {
@@ -706,15 +702,11 @@ namespace CrosswordAssistant
         {
             if (radioButtonEndsWith.Checked && textBoxEndsWith.Text.Length > 0)
             {
-                return results
-                    .Where(w => w.EndsWithAny(textBoxEndsWith.Text))
-                    .ToList();
+                return [.. results.Where(w => w.EndsWithAny(textBoxEndsWith.Text))];
             }
             else if (radioButtonEndsWithNot.Checked && textBoxEndsWith.Text.Length > 0)
             {
-                return results
-                    .Where(w => w.NotEndsWithAll(textBoxEndsWith.Text))
-                    .ToList();
+                return [.. results.Where(w => w.NotEndsWithAll(textBoxEndsWith.Text))];
             }
             else
             {
@@ -726,24 +718,16 @@ namespace CrosswordAssistant
             if (checkBoxContains.Checked && textBoxContains.Text.Length > 0)
             {
                 if (radioButtonContainsAnd.Checked)
-                    results = results
-                        .Where(w => w.ContainsAll(textBoxContains.Text))
-                        .ToList();
+                    results = [.. results.Where(w => w.ContainsAll(textBoxContains.Text))];
                 if (radioButtonContainsOr.Checked)
-                    results = results
-                    .Where(w => w.ContainsAny(textBoxContains.Text))
-                    .ToList();
+                    results = [.. results.Where(w => w.ContainsAny(textBoxContains.Text))];
             }
             if (checkBoxNotContains.Checked && textBoxNotContains.Text.Length > 0)
             {
                 if (radioButtonContainsAnd.Checked)
-                    results = results
-                    .Where(w => w.NotContainsAny(textBoxNotContains.Text))
-                    .ToList();
+                    results = [.. results.Where(w => w.NotContainsAny(textBoxNotContains.Text))];
                 if (radioButtonContainsOr.Checked)
-                    results = results
-                    .Where(w => w.NotContainsSome(textBoxNotContains.Text))
-                    .ToList();
+                    results = [.. results.Where(w => w.NotContainsSome(textBoxNotContains.Text))];
             }
 
             return results;

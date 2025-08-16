@@ -24,7 +24,7 @@ namespace CrosswordAssistant.Searches
                 else regexPattern += ch;
             }
             regexPattern += "$";
-            if (CaseSensitive)
+            if (BaseSettings.CaseSensitive)
             {
                 foreach (var word in DictionaryService.CurrentDictionary)
                 {

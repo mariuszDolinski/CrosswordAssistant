@@ -35,7 +35,6 @@ namespace CrosswordAssistant.AppSettings
                 CurrentSettings.Add(ss.Key, ss.Value);
             }
         }
-
         public static void CancelCurrentSettings()
         {
             foreach (var cs in CurrentSettings)
@@ -81,7 +80,7 @@ namespace CrosswordAssistant.AppSettings
             SavedSettings[UlozSamColorKey] = ConfigurationManager.AppSettings[UlozSamColorKey] is null ? DefaultSettings[UlozSamColorKey] : int.Parse(ConfigurationManager.AppSettings[UlozSamColorKey]!);
             SavedSettings[ScrabbleColorKey] = ConfigurationManager.AppSettings[ScrabbleColorKey] is null ? DefaultSettings[ScrabbleColorKey] : int.Parse(ConfigurationManager.AppSettings[ScrabbleColorKey]!);
             SavedSettings[MainFormPosKey] = ConfigurationManager.AppSettings[MainFormPosKey] is null ? DefaultSettings[MainFormPosKey] : int.Parse(ConfigurationManager.AppSettings[MainFormPosKey]!);
-            SavedSettings[CaseSensitiveKey] = ConfigurationManager.AppSettings[CaseSensitiveKey] is null ? DefaultSettings[CaseSensitiveKey] : byte.Parse(ConfigurationManager.AppSettings[CaseSensitiveKey]!);
+            SavedSettings[CaseSensitiveKey] = ConfigurationManager.AppSettings[CaseSensitiveKey] is null ? DefaultSettings[CaseSensitiveKey] : int.Parse(ConfigurationManager.AppSettings[CaseSensitiveKey]!);
         }
         public static void ReturnToDefaultSettings()
         {
@@ -93,10 +92,9 @@ namespace CrosswordAssistant.AppSettings
         public static void SetCurrentSettings()
         {
             MaxResultDisplay = (int)SavedSettings[MaxResultsKey];
-            CaseSensitive = (byte)SavedSettings[CaseSensitiveKey] == 1;
+            CaseSensitive = (int)SavedSettings[CaseSensitiveKey] == 1;
         }
         
-
         public static void SaveSettingToAppConfig()
         {
             try

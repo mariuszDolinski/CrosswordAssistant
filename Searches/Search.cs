@@ -6,7 +6,6 @@ namespace CrosswordAssistant.Searches
     public abstract class Search
     {
         protected string AllowedLetters = "aąbcćdeęfghijklłmnńoópqrsśtuvwxyzźż";
-        protected bool CaseSensitive = (byte)Settings.SavedSettings[Settings.CaseSensitiveKey] == 1;
         public static SearchMode Mode { get; set; }
 
         public virtual bool ValidatePattern(string pattern)
