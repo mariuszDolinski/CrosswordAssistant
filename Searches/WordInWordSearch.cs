@@ -1,7 +1,6 @@
 ﻿
 using CrosswordAssistant.AppSettings;
 using CrosswordAssistant.Services;
-using System.CodeDom.Compiler;
 using System.Text;
 
 namespace CrosswordAssistant.Searches
@@ -42,6 +41,11 @@ namespace CrosswordAssistant.Searches
             if (pattern.Length == 0)
             {
                 MessageBox.Show("Wzorzec jest pusty.", "Błąd wzorca", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            if (pattern.CountChars('.') < 3)
+            {
+                MessageBox.Show("Wzorzec powinien zawierać conajmniej 3 kropki.", "Błąd wzorca", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
             string allowedChars = AllowedLetters + ".";

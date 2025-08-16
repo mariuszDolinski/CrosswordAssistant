@@ -36,8 +36,11 @@
             buttonSettingsOK = new Button();
             tabControl1 = new TabControl();
             tabPageGeneral = new TabPage();
+            groupBoxSzaradzistaSettings = new GroupBox();
             radioBtnCaseSensitiveNo = new RadioButton();
+            labelMaxResultsCount = new Label();
             radioBtnCaseSensitiveYes = new RadioButton();
+            textBoxMaxResultsCount = new TextBox();
             labelCaseSensitive = new Label();
             groupBoxMainFormPosition = new GroupBox();
             label3 = new Label();
@@ -48,8 +51,6 @@
             saveDictLocBtn = new Button();
             textBoxDefaultDictPath = new TextBox();
             labelDefaultDictLoc = new Label();
-            textBoxMaxResultsCount = new TextBox();
-            labelMaxResultsCount = new Label();
             tabPageApparence = new TabPage();
             groupBoxColorsSettings = new GroupBox();
             buttonScrabbleColor = new Button();
@@ -66,6 +67,7 @@
             panelSettingsControls.SuspendLayout();
             tabControl1.SuspendLayout();
             tabPageGeneral.SuspendLayout();
+            groupBoxSzaradzistaSettings.SuspendLayout();
             groupBoxMainFormPosition.SuspendLayout();
             groupBoxDictSettings.SuspendLayout();
             tabPageApparence.SuspendLayout();
@@ -83,7 +85,7 @@
             panelSettingsControls.Controls.Add(buttonSettingsCancel);
             panelSettingsControls.Controls.Add(buttonSettingsOK);
             panelSettingsControls.Dock = DockStyle.Bottom;
-            panelSettingsControls.Location = new Point(0, 394);
+            panelSettingsControls.Location = new Point(0, 400);
             panelSettingsControls.Name = "panelSettingsControls";
             panelSettingsControls.Size = new Size(896, 56);
             panelSettingsControls.TabIndex = 1;
@@ -143,31 +145,42 @@
             tabControl1.Location = new Point(0, 0);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(896, 394);
+            tabControl1.Size = new Size(896, 400);
             tabControl1.TabIndex = 2;
             // 
             // tabPageGeneral
             // 
-            tabPageGeneral.Controls.Add(radioBtnCaseSensitiveNo);
-            tabPageGeneral.Controls.Add(radioBtnCaseSensitiveYes);
-            tabPageGeneral.Controls.Add(labelCaseSensitive);
+            tabPageGeneral.Controls.Add(groupBoxSzaradzistaSettings);
             tabPageGeneral.Controls.Add(groupBoxMainFormPosition);
             tabPageGeneral.Controls.Add(groupBoxDictSettings);
-            tabPageGeneral.Controls.Add(textBoxMaxResultsCount);
-            tabPageGeneral.Controls.Add(labelMaxResultsCount);
             tabPageGeneral.Location = new Point(4, 37);
             tabPageGeneral.Name = "tabPageGeneral";
             tabPageGeneral.Padding = new Padding(3);
-            tabPageGeneral.Size = new Size(888, 353);
+            tabPageGeneral.Size = new Size(888, 359);
             tabPageGeneral.TabIndex = 0;
             tabPageGeneral.Text = "Ogólne";
             tabPageGeneral.UseVisualStyleBackColor = true;
+            // 
+            // groupBoxSzaradzistaSettings
+            // 
+            groupBoxSzaradzistaSettings.Controls.Add(radioBtnCaseSensitiveNo);
+            groupBoxSzaradzistaSettings.Controls.Add(labelMaxResultsCount);
+            groupBoxSzaradzistaSettings.Controls.Add(radioBtnCaseSensitiveYes);
+            groupBoxSzaradzistaSettings.Controls.Add(textBoxMaxResultsCount);
+            groupBoxSzaradzistaSettings.Controls.Add(labelCaseSensitive);
+            groupBoxSzaradzistaSettings.Dock = DockStyle.Top;
+            groupBoxSzaradzistaSettings.Location = new Point(3, 3);
+            groupBoxSzaradzistaSettings.Name = "groupBoxSzaradzistaSettings";
+            groupBoxSzaradzistaSettings.Size = new Size(882, 120);
+            groupBoxSzaradzistaSettings.TabIndex = 11;
+            groupBoxSzaradzistaSettings.TabStop = false;
+            groupBoxSzaradzistaSettings.Text = "Szaradzista";
             // 
             // radioBtnCaseSensitiveNo
             // 
             radioBtnCaseSensitiveNo.AutoSize = true;
             radioBtnCaseSensitiveNo.Checked = true;
-            radioBtnCaseSensitiveNo.Location = new Point(497, 54);
+            radioBtnCaseSensitiveNo.Location = new Point(330, 75);
             radioBtnCaseSensitiveNo.Name = "radioBtnCaseSensitiveNo";
             radioBtnCaseSensitiveNo.Size = new Size(63, 29);
             radioBtnCaseSensitiveNo.TabIndex = 9;
@@ -176,10 +189,19 @@
             radioBtnCaseSensitiveNo.UseVisualStyleBackColor = true;
             radioBtnCaseSensitiveNo.CheckedChanged += RadioBtnCaseSensitive_CheckedChaged;
             // 
+            // labelMaxResultsCount
+            // 
+            labelMaxResultsCount.AutoSize = true;
+            labelMaxResultsCount.Location = new Point(6, 36);
+            labelMaxResultsCount.Name = "labelMaxResultsCount";
+            labelMaxResultsCount.Size = new Size(375, 25);
+            labelMaxResultsCount.TabIndex = 0;
+            labelMaxResultsCount.Text = "Maksymalna ilość wyświetlanych dopasowań: ";
+            // 
             // radioBtnCaseSensitiveYes
             // 
             radioBtnCaseSensitiveYes.AutoSize = true;
-            radioBtnCaseSensitiveYes.Location = new Point(604, 54);
+            radioBtnCaseSensitiveYes.Location = new Point(437, 75);
             radioBtnCaseSensitiveYes.Name = "radioBtnCaseSensitiveYes";
             radioBtnCaseSensitiveYes.Size = new Size(62, 29);
             radioBtnCaseSensitiveYes.TabIndex = 10;
@@ -187,14 +209,22 @@
             radioBtnCaseSensitiveYes.UseVisualStyleBackColor = true;
             radioBtnCaseSensitiveYes.CheckedChanged += RadioBtnCaseSensitive_CheckedChaged;
             // 
+            // textBoxMaxResultsCount
+            // 
+            textBoxMaxResultsCount.Location = new Point(397, 33);
+            textBoxMaxResultsCount.Name = "textBoxMaxResultsCount";
+            textBoxMaxResultsCount.Size = new Size(102, 31);
+            textBoxMaxResultsCount.TabIndex = 1;
+            textBoxMaxResultsCount.TextChanged += MaxResults_TextChanged;
+            // 
             // labelCaseSensitive
             // 
             labelCaseSensitive.AutoSize = true;
-            labelCaseSensitive.Location = new Point(9, 54);
+            labelCaseSensitive.Location = new Point(6, 77);
             labelCaseSensitive.Name = "labelCaseSensitive";
-            labelCaseSensitive.Size = new Size(463, 25);
+            labelCaseSensitive.Size = new Size(225, 25);
             labelCaseSensitive.TabIndex = 8;
-            labelCaseSensitive.Text = "Rozróżnianie wielkości liter (dotyczy zakładki Szaradzista):";
+            labelCaseSensitive.Text = "Rozróżnianie wielkości liter:";
             // 
             // groupBoxMainFormPosition
             // 
@@ -203,7 +233,7 @@
             groupBoxMainFormPosition.Controls.Add(radioBtnPosTL);
             groupBoxMainFormPosition.Controls.Add(radioBtnPosTR);
             groupBoxMainFormPosition.Dock = DockStyle.Bottom;
-            groupBoxMainFormPosition.Location = new Point(3, 117);
+            groupBoxMainFormPosition.Location = new Point(3, 123);
             groupBoxMainFormPosition.Name = "groupBoxMainFormPosition";
             groupBoxMainFormPosition.Size = new Size(882, 107);
             groupBoxMainFormPosition.TabIndex = 7;
@@ -260,7 +290,7 @@
             groupBoxDictSettings.Controls.Add(textBoxDefaultDictPath);
             groupBoxDictSettings.Controls.Add(labelDefaultDictLoc);
             groupBoxDictSettings.Dock = DockStyle.Bottom;
-            groupBoxDictSettings.Location = new Point(3, 224);
+            groupBoxDictSettings.Location = new Point(3, 230);
             groupBoxDictSettings.Name = "groupBoxDictSettings";
             groupBoxDictSettings.Size = new Size(882, 126);
             groupBoxDictSettings.TabIndex = 2;
@@ -297,30 +327,13 @@
             labelDefaultDictLoc.TabIndex = 0;
             labelDefaultDictLoc.Text = "Domyślna lokalizacja pliku ze słownikiem, który będzie wczytywany przy uruchomieniu aplikacji:";
             // 
-            // textBoxMaxResultsCount
-            // 
-            textBoxMaxResultsCount.Location = new Point(497, 13);
-            textBoxMaxResultsCount.Name = "textBoxMaxResultsCount";
-            textBoxMaxResultsCount.Size = new Size(102, 31);
-            textBoxMaxResultsCount.TabIndex = 1;
-            textBoxMaxResultsCount.TextChanged += MaxResults_TextChanged;
-            // 
-            // labelMaxResultsCount
-            // 
-            labelMaxResultsCount.AutoSize = true;
-            labelMaxResultsCount.Location = new Point(9, 16);
-            labelMaxResultsCount.Name = "labelMaxResultsCount";
-            labelMaxResultsCount.Size = new Size(375, 25);
-            labelMaxResultsCount.TabIndex = 0;
-            labelMaxResultsCount.Text = "Maksymalna ilość wyświetlanych dopasowań: ";
-            // 
             // tabPageApparence
             // 
             tabPageApparence.Controls.Add(groupBoxColorsSettings);
             tabPageApparence.Location = new Point(4, 37);
             tabPageApparence.Name = "tabPageApparence";
             tabPageApparence.Padding = new Padding(3);
-            tabPageApparence.Size = new Size(888, 353);
+            tabPageApparence.Size = new Size(888, 359);
             tabPageApparence.TabIndex = 1;
             tabPageApparence.Text = "Wygląd";
             tabPageApparence.UseVisualStyleBackColor = true;
@@ -442,16 +455,19 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(896, 450);
+            ClientSize = new Size(896, 456);
             Controls.Add(tabControl1);
             Controls.Add(panelSettingsControls);
+            MaximumSize = new Size(918, 514);
+            MinimumSize = new Size(918, 514);
             Name = "SettingsForm";
             Text = "Ustawienia";
             FormClosing += Settings_OnClosed;
             panelSettingsControls.ResumeLayout(false);
             tabControl1.ResumeLayout(false);
             tabPageGeneral.ResumeLayout(false);
-            tabPageGeneral.PerformLayout();
+            groupBoxSzaradzistaSettings.ResumeLayout(false);
+            groupBoxSzaradzistaSettings.PerformLayout();
             groupBoxMainFormPosition.ResumeLayout(false);
             groupBoxMainFormPosition.PerformLayout();
             groupBoxDictSettings.ResumeLayout(false);
@@ -498,5 +514,6 @@
         private Label labelCaseSensitive;
         private RadioButton radioBtnCaseSensitiveNo;
         private RadioButton radioBtnCaseSensitiveYes;
+        private GroupBox groupBoxSzaradzistaSettings;
     }
 }
