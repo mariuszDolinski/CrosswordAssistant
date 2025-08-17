@@ -5,6 +5,7 @@
         public static int MaxResultDisplay { get; set; }
         public static bool CaseSensitive { get; set; }
 
+        public const string LogLevelKey = "logLevel";
         public const string DictPathKey = "dictionaryLocation";
         public const string DictFileKey = "dictionaryName";
         public const string MaxResultsKey = "maxResultsDisplay";

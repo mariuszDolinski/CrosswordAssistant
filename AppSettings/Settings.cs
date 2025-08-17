@@ -27,6 +27,7 @@ namespace CrosswordAssistant.AppSettings
             DefaultSettings[ScrabbleColorKey] = -2968436;
             DefaultSettings[MainFormPosKey] = (int)MainFormPosition.Center;
             DefaultSettings[CaseSensitiveKey] = 0;
+            DefaultSettings[LogLevelKey] = Logger.LogLevel;
         }
         private static void InitCurrentSettings()
         {
@@ -81,6 +82,7 @@ namespace CrosswordAssistant.AppSettings
             SavedSettings[ScrabbleColorKey] = ConfigurationManager.AppSettings[ScrabbleColorKey] is null ? DefaultSettings[ScrabbleColorKey] : int.Parse(ConfigurationManager.AppSettings[ScrabbleColorKey]!);
             SavedSettings[MainFormPosKey] = ConfigurationManager.AppSettings[MainFormPosKey] is null ? DefaultSettings[MainFormPosKey] : int.Parse(ConfigurationManager.AppSettings[MainFormPosKey]!);
             SavedSettings[CaseSensitiveKey] = ConfigurationManager.AppSettings[CaseSensitiveKey] is null ? DefaultSettings[CaseSensitiveKey] : int.Parse(ConfigurationManager.AppSettings[CaseSensitiveKey]!);
+            SavedSettings[LogLevelKey] = ConfigurationManager.AppSettings[LogLevelKey] is null ? DefaultSettings[LogLevelKey]: int.Parse(ConfigurationManager.AppSettings[LogLevelKey]!);
         }
         public static void ReturnToDefaultSettings()
         {
@@ -93,6 +95,7 @@ namespace CrosswordAssistant.AppSettings
         {
             MaxResultDisplay = (int)SavedSettings[MaxResultsKey];
             CaseSensitive = (int)SavedSettings[CaseSensitiveKey] == 1;
+            Logger.LogLevel = (LogLevel)SavedSettings[LogLevelKey];
         }
         
         public static void SaveSettingToAppConfig()

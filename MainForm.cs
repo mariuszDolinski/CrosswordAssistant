@@ -46,7 +46,7 @@ namespace CrosswordAssistant
             catch (Exception ex) 
             { 
                 MessageBox.Show("B³¹d przy inicjalizacji aplikacji. SprawdŸ szczegó³y w logu.");
-                Logger.WriteToLog(LogLevel.Error, ex.Message, ex.StackTrace ?? "");
+                Logger.WriteToLog(LogLevel.Info, ex.Message, ex.StackTrace ?? "");
             }
         }
 
@@ -569,6 +569,8 @@ namespace CrosswordAssistant
 
             _appearance.SetBackgroundColor();
             _appearance.SetTextBoxesCasing(BaseSettings.CaseSensitive);
+
+            throw new Exception("test logowania");
         }
         private void SetLengthControlsEnabled(bool isEnabled)
         {
