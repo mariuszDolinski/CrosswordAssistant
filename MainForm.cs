@@ -27,7 +27,11 @@ namespace CrosswordAssistant
             MaximumSize = Size;
             KeyPreview = true;
 
-            Settings.Init();
+            try { Settings.Init(); }
+            catch (Exception ex) { 
+                MessageBox.Show("B³¹d przy wczytywaniu ustawieñ. SprawdŸ szczegó³y w logu.");
+                Logger.WriteToLog(LogLevel.Error, ex.Message, ex.StackTrace ?? "");
+            }
 
             _isSearching = false;
             _appearance = new AppearanceSettings(this);
@@ -38,7 +42,12 @@ namespace CrosswordAssistant
                 return;
             }
 
-            InitControls();
+            try { InitControls(); }
+            catch (Exception ex) 
+            { 
+                MessageBox.Show("B³¹d przy inicjalizacji aplikacji. SprawdŸ szczegó³y w logu.");
+                Logger.WriteToLog(LogLevel.Error, ex.Message, ex.StackTrace ?? "");
+            }
         }
 
         #region events handlers
@@ -73,12 +82,13 @@ namespace CrosswordAssistant
                 textBoxPattern.ReadOnly = false;
                 _isSearching = false;
             }
-            catch (Exception exc)
+            catch (Exception ex)
             {
                 labelResultsCount.Text = "Znalezionych dopasowañ: 0";
                 _isSearching = false;
                 textBoxPattern.ReadOnly = false;
-                MessageBox.Show("B³¹d wyszukiwania: " + exc.Message);
+                MessageBox.Show("B³¹d wyszukiwania. SprawdŸ szczegó³y w logu aplikacji.");
+                Logger.WriteToLog(LogLevel.Error, ex.Message, ex.StackTrace ?? "");
             }
         }
         private void UluzSamSearch_Click(object sender, EventArgs e)
@@ -549,7 +559,7 @@ namespace CrosswordAssistant
             SetFileInfo(0);
             labelAbout.Text = Messages.VersionInfo;
             labelMergeDicts.Text = Messages.MergeDictsInfo;
-
+            
             _filtersNames[StartWithFilterName] = "Pocz¹tek";
             _filtersNames[EndWithFilterName] = "Koniec";
             _filtersNames[ContainsFilterName] = "Zawiera";

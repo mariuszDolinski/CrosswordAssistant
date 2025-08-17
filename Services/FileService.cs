@@ -20,14 +20,15 @@ namespace CrosswordAssistant.Services
             try
             {
                 var words = await File.ReadAllLinesAsync(Path.Combine(SavePath, FileName));
-                return new List<string>(words);
+                return [.. words];
             }
-            catch
+            catch (Exception ex)
             {
                 MessageBox.Show("Do poprawnego działania aplikacji wymagany jest plik ze słownikiem. " +
                     "Powinien się znaleźć w folderze 'Słowniki' w tej samej lokalizacji co aplikacja " +
                     "i nazywać się 'slownik.txt'. Plik powinien zawierać po jednym wyrazie w każdej linii.",
                     "Brak pliku ze słownikiem",MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                Logger.WriteToLog(LogLevel.Warning, ex.Message, ex.StackTrace ?? "");
                 return [Messages.NoFile];
             }
         }
@@ -37,9 +38,9 @@ namespace CrosswordAssistant.Services
             try
             {
                 var words = File.ReadAllLines(Path.Combine(SavePath, FileName));
-                return new List<string>(words);
+                return [.. words];
             }
-            catch
+            catch (Exception ex)
             {
                 var resp = MessageBox.Show("Do poprawnego działania aplikacji wymagany jest plik ze słownikiem. " +
                     "Upewnij się, że w folderze 'Słowniki' w tej samej lokalizacji co aplikacja " +
@@ -56,6 +57,7 @@ namespace CrosswordAssistant.Services
                     Settings.SaveSettingToAppConfig();
                     MessageBox.Show("Domyślne ustawienia zostały zmienione. Uruchom aplikację ponownie", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
+                Logger.WriteToLog(LogLevel.Warning, ex.Message, ex.StackTrace ?? "");
                 return [Messages.NoFile];
             }
         }
@@ -67,8 +69,9 @@ namespace CrosswordAssistant.Services
                 File.WriteAllLines(Path.Combine(SavePath, FileName), words);
                 return true;
             }
-            catch
+            catch (Exception ex)
             {
+                Logger.WriteToLog(LogLevel.Error, ex.Message, ex.StackTrace ?? "");
                 return false;
             }
         }
@@ -113,7 +116,7 @@ namespace CrosswordAssistant.Services
                 else
                 {
                     var words = File.ReadAllLines(Path.Combine(Path.GetDirectoryName(ofd.FileName)!, Path.GetFileName(ofd.FileName)));
-                    return new List<string>(words);
+                    return [.. words];
                 }
             }
             return [];

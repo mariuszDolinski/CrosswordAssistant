@@ -116,9 +116,10 @@ namespace CrosswordAssistant.AppSettings
                 configFile.Save(ConfigurationSaveMode.Modified);
                 ConfigurationManager.RefreshSection(configFile.AppSettings.SectionInformation.Name);
             }
-            catch (ConfigurationErrorsException)
+            catch (ConfigurationErrorsException ex)
             {
-                Console.WriteLine("Błąd zapisu ścieżki słownika do pliku konfiguracyjnego. Spróbuj ponownie.");
+                Console.WriteLine("Zapisu ścieżki słownika do pliku konfiguracyjnego nie powiódł się. Spróbuj ponownie.");
+                Logger.WriteToLog(LogLevel.Warning, ex.Message, ex.StackTrace ?? "");
             }
         }
     }
