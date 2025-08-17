@@ -9,11 +9,10 @@ namespace CrosswordAssistant.Searches
     {
         public override List<string> SearchMatches(string pattern)
         {
-            List<string> preResult = [];
             List<string> result = [];
 
             var patternSearch = new PatternSearch();
-            preResult = patternSearch.SearchMatches(pattern);
+            var preResult = patternSearch.SearchMatches(pattern);
 
             foreach (var word in preResult) 
             { 
@@ -35,7 +34,6 @@ namespace CrosswordAssistant.Searches
             return result;
         }
 
-        //TO DO - nadpisać ValidatePattern, aby spradzał czy wzorzec zawiera minimum 3 kropki
         public override bool ValidatePattern(string pattern)
         {
             if (pattern.Length == 0)

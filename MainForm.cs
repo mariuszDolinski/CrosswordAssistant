@@ -3,7 +3,7 @@ using CrosswordAssistant.Entities;
 using CrosswordAssistant.Searches;
 using CrosswordAssistant.Services;
 using System.Globalization;
-using System.Linq.Expressions;
+using System.Text.RegularExpressions;
 
 namespace CrosswordAssistant
 {
@@ -17,7 +17,9 @@ namespace CrosswordAssistant
         private readonly DictionaryService _dictionaryService;
         private readonly List<Label> _infoLabels = [];
         private readonly Dictionary<string, string> _filtersNames = [];
-        
+
+        private bool _isSearching;
+
         public MainForm()
         {
             InitializeComponent();
@@ -27,6 +29,7 @@ namespace CrosswordAssistant
 
             Settings.Init();
 
+            _isSearching = false;
             _appearance = new AppearanceSettings(this);
             _dictionaryService = new DictionaryService();
             if (_dictionaryService.DictionaryLoadError())
@@ -39,28 +42,28 @@ namespace CrosswordAssistant
         }
 
         #region events handlers
-        private void SearchPattern_Click(object sender, EventArgs e)
+        private async void SearchPattern_Click(object sender, EventArgs e)
         {
-            if (DictionaryService.PendingDictionaryLoading) return;
+            if (DictionaryService.PendingDictionaryLoading || _isSearching) return;
 
             string pattern = textBoxPattern.Text.Trim();
             if (!BaseSettings.CaseSensitive) pattern = pattern.ToLower();
+            labelResultsCount.Text = "Szukam dopasowañ...";
+            _isSearching = true;
 
             try
             {
                 var search = SearchFactory.CreateSearch(Search.Mode);
-
+                textBoxPattern.ReadOnly = true;
                 List<string> matches;
                 if (checkBoxLength.Checked && pattern.Length == 0)
                 {
                     matches = DictionaryService.CurrentDictionary;
-                    textBoxPattern.ReadOnly = true;
                 }
                 else
                 {
                     if (!search.ValidatePattern(pattern)) return;
-                    textBoxPattern.ReadOnly = true;
-                    matches = search.SearchMatches(pattern);
+                    matches = await Task.Run(() => search.SearchMatches(pattern));
                 }
 
                 matches = ApplyFilters(matches);
@@ -68,10 +71,14 @@ namespace CrosswordAssistant
                 matches = Utilities.BoundResults(matches);
                 FillTextBoxResults(matches, textBoxPatternResults);
                 textBoxPattern.ReadOnly = false;
+                _isSearching = false;
             }
-            catch (Exception)
+            catch (Exception exc)
             {
-                MessageBox.Show("Podany tryb nie zosta³ jeszcze zaimplementowany");
+                labelResultsCount.Text = "Znalezionych dopasowañ: 0";
+                _isSearching = false;
+                textBoxPattern.ReadOnly = false;
+                MessageBox.Show("B³¹d wyszukiwania: " + exc.Message);
             }
         }
         private void UluzSamSearch_Click(object sender, EventArgs e)
