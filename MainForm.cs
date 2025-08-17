@@ -46,7 +46,7 @@ namespace CrosswordAssistant
             catch (Exception ex) 
             { 
                 MessageBox.Show("B³¹d przy inicjalizacji aplikacji. SprawdŸ szczegó³y w logu.");
-                Logger.WriteToLog(LogLevel.Info, ex.Message, ex.StackTrace ?? "");
+                Logger.WriteToLog(LogLevel.Error, ex.Message, ex.StackTrace ?? "");
             }
         }
 
@@ -239,7 +239,7 @@ namespace CrosswordAssistant
             }
             else if (wordsToAdd.Count > 10000)
             {
-                MessageBox.Show("odano zbyt wiele wyrazów. Proszê ograniczyæ listê do maksymlanie 10 000 s³ów.", "Uwaga", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Podano zbyt wiele wyrazów. Proszê ograniczyæ listê do maksymlanie 10 000 s³ów.", "Uwaga", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             if (!DictionaryService.ValidateWordsToAdd(wordsToAdd))
@@ -264,7 +264,10 @@ namespace CrosswordAssistant
             {
                 MessageBox.Show("Wyrazy: " + Environment.NewLine + msg + "dodane poprawnie.", "Dodano wyrazy do s³ownika",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Logger.WriteToLog(LogLevel.Info, $"Dodano ${addedWords.Count} nowe wyrazy do s³ownika ${FileService.FileName}");
             }
+            
+
             SetFileInfo(0);
         }
         private void RemoveFromDictionaryBtn_Click(object sender, EventArgs e)
@@ -569,8 +572,6 @@ namespace CrosswordAssistant
 
             _appearance.SetBackgroundColor();
             _appearance.SetTextBoxesCasing(BaseSettings.CaseSensitive);
-
-            throw new Exception("test logowania");
         }
         private void SetLengthControlsEnabled(bool isEnabled)
         {
