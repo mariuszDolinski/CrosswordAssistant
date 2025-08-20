@@ -18,22 +18,18 @@ namespace CrosswordAssistant.Searches
             }
             return result;
         }
-        public override bool ValidatePattern(string pattern)
+        public override ValidateResult ValidatePattern(string pattern)
         {
             if (pattern.Length < 4 || pattern.Length > 15 || pattern.CountChars('.') > 2)
             {
-                MessageBox.Show("Wzorzec powinien zawierać od 4 do 15 znaków, w tym co najwyżej dwa mydła",
-                    "Błędny wzorzec", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
+                return new ValidateResult(false, "Wzorzec powinien zawierać od 4 do 15 znaków, w tym co najwyżej dwa mydła");
             }
             if (!DictionaryService.ValidateAllowedChars(pattern, DictionaryService.AllowedPatternChars))
             {
-                MessageBox.Show("Wzorzec zawiera niedozwolone znaki", "Błędny wzorzec",
-                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
+                return new ValidateResult(false, "Wzorzec zawiera niedozwolone znaki.");
             }
 
-            return true;
+            return new ValidateResult(true, "");
         }
 
 

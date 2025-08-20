@@ -89,8 +89,8 @@
             labelSpace3 = new Label();
             splitContainerPattern = new SplitContainer();
             textBoxPattern = new TextBox();
+            randomWordBtn = new Button();
             labelCurrentPatternLen = new Label();
-            label7 = new Label();
             searchPatternBtn = new Button();
             labelSpace1 = new Label();
             labelPattern = new Label();
@@ -953,11 +953,11 @@
             // 
             // splitContainerPattern.Panel2
             // 
+            splitContainerPattern.Panel2.Controls.Add(randomWordBtn);
             splitContainerPattern.Panel2.Controls.Add(labelCurrentPatternLen);
-            splitContainerPattern.Panel2.Controls.Add(label7);
             splitContainerPattern.Panel2.Controls.Add(searchPatternBtn);
             splitContainerPattern.Size = new Size(1167, 37);
-            splitContainerPattern.SplitterDistance = 896;
+            splitContainerPattern.SplitterDistance = 866;
             splitContainerPattern.TabIndex = 6;
             // 
             // textBoxPattern
@@ -967,40 +967,45 @@
             textBoxPattern.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point, 238);
             textBoxPattern.Location = new Point(0, 0);
             textBoxPattern.Name = "textBoxPattern";
-            textBoxPattern.Size = new Size(896, 37);
+            textBoxPattern.Size = new Size(866, 37);
             textBoxPattern.TabIndex = 7;
+            // 
+            // randomWordBtn
+            // 
+            randomWordBtn.Cursor = Cursors.Hand;
+            randomWordBtn.Dock = DockStyle.Right;
+            randomWordBtn.FlatStyle = FlatStyle.Flat;
+            randomWordBtn.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            randomWordBtn.Location = new Point(187, 0);
+            randomWordBtn.Name = "randomWordBtn";
+            randomWordBtn.Size = new Size(110, 37);
+            randomWordBtn.TabIndex = 12;
+            randomWordBtn.Text = "LOSUJ";
+            randomWordBtn.UseVisualStyleBackColor = true;
+            randomWordBtn.Click += RandomWord_Click;
             // 
             // labelCurrentPatternLen
             // 
             labelCurrentPatternLen.BackColor = Color.DarkSeaGreen;
             labelCurrentPatternLen.BorderStyle = BorderStyle.FixedSingle;
-            labelCurrentPatternLen.Dock = DockStyle.Fill;
+            labelCurrentPatternLen.Dock = DockStyle.Left;
             labelCurrentPatternLen.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 238);
             labelCurrentPatternLen.Location = new Point(0, 0);
             labelCurrentPatternLen.Name = "labelCurrentPatternLen";
             labelCurrentPatternLen.Padding = new Padding(2, 0, 0, 2);
-            labelCurrentPatternLen.Size = new Size(59, 37);
+            labelCurrentPatternLen.Size = new Size(71, 37);
             labelCurrentPatternLen.TabIndex = 11;
             labelCurrentPatternLen.Text = "0";
             labelCurrentPatternLen.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // label7
-            // 
-            label7.Dock = DockStyle.Right;
-            label7.Location = new Point(59, 0);
-            label7.Name = "label7";
-            label7.Size = new Size(3, 37);
-            label7.TabIndex = 10;
-            // 
             // searchPatternBtn
             // 
             searchPatternBtn.Cursor = Cursors.Hand;
-            searchPatternBtn.Dock = DockStyle.Right;
             searchPatternBtn.FlatStyle = FlatStyle.Flat;
             searchPatternBtn.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            searchPatternBtn.Location = new Point(62, 0);
+            searchPatternBtn.Location = new Point(74, 0);
             searchPatternBtn.Name = "searchPatternBtn";
-            searchPatternBtn.Size = new Size(205, 37);
+            searchPatternBtn.Size = new Size(110, 37);
             searchPatternBtn.TabIndex = 7;
             searchPatternBtn.Text = "SZUKAJ";
             searchPatternBtn.UseVisualStyleBackColor = true;
@@ -2774,7 +2779,6 @@
         private TextBox textBoxScrabblePattern;
         private TextBox textBoxScrabbleResults;
         private Label labelScrabbleInfo;
-        private Label label7;
         private Label labelInfoFilters;
         private RadioButton radioSubWordMode;
         private Label labelSubwordInfo;
@@ -2874,5 +2878,6 @@
         internal TextBox textBoxContains;
         internal TextBox textBoxEndsWith;
         internal TextBox textBoxBeginsWith;
+        private Button randomWordBtn;
     }
 }

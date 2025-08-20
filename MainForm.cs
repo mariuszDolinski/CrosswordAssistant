@@ -28,7 +28,8 @@ namespace CrosswordAssistant
             KeyPreview = true;
 
             try { Settings.Init(); }
-            catch (Exception ex) { 
+            catch (Exception ex)
+            {
                 MessageBox.Show("B³¹d przy wczytywaniu ustawieñ. SprawdŸ szczegó³y w logu.");
                 Logger.WriteToLog(LogLevel.Error, ex.Message, ex.StackTrace ?? "");
             }
@@ -43,8 +44,8 @@ namespace CrosswordAssistant
             }
 
             try { InitControls(); }
-            catch (Exception ex) 
-            { 
+            catch (Exception ex)
+            {
                 MessageBox.Show("B³¹d przy inicjalizacji aplikacji. SprawdŸ szczegó³y w logu.");
                 Logger.WriteToLog(LogLevel.Error, ex.Message, ex.StackTrace ?? "");
             }
@@ -53,32 +54,63 @@ namespace CrosswordAssistant
         #region events handlers
         private async void SearchPattern_Click(object sender, EventArgs e)
         {
-            if (DictionaryService.PendingDictionaryLoading || _isSearching) return;
-
-            string pattern = textBoxPattern.Text.Trim();
-            if (!BaseSettings.CaseSensitive) pattern = pattern.ToLower();
-            labelResultsCount.Text = "Szukam dopasowañ...";
-            _isSearching = true;
-
             try
             {
-                var search = SearchFactory.CreateSearch(Search.Mode);
-                textBoxPattern.ReadOnly = true;
-                List<string> matches;
-                if (checkBoxLength.Checked && pattern.Length == 0)
+                if (DictionaryService.PendingDictionaryLoading || _isSearching)
                 {
-                    matches = DictionaryService.CurrentDictionary;
-                }
-                else
-                {
-                    if (!search.ValidatePattern(pattern)) return;
-                    matches = await Task.Run(() => search.SearchMatches(pattern));
+                    MessageBox.Show("Trwa inne wyszukiwanie. Spróbuj ponownie póŸniej", "Inne wyszukiwanie w toku", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
                 }
 
-                matches = ApplyFilters(matches);
-                labelResultsCount.Text = "Znalezionych dopasowañ: " + matches.Count;
-                matches = Utilities.BoundResults(matches);
-                FillTextBoxResults(matches, textBoxPatternResults);
+                var matches = await ExecuteSearch();
+                if (matches[0] == "err")
+                {
+                    MessageBox.Show(matches[1], "B³¹d wzorca", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    _isSearching = false;   
+                    return;
+                }
+                if (matches[0] != "err")
+                {
+                    FillTextBoxResults(matches, textBoxPatternResults);
+                }
+                textBoxPattern.ReadOnly = false;
+                _isSearching = false;
+            }
+            catch (Exception ex)
+            {
+                labelResultsCount.Text = "Znalezionych dopasowañ: 0";
+                _isSearching = false;
+                textBoxPattern.ReadOnly = false;
+                MessageBox.Show("B³¹d wyszukiwania. SprawdŸ szczegó³y w logu aplikacji.");
+                Logger.WriteToLog(LogLevel.Error, ex.Message, ex.StackTrace ?? "");
+            }
+        }
+        private async void RandomWord_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DictionaryService.PendingDictionaryLoading || _isSearching)
+                {
+                    MessageBox.Show("Trwa inne wyszukiwanie. Spróbuj ponownie póŸniej", "Inne wyszukiwanie w toku", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                var matches = await ExecuteSearch();
+                if (matches[0] == "err")
+                {
+                    MessageBox.Show(matches[1], "B³¹d wzorca", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    _isSearching = false;
+                    return;
+                }
+                if (matches.Count == 0)
+                {
+                    FillTextBoxResults([], textBoxPatternResults);
+                }
+                else if (matches[0] != "err")
+                {
+                    Random rand = new();
+                    FillTextBoxResults([matches[rand.Next(matches.Count)]], textBoxPatternResults);
+                }
                 textBoxPattern.ReadOnly = false;
                 _isSearching = false;
             }
@@ -97,7 +129,12 @@ namespace CrosswordAssistant
 
             var search = SearchFactory.CreateSearch(Search.Mode);
             string pattern = textBoxPatternUls.Text;
-            if (!search.ValidatePattern(pattern)) return;
+            var validateResult = search.ValidatePattern(pattern);
+            if (!validateResult.Result)
+            {
+                MessageBox.Show(validateResult.Message, "B³¹d wzorca", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
             textBoxPatternUls.ReadOnly = true;
 
@@ -117,7 +154,12 @@ namespace CrosswordAssistant
 
             var search = SearchFactory.CreateSearch(Search.Mode);
             string pattern = textBoxScrabblePattern.Text.ToLower();
-            if (!search.ValidatePattern(pattern)) return;
+            var validateResult = search.ValidatePattern(pattern);
+            if (!validateResult.Result)
+            {
+                MessageBox.Show(validateResult.Message, "B³¹d wzorca", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             textBoxScrabbleResults.ReadOnly = true;
             List<string> matches = search.SearchMatches(pattern);
 
@@ -266,8 +308,6 @@ namespace CrosswordAssistant
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Logger.WriteToLog(LogLevel.Info, $"Dodano ${addedWords.Count} nowe wyrazy do s³ownika ${FileService.FileName}");
             }
-            
-
             SetFileInfo(0);
         }
         private void RemoveFromDictionaryBtn_Click(object sender, EventArgs e)
@@ -562,7 +602,7 @@ namespace CrosswordAssistant
             SetFileInfo(0);
             labelAbout.Text = Messages.VersionInfo;
             labelMergeDicts.Text = Messages.MergeDictsInfo;
-            
+
             _filtersNames[StartWithFilterName] = "Pocz¹tek";
             _filtersNames[EndWithFilterName] = "Koniec";
             _filtersNames[ContainsFilterName] = "Zawiera";
@@ -572,6 +612,32 @@ namespace CrosswordAssistant
 
             _appearance.SetBackgroundColor();
             _appearance.SetTextBoxesCasing(BaseSettings.CaseSensitive);
+        }
+
+        private async Task<List<string>> ExecuteSearch()
+        {
+            string pattern = textBoxPattern.Text.Trim();
+            if (!BaseSettings.CaseSensitive) pattern = pattern.ToLower();
+            labelResultsCount.Text = "Szukam dopasowañ...";
+            _isSearching = true;
+            var search = SearchFactory.CreateSearch(Search.Mode);
+            textBoxPattern.ReadOnly = true;
+            List<string> matches;
+            if (checkBoxLength.Checked && pattern.Length == 0)
+            {
+                matches = DictionaryService.CurrentDictionary;
+            }
+            else
+            {
+                var validateResult = search.ValidatePattern(pattern);
+                if (!validateResult.Result) return ["err", validateResult.Message];
+                matches = await Task.Run(() => search.SearchMatches(pattern));
+            }
+
+            matches = ApplyFilters(matches);
+            labelResultsCount.Text = "Znalezionych dopasowañ: " + matches.Count;
+            matches = Utilities.BoundResults(matches);
+            return matches;
         }
         private void SetLengthControlsEnabled(bool isEnabled)
         {

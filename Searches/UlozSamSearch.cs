@@ -36,20 +36,17 @@ namespace CrosswordAssistant.Searches
             return result;
         }
 
-        public override bool ValidatePattern(string pattern)
+        public override ValidateResult ValidatePattern(string pattern)
         {
             if (pattern.Length == 0)
             {
-                MessageBox.Show("Wzorzec jest pusty.", "Błąd wzorca", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
+                return new ValidateResult(false, "Wzorzec jest pusty");
             }
             if (GetPatternDigits(pattern).Count == 0)
             {
-                MessageBox.Show("Wzorzec zawiera niedozwolone znaki, powinien zawierać tylko cyfry 1-8.",
-                    "Błąd wzorca", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
+                return new ValidateResult(false, "Wzorzec zawiera niedozwolone znaki, powinien zawierać tylko cyfry 1-8.");
             }
-            return true;
+            return new ValidateResult(true, "");
         }
 
         private List<int> GetPatternDigits(string pattern)

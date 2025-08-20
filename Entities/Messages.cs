@@ -8,13 +8,14 @@
         public static string MetagramModeMessage { get; } = "Podaj wyraz i kliknij Szukaj...";
         public static string LengthModeMessage { get; } = "Wybierz dodatkowe filtry i kliknij Szukaj...";
         public static string EmptyPattern { get; } = "Wzorzec nie zawiera żadnych znaków.";
-        public static string VersionInfo { get; } = "Pomocnik szaradzisty v2.8.9" + Environment.NewLine +
+        public static string VersionInfo { get; } = "Pomocnik szaradzisty v2.9.1" + Environment.NewLine +
                 "Autor: Mariusz Doliński" + Environment.NewLine + "© 2025";
         public static string MergeDictsInfo { get; } = "Wczytaj plik z wyrazami, które chcesz dodać do bieżącego słownika";
         public static string PatternInfo { get; } = "Wyszukuje wyrazy pasujące do podanego wzorca. Znak kropki (.) zastępuje dowolną jedną literę, " +
-            "znak zapytania (?) zastępuje jedną lub więcej dowolnych liter. " + 
+            "znak zapytania (?) zastępuje jedną lub więcej dowolnych liter. " +
             "Na przykład do wzorca T..C.A dopasowane zostałaby wyrazy TERCJA, TARCZA, itp. " +
-            "Do wzorca SZ?A dopasowane zostałyby wszystkie wyrazy zaczynające się na SZ i kończące się na A.";
+            "Do wzorca SZ?A dopasowane zostałyby wszystkie wyrazy zaczynające się na SZ i kończące się na A." +
+            Environment.NewLine + Environment.NewLine + "Przycisk LOSUJ wyświetla jedno losowe słowo pasujące do wzorca (dotyczy wszystkich trybów).";
         public static string AnagramInfo { get; } = "Wyszukuje anagramy podanego wyrazu, tzn. wyrazy zawierające" +
             " dokładnie te same litery, ale w innej kolejności. Na przykład dla wyrazu MONTER dopasowane zostałyby" +
             " wyrazy REMONT, MENTOR, itp. Dodatkowo znak kropki (.) zastępuję dowolną literę, np. dla wzorca JAKB.." +

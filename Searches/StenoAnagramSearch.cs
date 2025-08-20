@@ -29,11 +29,12 @@ namespace CrosswordAssistant.Searches
             return result;
         }
 
-        public override bool ValidatePattern(string pattern)
+        public override ValidateResult ValidatePattern(string pattern)
         {
-            if (!base.ValidatePattern(pattern))
+            var baseValidateResult = base.ValidatePattern(pattern);
+            if (!baseValidateResult.Result)
             {
-                return false;
+                return baseValidateResult;
             }
             else
             {
@@ -41,12 +42,11 @@ namespace CrosswordAssistant.Searches
                 {
                     if (pattern.CountChars(c) > 1)
                     {
-                        MessageBox.Show("Wzorzec zawiera powtórzone litery.", "Błąd wzorca", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        return false;
+                        return new ValidateResult(false, "Wzorzec zawiera powtórzone litery.");
                     }
                 }
             }
-            return true;
+            return new ValidateResult(true, "");
         }
 
         private static void StenoAnagramCheck(string pattern, string word, string csWord, List<string> result)

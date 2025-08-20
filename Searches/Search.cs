@@ -8,12 +8,11 @@ namespace CrosswordAssistant.Searches
         protected string AllowedLetters = "aąbcćdeęfghijklłmnńoópqrsśtuvwxyzźż";
         public static SearchMode Mode { get; set; }
 
-        public virtual bool ValidatePattern(string pattern)
+        public virtual ValidateResult ValidatePattern(string pattern)
         {
             if (pattern.Length == 0)
             {
-                MessageBox.Show("Wzorzec jest pusty.", "Błąd wzorca", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
+                return new ValidateResult(false, "Wzorzec jest pusty.");
             }
             string allowedChars = AllowedLetters;
             if (BaseSettings.CaseSensitive) allowedChars += AllowedLetters.ToUpper();
@@ -21,11 +20,10 @@ namespace CrosswordAssistant.Searches
             {
                 if (!allowedChars.Contains(ch))
                 {
-                    MessageBox.Show("Wzorzec zawiera niedozwolone znaki.", "Błąd wzorca", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return false;
+                    return new ValidateResult(false, "Wzorzec zawiera niedozwolone znaki.");
                 }
             }
-            return true;
+            return new ValidateResult(true, "");
         }
         public abstract List<string> SearchMatches(string pattern);
 
