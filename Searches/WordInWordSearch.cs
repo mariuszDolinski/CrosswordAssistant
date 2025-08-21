@@ -1,5 +1,5 @@
-﻿
-using CrosswordAssistant.AppSettings;
+﻿using CrosswordAssistant.AppSettings;
+using CrosswordAssistant.Entities.Responses;
 using CrosswordAssistant.Services;
 using System.Text;
 
@@ -34,15 +34,15 @@ namespace CrosswordAssistant.Searches
             return result;
         }
 
-        public override ValidateResponse ValidatePattern(string pattern)
+        public override ValidationResponse ValidatePattern(string pattern)
         {
             if (pattern.Length == 0)
             {
-                return new ValidateResponse(false, "Wzorzec jest pusty");
+                return new ValidationResponse(false, "Wzorzec jest pusty");
             }
             if (pattern.CountChars('.') < 3)
             {
-                return new ValidateResponse(false, "Wzorzec powinien zawierać conajmniej 3 kropki.");
+                return new ValidationResponse(false, "Wzorzec powinien zawierać conajmniej 3 kropki.");
             }
             string allowedChars = AllowedLetters + ".";
             if (BaseSettings.CaseSensitive) allowedChars += AllowedLetters.ToUpper();
@@ -51,11 +51,11 @@ namespace CrosswordAssistant.Searches
                 if (!allowedChars.Contains(ch))
                 {
                     MessageBox.Show("Wzorzec zawiera niedozwolone znaki.", "Błąd wzorca", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return new ValidateResponse(false, "Wzorzec zawiera niedozwolone znaki.");
+                    return new ValidationResponse(false, "Wzorzec zawiera niedozwolone znaki.");
 
                 }
             }
-            return new ValidateResponse(true, "");
+            return new ValidationResponse(true, "");
         }
     }
 }

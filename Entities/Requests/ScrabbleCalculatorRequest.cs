@@ -1,4 +1,4 @@
-﻿namespace CrosswordAssistant.Entities
+﻿namespace CrosswordAssistant.Entities.Requests
 {
     public class ScrabbleCalculatorRequest(string word, int doubleWordBonus, int tripleWordBonus,
         string doubleBonusLetters, string tripleBonusLetters, string blanks)

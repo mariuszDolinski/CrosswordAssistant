@@ -1,10 +1,11 @@
 using CrosswordAssistant.AppSettings;
 using CrosswordAssistant.Entities;
 using CrosswordAssistant.Entities.Enums;
+using CrosswordAssistant.Entities.Requests;
+using CrosswordAssistant.Entities.Responses;
 using CrosswordAssistant.Searches;
 using CrosswordAssistant.Services;
 using System.Globalization;
-using System.Text.RegularExpressions;
 
 namespace CrosswordAssistant
 {
@@ -63,16 +64,16 @@ namespace CrosswordAssistant
                     return;
                 }
 
-                var matches = await ExecuteSearch();
-                if (matches[0] == "err")
+                var searchResponse = await ExecuteSearch();
+                if (!searchResponse.Completed)
                 {
-                    MessageBox.Show(matches[1], "B³¹d wzorca", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(searchResponse.Message, "B³¹d wzorca", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     _isSearching = false;   
                     return;
                 }
-                if (matches[0] != "err")
+                else
                 {
-                    FillTextBoxResults(matches, textBoxPatternResults);
+                    FillTextBoxResults(searchResponse.SearchResults, textBoxPatternResults);
                 }
                 textBoxPattern.ReadOnly = false;
                 _isSearching = false;
@@ -96,21 +97,21 @@ namespace CrosswordAssistant
                     return;
                 }
 
-                var matches = await ExecuteSearch();
-                if (matches[0] == "err")
+                var searchResponse = await ExecuteSearch();
+                if (!searchResponse.Completed)
                 {
-                    MessageBox.Show(matches[1], "B³¹d wzorca", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(searchResponse.Message, "B³¹d wzorca", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     _isSearching = false;
                     return;
                 }
-                if (matches.Count == 0)
+                else if (searchResponse.SearchResults.Count == 0)
                 {
                     FillTextBoxResults([], textBoxPatternResults);
                 }
-                else if (matches[0] != "err")
+                else
                 {
                     Random rand = new();
-                    FillTextBoxResults([matches[rand.Next(matches.Count)]], textBoxPatternResults);
+                    FillTextBoxResults([searchResponse.SearchResults[rand.Next(searchResponse.SearchResults.Count)]], textBoxPatternResults);
                 }
                 textBoxPattern.ReadOnly = false;
                 _isSearching = false;
@@ -615,7 +616,7 @@ namespace CrosswordAssistant
             _appearance.SetTextBoxesCasing(BaseSettings.CaseSensitive);
         }
 
-        private async Task<List<string>> ExecuteSearch()
+        private async Task<SearchResponse> ExecuteSearch()
         {
             string pattern = textBoxPattern.Text.Trim();
             if (!BaseSettings.CaseSensitive) pattern = pattern.ToLower();
@@ -630,15 +631,16 @@ namespace CrosswordAssistant
             }
             else
             {
-                var validateResult = search.ValidatePattern(pattern);
-                if (!validateResult.Result) return ["err", validateResult.Message];
+                var validateResponse = search.ValidatePattern(pattern);
+                if (!validateResponse.Result) 
+                    return new SearchResponse([], false, validateResponse.Message);
                 matches = await Task.Run(() => search.SearchMatches(pattern));
             }
 
             matches = ApplyFilters(matches);
             labelResultsCount.Text = "Znalezionych dopasowañ: " + matches.Count;
             matches = Utilities.BoundResults(matches);
-            return matches;
+            return new SearchResponse(matches, true, "");
         }
         private void SetLengthControlsEnabled(bool isEnabled)
         {
