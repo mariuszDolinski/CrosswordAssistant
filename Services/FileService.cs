@@ -1,5 +1,6 @@
 ﻿using CrosswordAssistant.AppSettings;
 using CrosswordAssistant.Entities;
+using CrosswordAssistant.Entities.Enums;
 using System.Configuration;
 using System.Windows.Forms;
 

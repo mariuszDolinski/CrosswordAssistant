@@ -1,5 +1,6 @@
 ﻿
 using CrosswordAssistant.AppSettings;
+using CrosswordAssistant.Entities.Responses;
 using CrosswordAssistant.Services;
 using System.Collections.Generic;
 
@@ -29,7 +30,7 @@ namespace CrosswordAssistant.Searches
             return result;
         }
 
-        public override ValidateResult ValidatePattern(string pattern)
+        public override ValidationResponse ValidatePattern(string pattern)
         {
             var baseValidateResult = base.ValidatePattern(pattern);
             if (!baseValidateResult.Result)
@@ -42,11 +43,11 @@ namespace CrosswordAssistant.Searches
                 {
                     if (pattern.CountChars(c) > 1)
                     {
-                        return new ValidateResult(false, "Wzorzec zawiera powtórzone litery.");
+                        return new ValidationResponse(false, "Wzorzec zawiera powtórzone litery.");
                     }
                 }
             }
-            return new ValidateResult(true, "");
+            return new ValidationResponse(true, "");
         }
 
         private static void StenoAnagramCheck(string pattern, string word, string csWord, List<string> result)

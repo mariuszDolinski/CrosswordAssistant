@@ -1,4 +1,5 @@
-﻿using CrosswordAssistant.Services;
+﻿using CrosswordAssistant.Entities.Responses;
+using CrosswordAssistant.Services;
 
 namespace CrosswordAssistant.Searches
 {
@@ -18,18 +19,18 @@ namespace CrosswordAssistant.Searches
             }
             return result;
         }
-        public override ValidateResult ValidatePattern(string pattern)
+        public override ValidationResponse ValidatePattern(string pattern)
         {
             if (pattern.Length < 4 || pattern.Length > 15 || pattern.CountChars('.') > 2)
             {
-                return new ValidateResult(false, "Wzorzec powinien zawierać od 4 do 15 znaków, w tym co najwyżej dwa mydła");
+                return new ValidationResponse(false, "Wzorzec powinien zawierać od 4 do 15 znaków, w tym co najwyżej dwa mydła");
             }
             if (!DictionaryService.ValidateAllowedChars(pattern, DictionaryService.AllowedPatternChars))
             {
-                return new ValidateResult(false, "Wzorzec zawiera niedozwolone znaki.");
+                return new ValidationResponse(false, "Wzorzec zawiera niedozwolone znaki.");
             }
 
-            return new ValidateResult(true, "");
+            return new ValidationResponse(true, "");
         }
 
 

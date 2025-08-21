@@ -1,5 +1,5 @@
 ﻿using CrosswordAssistant.AppSettings;
-using CrosswordAssistant.Entities;
+using CrosswordAssistant.Entities.Enums;
 using CrosswordAssistant.Services;
 
 namespace CrosswordAssistant

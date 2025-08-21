@@ -1,4 +1,4 @@
-﻿namespace CrosswordAssistant.Entities
+﻿namespace CrosswordAssistant.Entities.Enums
 {
     public enum SearchMode
     {

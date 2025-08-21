@@ -1,4 +1,5 @@
 ﻿using CrosswordAssistant.Entities;
+using CrosswordAssistant.Entities.Enums;
 using CrosswordAssistant.Searches;
 
 namespace CrosswordAssistant.Services

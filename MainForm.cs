@@ -1,5 +1,6 @@
 using CrosswordAssistant.AppSettings;
 using CrosswordAssistant.Entities;
+using CrosswordAssistant.Entities.Enums;
 using CrosswordAssistant.Searches;
 using CrosswordAssistant.Services;
 using System.Globalization;
@@ -58,7 +59,7 @@ namespace CrosswordAssistant
             {
                 if (DictionaryService.PendingDictionaryLoading || _isSearching)
                 {
-                    MessageBox.Show("Trwa inne wyszukiwanie. Spróbuj ponownie póŸniej", "Inne wyszukiwanie w toku", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Trwa inne wyszukiwanie lub ³adowanie nowego s³ownika. Spróbuj ponownie póŸniej", "Inna operacja w toku", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
@@ -91,7 +92,7 @@ namespace CrosswordAssistant
             {
                 if (DictionaryService.PendingDictionaryLoading || _isSearching)
                 {
-                    MessageBox.Show("Trwa inne wyszukiwanie. Spróbuj ponownie póŸniej", "Inne wyszukiwanie w toku", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Trwa inne wyszukiwanie lub ³adowanie nowego s³ownika. Spróbuj ponownie póŸniej", "Inna operacja w toku", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 

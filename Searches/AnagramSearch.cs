@@ -1,5 +1,6 @@
 ﻿
 using CrosswordAssistant.AppSettings;
+using CrosswordAssistant.Entities.Responses;
 using CrosswordAssistant.Services;
 
 namespace CrosswordAssistant.Searches
@@ -30,11 +31,11 @@ namespace CrosswordAssistant.Searches
             return result;
         }
 
-        public override ValidateResult ValidatePattern(string pattern)
+        public override ValidationResponse ValidatePattern(string pattern)
         {
             if (pattern.Length == 0)
             {
-                return new ValidateResult(false, "Wzorzec jest pusty.");
+                return new ValidationResponse(false, "Wzorzec jest pusty.");
             }
             string allowedChars = AllowedLetters + ".";
             if (BaseSettings.CaseSensitive) allowedChars += AllowedLetters.ToUpper();
@@ -42,10 +43,10 @@ namespace CrosswordAssistant.Searches
             {
                 if (!allowedChars.Contains(ch))
                 {
-                    return new ValidateResult(false, "Wzorzec zawiera niedozwolone znaki.");
+                    return new ValidationResponse(false, "Wzorzec zawiera niedozwolone znaki.");
                 }
             }
-            return new ValidateResult(true, "");
+            return new ValidationResponse(true, "");
         }
     }
 }

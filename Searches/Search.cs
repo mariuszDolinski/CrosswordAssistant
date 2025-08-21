@@ -1,5 +1,6 @@
 ﻿using CrosswordAssistant.AppSettings;
-using CrosswordAssistant.Entities;
+using CrosswordAssistant.Entities.Enums;
+using CrosswordAssistant.Entities.Responses;
 
 namespace CrosswordAssistant.Searches
 {
@@ -8,11 +9,11 @@ namespace CrosswordAssistant.Searches
         protected string AllowedLetters = "aąbcćdeęfghijklłmnńoópqrsśtuvwxyzźż";
         public static SearchMode Mode { get; set; }
 
-        public virtual ValidateResult ValidatePattern(string pattern)
+        public virtual ValidationResponse ValidatePattern(string pattern)
         {
             if (pattern.Length == 0)
             {
-                return new ValidateResult(false, "Wzorzec jest pusty.");
+                return new ValidationResponse(false, "Wzorzec jest pusty.");
             }
             string allowedChars = AllowedLetters;
             if (BaseSettings.CaseSensitive) allowedChars += AllowedLetters.ToUpper();
@@ -20,10 +21,10 @@ namespace CrosswordAssistant.Searches
             {
                 if (!allowedChars.Contains(ch))
                 {
-                    return new ValidateResult(false, "Wzorzec zawiera niedozwolone znaki.");
+                    return new ValidationResponse(false, "Wzorzec zawiera niedozwolone znaki.");
                 }
             }
-            return new ValidateResult(true, "");
+            return new ValidationResponse(true, "");
         }
         public abstract List<string> SearchMatches(string pattern);
 

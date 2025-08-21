@@ -1,4 +1,5 @@
 ﻿
+using CrosswordAssistant.Entities.Responses;
 using CrosswordAssistant.Services;
 
 namespace CrosswordAssistant.Searches
@@ -36,17 +37,17 @@ namespace CrosswordAssistant.Searches
             return result;
         }
 
-        public override ValidateResult ValidatePattern(string pattern)
+        public override ValidationResponse ValidatePattern(string pattern)
         {
             if (pattern.Length == 0)
             {
-                return new ValidateResult(false, "Wzorzec jest pusty");
+                return new ValidationResponse(false, "Wzorzec jest pusty");
             }
             if (GetPatternDigits(pattern).Count == 0)
             {
-                return new ValidateResult(false, "Wzorzec zawiera niedozwolone znaki, powinien zawierać tylko cyfry 1-8.");
+                return new ValidationResponse(false, "Wzorzec zawiera niedozwolone znaki, powinien zawierać tylko cyfry 1-8.");
             }
-            return new ValidateResult(true, "");
+            return new ValidationResponse(true, "");
         }
 
         private List<int> GetPatternDigits(string pattern)

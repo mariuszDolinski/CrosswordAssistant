@@ -1,4 +1,4 @@
-﻿using CrosswordAssistant.Entities;
+﻿using CrosswordAssistant.Entities.Enums;
 using System.Reflection;
 
 namespace CrosswordAssistant
