@@ -8,8 +8,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <ApplicationIcon>crossword_2.ico</ApplicationIcon>
     <StartupObject>CrosswordAssistant.Program</StartupObject>
-	<AssemblyVersion>2.9.1.0</AssemblyVersion>
-	<FileVersion>2.9.1.2</FileVersion>
+	<AssemblyVersion>2.9.2.0</AssemblyVersion>
+	<FileVersion>2.9.2.3</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>

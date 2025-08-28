@@ -8,7 +8,7 @@
         public static string MetagramModeMessage { get; } = "Podaj wyraz i kliknij Szukaj...";
         public static string LengthModeMessage { get; } = "Wybierz dodatkowe filtry i kliknij Szukaj...";
         public static string EmptyPattern { get; } = "Wzorzec nie zawiera żadnych znaków.";
-        public static string VersionInfo { get; } = "Pomocnik szaradzisty v2.9.1" + Environment.NewLine +
+        public static string VersionInfo { get; } = "Pomocnik szaradzisty v2.9.2" + Environment.NewLine +
                 "Autor: Mariusz Doliński" + Environment.NewLine + "© 2025";
         public static string MergeDictsInfo { get; } = "Wczytaj plik z wyrazami, które chcesz dodać do bieżącego słownika";
         public static string PatternInfo { get; } = "Wyszukuje wyrazy pasujące do podanego wzorca. Znak kropki (.) zastępuje dowolną jedną literę, " +
@@ -69,7 +69,8 @@
         public static string WordInWordInfo { get; } = "W tym trybie wyszukiwane są wyrazy pasujące do podanego wzorca. " +
             "Ponadto litery, które we wzorcu były oznaczone kropką muszą również tworzyć słowo ze słownika, np. " +
             "dla wzorca SZ.... dopasowane zostaną m. in. wyrazy SZRAMA, SZKRAB; natomiast np. wyraz SZAŁAS nie zostaie " +
-            "dopasowany, gdyż wyrażenie AŁAS nie występuje w słowniku.";
+            "dopasowany, gdyż wyrażenie AŁAS nie występuje w słowniku." + Environment.NewLine + Environment.NewLine +
+            "W tym trybie wzorzec musi zawierać co najmniej 3 kropki.";
 
         public static string Shortcuts { get; } = "Dostępne skróty klawiaturowe:" + Environment.NewLine +
             "Enter - uruchamia wyszukiwanie dla aktualnego wzorca" + Environment.NewLine +

@@ -20,8 +20,6 @@ namespace CrosswordAssistant
         private readonly List<Label> _infoLabels = [];
         private readonly Dictionary<string, string> _filtersNames = [];
 
-        private bool _isSearching;
-
         public MainForm()
         {
             InitializeComponent();
@@ -36,7 +34,7 @@ namespace CrosswordAssistant
                 Logger.WriteToLog(LogLevel.Error, ex.Message, ex.StackTrace ?? "");
             }
 
-            _isSearching = false;
+            Search.IsPending = false;
             _appearance = new AppearanceSettings(this);
             _dictionaryService = new DictionaryService();
             if (_dictionaryService.DictionaryLoadError())
@@ -58,31 +56,12 @@ namespace CrosswordAssistant
         {
             try
             {
-                if (DictionaryService.PendingDictionaryLoading || _isSearching)
-                {
-                    MessageBox.Show("Trwa inne wyszukiwanie lub ³adowanie nowego s³ownika. Spróbuj ponownie póŸniej", "Inna operacja w toku", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                var searchResponse = await ExecuteSearch();
-                if (!searchResponse.Completed)
-                {
-                    MessageBox.Show(searchResponse.Message, "B³¹d wzorca", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    _isSearching = false;   
-                    return;
-                }
-                else
-                {
-                    FillTextBoxResults(searchResponse.SearchResults, textBoxPatternResults);
-                }
-                textBoxPattern.ReadOnly = false;
-                _isSearching = false;
+                await MakeSearch(0);
             }
             catch (Exception ex)
             {
                 labelResultsCount.Text = "Znalezionych dopasowañ: 0";
-                _isSearching = false;
-                textBoxPattern.ReadOnly = false;
+                IsSearchPending(false);
                 MessageBox.Show("B³¹d wyszukiwania. SprawdŸ szczegó³y w logu aplikacji.");
                 Logger.WriteToLog(LogLevel.Error, ex.Message, ex.StackTrace ?? "");
             }
@@ -91,36 +70,12 @@ namespace CrosswordAssistant
         {
             try
             {
-                if (DictionaryService.PendingDictionaryLoading || _isSearching)
-                {
-                    MessageBox.Show("Trwa inne wyszukiwanie lub ³adowanie nowego s³ownika. Spróbuj ponownie póŸniej", "Inna operacja w toku", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                var searchResponse = await ExecuteSearch();
-                if (!searchResponse.Completed)
-                {
-                    MessageBox.Show(searchResponse.Message, "B³¹d wzorca", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    _isSearching = false;
-                    return;
-                }
-                else if (searchResponse.SearchResults.Count == 0)
-                {
-                    FillTextBoxResults([], textBoxPatternResults);
-                }
-                else
-                {
-                    Random rand = new();
-                    FillTextBoxResults([searchResponse.SearchResults[rand.Next(searchResponse.SearchResults.Count)]], textBoxPatternResults);
-                }
-                textBoxPattern.ReadOnly = false;
-                _isSearching = false;
+                await MakeSearch(1);
             }
             catch (Exception ex)
             {
                 labelResultsCount.Text = "Znalezionych dopasowañ: 0";
-                _isSearching = false;
-                textBoxPattern.ReadOnly = false;
+                IsSearchPending(false);
                 MessageBox.Show("B³¹d wyszukiwania. SprawdŸ szczegó³y w logu aplikacji.");
                 Logger.WriteToLog(LogLevel.Error, ex.Message, ex.StackTrace ?? "");
             }
@@ -616,14 +571,56 @@ namespace CrosswordAssistant
             _appearance.SetTextBoxesCasing(BaseSettings.CaseSensitive);
         }
 
+        private void IsSearchPending(bool pending)
+        {
+            textBoxPattern.ReadOnly = pending;
+            Search.IsPending = pending;
+        }
+        /// <summary>
+        /// Make asynchronous search and fill textbox with matches
+        /// </summary>
+        /// <param name="random">number of retuned matches</param>
+        /// <returns>return all matches in alphabetical order if random=0, return n random matches if random=n</returns>
+        private async Task MakeSearch(int random)
+        {
+            if (DictionaryService.PendingDictionaryLoading || Search.IsPending)
+            {
+                MessageBox.Show("Trwa inne wyszukiwanie lub ³adowanie nowego s³ownika. Spróbuj ponownie póŸniej", "Inna operacja w toku", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            IsSearchPending(true);
+            var searchResponse = await ExecuteSearch();
+            if (!searchResponse.Completed)
+            {
+                MessageBox.Show(searchResponse.Message, "B³¹d wzorca", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                IsSearchPending(false);
+                return;
+            }
+            else if (random == 1 && searchResponse.SearchResults.Count == 0)
+            {
+                FillTextBoxResults([], textBoxPatternResults);
+            }
+            else
+            {
+                if(random == 1)
+                {
+                    Random rand = new();
+                    FillTextBoxResults([searchResponse.SearchResults[rand.Next(searchResponse.SearchResults.Count)]], textBoxPatternResults);
+                }
+                else
+                {
+                    FillTextBoxResults(searchResponse.SearchResults, textBoxPatternResults);
+                }
+            }
+            IsSearchPending(false);
+        }
         private async Task<SearchResponse> ExecuteSearch()
         {
             string pattern = textBoxPattern.Text.Trim();
             if (!BaseSettings.CaseSensitive) pattern = pattern.ToLower();
             labelResultsCount.Text = "Szukam dopasowañ...";
-            _isSearching = true;
             var search = SearchFactory.CreateSearch(Search.Mode);
-            textBoxPattern.ReadOnly = true;
             List<string> matches;
             if (checkBoxLength.Checked && pattern.Length == 0)
             {
@@ -632,8 +629,10 @@ namespace CrosswordAssistant
             else
             {
                 var validateResponse = search.ValidatePattern(pattern);
-                if (!validateResponse.Result) 
+                if (!validateResponse.Result)
+                {
                     return new SearchResponse([], false, validateResponse.Message);
+                }                  
                 matches = await Task.Run(() => search.SearchMatches(pattern));
             }
 

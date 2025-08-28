@@ -50,9 +50,7 @@ namespace CrosswordAssistant.Searches
             {
                 if (!allowedChars.Contains(ch))
                 {
-                    MessageBox.Show("Wzorzec zawiera niedozwolone znaki.", "Błąd wzorca", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return new ValidationResponse(false, "Wzorzec zawiera niedozwolone znaki.");
-
                 }
             }
             return new ValidationResponse(true, "");
