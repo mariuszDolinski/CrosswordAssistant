@@ -85,5 +85,69 @@ namespace CrosswordAssistant.Services
                 return -1;
             }
         }
+        public static void GenerateCryptharitmControls(SplitterPanel panel, int count)
+        {
+            TextBox[] components = new TextBox[count];
+            for (int i = 0; i < count; i++)
+            {
+                components[i] = new()
+                {
+                    CharacterCasing = CharacterCasing.Upper,
+                    Location = new Point(110, 136 + 37 * i),
+                    Name = "textBoxComponent" + (i + 1).ToString(),
+                    Size = new Size(305, 31),
+                    TabIndex = i + 21,
+                    TextAlign = HorizontalAlignment.Right
+                };
+                panel.Controls.Add(components[i]);
+            }
+
+            var lastComponentY = components[count -  1].Location.Y;
+
+            Label labelOperator = new()
+            {
+                AutoSize = true,
+                Location = new Point(27, lastComponentY + 36),
+                Name = "labelOperator",
+                Size = new Size(24, 25),
+                TabIndex = 7,
+                Text = "+"
+            };
+
+            Label labelCryptLine = new()
+            {
+                BorderStyle = BorderStyle.FixedSingle,
+                Location = new Point(27, lastComponentY + 64),
+                Name = "labelCryptLine",
+                Size = new Size(393, 1),
+                TabIndex = 10
+            };
+
+            TextBox textBoxSum = new()
+            {
+                CharacterCasing = CharacterCasing.Upper,
+                Location = new Point(88, lastComponentY + 88),
+                Name = "textBoxSum",
+                Size = new Size(327, 31),
+                TabIndex = 21 + count,
+                TextAlign = HorizontalAlignment.Right
+            };
+
+            panel.Controls.Add(labelOperator);
+            panel.Controls.Add(labelCryptLine);
+            panel.Controls.Add(textBoxSum);
+        }
+
+        public static void ClearCryptharitmControls(SplitterPanel panel)
+        {
+            foreach (Control control in panel.Controls.OfType<Control>().ToList())
+            {
+                if (control.Name.Contains("textBoxComponent") || control.Name == "labelOperator" 
+                    || control.Name == "labelCryptLine" || control.Name == "textBoxSum")
+                {
+                    control.Dispose();
+                }
+            }
+        }
     }
 }

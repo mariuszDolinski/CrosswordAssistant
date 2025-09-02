@@ -15,6 +15,8 @@ namespace CrosswordAssistant
         private const string EndWithFilterName = "ENDW";
         private const string ContainsFilterName = "CNTS";
 
+        private int ComponentsCount;
+
         private readonly AppearanceSettings _appearance;
         private readonly DictionaryService _dictionaryService;
         private readonly List<Label> _infoLabels = [];
@@ -26,6 +28,7 @@ namespace CrosswordAssistant
             MinimumSize = Size;
             MaximumSize = Size;
             KeyPreview = true;
+            ComponentsCount = 3;
 
             try { Settings.Init(); }
             catch (Exception ex)
@@ -122,6 +125,10 @@ namespace CrosswordAssistant
 
             FillTextBoxResults(matches, textBoxScrabbleResults);
             textBoxScrabbleResults.ReadOnly = false;
+        }
+        private void SolveCryptharitmBtn_Click(object sender, EventArgs e)
+        {
+
         }
         private async void LoadDictionaryBtn_Click(object sender, EventArgs e)
         {
@@ -536,6 +543,10 @@ namespace CrosswordAssistant
 
             labelScrabbePoints.Text = ScrabbleCalculator.CalculateScrabbleScoreForWord(request).ToString();
         }
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            _appearance.SetMainFormLocation();
+        }
 
         #endregion
 
@@ -566,6 +577,8 @@ namespace CrosswordAssistant
 
             groupBoxBeginWithFilters.Text = _filtersNames[StartWithFilterName];
             groupBoxEndsWithFilters.Text = _filtersNames[EndWithFilterName];
+
+            FormService.GenerateCryptharitmControls(splitContainerCryptharitms.Panel1, ComponentsCount);
 
             _appearance.SetBackgroundColor();
             _appearance.SetTextBoxesCasing(BaseSettings.CaseSensitive);
@@ -603,7 +616,7 @@ namespace CrosswordAssistant
             }
             else
             {
-                if(random == 1)
+                if (random == 1)
                 {
                     Random rand = new();
                     FillTextBoxResults([searchResponse.SearchResults[rand.Next(searchResponse.SearchResults.Count)]], textBoxPatternResults);
@@ -632,7 +645,7 @@ namespace CrosswordAssistant
                 if (!validateResponse.Result)
                 {
                     return new SearchResponse([], false, validateResponse.Message);
-                }                  
+                }
                 matches = await Task.Run(() => search.SearchMatches(pattern));
             }
 
@@ -897,9 +910,28 @@ namespace CrosswordAssistant
 
         #endregion
 
-        private void MainForm_Load(object sender, EventArgs e)
+        private void AddComponentBtn_Click(object sender, EventArgs e)
         {
-            _appearance.SetMainFormLocation();
+            if(ComponentsCount == 5)
+            {
+                MessageBox.Show("Maksymalna iloœæ sk³adowych dzia³ania to 5.","Za du¿o sk³adowych", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            ComponentsCount++;
+            FormService.ClearCryptharitmControls(splitContainerCryptharitms.Panel1);
+            FormService.GenerateCryptharitmControls(splitContainerCryptharitms.Panel1, ComponentsCount);
+        }
+
+        private void RemoveComponentBtn_Click(object sender, EventArgs e)
+        {
+            if (ComponentsCount == 2)
+            {
+                MessageBox.Show("Minimalna iloœæ sk³adowych dzia³ania to 2.", "Za malo sk³adowych", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            ComponentsCount--;
+            FormService.ClearCryptharitmControls(splitContainerCryptharitms.Panel1);
+            FormService.GenerateCryptharitmControls(splitContainerCryptharitms.Panel1, ComponentsCount);
         }
     }
 }
