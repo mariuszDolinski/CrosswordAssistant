@@ -22,13 +22,16 @@ namespace CrosswordAssistant
         private readonly List<Label> _infoLabels = [];
         private readonly Dictionary<string, string> _filtersNames = [];
 
+        public List<TextBox> ComponentTextBox;
+        public TextBox OperationResult;
+
         public MainForm()
         {
             InitializeComponent();
             MinimumSize = Size;
             MaximumSize = Size;
             KeyPreview = true;
-            ComponentsCount = 3;
+            ComponentsCount = 2;
 
             try { Settings.Init(); }
             catch (Exception ex)
@@ -37,6 +40,8 @@ namespace CrosswordAssistant
                 Logger.WriteToLog(LogLevel.Error, ex.Message, ex.StackTrace ?? "");
             }
 
+            ComponentTextBox = [];
+            OperationResult = new TextBox();
             Search.IsPending = false;
             _appearance = new AppearanceSettings(this);
             _dictionaryService = new DictionaryService();
@@ -128,7 +133,40 @@ namespace CrosswordAssistant
         }
         private void SolveCryptharitmBtn_Click(object sender, EventArgs e)
         {
+            if (DictionaryService.PendingDictionaryLoading) return;
 
+            string pattern = JoinCryptharitmWords();
+            if (pattern.Length == 0) return;
+
+            var search = SearchFactory.CreateSearch(Search.Mode);
+            var validateResult = search.ValidatePattern(pattern);
+            if (!validateResult.Result)
+            {
+                MessageBox.Show(validateResult.Message, "B³¹d danych", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+        }
+        private void AddComponentBtn_Click(object sender, EventArgs e)
+        {
+            if (ComponentsCount == 5)
+            {
+                MessageBox.Show("Maksymalna iloœæ sk³adowych dzia³ania to 5.", "Za du¿o sk³adowych", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            ComponentsCount++;
+            ClearCryptharitmControls(splitContainerCryptharitms.Panel1);
+            GenerateCryptharitmControls(splitContainerCryptharitms.Panel1);
+        }
+        private void RemoveComponentBtn_Click(object sender, EventArgs e)
+        {
+            if (ComponentsCount == 2)
+            {
+                MessageBox.Show("Minimalna iloœæ sk³adowych dzia³ania to 2.", "Za malo sk³adowych", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            ComponentsCount--;
+            ClearCryptharitmControls(splitContainerCryptharitms.Panel1);
+            GenerateCryptharitmControls(splitContainerCryptharitms.Panel1);
         }
         private async void LoadDictionaryBtn_Click(object sender, EventArgs e)
         {
@@ -578,7 +616,7 @@ namespace CrosswordAssistant
             groupBoxBeginWithFilters.Text = _filtersNames[StartWithFilterName];
             groupBoxEndsWithFilters.Text = _filtersNames[EndWithFilterName];
 
-            FormService.GenerateCryptharitmControls(splitContainerCryptharitms.Panel1, ComponentsCount);
+            GenerateCryptharitmControls(splitContainerCryptharitms.Panel1);
 
             _appearance.SetBackgroundColor();
             _appearance.SetTextBoxesCasing(BaseSettings.CaseSensitive);
@@ -844,7 +882,10 @@ namespace CrosswordAssistant
                     Search.Mode = SearchMode.Scrabble;
                     break;
                 case 3:
+                    Search.Mode = SearchMode.Cryptharitm;
+                    break;
                 case 4:
+                case 5:
                     Search.Mode = SearchMode.None;
                     break;
                 default:
@@ -907,31 +948,91 @@ namespace CrosswordAssistant
             lbl.BackColor = Color.LightSteelBlue;
             textBoxAbout.Text = msg;
         }
+        private void GenerateCryptharitmControls(SplitterPanel panel)
+        {
+            ComponentTextBox = [];
+            for (int i = 0; i < ComponentsCount; i++)
+            {
+                ComponentTextBox.Add(new TextBox()
+                {
+                    CharacterCasing = CharacterCasing.Upper,
+                    Location = new Point(110, 136 + 37 * i),
+                    Name = "textBoxComponent" + (i + 1).ToString(),
+                    Size = new Size(305, 31),
+                    TabIndex = i + 21,
+                    TextAlign = HorizontalAlignment.Right
+                });
+                panel.Controls.Add(ComponentTextBox[i]);
+            }
+
+            var lastComponentY = ComponentTextBox[ComponentsCount - 1].Location.Y;
+
+            Label labelOperator = new()
+            {
+                AutoSize = true,
+                Location = new Point(27, lastComponentY + 36),
+                Name = "labelOperator",
+                Size = new Size(24, 25),
+                TabIndex = 7,
+                Text = "+"
+            };
+
+            Label labelCryptLine = new()
+            {
+                BorderStyle = BorderStyle.FixedSingle,
+                Location = new Point(27, lastComponentY + 64),
+                Name = "labelCryptLine",
+                Size = new Size(393, 1),
+                TabIndex = 10
+            };
+
+            OperationResult = new()
+            {
+                CharacterCasing = CharacterCasing.Upper,
+                Location = new Point(88, lastComponentY + 88),
+                Name = "textBoxSum",
+                Size = new Size(327, 31),
+                TabIndex = 21 + ComponentsCount,
+                TextAlign = HorizontalAlignment.Right
+            };
+
+            panel.Controls.Add(labelOperator);
+            panel.Controls.Add(labelCryptLine);
+            panel.Controls.Add(OperationResult);
+        }
+        private static void ClearCryptharitmControls(SplitterPanel panel)
+        {
+            foreach (Control control in panel.Controls.OfType<Control>().ToList())
+            {
+                if (control.Name.Contains("textBoxComponent") || control.Name == "labelOperator"
+                    || control.Name == "labelCryptLine" || control.Name == "textBoxSum")
+                {
+                    control.Dispose();
+                }
+            }
+        }
+        private string JoinCryptharitmWords()
+        {
+            string pattern = string.Empty;
+            for (int i = 0; i < ComponentsCount; i++)
+            {
+                if (ComponentTextBox[i].Text.Contains('|'))
+                {
+                    MessageBox.Show("Wykryto niedozwolony znak. U¿ywaj tylko liter polskiego alabetu.", "B³¹d danych", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return string.Empty;
+                }
+                pattern += ComponentTextBox[i].Text + "|";
+            }
+            if(OperationResult.Text.Contains('|'))
+            {
+                MessageBox.Show("Wykryto niedozwolony znak. U¿ywaj tylko liter polskiego alabetu.", "B³¹d danych", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return string.Empty;
+            }
+            pattern += OperationResult.Text;
+            return pattern;
+        }
 
         #endregion
 
-        private void AddComponentBtn_Click(object sender, EventArgs e)
-        {
-            if(ComponentsCount == 5)
-            {
-                MessageBox.Show("Maksymalna iloœæ sk³adowych dzia³ania to 5.","Za du¿o sk³adowych", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            ComponentsCount++;
-            FormService.ClearCryptharitmControls(splitContainerCryptharitms.Panel1);
-            FormService.GenerateCryptharitmControls(splitContainerCryptharitms.Panel1, ComponentsCount);
-        }
-
-        private void RemoveComponentBtn_Click(object sender, EventArgs e)
-        {
-            if (ComponentsCount == 2)
-            {
-                MessageBox.Show("Minimalna iloœæ sk³adowych dzia³ania to 2.", "Za malo sk³adowych", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            ComponentsCount--;
-            FormService.ClearCryptharitmControls(splitContainerCryptharitms.Panel1);
-            FormService.GenerateCryptharitmControls(splitContainerCryptharitms.Panel1, ComponentsCount);
-        }
     }
 }

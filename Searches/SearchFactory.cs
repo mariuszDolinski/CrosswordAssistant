@@ -19,6 +19,7 @@ namespace CrosswordAssistant.Searches
                 SearchMode.SuperWord => new SuperWordSearch(),
                 SearchMode.StenoAnagram => new StenoAnagramSearch(),
                 SearchMode.WordInWord => new WordInWordSearch(),
+                SearchMode.Cryptharitm => new CryptharitmSearch(),
                 _ => throw new NotImplementedException("SearchFactory Error: Search not implemented"),
             };
         }
