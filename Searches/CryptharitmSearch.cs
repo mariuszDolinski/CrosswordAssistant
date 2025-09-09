@@ -16,7 +16,7 @@ namespace CrosswordAssistant.Searches
             var letters = GetAllDistinctLetters(pattern);
             var words = pattern.Split('|');
 
-            GenerateCase([.. Enumerable.Range(0, 10)], letters.Count, currentCase =>
+            GenerateNextCase([], [.. Enumerable.Range(0, 10)], letters.Count, currentCase =>
             {
                 var map = new Dictionary<char, int>();
                 for (int i = 0; i < letters.Count; i++)
@@ -113,10 +113,6 @@ namespace CrosswordAssistant.Searches
             foreach(var c in word)
                 result = 10 * result + map[c];
             return result;
-        }
-        private static void GenerateCase(List<int> digits, int lettersCount, Action<List<int>> checkCase)
-        {
-            GenerateNextCase([], digits, lettersCount, checkCase);
         }
         private static void GenerateNextCase(List<int> currentCase, List<int> remainDigits, int lettersCount, Action<List<int>> checkCase)
         {

@@ -152,7 +152,6 @@ namespace CrosswordAssistant
             }
 
             string pattern = JoinCryptharitmWords();
-            if (pattern.Length == 0) return;
 
             var search = SearchFactory.CreateSearch(Search.Mode);
             var validateResult = search.ValidatePattern(pattern);
@@ -723,7 +722,7 @@ namespace CrosswordAssistant
                 }
             }
             IsSearchPending(false);
-            //set mode, in case of being on different tab afte search is completed
+            //set mode, in case of being on different tab after search is completed
             SetMode(tabControl.SelectedIndex);
         }
         private async Task<SearchResponse> ExecuteSearch()
@@ -747,7 +746,7 @@ namespace CrosswordAssistant
                 matches = await Task.Run(() => search.SearchMatches(pattern));
             }
 
-            await Task.Delay(20000);
+            //await Task.Delay(20000);
             matches = ApplyFilters(matches);
             labelPatternResultsInfo.Text = "Znalezionych dopasowañ: " + matches.Count;
             matches = Utilities.BoundResults(matches);
