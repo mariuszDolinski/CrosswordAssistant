@@ -27,7 +27,7 @@ namespace CrosswordAssistant.AppSettings
             DefaultSettings[ScrabbleColorKey] = -2968436;
             DefaultSettings[MainFormPosKey] = (int)MainFormPosition.Center;
             DefaultSettings[CaseSensitiveKey] = 0;
-            DefaultSettings[LogLevelKey] = Logger.LogLevel;
+            DefaultSettings[LogLevelKey] = (int)Logger.LogLevel;
         }
         private static void InitCurrentSettings()
         {
