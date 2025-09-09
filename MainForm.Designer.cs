@@ -162,6 +162,8 @@
             labelScrabble = new Label();
             tabPageCryptharitm = new TabPage();
             splitContainerCryptharitms = new SplitContainer();
+            comboBoxOperations = new ComboBox();
+            label4 = new Label();
             labelCryptharitm = new Label();
             RemoveComponentBtn = new Button();
             AddComponentBtn = new Button();
@@ -1882,6 +1884,8 @@
             // 
             // splitContainerCryptharitms.Panel1
             // 
+            splitContainerCryptharitms.Panel1.Controls.Add(comboBoxOperations);
+            splitContainerCryptharitms.Panel1.Controls.Add(label4);
             splitContainerCryptharitms.Panel1.Controls.Add(labelCryptharitm);
             splitContainerCryptharitms.Panel1.Controls.Add(RemoveComponentBtn);
             splitContainerCryptharitms.Panel1.Controls.Add(AddComponentBtn);
@@ -1894,6 +1898,25 @@
             splitContainerCryptharitms.Size = new Size(1167, 737);
             splitContainerCryptharitms.SplitterDistance = 415;
             splitContainerCryptharitms.TabIndex = 3;
+            // 
+            // comboBoxOperations
+            // 
+            comboBoxOperations.FormattingEnabled = true;
+            comboBoxOperations.Items.AddRange(new object[] { "dodawanie", "odejmowanie", "mnożenie" });
+            comboBoxOperations.Location = new Point(210, 67);
+            comboBoxOperations.Name = "comboBoxOperations";
+            comboBoxOperations.Size = new Size(182, 33);
+            comboBoxOperations.TabIndex = 15;
+            comboBoxOperations.SelectedIndexChanged += ComboBoxOperations_SelectedIndesChanged;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(17, 70);
+            label4.Name = "label4";
+            label4.Size = new Size(154, 25);
+            label4.TabIndex = 14;
+            label4.Text = "Wybierz działanie:";
             // 
             // labelCryptharitm
             // 
@@ -1908,7 +1931,7 @@
             // 
             RemoveComponentBtn.Cursor = Cursors.Hand;
             RemoveComponentBtn.FlatStyle = FlatStyle.Flat;
-            RemoveComponentBtn.Location = new Point(217, 61);
+            RemoveComponentBtn.Location = new Point(217, 121);
             RemoveComponentBtn.Name = "RemoveComponentBtn";
             RemoveComponentBtn.Size = new Size(175, 34);
             RemoveComponentBtn.TabIndex = 12;
@@ -1920,7 +1943,7 @@
             // 
             AddComponentBtn.Cursor = Cursors.Hand;
             AddComponentBtn.FlatStyle = FlatStyle.Flat;
-            AddComponentBtn.Location = new Point(17, 61);
+            AddComponentBtn.Location = new Point(17, 121);
             AddComponentBtn.Name = "AddComponentBtn";
             AddComponentBtn.Size = new Size(175, 34);
             AddComponentBtn.TabIndex = 11;
@@ -2794,6 +2817,7 @@
             tableLayoutPanelScrabble.PerformLayout();
             tabPageCryptharitm.ResumeLayout(false);
             splitContainerCryptharitms.Panel1.ResumeLayout(false);
+            splitContainerCryptharitms.Panel1.PerformLayout();
             splitContainerCryptharitms.Panel2.ResumeLayout(false);
             splitContainerCryptharitms.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainerCryptharitms).EndInit();
@@ -3015,5 +3039,7 @@
         private Button RemoveComponentBtn;
         private Button AddComponentBtn;
         private Label labelCryptharitm;
+        private ComboBox comboBoxOperations;
+        private Label label4;
     }
 }

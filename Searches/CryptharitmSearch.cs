@@ -1,4 +1,5 @@
-﻿using CrosswordAssistant.Entities.Responses;
+﻿using CrosswordAssistant.Entities.Enums;
+using CrosswordAssistant.Entities.Responses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,14 +27,23 @@ namespace CrosswordAssistant.Searches
                 if (words.Any(w => map[w[0]] == 0)) return;
 
                 long[] numbers = new long[words.Length];
-                long sum = 0;
+                long operationResult = CurrentOperator == Operators.Multiplication ? 1 : 0;
                 for(int i = 0; i < words.Length; i++)
                 {
                     numbers[i] = GetNumberFromWord(words[i], map);
-                    if(i < words.Length - 1) sum += numbers[i];
+                    if (i < words.Length - 1)
+                    {
+                        switch (CurrentOperator)
+                        {
+                            case Operators.Addition: operationResult += numbers[i]; break;
+                            case Operators.Subtraction: operationResult -= numbers[i]; break;
+                            case Operators.Multiplication: operationResult *= numbers[i]; break;
+                        }
+                        
+                    }                   
                 }
 
-                if(sum == numbers[^1])
+                if(operationResult == numbers[^1])
                 {
                     result.Add(BuildSolution(letters, map, numbers));
                 }
@@ -82,10 +92,17 @@ namespace CrosswordAssistant.Searches
                 if (i < letters.Count - 1) solution += ", ";
             }
             solution += "|";
+            string oper = string.Empty;
+            switch (CurrentOperator)
+            {
+                case Operators.Addition: oper = " + "; break;
+                case Operators.Subtraction: oper = " - "; break;
+                case Operators.Multiplication: oper = " • "; break;
+            }
             for(int i = 0; i < numbers.Length - 1; i++)
             {
                 solution += numbers[i].ToString();
-                if(i <  numbers.Length - 2) solution += " + ";
+                if(i <  numbers.Length - 2) solution += oper;
             }
             solution += " = " + numbers[^1].ToString();
             return solution;

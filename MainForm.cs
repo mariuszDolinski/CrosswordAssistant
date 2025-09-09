@@ -25,6 +25,7 @@ namespace CrosswordAssistant
 
         public List<TextBox> ComponentTextBox;
         public TextBox OperationResult;
+        public Label CurrentOperatorLabel;
 
         public MainForm()
         {
@@ -43,6 +44,7 @@ namespace CrosswordAssistant
 
             ComponentTextBox = [];
             OperationResult = new TextBox();
+            CurrentOperatorLabel = new Label();
             Search.IsPending = false;
             _appearance = new AppearanceSettings(this);
             _dictionaryService = new DictionaryService();
@@ -91,7 +93,12 @@ namespace CrosswordAssistant
         }
         private void UluzSamSearch_Click(object sender, EventArgs e)
         {
-            if (DictionaryService.PendingDictionaryLoading || Search.IsPending) return;
+            if (DictionaryService.PendingDictionaryLoading || Search.IsPending)
+            {
+                MessageBox.Show("Trwa inne wyszukiwanie lub ³adowanie nowego s³ownika. Spróbuj ponownie póŸniej", "Inna operacja w toku", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
 
             var search = SearchFactory.CreateSearch(Search.Mode);
             string pattern = textBoxPatternUls.Text;
@@ -107,7 +114,7 @@ namespace CrosswordAssistant
             string[] groups = ConvertGroupsToArray();
             foreach (string group in groups)
             {
-                pattern += "+" + group.ToLower();
+                pattern += "|" + group.ToLower();
             }
             List<string> matches = search.SearchMatches(pattern);
 
@@ -116,7 +123,11 @@ namespace CrosswordAssistant
         }
         private void SearchScrabble_Click(object sender, EventArgs e)
         {
-            if (DictionaryService.PendingDictionaryLoading || Search.IsPending) return;
+            if (DictionaryService.PendingDictionaryLoading || Search.IsPending)
+            {
+                MessageBox.Show("Trwa inne wyszukiwanie lub ³adowanie nowego s³ownika. Spróbuj ponownie póŸniej", "Inna operacja w toku", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
             var search = SearchFactory.CreateSearch(Search.Mode);
             string pattern = textBoxScrabblePattern.Text.ToLower();
@@ -134,7 +145,11 @@ namespace CrosswordAssistant
         }
         private void SolveCryptharitmBtn_Click(object sender, EventArgs e)
         {
-            if (DictionaryService.PendingDictionaryLoading || Search.IsPending) return;
+            if (DictionaryService.PendingDictionaryLoading || Search.IsPending)
+            {
+                MessageBox.Show("Trwa inne wyszukiwanie lub ³adowanie nowego s³ownika. Spróbuj ponownie póŸniej", "Inna operacja w toku", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
             string pattern = JoinCryptharitmWords();
             if (pattern.Length == 0) return;
@@ -575,6 +590,30 @@ namespace CrosswordAssistant
             var currentPage = (sender as TabControl)!.SelectedIndex;
             SetMode(currentPage);
         }
+        private void ComboBoxOperations_SelectedIndesChanged(object sender, EventArgs e)
+        {
+            switch (comboBoxOperations.SelectedIndex)
+            {
+                case 1:
+                    AddComponentBtn.Text = "DODAJ SK£ADNIK";
+                    RemoveComponentBtn.Text = "USUÑ SK£ADNIK";
+                    CurrentOperatorLabel.Text = "-";
+                    Search.CurrentOperator = Operators.Subtraction;
+                    break;
+                case 2:
+                    AddComponentBtn.Text = "DODAJ CZYNNIK";
+                    RemoveComponentBtn.Text = "USUÑ CZYNNIK";
+                    CurrentOperatorLabel.Text = "•";
+                    Search.CurrentOperator = Operators.Multiplication;
+                    break;
+                default:
+                    AddComponentBtn.Text = "DODAJ SK£ADNIK";
+                    RemoveComponentBtn.Text = "USUÑ SK£ADNIK";
+                    CurrentOperatorLabel.Text = "+";
+                    Search.CurrentOperator = Operators.Addition;
+                    break;
+            }
+        }
         private void InfoLabel_Click(object sender, EventArgs e)
         {
             var label = (Label)sender;
@@ -634,13 +673,13 @@ namespace CrosswordAssistant
 
             groupBoxBeginWithFilters.Text = _filtersNames[StartWithFilterName];
             groupBoxEndsWithFilters.Text = _filtersNames[EndWithFilterName];
+            comboBoxOperations.SelectedIndex = 0;
 
             GenerateCryptharitmControls(splitContainerCryptharitms.Panel1);
 
             _appearance.SetBackgroundColor();
             _appearance.SetTextBoxesCasing(BaseSettings.CaseSensitive);
         }
-
         private void IsSearchPending(bool pending)
         {
             textBoxPattern.ReadOnly = pending;
@@ -708,7 +747,7 @@ namespace CrosswordAssistant
                 matches = await Task.Run(() => search.SearchMatches(pattern));
             }
 
-            //await Task.Delay(10000);
+            await Task.Delay(20000);
             matches = ApplyFilters(matches);
             labelPatternResultsInfo.Text = "Znalezionych dopasowañ: " + matches.Count;
             matches = Utilities.BoundResults(matches);
@@ -782,7 +821,7 @@ namespace CrosswordAssistant
                         FormService.FillTextBoxScrabbleResults(textBoxScrabbleResults, results);
                         break;
                     case SearchMode.Cryptharitm:
-                        FormService.FillTextBoxCriptharytmSolutions(textBoxCryptharitmResult, results); 
+                        FormService.FillTextBoxCriptharytmSolutions(textBoxCryptharitmResult, results);
                         break;
                     default:
                         FormService.FillTextBoxWithWords(textBox, results, false);
@@ -983,7 +1022,7 @@ namespace CrosswordAssistant
                 ComponentTextBox.Add(new TextBox()
                 {
                     CharacterCasing = CharacterCasing.Upper,
-                    Location = new Point(110, 136 + 43 * i),
+                    Location = new Point(110, 196 + 43 * i),
                     Name = "textBoxComponent" + (i + 1).ToString(),
                     Size = new Size(270, 31),
                     TabIndex = i + 21,
@@ -995,7 +1034,7 @@ namespace CrosswordAssistant
 
             var lastComponentY = ComponentTextBox[ComponentsCount - 1].Location.Y;
 
-            Label labelOperator = new()
+            CurrentOperatorLabel = new()
             {
                 AutoSize = true,
                 Location = new Point(27, lastComponentY + 36),
@@ -1025,7 +1064,7 @@ namespace CrosswordAssistant
                 Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 238)
             };
 
-            panel.Controls.Add(labelOperator);
+            panel.Controls.Add(CurrentOperatorLabel);
             panel.Controls.Add(labelCryptLine);
             panel.Controls.Add(OperationResult);
         }
@@ -1052,7 +1091,7 @@ namespace CrosswordAssistant
                 }
                 pattern += ComponentTextBox[i].Text + "|";
             }
-            if(OperationResult.Text.Contains('|'))
+            if (OperationResult.Text.Contains('|'))
             {
                 MessageBox.Show("Wykryto niedozwolony znak. U¿ywaj tylko liter polskiego alabetu.", "B³¹d danych", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return string.Empty;
@@ -1062,6 +1101,5 @@ namespace CrosswordAssistant
         }
 
         #endregion
-
     }
 }
