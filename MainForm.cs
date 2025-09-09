@@ -6,6 +6,7 @@ using CrosswordAssistant.Entities.Responses;
 using CrosswordAssistant.Searches;
 using CrosswordAssistant.Services;
 using System.Globalization;
+using System.Text.RegularExpressions;
 
 namespace CrosswordAssistant
 {
@@ -68,7 +69,7 @@ namespace CrosswordAssistant
             }
             catch (Exception ex)
             {
-                labelResultsCount.Text = "Znalezionych dopasowañ: 0";
+                labelPatternResultsInfo.Text = "Znalezionych dopasowañ: 0";
                 IsSearchPending(false);
                 MessageBox.Show("B³¹d wyszukiwania. SprawdŸ szczegó³y w logu aplikacji.");
                 Logger.WriteToLog(LogLevel.Error, ex.Message, ex.StackTrace ?? "");
@@ -82,7 +83,7 @@ namespace CrosswordAssistant
             }
             catch (Exception ex)
             {
-                labelResultsCount.Text = "Znalezionych dopasowañ: 0";
+                labelPatternResultsInfo.Text = "Znalezionych dopasowañ: 0";
                 IsSearchPending(false);
                 MessageBox.Show("B³¹d wyszukiwania. SprawdŸ szczegó³y w logu aplikacji.");
                 Logger.WriteToLog(LogLevel.Error, ex.Message, ex.StackTrace ?? "");
@@ -90,7 +91,7 @@ namespace CrosswordAssistant
         }
         private void UluzSamSearch_Click(object sender, EventArgs e)
         {
-            if (DictionaryService.PendingDictionaryLoading) return;
+            if (DictionaryService.PendingDictionaryLoading || Search.IsPending) return;
 
             var search = SearchFactory.CreateSearch(Search.Mode);
             string pattern = textBoxPatternUls.Text;
@@ -115,7 +116,7 @@ namespace CrosswordAssistant
         }
         private void SearchScrabble_Click(object sender, EventArgs e)
         {
-            if (DictionaryService.PendingDictionaryLoading) return;
+            if (DictionaryService.PendingDictionaryLoading || Search.IsPending) return;
 
             var search = SearchFactory.CreateSearch(Search.Mode);
             string pattern = textBoxScrabblePattern.Text.ToLower();
@@ -133,7 +134,7 @@ namespace CrosswordAssistant
         }
         private void SolveCryptharitmBtn_Click(object sender, EventArgs e)
         {
-            if (DictionaryService.PendingDictionaryLoading) return;
+            if (DictionaryService.PendingDictionaryLoading || Search.IsPending) return;
 
             string pattern = JoinCryptharitmWords();
             if (pattern.Length == 0) return;
@@ -145,6 +146,10 @@ namespace CrosswordAssistant
                 MessageBox.Show(validateResult.Message, "B³¹d danych", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+
+            List<string> matches = search.SearchMatches(pattern);
+            textBoxCryptharitmResult.Text = "";
+            FillTextBoxResults(matches, textBoxCryptharitmResult);
         }
         private void AddComponentBtn_Click(object sender, EventArgs e)
         {
@@ -502,6 +507,19 @@ namespace CrosswordAssistant
                             break;
                     }
                     break;
+                case SearchMode.Cryptharitm:
+                    switch (e.KeyCode)
+                    {
+                        case Keys.Enter:
+                            SolveCryptharitmBtn_Click(sender, e);
+                            e.SuppressKeyPress = true;
+                            break;
+                        case Keys.F6:
+                            ComponentTextBox[0].SelectAll();
+                            ComponentTextBox[0].Focus();
+                            break;
+                    }
+                    break;
                 default:
                     switch (e.KeyCode)
                     {
@@ -553,6 +571,7 @@ namespace CrosswordAssistant
         }
         private void TabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (Search.IsPending) return;
             var currentPage = (sender as TabControl)!.SelectedIndex;
             SetMode(currentPage);
         }
@@ -665,12 +684,14 @@ namespace CrosswordAssistant
                 }
             }
             IsSearchPending(false);
+            //set mode, in case of being on different tab afte search is completed
+            SetMode(tabControl.SelectedIndex);
         }
         private async Task<SearchResponse> ExecuteSearch()
         {
             string pattern = textBoxPattern.Text.Trim();
             if (!BaseSettings.CaseSensitive) pattern = pattern.ToLower();
-            labelResultsCount.Text = "Szukam dopasowañ...";
+            labelPatternResultsInfo.Text = "Szukam dopasowañ...";
             var search = SearchFactory.CreateSearch(Search.Mode);
             List<string> matches;
             if (checkBoxLength.Checked && pattern.Length == 0)
@@ -687,8 +708,9 @@ namespace CrosswordAssistant
                 matches = await Task.Run(() => search.SearchMatches(pattern));
             }
 
+            //await Task.Delay(10000);
             matches = ApplyFilters(matches);
-            labelResultsCount.Text = "Znalezionych dopasowañ: " + matches.Count;
+            labelPatternResultsInfo.Text = "Znalezionych dopasowañ: " + matches.Count;
             matches = Utilities.BoundResults(matches);
             return new SearchResponse(matches, true, "");
         }
@@ -748,18 +770,23 @@ namespace CrosswordAssistant
                 {
                     SearchMode.Anagram => "BRAK ANAGRAMÓW",
                     SearchMode.Metagram => "BRAK METAGRAMÓW",
+                    SearchMode.Cryptharitm => "BRAK ROZWI¥ZAÑ",
                     _ => "BRAK DOPASOWAÑ",
                 };
             }
             else
             {
-                if (Search.Mode != SearchMode.Scrabble)
+                switch (Search.Mode)
                 {
-                    FormService.FillTextBoxWithWords(textBox, results, false);
-                }
-                else
-                {
-                    FormService.FillTextBoxScrabbleResults(textBoxScrabbleResults, results);
+                    case SearchMode.Scrabble:
+                        FormService.FillTextBoxScrabbleResults(textBoxScrabbleResults, results);
+                        break;
+                    case SearchMode.Cryptharitm:
+                        FormService.FillTextBoxCriptharytmSolutions(textBoxCryptharitmResult, results); 
+                        break;
+                    default:
+                        FormService.FillTextBoxWithWords(textBox, results, false);
+                        break;
                 }
             }
             if (results.Count == BaseSettings.MaxResultDisplay && Search.Mode != SearchMode.Scrabble)
@@ -956,11 +983,12 @@ namespace CrosswordAssistant
                 ComponentTextBox.Add(new TextBox()
                 {
                     CharacterCasing = CharacterCasing.Upper,
-                    Location = new Point(110, 136 + 37 * i),
+                    Location = new Point(110, 136 + 43 * i),
                     Name = "textBoxComponent" + (i + 1).ToString(),
-                    Size = new Size(305, 31),
+                    Size = new Size(270, 31),
                     TabIndex = i + 21,
-                    TextAlign = HorizontalAlignment.Right
+                    TextAlign = HorizontalAlignment.Right,
+                    Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 238)
                 });
                 panel.Controls.Add(ComponentTextBox[i]);
             }
@@ -982,7 +1010,7 @@ namespace CrosswordAssistant
                 BorderStyle = BorderStyle.FixedSingle,
                 Location = new Point(27, lastComponentY + 64),
                 Name = "labelCryptLine",
-                Size = new Size(393, 1),
+                Size = new Size(358, 1),
                 TabIndex = 10
             };
 
@@ -991,9 +1019,10 @@ namespace CrosswordAssistant
                 CharacterCasing = CharacterCasing.Upper,
                 Location = new Point(88, lastComponentY + 88),
                 Name = "textBoxSum",
-                Size = new Size(327, 31),
+                Size = new Size(292, 31),
                 TabIndex = 21 + ComponentsCount,
-                TextAlign = HorizontalAlignment.Right
+                TextAlign = HorizontalAlignment.Right,
+                Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 238)
             };
 
             panel.Controls.Add(labelOperator);

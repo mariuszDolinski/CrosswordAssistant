@@ -33,7 +33,7 @@
             tabControl = new TabControl();
             tabPattern = new TabPage();
             splitContainerResults = new SplitContainer();
-            labelResultsCount = new Label();
+            labelPatternResultsInfo = new Label();
             label24 = new Label();
             textBoxPatternResults = new TextBox();
             contextMenuStripResults = new ContextMenuStrip(components);
@@ -323,7 +323,7 @@
             // 
             // splitContainerResults.Panel1
             // 
-            splitContainerResults.Panel1.Controls.Add(labelResultsCount);
+            splitContainerResults.Panel1.Controls.Add(labelPatternResultsInfo);
             splitContainerResults.Panel1.Controls.Add(label24);
             splitContainerResults.Panel1.Controls.Add(textBoxPatternResults);
             // 
@@ -335,16 +335,16 @@
             splitContainerResults.SplitterDistance = 454;
             splitContainerResults.TabIndex = 8;
             // 
-            // labelResultsCount
+            // labelPatternResultsInfo
             // 
-            labelResultsCount.BackColor = Color.DarkSeaGreen;
-            labelResultsCount.Dock = DockStyle.Fill;
-            labelResultsCount.Location = new Point(0, 662);
-            labelResultsCount.Name = "labelResultsCount";
-            labelResultsCount.Size = new Size(454, 35);
-            labelResultsCount.TabIndex = 2;
-            labelResultsCount.Text = "Znalezionych dopasowań: 0";
-            labelResultsCount.TextAlign = ContentAlignment.MiddleLeft;
+            labelPatternResultsInfo.BackColor = Color.DarkSeaGreen;
+            labelPatternResultsInfo.Dock = DockStyle.Fill;
+            labelPatternResultsInfo.Location = new Point(0, 662);
+            labelPatternResultsInfo.Name = "labelPatternResultsInfo";
+            labelPatternResultsInfo.Size = new Size(454, 35);
+            labelPatternResultsInfo.TabIndex = 2;
+            labelPatternResultsInfo.Text = "Znalezionych dopasowań: 0";
+            labelPatternResultsInfo.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // label24
             // 
@@ -1875,6 +1875,7 @@
             // splitContainerCryptharitms
             // 
             splitContainerCryptharitms.Dock = DockStyle.Bottom;
+            splitContainerCryptharitms.FixedPanel = FixedPanel.Panel2;
             splitContainerCryptharitms.Location = new Point(3, 38);
             splitContainerCryptharitms.Margin = new Padding(3, 6, 3, 3);
             splitContainerCryptharitms.Name = "splitContainerCryptharitms";
@@ -1889,8 +1890,9 @@
             // splitContainerCryptharitms.Panel2
             // 
             splitContainerCryptharitms.Panel2.Controls.Add(textBoxCryptharitmResult);
+            splitContainerCryptharitms.Panel2MinSize = 700;
             splitContainerCryptharitms.Size = new Size(1167, 737);
-            splitContainerCryptharitms.SplitterDistance = 465;
+            splitContainerCryptharitms.SplitterDistance = 415;
             splitContainerCryptharitms.TabIndex = 3;
             // 
             // labelCryptharitm
@@ -1898,7 +1900,7 @@
             labelCryptharitm.Dock = DockStyle.Top;
             labelCryptharitm.Location = new Point(0, 0);
             labelCryptharitm.Name = "labelCryptharitm";
-            labelCryptharitm.Size = new Size(465, 58);
+            labelCryptharitm.Size = new Size(415, 58);
             labelCryptharitm.TabIndex = 13;
             labelCryptharitm.Text = "Podaj składowe działania, a pod kreską jego wynik.\r\nUżyj maksymalnie 10 różnych liter.\r\n";
             // 
@@ -1906,9 +1908,9 @@
             // 
             RemoveComponentBtn.Cursor = Cursors.Hand;
             RemoveComponentBtn.FlatStyle = FlatStyle.Flat;
-            RemoveComponentBtn.Location = new Point(232, 61);
+            RemoveComponentBtn.Location = new Point(217, 61);
             RemoveComponentBtn.Name = "RemoveComponentBtn";
-            RemoveComponentBtn.Size = new Size(210, 34);
+            RemoveComponentBtn.Size = new Size(175, 34);
             RemoveComponentBtn.TabIndex = 12;
             RemoveComponentBtn.Text = "USUŃ SKŁADNIK";
             RemoveComponentBtn.UseVisualStyleBackColor = true;
@@ -1920,7 +1922,7 @@
             AddComponentBtn.FlatStyle = FlatStyle.Flat;
             AddComponentBtn.Location = new Point(17, 61);
             AddComponentBtn.Name = "AddComponentBtn";
-            AddComponentBtn.Size = new Size(210, 34);
+            AddComponentBtn.Size = new Size(175, 34);
             AddComponentBtn.TabIndex = 11;
             AddComponentBtn.Text = "DODAJ SKŁADNIK";
             AddComponentBtn.UseVisualStyleBackColor = true;
@@ -1933,7 +1935,7 @@
             solveCryptharitmBtn.FlatStyle = FlatStyle.Flat;
             solveCryptharitmBtn.Location = new Point(0, 703);
             solveCryptharitmBtn.Name = "solveCryptharitmBtn";
-            solveCryptharitmBtn.Size = new Size(465, 34);
+            solveCryptharitmBtn.Size = new Size(415, 34);
             solveCryptharitmBtn.TabIndex = 9;
             solveCryptharitmBtn.Text = "SZUKAJ ROZWIĄZAŃ";
             solveCryptharitmBtn.UseVisualStyleBackColor = true;
@@ -1943,7 +1945,6 @@
             // 
             textBoxCryptharitmResult.BackColor = SystemColors.ControlLight;
             textBoxCryptharitmResult.BorderStyle = BorderStyle.FixedSingle;
-            textBoxCryptharitmResult.ContextMenuStrip = contextMenuStripResults;
             textBoxCryptharitmResult.Dock = DockStyle.Fill;
             textBoxCryptharitmResult.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point, 238);
             textBoxCryptharitmResult.Location = new Point(0, 0);
@@ -1951,7 +1952,7 @@
             textBoxCryptharitmResult.Name = "textBoxCryptharitmResult";
             textBoxCryptharitmResult.ReadOnly = true;
             textBoxCryptharitmResult.ScrollBars = ScrollBars.Vertical;
-            textBoxCryptharitmResult.Size = new Size(698, 737);
+            textBoxCryptharitmResult.Size = new Size(748, 737);
             textBoxCryptharitmResult.TabIndex = 1;
             // 
             // labelCryptharitms
@@ -2995,7 +2996,7 @@
         internal Label labelGr3;
         internal Label labelGr5;
         internal Label labelCurrentPatternLen;
-        internal Label labelResultsCount;
+        internal Label labelPatternResultsInfo;
         internal Label labelScrabble;
         internal Label labelScrabbleCurrentPatternLen;
         internal Label labelScrabbleCalc;
