@@ -58,15 +58,20 @@ namespace CrosswordAssistant.Services
         {
             int MaxResultDisplay = (int)Settings.SavedSettings[Settings.MaxResultsKey];
             string result = "";
+            bool isBounded = false;
             if (words.Count > MaxResultDisplay)
             {
-                result = "Zbyt wiele wyrazów do wyświetlenia. Pokazuję pierwsze " + MaxResultDisplay.ToString();
-                result += Environment.NewLine + Environment.NewLine;
                 words = [.. words.Take(MaxResultDisplay)];
+                isBounded = true;
             }
             foreach (string word in words)
             {
                 result += word + Environment.NewLine;
+            }
+            if (isBounded)
+            {
+                result += Environment.NewLine;
+                result += "Zbyt wiele wyrazów do wyświetlenia. Pokazuję pierwsze " + MaxResultDisplay.ToString();
             }
             if (appendText)
                 textBox.Text += Environment.NewLine + result;
@@ -88,10 +93,7 @@ namespace CrosswordAssistant.Services
         }
         public static void FillTextBoxCriptharytmSolutions(TextBox textBox, List<string> solutions)
         {
-            textBox.Text = "Znalazłem " + solutions.Count + GetCorrectDeclination(solutions.Count) + ":";
-            textBox.Text += Environment.NewLine;
-            textBox.Text += "------------------------------------------------------------------------";
-            textBox.Text += Environment.NewLine;
+            textBox.Text = string.Empty;
             int i = 1;
             foreach (var solution in solutions)
             {
@@ -106,16 +108,6 @@ namespace CrosswordAssistant.Services
                     
                 i++;
             }
-        }
-
-        private static string GetCorrectDeclination(int n)
-        {
-            return n switch
-            {
-                1 => " rozwiązanie",
-                2 or 3 or 4 => " rozwiązania",
-                _ => " rozwiązań",
-            };
         }
     }
 }

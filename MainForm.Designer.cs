@@ -162,13 +162,15 @@
             labelScrabble = new Label();
             tabPageCryptharitm = new TabPage();
             splitContainerCryptharitms = new SplitContainer();
+            textBoxCryptharitmResult = new TextBox();
+            label7 = new Label();
+            labelCriptharytmInfo = new Label();
+            solveCryptharitmBtn = new Button();
+            labelCryptharitm = new Label();
             comboBoxOperations = new ComboBox();
             label4 = new Label();
-            labelCryptharitm = new Label();
-            RemoveComponentBtn = new Button();
             AddComponentBtn = new Button();
-            solveCryptharitmBtn = new Button();
-            textBoxCryptharitmResult = new TextBox();
+            RemoveComponentBtn = new Button();
             labelCryptharitms = new Label();
             tabPageDictionary = new TabPage();
             tableLayoutPanel3 = new TableLayoutPanel();
@@ -1884,72 +1886,58 @@
             // 
             // splitContainerCryptharitms.Panel1
             // 
-            splitContainerCryptharitms.Panel1.Controls.Add(comboBoxOperations);
-            splitContainerCryptharitms.Panel1.Controls.Add(label4);
-            splitContainerCryptharitms.Panel1.Controls.Add(labelCryptharitm);
-            splitContainerCryptharitms.Panel1.Controls.Add(RemoveComponentBtn);
-            splitContainerCryptharitms.Panel1.Controls.Add(AddComponentBtn);
-            splitContainerCryptharitms.Panel1.Controls.Add(solveCryptharitmBtn);
+            splitContainerCryptharitms.Panel1.Controls.Add(textBoxCryptharitmResult);
+            splitContainerCryptharitms.Panel1.Controls.Add(label7);
+            splitContainerCryptharitms.Panel1.Controls.Add(labelCriptharytmInfo);
+            splitContainerCryptharitms.Panel1MinSize = 700;
             // 
             // splitContainerCryptharitms.Panel2
             // 
-            splitContainerCryptharitms.Panel2.Controls.Add(textBoxCryptharitmResult);
-            splitContainerCryptharitms.Panel2MinSize = 700;
+            splitContainerCryptharitms.Panel2.Controls.Add(solveCryptharitmBtn);
+            splitContainerCryptharitms.Panel2.Controls.Add(labelCryptharitm);
+            splitContainerCryptharitms.Panel2.Controls.Add(comboBoxOperations);
+            splitContainerCryptharitms.Panel2.Controls.Add(label4);
+            splitContainerCryptharitms.Panel2.Controls.Add(AddComponentBtn);
+            splitContainerCryptharitms.Panel2.Controls.Add(RemoveComponentBtn);
             splitContainerCryptharitms.Size = new Size(1167, 737);
-            splitContainerCryptharitms.SplitterDistance = 415;
+            splitContainerCryptharitms.SplitterDistance = 704;
             splitContainerCryptharitms.TabIndex = 3;
             // 
-            // comboBoxOperations
+            // textBoxCryptharitmResult
             // 
-            comboBoxOperations.FormattingEnabled = true;
-            comboBoxOperations.Items.AddRange(new object[] { "dodawanie", "odejmowanie", "mnożenie" });
-            comboBoxOperations.Location = new Point(210, 67);
-            comboBoxOperations.Name = "comboBoxOperations";
-            comboBoxOperations.Size = new Size(182, 33);
-            comboBoxOperations.TabIndex = 15;
-            comboBoxOperations.SelectedIndexChanged += ComboBoxOperations_SelectedIndesChanged;
+            textBoxCryptharitmResult.BackColor = SystemColors.ControlLight;
+            textBoxCryptharitmResult.BorderStyle = BorderStyle.FixedSingle;
+            textBoxCryptharitmResult.ContextMenuStrip = contextMenuStripResults;
+            textBoxCryptharitmResult.Dock = DockStyle.Fill;
+            textBoxCryptharitmResult.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            textBoxCryptharitmResult.Location = new Point(0, 0);
+            textBoxCryptharitmResult.Multiline = true;
+            textBoxCryptharitmResult.Name = "textBoxCryptharitmResult";
+            textBoxCryptharitmResult.ReadOnly = true;
+            textBoxCryptharitmResult.ScrollBars = ScrollBars.Vertical;
+            textBoxCryptharitmResult.Size = new Size(704, 700);
+            textBoxCryptharitmResult.TabIndex = 4;
             // 
-            // label4
+            // label7
             // 
-            label4.AutoSize = true;
-            label4.Location = new Point(17, 70);
-            label4.Name = "label4";
-            label4.Size = new Size(154, 25);
-            label4.TabIndex = 14;
-            label4.Text = "Wybierz działanie:";
+            label7.Dock = DockStyle.Bottom;
+            label7.Location = new Point(0, 700);
+            label7.Name = "label7";
+            label7.Size = new Size(704, 3);
+            label7.TabIndex = 3;
+            label7.Text = "label7";
             // 
-            // labelCryptharitm
+            // labelCriptharytmInfo
             // 
-            labelCryptharitm.Dock = DockStyle.Top;
-            labelCryptharitm.Location = new Point(0, 0);
-            labelCryptharitm.Name = "labelCryptharitm";
-            labelCryptharitm.Size = new Size(415, 58);
-            labelCryptharitm.TabIndex = 13;
-            labelCryptharitm.Text = "Podaj składowe działania, a pod kreską jego wynik.\r\nUżyj maksymalnie 10 różnych liter.\r\n";
-            // 
-            // RemoveComponentBtn
-            // 
-            RemoveComponentBtn.Cursor = Cursors.Hand;
-            RemoveComponentBtn.FlatStyle = FlatStyle.Flat;
-            RemoveComponentBtn.Location = new Point(217, 121);
-            RemoveComponentBtn.Name = "RemoveComponentBtn";
-            RemoveComponentBtn.Size = new Size(175, 34);
-            RemoveComponentBtn.TabIndex = 12;
-            RemoveComponentBtn.Text = "USUŃ SKŁADNIK";
-            RemoveComponentBtn.UseVisualStyleBackColor = true;
-            RemoveComponentBtn.Click += RemoveComponentBtn_Click;
-            // 
-            // AddComponentBtn
-            // 
-            AddComponentBtn.Cursor = Cursors.Hand;
-            AddComponentBtn.FlatStyle = FlatStyle.Flat;
-            AddComponentBtn.Location = new Point(17, 121);
-            AddComponentBtn.Name = "AddComponentBtn";
-            AddComponentBtn.Size = new Size(175, 34);
-            AddComponentBtn.TabIndex = 11;
-            AddComponentBtn.Text = "DODAJ SKŁADNIK";
-            AddComponentBtn.UseVisualStyleBackColor = true;
-            AddComponentBtn.Click += AddComponentBtn_Click;
+            labelCriptharytmInfo.BackColor = Color.LightBlue;
+            labelCriptharytmInfo.Dock = DockStyle.Bottom;
+            labelCriptharytmInfo.Location = new Point(0, 703);
+            labelCriptharytmInfo.Margin = new Padding(3, 3, 3, 0);
+            labelCriptharytmInfo.Name = "labelCriptharytmInfo";
+            labelCriptharytmInfo.Size = new Size(704, 34);
+            labelCriptharytmInfo.TabIndex = 2;
+            labelCriptharytmInfo.Text = "Znalezionych rozwiązań: 0";
+            labelCriptharytmInfo.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // solveCryptharitmBtn
             // 
@@ -1958,25 +1946,64 @@
             solveCryptharitmBtn.FlatStyle = FlatStyle.Flat;
             solveCryptharitmBtn.Location = new Point(0, 703);
             solveCryptharitmBtn.Name = "solveCryptharitmBtn";
-            solveCryptharitmBtn.Size = new Size(415, 34);
+            solveCryptharitmBtn.Size = new Size(459, 34);
             solveCryptharitmBtn.TabIndex = 9;
             solveCryptharitmBtn.Text = "SZUKAJ ROZWIĄZAŃ";
             solveCryptharitmBtn.UseVisualStyleBackColor = true;
             solveCryptharitmBtn.Click += SolveCryptharitmBtn_Click;
             // 
-            // textBoxCryptharitmResult
+            // labelCryptharitm
             // 
-            textBoxCryptharitmResult.BackColor = SystemColors.ControlLight;
-            textBoxCryptharitmResult.BorderStyle = BorderStyle.FixedSingle;
-            textBoxCryptharitmResult.Dock = DockStyle.Fill;
-            textBoxCryptharitmResult.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            textBoxCryptharitmResult.Location = new Point(0, 0);
-            textBoxCryptharitmResult.Multiline = true;
-            textBoxCryptharitmResult.Name = "textBoxCryptharitmResult";
-            textBoxCryptharitmResult.ReadOnly = true;
-            textBoxCryptharitmResult.ScrollBars = ScrollBars.Vertical;
-            textBoxCryptharitmResult.Size = new Size(748, 737);
-            textBoxCryptharitmResult.TabIndex = 1;
+            labelCryptharitm.Dock = DockStyle.Top;
+            labelCryptharitm.Location = new Point(0, 0);
+            labelCryptharitm.Name = "labelCryptharitm";
+            labelCryptharitm.Size = new Size(459, 58);
+            labelCryptharitm.TabIndex = 13;
+            labelCryptharitm.Text = "  Podaj składowe działania, a pod kreską jego wynik.\r\n  Użyj maksymalnie 10 różnych liter.\r\n";
+            // 
+            // comboBoxOperations
+            // 
+            comboBoxOperations.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBoxOperations.FormattingEnabled = true;
+            comboBoxOperations.Items.AddRange(new object[] { "dodawanie", "odejmowanie", "mnożenie" });
+            comboBoxOperations.Location = new Point(252, 63);
+            comboBoxOperations.Name = "comboBoxOperations";
+            comboBoxOperations.Size = new Size(182, 33);
+            comboBoxOperations.TabIndex = 15;
+            comboBoxOperations.SelectedIndexChanged += ComboBoxOperations_SelectedIndesChanged;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(76, 66);
+            label4.Name = "label4";
+            label4.Size = new Size(154, 25);
+            label4.TabIndex = 14;
+            label4.Text = "Wybierz działanie:";
+            // 
+            // AddComponentBtn
+            // 
+            AddComponentBtn.Cursor = Cursors.Hand;
+            AddComponentBtn.FlatStyle = FlatStyle.Flat;
+            AddComponentBtn.Location = new Point(55, 120);
+            AddComponentBtn.Name = "AddComponentBtn";
+            AddComponentBtn.Size = new Size(175, 34);
+            AddComponentBtn.TabIndex = 11;
+            AddComponentBtn.Text = "DODAJ SKŁADNIK";
+            AddComponentBtn.UseVisualStyleBackColor = true;
+            AddComponentBtn.Click += AddComponentBtn_Click;
+            // 
+            // RemoveComponentBtn
+            // 
+            RemoveComponentBtn.Cursor = Cursors.Hand;
+            RemoveComponentBtn.FlatStyle = FlatStyle.Flat;
+            RemoveComponentBtn.Location = new Point(253, 120);
+            RemoveComponentBtn.Name = "RemoveComponentBtn";
+            RemoveComponentBtn.Size = new Size(175, 34);
+            RemoveComponentBtn.TabIndex = 12;
+            RemoveComponentBtn.Text = "USUŃ SKŁADNIK";
+            RemoveComponentBtn.UseVisualStyleBackColor = true;
+            RemoveComponentBtn.Click += RemoveComponentBtn_Click;
             // 
             // labelCryptharitms
             // 
@@ -3034,12 +3061,14 @@
         private TabPage tabPageCryptharitm;
         internal Label labelCryptharitms;
         private SplitContainer splitContainerCryptharitms;
-        private TextBox textBoxCryptharitmResult;
         private Button solveCryptharitmBtn;
         private Button RemoveComponentBtn;
         private Button AddComponentBtn;
         private Label labelCryptharitm;
         private ComboBox comboBoxOperations;
         private Label label4;
+        private Label label7;
+        private Label labelCriptharytmInfo;
+        private TextBox textBoxCryptharitmResult;
     }
 }
