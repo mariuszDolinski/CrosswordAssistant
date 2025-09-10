@@ -161,7 +161,7 @@
             labelScrabbleCurrentPatternLen = new Label();
             labelScrabble = new Label();
             tabPageCryptharitm = new TabPage();
-            splitContainerCryptharitms = new SplitContainer();
+            SplitContainerCryptharitms = new SplitContainer();
             textBoxCryptharitmResult = new TextBox();
             label7 = new Label();
             labelCriptharytmInfo = new Label();
@@ -264,10 +264,10 @@
             ((System.ComponentModel.ISupportInitialize)numericUpDownTripleBonus).BeginInit();
             tableLayoutPanelScrabble.SuspendLayout();
             tabPageCryptharitm.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)splitContainerCryptharitms).BeginInit();
-            splitContainerCryptharitms.Panel1.SuspendLayout();
-            splitContainerCryptharitms.Panel2.SuspendLayout();
-            splitContainerCryptharitms.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)SplitContainerCryptharitms).BeginInit();
+            SplitContainerCryptharitms.Panel1.SuspendLayout();
+            SplitContainerCryptharitms.Panel2.SuspendLayout();
+            SplitContainerCryptharitms.SuspendLayout();
             tabPageDictionary.SuspendLayout();
             tableLayoutPanel3.SuspendLayout();
             groupBoxAddToDict.SuspendLayout();
@@ -1866,7 +1866,7 @@
             // 
             // tabPageCryptharitm
             // 
-            tabPageCryptharitm.Controls.Add(splitContainerCryptharitms);
+            tabPageCryptharitm.Controls.Add(SplitContainerCryptharitms);
             tabPageCryptharitm.Controls.Add(labelCryptharitms);
             tabPageCryptharitm.Location = new Point(4, 34);
             tabPageCryptharitm.Name = "tabPageCryptharitm";
@@ -1876,32 +1876,32 @@
             tabPageCryptharitm.Text = "Kryptarytmy";
             tabPageCryptharitm.UseVisualStyleBackColor = true;
             // 
-            // splitContainerCryptharitms
+            // SplitContainerCryptharitms
             // 
-            splitContainerCryptharitms.Dock = DockStyle.Bottom;
-            splitContainerCryptharitms.FixedPanel = FixedPanel.Panel2;
-            splitContainerCryptharitms.Location = new Point(3, 38);
-            splitContainerCryptharitms.Margin = new Padding(3, 6, 3, 3);
-            splitContainerCryptharitms.Name = "splitContainerCryptharitms";
+            SplitContainerCryptharitms.Dock = DockStyle.Bottom;
+            SplitContainerCryptharitms.FixedPanel = FixedPanel.Panel2;
+            SplitContainerCryptharitms.Location = new Point(3, 38);
+            SplitContainerCryptharitms.Margin = new Padding(3, 6, 3, 3);
+            SplitContainerCryptharitms.Name = "SplitContainerCryptharitms";
             // 
-            // splitContainerCryptharitms.Panel1
+            // SplitContainerCryptharitms.Panel1
             // 
-            splitContainerCryptharitms.Panel1.Controls.Add(textBoxCryptharitmResult);
-            splitContainerCryptharitms.Panel1.Controls.Add(label7);
-            splitContainerCryptharitms.Panel1.Controls.Add(labelCriptharytmInfo);
-            splitContainerCryptharitms.Panel1MinSize = 700;
+            SplitContainerCryptharitms.Panel1.Controls.Add(textBoxCryptharitmResult);
+            SplitContainerCryptharitms.Panel1.Controls.Add(label7);
+            SplitContainerCryptharitms.Panel1.Controls.Add(labelCriptharytmInfo);
+            SplitContainerCryptharitms.Panel1MinSize = 700;
             // 
-            // splitContainerCryptharitms.Panel2
+            // SplitContainerCryptharitms.Panel2
             // 
-            splitContainerCryptharitms.Panel2.Controls.Add(solveCryptharitmBtn);
-            splitContainerCryptharitms.Panel2.Controls.Add(labelCryptharitm);
-            splitContainerCryptharitms.Panel2.Controls.Add(comboBoxOperations);
-            splitContainerCryptharitms.Panel2.Controls.Add(label4);
-            splitContainerCryptharitms.Panel2.Controls.Add(AddComponentBtn);
-            splitContainerCryptharitms.Panel2.Controls.Add(RemoveComponentBtn);
-            splitContainerCryptharitms.Size = new Size(1167, 737);
-            splitContainerCryptharitms.SplitterDistance = 704;
-            splitContainerCryptharitms.TabIndex = 3;
+            SplitContainerCryptharitms.Panel2.Controls.Add(solveCryptharitmBtn);
+            SplitContainerCryptharitms.Panel2.Controls.Add(labelCryptharitm);
+            SplitContainerCryptharitms.Panel2.Controls.Add(comboBoxOperations);
+            SplitContainerCryptharitms.Panel2.Controls.Add(label4);
+            SplitContainerCryptharitms.Panel2.Controls.Add(AddComponentBtn);
+            SplitContainerCryptharitms.Panel2.Controls.Add(RemoveComponentBtn);
+            SplitContainerCryptharitms.Size = new Size(1167, 737);
+            SplitContainerCryptharitms.SplitterDistance = 704;
+            SplitContainerCryptharitms.TabIndex = 3;
             // 
             // textBoxCryptharitmResult
             // 
@@ -1970,7 +1970,7 @@
             comboBoxOperations.Name = "comboBoxOperations";
             comboBoxOperations.Size = new Size(182, 33);
             comboBoxOperations.TabIndex = 15;
-            comboBoxOperations.SelectedIndexChanged += ComboBoxOperations_SelectedIndesChanged;
+            comboBoxOperations.SelectedIndexChanged += ComboBoxOperations_SelectedIndexChanged;
             // 
             // label4
             // 
@@ -2843,12 +2843,12 @@
             tableLayoutPanelScrabble.ResumeLayout(false);
             tableLayoutPanelScrabble.PerformLayout();
             tabPageCryptharitm.ResumeLayout(false);
-            splitContainerCryptharitms.Panel1.ResumeLayout(false);
-            splitContainerCryptharitms.Panel1.PerformLayout();
-            splitContainerCryptharitms.Panel2.ResumeLayout(false);
-            splitContainerCryptharitms.Panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)splitContainerCryptharitms).EndInit();
-            splitContainerCryptharitms.ResumeLayout(false);
+            SplitContainerCryptharitms.Panel1.ResumeLayout(false);
+            SplitContainerCryptharitms.Panel1.PerformLayout();
+            SplitContainerCryptharitms.Panel2.ResumeLayout(false);
+            SplitContainerCryptharitms.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)SplitContainerCryptharitms).EndInit();
+            SplitContainerCryptharitms.ResumeLayout(false);
             tabPageDictionary.ResumeLayout(false);
             tableLayoutPanel3.ResumeLayout(false);
             groupBoxAddToDict.ResumeLayout(false);
@@ -3060,7 +3060,6 @@
         private Button randomWordBtn;
         private TabPage tabPageCryptharitm;
         internal Label labelCryptharitms;
-        private SplitContainer splitContainerCryptharitms;
         private Button solveCryptharitmBtn;
         private Button RemoveComponentBtn;
         private Button AddComponentBtn;
@@ -3070,5 +3069,6 @@
         private Label label7;
         private Label labelCriptharytmInfo;
         private TextBox textBoxCryptharitmResult;
+        public SplitContainer SplitContainerCryptharitms;
     }
 }

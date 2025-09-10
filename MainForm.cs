@@ -16,16 +16,11 @@ namespace CrosswordAssistant
         private const string EndWithFilterName = "ENDW";
         private const string ContainsFilterName = "CNTS";
 
-        private int ComponentsCount;
-
         private readonly AppearanceSettings _appearance;
         private readonly DictionaryService _dictionaryService;
         private readonly List<Label> _infoLabels = [];
         private readonly Dictionary<string, string> _filtersNames = [];
-
-        public List<TextBox> ComponentTextBox;
-        public TextBox OperationResultTextBox;
-        public Label CurrentOperatorLabel;
+        private readonly CustomControls _customControls;
 
         public MainForm()
         {
@@ -33,7 +28,6 @@ namespace CrosswordAssistant
             MinimumSize = Size;
             MaximumSize = Size;
             KeyPreview = true;
-            ComponentsCount = 2;
 
             try { Settings.Init(); }
             catch (Exception ex)
@@ -42,18 +36,15 @@ namespace CrosswordAssistant
                 Logger.WriteToLog(LogLevel.Error, ex.Message, ex.StackTrace ?? "");
             }
 
-            ComponentTextBox = [];
-            OperationResultTextBox = new TextBox();
-            CurrentOperatorLabel = new Label();
             Search.IsPending = false;
             _appearance = new AppearanceSettings(this);
             _dictionaryService = new DictionaryService();
-            if (_dictionaryService.DictionaryLoadError())
+            if (DictionaryService.DictionaryLoadError())
             {
                 Load += (s, e) => Close();
-                return;
             }
 
+            _customControls = new CustomControls(this);
             try { InitControls(); }
             catch (Exception ex)
             {
@@ -159,25 +150,25 @@ namespace CrosswordAssistant
         }
         private void AddComponentBtn_Click(object sender, EventArgs e)
         {
-            if (ComponentsCount == 5)
+            if (_customControls.ComponentsCount == 5)
             {
                 MessageBox.Show("Maksymalna iloœæ sk³adowych dzia³ania to 5.", "Za du¿o sk³adowych", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            ComponentsCount++;
-            ClearCryptharitmControls(splitContainerCryptharitms.Panel2);
-            GenerateCryptharitmControls(splitContainerCryptharitms.Panel2);
+            _customControls.ComponentsCount++;
+            _customControls.ClearCryptharitmControls();
+            _customControls.InitializeControls();
         }
         private void RemoveComponentBtn_Click(object sender, EventArgs e)
         {
-            if (ComponentsCount == 2)
+            if (_customControls.ComponentsCount == 2)
             {
                 MessageBox.Show("Minimalna iloœæ sk³adowych dzia³ania to 2.", "Za malo sk³adowych", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            ComponentsCount--;
-            ClearCryptharitmControls(splitContainerCryptharitms.Panel2);
-            GenerateCryptharitmControls(splitContainerCryptharitms.Panel2);
+            _customControls.ComponentsCount--;
+            _customControls.ClearCryptharitmControls();
+            _customControls.InitializeControls();
         }
         private async void LoadDictionaryBtn_Click(object sender, EventArgs e)
         {
@@ -196,7 +187,7 @@ namespace CrosswordAssistant
                     timer.Interval = 1000;
                     timer.Enabled = true;
 
-                    await Task.Run(() => _dictionaryService.LoadDictionaryAsync());
+                    await Task.Run(() => DictionaryService.LoadDictionaryAsync());
                 }
                 SetFileInfo(0);
                 DictionaryService.PendingDictionaryLoading = false;
@@ -521,8 +512,8 @@ namespace CrosswordAssistant
                             e.SuppressKeyPress = true;
                             break;
                         case Keys.F6:
-                            ComponentTextBox[0].SelectAll();
-                            ComponentTextBox[0].Focus();
+                            _customControls.ComponentTextBox[0].SelectAll();
+                            _customControls.ComponentTextBox[0].Focus();
                             break;
                     }
                     break;
@@ -581,26 +572,26 @@ namespace CrosswordAssistant
             var currentPage = (sender as TabControl)!.SelectedIndex;
             SetMode(currentPage);
         }
-        private void ComboBoxOperations_SelectedIndesChanged(object sender, EventArgs e)
+        private void ComboBoxOperations_SelectedIndexChanged(object sender, EventArgs e)
         {
             switch (comboBoxOperations.SelectedIndex)
             {
                 case 1:
                     AddComponentBtn.Text = "DODAJ SK£ADNIK";
                     RemoveComponentBtn.Text = "USUÑ SK£ADNIK";
-                    CurrentOperatorLabel.Text = "-";
+                    _customControls.CurrentOperatorLabel.Text = "-";
                     Search.CurrentOperator = Operators.Subtraction;
                     break;
                 case 2:
                     AddComponentBtn.Text = "DODAJ CZYNNIK";
                     RemoveComponentBtn.Text = "USUÑ CZYNNIK";
-                    CurrentOperatorLabel.Text = "•";
+                    _customControls.CurrentOperatorLabel.Text = "•";
                     Search.CurrentOperator = Operators.Multiplication;
                     break;
                 default:
                     AddComponentBtn.Text = "DODAJ SK£ADNIK";
                     RemoveComponentBtn.Text = "USUÑ SK£ADNIK";
-                    CurrentOperatorLabel.Text = "+";
+                    _customControls.CurrentOperatorLabel.Text = "+";
                     Search.CurrentOperator = Operators.Addition;
                     break;
             }
@@ -666,8 +657,6 @@ namespace CrosswordAssistant
             groupBoxEndsWithFilters.Text = _filtersNames[EndWithFilterName];
             comboBoxOperations.SelectedIndex = 0;
 
-            GenerateCryptharitmControls(splitContainerCryptharitms.Panel2);
-
             _appearance.SetBackgroundColor();
             _appearance.SetTextBoxesCasing(BaseSettings.CaseSensitive);
         }
@@ -676,8 +665,8 @@ namespace CrosswordAssistant
             switch (Search.Mode)
             {
                 case SearchMode.Cryptharitm:
-                    foreach(var tb in ComponentTextBox) tb.ReadOnly = pending;
-                    OperationResultTextBox.ReadOnly = pending;
+                    foreach(var tb in _customControls.ComponentTextBox) tb.ReadOnly = pending;
+                    _customControls.OperationResultTextBox.ReadOnly = pending;
                     AddComponentBtn.Enabled = !pending;
                     RemoveComponentBtn.Enabled = !pending;
                     comboBoxOperations.Enabled = !pending;
@@ -765,7 +754,7 @@ namespace CrosswordAssistant
         }
         private async Task<SearchResponse> ExecuteCryptharitmPatternSearchAsync()
         {
-            string pattern = JoinCryptharitmWords();
+            string pattern = _customControls.JoinCryptharitmComponents();
             labelCriptharytmInfo.Text = "Szukam rozwi¹zañ...";
 
             var search = SearchFactory.CreateSearch(Search.Mode);
@@ -1033,91 +1022,6 @@ namespace CrosswordAssistant
             FormService.SetLabelsBackColor(_infoLabels, Color.Silver);
             lbl.BackColor = Color.LightSteelBlue;
             textBoxAbout.Text = msg;
-        }
-        private void GenerateCryptharitmControls(SplitterPanel panel)
-        {
-            ComponentTextBox = [];
-            for (int i = 0; i < ComponentsCount; i++)
-            {
-                ComponentTextBox.Add(new TextBox()
-                {
-                    CharacterCasing = CharacterCasing.Upper,
-                    Location = new Point(155, 196 + 43 * i),
-                    Name = "textBoxComponent" + (i + 1).ToString(),
-                    Size = new Size(270, 31),
-                    TabIndex = i + 21,
-                    TextAlign = HorizontalAlignment.Right,
-                    Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 238)
-                });
-                panel.Controls.Add(ComponentTextBox[i]);
-            }
-
-            var lastComponentY = ComponentTextBox[ComponentsCount - 1].Location.Y;
-
-            CurrentOperatorLabel = new()
-            {
-                AutoSize = true,
-                Location = new Point(72, lastComponentY + 36),
-                Name = "labelOperator",
-                Size = new Size(24, 25),
-                TabIndex = 7,
-                Text = "+"
-            };
-
-            Label labelCryptLine = new()
-            {
-                BorderStyle = BorderStyle.FixedSingle,
-                Location = new Point(72, lastComponentY + 64),
-                Name = "labelCryptLine",
-                Size = new Size(358, 1),
-                TabIndex = 10
-            };
-
-            OperationResultTextBox = new()
-            {
-                CharacterCasing = CharacterCasing.Upper,
-                Location = new Point(133, lastComponentY + 88),
-                Name = "textBoxSum",
-                Size = new Size(292, 31),
-                TabIndex = 21 + ComponentsCount,
-                TextAlign = HorizontalAlignment.Right,
-                Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 238)
-            };
-
-            panel.Controls.Add(CurrentOperatorLabel);
-            panel.Controls.Add(labelCryptLine);
-            panel.Controls.Add(OperationResultTextBox);
-        }
-        private static void ClearCryptharitmControls(SplitterPanel panel)
-        {
-            foreach (Control control in panel.Controls.OfType<Control>().ToList())
-            {
-                if (control.Name.Contains("textBoxComponent") || control.Name == "labelOperator"
-                    || control.Name == "labelCryptLine" || control.Name == "textBoxSum")
-                {
-                    control.Dispose();
-                }
-            }
-        }
-        private string JoinCryptharitmWords()
-        {
-            string pattern = string.Empty;
-            for (int i = 0; i < ComponentsCount; i++)
-            {
-                if (ComponentTextBox[i].Text.Contains('|'))
-                {
-                    MessageBox.Show("Wykryto niedozwolony znak. U¿ywaj tylko liter polskiego alabetu.", "B³¹d danych", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return string.Empty;
-                }
-                pattern += ComponentTextBox[i].Text + "|";
-            }
-            if (OperationResultTextBox.Text.Contains('|'))
-            {
-                MessageBox.Show("Wykryto niedozwolony znak. U¿ywaj tylko liter polskiego alabetu.", "B³¹d danych", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return string.Empty;
-            }
-            pattern += OperationResultTextBox.Text;
-            return pattern;
         }
 
         #endregion
