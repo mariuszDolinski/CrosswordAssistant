@@ -12,6 +12,7 @@
         SuperWord = 8,
         StenoAnagram = 9,
         WordInWord = 10,
+        Cryptharitm = 11,
         None = 0
     }
 }

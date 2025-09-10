@@ -17,13 +17,6 @@ namespace CrosswordAssistant.Services
             Process.Start(processInfo);
         }
 
-        public static List<string> BoundResults(List<string> words)
-        {
-            List<string> results = words;
-            if (results.Count <= BaseSettings.MaxResultDisplay) return results;
-            return [.. results.Take(BaseSettings.MaxResultDisplay)];
-        }
-
         /// <summary>
         /// Removes empty lines and trim all lines in given list.
         /// </summary>

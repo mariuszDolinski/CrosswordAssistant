@@ -9,7 +9,7 @@ namespace CrosswordAssistant.Searches
         public override List<string> SearchMatches(string pattern)
         {
             List<string> result = [];
-            var strings = pattern.Split('+');
+            var strings = pattern.Split('|');
             var digits = GetPatternDigits(strings[0]);
             if (digits.Count == 0) return result;
             var groups = ValidateGroups(strings);
@@ -50,7 +50,7 @@ namespace CrosswordAssistant.Searches
             return new ValidationResponse(true, "");
         }
 
-        private List<int> GetPatternDigits(string pattern)
+        private static List<int> GetPatternDigits(string pattern)
         {
             List<int> result = [];
             if (pattern.Length == 0) return result;
@@ -68,7 +68,7 @@ namespace CrosswordAssistant.Searches
             }
             return result;
         }
-        private string[] ValidateGroups(string[] strings)
+        private static string[] ValidateGroups(string[] strings)
         {
             string[] result = new string[8];
             if (strings.Length != 9)
@@ -89,7 +89,7 @@ namespace CrosswordAssistant.Searches
             }
             return result;
         }
-        private bool CheckGroups(string[] groups)
+        private static bool CheckGroups(string[] groups)
         {
             for(int i = 0; i < groups.Length; i++)
             {

@@ -9,6 +9,7 @@ namespace CrosswordAssistant.Searches
         protected string AllowedLetters = "aąbcćdeęfghijklłmnńoópqrsśtuvwxyzźż";
         public static SearchMode Mode { get; set; }
         public static bool IsPending { get; set; }
+        public static Operators CurrentOperator { get; set; } = Operators.Addition;
 
         public virtual ValidationResponse ValidatePattern(string pattern)
         {

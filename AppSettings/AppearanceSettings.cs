@@ -14,7 +14,7 @@ namespace CrosswordAssistant.AppSettings
                     [
                         _mainForm.labelPattern,
                         _mainForm.labelCurrentPatternLen,
-                        _mainForm.labelResultsCount
+                        _mainForm.labelPatternResultsInfo
                     ],
                     [
                         _mainForm.labelUluzSam,

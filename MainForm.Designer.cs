@@ -33,7 +33,7 @@
             tabControl = new TabControl();
             tabPattern = new TabPage();
             splitContainerResults = new SplitContainer();
-            labelResultsCount = new Label();
+            labelPatternResultsInfo = new Label();
             label24 = new Label();
             textBoxPatternResults = new TextBox();
             contextMenuStripResults = new ContextMenuStrip(components);
@@ -160,6 +160,18 @@
             searchScrabbleBtn = new Button();
             labelScrabbleCurrentPatternLen = new Label();
             labelScrabble = new Label();
+            tabPageCryptharitm = new TabPage();
+            splitContainerCryptharitms = new SplitContainer();
+            textBoxCryptharitmResult = new TextBox();
+            label7 = new Label();
+            labelCriptharytmInfo = new Label();
+            solveCryptharitmBtn = new Button();
+            labelCryptharitm = new Label();
+            comboBoxOperations = new ComboBox();
+            label4 = new Label();
+            AddComponentBtn = new Button();
+            RemoveComponentBtn = new Button();
+            labelCryptharitms = new Label();
             tabPageDictionary = new TabPage();
             tableLayoutPanel3 = new TableLayoutPanel();
             groupBoxAddToDict = new GroupBox();
@@ -251,6 +263,11 @@
             ((System.ComponentModel.ISupportInitialize)numericUpDownDoubleBonus).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDownTripleBonus).BeginInit();
             tableLayoutPanelScrabble.SuspendLayout();
+            tabPageCryptharitm.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)splitContainerCryptharitms).BeginInit();
+            splitContainerCryptharitms.Panel1.SuspendLayout();
+            splitContainerCryptharitms.Panel2.SuspendLayout();
+            splitContainerCryptharitms.SuspendLayout();
             tabPageDictionary.SuspendLayout();
             tableLayoutPanel3.SuspendLayout();
             groupBoxAddToDict.SuspendLayout();
@@ -275,6 +292,7 @@
             tabControl.Controls.Add(tabPattern);
             tabControl.Controls.Add(tabPageUlozSam);
             tabControl.Controls.Add(tabPageScrabble);
+            tabControl.Controls.Add(tabPageCryptharitm);
             tabControl.Controls.Add(tabPageDictionary);
             tabControl.Controls.Add(tabPageAbout);
             tabControl.Dock = DockStyle.Fill;
@@ -309,7 +327,7 @@
             // 
             // splitContainerResults.Panel1
             // 
-            splitContainerResults.Panel1.Controls.Add(labelResultsCount);
+            splitContainerResults.Panel1.Controls.Add(labelPatternResultsInfo);
             splitContainerResults.Panel1.Controls.Add(label24);
             splitContainerResults.Panel1.Controls.Add(textBoxPatternResults);
             // 
@@ -321,16 +339,16 @@
             splitContainerResults.SplitterDistance = 454;
             splitContainerResults.TabIndex = 8;
             // 
-            // labelResultsCount
+            // labelPatternResultsInfo
             // 
-            labelResultsCount.BackColor = Color.DarkSeaGreen;
-            labelResultsCount.Dock = DockStyle.Fill;
-            labelResultsCount.Location = new Point(0, 662);
-            labelResultsCount.Name = "labelResultsCount";
-            labelResultsCount.Size = new Size(454, 35);
-            labelResultsCount.TabIndex = 2;
-            labelResultsCount.Text = "Znalezionych dopasowań: 0";
-            labelResultsCount.TextAlign = ContentAlignment.MiddleLeft;
+            labelPatternResultsInfo.BackColor = Color.DarkSeaGreen;
+            labelPatternResultsInfo.Dock = DockStyle.Fill;
+            labelPatternResultsInfo.Location = new Point(0, 662);
+            labelPatternResultsInfo.Name = "labelPatternResultsInfo";
+            labelPatternResultsInfo.Size = new Size(454, 35);
+            labelPatternResultsInfo.TabIndex = 2;
+            labelPatternResultsInfo.Text = "Znalezionych dopasowań: 0";
+            labelPatternResultsInfo.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // label24
             // 
@@ -1846,6 +1864,160 @@
             labelScrabble.Text = "SCRABBLE";
             labelScrabble.TextAlign = ContentAlignment.TopCenter;
             // 
+            // tabPageCryptharitm
+            // 
+            tabPageCryptharitm.Controls.Add(splitContainerCryptharitms);
+            tabPageCryptharitm.Controls.Add(labelCryptharitms);
+            tabPageCryptharitm.Location = new Point(4, 34);
+            tabPageCryptharitm.Name = "tabPageCryptharitm";
+            tabPageCryptharitm.Padding = new Padding(3);
+            tabPageCryptharitm.Size = new Size(1173, 778);
+            tabPageCryptharitm.TabIndex = 5;
+            tabPageCryptharitm.Text = "Kryptarytmy";
+            tabPageCryptharitm.UseVisualStyleBackColor = true;
+            // 
+            // splitContainerCryptharitms
+            // 
+            splitContainerCryptharitms.Dock = DockStyle.Bottom;
+            splitContainerCryptharitms.FixedPanel = FixedPanel.Panel2;
+            splitContainerCryptharitms.Location = new Point(3, 38);
+            splitContainerCryptharitms.Margin = new Padding(3, 6, 3, 3);
+            splitContainerCryptharitms.Name = "splitContainerCryptharitms";
+            // 
+            // splitContainerCryptharitms.Panel1
+            // 
+            splitContainerCryptharitms.Panel1.Controls.Add(textBoxCryptharitmResult);
+            splitContainerCryptharitms.Panel1.Controls.Add(label7);
+            splitContainerCryptharitms.Panel1.Controls.Add(labelCriptharytmInfo);
+            splitContainerCryptharitms.Panel1MinSize = 700;
+            // 
+            // splitContainerCryptharitms.Panel2
+            // 
+            splitContainerCryptharitms.Panel2.Controls.Add(solveCryptharitmBtn);
+            splitContainerCryptharitms.Panel2.Controls.Add(labelCryptharitm);
+            splitContainerCryptharitms.Panel2.Controls.Add(comboBoxOperations);
+            splitContainerCryptharitms.Panel2.Controls.Add(label4);
+            splitContainerCryptharitms.Panel2.Controls.Add(AddComponentBtn);
+            splitContainerCryptharitms.Panel2.Controls.Add(RemoveComponentBtn);
+            splitContainerCryptharitms.Size = new Size(1167, 737);
+            splitContainerCryptharitms.SplitterDistance = 704;
+            splitContainerCryptharitms.TabIndex = 3;
+            // 
+            // textBoxCryptharitmResult
+            // 
+            textBoxCryptharitmResult.BackColor = SystemColors.ControlLight;
+            textBoxCryptharitmResult.BorderStyle = BorderStyle.FixedSingle;
+            textBoxCryptharitmResult.ContextMenuStrip = contextMenuStripResults;
+            textBoxCryptharitmResult.Dock = DockStyle.Fill;
+            textBoxCryptharitmResult.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            textBoxCryptharitmResult.Location = new Point(0, 0);
+            textBoxCryptharitmResult.Multiline = true;
+            textBoxCryptharitmResult.Name = "textBoxCryptharitmResult";
+            textBoxCryptharitmResult.ReadOnly = true;
+            textBoxCryptharitmResult.ScrollBars = ScrollBars.Vertical;
+            textBoxCryptharitmResult.Size = new Size(704, 700);
+            textBoxCryptharitmResult.TabIndex = 4;
+            // 
+            // label7
+            // 
+            label7.Dock = DockStyle.Bottom;
+            label7.Location = new Point(0, 700);
+            label7.Name = "label7";
+            label7.Size = new Size(704, 3);
+            label7.TabIndex = 3;
+            label7.Text = "label7";
+            // 
+            // labelCriptharytmInfo
+            // 
+            labelCriptharytmInfo.BackColor = Color.LightBlue;
+            labelCriptharytmInfo.Dock = DockStyle.Bottom;
+            labelCriptharytmInfo.Location = new Point(0, 703);
+            labelCriptharytmInfo.Margin = new Padding(3, 3, 3, 0);
+            labelCriptharytmInfo.Name = "labelCriptharytmInfo";
+            labelCriptharytmInfo.Size = new Size(704, 34);
+            labelCriptharytmInfo.TabIndex = 2;
+            labelCriptharytmInfo.Text = "Znalezionych rozwiązań: 0";
+            labelCriptharytmInfo.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // solveCryptharitmBtn
+            // 
+            solveCryptharitmBtn.Cursor = Cursors.Hand;
+            solveCryptharitmBtn.Dock = DockStyle.Bottom;
+            solveCryptharitmBtn.FlatStyle = FlatStyle.Flat;
+            solveCryptharitmBtn.Location = new Point(0, 703);
+            solveCryptharitmBtn.Name = "solveCryptharitmBtn";
+            solveCryptharitmBtn.Size = new Size(459, 34);
+            solveCryptharitmBtn.TabIndex = 9;
+            solveCryptharitmBtn.Text = "SZUKAJ ROZWIĄZAŃ";
+            solveCryptharitmBtn.UseVisualStyleBackColor = true;
+            solveCryptharitmBtn.Click += SolveCryptharitmBtn_Click;
+            // 
+            // labelCryptharitm
+            // 
+            labelCryptharitm.Dock = DockStyle.Top;
+            labelCryptharitm.Location = new Point(0, 0);
+            labelCryptharitm.Name = "labelCryptharitm";
+            labelCryptharitm.Size = new Size(459, 58);
+            labelCryptharitm.TabIndex = 13;
+            labelCryptharitm.Text = "  Podaj składowe działania, a pod kreską jego wynik.\r\n  Użyj maksymalnie 10 różnych liter.\r\n";
+            // 
+            // comboBoxOperations
+            // 
+            comboBoxOperations.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBoxOperations.FormattingEnabled = true;
+            comboBoxOperations.Items.AddRange(new object[] { "dodawanie", "odejmowanie", "mnożenie" });
+            comboBoxOperations.Location = new Point(252, 63);
+            comboBoxOperations.Name = "comboBoxOperations";
+            comboBoxOperations.Size = new Size(182, 33);
+            comboBoxOperations.TabIndex = 15;
+            comboBoxOperations.SelectedIndexChanged += ComboBoxOperations_SelectedIndesChanged;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(76, 66);
+            label4.Name = "label4";
+            label4.Size = new Size(154, 25);
+            label4.TabIndex = 14;
+            label4.Text = "Wybierz działanie:";
+            // 
+            // AddComponentBtn
+            // 
+            AddComponentBtn.Cursor = Cursors.Hand;
+            AddComponentBtn.FlatStyle = FlatStyle.Flat;
+            AddComponentBtn.Location = new Point(55, 120);
+            AddComponentBtn.Name = "AddComponentBtn";
+            AddComponentBtn.Size = new Size(175, 34);
+            AddComponentBtn.TabIndex = 11;
+            AddComponentBtn.Text = "DODAJ SKŁADNIK";
+            AddComponentBtn.UseVisualStyleBackColor = true;
+            AddComponentBtn.Click += AddComponentBtn_Click;
+            // 
+            // RemoveComponentBtn
+            // 
+            RemoveComponentBtn.Cursor = Cursors.Hand;
+            RemoveComponentBtn.FlatStyle = FlatStyle.Flat;
+            RemoveComponentBtn.Location = new Point(253, 120);
+            RemoveComponentBtn.Name = "RemoveComponentBtn";
+            RemoveComponentBtn.Size = new Size(175, 34);
+            RemoveComponentBtn.TabIndex = 12;
+            RemoveComponentBtn.Text = "USUŃ SKŁADNIK";
+            RemoveComponentBtn.UseVisualStyleBackColor = true;
+            RemoveComponentBtn.Click += RemoveComponentBtn_Click;
+            // 
+            // labelCryptharitms
+            // 
+            labelCryptharitms.BackColor = Color.LightBlue;
+            labelCryptharitms.Dock = DockStyle.Top;
+            labelCryptharitms.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            labelCryptharitms.Location = new Point(3, 3);
+            labelCryptharitms.Margin = new Padding(3, 0, 3, 9);
+            labelCryptharitms.Name = "labelCryptharitms";
+            labelCryptharitms.Size = new Size(1167, 32);
+            labelCryptharitms.TabIndex = 2;
+            labelCryptharitms.Text = "KRYPTARYTMY";
+            labelCryptharitms.TextAlign = ContentAlignment.TopCenter;
+            // 
             // tabPageDictionary
             // 
             tabPageDictionary.Controls.Add(tableLayoutPanel3);
@@ -2670,6 +2842,13 @@
             ((System.ComponentModel.ISupportInitialize)numericUpDownTripleBonus).EndInit();
             tableLayoutPanelScrabble.ResumeLayout(false);
             tableLayoutPanelScrabble.PerformLayout();
+            tabPageCryptharitm.ResumeLayout(false);
+            splitContainerCryptharitms.Panel1.ResumeLayout(false);
+            splitContainerCryptharitms.Panel1.PerformLayout();
+            splitContainerCryptharitms.Panel2.ResumeLayout(false);
+            splitContainerCryptharitms.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)splitContainerCryptharitms).EndInit();
+            splitContainerCryptharitms.ResumeLayout(false);
             tabPageDictionary.ResumeLayout(false);
             tableLayoutPanel3.ResumeLayout(false);
             groupBoxAddToDict.ResumeLayout(false);
@@ -2868,7 +3047,7 @@
         internal Label labelGr3;
         internal Label labelGr5;
         internal Label labelCurrentPatternLen;
-        internal Label labelResultsCount;
+        internal Label labelPatternResultsInfo;
         internal Label labelScrabble;
         internal Label labelScrabbleCurrentPatternLen;
         internal Label labelScrabbleCalc;
@@ -2879,5 +3058,17 @@
         internal TextBox textBoxEndsWith;
         internal TextBox textBoxBeginsWith;
         private Button randomWordBtn;
+        private TabPage tabPageCryptharitm;
+        internal Label labelCryptharitms;
+        private SplitContainer splitContainerCryptharitms;
+        private Button solveCryptharitmBtn;
+        private Button RemoveComponentBtn;
+        private Button AddComponentBtn;
+        private Label labelCryptharitm;
+        private ComboBox comboBoxOperations;
+        private Label label4;
+        private Label label7;
+        private Label labelCriptharytmInfo;
+        private TextBox textBoxCryptharitmResult;
     }
 }
