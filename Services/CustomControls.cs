@@ -1,17 +1,22 @@
-﻿using CrosswordAssistant.Entities.Requests;
+﻿using CrosswordAssistant.AppSettings;
+using CrosswordAssistant.Entities.Requests;
 
 namespace CrosswordAssistant.Services
 {
     public class CustomControls
     {
+        private readonly string[] GroupLetters = ["AĄBC", "ĆDEĘ", "FGHI", "JKLŁ", "MNŃO", "ÓPRS", "ŚTUW", "YZŹŻ"];
         //MainForm controls
         private readonly Panel CryptharitmPanel;
         private readonly Panel PatternPanel;
 
         //Cryptharitm dynamic controls
-        public List<TextBox> ComponentTextBox;
-        public TextBox OperationResultTextBox;
-        public Label CurrentOperatorLabel;
+        public List<TextBox> ComponentTextBox {  get; set; }
+        public TextBox OperationResultTextBox { get; set; }
+        public Label CurrentOperatorLabel { get; set; }
+
+        public Label[] GroupLabel { get; set; }
+        public TextBox[] GroupTextBox { get; set; }
 
         //Ułóż sam mode
         public GroupBox UlozSamGroups;
@@ -26,12 +31,20 @@ namespace CrosswordAssistant.Services
             OperationResultTextBox = new TextBox();
             CurrentOperatorLabel = new Label();
             UlozSamGroups = new GroupBox();
+            GroupLabel = new Label[8];
+            GroupTextBox = new TextBox[8];
             ComponentsCount = 2;
 
             InitializeControls();
         }
 
-        public void InitializeControls()
+        private void InitializeControls()
+        {
+            InitializeCryptharitmControls();
+            InitializeUlozSamControls();
+        }
+
+        public void InitializeCryptharitmControls()
         {
             ComponentTextBox = [];
             for (int i = 0; i < ComponentsCount; i++)
@@ -81,22 +94,9 @@ namespace CrosswordAssistant.Services
                 Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 238)
             };
 
-            UlozSamGroups = new GroupBox()
-            {
-                Dock = DockStyle.Fill,
-                Location = new Point(0, 0),
-                Name = "groupBoxFilters",
-                Size = new Size(709, 473),
-                TabIndex = 2,
-                TabStop = false,
-                Text = "Grupy liter",
-                Visible = false
-            };
-
             CryptharitmPanel.Controls.Add(CurrentOperatorLabel);
             CryptharitmPanel.Controls.Add(labelCryptLine);
             CryptharitmPanel.Controls.Add(OperationResultTextBox);
-            PatternPanel.Controls.Add(UlozSamGroups);
         }
         public void ClearCryptharitmControls()
         {
@@ -128,6 +128,56 @@ namespace CrosswordAssistant.Services
             }
             pattern += OperationResultTextBox.Text;
             return pattern;
+        }
+        public void InitializeUlozSamControls()
+        {
+            var bColor = Color.FromArgb((int)Settings.SavedSettings[BaseSettings.PatternColorKey]);
+            
+            UlozSamGroups = new GroupBox()
+            {
+                Dock = DockStyle.Fill,
+                Location = new Point(0, 0),
+                Name = "groupBoxFilters",
+                Size = new Size(709, 473),
+                TabIndex = 2,
+                TabStop = false,
+                Text = "Grupy liter",
+                Visible = false
+            };
+
+            int offsetX = 0;
+            int offsetY = 0;
+            for (int i = 0; i < 8; i++)
+            {
+                if (i > 3) { offsetX = 300; offsetY = -4; }
+                GroupLabel[i] = new Label
+                {
+                    BackColor = bColor,
+                    Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point, 238),
+                    Location = new Point(25 + offsetX, 45 * (i + 1 + offsetY)),
+                    Margin = new Padding(4, 2, 3, 2),
+                    Name = "labelGr1",
+                    Size = new Size(72, 36),
+                    TabIndex = 0,
+                    BorderStyle = BorderStyle.FixedSingle,
+                    Text = (i + 1).ToString(),
+                    TextAlign = ContentAlignment.MiddleCenter
+                };
+                GroupTextBox[i] = new TextBox
+                {
+                    Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point, 238),
+                    Location = new Point(105 + offsetX, 45 * (i + 1 + offsetY)),
+                    Margin = new Padding(3, 1, 3, 3),
+                    Name = "textBoxGr1",
+                    Size = new Size(165, 36),
+                    TabIndex = 30,
+                    Text = GroupLetters[i],
+                };
+                UlozSamGroups.Controls.Add(GroupLabel[i]);
+                UlozSamGroups.Controls.Add(GroupTextBox[i]);
+            }
+
+            PatternPanel.Controls.Add(UlozSamGroups);
         }
     }
 }

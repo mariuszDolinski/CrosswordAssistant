@@ -160,7 +160,7 @@ namespace CrosswordAssistant
             }
             _customControls.ComponentsCount++;
             _customControls.ClearCryptharitmControls();
-            _customControls.InitializeControls();
+            _customControls.InitializeCryptharitmControls();
         }
         private void RemoveComponentBtn_Click(object sender, EventArgs e)
         {
@@ -171,7 +171,7 @@ namespace CrosswordAssistant
             }
             _customControls.ComponentsCount--;
             _customControls.ClearCryptharitmControls();
-            _customControls.InitializeControls();
+            _customControls.InitializeCryptharitmControls();
         }
         private async void LoadDictionaryBtn_Click(object sender, EventArgs e)
         {
