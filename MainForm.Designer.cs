@@ -40,7 +40,7 @@
             szukajWToolStripMenuItem = new ToolStripMenuItem();
             googleToolStripMenuItem = new ToolStripMenuItem();
             sJPToolStripMenuItem = new ToolStripMenuItem();
-            panel1 = new Panel();
+            PanelPatternFilters = new Panel();
             groupBoxFilters = new GroupBox();
             groupBoxContainsFilter = new GroupBox();
             radioButtonContainsOr = new RadioButton();
@@ -65,6 +65,7 @@
             textBoxBeginsWith = new TextBox();
             tableLayoutPanel5 = new TableLayoutPanel();
             groupBoxMode = new GroupBox();
+            radioUlozSamMode = new RadioButton();
             radioWordInWord = new RadioButton();
             radioStenoAnagramMode = new RadioButton();
             radioSuperWordMode = new RadioButton();
@@ -233,7 +234,7 @@
             splitContainerResults.Panel2.SuspendLayout();
             splitContainerResults.SuspendLayout();
             contextMenuStripResults.SuspendLayout();
-            panel1.SuspendLayout();
+            PanelPatternFilters.SuspendLayout();
             groupBoxFilters.SuspendLayout();
             groupBoxContainsFilter.SuspendLayout();
             groupBoxEndsWithFilters.SuspendLayout();
@@ -333,7 +334,7 @@
             // 
             // splitContainerResults.Panel2
             // 
-            splitContainerResults.Panel2.Controls.Add(panel1);
+            splitContainerResults.Panel2.Controls.Add(PanelPatternFilters);
             splitContainerResults.Panel2.Controls.Add(tableLayoutPanel5);
             splitContainerResults.Size = new Size(1167, 697);
             splitContainerResults.SplitterDistance = 454;
@@ -404,14 +405,14 @@
             sJPToolStripMenuItem.Text = "SJP";
             sJPToolStripMenuItem.Click += SearchSJP_MenuClick;
             // 
-            // panel1
+            // PanelPatternFilters
             // 
-            panel1.Controls.Add(groupBoxFilters);
-            panel1.Dock = DockStyle.Fill;
-            panel1.Location = new Point(0, 224);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(709, 473);
-            panel1.TabIndex = 1;
+            PanelPatternFilters.Controls.Add(groupBoxFilters);
+            PanelPatternFilters.Dock = DockStyle.Fill;
+            PanelPatternFilters.Location = new Point(0, 224);
+            PanelPatternFilters.Name = "PanelPatternFilters";
+            PanelPatternFilters.Size = new Size(709, 473);
+            PanelPatternFilters.TabIndex = 1;
             // 
             // groupBoxFilters
             // 
@@ -693,6 +694,7 @@
             // 
             // groupBoxMode
             // 
+            groupBoxMode.Controls.Add(radioUlozSamMode);
             groupBoxMode.Controls.Add(radioWordInWord);
             groupBoxMode.Controls.Add(radioStenoAnagramMode);
             groupBoxMode.Controls.Add(radioSuperWordMode);
@@ -708,6 +710,18 @@
             groupBoxMode.TabIndex = 0;
             groupBoxMode.TabStop = false;
             groupBoxMode.Text = "Tryb";
+            // 
+            // radioUlozSamMode
+            // 
+            radioUlozSamMode.AutoSize = true;
+            radioUlozSamMode.Location = new Point(26, 174);
+            radioUlozSamMode.Name = "radioUlozSamMode";
+            radioUlozSamMode.Size = new Size(113, 29);
+            radioUlozSamMode.TabIndex = 14;
+            radioUlozSamMode.TabStop = true;
+            radioUlozSamMode.Text = "Ułóż Sam";
+            radioUlozSamMode.UseVisualStyleBackColor = true;
+            radioUlozSamMode.CheckedChanged += RadioButtonMode_CheckedChanged;
             // 
             // radioWordInWord
             // 
@@ -2797,7 +2811,7 @@
             ((System.ComponentModel.ISupportInitialize)splitContainerResults).EndInit();
             splitContainerResults.ResumeLayout(false);
             contextMenuStripResults.ResumeLayout(false);
-            panel1.ResumeLayout(false);
+            PanelPatternFilters.ResumeLayout(false);
             groupBoxFilters.ResumeLayout(false);
             groupBoxContainsFilter.ResumeLayout(false);
             groupBoxContainsFilter.PerformLayout();
@@ -2994,7 +3008,6 @@
         private Label label6;
         private CheckBox checkBoxNotContains;
         private CheckBox checkBoxContains;
-        private Panel panel1;
         private RadioButton radioWordInWord;
         private Label label23;
         private Label labelWordInWordInfo;
@@ -3070,5 +3083,7 @@
         private Label labelCriptharytmInfo;
         private TextBox textBoxCryptharitmResult;
         public SplitContainer SplitContainerCryptharitms;
+        public Panel PanelPatternFilters;
+        private RadioButton radioUlozSamMode;
     }
 }

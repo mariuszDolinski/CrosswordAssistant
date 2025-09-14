@@ -44,7 +44,10 @@ namespace CrosswordAssistant
                 Load += (s, e) => Close();
             }
 
-            _customControls = new CustomControls(this);
+            _customControls = new CustomControls(new CustomControlsRequest(
+                SplitContainerCryptharitms.Panel2,
+                PanelPatternFilters
+            ));
             try { InitControls(); }
             catch (Exception ex)
             {
@@ -354,35 +357,39 @@ namespace CrosswordAssistant
         {
             if (radioPatternMode.Checked)
             {
-                OnModeChanged(Messages.PatternModeMessage);
+                OnModeChanged(Messages.PatternModeMessage, false);
             }
             else if (radioAnagramMode.Checked)
             {
-                OnModeChanged(Messages.AnagramModeMessage);
+                OnModeChanged(Messages.AnagramModeMessage, false);
             }
             else if (radioMetagramMode.Checked)
             {
-                OnModeChanged(Messages.MetagramModeMessage);
+                OnModeChanged(Messages.MetagramModeMessage, false);
             }
             else if (radioPM1Mode.Checked)
             {
-                OnModeChanged(Messages.MetagramModeMessage);
+                OnModeChanged(Messages.MetagramModeMessage, false);
             }
             else if (radioSubWordMode.Checked)
             {
-                OnModeChanged(Messages.MetagramModeMessage);
+                OnModeChanged(Messages.MetagramModeMessage, false);
             }
             else if (radioSuperWordMode.Checked)
             {
-                OnModeChanged(Messages.MetagramModeMessage);
+                OnModeChanged(Messages.MetagramModeMessage, false);
             }
             else if (radioStenoAnagramMode.Checked)
             {
-                OnModeChanged(Messages.MetagramModeMessage);
+                OnModeChanged(Messages.MetagramModeMessage, false);
             }
             else if (radioWordInWord.Checked)
             {
-                OnModeChanged(Messages.PatternModeMessage);
+                OnModeChanged(Messages.PatternModeMessage, false);
+            }
+            else if (radioUlozSamMode.Checked)
+            {
+                OnModeChanged(Messages.PatternModeMessage, true);
             }
         }
         private void RadioLength_CheckedChanged(object sender, EventArgs e)
@@ -972,15 +979,18 @@ namespace CrosswordAssistant
                     else if (radioSuperWordMode.Checked) Search.Mode = SearchMode.SuperWord;
                     else if (radioStenoAnagramMode.Checked) Search.Mode = SearchMode.StenoAnagram;
                     else if (radioWordInWord.Checked) Search.Mode = SearchMode.WordInWord;
+                    else if (radioUlozSamMode.Checked) Search.Mode = SearchMode.UluzSam;
                     else Search.Mode = SearchMode.None;
                     break;
             }
         }
-        private void OnModeChanged(string message)
+        private void OnModeChanged(string message, bool isUlozSam)
         {
             labelCurrentPatternLen.Text = textBoxPattern.Text.Length.ToString();
             SetMode(0);
             textBoxPatternResults.Text = message;
+            groupBoxFilters.Visible = !isUlozSam;
+            _customControls.UlozSamGroups.Visible = isUlozSam;
         }
         private string[] ConvertGroupsToArray()
         {

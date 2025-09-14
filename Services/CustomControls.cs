@@ -1,22 +1,31 @@
-﻿namespace CrosswordAssistant.Services
+﻿using CrosswordAssistant.Entities.Requests;
+
+namespace CrosswordAssistant.Services
 {
     public class CustomControls
     {
-        private readonly MainForm _mainForm;
+        //MainForm controls
+        private readonly Panel CryptharitmPanel;
+        private readonly Panel PatternPanel;
 
         //Cryptharitm dynamic controls
         public List<TextBox> ComponentTextBox;
         public TextBox OperationResultTextBox;
         public Label CurrentOperatorLabel;
 
+        //Ułóż sam mode
+        public GroupBox UlozSamGroups;
+
         public int ComponentsCount;
 
-        public CustomControls(MainForm mainForm)
+        public CustomControls(CustomControlsRequest request)
         {
-            _mainForm = mainForm;
+            CryptharitmPanel = request.CryptaritmPanel;
+            PatternPanel = request.PatternPanel;
             ComponentTextBox = [];
             OperationResultTextBox = new TextBox();
             CurrentOperatorLabel = new Label();
+            UlozSamGroups = new GroupBox();
             ComponentsCount = 2;
 
             InitializeControls();
@@ -37,7 +46,7 @@
                     TextAlign = HorizontalAlignment.Right,
                     Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 238)
                 });
-                _mainForm.SplitContainerCryptharitms.Panel2.Controls.Add(ComponentTextBox[i]);
+                CryptharitmPanel.Controls.Add(ComponentTextBox[i]);
             }
 
             var lastComponentY = ComponentTextBox[ComponentsCount - 1].Location.Y;
@@ -72,13 +81,26 @@
                 Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 238)
             };
 
-            _mainForm.SplitContainerCryptharitms.Panel2.Controls.Add(CurrentOperatorLabel);
-            _mainForm.SplitContainerCryptharitms.Panel2.Controls.Add(labelCryptLine);
-            _mainForm.SplitContainerCryptharitms.Panel2.Controls.Add(OperationResultTextBox);
+            UlozSamGroups = new GroupBox()
+            {
+                Dock = DockStyle.Fill,
+                Location = new Point(0, 0),
+                Name = "groupBoxFilters",
+                Size = new Size(709, 473),
+                TabIndex = 2,
+                TabStop = false,
+                Text = "Grupy liter",
+                Visible = false
+            };
+
+            CryptharitmPanel.Controls.Add(CurrentOperatorLabel);
+            CryptharitmPanel.Controls.Add(labelCryptLine);
+            CryptharitmPanel.Controls.Add(OperationResultTextBox);
+            PatternPanel.Controls.Add(UlozSamGroups);
         }
         public void ClearCryptharitmControls()
         {
-            foreach (Control control in _mainForm.SplitContainerCryptharitms.Panel2.Controls.OfType<Control>().ToList())
+            foreach (Control control in CryptharitmPanel.Controls.OfType<Control>().ToList())
             {
                 if (control.Name.Contains("textBoxComponent") || control.Name == "labelOperator"
                     || control.Name == "labelCryptLine" || control.Name == "textBoxSum")
