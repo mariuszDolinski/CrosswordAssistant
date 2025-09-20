@@ -738,7 +738,6 @@ namespace CrosswordAssistant
             string pattern = textBoxPattern.Text.Trim();
             labelPatternResultsInfo.Text = "Szukam dopasowañ...";
             var search = SearchFactory.CreateSearch(Search.Mode);
-            List<string> matches;
             var validateResponse = search.ValidatePattern(pattern);
             if (!validateResponse.Result)
             {
@@ -750,7 +749,8 @@ namespace CrosswordAssistant
             {
                 pattern += "|" + group.ToLower();
             }
-            matches = await Task.Run(() => search.SearchMatches(pattern));
+
+            List<string> matches = await Task.Run(() => search.SearchMatches(pattern));
             labelPatternResultsInfo.Text = "Znalezionych dopasowañ: " + matches.Count;
             return new SearchResponse(matches, true, "");
         }
@@ -967,6 +967,7 @@ namespace CrosswordAssistant
             textBoxPatternResults.Text = message;
             groupBoxFilters.Visible = !isUlozSam;
             _customControls.UlozSamGroups.Visible = isUlozSam;
+            checkBoxLength.Enabled = !isUlozSam;
         }
         private string GetSelectedResult()
         {
