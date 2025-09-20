@@ -23,7 +23,7 @@ namespace CrosswordAssistant.AppSettings
             DefaultSettings[DictFileKey] = "slownik.txt";
             DefaultSettings[MaxResultsKey] = 500;
             DefaultSettings[PatternColorKey] = -7357297;
-            DefaultSettings[UlozSamColorKey] = -7114533;
+            DefaultSettings[CryptharitmColorKey] = -7114533;
             DefaultSettings[ScrabbleColorKey] = -2968436;
             DefaultSettings[MainFormPosKey] = (int)MainFormPosition.Center;
             DefaultSettings[CaseSensitiveKey] = 0;
@@ -78,7 +78,7 @@ namespace CrosswordAssistant.AppSettings
             SavedSettings[DictFileKey]= ConfigurationManager.AppSettings[DictFileKey] ?? DefaultSettings[DictFileKey];
             SavedSettings[MaxResultsKey] = ConfigurationManager.AppSettings[MaxResultsKey] is null ? DefaultSettings[MaxResultsKey] : int.Parse(ConfigurationManager.AppSettings[MaxResultsKey]!);
             SavedSettings[PatternColorKey] = ConfigurationManager.AppSettings[PatternColorKey] is null ? DefaultSettings[PatternColorKey] : int.Parse(ConfigurationManager.AppSettings[PatternColorKey]!);
-            SavedSettings[UlozSamColorKey] = ConfigurationManager.AppSettings[UlozSamColorKey] is null ? DefaultSettings[UlozSamColorKey] : int.Parse(ConfigurationManager.AppSettings[UlozSamColorKey]!);
+            SavedSettings[CryptharitmColorKey] = ConfigurationManager.AppSettings[CryptharitmColorKey] is null ? DefaultSettings[CryptharitmColorKey] : int.Parse(ConfigurationManager.AppSettings[CryptharitmColorKey]!);
             SavedSettings[ScrabbleColorKey] = ConfigurationManager.AppSettings[ScrabbleColorKey] is null ? DefaultSettings[ScrabbleColorKey] : int.Parse(ConfigurationManager.AppSettings[ScrabbleColorKey]!);
             SavedSettings[MainFormPosKey] = ConfigurationManager.AppSettings[MainFormPosKey] is null ? DefaultSettings[MainFormPosKey] : int.Parse(ConfigurationManager.AppSettings[MainFormPosKey]!);
             SavedSettings[CaseSensitiveKey] = ConfigurationManager.AppSettings[CaseSensitiveKey] is null ? DefaultSettings[CaseSensitiveKey] : int.Parse(ConfigurationManager.AppSettings[CaseSensitiveKey]!);

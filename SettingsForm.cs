@@ -24,7 +24,7 @@ namespace CrosswordAssistant
             textBoxDefaultDictPath.Text = Path.GetFullPath((string)Settings.CurrentSettings[Settings.DictPathKey]) + "\\" + Settings.CurrentSettings[Settings.DictFileKey];
             textBoxMaxResultsCount.Text = Settings.CurrentSettings[Settings.MaxResultsKey].ToString();
             labelColorPattern.BackColor = Color.FromArgb((int)Settings.CurrentSettings[Settings.PatternColorKey]);
-            labelColorUlozSam.BackColor = Color.FromArgb((int)Settings.CurrentSettings[Settings.UlozSamColorKey]);
+            labelColorCryptharitm.BackColor = Color.FromArgb((int)Settings.CurrentSettings[Settings.CryptharitmColorKey]);
             labelColorScrabble.BackColor = Color.FromArgb((int)Settings.CurrentSettings[Settings.ScrabbleColorKey]);
             SetMainFormPositionRadioButtons();
             SetCaseSensitiveRadioButtons();
@@ -63,7 +63,7 @@ namespace CrosswordAssistant
             setColorDialog.CustomColors =
             [
                 ColorTranslator.ToOle(labelColorPattern.BackColor),
-                ColorTranslator.ToOle(labelColorUlozSam.BackColor),
+                ColorTranslator.ToOle(labelColorCryptharitm.BackColor),
                 ColorTranslator.ToOle(labelColorScrabble.BackColor)
             ];
         }
@@ -169,7 +169,7 @@ namespace CrosswordAssistant
         }
         private void UlozSamColor_Click(object sender, EventArgs e)
         {
-            SetNewColor(labelColorUlozSam, Settings.UlozSamColorKey);
+            SetNewColor(labelColorCryptharitm, Settings.CryptharitmColorKey);
         }
         private void ScrabbleColor_Click(object sender, EventArgs e)
         {

@@ -19,8 +19,8 @@ namespace CrosswordAssistant.Services
 
 
         //Ułóż sam mode
-        public Label[] GroupLabel { get; set; }
-        public TextBox[] GroupTextBox { get; set; }
+        private readonly Label[] GroupLabel;
+        private readonly TextBox[] GroupTextBox;
         public GroupBox UlozSamGroups {  get; set; }
 
         public CustomControls(CustomControlsRequest request)
@@ -179,6 +179,13 @@ namespace CrosswordAssistant.Services
             }
 
             PatternPanel.Controls.Add(UlozSamGroups);
+        }
+        public string[] ConvertGroupsToArray()
+        {
+            string[] result = new string[8];
+            for (int i = 0; i < 8; i++)
+                result[i] = GroupTextBox[i].Text;
+            return result;
         }
     }
 }

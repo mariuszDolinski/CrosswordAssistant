@@ -85,36 +85,6 @@ namespace CrosswordAssistant
                 Logger.WriteToLog(LogLevel.Error, ex.Message, ex.StackTrace ?? "");
             }
         }
-        private void UluzSamSearch_Click(object sender, EventArgs e)
-        {
-            if (DictionaryService.PendingDictionaryLoading || Search.IsPending)
-            {
-                MessageBox.Show("Trwa inne wyszukiwanie lub ³adowanie nowego s³ownika. Spróbuj ponownie póŸniej", "Inna operacja w toku", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-
-            var search = SearchFactory.CreateSearch(Search.Mode);
-            string pattern = textBoxPatternUls.Text;
-            var validateResult = search.ValidatePattern(pattern);
-            if (!validateResult.Result)
-            {
-                MessageBox.Show(validateResult.Message, "B³¹d wzorca", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            textBoxPatternUls.ReadOnly = true;
-
-            string[] groups = ConvertGroupsToArray();
-            foreach (string group in groups)
-            {
-                pattern += "|" + group.ToLower();
-            }
-            List<string> matches = search.SearchMatches(pattern);
-
-            FillTextBoxResults(matches, textBoxResultsUls);
-            textBoxPatternUls.ReadOnly = false;
-        }
         private void SearchScrabble_Click(object sender, EventArgs e)
         {
             if (DictionaryService.PendingDictionaryLoading || Search.IsPending)
@@ -474,8 +444,8 @@ namespace CrosswordAssistant
                 var currentTabIndex = tabControl.SelectedIndex;
                 tabControl.SelectedTab = currentTabIndex switch
                 {
-                    0 => tabPageUlozSam,
-                    1 => tabPageScrabble,
+                    0 => tabPageScrabble,
+                    1 => tabPageCryptharitm,
                     2 => tabPageDictionary,
                     3 => tabPageAbout,
                     _ => tabPattern,
@@ -484,19 +454,6 @@ namespace CrosswordAssistant
             switch (Search.Mode)
             {
                 case SearchMode.None:
-                    break;
-                case SearchMode.UluzSam:
-                    switch (e.KeyCode)
-                    {
-                        case Keys.Enter:
-                            UluzSamSearch_Click(sender, e);
-                            e.SuppressKeyPress = true;
-                            break;
-                        case Keys.F6:
-                            textBoxPatternUls.SelectAll();
-                            textBoxPatternUls.Focus();
-                            break;
-                    }
                     break;
                 case SearchMode.Scrabble:
                     switch (e.KeyCode)
@@ -698,7 +655,8 @@ namespace CrosswordAssistant
             IsSearchPending(true);
             var searchResponse = Search.Mode switch
             {
-                SearchMode.Cryptharitm => await ExecuteCryptharitmPatternSearchAsync(),
+                SearchMode.Cryptharitm => await ExecuteCryptharitmSearchAsync(),
+                SearchMode.UluzSam => await ExecuteUlozSamSearchAsync(),
                 _ => await ExecutePatternSearchAsync(),
             };
 
@@ -759,7 +717,7 @@ namespace CrosswordAssistant
             labelPatternResultsInfo.Text = "Znalezionych dopasowañ: " + matches.Count;
             return new SearchResponse(matches, true, "");
         }
-        private async Task<SearchResponse> ExecuteCryptharitmPatternSearchAsync()
+        private async Task<SearchResponse> ExecuteCryptharitmSearchAsync()
         {
             string pattern = _customControls.JoinCryptharitmComponents();
             labelCriptharytmInfo.Text = "Szukam rozwi¹zañ...";
@@ -773,6 +731,27 @@ namespace CrosswordAssistant
 
             List<string> matches = await Task.Run(() => search.SearchMatches(pattern));
             labelCriptharytmInfo.Text = "Znalezionych rozwi¹zañ: " + matches.Count;
+            return new SearchResponse(matches, true, "");
+        }
+        private async Task<SearchResponse> ExecuteUlozSamSearchAsync()
+        {
+            string pattern = textBoxPattern.Text.Trim();
+            labelPatternResultsInfo.Text = "Szukam dopasowañ...";
+            var search = SearchFactory.CreateSearch(Search.Mode);
+            List<string> matches;
+            var validateResponse = search.ValidatePattern(pattern);
+            if (!validateResponse.Result)
+            {
+                return new SearchResponse([], false, validateResponse.Message);
+            }
+
+            string[] groups = _customControls.ConvertGroupsToArray();
+            foreach (string group in groups)
+            {
+                pattern += "|" + group.ToLower();
+            }
+            matches = await Task.Run(() => search.SearchMatches(pattern));
+            labelPatternResultsInfo.Text = "Znalezionych dopasowañ: " + matches.Count;
             return new SearchResponse(matches, true, "");
         }
         private void SetLengthControlsEnabled(bool isEnabled)
@@ -958,16 +937,13 @@ namespace CrosswordAssistant
             switch (tabIndex)
             {
                 case 1:
-                    Search.Mode = SearchMode.UluzSam;
-                    break;
-                case 2:
                     Search.Mode = SearchMode.Scrabble;
                     break;
-                case 3:
+                case 2:
                     Search.Mode = SearchMode.Cryptharitm;
                     break;
+                case 3:
                 case 4:
-                case 5:
                     Search.Mode = SearchMode.None;
                     break;
                 default:
@@ -992,32 +968,9 @@ namespace CrosswordAssistant
             groupBoxFilters.Visible = !isUlozSam;
             _customControls.UlozSamGroups.Visible = isUlozSam;
         }
-        private string[] ConvertGroupsToArray()
-        {
-            string[] result =
-            [
-                textBoxGr1.Text.ToLower(),
-                textBoxGr2.Text.ToLower(),
-                textBoxGr3.Text.ToLower(),
-                textBoxGr4.Text.ToLower(),
-                textBoxGr5.Text.ToLower(),
-                textBoxGr6.Text.ToLower(),
-                textBoxGr7.Text.ToLower(),
-                textBoxGr8.Text.ToLower(),
-            ];
-            return result;
-        }
         private string GetSelectedResult()
         {
-            string searchPhrase;
-            if (Search.Mode == SearchMode.UluzSam)
-            {
-                searchPhrase = textBoxResultsUls.SelectedText;
-            }
-            else
-            {
-                searchPhrase = textBoxPatternResults.SelectedText;
-            }
+            string searchPhrase = textBoxPatternResults.SelectedText;
 
             if (string.IsNullOrEmpty(searchPhrase))
             {

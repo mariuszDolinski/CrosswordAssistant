@@ -56,8 +56,8 @@
             buttonScrabbleColor = new Button();
             labelColorScrabble = new Label();
             label2 = new Label();
-            buttonUlozSamColor = new Button();
-            labelColorUlozSam = new Label();
+            buttonCryptharitmColor = new Button();
+            labelColorCryptharitm = new Label();
             label1 = new Label();
             buttonPatternColor = new Button();
             labelColorPattern = new Label();
@@ -343,8 +343,8 @@
             groupBoxColorsSettings.Controls.Add(buttonScrabbleColor);
             groupBoxColorsSettings.Controls.Add(labelColorScrabble);
             groupBoxColorsSettings.Controls.Add(label2);
-            groupBoxColorsSettings.Controls.Add(buttonUlozSamColor);
-            groupBoxColorsSettings.Controls.Add(labelColorUlozSam);
+            groupBoxColorsSettings.Controls.Add(buttonCryptharitmColor);
+            groupBoxColorsSettings.Controls.Add(labelColorCryptharitm);
             groupBoxColorsSettings.Controls.Add(label1);
             groupBoxColorsSettings.Controls.Add(buttonPatternColor);
             groupBoxColorsSettings.Controls.Add(labelColorPattern);
@@ -361,7 +361,7 @@
             // buttonScrabbleColor
             // 
             buttonScrabbleColor.FlatStyle = FlatStyle.Flat;
-            buttonScrabbleColor.Location = new Point(531, 100);
+            buttonScrabbleColor.Location = new Point(335, 100);
             buttonScrabbleColor.Name = "buttonScrabbleColor";
             buttonScrabbleColor.Size = new Size(112, 34);
             buttonScrabbleColor.TabIndex = 9;
@@ -372,7 +372,7 @@
             // labelColorScrabble
             // 
             labelColorScrabble.BackColor = Color.DarkSeaGreen;
-            labelColorScrabble.Location = new Point(480, 100);
+            labelColorScrabble.Location = new Point(284, 100);
             labelColorScrabble.Name = "labelColorScrabble";
             labelColorScrabble.Size = new Size(45, 34);
             labelColorScrabble.TabIndex = 8;
@@ -380,39 +380,39 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(480, 72);
+            label2.Location = new Point(284, 72);
             label2.Name = "label2";
             label2.Size = new Size(80, 25);
             label2.TabIndex = 7;
             label2.Text = "Scrabble";
             // 
-            // buttonUlozSamColor
+            // buttonCryptharitmColor
             // 
-            buttonUlozSamColor.FlatStyle = FlatStyle.Flat;
-            buttonUlozSamColor.Location = new Point(295, 100);
-            buttonUlozSamColor.Name = "buttonUlozSamColor";
-            buttonUlozSamColor.Size = new Size(112, 34);
-            buttonUlozSamColor.TabIndex = 6;
-            buttonUlozSamColor.Text = "Zmień";
-            buttonUlozSamColor.UseVisualStyleBackColor = true;
-            buttonUlozSamColor.Click += UlozSamColor_Click;
+            buttonCryptharitmColor.FlatStyle = FlatStyle.Flat;
+            buttonCryptharitmColor.Location = new Point(608, 100);
+            buttonCryptharitmColor.Name = "buttonCryptharitmColor";
+            buttonCryptharitmColor.Size = new Size(112, 34);
+            buttonCryptharitmColor.TabIndex = 6;
+            buttonCryptharitmColor.Text = "Zmień";
+            buttonCryptharitmColor.UseVisualStyleBackColor = true;
+            buttonCryptharitmColor.Click += UlozSamColor_Click;
             // 
-            // labelColorUlozSam
+            // labelColorCryptharitm
             // 
-            labelColorUlozSam.BackColor = Color.DarkSeaGreen;
-            labelColorUlozSam.Location = new Point(244, 100);
-            labelColorUlozSam.Name = "labelColorUlozSam";
-            labelColorUlozSam.Size = new Size(45, 34);
-            labelColorUlozSam.TabIndex = 5;
+            labelColorCryptharitm.BackColor = Color.DarkSeaGreen;
+            labelColorCryptharitm.Location = new Point(557, 100);
+            labelColorCryptharitm.Name = "labelColorCryptharitm";
+            labelColorCryptharitm.Size = new Size(45, 34);
+            labelColorCryptharitm.TabIndex = 5;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(244, 72);
+            label1.Location = new Point(557, 72);
             label1.Name = "label1";
-            label1.Size = new Size(86, 25);
+            label1.Size = new Size(109, 25);
             label1.TabIndex = 4;
-            label1.Text = "Ułóż sam";
+            label1.Text = "Kryptarytmy";
             // 
             // buttonPatternColor
             // 
@@ -500,8 +500,8 @@
         private Label labelColorPattern;
         private Button buttonPatternColor;
         private Button buttonResetToDefault;
-        private Button buttonUlozSamColor;
-        private Label labelColorUlozSam;
+        private Button buttonCryptharitmColor;
+        private Label labelColorCryptharitm;
         private Label label1;
         private Button buttonScrabbleColor;
         private Label labelColorScrabble;
