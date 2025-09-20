@@ -1,6 +1,7 @@
 ﻿using CrosswordAssistant.Entities.Enums;
 using CrosswordAssistant.Services;
 using System.Configuration;
+using System.Security.AccessControl;
 
 namespace CrosswordAssistant.AppSettings
 {
@@ -27,7 +28,7 @@ namespace CrosswordAssistant.AppSettings
             DefaultSettings[ScrabbleColorKey] = -2968436;
             DefaultSettings[MainFormPosKey] = (int)MainFormPosition.Center;
             DefaultSettings[CaseSensitiveKey] = 0;
-            DefaultSettings[LogLevelKey] = Logger.LogLevel;
+            DefaultSettings[LogLevelKey] = (int)Logger.LogLevel;
         }
         private static void InitCurrentSettings()
         {
@@ -121,7 +122,40 @@ namespace CrosswordAssistant.AppSettings
             }
             catch (ConfigurationErrorsException ex)
             {
-                Console.WriteLine("Zapisu ścieżki słownika do pliku konfiguracyjnego nie powiódł się. Spróbuj ponownie.");
+                MessageBox.Show("Zapis ustawień do pliku konfiguracyjnego nie powiódł się. Spróbuj ponownie.", "Błąd zapisu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                Logger.WriteToLog(LogLevel.Warning, ex.Message, ex.StackTrace ?? "");
+            }
+        }
+        public static void ClearAppConfig()
+        {
+            try
+            {
+                var configFile = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+                var settings = configFile.AppSettings.Settings;
+                bool isRemoved = false;
+                foreach(var cfk in settings.AllKeys)
+                {
+                    if (cfk is null) continue;
+                    if (!DefaultSettings.ContainsKey(cfk))
+                    {
+                        settings.Remove(cfk);
+                        isRemoved = true;
+                    }
+                }
+                if (isRemoved)
+                {
+                    configFile.Save(ConfigurationSaveMode.Full);
+                    ConfigurationManager.RefreshSection(configFile.AppSettings.SectionInformation.Name);
+                    MessageBox.Show("Zbędne wpisy w pliku konfiguracyjnym zostały usunięte.", "Czyszczenie pliku konfiguracyjnego", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Nie znalazłem niepotrzebnych wpisów. Plik konfiguracyjny nie został zmieniony.", "Czyszczenie pliku konfiguracyjnego", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (ConfigurationErrorsException ex)
+            {
+                MessageBox.Show("Operacja nie powiodła się. Spróbuj ponownie.", "Błąd zapisu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 Logger.WriteToLog(LogLevel.Warning, ex.Message, ex.StackTrace ?? "");
             }
         }

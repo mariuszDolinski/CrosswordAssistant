@@ -64,6 +64,10 @@
             labelPatternColor = new Label();
             labelColorSettings = new Label();
             setColorDialog = new ColorDialog();
+            tabPageOthers = new TabPage();
+            groupBoxClearAppConfig = new GroupBox();
+            labelClearAppConfig = new Label();
+            buttonClearAppConfig = new Button();
             panelSettingsControls.SuspendLayout();
             tabControl1.SuspendLayout();
             tabPageGeneral.SuspendLayout();
@@ -72,6 +76,8 @@
             groupBoxDictSettings.SuspendLayout();
             tabPageApparence.SuspendLayout();
             groupBoxColorsSettings.SuspendLayout();
+            tabPageOthers.SuspendLayout();
+            groupBoxClearAppConfig.SuspendLayout();
             SuspendLayout();
             // 
             // openFileDialogNewDefaultDictPath
@@ -141,6 +147,7 @@
             tabControl1.Appearance = TabAppearance.FlatButtons;
             tabControl1.Controls.Add(tabPageGeneral);
             tabControl1.Controls.Add(tabPageApparence);
+            tabControl1.Controls.Add(tabPageOthers);
             tabControl1.Dock = DockStyle.Fill;
             tabControl1.Location = new Point(0, 0);
             tabControl1.Name = "tabControl1";
@@ -451,6 +458,49 @@
             labelColorSettings.TabIndex = 0;
             labelColorSettings.Text = "Zmień kolorystykę wybranych zakładek:";
             // 
+            // tabPageOthers
+            // 
+            tabPageOthers.Controls.Add(groupBoxClearAppConfig);
+            tabPageOthers.Location = new Point(4, 37);
+            tabPageOthers.Name = "tabPageOthers";
+            tabPageOthers.Padding = new Padding(3);
+            tabPageOthers.Size = new Size(888, 359);
+            tabPageOthers.TabIndex = 2;
+            tabPageOthers.Text = "Inne";
+            tabPageOthers.UseVisualStyleBackColor = true;
+            // 
+            // groupBoxClearAppConfig
+            // 
+            groupBoxClearAppConfig.Controls.Add(buttonClearAppConfig);
+            groupBoxClearAppConfig.Controls.Add(labelClearAppConfig);
+            groupBoxClearAppConfig.Dock = DockStyle.Top;
+            groupBoxClearAppConfig.Location = new Point(3, 3);
+            groupBoxClearAppConfig.Name = "groupBoxClearAppConfig";
+            groupBoxClearAppConfig.Size = new Size(882, 83);
+            groupBoxClearAppConfig.TabIndex = 0;
+            groupBoxClearAppConfig.TabStop = false;
+            groupBoxClearAppConfig.Text = "Czyszczenie pliku z ustawieniami";
+            // 
+            // labelClearAppConfig
+            // 
+            labelClearAppConfig.Dock = DockStyle.Left;
+            labelClearAppConfig.Location = new Point(3, 27);
+            labelClearAppConfig.Name = "labelClearAppConfig";
+            labelClearAppConfig.Size = new Size(646, 53);
+            labelClearAppConfig.TabIndex = 0;
+            labelClearAppConfig.Text = "Wyczyść plik z ustawieniami z niepotrzebnych wpisów.\r\nMoże to spoodować restart niektórych ustawień do wartości domyślnych.\r\n";
+            labelClearAppConfig.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // buttonClearAppConfig
+            // 
+            buttonClearAppConfig.Location = new Point(687, 30);
+            buttonClearAppConfig.Name = "buttonClearAppConfig";
+            buttonClearAppConfig.Size = new Size(112, 34);
+            buttonClearAppConfig.TabIndex = 1;
+            buttonClearAppConfig.Text = "Wyczyść";
+            buttonClearAppConfig.UseVisualStyleBackColor = true;
+            buttonClearAppConfig.Click += ClearAppConfigBtn_Click;
+            // 
             // SettingsForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -475,6 +525,8 @@
             tabPageApparence.ResumeLayout(false);
             groupBoxColorsSettings.ResumeLayout(false);
             groupBoxColorsSettings.PerformLayout();
+            tabPageOthers.ResumeLayout(false);
+            groupBoxClearAppConfig.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -515,5 +567,9 @@
         private RadioButton radioBtnCaseSensitiveNo;
         private RadioButton radioBtnCaseSensitiveYes;
         private GroupBox groupBoxSzaradzistaSettings;
+        private TabPage tabPageOthers;
+        private GroupBox groupBoxClearAppConfig;
+        private Label labelClearAppConfig;
+        private Button buttonClearAppConfig;
     }
 }
