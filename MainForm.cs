@@ -389,7 +389,7 @@ namespace CrosswordAssistant
             }
             else if (radioUlozSamMode.Checked)
             {
-                OnModeChanged(Messages.PatternModeMessage, true);
+                OnModeChanged(Messages.UlozSamModeMessage, true);
             }
         }
         private void RadioLength_CheckedChanged(object sender, EventArgs e)

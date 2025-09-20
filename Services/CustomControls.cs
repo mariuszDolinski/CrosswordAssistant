@@ -10,18 +10,18 @@ namespace CrosswordAssistant.Services
         private readonly Panel CryptharitmPanel;
         private readonly Panel PatternPanel;
 
+        public int ComponentsCount { get; set; }
+
         //Cryptharitm dynamic controls
         public List<TextBox> ComponentTextBox {  get; set; }
         public TextBox OperationResultTextBox { get; set; }
         public Label CurrentOperatorLabel { get; set; }
 
-        public Label[] GroupLabel { get; set; }
-        public TextBox[] GroupTextBox { get; set; }
 
         //Ułóż sam mode
-        public GroupBox UlozSamGroups;
-
-        public int ComponentsCount;
+        public Label[] GroupLabel { get; set; }
+        public TextBox[] GroupTextBox { get; set; }
+        public GroupBox UlozSamGroups {  get; set; }
 
         public CustomControls(CustomControlsRequest request)
         {
@@ -149,7 +149,7 @@ namespace CrosswordAssistant.Services
             int offsetY = 0;
             for (int i = 0; i < 8; i++)
             {
-                if (i > 3) { offsetX = 300; offsetY = -4; }
+                if (i > 3) { offsetX = 350; offsetY = -4; }
                 GroupLabel[i] = new Label
                 {
                     BackColor = bColor,
@@ -169,9 +169,10 @@ namespace CrosswordAssistant.Services
                     Location = new Point(105 + offsetX, 45 * (i + 1 + offsetY)),
                     Margin = new Padding(3, 1, 3, 3),
                     Name = "textBoxGr1",
-                    Size = new Size(165, 36),
+                    Size = new Size(215, 36),
                     TabIndex = 30,
                     Text = GroupLetters[i],
+                    CharacterCasing = CharacterCasing.Upper
                 };
                 UlozSamGroups.Controls.Add(GroupLabel[i]);
                 UlozSamGroups.Controls.Add(GroupTextBox[i]);
