@@ -609,6 +609,7 @@ namespace CrosswordAssistant
             _infoLabels.Add(labelSuperWordInfo);
             _infoLabels.Add(labelStenoAnagramInfo);
             _infoLabels.Add(labelWordInWordInfo);
+            _infoLabels.Add(labelCryptharitmInfo);
             SetFileInfo(0);
             labelAbout.Text = Messages.VersionInfo;
             labelMergeDicts.Text = Messages.MergeDictsInfo;
@@ -720,7 +721,7 @@ namespace CrosswordAssistant
         private async Task<SearchResponse> ExecuteCryptharitmSearchAsync()
         {
             string pattern = _customControls.JoinCryptharitmComponents();
-            labelCriptharytmInfo.Text = "Szukam rozwi¹zañ...";
+            labelCryptharitmResultsInfo.Text = "Szukam rozwi¹zañ...";
 
             var search = SearchFactory.CreateSearch(Search.Mode);
             var validateResponse = search.ValidatePattern(pattern);
@@ -730,7 +731,7 @@ namespace CrosswordAssistant
             }
 
             List<string> matches = await Task.Run(() => search.SearchMatches(pattern));
-            labelCriptharytmInfo.Text = "Znalezionych rozwi¹zañ: " + matches.Count;
+            labelCryptharitmResultsInfo.Text = "Znalezionych rozwi¹zañ: " + matches.Count;
             return new SearchResponse(matches, true, "");
         }
         private async Task<SearchResponse> ExecuteUlozSamSearchAsync()
@@ -968,6 +969,7 @@ namespace CrosswordAssistant
             groupBoxFilters.Visible = !isUlozSam;
             _customControls.UlozSamGroups.Visible = isUlozSam;
             checkBoxLength.Enabled = !isUlozSam;
+            if (checkBoxLength.Checked && isUlozSam) checkBoxLength.Checked = false;
         }
         private string GetSelectedResult()
         {

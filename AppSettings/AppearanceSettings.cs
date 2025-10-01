@@ -18,7 +18,7 @@ namespace CrosswordAssistant.AppSettings
                     ],
                     [
                         _mainForm.labelCryptharitms,
-                        _mainForm.labelCriptharytmInfo
+                        _mainForm.labelCryptharitmResultsInfo
                     ],
                     [
                         _mainForm.labelScrabble,

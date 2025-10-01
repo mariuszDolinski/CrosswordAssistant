@@ -73,6 +73,12 @@
             "dopasowany, gdyż wyrażenie AŁAS nie występuje w słowniku." + Environment.NewLine + Environment.NewLine +
             "W tym trybie wzorzec musi zawierać co najmniej 3 kropki.";
 
+        public static string CryptharitmInfo { get; } = "Tryb do szukania rozwiązań kryptarytmów, czyli łamigłowek, w których w poprawnym działaniu, " +
+            "wszystkie cyfry zostały zastąpione literami (różnym cyfrom odpowiadają różne litery, różnym literom odpowiadają " +
+            "różne cyfry). Należy wypełnić wszystkie pola literami, tworząc kryptarytm. Przyciskami dodaj/usuń " +
+            "można zmieniać ilość składowych działania (minium 2, maksimum 5). Z listy można wybrać rodzaj działania. " +
+            "Po uzupełnieniu wszystkich pól i liknięciu 'Rowziąż' zostaną wyszukane wszystkie możliwe rozwiązania podanego kryptarytmu.";
+
         public static string Shortcuts { get; } = "Dostępne skróty klawiaturowe:" + Environment.NewLine +
             "Enter - uruchamia wyszukiwanie dla aktualnego wzorca" + Environment.NewLine +
             "F5 - przejście do następnej zakładki" + Environment.NewLine +
@@ -102,8 +108,9 @@
                 8 => StenoanagramwordInfo,
                 9 => ScrabbleInfo,
                 10 => WordInWordInfo,
-                11 => FiltersInfo,
-                12 => Shortcuts,
+                11 => CryptharitmInfo,
+                12 => FiltersInfo,
+                13 => Shortcuts,
                 _ => "Nie ma takiego trybu",
             };
         }

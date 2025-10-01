@@ -130,7 +130,7 @@
             SplitContainerCryptharitms = new SplitContainer();
             textBoxCryptharitmResult = new TextBox();
             label7 = new Label();
-            labelCriptharytmInfo = new Label();
+            labelCryptharitmResultsInfo = new Label();
             solveCryptharitmBtn = new Button();
             labelCryptharitm = new Label();
             comboBoxOperations = new ComboBox();
@@ -170,7 +170,7 @@
             label1 = new Label();
             textBoxAbout = new TextBox();
             tableLayoutPanel4 = new TableLayoutPanel();
-            buttonSettings = new Button();
+            labelCryptharitmInfo = new Label();
             labelWordInWordInfo = new Label();
             labelStenoAnagramInfo = new Label();
             labelSuperWordInfo = new Label();
@@ -182,6 +182,7 @@
             labelAnagramInfo = new Label();
             labelPatternInfo = new Label();
             labelScrabbleInfo = new Label();
+            buttonSettings = new Button();
             labelShortcuts = new Label();
             labelInfoFilters = new Label();
             label3 = new Label();
@@ -1416,7 +1417,7 @@
             // 
             SplitContainerCryptharitms.Panel1.Controls.Add(textBoxCryptharitmResult);
             SplitContainerCryptharitms.Panel1.Controls.Add(label7);
-            SplitContainerCryptharitms.Panel1.Controls.Add(labelCriptharytmInfo);
+            SplitContainerCryptharitms.Panel1.Controls.Add(labelCryptharitmResultsInfo);
             SplitContainerCryptharitms.Panel1MinSize = 700;
             // 
             // SplitContainerCryptharitms.Panel2
@@ -1455,17 +1456,17 @@
             label7.TabIndex = 3;
             label7.Text = "label7";
             // 
-            // labelCriptharytmInfo
+            // labelCryptharitmResultsInfo
             // 
-            labelCriptharytmInfo.BackColor = Color.LightBlue;
-            labelCriptharytmInfo.Dock = DockStyle.Bottom;
-            labelCriptharytmInfo.Location = new Point(0, 703);
-            labelCriptharytmInfo.Margin = new Padding(3, 3, 3, 0);
-            labelCriptharytmInfo.Name = "labelCriptharytmInfo";
-            labelCriptharytmInfo.Size = new Size(704, 34);
-            labelCriptharytmInfo.TabIndex = 2;
-            labelCriptharytmInfo.Text = "Znalezionych rozwiązań: 0";
-            labelCriptharytmInfo.TextAlign = ContentAlignment.MiddleLeft;
+            labelCryptharitmResultsInfo.BackColor = Color.LightBlue;
+            labelCryptharitmResultsInfo.Dock = DockStyle.Bottom;
+            labelCryptharitmResultsInfo.Location = new Point(0, 703);
+            labelCryptharitmResultsInfo.Margin = new Padding(3, 3, 3, 0);
+            labelCryptharitmResultsInfo.Name = "labelCryptharitmResultsInfo";
+            labelCryptharitmResultsInfo.Size = new Size(704, 34);
+            labelCryptharitmResultsInfo.TabIndex = 2;
+            labelCryptharitmResultsInfo.Text = "Znalezionych rozwiązań: 0";
+            labelCryptharitmResultsInfo.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // solveCryptharitmBtn
             // 
@@ -1976,7 +1977,7 @@
             // 
             tableLayoutPanel4.ColumnCount = 1;
             tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutPanel4.Controls.Add(buttonSettings, 0, 13);
+            tableLayoutPanel4.Controls.Add(labelCryptharitmInfo, 0, 11);
             tableLayoutPanel4.Controls.Add(labelWordInWordInfo, 0, 10);
             tableLayoutPanel4.Controls.Add(labelStenoAnagramInfo, 0, 8);
             tableLayoutPanel4.Controls.Add(labelSuperWordInfo, 0, 7);
@@ -1988,12 +1989,13 @@
             tableLayoutPanel4.Controls.Add(labelAnagramInfo, 0, 1);
             tableLayoutPanel4.Controls.Add(labelPatternInfo, 0, 0);
             tableLayoutPanel4.Controls.Add(labelScrabbleInfo, 0, 9);
-            tableLayoutPanel4.Controls.Add(labelShortcuts, 0, 12);
-            tableLayoutPanel4.Controls.Add(labelInfoFilters, 0, 11);
+            tableLayoutPanel4.Controls.Add(buttonSettings, 0, 14);
+            tableLayoutPanel4.Controls.Add(labelShortcuts, 0, 13);
+            tableLayoutPanel4.Controls.Add(labelInfoFilters, 0, 12);
             tableLayoutPanel4.Dock = DockStyle.Left;
             tableLayoutPanel4.Location = new Point(3, 40);
             tableLayoutPanel4.Name = "tableLayoutPanel4";
-            tableLayoutPanel4.RowCount = 14;
+            tableLayoutPanel4.RowCount = 15;
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
@@ -2007,23 +2009,25 @@
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
-            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
+            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
             tableLayoutPanel4.Size = new Size(231, 735);
             tableLayoutPanel4.TabIndex = 13;
             // 
-            // buttonSettings
+            // labelCryptharitmInfo
             // 
-            buttonSettings.BackColor = Color.PaleGoldenrod;
-            buttonSettings.Dock = DockStyle.Bottom;
-            buttonSettings.FlatStyle = FlatStyle.Flat;
-            buttonSettings.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            buttonSettings.Location = new Point(3, 697);
-            buttonSettings.Name = "buttonSettings";
-            buttonSettings.Size = new Size(225, 35);
-            buttonSettings.TabIndex = 19;
-            buttonSettings.Text = "Ustawienia";
-            buttonSettings.UseVisualStyleBackColor = false;
-            buttonSettings.Click += OpenSettings_Click;
+            labelCryptharitmInfo.BackColor = Color.Silver;
+            labelCryptharitmInfo.Cursor = Cursors.Hand;
+            labelCryptharitmInfo.Dock = DockStyle.Fill;
+            labelCryptharitmInfo.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            labelCryptharitmInfo.Location = new Point(0, 440);
+            labelCryptharitmInfo.Margin = new Padding(0, 0, 3, 5);
+            labelCryptharitmInfo.Name = "labelCryptharitmInfo";
+            labelCryptharitmInfo.Size = new Size(228, 35);
+            labelCryptharitmInfo.TabIndex = 21;
+            labelCryptharitmInfo.Text = "KRYPTARYTMY";
+            labelCryptharitmInfo.TextAlign = ContentAlignment.MiddleLeft;
+            labelCryptharitmInfo.Click += InfoLabel_Click;
             // 
             // labelWordInWordInfo
             // 
@@ -2190,13 +2194,27 @@
             labelScrabbleInfo.TextAlign = ContentAlignment.MiddleLeft;
             labelScrabbleInfo.Click += InfoLabel_Click;
             // 
+            // buttonSettings
+            // 
+            buttonSettings.BackColor = Color.PaleGoldenrod;
+            buttonSettings.Dock = DockStyle.Bottom;
+            buttonSettings.FlatStyle = FlatStyle.Flat;
+            buttonSettings.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            buttonSettings.Location = new Point(3, 697);
+            buttonSettings.Name = "buttonSettings";
+            buttonSettings.Size = new Size(225, 35);
+            buttonSettings.TabIndex = 19;
+            buttonSettings.Text = "Ustawienia";
+            buttonSettings.UseVisualStyleBackColor = false;
+            buttonSettings.Click += OpenSettings_Click;
+            // 
             // labelShortcuts
             // 
             labelShortcuts.BackColor = Color.Silver;
             labelShortcuts.Cursor = Cursors.Hand;
             labelShortcuts.Dock = DockStyle.Fill;
             labelShortcuts.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            labelShortcuts.Location = new Point(0, 480);
+            labelShortcuts.Location = new Point(0, 520);
             labelShortcuts.Margin = new Padding(0, 0, 3, 5);
             labelShortcuts.Name = "labelShortcuts";
             labelShortcuts.Size = new Size(228, 35);
@@ -2211,7 +2229,7 @@
             labelInfoFilters.Cursor = Cursors.Hand;
             labelInfoFilters.Dock = DockStyle.Fill;
             labelInfoFilters.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            labelInfoFilters.Location = new Point(0, 440);
+            labelInfoFilters.Location = new Point(0, 480);
             labelInfoFilters.Margin = new Padding(0, 0, 3, 5);
             labelInfoFilters.Name = "labelInfoFilters";
             labelInfoFilters.Size = new Size(228, 35);
@@ -2553,6 +2571,7 @@
         public SplitContainer SplitContainerCryptharitms;
         public Panel PanelPatternFilters;
         private RadioButton radioUlozSamMode;
-        internal Label labelCriptharytmInfo;
+        internal Label labelCryptharitmResultsInfo;
+        private Label labelCryptharitmInfo;
     }
 }
