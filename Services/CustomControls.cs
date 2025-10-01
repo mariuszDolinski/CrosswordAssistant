@@ -21,7 +21,9 @@ namespace CrosswordAssistant.Services
         //Ułóż sam mode
         private readonly Label[] GroupLabel;
         private readonly TextBox[] GroupTextBox;
-        public GroupBox UlozSamGroups {  get; set; }
+        public GroupBox UlozSamSettings {  get; set; }
+        public GroupBox GenerateUlozSamCode {  get; set; }
+        public GroupBox UlozSamGroups { get; set; }
 
         public CustomControls(CustomControlsRequest request)
         {
@@ -30,7 +32,9 @@ namespace CrosswordAssistant.Services
             ComponentTextBox = [];
             OperationResultTextBox = new TextBox();
             CurrentOperatorLabel = new Label();
+            UlozSamSettings = new GroupBox();
             UlozSamGroups = new GroupBox();
+            GenerateUlozSamCode = new GroupBox();
             GroupLabel = new Label[8];
             GroupTextBox = new TextBox[8];
             ComponentsCount = 2;
@@ -133,17 +137,43 @@ namespace CrosswordAssistant.Services
         {
             var bColor = Color.FromArgb((int)Settings.SavedSettings[BaseSettings.PatternColorKey]);
             
-            UlozSamGroups = new GroupBox()
+            UlozSamSettings = new GroupBox()
             {
                 Dock = DockStyle.Fill,
                 Location = new Point(0, 0),
-                Name = "groupBoxFilters",
+                Name = "groupBoxUlozSamGroups",
                 Size = new Size(709, 473),
                 TabIndex = 2,
                 TabStop = false,
-                Text = "Grupy liter",
+                Text = "Dodatkowe ustawienia",
                 Visible = false
             };
+
+            UlozSamGroups = new GroupBox()
+            {
+                Dock = DockStyle.Top,
+                Location = new Point(0, 0),
+                Name = "groupBoxUlozSamGroups",
+                Size = new Size(709, 250),
+                TabIndex = 3,
+                TabStop = false,
+                Text = "Grupy liter",
+                Visible = true
+            };
+            GenerateUlozSamCode = new GroupBox()
+            {
+                Dock = DockStyle.Bottom,
+                Location = new Point(3, 230),
+                Name = "groupBoxGenerateUlozSamCode",
+                Size = new Size(703, 188),
+                TabIndex = 4,
+                TabStop = false,
+                Text = "Generuj kod",
+                Visible = true
+            };
+
+            UlozSamSettings.Controls.Add(GenerateUlozSamCode);
+            UlozSamSettings.Controls.Add(UlozSamGroups);
 
             int offsetX = 0;
             int offsetY = 0;
@@ -158,7 +188,7 @@ namespace CrosswordAssistant.Services
                     Margin = new Padding(4, 2, 3, 2),
                     Name = "labelGr1",
                     Size = new Size(72, 36),
-                    TabIndex = 0,
+                    TabIndex = 10 + i,
                     BorderStyle = BorderStyle.FixedSingle,
                     Text = (i + 1).ToString(),
                     TextAlign = ContentAlignment.MiddleCenter
@@ -170,7 +200,7 @@ namespace CrosswordAssistant.Services
                     Margin = new Padding(3, 1, 3, 3),
                     Name = "textBoxGr1",
                     Size = new Size(215, 36),
-                    TabIndex = 30,
+                    TabIndex = 30 + i,
                     Text = GroupLetters[i],
                     CharacterCasing = CharacterCasing.Upper
                 };
@@ -178,7 +208,7 @@ namespace CrosswordAssistant.Services
                 UlozSamGroups.Controls.Add(GroupTextBox[i]);
             }
 
-            PatternPanel.Controls.Add(UlozSamGroups);
+            PatternPanel.Controls.Add(UlozSamSettings);
         }
         public string[] ConvertGroupsToArray()
         {

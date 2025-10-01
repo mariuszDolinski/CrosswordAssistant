@@ -967,7 +967,7 @@ namespace CrosswordAssistant
             SetMode(0);
             textBoxPatternResults.Text = message;
             groupBoxFilters.Visible = !isUlozSam;
-            _customControls.UlozSamGroups.Visible = isUlozSam;
+            _customControls.UlozSamSettings.Visible = isUlozSam;
             checkBoxLength.Enabled = !isUlozSam;
             if (checkBoxLength.Checked && isUlozSam) checkBoxLength.Checked = false;
         }
