@@ -476,8 +476,7 @@ namespace CrosswordAssistant
                             e.SuppressKeyPress = true;
                             break;
                         case Keys.F6:
-                            _customControls.ComponentTextBox[0].SelectAll();
-                            _customControls.ComponentTextBox[0].Focus();
+                            _customControls.SetComponentTextBoxFocus();
                             break;
                     }
                     break;
@@ -543,19 +542,19 @@ namespace CrosswordAssistant
                 case 1:
                     AddComponentBtn.Text = "DODAJ SK£ADNIK";
                     RemoveComponentBtn.Text = "USUÑ SK£ADNIK";
-                    _customControls.CurrentOperatorLabel.Text = "-";
+                    _customControls.SetCurrentOperatorLabelText("-");
                     Search.CurrentOperator = Operators.Subtraction;
                     break;
                 case 2:
                     AddComponentBtn.Text = "DODAJ CZYNNIK";
                     RemoveComponentBtn.Text = "USUÑ CZYNNIK";
-                    _customControls.CurrentOperatorLabel.Text = "•";
+                    _customControls.SetCurrentOperatorLabelText("•");
                     Search.CurrentOperator = Operators.Multiplication;
                     break;
                 default:
                     AddComponentBtn.Text = "DODAJ SK£ADNIK";
                     RemoveComponentBtn.Text = "USUÑ SK£ADNIK";
-                    _customControls.CurrentOperatorLabel.Text = "+";
+                    _customControls.SetCurrentOperatorLabelText("+");
                     Search.CurrentOperator = Operators.Addition;
                     break;
             }
@@ -630,8 +629,7 @@ namespace CrosswordAssistant
             switch (Search.Mode)
             {
                 case SearchMode.Cryptharitm:
-                    foreach(var tb in _customControls.ComponentTextBox) tb.ReadOnly = pending;
-                    _customControls.OperationResultTextBox.ReadOnly = pending;
+                    _customControls.SetCryptharitmTextBoxesReadOnly(pending);
                     AddComponentBtn.Enabled = !pending;
                     RemoveComponentBtn.Enabled = !pending;
                     comboBoxOperations.Enabled = !pending;
@@ -745,7 +743,7 @@ namespace CrosswordAssistant
                 return new SearchResponse([], false, validateResponse.Message);
             }
 
-            string[] groups = _customControls.ConvertGroupsToArray();
+            string[] groups = _customControls.ConvertUlozSamGroupsToArray();
             foreach (string group in groups)
             {
                 pattern += "|" + group.ToLower();
@@ -967,7 +965,7 @@ namespace CrosswordAssistant
             SetMode(0);
             textBoxPatternResults.Text = message;
             groupBoxFilters.Visible = !isUlozSam;
-            _customControls.UlozSamSettings.Visible = isUlozSam;
+            _customControls.SetUlozSamGroupBoxVisible(isUlozSam);
             checkBoxLength.Enabled = !isUlozSam;
             if (checkBoxLength.Checked && isUlozSam) checkBoxLength.Checked = false;
         }
