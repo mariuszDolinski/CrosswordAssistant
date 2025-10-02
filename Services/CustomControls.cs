@@ -24,9 +24,10 @@ namespace CrosswordAssistant.Services
         private GroupBox GenerateUlozSamCode;
         private GroupBox UlozSamGroups;
         private GroupBox UlozSamSettings;
-        //private TextBox WordToCodeTextBox;
-        //private Button ConvertToCodeBtn;
-        //private Label CodeResultLabel;
+        private TextBox WordToCodeTextBox;
+        private Button ConvertToCodeBtn;
+        private Label WordToCodeLabel;
+        private Label CodeResultLabel;
 
         public CustomControls(CustomControlsRequest request)
         {
@@ -49,7 +50,7 @@ namespace CrosswordAssistant.Services
         {
             var bColor = Color.FromArgb((int)Settings.SavedSettings[BaseSettings.PatternColorKey]);
 
-            InitializedUlozSamGoupBoxes();
+            InitializedUlozSamGroupBoxes();
 
             int offsetX = 0;
             int offsetY = 0;
@@ -84,9 +85,61 @@ namespace CrosswordAssistant.Services
                 UlozSamGroups.Controls.Add(GroupTextBox[i]);
             }
 
+            WordToCodeLabel = new Label()
+            {
+                Location = new Point(25, 30),
+                Margin = new Padding(4, 2, 3, 2),
+                Name = "wordToCodeLabel",
+                Size = new Size(650, 36),
+                TabIndex = 1,
+                Text = "Podaj wyraz i kliknij przycisk, aby wygenerować kod dla aktulanych grup liter.",
+                TextAlign = ContentAlignment.MiddleLeft
+            };
+
+            WordToCodeTextBox = new TextBox()
+            {
+                Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point, 238),
+                Location = new Point(25, 70),
+                Margin = new Padding(3, 1, 3, 3),
+                Name = "wordToCodeTextBox",
+                Size = new Size(645, 36),
+                TabIndex = 2,
+                CharacterCasing = CharacterCasing.Upper
+            };
+
+            ConvertToCodeBtn = new Button()
+            {
+                Cursor = Cursors.Hand,
+                FlatStyle = FlatStyle.Flat,
+                Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 238),
+                Location = new Point(26, 120),
+                Size = new Size(200, 36),
+                Name = "convertToCodeBtn",
+                TabIndex = 3,
+                Text = "GENERUJ KOD >>>",
+                UseVisualStyleBackColor = true,
+            };
+
+            CodeResultLabel = new Label()
+            {
+                Font = new Font("Segoe UI Semibold", 11F, FontStyle.Regular, GraphicsUnit.Point, 238),
+                Location = new Point(235, 120),
+                Margin = new Padding(4, 2, 3, 2),
+                Name = "codeResultLabel",
+                Size = new Size(435, 36),
+                TabIndex = 4,
+                BorderStyle = BorderStyle.FixedSingle,
+                TextAlign = ContentAlignment.MiddleLeft,
+            };
+
+            ConvertToCodeBtn.Click += ConvertWordToUlozSamCode_Click;
             PatternPanel.Controls.Add(UlozSamSettings);
+            GenerateUlozSamCode.Controls.Add(WordToCodeTextBox);
+            GenerateUlozSamCode.Controls.Add(ConvertToCodeBtn);
+            GenerateUlozSamCode.Controls.Add(WordToCodeLabel);
+            GenerateUlozSamCode.Controls.Add(CodeResultLabel);
         }
-        private void InitializedUlozSamGoupBoxes()
+        private void InitializedUlozSamGroupBoxes()
         {
             UlozSamSettings = new GroupBox()
             {
@@ -96,7 +149,7 @@ namespace CrosswordAssistant.Services
                 Size = new Size(709, 473),
                 TabIndex = 2,
                 TabStop = false,
-                Text = "Dodatkowe ustawienia",
+                Text = "Dodatkowe opcje",
                 Visible = false
             };
             UlozSamGroups = new GroupBox()
@@ -124,7 +177,6 @@ namespace CrosswordAssistant.Services
             UlozSamSettings.Controls.Add(GenerateUlozSamCode);
             UlozSamSettings.Controls.Add(UlozSamGroups);
         }
-
         public void InitializeCryptharitmControls()
         {
             ComponentTextBox = [];
@@ -234,6 +286,38 @@ namespace CrosswordAssistant.Services
         {
             ComponentTextBox[0].SelectAll();
             ComponentTextBox[0].Focus();
+        }
+
+        private void ConvertWordToUlozSamCode_Click(object? sender, EventArgs e)
+        {
+            var word = WordToCodeTextBox.Text;
+            if(word is null || word.Length == 0)
+            {
+                MessageBox.Show("Podaj wyraz do konwersji.", "Brak wyrazu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            var groups = ConvertUlozSamGroupsToArray();
+            string result = string.Empty;
+            bool groupFound;
+            foreach(var ch in word)
+            {
+                groupFound = false;
+                for (int i = 0; i<groups.Length; i++)
+                {
+                    if (groups[i].Contains(ch))
+                    {
+                        result += (i + 1).ToString();
+                        groupFound = true;
+                    }
+                }
+                if (!groupFound)
+                {
+                    MessageBox.Show("Błędny znak w wyrazie. Nie występuje w żadnej z grup.", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+            }
+            CodeResultLabel.Text = result;
         }
     }
 }
