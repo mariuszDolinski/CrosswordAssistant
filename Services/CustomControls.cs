@@ -267,11 +267,22 @@ namespace CrosswordAssistant.Services
             foreach (var tb in ComponentTextBox) tb.ReadOnly = ro;
             OperationResultTextBox.ReadOnly = ro;
         }
-        public string[] ConvertUlozSamGroupsToArray()
+        public string[]? ConvertUlozSamGroupsToArray()
         {
+            string tmp = string.Empty ;
             string[] result = new string[8];
             for (int i = 0; i < 8; i++)
-                result[i] = GroupTextBox[i].Text;
+            {
+                foreach(var ch in GroupTextBox[i].Text)
+                {
+                    if(tmp.Contains(ch)) return null;
+                    else
+                    {
+                        result[i] += ch;
+                        tmp += ch;
+                    }
+                }
+            } 
             return result;
         }
         public void SetUlozSamGroupBoxVisible(bool visible)
@@ -298,6 +309,11 @@ namespace CrosswordAssistant.Services
             }
 
             var groups = ConvertUlozSamGroupsToArray();
+            if (groups == null)
+            {
+                MessageBox.Show("Litery w grupach nie powinny się powtarzać", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             string result = string.Empty;
             bool groupFound;
             foreach(var ch in word)

@@ -661,7 +661,7 @@ namespace CrosswordAssistant
 
             if (!searchResponse.Completed)
             {
-                MessageBox.Show(searchResponse.Message, "B³¹d wzorca", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(searchResponse.Message, "B³¹d danych", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 IsSearchPending(false);
                 return;
             }
@@ -743,7 +743,8 @@ namespace CrosswordAssistant
                 return new SearchResponse([], false, validateResponse.Message);
             }
 
-            string[] groups = _customControls.ConvertUlozSamGroupsToArray();
+            var groups = _customControls.ConvertUlozSamGroupsToArray();
+            if (groups == null) return new SearchResponse([], false, "Litery w grupach nie powinny siê powtarzaæ");
             foreach (string group in groups)
             {
                 pattern += "|" + group.ToLower();
