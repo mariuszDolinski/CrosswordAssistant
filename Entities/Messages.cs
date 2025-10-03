@@ -77,7 +77,7 @@
             "wszystkie cyfry zostały zastąpione literami (różnym cyfrom odpowiadają różne litery, różnym literom odpowiadają " +
             "różne cyfry). Należy wypełnić wszystkie pola literami, tworząc kryptarytm. Przyciskami dodaj/usuń " +
             "można zmieniać ilość składowych działania (minium 2, maksimum 5). Z listy można wybrać rodzaj działania. " +
-            "Po uzupełnieniu wszystkich pól i liknięciu 'Rowziąż' zostaną wyszukane wszystkie możliwe rozwiązania podanego kryptarytmu.";
+            "Po uzupełnieniu wszystkich pól i liknięciu 'Rozwiąż' zostaną wyszukane wszystkie możliwe rozwiązania podanego kryptarytmu.";
 
         public static string Shortcuts { get; } = "Dostępne skróty klawiaturowe:" + Environment.NewLine +
             "Enter - uruchamia wyszukiwanie dla aktualnego wzorca" + Environment.NewLine +
