@@ -20,12 +20,12 @@ namespace CrosswordAssistant.Services
             Search.Mode = SearchMode.Pattern;
         }
 
-        public void LoadDictionary()
+        public static void LoadDictionary()
         {
             CurrentDictionary.TrimExcess();//memory optimalization
             CurrentDictionary = FileService.ReadDictionary();
         }
-        public async Task LoadDictionaryAsync()
+        public static async Task LoadDictionaryAsync()
         {
             CurrentDictionary.TrimExcess();//memory optimalization
             CurrentDictionary = await FileService.ReadDictionaryAsync();
@@ -35,7 +35,7 @@ namespace CrosswordAssistant.Services
         /// Return true if dictionary was not loaded properly. Return false otherwise.
         /// </summary>
         /// <returns></returns>
-        public bool DictionaryLoadError()
+        public static bool DictionaryLoadError()
         {
             return CurrentDictionary.Count == 1 && CurrentDictionary[0] == Messages.NoFile;
         }

@@ -17,15 +17,8 @@ namespace CrosswordAssistant.AppSettings
                         _mainForm.labelPatternResultsInfo
                     ],
                     [
-                        _mainForm.labelUluzSam,
-                        _mainForm.labelGr1,
-                        _mainForm.labelGr2,
-                        _mainForm.labelGr3,
-                        _mainForm.labelGr4,
-                        _mainForm.labelGr5,
-                        _mainForm.labelGr6,
-                        _mainForm.labelGr7,
-                        _mainForm.labelGr8
+                        _mainForm.labelCryptharitms,
+                        _mainForm.labelCryptharitmResultsInfo
                     ],
                     [
                         _mainForm.labelScrabble,
@@ -40,7 +33,7 @@ namespace CrosswordAssistant.AppSettings
             return
                 [
                     Color.FromArgb((int)Settings.SavedSettings[BaseSettings.PatternColorKey]),
-                    Color.FromArgb((int)Settings.SavedSettings[BaseSettings.UlozSamColorKey]),
+                    Color.FromArgb((int)Settings.SavedSettings[BaseSettings.CryptharitmColorKey]),
                     Color.FromArgb((int)Settings.SavedSettings[BaseSettings.ScrabbleColorKey])
                 ];
         }

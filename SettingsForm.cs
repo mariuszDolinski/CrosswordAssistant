@@ -21,11 +21,11 @@ namespace CrosswordAssistant
 
         private void SetCurrentSettings()
         {
-            textBoxDefaultDictPath.Text = Path.GetFullPath((string)Settings.CurrentSettings[Settings.DictPathKey]) + "\\" + Settings.CurrentSettings[Settings.DictFileKey];
-            textBoxMaxResultsCount.Text = Settings.CurrentSettings[Settings.MaxResultsKey].ToString();
-            labelColorPattern.BackColor = Color.FromArgb((int)Settings.CurrentSettings[Settings.PatternColorKey]);
-            labelColorUlozSam.BackColor = Color.FromArgb((int)Settings.CurrentSettings[Settings.UlozSamColorKey]);
-            labelColorScrabble.BackColor = Color.FromArgb((int)Settings.CurrentSettings[Settings.ScrabbleColorKey]);
+            textBoxDefaultDictPath.Text = Path.GetFullPath((string)Settings.CurrentSettings[BaseSettings.DictPathKey]) + "\\" + Settings.CurrentSettings[Settings.DictFileKey];
+            textBoxMaxResultsCount.Text = Settings.CurrentSettings[BaseSettings.MaxResultsKey].ToString();
+            labelColorPattern.BackColor = Color.FromArgb((int)Settings.CurrentSettings[BaseSettings.PatternColorKey]);
+            labelColorCryptharitm.BackColor = Color.FromArgb((int)Settings.CurrentSettings[BaseSettings.CryptharitmColorKey]);
+            labelColorScrabble.BackColor = Color.FromArgb((int)Settings.CurrentSettings[BaseSettings.ScrabbleColorKey]);
             SetMainFormPositionRadioButtons();
             SetCaseSensitiveRadioButtons();
         }
@@ -40,9 +40,16 @@ namespace CrosswordAssistant
             if (Settings.ExistsSettingsRequiredRestart())
             {
                 var response = MessageBox.Show("Niektóre ze zmienionych ustawień wymagają restartu aplikacji. Wybierz 'Tak' jeśli chcesz kontynuować, " +
-                    "a następnie zamknij aplikację. Wybierz 'Nie' aby anulować zmiany.", "Wymagane ponowne uruchomienie", 
+                    "a następnie zamknij aplikację. Wybierz 'Nie' aby anulować wszystkie zmiany.", "Wymagane ponowne uruchomienie",
                     MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-                if (response == DialogResult.No) return false;
+                if (response == DialogResult.No)
+                {
+                    Settings.CancelCurrentSettings();
+                    buttonSettingsApply.Enabled = false;
+                    buttonSettingsOK.Enabled = false;
+                    return false;
+                }
+
             }
             bool isInt = int.TryParse(textBoxMaxResultsCount.Text, out int currentMax);
             if (!isInt)
@@ -63,7 +70,7 @@ namespace CrosswordAssistant
             setColorDialog.CustomColors =
             [
                 ColorTranslator.ToOle(labelColorPattern.BackColor),
-                ColorTranslator.ToOle(labelColorUlozSam.BackColor),
+                ColorTranslator.ToOle(labelColorCryptharitm.BackColor),
                 ColorTranslator.ToOle(labelColorScrabble.BackColor)
             ];
         }
@@ -169,7 +176,7 @@ namespace CrosswordAssistant
         }
         private void UlozSamColor_Click(object sender, EventArgs e)
         {
-            SetNewColor(labelColorUlozSam, Settings.UlozSamColorKey);
+            SetNewColor(labelColorCryptharitm, Settings.CryptharitmColorKey);
         }
         private void ScrabbleColor_Click(object sender, EventArgs e)
         {
@@ -192,6 +199,11 @@ namespace CrosswordAssistant
                 Settings.CurrentSettings[BaseSettings.CaseSensitiveKey] = radioBtn.TabIndex - 9;
                 SetButtonsVisibility();
             }
+        }
+
+        private void ClearAppConfigBtn_Click(object sender, EventArgs e)
+        {
+            Settings.ClearAppConfig();
         }
     }
 }

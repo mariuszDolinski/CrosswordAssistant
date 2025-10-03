@@ -93,21 +93,21 @@ namespace CrosswordAssistant.Services
         }
         public static void FillTextBoxCriptharytmSolutions(TextBox textBox, List<string> solutions)
         {
-            textBox.Text = string.Empty;
+            var result = string.Empty;
             int i = 1;
             foreach (var solution in solutions)
             {
                 var solutionPart = solution.Split('|');
-                textBox.Text += i.ToString() + ". " + solutionPart[0] + Environment.NewLine;
-                textBox.Text += "Sprawdzenie: " + solutionPart[1] + Environment.NewLine;
+                result += i.ToString() + ". " + solutionPart[0] + Environment.NewLine;
+                result += "Sprawdzenie: " + solutionPart[1] + Environment.NewLine;
                 if(i - 1 < solutions.Count - 1)
                 {
-                    textBox.Text += "------------------------------------------------------------------------";
-                    textBox.Text += Environment.NewLine;
-                }
-                    
+                    result += "------------------------------------------------------------------------";
+                    result += Environment.NewLine;
+                }                  
                 i++;
             }
+            textBox.Text = result;
         }
     }
 }

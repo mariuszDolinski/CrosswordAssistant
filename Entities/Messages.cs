@@ -7,8 +7,9 @@
         public static string AnagramModeMessage { get; } = "Podaj litery lub znak . i kliknij Szukaj...";
         public static string MetagramModeMessage { get; } = "Podaj wyraz i kliknij Szukaj...";
         public static string LengthModeMessage { get; } = "Wybierz dodatkowe filtry i kliknij Szukaj...";
+        public static string UlozSamModeMessage { get; } = "Podaj wzorzec złożony z cyfr 1-8 i kliknij Szukaj...";
         public static string EmptyPattern { get; } = "Wzorzec nie zawiera żadnych znaków.";
-        public static string VersionInfo { get; } = "Pomocnik szaradzisty v2.10.2" + Environment.NewLine +
+        public static string VersionInfo { get; } = "Pomocnik szaradzisty v2.10.4" + Environment.NewLine +
                 "Autor: Mariusz Doliński" + Environment.NewLine + "© 2025";
         public static string MergeDictsInfo { get; } = "Wczytaj plik z wyrazami, które chcesz dodać do bieżącego słownika";
         public static string PatternInfo { get; } = "Wyszukuje wyrazy pasujące do podanego wzorca. Znak kropki (.) zastępuje dowolną jedną literę, " +
@@ -72,6 +73,12 @@
             "dopasowany, gdyż wyrażenie AŁAS nie występuje w słowniku." + Environment.NewLine + Environment.NewLine +
             "W tym trybie wzorzec musi zawierać co najmniej 3 kropki.";
 
+        public static string CryptharitmInfo { get; } = "Tryb do szukania rozwiązań kryptarytmów, czyli łamigłowek, w których w poprawnym działaniu, " +
+            "wszystkie cyfry zostały zastąpione literami (różnym cyfrom odpowiadają różne litery, różnym literom odpowiadają " +
+            "różne cyfry). Należy wypełnić wszystkie pola literami, tworząc kryptarytm. Przyciskami dodaj/usuń " +
+            "można zmieniać ilość składowych działania (minium 2, maksimum 5). Z listy można wybrać rodzaj działania. " +
+            "Po uzupełnieniu wszystkich pól i liknięciu 'Rozwiąż' zostaną wyszukane wszystkie możliwe rozwiązania podanego kryptarytmu.";
+
         public static string Shortcuts { get; } = "Dostępne skróty klawiaturowe:" + Environment.NewLine +
             "Enter - uruchamia wyszukiwanie dla aktualnego wzorca" + Environment.NewLine +
             "F5 - przejście do następnej zakładki" + Environment.NewLine +
@@ -101,8 +108,9 @@
                 8 => StenoanagramwordInfo,
                 9 => ScrabbleInfo,
                 10 => WordInWordInfo,
-                11 => FiltersInfo,
-                12 => Shortcuts,
+                11 => CryptharitmInfo,
+                12 => FiltersInfo,
+                13 => Shortcuts,
                 _ => "Nie ma takiego trybu",
             };
         }

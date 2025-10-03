@@ -56,14 +56,18 @@
             buttonScrabbleColor = new Button();
             labelColorScrabble = new Label();
             label2 = new Label();
-            buttonUlozSamColor = new Button();
-            labelColorUlozSam = new Label();
+            buttonCryptharitmColor = new Button();
+            labelColorCryptharitm = new Label();
             label1 = new Label();
             buttonPatternColor = new Button();
             labelColorPattern = new Label();
             labelPatternColor = new Label();
             labelColorSettings = new Label();
             setColorDialog = new ColorDialog();
+            tabPageOthers = new TabPage();
+            groupBoxClearAppConfig = new GroupBox();
+            labelClearAppConfig = new Label();
+            buttonClearAppConfig = new Button();
             panelSettingsControls.SuspendLayout();
             tabControl1.SuspendLayout();
             tabPageGeneral.SuspendLayout();
@@ -72,6 +76,8 @@
             groupBoxDictSettings.SuspendLayout();
             tabPageApparence.SuspendLayout();
             groupBoxColorsSettings.SuspendLayout();
+            tabPageOthers.SuspendLayout();
+            groupBoxClearAppConfig.SuspendLayout();
             SuspendLayout();
             // 
             // openFileDialogNewDefaultDictPath
@@ -141,6 +147,7 @@
             tabControl1.Appearance = TabAppearance.FlatButtons;
             tabControl1.Controls.Add(tabPageGeneral);
             tabControl1.Controls.Add(tabPageApparence);
+            tabControl1.Controls.Add(tabPageOthers);
             tabControl1.Dock = DockStyle.Fill;
             tabControl1.Location = new Point(0, 0);
             tabControl1.Name = "tabControl1";
@@ -343,8 +350,8 @@
             groupBoxColorsSettings.Controls.Add(buttonScrabbleColor);
             groupBoxColorsSettings.Controls.Add(labelColorScrabble);
             groupBoxColorsSettings.Controls.Add(label2);
-            groupBoxColorsSettings.Controls.Add(buttonUlozSamColor);
-            groupBoxColorsSettings.Controls.Add(labelColorUlozSam);
+            groupBoxColorsSettings.Controls.Add(buttonCryptharitmColor);
+            groupBoxColorsSettings.Controls.Add(labelColorCryptharitm);
             groupBoxColorsSettings.Controls.Add(label1);
             groupBoxColorsSettings.Controls.Add(buttonPatternColor);
             groupBoxColorsSettings.Controls.Add(labelColorPattern);
@@ -361,7 +368,7 @@
             // buttonScrabbleColor
             // 
             buttonScrabbleColor.FlatStyle = FlatStyle.Flat;
-            buttonScrabbleColor.Location = new Point(531, 100);
+            buttonScrabbleColor.Location = new Point(335, 100);
             buttonScrabbleColor.Name = "buttonScrabbleColor";
             buttonScrabbleColor.Size = new Size(112, 34);
             buttonScrabbleColor.TabIndex = 9;
@@ -372,7 +379,7 @@
             // labelColorScrabble
             // 
             labelColorScrabble.BackColor = Color.DarkSeaGreen;
-            labelColorScrabble.Location = new Point(480, 100);
+            labelColorScrabble.Location = new Point(284, 100);
             labelColorScrabble.Name = "labelColorScrabble";
             labelColorScrabble.Size = new Size(45, 34);
             labelColorScrabble.TabIndex = 8;
@@ -380,39 +387,39 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(480, 72);
+            label2.Location = new Point(284, 72);
             label2.Name = "label2";
             label2.Size = new Size(80, 25);
             label2.TabIndex = 7;
             label2.Text = "Scrabble";
             // 
-            // buttonUlozSamColor
+            // buttonCryptharitmColor
             // 
-            buttonUlozSamColor.FlatStyle = FlatStyle.Flat;
-            buttonUlozSamColor.Location = new Point(295, 100);
-            buttonUlozSamColor.Name = "buttonUlozSamColor";
-            buttonUlozSamColor.Size = new Size(112, 34);
-            buttonUlozSamColor.TabIndex = 6;
-            buttonUlozSamColor.Text = "Zmień";
-            buttonUlozSamColor.UseVisualStyleBackColor = true;
-            buttonUlozSamColor.Click += UlozSamColor_Click;
+            buttonCryptharitmColor.FlatStyle = FlatStyle.Flat;
+            buttonCryptharitmColor.Location = new Point(608, 100);
+            buttonCryptharitmColor.Name = "buttonCryptharitmColor";
+            buttonCryptharitmColor.Size = new Size(112, 34);
+            buttonCryptharitmColor.TabIndex = 6;
+            buttonCryptharitmColor.Text = "Zmień";
+            buttonCryptharitmColor.UseVisualStyleBackColor = true;
+            buttonCryptharitmColor.Click += UlozSamColor_Click;
             // 
-            // labelColorUlozSam
+            // labelColorCryptharitm
             // 
-            labelColorUlozSam.BackColor = Color.DarkSeaGreen;
-            labelColorUlozSam.Location = new Point(244, 100);
-            labelColorUlozSam.Name = "labelColorUlozSam";
-            labelColorUlozSam.Size = new Size(45, 34);
-            labelColorUlozSam.TabIndex = 5;
+            labelColorCryptharitm.BackColor = Color.DarkSeaGreen;
+            labelColorCryptharitm.Location = new Point(557, 100);
+            labelColorCryptharitm.Name = "labelColorCryptharitm";
+            labelColorCryptharitm.Size = new Size(45, 34);
+            labelColorCryptharitm.TabIndex = 5;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(244, 72);
+            label1.Location = new Point(557, 72);
             label1.Name = "label1";
-            label1.Size = new Size(86, 25);
+            label1.Size = new Size(109, 25);
             label1.TabIndex = 4;
-            label1.Text = "Ułóż sam";
+            label1.Text = "Kryptarytmy";
             // 
             // buttonPatternColor
             // 
@@ -451,6 +458,49 @@
             labelColorSettings.TabIndex = 0;
             labelColorSettings.Text = "Zmień kolorystykę wybranych zakładek:";
             // 
+            // tabPageOthers
+            // 
+            tabPageOthers.Controls.Add(groupBoxClearAppConfig);
+            tabPageOthers.Location = new Point(4, 37);
+            tabPageOthers.Name = "tabPageOthers";
+            tabPageOthers.Padding = new Padding(3);
+            tabPageOthers.Size = new Size(888, 359);
+            tabPageOthers.TabIndex = 2;
+            tabPageOthers.Text = "Inne";
+            tabPageOthers.UseVisualStyleBackColor = true;
+            // 
+            // groupBoxClearAppConfig
+            // 
+            groupBoxClearAppConfig.Controls.Add(buttonClearAppConfig);
+            groupBoxClearAppConfig.Controls.Add(labelClearAppConfig);
+            groupBoxClearAppConfig.Dock = DockStyle.Top;
+            groupBoxClearAppConfig.Location = new Point(3, 3);
+            groupBoxClearAppConfig.Name = "groupBoxClearAppConfig";
+            groupBoxClearAppConfig.Size = new Size(882, 83);
+            groupBoxClearAppConfig.TabIndex = 0;
+            groupBoxClearAppConfig.TabStop = false;
+            groupBoxClearAppConfig.Text = "Czyszczenie pliku z ustawieniami";
+            // 
+            // labelClearAppConfig
+            // 
+            labelClearAppConfig.Dock = DockStyle.Left;
+            labelClearAppConfig.Location = new Point(3, 27);
+            labelClearAppConfig.Name = "labelClearAppConfig";
+            labelClearAppConfig.Size = new Size(646, 53);
+            labelClearAppConfig.TabIndex = 0;
+            labelClearAppConfig.Text = "Wyczyść plik z ustawieniami z niepotrzebnych wpisów.\r\nMoże to spoodować restart niektórych ustawień do wartości domyślnych.\r\n";
+            labelClearAppConfig.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // buttonClearAppConfig
+            // 
+            buttonClearAppConfig.Location = new Point(687, 30);
+            buttonClearAppConfig.Name = "buttonClearAppConfig";
+            buttonClearAppConfig.Size = new Size(112, 34);
+            buttonClearAppConfig.TabIndex = 1;
+            buttonClearAppConfig.Text = "Wyczyść";
+            buttonClearAppConfig.UseVisualStyleBackColor = true;
+            buttonClearAppConfig.Click += ClearAppConfigBtn_Click;
+            // 
             // SettingsForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -475,6 +525,8 @@
             tabPageApparence.ResumeLayout(false);
             groupBoxColorsSettings.ResumeLayout(false);
             groupBoxColorsSettings.PerformLayout();
+            tabPageOthers.ResumeLayout(false);
+            groupBoxClearAppConfig.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -500,8 +552,8 @@
         private Label labelColorPattern;
         private Button buttonPatternColor;
         private Button buttonResetToDefault;
-        private Button buttonUlozSamColor;
-        private Label labelColorUlozSam;
+        private Button buttonCryptharitmColor;
+        private Label labelColorCryptharitm;
         private Label label1;
         private Button buttonScrabbleColor;
         private Label labelColorScrabble;
@@ -515,5 +567,9 @@
         private RadioButton radioBtnCaseSensitiveNo;
         private RadioButton radioBtnCaseSensitiveYes;
         private GroupBox groupBoxSzaradzistaSettings;
+        private TabPage tabPageOthers;
+        private GroupBox groupBoxClearAppConfig;
+        private Label labelClearAppConfig;
+        private Button buttonClearAppConfig;
     }
 }
