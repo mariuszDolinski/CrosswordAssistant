@@ -131,12 +131,13 @@
             textBoxCryptharitmResult = new TextBox();
             label7 = new Label();
             labelCryptharitmResultsInfo = new Label();
-            solveCryptharitmBtn = new Button();
-            labelCryptharitm = new Label();
-            comboBoxOperations = new ComboBox();
+            panelCrpt = new Panel();
+            panelCrptSettings = new Panel();
             label4 = new Label();
-            AddComponentBtn = new Button();
             RemoveComponentBtn = new Button();
+            AddComponentBtn = new Button();
+            comboBoxOperations = new ComboBox();
+            solveCryptharitmBtn = new Button();
             labelCryptharitms = new Label();
             tabPageDictionary = new TabPage();
             tableLayoutPanel3 = new TableLayoutPanel();
@@ -228,6 +229,7 @@
             SplitContainerCryptharitms.Panel1.SuspendLayout();
             SplitContainerCryptharitms.Panel2.SuspendLayout();
             SplitContainerCryptharitms.SuspendLayout();
+            panelCrptSettings.SuspendLayout();
             tabPageDictionary.SuspendLayout();
             tableLayoutPanel3.SuspendLayout();
             groupBoxAddToDict.SuspendLayout();
@@ -1059,7 +1061,7 @@
             splitContainerScrabble.Panel2.Controls.Add(label28);
             splitContainerScrabble.Panel2.Controls.Add(labelScrabbleCalc);
             splitContainerScrabble.Size = new Size(1167, 695);
-            splitContainerScrabble.SplitterDistance = 803;
+            splitContainerScrabble.SplitterDistance = 777;
             splitContainerScrabble.TabIndex = 4;
             // 
             // textBoxScrabbleResults
@@ -1074,7 +1076,7 @@
             textBoxScrabbleResults.Name = "textBoxScrabbleResults";
             textBoxScrabbleResults.ReadOnly = true;
             textBoxScrabbleResults.ScrollBars = ScrollBars.Vertical;
-            textBoxScrabbleResults.Size = new Size(803, 695);
+            textBoxScrabbleResults.Size = new Size(777, 695);
             textBoxScrabbleResults.TabIndex = 3;
             // 
             // labelScrabbePoints
@@ -1084,7 +1086,7 @@
             labelScrabbePoints.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 238);
             labelScrabbePoints.Location = new Point(236, 653);
             labelScrabbePoints.Name = "labelScrabbePoints";
-            labelScrabbePoints.Size = new Size(124, 42);
+            labelScrabbePoints.Size = new Size(150, 42);
             labelScrabbePoints.TabIndex = 16;
             labelScrabbePoints.Text = "0";
             labelScrabbePoints.TextAlign = ContentAlignment.MiddleCenter;
@@ -1117,7 +1119,7 @@
             label33.Dock = DockStyle.Top;
             label33.Location = new Point(0, 650);
             label33.Name = "label33";
-            label33.Size = new Size(360, 3);
+            label33.Size = new Size(386, 3);
             label33.TabIndex = 13;
             // 
             // groupBoxScrabbleBlanks
@@ -1128,7 +1130,7 @@
             groupBoxScrabbleBlanks.Dock = DockStyle.Top;
             groupBoxScrabbleBlanks.Location = new Point(0, 483);
             groupBoxScrabbleBlanks.Name = "groupBoxScrabbleBlanks";
-            groupBoxScrabbleBlanks.Size = new Size(360, 167);
+            groupBoxScrabbleBlanks.Size = new Size(386, 167);
             groupBoxScrabbleBlanks.TabIndex = 12;
             groupBoxScrabbleBlanks.TabStop = false;
             groupBoxScrabbleBlanks.Text = "Blanka";
@@ -1172,7 +1174,7 @@
             groupBoxScrabbleCharBonuses.Dock = DockStyle.Top;
             groupBoxScrabbleCharBonuses.Location = new Point(0, 270);
             groupBoxScrabbleCharBonuses.Name = "groupBoxScrabbleCharBonuses";
-            groupBoxScrabbleCharBonuses.Size = new Size(360, 213);
+            groupBoxScrabbleCharBonuses.Size = new Size(386, 213);
             groupBoxScrabbleCharBonuses.TabIndex = 11;
             groupBoxScrabbleCharBonuses.TabStop = false;
             groupBoxScrabbleCharBonuses.Text = "Premie literowe";
@@ -1234,7 +1236,7 @@
             groupBoxScrabbleBonuses.Dock = DockStyle.Top;
             groupBoxScrabbleBonuses.Location = new Point(0, 151);
             groupBoxScrabbleBonuses.Name = "groupBoxScrabbleBonuses";
-            groupBoxScrabbleBonuses.Size = new Size(360, 119);
+            groupBoxScrabbleBonuses.Size = new Size(386, 119);
             groupBoxScrabbleBonuses.TabIndex = 10;
             groupBoxScrabbleBonuses.TabStop = false;
             groupBoxScrabbleBonuses.Text = "Premie wyrazowe";
@@ -1299,7 +1301,7 @@
             textBoxScrabbleCalc.Location = new Point(0, 114);
             textBoxScrabbleCalc.Margin = new Padding(0, 4, 2, 4);
             textBoxScrabbleCalc.Name = "textBoxScrabbleCalc";
-            textBoxScrabbleCalc.Size = new Size(360, 37);
+            textBoxScrabbleCalc.Size = new Size(386, 37);
             textBoxScrabbleCalc.TabIndex = 9;
             // 
             // label28
@@ -1307,7 +1309,7 @@
             label28.Dock = DockStyle.Top;
             label28.Location = new Point(0, 32);
             label28.Name = "label28";
-            label28.Size = new Size(360, 82);
+            label28.Size = new Size(386, 82);
             label28.TabIndex = 1;
             label28.Text = "Podaj wyraz i wybierz premie oraz litery użyte jako blanka, aby wyznaczyć jego wartość punktową w Scrabble.";
             // 
@@ -1318,7 +1320,7 @@
             labelScrabbleCalc.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 238);
             labelScrabbleCalc.Location = new Point(0, 0);
             labelScrabbleCalc.Name = "labelScrabbleCalc";
-            labelScrabbleCalc.Size = new Size(360, 32);
+            labelScrabbleCalc.Size = new Size(386, 32);
             labelScrabbleCalc.TabIndex = 0;
             labelScrabbleCalc.Text = "KALKULATOR PUNKTÓW";
             labelScrabbleCalc.TextAlign = ContentAlignment.MiddleCenter;
@@ -1418,18 +1420,15 @@
             SplitContainerCryptharitms.Panel1.Controls.Add(textBoxCryptharitmResult);
             SplitContainerCryptharitms.Panel1.Controls.Add(label7);
             SplitContainerCryptharitms.Panel1.Controls.Add(labelCryptharitmResultsInfo);
-            SplitContainerCryptharitms.Panel1MinSize = 700;
+            SplitContainerCryptharitms.Panel1MinSize = 500;
             // 
             // SplitContainerCryptharitms.Panel2
             // 
+            SplitContainerCryptharitms.Panel2.Controls.Add(panelCrpt);
+            SplitContainerCryptharitms.Panel2.Controls.Add(panelCrptSettings);
             SplitContainerCryptharitms.Panel2.Controls.Add(solveCryptharitmBtn);
-            SplitContainerCryptharitms.Panel2.Controls.Add(labelCryptharitm);
-            SplitContainerCryptharitms.Panel2.Controls.Add(comboBoxOperations);
-            SplitContainerCryptharitms.Panel2.Controls.Add(label4);
-            SplitContainerCryptharitms.Panel2.Controls.Add(AddComponentBtn);
-            SplitContainerCryptharitms.Panel2.Controls.Add(RemoveComponentBtn);
             SplitContainerCryptharitms.Size = new Size(1167, 737);
-            SplitContainerCryptharitms.SplitterDistance = 704;
+            SplitContainerCryptharitms.SplitterDistance = 761;
             SplitContainerCryptharitms.TabIndex = 3;
             // 
             // textBoxCryptharitmResult
@@ -1444,7 +1443,7 @@
             textBoxCryptharitmResult.Name = "textBoxCryptharitmResult";
             textBoxCryptharitmResult.ReadOnly = true;
             textBoxCryptharitmResult.ScrollBars = ScrollBars.Vertical;
-            textBoxCryptharitmResult.Size = new Size(704, 700);
+            textBoxCryptharitmResult.Size = new Size(761, 700);
             textBoxCryptharitmResult.TabIndex = 4;
             // 
             // label7
@@ -1452,7 +1451,7 @@
             label7.Dock = DockStyle.Bottom;
             label7.Location = new Point(0, 700);
             label7.Name = "label7";
-            label7.Size = new Size(704, 3);
+            label7.Size = new Size(761, 3);
             label7.TabIndex = 3;
             label7.Text = "label7";
             // 
@@ -1463,10 +1462,74 @@
             labelCryptharitmResultsInfo.Location = new Point(0, 703);
             labelCryptharitmResultsInfo.Margin = new Padding(3, 3, 3, 0);
             labelCryptharitmResultsInfo.Name = "labelCryptharitmResultsInfo";
-            labelCryptharitmResultsInfo.Size = new Size(704, 34);
+            labelCryptharitmResultsInfo.Size = new Size(761, 34);
             labelCryptharitmResultsInfo.TabIndex = 2;
             labelCryptharitmResultsInfo.Text = "Znalezionych rozwiązań: 0";
             labelCryptharitmResultsInfo.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // panelCrpt
+            // 
+            panelCrpt.Dock = DockStyle.Fill;
+            panelCrpt.Location = new Point(0, 101);
+            panelCrpt.Name = "panelCrpt";
+            panelCrpt.Size = new Size(402, 602);
+            panelCrpt.TabIndex = 18;
+            // 
+            // panelCrptSettings
+            // 
+            panelCrptSettings.Controls.Add(label4);
+            panelCrptSettings.Controls.Add(RemoveComponentBtn);
+            panelCrptSettings.Controls.Add(AddComponentBtn);
+            panelCrptSettings.Controls.Add(comboBoxOperations);
+            panelCrptSettings.Dock = DockStyle.Top;
+            panelCrptSettings.Location = new Point(0, 0);
+            panelCrptSettings.Name = "panelCrptSettings";
+            panelCrptSettings.Size = new Size(402, 101);
+            panelCrptSettings.TabIndex = 17;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(15, 15);
+            label4.Name = "label4";
+            label4.Size = new Size(154, 25);
+            label4.TabIndex = 14;
+            label4.Text = "Wybierz działanie:";
+            // 
+            // RemoveComponentBtn
+            // 
+            RemoveComponentBtn.Cursor = Cursors.Hand;
+            RemoveComponentBtn.FlatStyle = FlatStyle.Flat;
+            RemoveComponentBtn.Location = new Point(287, 28);
+            RemoveComponentBtn.Name = "RemoveComponentBtn";
+            RemoveComponentBtn.Size = new Size(90, 34);
+            RemoveComponentBtn.TabIndex = 12;
+            RemoveComponentBtn.Text = "USUŃ";
+            RemoveComponentBtn.UseVisualStyleBackColor = true;
+            RemoveComponentBtn.Click += RemoveComponentBtn_Click;
+            // 
+            // AddComponentBtn
+            // 
+            AddComponentBtn.Cursor = Cursors.Hand;
+            AddComponentBtn.FlatStyle = FlatStyle.Flat;
+            AddComponentBtn.Location = new Point(191, 28);
+            AddComponentBtn.Name = "AddComponentBtn";
+            AddComponentBtn.Size = new Size(90, 34);
+            AddComponentBtn.TabIndex = 11;
+            AddComponentBtn.Text = "DODAJ";
+            AddComponentBtn.UseVisualStyleBackColor = true;
+            AddComponentBtn.Click += AddComponentBtn_Click;
+            // 
+            // comboBoxOperations
+            // 
+            comboBoxOperations.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBoxOperations.FormattingEnabled = true;
+            comboBoxOperations.Items.AddRange(new object[] { "dodawanie", "odejmowanie", "mnożenie" });
+            comboBoxOperations.Location = new Point(15, 43);
+            comboBoxOperations.Name = "comboBoxOperations";
+            comboBoxOperations.Size = new Size(154, 33);
+            comboBoxOperations.TabIndex = 15;
+            comboBoxOperations.SelectedIndexChanged += ComboBoxOperations_SelectedIndexChanged;
             // 
             // solveCryptharitmBtn
             // 
@@ -1475,64 +1538,11 @@
             solveCryptharitmBtn.FlatStyle = FlatStyle.Flat;
             solveCryptharitmBtn.Location = new Point(0, 703);
             solveCryptharitmBtn.Name = "solveCryptharitmBtn";
-            solveCryptharitmBtn.Size = new Size(459, 34);
+            solveCryptharitmBtn.Size = new Size(402, 34);
             solveCryptharitmBtn.TabIndex = 9;
             solveCryptharitmBtn.Text = "SZUKAJ ROZWIĄZAŃ";
             solveCryptharitmBtn.UseVisualStyleBackColor = true;
             solveCryptharitmBtn.Click += SolveCryptharitmBtn_Click;
-            // 
-            // labelCryptharitm
-            // 
-            labelCryptharitm.Dock = DockStyle.Top;
-            labelCryptharitm.Location = new Point(0, 0);
-            labelCryptharitm.Name = "labelCryptharitm";
-            labelCryptharitm.Size = new Size(459, 58);
-            labelCryptharitm.TabIndex = 13;
-            labelCryptharitm.Text = "  Podaj składowe działania, a pod kreską jego wynik.\r\n  Użyj maksymalnie 10 różnych liter.\r\n";
-            // 
-            // comboBoxOperations
-            // 
-            comboBoxOperations.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBoxOperations.FormattingEnabled = true;
-            comboBoxOperations.Items.AddRange(new object[] { "dodawanie", "odejmowanie", "mnożenie" });
-            comboBoxOperations.Location = new Point(252, 63);
-            comboBoxOperations.Name = "comboBoxOperations";
-            comboBoxOperations.Size = new Size(182, 33);
-            comboBoxOperations.TabIndex = 15;
-            comboBoxOperations.SelectedIndexChanged += ComboBoxOperations_SelectedIndexChanged;
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Location = new Point(76, 66);
-            label4.Name = "label4";
-            label4.Size = new Size(154, 25);
-            label4.TabIndex = 14;
-            label4.Text = "Wybierz działanie:";
-            // 
-            // AddComponentBtn
-            // 
-            AddComponentBtn.Cursor = Cursors.Hand;
-            AddComponentBtn.FlatStyle = FlatStyle.Flat;
-            AddComponentBtn.Location = new Point(55, 120);
-            AddComponentBtn.Name = "AddComponentBtn";
-            AddComponentBtn.Size = new Size(175, 34);
-            AddComponentBtn.TabIndex = 11;
-            AddComponentBtn.Text = "DODAJ SKŁADNIK";
-            AddComponentBtn.UseVisualStyleBackColor = true;
-            AddComponentBtn.Click += AddComponentBtn_Click;
-            // 
-            // RemoveComponentBtn
-            // 
-            RemoveComponentBtn.Cursor = Cursors.Hand;
-            RemoveComponentBtn.FlatStyle = FlatStyle.Flat;
-            RemoveComponentBtn.Location = new Point(253, 120);
-            RemoveComponentBtn.Name = "RemoveComponentBtn";
-            RemoveComponentBtn.Size = new Size(175, 34);
-            RemoveComponentBtn.TabIndex = 12;
-            RemoveComponentBtn.Text = "USUŃ SKŁADNIK";
-            RemoveComponentBtn.UseVisualStyleBackColor = true;
-            RemoveComponentBtn.Click += RemoveComponentBtn_Click;
             // 
             // labelCryptharitms
             // 
@@ -2382,9 +2392,10 @@
             SplitContainerCryptharitms.Panel1.ResumeLayout(false);
             SplitContainerCryptharitms.Panel1.PerformLayout();
             SplitContainerCryptharitms.Panel2.ResumeLayout(false);
-            SplitContainerCryptharitms.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)SplitContainerCryptharitms).EndInit();
             SplitContainerCryptharitms.ResumeLayout(false);
+            panelCrptSettings.ResumeLayout(false);
+            panelCrptSettings.PerformLayout();
             tabPageDictionary.ResumeLayout(false);
             tableLayoutPanel3.ResumeLayout(false);
             groupBoxAddToDict.ResumeLayout(false);
@@ -2563,7 +2574,6 @@
         private Button solveCryptharitmBtn;
         private Button RemoveComponentBtn;
         private Button AddComponentBtn;
-        private Label labelCryptharitm;
         private ComboBox comboBoxOperations;
         private Label label4;
         private Label label7;
@@ -2573,5 +2583,7 @@
         private RadioButton radioUlozSamMode;
         internal Label labelCryptharitmResultsInfo;
         private Label labelCryptharitmInfo;
+        private Panel panelCrptSettings;
+        private Panel panelCrpt;
     }
 }

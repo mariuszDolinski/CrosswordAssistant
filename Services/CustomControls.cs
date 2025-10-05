@@ -181,12 +181,12 @@ namespace CrosswordAssistant.Services
                 ComponentTextBox.Add(new TextBox()
                 {
                     CharacterCasing = CharacterCasing.Upper,
-                    Location = new Point(155, 196 + 43 * i),
+                    Location = new Point(110, 25 + 43 * i),
                     Name = "textBoxComponent" + (i + 1).ToString(),
-                    Size = new Size(270, 31),
+                    Size = new Size(180, 31),
                     TabIndex = i + 21,
                     TextAlign = HorizontalAlignment.Right,
-                    Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 238)
+                    Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point, 238)
                 });
                 CryptharitmPanel.Controls.Add(ComponentTextBox[i]);
             }
@@ -196,7 +196,7 @@ namespace CrosswordAssistant.Services
             CurrentOperatorLabel = new()
             {
                 AutoSize = true,
-                Location = new Point(72, lastComponentY + 36),
+                Location = new Point(15, lastComponentY + 36),
                 Name = "labelOperator",
                 Size = new Size(24, 25),
                 TabIndex = 7,
@@ -206,21 +206,21 @@ namespace CrosswordAssistant.Services
             Label labelCryptLine = new()
             {
                 BorderStyle = BorderStyle.FixedSingle,
-                Location = new Point(72, lastComponentY + 64),
+                Location = new Point(40, lastComponentY + 64),
                 Name = "labelCryptLine",
-                Size = new Size(358, 1),
+                Size = new Size(258, 1),
                 TabIndex = 10
             };
 
             OperationResultTextBox = new TextBox()
             {
                 CharacterCasing = CharacterCasing.Upper,
-                Location = new Point(133, lastComponentY + 88),
+                Location = new Point(88, lastComponentY + 88),
                 Name = "textBoxSum",
-                Size = new Size(292, 31),
+                Size = new Size(200, 31),
                 TabIndex = 21 + ComponentsCount,
                 TextAlign = HorizontalAlignment.Right,
-                Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 238)
+                Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point, 238)
             };
 
             CryptharitmPanel.Controls.Add(CurrentOperatorLabel);
