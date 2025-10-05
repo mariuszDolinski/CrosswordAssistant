@@ -5,6 +5,7 @@ namespace CrosswordAssistant.Services
 {
     public class CustomControls
     {
+        private static double Scale;
         private readonly string[] DefaultGroupLetters = ["AĄBC", "ĆDEĘ", "FGHI", "JKLŁ", "MNŃO", "ÓPRS", "ŚTUW", "YZŹŻ"];
         //MainForm controls
         private readonly Panel CryptharitmPanel;
@@ -26,7 +27,6 @@ namespace CrosswordAssistant.Services
         private GroupBox UlozSamSettings;
         private TextBox WordToCodeTextBox;
         private Button ConvertToCodeBtn;
-        private Label WordToCodeLabel;
         private Label CodeResultLabel;
 
         public CustomControls(CustomControlsRequest request)
@@ -38,9 +38,16 @@ namespace CrosswordAssistant.Services
             GroupTextBox = new TextBox[8];
             ComponentsCount = 2;
 
+            SetScale(request.DeviceDpi);
             InitializeControls();
         }
 
+        private void SetScale(int dpi)
+        {
+            if (dpi < 100) Scale = 0.75;
+            else if (dpi < 130) Scale = 0.9;
+            else Scale = 1;
+        }
         private void InitializeControls()
         {
             InitializeCryptharitmControls();
@@ -56,15 +63,15 @@ namespace CrosswordAssistant.Services
             int offsetY = 0;
             for (int i = 0; i < 8; i++)
             {
-                if (i > 3) { offsetX = 350; offsetY = -4; }
+                if (i > 3) { offsetX = (int)(275 * Scale); offsetY = -4; }
                 GroupLabel[i] = new Label
                 {
                     BackColor = bColor,
-                    Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point, 238),
-                    Location = new Point(25 + offsetX, 45 * (i + 1 + offsetY)),
+                    Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 238),
+                    Location = new Point(25 + offsetX, (int)(41 * Scale) * (i + 1 + offsetY)),
                     Margin = new Padding(4, 2, 3, 2),
                     Name = "labelGr1",
-                    Size = new Size(72, 36),
+                    Size = new Size(50, (int)(33 * Scale)),
                     TabIndex = 10 + i,
                     BorderStyle = BorderStyle.FixedSingle,
                     Text = (i + 1).ToString(),
@@ -72,11 +79,11 @@ namespace CrosswordAssistant.Services
                 };
                 GroupTextBox[i] = new TextBox
                 {
-                    Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point, 238),
-                    Location = new Point(105 + offsetX, 45 * (i + 1 + offsetY)),
+                    Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 238),
+                    Location = new Point(100 + offsetX, (int)(41 * Scale) * (i + 1 + offsetY)),
                     Margin = new Padding(3, 1, 3, 3),
                     Name = "textBoxGr1",
-                    Size = new Size(215, 36),
+                    Size = new Size(150, 36),
                     TabIndex = 30 + i,
                     Text = DefaultGroupLetters[i],
                     CharacterCasing = CharacterCasing.Upper
@@ -85,26 +92,16 @@ namespace CrosswordAssistant.Services
                 UlozSamGroups.Controls.Add(GroupTextBox[i]);
             }
 
-            WordToCodeLabel = new Label()
-            {
-                Location = new Point(25, 30),
-                Margin = new Padding(4, 2, 3, 2),
-                Name = "wordToCodeLabel",
-                Size = new Size(650, 36),
-                TabIndex = 1,
-                Text = "Podaj wyraz i kliknij przycisk, aby wygenerować kod dla aktulanych grup liter.",
-                TextAlign = ContentAlignment.MiddleLeft
-            };
-
             WordToCodeTextBox = new TextBox()
             {
                 Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point, 238),
-                Location = new Point(25, 70),
+                Location = new Point(25, (int)(40 * Scale)),
                 Margin = new Padding(3, 1, 3, 3),
                 Name = "wordToCodeTextBox",
-                Size = new Size(645, 36),
+                Size = new Size((int)(555 * Scale), 36),
                 TabIndex = 2,
-                CharacterCasing = CharacterCasing.Upper
+                CharacterCasing = CharacterCasing.Upper,
+                PlaceholderText = "Podaj wyraz i kliknij przycisk, aby wygenerować kod"
             };
 
             ConvertToCodeBtn = new Button()
@@ -112,8 +109,8 @@ namespace CrosswordAssistant.Services
                 Cursor = Cursors.Hand,
                 FlatStyle = FlatStyle.Flat,
                 Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 238),
-                Location = new Point(26, 120),
-                Size = new Size(200, 36),
+                Location = new Point(26, (int)(int)(90 * Scale)),
+                Size = new Size((int)(180 * Scale), (int)(36 * Scale)),
                 Name = "convertToCodeBtn",
                 TabIndex = 3,
                 Text = "GENERUJ KOD >>>",
@@ -123,10 +120,10 @@ namespace CrosswordAssistant.Services
             CodeResultLabel = new Label()
             {
                 Font = new Font("Segoe UI Semibold", 11F, FontStyle.Regular, GraphicsUnit.Point, 238),
-                Location = new Point(235, 120),
+                Location = new Point((int)(220 * Scale), (int)(90 * Scale)),
                 Margin = new Padding(4, 2, 3, 2),
                 Name = "codeResultLabel",
-                Size = new Size(435, 36),
+                Size = new Size((int)(360 * Scale), (int)(36 * Scale)),
                 TabIndex = 4,
                 BorderStyle = BorderStyle.FixedSingle,
                 TextAlign = ContentAlignment.MiddleLeft,
@@ -136,7 +133,6 @@ namespace CrosswordAssistant.Services
             PatternPanel.Controls.Add(UlozSamSettings);
             GenerateUlozSamCode.Controls.Add(WordToCodeTextBox);
             GenerateUlozSamCode.Controls.Add(ConvertToCodeBtn);
-            GenerateUlozSamCode.Controls.Add(WordToCodeLabel);
             GenerateUlozSamCode.Controls.Add(CodeResultLabel);
         }
         private void InitializedUlozSamGroupBoxes()
@@ -157,7 +153,7 @@ namespace CrosswordAssistant.Services
                 Dock = DockStyle.Top,
                 Location = new Point(0, 0),
                 Name = "groupBoxUlozSamGroups",
-                Size = new Size(709, 250),
+                Size = new Size(709, (int)(225 * Scale)),
                 TabIndex = 3,
                 TabStop = false,
                 Text = "Grupy liter",
@@ -165,7 +161,7 @@ namespace CrosswordAssistant.Services
             };
             GenerateUlozSamCode = new GroupBox()
             {
-                Dock = DockStyle.Bottom,
+                Dock = DockStyle.Fill,
                 Location = new Point(3, 230),
                 Name = "groupBoxGenerateUlozSamCode",
                 Size = new Size(703, 188),
