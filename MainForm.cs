@@ -46,7 +46,7 @@ namespace CrosswordAssistant
 
             _customControls = new CustomControls(new CustomControlsRequest(
                 SplitContainerCryptharitms.Panel2,
-                PanelPatternFilters, DeviceDpi
+                PanelPatternFilters
             ));
             try { InitControls(); }
             catch (Exception ex)
