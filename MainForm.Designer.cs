@@ -139,6 +139,109 @@
             comboBoxOperations = new ComboBox();
             solveCryptharitmBtn = new Button();
             labelCryptharitms = new Label();
+            tabPageSudoku = new TabPage();
+            tableLayoutPanelSudokuMain = new TableLayoutPanel();
+            panelSudokuGrid = new Panel();
+            tableSudokuBoxes = new TableLayoutPanel();
+            panelSudokuBox9 = new Panel();
+            tableSudokuBox9 = new TableLayoutPanel();
+            label98 = new Label();
+            label99 = new Label();
+            label100 = new Label();
+            label101 = new Label();
+            label102 = new Label();
+            label103 = new Label();
+            label104 = new Label();
+            label105 = new Label();
+            label106 = new Label();
+            panelSudokuBox8 = new Panel();
+            tableSudokuBox8 = new TableLayoutPanel();
+            label89 = new Label();
+            label90 = new Label();
+            label91 = new Label();
+            label92 = new Label();
+            label93 = new Label();
+            label94 = new Label();
+            label95 = new Label();
+            label96 = new Label();
+            label97 = new Label();
+            panelSudokuBox7 = new Panel();
+            tableSudokuBox7 = new TableLayoutPanel();
+            label80 = new Label();
+            label81 = new Label();
+            label82 = new Label();
+            label83 = new Label();
+            label84 = new Label();
+            label85 = new Label();
+            label86 = new Label();
+            label87 = new Label();
+            label88 = new Label();
+            panelSudokuBox6 = new Panel();
+            tableSudokuBox6 = new TableLayoutPanel();
+            label71 = new Label();
+            label72 = new Label();
+            label73 = new Label();
+            label74 = new Label();
+            label75 = new Label();
+            label76 = new Label();
+            label77 = new Label();
+            label78 = new Label();
+            label79 = new Label();
+            panelSudokuBox5 = new Panel();
+            tableSudokuBox5 = new TableLayoutPanel();
+            label62 = new Label();
+            label63 = new Label();
+            label64 = new Label();
+            label65 = new Label();
+            label66 = new Label();
+            label67 = new Label();
+            label68 = new Label();
+            label69 = new Label();
+            label70 = new Label();
+            panelSudokuBox4 = new Panel();
+            tableSudokuBox4 = new TableLayoutPanel();
+            label53 = new Label();
+            label54 = new Label();
+            label55 = new Label();
+            label56 = new Label();
+            label57 = new Label();
+            label58 = new Label();
+            label59 = new Label();
+            label60 = new Label();
+            label61 = new Label();
+            panelSudokuBox3 = new Panel();
+            tableSudokuBox3 = new TableLayoutPanel();
+            label44 = new Label();
+            label45 = new Label();
+            label46 = new Label();
+            label47 = new Label();
+            label48 = new Label();
+            label49 = new Label();
+            label50 = new Label();
+            label51 = new Label();
+            label52 = new Label();
+            panelSudokuBox2 = new Panel();
+            tableSudokuBox2 = new TableLayoutPanel();
+            label17 = new Label();
+            label18 = new Label();
+            label27 = new Label();
+            label38 = new Label();
+            label39 = new Label();
+            label40 = new Label();
+            label41 = new Label();
+            label42 = new Label();
+            label43 = new Label();
+            panelSudokuBox1 = new Panel();
+            tableSudokuBox1 = new TableLayoutPanel();
+            label16 = new Label();
+            label15 = new Label();
+            label14 = new Label();
+            label13 = new Label();
+            label12 = new Label();
+            label11 = new Label();
+            label10 = new Label();
+            label9 = new Label();
+            label8 = new Label();
             tabPageDictionary = new TabPage();
             tableLayoutPanel3 = new TableLayoutPanel();
             groupBoxAddToDict = new GroupBox();
@@ -230,6 +333,28 @@
             SplitContainerCryptharitms.Panel2.SuspendLayout();
             SplitContainerCryptharitms.SuspendLayout();
             panelCrptSettings.SuspendLayout();
+            tabPageSudoku.SuspendLayout();
+            tableLayoutPanelSudokuMain.SuspendLayout();
+            panelSudokuGrid.SuspendLayout();
+            tableSudokuBoxes.SuspendLayout();
+            panelSudokuBox9.SuspendLayout();
+            tableSudokuBox9.SuspendLayout();
+            panelSudokuBox8.SuspendLayout();
+            tableSudokuBox8.SuspendLayout();
+            panelSudokuBox7.SuspendLayout();
+            tableSudokuBox7.SuspendLayout();
+            panelSudokuBox6.SuspendLayout();
+            tableSudokuBox6.SuspendLayout();
+            panelSudokuBox5.SuspendLayout();
+            tableSudokuBox5.SuspendLayout();
+            panelSudokuBox4.SuspendLayout();
+            tableSudokuBox4.SuspendLayout();
+            panelSudokuBox3.SuspendLayout();
+            tableSudokuBox3.SuspendLayout();
+            panelSudokuBox2.SuspendLayout();
+            tableSudokuBox2.SuspendLayout();
+            panelSudokuBox1.SuspendLayout();
+            tableSudokuBox1.SuspendLayout();
             tabPageDictionary.SuspendLayout();
             tableLayoutPanel3.SuspendLayout();
             groupBoxAddToDict.SuspendLayout();
@@ -254,6 +379,7 @@
             tabControl.Controls.Add(tabPattern);
             tabControl.Controls.Add(tabPageScrabble);
             tabControl.Controls.Add(tabPageCryptharitm);
+            tabControl.Controls.Add(tabPageSudoku);
             tabControl.Controls.Add(tabPageDictionary);
             tabControl.Controls.Add(tabPageAbout);
             tabControl.Dock = DockStyle.Fill;
@@ -1557,6 +1683,1436 @@
             labelCryptharitms.Text = "KRYPTARYTMY";
             labelCryptharitms.TextAlign = ContentAlignment.TopCenter;
             // 
+            // tabPageSudoku
+            // 
+            tabPageSudoku.Controls.Add(tableLayoutPanelSudokuMain);
+            tabPageSudoku.Location = new Point(4, 34);
+            tabPageSudoku.Name = "tabPageSudoku";
+            tabPageSudoku.Padding = new Padding(3);
+            tabPageSudoku.Size = new Size(1173, 778);
+            tabPageSudoku.TabIndex = 6;
+            tabPageSudoku.Text = "Sudoku";
+            tabPageSudoku.UseVisualStyleBackColor = true;
+            // 
+            // tableLayoutPanelSudokuMain
+            // 
+            tableLayoutPanelSudokuMain.ColumnCount = 2;
+            tableLayoutPanelSudokuMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 62.3821754F));
+            tableLayoutPanelSudokuMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 37.6178246F));
+            tableLayoutPanelSudokuMain.Controls.Add(panelSudokuGrid, 0, 0);
+            tableLayoutPanelSudokuMain.Dock = DockStyle.Fill;
+            tableLayoutPanelSudokuMain.Location = new Point(3, 3);
+            tableLayoutPanelSudokuMain.Name = "tableLayoutPanelSudokuMain";
+            tableLayoutPanelSudokuMain.RowCount = 1;
+            tableLayoutPanelSudokuMain.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanelSudokuMain.Size = new Size(1167, 772);
+            tableLayoutPanelSudokuMain.TabIndex = 0;
+            // 
+            // panelSudokuGrid
+            // 
+            panelSudokuGrid.BorderStyle = BorderStyle.FixedSingle;
+            panelSudokuGrid.Controls.Add(tableSudokuBoxes);
+            panelSudokuGrid.Dock = DockStyle.Top;
+            panelSudokuGrid.Location = new Point(3, 3);
+            panelSudokuGrid.Name = "panelSudokuGrid";
+            panelSudokuGrid.Size = new Size(722, 722);
+            panelSudokuGrid.TabIndex = 0;
+            // 
+            // tableSudokuBoxes
+            // 
+            tableSudokuBoxes.ColumnCount = 3;
+            tableSudokuBoxes.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
+            tableSudokuBoxes.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333359F));
+            tableSudokuBoxes.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333359F));
+            tableSudokuBoxes.Controls.Add(panelSudokuBox9, 2, 2);
+            tableSudokuBoxes.Controls.Add(panelSudokuBox8, 1, 2);
+            tableSudokuBoxes.Controls.Add(panelSudokuBox7, 0, 2);
+            tableSudokuBoxes.Controls.Add(panelSudokuBox6, 2, 1);
+            tableSudokuBoxes.Controls.Add(panelSudokuBox5, 1, 1);
+            tableSudokuBoxes.Controls.Add(panelSudokuBox4, 0, 1);
+            tableSudokuBoxes.Controls.Add(panelSudokuBox3, 2, 0);
+            tableSudokuBoxes.Controls.Add(panelSudokuBox2, 1, 0);
+            tableSudokuBoxes.Controls.Add(panelSudokuBox1, 0, 0);
+            tableSudokuBoxes.Dock = DockStyle.Fill;
+            tableSudokuBoxes.Location = new Point(0, 0);
+            tableSudokuBoxes.Margin = new Padding(0);
+            tableSudokuBoxes.Name = "tableSudokuBoxes";
+            tableSudokuBoxes.RowCount = 3;
+            tableSudokuBoxes.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
+            tableSudokuBoxes.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
+            tableSudokuBoxes.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
+            tableSudokuBoxes.Size = new Size(720, 720);
+            tableSudokuBoxes.TabIndex = 0;
+            // 
+            // panelSudokuBox9
+            // 
+            panelSudokuBox9.BorderStyle = BorderStyle.FixedSingle;
+            panelSudokuBox9.Controls.Add(tableSudokuBox9);
+            panelSudokuBox9.Dock = DockStyle.Fill;
+            panelSudokuBox9.Location = new Point(479, 480);
+            panelSudokuBox9.Margin = new Padding(0);
+            panelSudokuBox9.Name = "panelSudokuBox9";
+            panelSudokuBox9.Size = new Size(241, 240);
+            panelSudokuBox9.TabIndex = 8;
+            // 
+            // tableSudokuBox9
+            // 
+            tableSudokuBox9.ColumnCount = 3;
+            tableSudokuBox9.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
+            tableSudokuBox9.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
+            tableSudokuBox9.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
+            tableSudokuBox9.Controls.Add(label98, 2, 2);
+            tableSudokuBox9.Controls.Add(label99, 1, 2);
+            tableSudokuBox9.Controls.Add(label100, 0, 2);
+            tableSudokuBox9.Controls.Add(label101, 2, 1);
+            tableSudokuBox9.Controls.Add(label102, 1, 1);
+            tableSudokuBox9.Controls.Add(label103, 0, 1);
+            tableSudokuBox9.Controls.Add(label104, 2, 0);
+            tableSudokuBox9.Controls.Add(label105, 1, 0);
+            tableSudokuBox9.Controls.Add(label106, 0, 0);
+            tableSudokuBox9.Dock = DockStyle.Fill;
+            tableSudokuBox9.Location = new Point(0, 0);
+            tableSudokuBox9.Name = "tableSudokuBox9";
+            tableSudokuBox9.RowCount = 3;
+            tableSudokuBox9.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
+            tableSudokuBox9.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
+            tableSudokuBox9.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
+            tableSudokuBox9.Size = new Size(239, 238);
+            tableSudokuBox9.TabIndex = 2;
+            // 
+            // label98
+            // 
+            label98.AutoSize = true;
+            label98.BorderStyle = BorderStyle.FixedSingle;
+            label98.Dock = DockStyle.Fill;
+            label98.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label98.Location = new Point(158, 158);
+            label98.Margin = new Padding(0);
+            label98.Name = "label98";
+            label98.Size = new Size(81, 80);
+            label98.TabIndex = 8;
+            label98.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label99
+            // 
+            label99.AutoSize = true;
+            label99.BorderStyle = BorderStyle.FixedSingle;
+            label99.Dock = DockStyle.Fill;
+            label99.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label99.Location = new Point(79, 158);
+            label99.Margin = new Padding(0);
+            label99.Name = "label99";
+            label99.Size = new Size(79, 80);
+            label99.TabIndex = 7;
+            label99.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label100
+            // 
+            label100.AutoSize = true;
+            label100.BorderStyle = BorderStyle.FixedSingle;
+            label100.Dock = DockStyle.Fill;
+            label100.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label100.Location = new Point(0, 158);
+            label100.Margin = new Padding(0);
+            label100.Name = "label100";
+            label100.Size = new Size(79, 80);
+            label100.TabIndex = 6;
+            label100.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label101
+            // 
+            label101.AutoSize = true;
+            label101.BorderStyle = BorderStyle.FixedSingle;
+            label101.Dock = DockStyle.Fill;
+            label101.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label101.Location = new Point(158, 79);
+            label101.Margin = new Padding(0);
+            label101.Name = "label101";
+            label101.Size = new Size(81, 79);
+            label101.TabIndex = 5;
+            label101.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label102
+            // 
+            label102.AutoSize = true;
+            label102.BorderStyle = BorderStyle.FixedSingle;
+            label102.Dock = DockStyle.Fill;
+            label102.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label102.Location = new Point(79, 79);
+            label102.Margin = new Padding(0);
+            label102.Name = "label102";
+            label102.Size = new Size(79, 79);
+            label102.TabIndex = 4;
+            label102.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label103
+            // 
+            label103.AutoSize = true;
+            label103.BorderStyle = BorderStyle.FixedSingle;
+            label103.Dock = DockStyle.Fill;
+            label103.Location = new Point(0, 79);
+            label103.Margin = new Padding(0);
+            label103.Name = "label103";
+            label103.Size = new Size(79, 79);
+            label103.TabIndex = 3;
+            label103.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label104
+            // 
+            label104.AutoSize = true;
+            label104.BorderStyle = BorderStyle.FixedSingle;
+            label104.Dock = DockStyle.Fill;
+            label104.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label104.Location = new Point(158, 0);
+            label104.Margin = new Padding(0);
+            label104.Name = "label104";
+            label104.Size = new Size(81, 79);
+            label104.TabIndex = 2;
+            label104.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label105
+            // 
+            label105.AutoSize = true;
+            label105.BorderStyle = BorderStyle.FixedSingle;
+            label105.Dock = DockStyle.Fill;
+            label105.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label105.Location = new Point(79, 0);
+            label105.Margin = new Padding(0);
+            label105.Name = "label105";
+            label105.Size = new Size(79, 79);
+            label105.TabIndex = 1;
+            label105.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label106
+            // 
+            label106.AutoSize = true;
+            label106.BorderStyle = BorderStyle.FixedSingle;
+            label106.Dock = DockStyle.Fill;
+            label106.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label106.Location = new Point(0, 0);
+            label106.Margin = new Padding(0);
+            label106.Name = "label106";
+            label106.Size = new Size(79, 79);
+            label106.TabIndex = 0;
+            label106.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // panelSudokuBox8
+            // 
+            panelSudokuBox8.BorderStyle = BorderStyle.FixedSingle;
+            panelSudokuBox8.Controls.Add(tableSudokuBox8);
+            panelSudokuBox8.Dock = DockStyle.Fill;
+            panelSudokuBox8.Location = new Point(239, 480);
+            panelSudokuBox8.Margin = new Padding(0);
+            panelSudokuBox8.Name = "panelSudokuBox8";
+            panelSudokuBox8.Size = new Size(240, 240);
+            panelSudokuBox8.TabIndex = 7;
+            // 
+            // tableSudokuBox8
+            // 
+            tableSudokuBox8.ColumnCount = 3;
+            tableSudokuBox8.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
+            tableSudokuBox8.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
+            tableSudokuBox8.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
+            tableSudokuBox8.Controls.Add(label89, 2, 2);
+            tableSudokuBox8.Controls.Add(label90, 1, 2);
+            tableSudokuBox8.Controls.Add(label91, 0, 2);
+            tableSudokuBox8.Controls.Add(label92, 2, 1);
+            tableSudokuBox8.Controls.Add(label93, 1, 1);
+            tableSudokuBox8.Controls.Add(label94, 0, 1);
+            tableSudokuBox8.Controls.Add(label95, 2, 0);
+            tableSudokuBox8.Controls.Add(label96, 1, 0);
+            tableSudokuBox8.Controls.Add(label97, 0, 0);
+            tableSudokuBox8.Dock = DockStyle.Fill;
+            tableSudokuBox8.Location = new Point(0, 0);
+            tableSudokuBox8.Name = "tableSudokuBox8";
+            tableSudokuBox8.RowCount = 3;
+            tableSudokuBox8.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
+            tableSudokuBox8.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
+            tableSudokuBox8.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
+            tableSudokuBox8.Size = new Size(238, 238);
+            tableSudokuBox8.TabIndex = 2;
+            // 
+            // label89
+            // 
+            label89.AutoSize = true;
+            label89.BorderStyle = BorderStyle.FixedSingle;
+            label89.Dock = DockStyle.Fill;
+            label89.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label89.Location = new Point(158, 158);
+            label89.Margin = new Padding(0);
+            label89.Name = "label89";
+            label89.Size = new Size(80, 80);
+            label89.TabIndex = 8;
+            label89.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label90
+            // 
+            label90.AutoSize = true;
+            label90.BorderStyle = BorderStyle.FixedSingle;
+            label90.Dock = DockStyle.Fill;
+            label90.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label90.Location = new Point(79, 158);
+            label90.Margin = new Padding(0);
+            label90.Name = "label90";
+            label90.Size = new Size(79, 80);
+            label90.TabIndex = 7;
+            label90.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label91
+            // 
+            label91.AutoSize = true;
+            label91.BorderStyle = BorderStyle.FixedSingle;
+            label91.Dock = DockStyle.Fill;
+            label91.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label91.Location = new Point(0, 158);
+            label91.Margin = new Padding(0);
+            label91.Name = "label91";
+            label91.Size = new Size(79, 80);
+            label91.TabIndex = 6;
+            label91.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label92
+            // 
+            label92.AutoSize = true;
+            label92.BorderStyle = BorderStyle.FixedSingle;
+            label92.Dock = DockStyle.Fill;
+            label92.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label92.Location = new Point(158, 79);
+            label92.Margin = new Padding(0);
+            label92.Name = "label92";
+            label92.Size = new Size(80, 79);
+            label92.TabIndex = 5;
+            label92.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label93
+            // 
+            label93.AutoSize = true;
+            label93.BorderStyle = BorderStyle.FixedSingle;
+            label93.Dock = DockStyle.Fill;
+            label93.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label93.Location = new Point(79, 79);
+            label93.Margin = new Padding(0);
+            label93.Name = "label93";
+            label93.Size = new Size(79, 79);
+            label93.TabIndex = 4;
+            label93.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label94
+            // 
+            label94.AutoSize = true;
+            label94.BorderStyle = BorderStyle.FixedSingle;
+            label94.Dock = DockStyle.Fill;
+            label94.Location = new Point(0, 79);
+            label94.Margin = new Padding(0);
+            label94.Name = "label94";
+            label94.Size = new Size(79, 79);
+            label94.TabIndex = 3;
+            label94.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label95
+            // 
+            label95.AutoSize = true;
+            label95.BorderStyle = BorderStyle.FixedSingle;
+            label95.Dock = DockStyle.Fill;
+            label95.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label95.Location = new Point(158, 0);
+            label95.Margin = new Padding(0);
+            label95.Name = "label95";
+            label95.Size = new Size(80, 79);
+            label95.TabIndex = 2;
+            label95.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label96
+            // 
+            label96.AutoSize = true;
+            label96.BorderStyle = BorderStyle.FixedSingle;
+            label96.Dock = DockStyle.Fill;
+            label96.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label96.Location = new Point(79, 0);
+            label96.Margin = new Padding(0);
+            label96.Name = "label96";
+            label96.Size = new Size(79, 79);
+            label96.TabIndex = 1;
+            label96.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label97
+            // 
+            label97.AutoSize = true;
+            label97.BorderStyle = BorderStyle.FixedSingle;
+            label97.Dock = DockStyle.Fill;
+            label97.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label97.Location = new Point(0, 0);
+            label97.Margin = new Padding(0);
+            label97.Name = "label97";
+            label97.Size = new Size(79, 79);
+            label97.TabIndex = 0;
+            label97.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // panelSudokuBox7
+            // 
+            panelSudokuBox7.BorderStyle = BorderStyle.FixedSingle;
+            panelSudokuBox7.Controls.Add(tableSudokuBox7);
+            panelSudokuBox7.Dock = DockStyle.Fill;
+            panelSudokuBox7.Location = new Point(0, 480);
+            panelSudokuBox7.Margin = new Padding(0);
+            panelSudokuBox7.Name = "panelSudokuBox7";
+            panelSudokuBox7.Size = new Size(239, 240);
+            panelSudokuBox7.TabIndex = 6;
+            // 
+            // tableSudokuBox7
+            // 
+            tableSudokuBox7.ColumnCount = 3;
+            tableSudokuBox7.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
+            tableSudokuBox7.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
+            tableSudokuBox7.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
+            tableSudokuBox7.Controls.Add(label80, 2, 2);
+            tableSudokuBox7.Controls.Add(label81, 1, 2);
+            tableSudokuBox7.Controls.Add(label82, 0, 2);
+            tableSudokuBox7.Controls.Add(label83, 2, 1);
+            tableSudokuBox7.Controls.Add(label84, 1, 1);
+            tableSudokuBox7.Controls.Add(label85, 0, 1);
+            tableSudokuBox7.Controls.Add(label86, 2, 0);
+            tableSudokuBox7.Controls.Add(label87, 1, 0);
+            tableSudokuBox7.Controls.Add(label88, 0, 0);
+            tableSudokuBox7.Dock = DockStyle.Fill;
+            tableSudokuBox7.Location = new Point(0, 0);
+            tableSudokuBox7.Name = "tableSudokuBox7";
+            tableSudokuBox7.RowCount = 3;
+            tableSudokuBox7.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
+            tableSudokuBox7.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
+            tableSudokuBox7.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
+            tableSudokuBox7.Size = new Size(237, 238);
+            tableSudokuBox7.TabIndex = 2;
+            // 
+            // label80
+            // 
+            label80.AutoSize = true;
+            label80.BorderStyle = BorderStyle.FixedSingle;
+            label80.Dock = DockStyle.Fill;
+            label80.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label80.Location = new Point(156, 158);
+            label80.Margin = new Padding(0);
+            label80.Name = "label80";
+            label80.Size = new Size(81, 80);
+            label80.TabIndex = 8;
+            label80.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label81
+            // 
+            label81.AutoSize = true;
+            label81.BorderStyle = BorderStyle.FixedSingle;
+            label81.Dock = DockStyle.Fill;
+            label81.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label81.Location = new Point(78, 158);
+            label81.Margin = new Padding(0);
+            label81.Name = "label81";
+            label81.Size = new Size(78, 80);
+            label81.TabIndex = 7;
+            label81.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label82
+            // 
+            label82.AutoSize = true;
+            label82.BorderStyle = BorderStyle.FixedSingle;
+            label82.Dock = DockStyle.Fill;
+            label82.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label82.Location = new Point(0, 158);
+            label82.Margin = new Padding(0);
+            label82.Name = "label82";
+            label82.Size = new Size(78, 80);
+            label82.TabIndex = 6;
+            label82.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label83
+            // 
+            label83.AutoSize = true;
+            label83.BorderStyle = BorderStyle.FixedSingle;
+            label83.Dock = DockStyle.Fill;
+            label83.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label83.Location = new Point(156, 79);
+            label83.Margin = new Padding(0);
+            label83.Name = "label83";
+            label83.Size = new Size(81, 79);
+            label83.TabIndex = 5;
+            label83.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label84
+            // 
+            label84.AutoSize = true;
+            label84.BorderStyle = BorderStyle.FixedSingle;
+            label84.Dock = DockStyle.Fill;
+            label84.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label84.Location = new Point(78, 79);
+            label84.Margin = new Padding(0);
+            label84.Name = "label84";
+            label84.Size = new Size(78, 79);
+            label84.TabIndex = 4;
+            label84.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label85
+            // 
+            label85.AutoSize = true;
+            label85.BorderStyle = BorderStyle.FixedSingle;
+            label85.Dock = DockStyle.Fill;
+            label85.Location = new Point(0, 79);
+            label85.Margin = new Padding(0);
+            label85.Name = "label85";
+            label85.Size = new Size(78, 79);
+            label85.TabIndex = 3;
+            label85.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label86
+            // 
+            label86.AutoSize = true;
+            label86.BorderStyle = BorderStyle.FixedSingle;
+            label86.Dock = DockStyle.Fill;
+            label86.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label86.Location = new Point(156, 0);
+            label86.Margin = new Padding(0);
+            label86.Name = "label86";
+            label86.Size = new Size(81, 79);
+            label86.TabIndex = 2;
+            label86.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label87
+            // 
+            label87.AutoSize = true;
+            label87.BorderStyle = BorderStyle.FixedSingle;
+            label87.Dock = DockStyle.Fill;
+            label87.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label87.Location = new Point(78, 0);
+            label87.Margin = new Padding(0);
+            label87.Name = "label87";
+            label87.Size = new Size(78, 79);
+            label87.TabIndex = 1;
+            label87.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label88
+            // 
+            label88.AutoSize = true;
+            label88.BorderStyle = BorderStyle.FixedSingle;
+            label88.Dock = DockStyle.Fill;
+            label88.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label88.Location = new Point(0, 0);
+            label88.Margin = new Padding(0);
+            label88.Name = "label88";
+            label88.Size = new Size(78, 79);
+            label88.TabIndex = 0;
+            label88.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // panelSudokuBox6
+            // 
+            panelSudokuBox6.BorderStyle = BorderStyle.FixedSingle;
+            panelSudokuBox6.Controls.Add(tableSudokuBox6);
+            panelSudokuBox6.Dock = DockStyle.Fill;
+            panelSudokuBox6.Location = new Point(479, 240);
+            panelSudokuBox6.Margin = new Padding(0);
+            panelSudokuBox6.Name = "panelSudokuBox6";
+            panelSudokuBox6.Size = new Size(241, 240);
+            panelSudokuBox6.TabIndex = 5;
+            // 
+            // tableSudokuBox6
+            // 
+            tableSudokuBox6.ColumnCount = 3;
+            tableSudokuBox6.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
+            tableSudokuBox6.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
+            tableSudokuBox6.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
+            tableSudokuBox6.Controls.Add(label71, 2, 2);
+            tableSudokuBox6.Controls.Add(label72, 1, 2);
+            tableSudokuBox6.Controls.Add(label73, 0, 2);
+            tableSudokuBox6.Controls.Add(label74, 2, 1);
+            tableSudokuBox6.Controls.Add(label75, 1, 1);
+            tableSudokuBox6.Controls.Add(label76, 0, 1);
+            tableSudokuBox6.Controls.Add(label77, 2, 0);
+            tableSudokuBox6.Controls.Add(label78, 1, 0);
+            tableSudokuBox6.Controls.Add(label79, 0, 0);
+            tableSudokuBox6.Dock = DockStyle.Fill;
+            tableSudokuBox6.Location = new Point(0, 0);
+            tableSudokuBox6.Name = "tableSudokuBox6";
+            tableSudokuBox6.RowCount = 3;
+            tableSudokuBox6.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
+            tableSudokuBox6.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
+            tableSudokuBox6.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
+            tableSudokuBox6.Size = new Size(239, 238);
+            tableSudokuBox6.TabIndex = 2;
+            // 
+            // label71
+            // 
+            label71.AutoSize = true;
+            label71.BorderStyle = BorderStyle.FixedSingle;
+            label71.Dock = DockStyle.Fill;
+            label71.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label71.Location = new Point(158, 158);
+            label71.Margin = new Padding(0);
+            label71.Name = "label71";
+            label71.Size = new Size(81, 80);
+            label71.TabIndex = 8;
+            label71.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label72
+            // 
+            label72.AutoSize = true;
+            label72.BorderStyle = BorderStyle.FixedSingle;
+            label72.Dock = DockStyle.Fill;
+            label72.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label72.Location = new Point(79, 158);
+            label72.Margin = new Padding(0);
+            label72.Name = "label72";
+            label72.Size = new Size(79, 80);
+            label72.TabIndex = 7;
+            label72.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label73
+            // 
+            label73.AutoSize = true;
+            label73.BorderStyle = BorderStyle.FixedSingle;
+            label73.Dock = DockStyle.Fill;
+            label73.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label73.Location = new Point(0, 158);
+            label73.Margin = new Padding(0);
+            label73.Name = "label73";
+            label73.Size = new Size(79, 80);
+            label73.TabIndex = 6;
+            label73.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label74
+            // 
+            label74.AutoSize = true;
+            label74.BorderStyle = BorderStyle.FixedSingle;
+            label74.Dock = DockStyle.Fill;
+            label74.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label74.Location = new Point(158, 79);
+            label74.Margin = new Padding(0);
+            label74.Name = "label74";
+            label74.Size = new Size(81, 79);
+            label74.TabIndex = 5;
+            label74.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label75
+            // 
+            label75.AutoSize = true;
+            label75.BorderStyle = BorderStyle.FixedSingle;
+            label75.Dock = DockStyle.Fill;
+            label75.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label75.Location = new Point(79, 79);
+            label75.Margin = new Padding(0);
+            label75.Name = "label75";
+            label75.Size = new Size(79, 79);
+            label75.TabIndex = 4;
+            label75.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label76
+            // 
+            label76.AutoSize = true;
+            label76.BorderStyle = BorderStyle.FixedSingle;
+            label76.Dock = DockStyle.Fill;
+            label76.Location = new Point(0, 79);
+            label76.Margin = new Padding(0);
+            label76.Name = "label76";
+            label76.Size = new Size(79, 79);
+            label76.TabIndex = 3;
+            label76.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label77
+            // 
+            label77.AutoSize = true;
+            label77.BorderStyle = BorderStyle.FixedSingle;
+            label77.Dock = DockStyle.Fill;
+            label77.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label77.Location = new Point(158, 0);
+            label77.Margin = new Padding(0);
+            label77.Name = "label77";
+            label77.Size = new Size(81, 79);
+            label77.TabIndex = 2;
+            label77.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label78
+            // 
+            label78.AutoSize = true;
+            label78.BorderStyle = BorderStyle.FixedSingle;
+            label78.Dock = DockStyle.Fill;
+            label78.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label78.Location = new Point(79, 0);
+            label78.Margin = new Padding(0);
+            label78.Name = "label78";
+            label78.Size = new Size(79, 79);
+            label78.TabIndex = 1;
+            label78.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label79
+            // 
+            label79.AutoSize = true;
+            label79.BorderStyle = BorderStyle.FixedSingle;
+            label79.Dock = DockStyle.Fill;
+            label79.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label79.Location = new Point(0, 0);
+            label79.Margin = new Padding(0);
+            label79.Name = "label79";
+            label79.Size = new Size(79, 79);
+            label79.TabIndex = 0;
+            label79.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // panelSudokuBox5
+            // 
+            panelSudokuBox5.BorderStyle = BorderStyle.FixedSingle;
+            panelSudokuBox5.Controls.Add(tableSudokuBox5);
+            panelSudokuBox5.Dock = DockStyle.Fill;
+            panelSudokuBox5.Location = new Point(239, 240);
+            panelSudokuBox5.Margin = new Padding(0);
+            panelSudokuBox5.Name = "panelSudokuBox5";
+            panelSudokuBox5.Size = new Size(240, 240);
+            panelSudokuBox5.TabIndex = 4;
+            // 
+            // tableSudokuBox5
+            // 
+            tableSudokuBox5.ColumnCount = 3;
+            tableSudokuBox5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
+            tableSudokuBox5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
+            tableSudokuBox5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
+            tableSudokuBox5.Controls.Add(label62, 2, 2);
+            tableSudokuBox5.Controls.Add(label63, 1, 2);
+            tableSudokuBox5.Controls.Add(label64, 0, 2);
+            tableSudokuBox5.Controls.Add(label65, 2, 1);
+            tableSudokuBox5.Controls.Add(label66, 1, 1);
+            tableSudokuBox5.Controls.Add(label67, 0, 1);
+            tableSudokuBox5.Controls.Add(label68, 2, 0);
+            tableSudokuBox5.Controls.Add(label69, 1, 0);
+            tableSudokuBox5.Controls.Add(label70, 0, 0);
+            tableSudokuBox5.Dock = DockStyle.Fill;
+            tableSudokuBox5.Location = new Point(0, 0);
+            tableSudokuBox5.Name = "tableSudokuBox5";
+            tableSudokuBox5.RowCount = 3;
+            tableSudokuBox5.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
+            tableSudokuBox5.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
+            tableSudokuBox5.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
+            tableSudokuBox5.Size = new Size(238, 238);
+            tableSudokuBox5.TabIndex = 2;
+            // 
+            // label62
+            // 
+            label62.AutoSize = true;
+            label62.BorderStyle = BorderStyle.FixedSingle;
+            label62.Dock = DockStyle.Fill;
+            label62.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label62.Location = new Point(158, 158);
+            label62.Margin = new Padding(0);
+            label62.Name = "label62";
+            label62.Size = new Size(80, 80);
+            label62.TabIndex = 8;
+            label62.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label63
+            // 
+            label63.AutoSize = true;
+            label63.BorderStyle = BorderStyle.FixedSingle;
+            label63.Dock = DockStyle.Fill;
+            label63.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label63.Location = new Point(79, 158);
+            label63.Margin = new Padding(0);
+            label63.Name = "label63";
+            label63.Size = new Size(79, 80);
+            label63.TabIndex = 7;
+            label63.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label64
+            // 
+            label64.AutoSize = true;
+            label64.BorderStyle = BorderStyle.FixedSingle;
+            label64.Dock = DockStyle.Fill;
+            label64.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label64.Location = new Point(0, 158);
+            label64.Margin = new Padding(0);
+            label64.Name = "label64";
+            label64.Size = new Size(79, 80);
+            label64.TabIndex = 6;
+            label64.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label65
+            // 
+            label65.AutoSize = true;
+            label65.BorderStyle = BorderStyle.FixedSingle;
+            label65.Dock = DockStyle.Fill;
+            label65.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label65.Location = new Point(158, 79);
+            label65.Margin = new Padding(0);
+            label65.Name = "label65";
+            label65.Size = new Size(80, 79);
+            label65.TabIndex = 5;
+            label65.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label66
+            // 
+            label66.AutoSize = true;
+            label66.BorderStyle = BorderStyle.FixedSingle;
+            label66.Dock = DockStyle.Fill;
+            label66.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label66.Location = new Point(79, 79);
+            label66.Margin = new Padding(0);
+            label66.Name = "label66";
+            label66.Size = new Size(79, 79);
+            label66.TabIndex = 4;
+            label66.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label67
+            // 
+            label67.AutoSize = true;
+            label67.BorderStyle = BorderStyle.FixedSingle;
+            label67.Dock = DockStyle.Fill;
+            label67.Location = new Point(0, 79);
+            label67.Margin = new Padding(0);
+            label67.Name = "label67";
+            label67.Size = new Size(79, 79);
+            label67.TabIndex = 3;
+            label67.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label68
+            // 
+            label68.AutoSize = true;
+            label68.BorderStyle = BorderStyle.FixedSingle;
+            label68.Dock = DockStyle.Fill;
+            label68.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label68.Location = new Point(158, 0);
+            label68.Margin = new Padding(0);
+            label68.Name = "label68";
+            label68.Size = new Size(80, 79);
+            label68.TabIndex = 2;
+            label68.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label69
+            // 
+            label69.AutoSize = true;
+            label69.BorderStyle = BorderStyle.FixedSingle;
+            label69.Dock = DockStyle.Fill;
+            label69.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label69.Location = new Point(79, 0);
+            label69.Margin = new Padding(0);
+            label69.Name = "label69";
+            label69.Size = new Size(79, 79);
+            label69.TabIndex = 1;
+            label69.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label70
+            // 
+            label70.AutoSize = true;
+            label70.BorderStyle = BorderStyle.FixedSingle;
+            label70.Dock = DockStyle.Fill;
+            label70.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label70.Location = new Point(0, 0);
+            label70.Margin = new Padding(0);
+            label70.Name = "label70";
+            label70.Size = new Size(79, 79);
+            label70.TabIndex = 0;
+            label70.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // panelSudokuBox4
+            // 
+            panelSudokuBox4.BorderStyle = BorderStyle.FixedSingle;
+            panelSudokuBox4.Controls.Add(tableSudokuBox4);
+            panelSudokuBox4.Dock = DockStyle.Fill;
+            panelSudokuBox4.Location = new Point(0, 240);
+            panelSudokuBox4.Margin = new Padding(0);
+            panelSudokuBox4.Name = "panelSudokuBox4";
+            panelSudokuBox4.Size = new Size(239, 240);
+            panelSudokuBox4.TabIndex = 3;
+            // 
+            // tableSudokuBox4
+            // 
+            tableSudokuBox4.ColumnCount = 3;
+            tableSudokuBox4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
+            tableSudokuBox4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
+            tableSudokuBox4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
+            tableSudokuBox4.Controls.Add(label53, 2, 2);
+            tableSudokuBox4.Controls.Add(label54, 1, 2);
+            tableSudokuBox4.Controls.Add(label55, 0, 2);
+            tableSudokuBox4.Controls.Add(label56, 2, 1);
+            tableSudokuBox4.Controls.Add(label57, 1, 1);
+            tableSudokuBox4.Controls.Add(label58, 0, 1);
+            tableSudokuBox4.Controls.Add(label59, 2, 0);
+            tableSudokuBox4.Controls.Add(label60, 1, 0);
+            tableSudokuBox4.Controls.Add(label61, 0, 0);
+            tableSudokuBox4.Dock = DockStyle.Fill;
+            tableSudokuBox4.Location = new Point(0, 0);
+            tableSudokuBox4.Name = "tableSudokuBox4";
+            tableSudokuBox4.RowCount = 3;
+            tableSudokuBox4.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
+            tableSudokuBox4.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
+            tableSudokuBox4.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
+            tableSudokuBox4.Size = new Size(237, 238);
+            tableSudokuBox4.TabIndex = 2;
+            // 
+            // label53
+            // 
+            label53.AutoSize = true;
+            label53.BorderStyle = BorderStyle.FixedSingle;
+            label53.Dock = DockStyle.Fill;
+            label53.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label53.Location = new Point(156, 158);
+            label53.Margin = new Padding(0);
+            label53.Name = "label53";
+            label53.Size = new Size(81, 80);
+            label53.TabIndex = 8;
+            label53.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label54
+            // 
+            label54.AutoSize = true;
+            label54.BorderStyle = BorderStyle.FixedSingle;
+            label54.Dock = DockStyle.Fill;
+            label54.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label54.Location = new Point(78, 158);
+            label54.Margin = new Padding(0);
+            label54.Name = "label54";
+            label54.Size = new Size(78, 80);
+            label54.TabIndex = 7;
+            label54.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label55
+            // 
+            label55.AutoSize = true;
+            label55.BorderStyle = BorderStyle.FixedSingle;
+            label55.Dock = DockStyle.Fill;
+            label55.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label55.Location = new Point(0, 158);
+            label55.Margin = new Padding(0);
+            label55.Name = "label55";
+            label55.Size = new Size(78, 80);
+            label55.TabIndex = 6;
+            label55.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label56
+            // 
+            label56.AutoSize = true;
+            label56.BorderStyle = BorderStyle.FixedSingle;
+            label56.Dock = DockStyle.Fill;
+            label56.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label56.Location = new Point(156, 79);
+            label56.Margin = new Padding(0);
+            label56.Name = "label56";
+            label56.Size = new Size(81, 79);
+            label56.TabIndex = 5;
+            label56.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label57
+            // 
+            label57.AutoSize = true;
+            label57.BorderStyle = BorderStyle.FixedSingle;
+            label57.Dock = DockStyle.Fill;
+            label57.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label57.Location = new Point(78, 79);
+            label57.Margin = new Padding(0);
+            label57.Name = "label57";
+            label57.Size = new Size(78, 79);
+            label57.TabIndex = 4;
+            label57.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label58
+            // 
+            label58.AutoSize = true;
+            label58.BorderStyle = BorderStyle.FixedSingle;
+            label58.Dock = DockStyle.Fill;
+            label58.Location = new Point(0, 79);
+            label58.Margin = new Padding(0);
+            label58.Name = "label58";
+            label58.Size = new Size(78, 79);
+            label58.TabIndex = 3;
+            label58.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label59
+            // 
+            label59.AutoSize = true;
+            label59.BorderStyle = BorderStyle.FixedSingle;
+            label59.Dock = DockStyle.Fill;
+            label59.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label59.Location = new Point(156, 0);
+            label59.Margin = new Padding(0);
+            label59.Name = "label59";
+            label59.Size = new Size(81, 79);
+            label59.TabIndex = 2;
+            label59.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label60
+            // 
+            label60.AutoSize = true;
+            label60.BorderStyle = BorderStyle.FixedSingle;
+            label60.Dock = DockStyle.Fill;
+            label60.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label60.Location = new Point(78, 0);
+            label60.Margin = new Padding(0);
+            label60.Name = "label60";
+            label60.Size = new Size(78, 79);
+            label60.TabIndex = 1;
+            label60.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label61
+            // 
+            label61.AutoSize = true;
+            label61.BorderStyle = BorderStyle.FixedSingle;
+            label61.Dock = DockStyle.Fill;
+            label61.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label61.Location = new Point(0, 0);
+            label61.Margin = new Padding(0);
+            label61.Name = "label61";
+            label61.Size = new Size(78, 79);
+            label61.TabIndex = 0;
+            label61.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // panelSudokuBox3
+            // 
+            panelSudokuBox3.BorderStyle = BorderStyle.FixedSingle;
+            panelSudokuBox3.Controls.Add(tableSudokuBox3);
+            panelSudokuBox3.Dock = DockStyle.Fill;
+            panelSudokuBox3.Location = new Point(479, 0);
+            panelSudokuBox3.Margin = new Padding(0);
+            panelSudokuBox3.Name = "panelSudokuBox3";
+            panelSudokuBox3.Size = new Size(241, 240);
+            panelSudokuBox3.TabIndex = 2;
+            // 
+            // tableSudokuBox3
+            // 
+            tableSudokuBox3.ColumnCount = 3;
+            tableSudokuBox3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
+            tableSudokuBox3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
+            tableSudokuBox3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
+            tableSudokuBox3.Controls.Add(label44, 2, 2);
+            tableSudokuBox3.Controls.Add(label45, 1, 2);
+            tableSudokuBox3.Controls.Add(label46, 0, 2);
+            tableSudokuBox3.Controls.Add(label47, 2, 1);
+            tableSudokuBox3.Controls.Add(label48, 1, 1);
+            tableSudokuBox3.Controls.Add(label49, 0, 1);
+            tableSudokuBox3.Controls.Add(label50, 2, 0);
+            tableSudokuBox3.Controls.Add(label51, 1, 0);
+            tableSudokuBox3.Controls.Add(label52, 0, 0);
+            tableSudokuBox3.Dock = DockStyle.Fill;
+            tableSudokuBox3.Location = new Point(0, 0);
+            tableSudokuBox3.Name = "tableSudokuBox3";
+            tableSudokuBox3.RowCount = 3;
+            tableSudokuBox3.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
+            tableSudokuBox3.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
+            tableSudokuBox3.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
+            tableSudokuBox3.Size = new Size(239, 238);
+            tableSudokuBox3.TabIndex = 1;
+            // 
+            // label44
+            // 
+            label44.AutoSize = true;
+            label44.BorderStyle = BorderStyle.FixedSingle;
+            label44.Dock = DockStyle.Fill;
+            label44.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label44.Location = new Point(158, 158);
+            label44.Margin = new Padding(0);
+            label44.Name = "label44";
+            label44.Size = new Size(81, 80);
+            label44.TabIndex = 8;
+            label44.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label45
+            // 
+            label45.AutoSize = true;
+            label45.BorderStyle = BorderStyle.FixedSingle;
+            label45.Dock = DockStyle.Fill;
+            label45.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label45.Location = new Point(79, 158);
+            label45.Margin = new Padding(0);
+            label45.Name = "label45";
+            label45.Size = new Size(79, 80);
+            label45.TabIndex = 7;
+            label45.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label46
+            // 
+            label46.AutoSize = true;
+            label46.BorderStyle = BorderStyle.FixedSingle;
+            label46.Dock = DockStyle.Fill;
+            label46.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label46.Location = new Point(0, 158);
+            label46.Margin = new Padding(0);
+            label46.Name = "label46";
+            label46.Size = new Size(79, 80);
+            label46.TabIndex = 6;
+            label46.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label47
+            // 
+            label47.AutoSize = true;
+            label47.BorderStyle = BorderStyle.FixedSingle;
+            label47.Dock = DockStyle.Fill;
+            label47.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label47.Location = new Point(158, 79);
+            label47.Margin = new Padding(0);
+            label47.Name = "label47";
+            label47.Size = new Size(81, 79);
+            label47.TabIndex = 5;
+            label47.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label48
+            // 
+            label48.AutoSize = true;
+            label48.BorderStyle = BorderStyle.FixedSingle;
+            label48.Dock = DockStyle.Fill;
+            label48.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label48.Location = new Point(79, 79);
+            label48.Margin = new Padding(0);
+            label48.Name = "label48";
+            label48.Size = new Size(79, 79);
+            label48.TabIndex = 4;
+            label48.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label49
+            // 
+            label49.AutoSize = true;
+            label49.BorderStyle = BorderStyle.FixedSingle;
+            label49.Dock = DockStyle.Fill;
+            label49.Location = new Point(0, 79);
+            label49.Margin = new Padding(0);
+            label49.Name = "label49";
+            label49.Size = new Size(79, 79);
+            label49.TabIndex = 3;
+            label49.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label50
+            // 
+            label50.AutoSize = true;
+            label50.BorderStyle = BorderStyle.FixedSingle;
+            label50.Dock = DockStyle.Fill;
+            label50.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label50.Location = new Point(158, 0);
+            label50.Margin = new Padding(0);
+            label50.Name = "label50";
+            label50.Size = new Size(81, 79);
+            label50.TabIndex = 2;
+            label50.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label51
+            // 
+            label51.AutoSize = true;
+            label51.BorderStyle = BorderStyle.FixedSingle;
+            label51.Dock = DockStyle.Fill;
+            label51.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label51.Location = new Point(79, 0);
+            label51.Margin = new Padding(0);
+            label51.Name = "label51";
+            label51.Size = new Size(79, 79);
+            label51.TabIndex = 1;
+            label51.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label52
+            // 
+            label52.AutoSize = true;
+            label52.BorderStyle = BorderStyle.FixedSingle;
+            label52.Dock = DockStyle.Fill;
+            label52.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label52.Location = new Point(0, 0);
+            label52.Margin = new Padding(0);
+            label52.Name = "label52";
+            label52.Size = new Size(79, 79);
+            label52.TabIndex = 0;
+            label52.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // panelSudokuBox2
+            // 
+            panelSudokuBox2.BorderStyle = BorderStyle.FixedSingle;
+            panelSudokuBox2.Controls.Add(tableSudokuBox2);
+            panelSudokuBox2.Dock = DockStyle.Fill;
+            panelSudokuBox2.Location = new Point(239, 0);
+            panelSudokuBox2.Margin = new Padding(0);
+            panelSudokuBox2.Name = "panelSudokuBox2";
+            panelSudokuBox2.Size = new Size(240, 240);
+            panelSudokuBox2.TabIndex = 1;
+            // 
+            // tableSudokuBox2
+            // 
+            tableSudokuBox2.ColumnCount = 3;
+            tableSudokuBox2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
+            tableSudokuBox2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
+            tableSudokuBox2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
+            tableSudokuBox2.Controls.Add(label17, 2, 2);
+            tableSudokuBox2.Controls.Add(label18, 1, 2);
+            tableSudokuBox2.Controls.Add(label27, 0, 2);
+            tableSudokuBox2.Controls.Add(label38, 2, 1);
+            tableSudokuBox2.Controls.Add(label39, 1, 1);
+            tableSudokuBox2.Controls.Add(label40, 0, 1);
+            tableSudokuBox2.Controls.Add(label41, 2, 0);
+            tableSudokuBox2.Controls.Add(label42, 1, 0);
+            tableSudokuBox2.Controls.Add(label43, 0, 0);
+            tableSudokuBox2.Dock = DockStyle.Fill;
+            tableSudokuBox2.Location = new Point(0, 0);
+            tableSudokuBox2.Name = "tableSudokuBox2";
+            tableSudokuBox2.RowCount = 3;
+            tableSudokuBox2.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
+            tableSudokuBox2.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
+            tableSudokuBox2.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
+            tableSudokuBox2.Size = new Size(238, 238);
+            tableSudokuBox2.TabIndex = 1;
+            // 
+            // label17
+            // 
+            label17.AutoSize = true;
+            label17.BorderStyle = BorderStyle.FixedSingle;
+            label17.Dock = DockStyle.Fill;
+            label17.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label17.Location = new Point(158, 158);
+            label17.Margin = new Padding(0);
+            label17.Name = "label17";
+            label17.Size = new Size(80, 80);
+            label17.TabIndex = 8;
+            label17.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label18
+            // 
+            label18.AutoSize = true;
+            label18.BorderStyle = BorderStyle.FixedSingle;
+            label18.Dock = DockStyle.Fill;
+            label18.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label18.Location = new Point(79, 158);
+            label18.Margin = new Padding(0);
+            label18.Name = "label18";
+            label18.Size = new Size(79, 80);
+            label18.TabIndex = 7;
+            label18.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label27
+            // 
+            label27.AutoSize = true;
+            label27.BorderStyle = BorderStyle.FixedSingle;
+            label27.Dock = DockStyle.Fill;
+            label27.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label27.Location = new Point(0, 158);
+            label27.Margin = new Padding(0);
+            label27.Name = "label27";
+            label27.Size = new Size(79, 80);
+            label27.TabIndex = 6;
+            label27.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label38
+            // 
+            label38.AutoSize = true;
+            label38.BorderStyle = BorderStyle.FixedSingle;
+            label38.Dock = DockStyle.Fill;
+            label38.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label38.Location = new Point(158, 79);
+            label38.Margin = new Padding(0);
+            label38.Name = "label38";
+            label38.Size = new Size(80, 79);
+            label38.TabIndex = 5;
+            label38.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label39
+            // 
+            label39.AutoSize = true;
+            label39.BorderStyle = BorderStyle.FixedSingle;
+            label39.Dock = DockStyle.Fill;
+            label39.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label39.Location = new Point(79, 79);
+            label39.Margin = new Padding(0);
+            label39.Name = "label39";
+            label39.Size = new Size(79, 79);
+            label39.TabIndex = 4;
+            label39.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label40
+            // 
+            label40.AutoSize = true;
+            label40.BorderStyle = BorderStyle.FixedSingle;
+            label40.Dock = DockStyle.Fill;
+            label40.Location = new Point(0, 79);
+            label40.Margin = new Padding(0);
+            label40.Name = "label40";
+            label40.Size = new Size(79, 79);
+            label40.TabIndex = 3;
+            label40.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label41
+            // 
+            label41.AutoSize = true;
+            label41.BorderStyle = BorderStyle.FixedSingle;
+            label41.Dock = DockStyle.Fill;
+            label41.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label41.Location = new Point(158, 0);
+            label41.Margin = new Padding(0);
+            label41.Name = "label41";
+            label41.Size = new Size(80, 79);
+            label41.TabIndex = 2;
+            label41.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label42
+            // 
+            label42.AutoSize = true;
+            label42.BorderStyle = BorderStyle.FixedSingle;
+            label42.Dock = DockStyle.Fill;
+            label42.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label42.Location = new Point(79, 0);
+            label42.Margin = new Padding(0);
+            label42.Name = "label42";
+            label42.Size = new Size(79, 79);
+            label42.TabIndex = 1;
+            label42.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label43
+            // 
+            label43.AutoSize = true;
+            label43.BorderStyle = BorderStyle.FixedSingle;
+            label43.Dock = DockStyle.Fill;
+            label43.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label43.Location = new Point(0, 0);
+            label43.Margin = new Padding(0);
+            label43.Name = "label43";
+            label43.Size = new Size(79, 79);
+            label43.TabIndex = 0;
+            label43.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // panelSudokuBox1
+            // 
+            panelSudokuBox1.BorderStyle = BorderStyle.FixedSingle;
+            panelSudokuBox1.Controls.Add(tableSudokuBox1);
+            panelSudokuBox1.Dock = DockStyle.Fill;
+            panelSudokuBox1.Location = new Point(0, 0);
+            panelSudokuBox1.Margin = new Padding(0);
+            panelSudokuBox1.Name = "panelSudokuBox1";
+            panelSudokuBox1.Size = new Size(239, 240);
+            panelSudokuBox1.TabIndex = 0;
+            // 
+            // tableSudokuBox1
+            // 
+            tableSudokuBox1.ColumnCount = 3;
+            tableSudokuBox1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
+            tableSudokuBox1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
+            tableSudokuBox1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
+            tableSudokuBox1.Controls.Add(label16, 2, 2);
+            tableSudokuBox1.Controls.Add(label15, 1, 2);
+            tableSudokuBox1.Controls.Add(label14, 0, 2);
+            tableSudokuBox1.Controls.Add(label13, 2, 1);
+            tableSudokuBox1.Controls.Add(label12, 1, 1);
+            tableSudokuBox1.Controls.Add(label11, 0, 1);
+            tableSudokuBox1.Controls.Add(label10, 2, 0);
+            tableSudokuBox1.Controls.Add(label9, 1, 0);
+            tableSudokuBox1.Controls.Add(label8, 0, 0);
+            tableSudokuBox1.Dock = DockStyle.Fill;
+            tableSudokuBox1.Location = new Point(0, 0);
+            tableSudokuBox1.Name = "tableSudokuBox1";
+            tableSudokuBox1.RowCount = 3;
+            tableSudokuBox1.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
+            tableSudokuBox1.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
+            tableSudokuBox1.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
+            tableSudokuBox1.Size = new Size(237, 238);
+            tableSudokuBox1.TabIndex = 0;
+            // 
+            // label16
+            // 
+            label16.AutoSize = true;
+            label16.BorderStyle = BorderStyle.FixedSingle;
+            label16.Dock = DockStyle.Fill;
+            label16.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label16.Location = new Point(156, 158);
+            label16.Margin = new Padding(0);
+            label16.Name = "label16";
+            label16.Size = new Size(81, 80);
+            label16.TabIndex = 8;
+            label16.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label15
+            // 
+            label15.AutoSize = true;
+            label15.BorderStyle = BorderStyle.FixedSingle;
+            label15.Dock = DockStyle.Fill;
+            label15.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label15.Location = new Point(78, 158);
+            label15.Margin = new Padding(0);
+            label15.Name = "label15";
+            label15.Size = new Size(78, 80);
+            label15.TabIndex = 7;
+            label15.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label14
+            // 
+            label14.AutoSize = true;
+            label14.BorderStyle = BorderStyle.FixedSingle;
+            label14.Dock = DockStyle.Fill;
+            label14.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label14.Location = new Point(0, 158);
+            label14.Margin = new Padding(0);
+            label14.Name = "label14";
+            label14.Size = new Size(78, 80);
+            label14.TabIndex = 6;
+            label14.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label13
+            // 
+            label13.AutoSize = true;
+            label13.BorderStyle = BorderStyle.FixedSingle;
+            label13.Dock = DockStyle.Fill;
+            label13.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label13.Location = new Point(156, 79);
+            label13.Margin = new Padding(0);
+            label13.Name = "label13";
+            label13.Size = new Size(81, 79);
+            label13.TabIndex = 5;
+            label13.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.BorderStyle = BorderStyle.FixedSingle;
+            label12.Dock = DockStyle.Fill;
+            label12.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label12.Location = new Point(78, 79);
+            label12.Margin = new Padding(0);
+            label12.Name = "label12";
+            label12.Size = new Size(78, 79);
+            label12.TabIndex = 4;
+            label12.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.BorderStyle = BorderStyle.FixedSingle;
+            label11.Dock = DockStyle.Fill;
+            label11.Location = new Point(0, 79);
+            label11.Margin = new Padding(0);
+            label11.Name = "label11";
+            label11.Size = new Size(78, 79);
+            label11.TabIndex = 3;
+            label11.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.BorderStyle = BorderStyle.FixedSingle;
+            label10.Dock = DockStyle.Fill;
+            label10.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label10.Location = new Point(156, 0);
+            label10.Margin = new Padding(0);
+            label10.Name = "label10";
+            label10.Size = new Size(81, 79);
+            label10.TabIndex = 2;
+            label10.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.BorderStyle = BorderStyle.FixedSingle;
+            label9.Dock = DockStyle.Fill;
+            label9.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label9.Location = new Point(78, 0);
+            label9.Margin = new Padding(0);
+            label9.Name = "label9";
+            label9.Size = new Size(78, 79);
+            label9.TabIndex = 1;
+            label9.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.BorderStyle = BorderStyle.FixedSingle;
+            label8.Dock = DockStyle.Fill;
+            label8.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label8.Location = new Point(0, 0);
+            label8.Margin = new Padding(0);
+            label8.Name = "label8";
+            label8.Size = new Size(78, 79);
+            label8.TabIndex = 0;
+            label8.Text = "1";
+            label8.TextAlign = ContentAlignment.MiddleCenter;
+            // 
             // tabPageDictionary
             // 
             tabPageDictionary.Controls.Add(tableLayoutPanel3);
@@ -2396,6 +3952,37 @@
             SplitContainerCryptharitms.ResumeLayout(false);
             panelCrptSettings.ResumeLayout(false);
             panelCrptSettings.PerformLayout();
+            tabPageSudoku.ResumeLayout(false);
+            tableLayoutPanelSudokuMain.ResumeLayout(false);
+            panelSudokuGrid.ResumeLayout(false);
+            tableSudokuBoxes.ResumeLayout(false);
+            panelSudokuBox9.ResumeLayout(false);
+            tableSudokuBox9.ResumeLayout(false);
+            tableSudokuBox9.PerformLayout();
+            panelSudokuBox8.ResumeLayout(false);
+            tableSudokuBox8.ResumeLayout(false);
+            tableSudokuBox8.PerformLayout();
+            panelSudokuBox7.ResumeLayout(false);
+            tableSudokuBox7.ResumeLayout(false);
+            tableSudokuBox7.PerformLayout();
+            panelSudokuBox6.ResumeLayout(false);
+            tableSudokuBox6.ResumeLayout(false);
+            tableSudokuBox6.PerformLayout();
+            panelSudokuBox5.ResumeLayout(false);
+            tableSudokuBox5.ResumeLayout(false);
+            tableSudokuBox5.PerformLayout();
+            panelSudokuBox4.ResumeLayout(false);
+            tableSudokuBox4.ResumeLayout(false);
+            tableSudokuBox4.PerformLayout();
+            panelSudokuBox3.ResumeLayout(false);
+            tableSudokuBox3.ResumeLayout(false);
+            tableSudokuBox3.PerformLayout();
+            panelSudokuBox2.ResumeLayout(false);
+            tableSudokuBox2.ResumeLayout(false);
+            tableSudokuBox2.PerformLayout();
+            panelSudokuBox1.ResumeLayout(false);
+            tableSudokuBox1.ResumeLayout(false);
+            tableSudokuBox1.PerformLayout();
             tabPageDictionary.ResumeLayout(false);
             tableLayoutPanel3.ResumeLayout(false);
             groupBoxAddToDict.ResumeLayout(false);
@@ -2585,5 +4172,108 @@
         private Label labelCryptharitmInfo;
         private Panel panelCrptSettings;
         private Panel panelCrpt;
+        private TabPage tabPageSudoku;
+        private TableLayoutPanel tableLayoutPanelSudokuMain;
+        private Panel panelSudokuGrid;
+        private TableLayoutPanel tableSudokuBoxes;
+        private Panel panelSudokuBox1;
+        private Panel panelSudokuBox9;
+        private Panel panelSudokuBox8;
+        private Panel panelSudokuBox7;
+        private Panel panelSudokuBox6;
+        private Panel panelSudokuBox5;
+        private Panel panelSudokuBox4;
+        private Panel panelSudokuBox3;
+        private Panel panelSudokuBox2;
+        private TableLayoutPanel tableSudokuBox1;
+        private Label label16;
+        private Label label15;
+        private Label label14;
+        private Label label13;
+        private Label label12;
+        private Label label11;
+        private Label label10;
+        private Label label9;
+        private Label label8;
+        private TableLayoutPanel tableSudokuBox3;
+        private Label label44;
+        private Label label45;
+        private Label label46;
+        private Label label47;
+        private Label label48;
+        private Label label49;
+        private Label label50;
+        private Label label51;
+        private Label label52;
+        private TableLayoutPanel tableSudokuBox2;
+        private Label label17;
+        private Label label18;
+        private Label label27;
+        private Label label38;
+        private Label label39;
+        private Label label40;
+        private Label label41;
+        private Label label42;
+        private Label label43;
+        private TableLayoutPanel tableSudokuBox9;
+        private Label label98;
+        private Label label99;
+        private Label label100;
+        private Label label101;
+        private Label label102;
+        private Label label103;
+        private Label label104;
+        private Label label105;
+        private Label label106;
+        private TableLayoutPanel tableSudokuBox8;
+        private Label label89;
+        private Label label90;
+        private Label label91;
+        private Label label92;
+        private Label label93;
+        private Label label94;
+        private Label label95;
+        private Label label96;
+        private Label label97;
+        private TableLayoutPanel tableSudokuBox7;
+        private Label label80;
+        private Label label81;
+        private Label label82;
+        private Label label83;
+        private Label label84;
+        private Label label85;
+        private Label label86;
+        private Label label87;
+        private Label label88;
+        private TableLayoutPanel tableSudokuBox6;
+        private Label label71;
+        private Label label72;
+        private Label label73;
+        private Label label74;
+        private Label label75;
+        private Label label76;
+        private Label label77;
+        private Label label78;
+        private Label label79;
+        private TableLayoutPanel tableSudokuBox5;
+        private Label label62;
+        private Label label63;
+        private Label label64;
+        private Label label65;
+        private Label label66;
+        private Label label67;
+        private Label label68;
+        private Label label69;
+        private Label label70;
+        private TableLayoutPanel tableSudokuBox4;
+        private Label label53;
+        private Label label54;
+        private Label label55;
+        private Label label56;
+        private Label label57;
+        private Label label58;
+        private Label label59;
+        private Label label60;
+        private Label label61;
     }
 }
