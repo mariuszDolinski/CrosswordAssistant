@@ -681,7 +681,7 @@ namespace CrosswordAssistant
                         case SearchMode.Cryptharitm: FillTextBoxResults(searchResponse.SearchResults, textBoxCryptharitmResult); break;
                         default: FillTextBoxResults(searchResponse.SearchResults, textBoxPatternResults); break;
                     }
-                    
+
                 }
             }
             IsSearchPending(false);

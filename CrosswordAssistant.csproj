@@ -9,7 +9,7 @@
     <ApplicationIcon>crossword_2.ico</ApplicationIcon>
     <StartupObject>CrosswordAssistant.Program</StartupObject>
 	<AssemblyVersion>2.10.2.0</AssemblyVersion>
-	<FileVersion>3.1.1.1</FileVersion>
+	<FileVersion>3.1.1.2</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>

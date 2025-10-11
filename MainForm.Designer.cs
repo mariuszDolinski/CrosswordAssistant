@@ -98,6 +98,7 @@
             tabPageScrabble = new TabPage();
             splitContainerScrabble = new SplitContainer();
             textBoxScrabbleResults = new TextBox();
+            panelScrabbleBtn = new Panel();
             labelScrabbePoints = new Label();
             label34 = new Label();
             buttonCalcuateSrabblePoints = new Button();
@@ -138,6 +139,7 @@
             AddComponentBtn = new Button();
             comboBoxOperations = new ComboBox();
             solveCryptharitmBtn = new Button();
+            label108 = new Label();
             labelCryptharitms = new Label();
             tabPageSudoku = new TabPage();
             tableLayoutPanelSudokuMain = new TableLayoutPanel();
@@ -321,6 +323,7 @@
             splitContainerScrabble.Panel1.SuspendLayout();
             splitContainerScrabble.Panel2.SuspendLayout();
             splitContainerScrabble.SuspendLayout();
+            panelScrabbleBtn.SuspendLayout();
             groupBoxScrabbleBlanks.SuspendLayout();
             groupBoxScrabbleCharBonuses.SuspendLayout();
             groupBoxScrabbleBonuses.SuspendLayout();
@@ -1179,9 +1182,7 @@
             // 
             // splitContainerScrabble.Panel2
             // 
-            splitContainerScrabble.Panel2.Controls.Add(labelScrabbePoints);
-            splitContainerScrabble.Panel2.Controls.Add(label34);
-            splitContainerScrabble.Panel2.Controls.Add(buttonCalcuateSrabblePoints);
+            splitContainerScrabble.Panel2.Controls.Add(panelScrabbleBtn);
             splitContainerScrabble.Panel2.Controls.Add(label33);
             splitContainerScrabble.Panel2.Controls.Add(groupBoxScrabbleBlanks);
             splitContainerScrabble.Panel2.Controls.Add(groupBoxScrabbleCharBonuses);
@@ -1208,25 +1209,37 @@
             textBoxScrabbleResults.Size = new Size(777, 695);
             textBoxScrabbleResults.TabIndex = 3;
             // 
+            // panelScrabbleBtn
+            // 
+            panelScrabbleBtn.Controls.Add(labelScrabbePoints);
+            panelScrabbleBtn.Controls.Add(label34);
+            panelScrabbleBtn.Controls.Add(buttonCalcuateSrabblePoints);
+            panelScrabbleBtn.Dock = DockStyle.Fill;
+            panelScrabbleBtn.Location = new Point(0, 649);
+            panelScrabbleBtn.Name = "panelScrabbleBtn";
+            panelScrabbleBtn.Size = new Size(386, 46);
+            panelScrabbleBtn.TabIndex = 14;
+            // 
             // labelScrabbePoints
             // 
             labelScrabbePoints.BackColor = Color.Tan;
             labelScrabbePoints.Dock = DockStyle.Fill;
             labelScrabbePoints.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            labelScrabbePoints.Location = new Point(236, 649);
+            labelScrabbePoints.Location = new Point(236, 0);
             labelScrabbePoints.Name = "labelScrabbePoints";
             labelScrabbePoints.Size = new Size(150, 46);
-            labelScrabbePoints.TabIndex = 16;
+            labelScrabbePoints.TabIndex = 22;
             labelScrabbePoints.Text = "0";
             labelScrabbePoints.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // label34
             // 
             label34.Dock = DockStyle.Left;
-            label34.Location = new Point(233, 649);
+            label34.Location = new Point(233, 0);
             label34.Name = "label34";
             label34.Size = new Size(3, 46);
-            label34.TabIndex = 15;
+            label34.TabIndex = 21;
+            label34.Text = "label34";
             // 
             // buttonCalcuateSrabblePoints
             // 
@@ -1234,14 +1247,13 @@
             buttonCalcuateSrabblePoints.Dock = DockStyle.Left;
             buttonCalcuateSrabblePoints.FlatStyle = FlatStyle.Flat;
             buttonCalcuateSrabblePoints.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            buttonCalcuateSrabblePoints.Location = new Point(0, 649);
+            buttonCalcuateSrabblePoints.Location = new Point(0, 0);
             buttonCalcuateSrabblePoints.Margin = new Padding(2, 4, 0, 4);
             buttonCalcuateSrabblePoints.Name = "buttonCalcuateSrabblePoints";
             buttonCalcuateSrabblePoints.Size = new Size(233, 46);
-            buttonCalcuateSrabblePoints.TabIndex = 14;
+            buttonCalcuateSrabblePoints.TabIndex = 20;
             buttonCalcuateSrabblePoints.Text = "OBLICZ";
             buttonCalcuateSrabblePoints.UseVisualStyleBackColor = true;
-            buttonCalcuateSrabblePoints.Click += CalculateScrabbleScore_Click;
             // 
             // label33
             // 
@@ -1257,9 +1269,9 @@
             groupBoxScrabbleBlanks.Controls.Add(textBoxBlankLetter2);
             groupBoxScrabbleBlanks.Controls.Add(textBoxBlankLetter1);
             groupBoxScrabbleBlanks.Dock = DockStyle.Top;
-            groupBoxScrabbleBlanks.Location = new Point(0, 483);
+            groupBoxScrabbleBlanks.Location = new Point(0, 484);
             groupBoxScrabbleBlanks.Name = "groupBoxScrabbleBlanks";
-            groupBoxScrabbleBlanks.Size = new Size(386, 163);
+            groupBoxScrabbleBlanks.Size = new Size(386, 162);
             groupBoxScrabbleBlanks.TabIndex = 12;
             groupBoxScrabbleBlanks.TabStop = false;
             groupBoxScrabbleBlanks.Text = "Blanka";
@@ -1303,7 +1315,7 @@
             groupBoxScrabbleCharBonuses.Dock = DockStyle.Top;
             groupBoxScrabbleCharBonuses.Location = new Point(0, 270);
             groupBoxScrabbleCharBonuses.Name = "groupBoxScrabbleCharBonuses";
-            groupBoxScrabbleCharBonuses.Size = new Size(386, 213);
+            groupBoxScrabbleCharBonuses.Size = new Size(386, 214);
             groupBoxScrabbleCharBonuses.TabIndex = 11;
             groupBoxScrabbleCharBonuses.TabStop = false;
             groupBoxScrabbleCharBonuses.Text = "Premie literowe";
@@ -1465,6 +1477,7 @@
             tableLayoutPanelScrabble.Controls.Add(labelScrabbleCurrentPatternLen, 1, 0);
             tableLayoutPanelScrabble.Dock = DockStyle.Top;
             tableLayoutPanelScrabble.Location = new Point(3, 35);
+            tableLayoutPanelScrabble.Margin = new Padding(3, 3, 3, 5);
             tableLayoutPanelScrabble.Name = "tableLayoutPanelScrabble";
             tableLayoutPanelScrabble.RowCount = 1;
             tableLayoutPanelScrabble.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
@@ -1527,6 +1540,7 @@
             // tabPageCryptharitm
             // 
             tabPageCryptharitm.Controls.Add(SplitContainerCryptharitms);
+            tabPageCryptharitm.Controls.Add(label108);
             tabPageCryptharitm.Controls.Add(labelCryptharitms);
             tabPageCryptharitm.Location = new Point(4, 34);
             tabPageCryptharitm.Name = "tabPageCryptharitm";
@@ -1538,7 +1552,7 @@
             // 
             // SplitContainerCryptharitms
             // 
-            SplitContainerCryptharitms.Dock = DockStyle.Bottom;
+            SplitContainerCryptharitms.Dock = DockStyle.Fill;
             SplitContainerCryptharitms.FixedPanel = FixedPanel.Panel2;
             SplitContainerCryptharitms.Location = new Point(3, 38);
             SplitContainerCryptharitms.Margin = new Padding(3, 6, 3, 3);
@@ -1558,7 +1572,7 @@
             SplitContainerCryptharitms.Panel2.Controls.Add(solveCryptharitmBtn);
             SplitContainerCryptharitms.Size = new Size(1167, 737);
             SplitContainerCryptharitms.SplitterDistance = 761;
-            SplitContainerCryptharitms.TabIndex = 3;
+            SplitContainerCryptharitms.TabIndex = 5;
             // 
             // textBoxCryptharitmResult
             // 
@@ -1601,7 +1615,7 @@
             panelCrpt.Dock = DockStyle.Fill;
             panelCrpt.Location = new Point(0, 101);
             panelCrpt.Name = "panelCrpt";
-            panelCrpt.Size = new Size(402, 602);
+            panelCrpt.Size = new Size(402, 591);
             panelCrpt.TabIndex = 18;
             // 
             // panelCrptSettings
@@ -1629,25 +1643,23 @@
             // 
             RemoveComponentBtn.Cursor = Cursors.Hand;
             RemoveComponentBtn.FlatStyle = FlatStyle.Flat;
-            RemoveComponentBtn.Location = new Point(287, 28);
+            RemoveComponentBtn.Location = new Point(303, 15);
             RemoveComponentBtn.Name = "RemoveComponentBtn";
-            RemoveComponentBtn.Size = new Size(90, 34);
+            RemoveComponentBtn.Size = new Size(81, 61);
             RemoveComponentBtn.TabIndex = 12;
             RemoveComponentBtn.Text = "USUŃ";
             RemoveComponentBtn.UseVisualStyleBackColor = true;
-            RemoveComponentBtn.Click += RemoveComponentBtn_Click;
             // 
             // AddComponentBtn
             // 
             AddComponentBtn.Cursor = Cursors.Hand;
             AddComponentBtn.FlatStyle = FlatStyle.Flat;
-            AddComponentBtn.Location = new Point(191, 28);
+            AddComponentBtn.Location = new Point(194, 15);
             AddComponentBtn.Name = "AddComponentBtn";
-            AddComponentBtn.Size = new Size(90, 34);
+            AddComponentBtn.Size = new Size(87, 61);
             AddComponentBtn.TabIndex = 11;
             AddComponentBtn.Text = "DODAJ";
             AddComponentBtn.UseVisualStyleBackColor = true;
-            AddComponentBtn.Click += AddComponentBtn_Click;
             // 
             // comboBoxOperations
             // 
@@ -1658,20 +1670,26 @@
             comboBoxOperations.Name = "comboBoxOperations";
             comboBoxOperations.Size = new Size(154, 33);
             comboBoxOperations.TabIndex = 15;
-            comboBoxOperations.SelectedIndexChanged += ComboBoxOperations_SelectedIndexChanged;
             // 
             // solveCryptharitmBtn
             // 
             solveCryptharitmBtn.Cursor = Cursors.Hand;
             solveCryptharitmBtn.Dock = DockStyle.Bottom;
             solveCryptharitmBtn.FlatStyle = FlatStyle.Flat;
-            solveCryptharitmBtn.Location = new Point(0, 703);
+            solveCryptharitmBtn.Location = new Point(0, 692);
             solveCryptharitmBtn.Name = "solveCryptharitmBtn";
-            solveCryptharitmBtn.Size = new Size(402, 34);
+            solveCryptharitmBtn.Size = new Size(402, 45);
             solveCryptharitmBtn.TabIndex = 9;
             solveCryptharitmBtn.Text = "SZUKAJ ROZWIĄZAŃ";
             solveCryptharitmBtn.UseVisualStyleBackColor = true;
-            solveCryptharitmBtn.Click += SolveCryptharitmBtn_Click;
+            // 
+            // label108
+            // 
+            label108.Dock = DockStyle.Top;
+            label108.Location = new Point(3, 35);
+            label108.Name = "label108";
+            label108.Size = new Size(1167, 3);
+            label108.TabIndex = 4;
             // 
             // labelCryptharitms
             // 
@@ -1679,7 +1697,7 @@
             labelCryptharitms.Dock = DockStyle.Top;
             labelCryptharitms.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 238);
             labelCryptharitms.Location = new Point(3, 3);
-            labelCryptharitms.Margin = new Padding(3, 0, 3, 9);
+            labelCryptharitms.Margin = new Padding(3, 0, 3, 6);
             labelCryptharitms.Name = "labelCryptharitms";
             labelCryptharitms.Size = new Size(1167, 32);
             labelCryptharitms.TabIndex = 2;
@@ -1708,6 +1726,8 @@
             tableLayoutPanelSudokuMain.Name = "tableLayoutPanelSudokuMain";
             tableLayoutPanelSudokuMain.RowCount = 1;
             tableLayoutPanelSudokuMain.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanelSudokuMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tableLayoutPanelSudokuMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
             tableLayoutPanelSudokuMain.Size = new Size(1167, 772);
             tableLayoutPanelSudokuMain.TabIndex = 0;
             // 
@@ -3937,6 +3957,7 @@
             splitContainerScrabble.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainerScrabble).EndInit();
             splitContainerScrabble.ResumeLayout(false);
+            panelScrabbleBtn.ResumeLayout(false);
             groupBoxScrabbleBlanks.ResumeLayout(false);
             groupBoxScrabbleBlanks.PerformLayout();
             groupBoxScrabbleCharBonuses.ResumeLayout(false);
@@ -4140,8 +4161,6 @@
         private GroupBox groupBoxScrabbleBlanks;
         private TextBox textBoxBlankLetter1;
         private TextBox textBoxBlankLetter2;
-        private Label label34;
-        private Button buttonCalcuateSrabblePoints;
         private Label label33;
         private Label label35;
         private Label label36;
@@ -4152,7 +4171,6 @@
         internal Label labelScrabble;
         internal Label labelScrabbleCurrentPatternLen;
         internal Label labelScrabbleCalc;
-        internal Label labelScrabbePoints;
         internal TextBox textBoxPattern;
         internal TextBox textBoxNotContains;
         internal TextBox textBoxContains;
@@ -4161,20 +4179,9 @@
         private Button randomWordBtn;
         private TabPage tabPageCryptharitm;
         internal Label labelCryptharitms;
-        private Button solveCryptharitmBtn;
-        private Button RemoveComponentBtn;
-        private Button AddComponentBtn;
-        private ComboBox comboBoxOperations;
-        private Label label4;
-        private Label label7;
-        private TextBox textBoxCryptharitmResult;
-        public SplitContainer SplitContainerCryptharitms;
         public Panel PanelPatternFilters;
         private RadioButton radioUlozSamMode;
-        internal Label labelCryptharitmResultsInfo;
         private Label labelCryptharitmInfo;
-        private Panel panelCrptSettings;
-        private Panel panelCrpt;
         private TabPage tabPageSudoku;
         private TableLayoutPanel tableLayoutPanelSudokuMain;
         private Panel panelSudokuGrid;
@@ -4278,5 +4285,21 @@
         private Label label59;
         private Label label60;
         private Label label61;
+        private Label label108;
+        public SplitContainer SplitContainerCryptharitms;
+        private TextBox textBoxCryptharitmResult;
+        private Label label7;
+        internal Label labelCryptharitmResultsInfo;
+        private Panel panelCrpt;
+        private Panel panelCrptSettings;
+        private Label label4;
+        private Button RemoveComponentBtn;
+        private Button AddComponentBtn;
+        private ComboBox comboBoxOperations;
+        private Button solveCryptharitmBtn;
+        private Button buttonCalcuateSrabblePoints;
+        internal Label labelScrabbePoints;
+        private Panel panelScrabbleBtn;
+        private Label label34;
     }
 }
