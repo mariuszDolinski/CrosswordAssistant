@@ -63,7 +63,7 @@
             radioButtonBeginsWith = new RadioButton();
             label6 = new Label();
             textBoxBeginsWith = new TextBox();
-            tableLayoutPanel5 = new TableLayoutPanel();
+            tableLayoutPanelPatternMode = new TableLayoutPanel();
             groupBoxMode = new GroupBox();
             radioUlozSamMode = new RadioButton();
             radioWordInWord = new RadioButton();
@@ -309,7 +309,7 @@
             groupBoxContainsFilter.SuspendLayout();
             groupBoxEndsWithFilters.SuspendLayout();
             groupBoxBeginWithFilters.SuspendLayout();
-            tableLayoutPanel5.SuspendLayout();
+            tableLayoutPanelPatternMode.SuspendLayout();
             groupBoxMode.SuspendLayout();
             groupBoxLength.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainerPattern).BeginInit();
@@ -421,7 +421,7 @@
             // splitContainerResults.Panel2
             // 
             splitContainerResults.Panel2.Controls.Add(PanelPatternFilters);
-            splitContainerResults.Panel2.Controls.Add(tableLayoutPanel5);
+            splitContainerResults.Panel2.Controls.Add(tableLayoutPanelPatternMode);
             splitContainerResults.Size = new Size(1167, 697);
             splitContainerResults.SplitterDistance = 454;
             splitContainerResults.TabIndex = 8;
@@ -763,20 +763,21 @@
             textBoxBeginsWith.Size = new Size(229, 37);
             textBoxBeginsWith.TabIndex = 1;
             // 
-            // tableLayoutPanel5
+            // tableLayoutPanelPatternMode
             // 
-            tableLayoutPanel5.ColumnCount = 2;
-            tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 58.03109F));
-            tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 41.96891F));
-            tableLayoutPanel5.Controls.Add(groupBoxMode, 0, 0);
-            tableLayoutPanel5.Controls.Add(groupBoxLength, 1, 0);
-            tableLayoutPanel5.Dock = DockStyle.Top;
-            tableLayoutPanel5.Location = new Point(0, 0);
-            tableLayoutPanel5.Name = "tableLayoutPanel5";
-            tableLayoutPanel5.RowCount = 1;
-            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Absolute, 180F));
-            tableLayoutPanel5.Size = new Size(709, 224);
-            tableLayoutPanel5.TabIndex = 0;
+            tableLayoutPanelPatternMode.ColumnCount = 2;
+            tableLayoutPanelPatternMode.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 58.03109F));
+            tableLayoutPanelPatternMode.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 41.96891F));
+            tableLayoutPanelPatternMode.Controls.Add(groupBoxMode, 0, 0);
+            tableLayoutPanelPatternMode.Controls.Add(groupBoxLength, 1, 0);
+            tableLayoutPanelPatternMode.Dock = DockStyle.Top;
+            tableLayoutPanelPatternMode.Location = new Point(0, 0);
+            tableLayoutPanelPatternMode.Margin = new Padding(0);
+            tableLayoutPanelPatternMode.Name = "tableLayoutPanelPatternMode";
+            tableLayoutPanelPatternMode.RowCount = 1;
+            tableLayoutPanelPatternMode.RowStyles.Add(new RowStyle(SizeType.Absolute, 180F));
+            tableLayoutPanelPatternMode.Size = new Size(709, 224);
+            tableLayoutPanelPatternMode.TabIndex = 0;
             // 
             // groupBoxMode
             // 
@@ -790,9 +791,10 @@
             groupBoxMode.Controls.Add(radioAnagramMode);
             groupBoxMode.Controls.Add(radioPatternMode);
             groupBoxMode.Dock = DockStyle.Fill;
-            groupBoxMode.Location = new Point(3, 3);
+            groupBoxMode.Location = new Point(0, 0);
+            groupBoxMode.Margin = new Padding(0, 0, 3, 0);
             groupBoxMode.Name = "groupBoxMode";
-            groupBoxMode.Size = new Size(405, 218);
+            groupBoxMode.Size = new Size(408, 224);
             groupBoxMode.TabIndex = 0;
             groupBoxMode.TabStop = false;
             groupBoxMode.Text = "Tryb";
@@ -923,9 +925,10 @@
             groupBoxLength.Controls.Add(radioLength);
             groupBoxLength.Controls.Add(checkBoxLength);
             groupBoxLength.Dock = DockStyle.Fill;
-            groupBoxLength.Location = new Point(414, 3);
+            groupBoxLength.Location = new Point(414, 0);
+            groupBoxLength.Margin = new Padding(3, 0, 0, 0);
             groupBoxLength.Name = "groupBoxLength";
-            groupBoxLength.Size = new Size(292, 218);
+            groupBoxLength.Size = new Size(295, 224);
             groupBoxLength.TabIndex = 2;
             groupBoxLength.TabStop = false;
             groupBoxLength.Text = "Długość";
@@ -1210,9 +1213,9 @@
             labelScrabbePoints.BackColor = Color.Tan;
             labelScrabbePoints.Dock = DockStyle.Fill;
             labelScrabbePoints.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            labelScrabbePoints.Location = new Point(236, 653);
+            labelScrabbePoints.Location = new Point(236, 649);
             labelScrabbePoints.Name = "labelScrabbePoints";
-            labelScrabbePoints.Size = new Size(150, 42);
+            labelScrabbePoints.Size = new Size(150, 46);
             labelScrabbePoints.TabIndex = 16;
             labelScrabbePoints.Text = "0";
             labelScrabbePoints.TextAlign = ContentAlignment.MiddleCenter;
@@ -1220,9 +1223,9 @@
             // label34
             // 
             label34.Dock = DockStyle.Left;
-            label34.Location = new Point(233, 653);
+            label34.Location = new Point(233, 649);
             label34.Name = "label34";
-            label34.Size = new Size(3, 42);
+            label34.Size = new Size(3, 46);
             label34.TabIndex = 15;
             // 
             // buttonCalcuateSrabblePoints
@@ -1231,10 +1234,10 @@
             buttonCalcuateSrabblePoints.Dock = DockStyle.Left;
             buttonCalcuateSrabblePoints.FlatStyle = FlatStyle.Flat;
             buttonCalcuateSrabblePoints.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            buttonCalcuateSrabblePoints.Location = new Point(0, 653);
+            buttonCalcuateSrabblePoints.Location = new Point(0, 649);
             buttonCalcuateSrabblePoints.Margin = new Padding(2, 4, 0, 4);
             buttonCalcuateSrabblePoints.Name = "buttonCalcuateSrabblePoints";
-            buttonCalcuateSrabblePoints.Size = new Size(233, 42);
+            buttonCalcuateSrabblePoints.Size = new Size(233, 46);
             buttonCalcuateSrabblePoints.TabIndex = 14;
             buttonCalcuateSrabblePoints.Text = "OBLICZ";
             buttonCalcuateSrabblePoints.UseVisualStyleBackColor = true;
@@ -1243,7 +1246,7 @@
             // label33
             // 
             label33.Dock = DockStyle.Top;
-            label33.Location = new Point(0, 650);
+            label33.Location = new Point(0, 646);
             label33.Name = "label33";
             label33.Size = new Size(386, 3);
             label33.TabIndex = 13;
@@ -1256,7 +1259,7 @@
             groupBoxScrabbleBlanks.Dock = DockStyle.Top;
             groupBoxScrabbleBlanks.Location = new Point(0, 483);
             groupBoxScrabbleBlanks.Name = "groupBoxScrabbleBlanks";
-            groupBoxScrabbleBlanks.Size = new Size(386, 167);
+            groupBoxScrabbleBlanks.Size = new Size(386, 163);
             groupBoxScrabbleBlanks.TabIndex = 12;
             groupBoxScrabbleBlanks.TabStop = false;
             groupBoxScrabbleBlanks.Text = "Blanka";
@@ -3917,7 +3920,7 @@
             groupBoxEndsWithFilters.PerformLayout();
             groupBoxBeginWithFilters.ResumeLayout(false);
             groupBoxBeginWithFilters.PerformLayout();
-            tableLayoutPanel5.ResumeLayout(false);
+            tableLayoutPanelPatternMode.ResumeLayout(false);
             groupBoxMode.ResumeLayout(false);
             groupBoxMode.PerformLayout();
             groupBoxLength.ResumeLayout(false);
@@ -4080,7 +4083,7 @@
         private TextBox textBoxLengthTo;
         private Label labelLength5;
         private Label labelLength4;
-        private TableLayoutPanel tableLayoutPanel5;
+        private TableLayoutPanel tableLayoutPanelPatternMode;
         private Label labelModifyDictionary;
         private SplitContainer splitContainerEditDictionary;
         private Button buttonRemoveFromDictionary;
