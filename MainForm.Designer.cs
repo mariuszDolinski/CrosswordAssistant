@@ -482,9 +482,9 @@
             textBoxNotContains.CharacterCasing = CharacterCasing.Upper;
             textBoxNotContains.Enabled = false;
             textBoxNotContains.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            textBoxNotContains.Location = new Point(171, 119);
+            textBoxNotContains.Location = new Point(196, 119);
             textBoxNotContains.Name = "textBoxNotContains";
-            textBoxNotContains.Size = new Size(306, 37);
+            textBoxNotContains.Size = new Size(281, 37);
             textBoxNotContains.TabIndex = 7;
             // 
             // textBoxContains
@@ -492,9 +492,9 @@
             textBoxContains.CharacterCasing = CharacterCasing.Upper;
             textBoxContains.Enabled = false;
             textBoxContains.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            textBoxContains.Location = new Point(171, 76);
+            textBoxContains.Location = new Point(196, 76);
             textBoxContains.Name = "textBoxContains";
-            textBoxContains.Size = new Size(306, 37);
+            textBoxContains.Size = new Size(281, 37);
             textBoxContains.TabIndex = 5;
             // 
             // groupBoxEndsWithFilters
