@@ -25,8 +25,7 @@ namespace CrosswordAssistant
         public MainForm()
         {
             InitializeComponent();
-            MinimumSize = Size;
-            MaximumSize = Size;
+            SetSize();
             KeyPreview = true;
 
             try { Settings.Init(); }
@@ -538,20 +537,20 @@ namespace CrosswordAssistant
             switch (comboBoxOperations.SelectedIndex)
             {
                 case 1:
-                    AddComponentBtn.Text = "DODAJ SK£ADNIK";
-                    RemoveComponentBtn.Text = "USUÑ SK£ADNIK";
+                    //AddComponentBtn.Text = "DODAJ SK£ADNIK";
+                    //RemoveComponentBtn.Text = "USUÑ SK£ADNIK";
                     _customControls.SetCurrentOperatorLabelText("-");
                     Search.CurrentOperator = Operators.Subtraction;
                     break;
                 case 2:
-                    AddComponentBtn.Text = "DODAJ CZYNNIK";
-                    RemoveComponentBtn.Text = "USUÑ CZYNNIK";
+                    //AddComponentBtn.Text = "DODAJ CZYNNIK";
+                    //RemoveComponentBtn.Text = "USUÑ CZYNNIK";
                     _customControls.SetCurrentOperatorLabelText("•");
                     Search.CurrentOperator = Operators.Multiplication;
                     break;
                 default:
-                    AddComponentBtn.Text = "DODAJ SK£ADNIK";
-                    RemoveComponentBtn.Text = "USUÑ SK£ADNIK";
+                    //AddComponentBtn.Text = "DODAJ SK£ADNIK";
+                    //RemoveComponentBtn.Text = "USUÑ SK£ADNIK";
                     _customControls.SetCurrentOperatorLabelText("+");
                     Search.CurrentOperator = Operators.Addition;
                     break;
@@ -985,6 +984,15 @@ namespace CrosswordAssistant
             FormService.SetLabelsBackColor(_infoLabels, Color.Silver);
             lbl.BackColor = Color.LightSteelBlue;
             textBoxAbout.Text = msg;
+        }
+        private void SetSize()
+        {
+            if(DeviceDpi < 100)
+            {
+                Width = 859; Height = 538;
+            }
+            MinimumSize = Size;
+            MaximumSize = Size;
         }
 
         #endregion

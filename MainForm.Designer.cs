@@ -42,15 +42,7 @@
             sJPToolStripMenuItem = new ToolStripMenuItem();
             PanelPatternFilters = new Panel();
             groupBoxFilters = new GroupBox();
-            groupBoxContainsFilter = new GroupBox();
-            radioButtonContainsOr = new RadioButton();
-            radioButtonContainsAnd = new RadioButton();
-            checkBoxContainsActive = new CheckBox();
-            label26 = new Label();
-            checkBoxNotContains = new CheckBox();
-            checkBoxContains = new CheckBox();
-            textBoxNotContains = new TextBox();
-            textBoxContains = new TextBox();
+            tableLayoutPanel5 = new TableLayoutPanel();
             groupBoxEndsWithFilters = new GroupBox();
             radioButtonEndsWithNot = new RadioButton();
             radioButtonEndsWith = new RadioButton();
@@ -63,6 +55,15 @@
             radioButtonBeginsWith = new RadioButton();
             label6 = new Label();
             textBoxBeginsWith = new TextBox();
+            groupBoxContainsFilter = new GroupBox();
+            radioButtonContainsOr = new RadioButton();
+            radioButtonContainsAnd = new RadioButton();
+            checkBoxContainsActive = new CheckBox();
+            label26 = new Label();
+            checkBoxNotContains = new CheckBox();
+            checkBoxContains = new CheckBox();
+            textBoxNotContains = new TextBox();
+            textBoxContains = new TextBox();
             tableLayoutPanelPatternMode = new TableLayoutPanel();
             groupBoxMode = new GroupBox();
             radioUlozSamMode = new RadioButton();
@@ -308,9 +309,10 @@
             contextMenuStripResults.SuspendLayout();
             PanelPatternFilters.SuspendLayout();
             groupBoxFilters.SuspendLayout();
-            groupBoxContainsFilter.SuspendLayout();
+            tableLayoutPanel5.SuspendLayout();
             groupBoxEndsWithFilters.SuspendLayout();
             groupBoxBeginWithFilters.SuspendLayout();
+            groupBoxContainsFilter.SuspendLayout();
             tableLayoutPanelPatternMode.SuspendLayout();
             groupBoxMode.SuspendLayout();
             groupBoxLength.SuspendLayout();
@@ -505,9 +507,8 @@
             // 
             // groupBoxFilters
             // 
+            groupBoxFilters.Controls.Add(tableLayoutPanel5);
             groupBoxFilters.Controls.Add(groupBoxContainsFilter);
-            groupBoxFilters.Controls.Add(groupBoxEndsWithFilters);
-            groupBoxFilters.Controls.Add(groupBoxBeginWithFilters);
             groupBoxFilters.Dock = DockStyle.Fill;
             groupBoxFilters.Location = new Point(0, 0);
             groupBoxFilters.Name = "groupBoxFilters";
@@ -515,6 +516,160 @@
             groupBoxFilters.TabIndex = 1;
             groupBoxFilters.TabStop = false;
             groupBoxFilters.Text = "Dodatkowe filtry";
+            // 
+            // tableLayoutPanel5
+            // 
+            tableLayoutPanel5.ColumnCount = 2;
+            tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel5.Controls.Add(groupBoxEndsWithFilters, 1, 0);
+            tableLayoutPanel5.Controls.Add(groupBoxBeginWithFilters, 0, 0);
+            tableLayoutPanel5.Dock = DockStyle.Fill;
+            tableLayoutPanel5.Location = new Point(3, 27);
+            tableLayoutPanel5.Margin = new Padding(0);
+            tableLayoutPanel5.Name = "tableLayoutPanel5";
+            tableLayoutPanel5.RowCount = 1;
+            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanel5.Size = new Size(703, 237);
+            tableLayoutPanel5.TabIndex = 14;
+            // 
+            // groupBoxEndsWithFilters
+            // 
+            groupBoxEndsWithFilters.Controls.Add(radioButtonEndsWithNot);
+            groupBoxEndsWithFilters.Controls.Add(radioButtonEndsWith);
+            groupBoxEndsWithFilters.Controls.Add(label25);
+            groupBoxEndsWithFilters.Controls.Add(checkBoxEndsWithActive);
+            groupBoxEndsWithFilters.Controls.Add(textBoxEndsWith);
+            groupBoxEndsWithFilters.Dock = DockStyle.Fill;
+            groupBoxEndsWithFilters.Location = new Point(354, 0);
+            groupBoxEndsWithFilters.Margin = new Padding(3, 0, 0, 0);
+            groupBoxEndsWithFilters.Name = "groupBoxEndsWithFilters";
+            groupBoxEndsWithFilters.Size = new Size(349, 237);
+            groupBoxEndsWithFilters.TabIndex = 25;
+            groupBoxEndsWithFilters.TabStop = false;
+            groupBoxEndsWithFilters.Text = "Koniec";
+            // 
+            // radioButtonEndsWithNot
+            // 
+            radioButtonEndsWithNot.AutoSize = true;
+            radioButtonEndsWithNot.Enabled = false;
+            radioButtonEndsWithNot.Location = new Point(16, 128);
+            radioButtonEndsWithNot.Name = "radioButtonEndsWithNot";
+            radioButtonEndsWithNot.Size = new Size(182, 29);
+            radioButtonEndsWithNot.TabIndex = 14;
+            radioButtonEndsWithNot.TabStop = true;
+            radioButtonEndsWithNot.Text = "niekończące się na";
+            radioButtonEndsWithNot.UseVisualStyleBackColor = true;
+            // 
+            // radioButtonEndsWith
+            // 
+            radioButtonEndsWith.AutoSize = true;
+            radioButtonEndsWith.Enabled = false;
+            radioButtonEndsWith.Location = new Point(16, 93);
+            radioButtonEndsWith.Name = "radioButtonEndsWith";
+            radioButtonEndsWith.Size = new Size(159, 29);
+            radioButtonEndsWith.TabIndex = 13;
+            radioButtonEndsWith.TabStop = true;
+            radioButtonEndsWith.Text = "kończące się na";
+            radioButtonEndsWith.UseVisualStyleBackColor = true;
+            // 
+            // label25
+            // 
+            label25.AutoSize = true;
+            label25.Location = new Point(6, 65);
+            label25.Name = "label25";
+            label25.Size = new Size(202, 25);
+            label25.TabIndex = 12;
+            label25.Text = "Wyświetlaj tylko wyrazy:";
+            // 
+            // checkBoxEndsWithActive
+            // 
+            checkBoxEndsWithActive.AutoSize = true;
+            checkBoxEndsWithActive.Location = new Point(212, 30);
+            checkBoxEndsWithActive.Name = "checkBoxEndsWithActive";
+            checkBoxEndsWithActive.Size = new Size(106, 29);
+            checkBoxEndsWithActive.TabIndex = 4;
+            checkBoxEndsWithActive.Text = "Aktywny";
+            checkBoxEndsWithActive.UseVisualStyleBackColor = true;
+            // 
+            // textBoxEndsWith
+            // 
+            textBoxEndsWith.CharacterCasing = CharacterCasing.Upper;
+            textBoxEndsWith.Enabled = false;
+            textBoxEndsWith.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            textBoxEndsWith.Location = new Point(16, 163);
+            textBoxEndsWith.Name = "textBoxEndsWith";
+            textBoxEndsWith.Size = new Size(229, 37);
+            textBoxEndsWith.TabIndex = 3;
+            // 
+            // groupBoxBeginWithFilters
+            // 
+            groupBoxBeginWithFilters.Controls.Add(checkBoxBeginsWithActive);
+            groupBoxBeginWithFilters.Controls.Add(radioButtonBeginWithNot);
+            groupBoxBeginWithFilters.Controls.Add(radioButtonBeginsWith);
+            groupBoxBeginWithFilters.Controls.Add(label6);
+            groupBoxBeginWithFilters.Controls.Add(textBoxBeginsWith);
+            groupBoxBeginWithFilters.Dock = DockStyle.Fill;
+            groupBoxBeginWithFilters.Location = new Point(0, 0);
+            groupBoxBeginWithFilters.Margin = new Padding(0, 0, 3, 0);
+            groupBoxBeginWithFilters.Name = "groupBoxBeginWithFilters";
+            groupBoxBeginWithFilters.Size = new Size(348, 237);
+            groupBoxBeginWithFilters.TabIndex = 24;
+            groupBoxBeginWithFilters.TabStop = false;
+            groupBoxBeginWithFilters.Text = "Początek";
+            // 
+            // checkBoxBeginsWithActive
+            // 
+            checkBoxBeginsWithActive.AutoSize = true;
+            checkBoxBeginsWithActive.Location = new Point(212, 30);
+            checkBoxBeginsWithActive.Name = "checkBoxBeginsWithActive";
+            checkBoxBeginsWithActive.Size = new Size(106, 29);
+            checkBoxBeginsWithActive.TabIndex = 11;
+            checkBoxBeginsWithActive.Text = "Aktywny";
+            checkBoxBeginsWithActive.UseVisualStyleBackColor = true;
+            // 
+            // radioButtonBeginWithNot
+            // 
+            radioButtonBeginWithNot.AutoSize = true;
+            radioButtonBeginWithNot.Enabled = false;
+            radioButtonBeginWithNot.Location = new Point(16, 128);
+            radioButtonBeginWithNot.Name = "radioButtonBeginWithNot";
+            radioButtonBeginWithNot.Size = new Size(201, 29);
+            radioButtonBeginWithNot.TabIndex = 10;
+            radioButtonBeginWithNot.TabStop = true;
+            radioButtonBeginWithNot.Text = "niezaczynające się na";
+            radioButtonBeginWithNot.UseVisualStyleBackColor = true;
+            // 
+            // radioButtonBeginsWith
+            // 
+            radioButtonBeginsWith.AutoSize = true;
+            radioButtonBeginsWith.Enabled = false;
+            radioButtonBeginsWith.Location = new Point(16, 93);
+            radioButtonBeginsWith.Name = "radioButtonBeginsWith";
+            radioButtonBeginsWith.Size = new Size(178, 29);
+            radioButtonBeginsWith.TabIndex = 9;
+            radioButtonBeginsWith.TabStop = true;
+            radioButtonBeginsWith.Text = "zaczynające się na";
+            radioButtonBeginsWith.UseVisualStyleBackColor = true;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(6, 65);
+            label6.Name = "label6";
+            label6.Size = new Size(202, 25);
+            label6.TabIndex = 8;
+            label6.Text = "Wyświetlaj tylko wyrazy:";
+            // 
+            // textBoxBeginsWith
+            // 
+            textBoxBeginsWith.CharacterCasing = CharacterCasing.Upper;
+            textBoxBeginsWith.Enabled = false;
+            textBoxBeginsWith.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            textBoxBeginsWith.Location = new Point(16, 163);
+            textBoxBeginsWith.Name = "textBoxBeginsWith";
+            textBoxBeginsWith.Size = new Size(229, 37);
+            textBoxBeginsWith.TabIndex = 1;
             // 
             // groupBoxContainsFilter
             // 
@@ -527,9 +682,9 @@
             groupBoxContainsFilter.Controls.Add(textBoxNotContains);
             groupBoxContainsFilter.Controls.Add(textBoxContains);
             groupBoxContainsFilter.Dock = DockStyle.Bottom;
-            groupBoxContainsFilter.Location = new Point(3, 250);
+            groupBoxContainsFilter.Location = new Point(3, 264);
             groupBoxContainsFilter.Name = "groupBoxContainsFilter";
-            groupBoxContainsFilter.Size = new Size(703, 220);
+            groupBoxContainsFilter.Size = new Size(703, 206);
             groupBoxContainsFilter.TabIndex = 13;
             groupBoxContainsFilter.TabStop = false;
             groupBoxContainsFilter.Text = "Zawiera";
@@ -625,146 +780,6 @@
             textBoxContains.Name = "textBoxContains";
             textBoxContains.Size = new Size(281, 37);
             textBoxContains.TabIndex = 5;
-            // 
-            // groupBoxEndsWithFilters
-            // 
-            groupBoxEndsWithFilters.Controls.Add(radioButtonEndsWithNot);
-            groupBoxEndsWithFilters.Controls.Add(radioButtonEndsWith);
-            groupBoxEndsWithFilters.Controls.Add(label25);
-            groupBoxEndsWithFilters.Controls.Add(checkBoxEndsWithActive);
-            groupBoxEndsWithFilters.Controls.Add(textBoxEndsWith);
-            groupBoxEndsWithFilters.Location = new Point(359, 30);
-            groupBoxEndsWithFilters.Name = "groupBoxEndsWithFilters";
-            groupBoxEndsWithFilters.Size = new Size(348, 214);
-            groupBoxEndsWithFilters.TabIndex = 12;
-            groupBoxEndsWithFilters.TabStop = false;
-            groupBoxEndsWithFilters.Text = "Koniec";
-            // 
-            // radioButtonEndsWithNot
-            // 
-            radioButtonEndsWithNot.AutoSize = true;
-            radioButtonEndsWithNot.Enabled = false;
-            radioButtonEndsWithNot.Location = new Point(16, 128);
-            radioButtonEndsWithNot.Name = "radioButtonEndsWithNot";
-            radioButtonEndsWithNot.Size = new Size(182, 29);
-            radioButtonEndsWithNot.TabIndex = 14;
-            radioButtonEndsWithNot.TabStop = true;
-            radioButtonEndsWithNot.Text = "niekończące się na";
-            radioButtonEndsWithNot.UseVisualStyleBackColor = true;
-            radioButtonEndsWithNot.CheckedChanged += SelectedFilters_CheckedChanged;
-            // 
-            // radioButtonEndsWith
-            // 
-            radioButtonEndsWith.AutoSize = true;
-            radioButtonEndsWith.Enabled = false;
-            radioButtonEndsWith.Location = new Point(16, 93);
-            radioButtonEndsWith.Name = "radioButtonEndsWith";
-            radioButtonEndsWith.Size = new Size(159, 29);
-            radioButtonEndsWith.TabIndex = 13;
-            radioButtonEndsWith.TabStop = true;
-            radioButtonEndsWith.Text = "kończące się na";
-            radioButtonEndsWith.UseVisualStyleBackColor = true;
-            radioButtonEndsWith.CheckedChanged += SelectedFilters_CheckedChanged;
-            // 
-            // label25
-            // 
-            label25.AutoSize = true;
-            label25.Location = new Point(6, 65);
-            label25.Name = "label25";
-            label25.Size = new Size(202, 25);
-            label25.TabIndex = 12;
-            label25.Text = "Wyświetlaj tylko wyrazy:";
-            // 
-            // checkBoxEndsWithActive
-            // 
-            checkBoxEndsWithActive.AutoSize = true;
-            checkBoxEndsWithActive.Location = new Point(212, 30);
-            checkBoxEndsWithActive.Name = "checkBoxEndsWithActive";
-            checkBoxEndsWithActive.Size = new Size(106, 29);
-            checkBoxEndsWithActive.TabIndex = 4;
-            checkBoxEndsWithActive.Text = "Aktywny";
-            checkBoxEndsWithActive.UseVisualStyleBackColor = true;
-            checkBoxEndsWithActive.CheckedChanged += ActiveFilters_CheckedChanged;
-            // 
-            // textBoxEndsWith
-            // 
-            textBoxEndsWith.CharacterCasing = CharacterCasing.Upper;
-            textBoxEndsWith.Enabled = false;
-            textBoxEndsWith.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            textBoxEndsWith.Location = new Point(16, 163);
-            textBoxEndsWith.Name = "textBoxEndsWith";
-            textBoxEndsWith.Size = new Size(229, 37);
-            textBoxEndsWith.TabIndex = 3;
-            // 
-            // groupBoxBeginWithFilters
-            // 
-            groupBoxBeginWithFilters.Controls.Add(checkBoxBeginsWithActive);
-            groupBoxBeginWithFilters.Controls.Add(radioButtonBeginWithNot);
-            groupBoxBeginWithFilters.Controls.Add(radioButtonBeginsWith);
-            groupBoxBeginWithFilters.Controls.Add(label6);
-            groupBoxBeginWithFilters.Controls.Add(textBoxBeginsWith);
-            groupBoxBeginWithFilters.Location = new Point(3, 30);
-            groupBoxBeginWithFilters.Name = "groupBoxBeginWithFilters";
-            groupBoxBeginWithFilters.Size = new Size(348, 214);
-            groupBoxBeginWithFilters.TabIndex = 11;
-            groupBoxBeginWithFilters.TabStop = false;
-            groupBoxBeginWithFilters.Text = "Początek";
-            // 
-            // checkBoxBeginsWithActive
-            // 
-            checkBoxBeginsWithActive.AutoSize = true;
-            checkBoxBeginsWithActive.Location = new Point(212, 30);
-            checkBoxBeginsWithActive.Name = "checkBoxBeginsWithActive";
-            checkBoxBeginsWithActive.Size = new Size(106, 29);
-            checkBoxBeginsWithActive.TabIndex = 11;
-            checkBoxBeginsWithActive.Text = "Aktywny";
-            checkBoxBeginsWithActive.UseVisualStyleBackColor = true;
-            checkBoxBeginsWithActive.CheckedChanged += ActiveFilters_CheckedChanged;
-            // 
-            // radioButtonBeginWithNot
-            // 
-            radioButtonBeginWithNot.AutoSize = true;
-            radioButtonBeginWithNot.Enabled = false;
-            radioButtonBeginWithNot.Location = new Point(16, 128);
-            radioButtonBeginWithNot.Name = "radioButtonBeginWithNot";
-            radioButtonBeginWithNot.Size = new Size(201, 29);
-            radioButtonBeginWithNot.TabIndex = 10;
-            radioButtonBeginWithNot.TabStop = true;
-            radioButtonBeginWithNot.Text = "niezaczynające się na";
-            radioButtonBeginWithNot.UseVisualStyleBackColor = true;
-            radioButtonBeginWithNot.CheckedChanged += SelectedFilters_CheckedChanged;
-            // 
-            // radioButtonBeginsWith
-            // 
-            radioButtonBeginsWith.AutoSize = true;
-            radioButtonBeginsWith.Enabled = false;
-            radioButtonBeginsWith.Location = new Point(16, 93);
-            radioButtonBeginsWith.Name = "radioButtonBeginsWith";
-            radioButtonBeginsWith.Size = new Size(178, 29);
-            radioButtonBeginsWith.TabIndex = 9;
-            radioButtonBeginsWith.TabStop = true;
-            radioButtonBeginsWith.Text = "zaczynające się na";
-            radioButtonBeginsWith.UseVisualStyleBackColor = true;
-            radioButtonBeginsWith.CheckedChanged += SelectedFilters_CheckedChanged;
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Location = new Point(6, 65);
-            label6.Name = "label6";
-            label6.Size = new Size(202, 25);
-            label6.TabIndex = 8;
-            label6.Text = "Wyświetlaj tylko wyrazy:";
-            // 
-            // textBoxBeginsWith
-            // 
-            textBoxBeginsWith.CharacterCasing = CharacterCasing.Upper;
-            textBoxBeginsWith.Enabled = false;
-            textBoxBeginsWith.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            textBoxBeginsWith.Location = new Point(16, 163);
-            textBoxBeginsWith.Name = "textBoxBeginsWith";
-            textBoxBeginsWith.Size = new Size(229, 37);
-            textBoxBeginsWith.TabIndex = 1;
             // 
             // tableLayoutPanelPatternMode
             // 
@@ -1254,6 +1269,7 @@
             buttonCalcuateSrabblePoints.TabIndex = 20;
             buttonCalcuateSrabblePoints.Text = "OBLICZ";
             buttonCalcuateSrabblePoints.UseVisualStyleBackColor = true;
+            buttonCalcuateSrabblePoints.Click += CalculateScrabbleScore_Click;
             // 
             // label33
             // 
@@ -1649,6 +1665,7 @@
             RemoveComponentBtn.TabIndex = 12;
             RemoveComponentBtn.Text = "USUŃ";
             RemoveComponentBtn.UseVisualStyleBackColor = true;
+            RemoveComponentBtn.Click += RemoveComponentBtn_Click;
             // 
             // AddComponentBtn
             // 
@@ -1660,6 +1677,7 @@
             AddComponentBtn.TabIndex = 11;
             AddComponentBtn.Text = "DODAJ";
             AddComponentBtn.UseVisualStyleBackColor = true;
+            AddComponentBtn.Click += AddComponentBtn_Click;
             // 
             // comboBoxOperations
             // 
@@ -1670,6 +1688,7 @@
             comboBoxOperations.Name = "comboBoxOperations";
             comboBoxOperations.Size = new Size(154, 33);
             comboBoxOperations.TabIndex = 15;
+            comboBoxOperations.SelectedIndexChanged += ComboBoxOperations_SelectedIndexChanged;
             // 
             // solveCryptharitmBtn
             // 
@@ -3934,12 +3953,13 @@
             contextMenuStripResults.ResumeLayout(false);
             PanelPatternFilters.ResumeLayout(false);
             groupBoxFilters.ResumeLayout(false);
-            groupBoxContainsFilter.ResumeLayout(false);
-            groupBoxContainsFilter.PerformLayout();
+            tableLayoutPanel5.ResumeLayout(false);
             groupBoxEndsWithFilters.ResumeLayout(false);
             groupBoxEndsWithFilters.PerformLayout();
             groupBoxBeginWithFilters.ResumeLayout(false);
             groupBoxBeginWithFilters.PerformLayout();
+            groupBoxContainsFilter.ResumeLayout(false);
+            groupBoxContainsFilter.PerformLayout();
             tableLayoutPanelPatternMode.ResumeLayout(false);
             groupBoxMode.ResumeLayout(false);
             groupBoxMode.PerformLayout();
@@ -4123,22 +4143,12 @@
         private Label labelSuperWordInfo;
         private RadioButton radioStenoAnagramMode;
         private GroupBox groupBoxFilters;
-        private Label label6;
         private CheckBox checkBoxNotContains;
         private CheckBox checkBoxContains;
         private RadioButton radioWordInWord;
         private Label label23;
         private Label labelWordInWordInfo;
-        private GroupBox groupBoxBeginWithFilters;
-        private RadioButton radioButtonBeginWithNot;
-        private RadioButton radioButtonBeginsWith;
-        private CheckBox checkBoxBeginsWithActive;
         private Label label24;
-        private GroupBox groupBoxEndsWithFilters;
-        private CheckBox checkBoxEndsWithActive;
-        private RadioButton radioButtonEndsWith;
-        private Label label25;
-        private RadioButton radioButtonEndsWithNot;
         private GroupBox groupBoxContainsFilter;
         private CheckBox checkBoxContainsActive;
         private Label label26;
@@ -4174,8 +4184,6 @@
         internal TextBox textBoxPattern;
         internal TextBox textBoxNotContains;
         internal TextBox textBoxContains;
-        internal TextBox textBoxEndsWith;
-        internal TextBox textBoxBeginsWith;
         private Button randomWordBtn;
         private TabPage tabPageCryptharitm;
         internal Label labelCryptharitms;
@@ -4301,5 +4309,18 @@
         internal Label labelScrabbePoints;
         private Panel panelScrabbleBtn;
         private Label label34;
+        private TableLayoutPanel tableLayoutPanel5;
+        private GroupBox groupBoxEndsWithFilters;
+        private RadioButton radioButtonEndsWithNot;
+        private RadioButton radioButtonEndsWith;
+        private Label label25;
+        private CheckBox checkBoxEndsWithActive;
+        internal TextBox textBoxEndsWith;
+        private GroupBox groupBoxBeginWithFilters;
+        private CheckBox checkBoxBeginsWithActive;
+        private RadioButton radioButtonBeginWithNot;
+        private RadioButton radioButtonBeginsWith;
+        private Label label6;
+        internal TextBox textBoxBeginsWith;
     }
 }
