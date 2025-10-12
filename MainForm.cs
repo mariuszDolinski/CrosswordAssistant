@@ -480,35 +480,11 @@ namespace CrosswordAssistant
                             break;
                     }
                     break;
+                case SearchMode.Sudoku:
+                    SudokuKeyDownHandle(e);
+                    break;
                 default:
-                    switch (e.KeyCode)
-                    {
-                        case Keys.Enter:
-                            SearchPattern_Click(sender, e);
-                            e.SuppressKeyPress = true;
-                            break;
-                        case Keys.F6:
-                            textBoxPattern.SelectAll();
-                            textBoxPattern.Focus();
-                            break;
-                    }
-                    if (e.Control)
-                    {
-                        switch (e.KeyCode)
-                        {
-                            case Keys.D1: radioPatternMode.Checked = true; break;
-                            case Keys.D2: radioAnagramMode.Checked = true; break;
-                            case Keys.D3: radioMetagramMode.Checked = true; break;
-                            case Keys.D4: radioPM1Mode.Checked = true; break;
-                            case Keys.D5: radioSubWordMode.Checked = true; break;
-                            case Keys.D6: radioSuperWordMode.Checked = true; break;
-                            case Keys.D7: radioStenoAnagramMode.Checked = true; break;
-                            case Keys.D8: radioWordInWord.Checked = true; break;
-                            case Keys.D9:
-                                checkBoxLength.Checked = !checkBoxLength.Checked;
-                                break;
-                        }
-                    }
+                    PatternKeyDownHandle(e, sender);
                     break;
             }
         }
@@ -587,6 +563,25 @@ namespace CrosswordAssistant
         private void MainForm_Load(object sender, EventArgs e)
         {
             _appearance.SetMainFormLocation();
+        }
+        private void SudokuCell_Click(object sender, EventArgs e)
+        {
+            if (sender is not Label cellLabel) return;
+            int x = cellLabel.TabIndex / 10;
+            int y = cellLabel.TabIndex % 10;
+            if (x == _sudokuService.CurrentCell.X && y == _sudokuService.CurrentCell.Y)
+            {
+                cellLabel.BackColor = Color.Transparent;
+                _sudokuService.CurrentCell = SudokuService.CurrentCellNull;
+            }
+            else
+            {
+                cellLabel.BackColor = Color.LightBlue;
+                if (_sudokuService.CurrentCell.Label != null)
+                    _sudokuService.CurrentCell.Label.BackColor = Color.Transparent;
+                int value = cellLabel.Text.Length == 0 ? 0 : int.Parse(cellLabel.Text);
+                _sudokuService.CurrentCell = new Cell(x, y, value, cellLabel);
+            }
         }
 
         #endregion
@@ -943,7 +938,10 @@ namespace CrosswordAssistant
                     Search.Mode = SearchMode.Cryptharitm;
                     break;
                 case 3:
+                    Search.Mode = SearchMode.Sudoku;
+                    break;
                 case 4:
+                case 5:
                     Search.Mode = SearchMode.None;
                     break;
                 default:
@@ -996,6 +994,56 @@ namespace CrosswordAssistant
             }
             MinimumSize = Size;
             MaximumSize = Size;
+        }
+        private void SudokuKeyDownHandle(KeyEventArgs e)
+        {
+            if ((e.KeyCode >= Keys.D1 && e.KeyCode <= Keys.D9) ||
+                        (e.KeyCode >= Keys.NumPad0 && e.KeyCode <= Keys.NumPad9))
+            {
+                if (_sudokuService.CurrentCell.Label != null)
+                {
+                    var value = e.KeyCode.ToString()[1].ToString();
+                    if (_sudokuService.CurrentCell.Value.ToString() == value)
+                    {
+                        _sudokuService.UpdateCurrentCellDigit(0);
+                    }
+                    else
+                    {
+                        _sudokuService.UpdateCurrentCellDigit(int.Parse(value));
+                    }
+                }
+            }
+        }
+        private void PatternKeyDownHandle(KeyEventArgs e, object sender)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Enter:
+                    SearchPattern_Click(sender, e);
+                    e.SuppressKeyPress = true;
+                    break;
+                case Keys.F6:
+                    textBoxPattern.SelectAll();
+                    textBoxPattern.Focus();
+                    break;
+            }
+            if (e.Control)
+            {
+                switch (e.KeyCode)
+                {
+                    case Keys.D1: radioPatternMode.Checked = true; break;
+                    case Keys.D2: radioAnagramMode.Checked = true; break;
+                    case Keys.D3: radioMetagramMode.Checked = true; break;
+                    case Keys.D4: radioPM1Mode.Checked = true; break;
+                    case Keys.D5: radioSubWordMode.Checked = true; break;
+                    case Keys.D6: radioSuperWordMode.Checked = true; break;
+                    case Keys.D7: radioStenoAnagramMode.Checked = true; break;
+                    case Keys.D8: radioWordInWord.Checked = true; break;
+                    case Keys.D9:
+                        checkBoxLength.Checked = !checkBoxLength.Checked;
+                        break;
+                }
+            }
         }
 
         #endregion

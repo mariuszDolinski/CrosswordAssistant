@@ -1751,6 +1751,7 @@
             tableLayoutPanelSudokuMain.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tableLayoutPanelSudokuMain.Size = new Size(1167, 737);
             tableLayoutPanelSudokuMain.TabIndex = 5;
+            tableLayoutPanelSudokuMain.Click += SudokuCell_Click;
             // 
             // panelSudokuGrid
             // 
@@ -1828,119 +1829,136 @@
             // 
             label98.AutoSize = true;
             label98.BorderStyle = BorderStyle.FixedSingle;
+            label98.Cursor = Cursors.Hand;
             label98.Dock = DockStyle.Fill;
             label98.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
             label98.Location = new Point(150, 150);
             label98.Margin = new Padding(0);
             label98.Name = "label98";
             label98.Size = new Size(76, 76);
-            label98.TabIndex = 8;
+            label98.TabIndex = 88;
             label98.TextAlign = ContentAlignment.MiddleCenter;
+            label98.Click += SudokuCell_Click;
             // 
             // label99
             // 
             label99.AutoSize = true;
             label99.BorderStyle = BorderStyle.FixedSingle;
+            label99.Cursor = Cursors.Hand;
             label99.Dock = DockStyle.Fill;
             label99.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
             label99.Location = new Point(75, 150);
             label99.Margin = new Padding(0);
             label99.Name = "label99";
             label99.Size = new Size(75, 76);
-            label99.TabIndex = 7;
-            label99.Text = "6";
+            label99.TabIndex = 87;
             label99.TextAlign = ContentAlignment.MiddleCenter;
+            label99.Click += SudokuCell_Click;
             // 
             // label100
             // 
             label100.AutoSize = true;
             label100.BorderStyle = BorderStyle.FixedSingle;
+            label100.Cursor = Cursors.Hand;
             label100.Dock = DockStyle.Fill;
             label100.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
             label100.Location = new Point(0, 150);
             label100.Margin = new Padding(0);
             label100.Name = "label100";
             label100.Size = new Size(75, 76);
-            label100.TabIndex = 6;
+            label100.TabIndex = 86;
             label100.TextAlign = ContentAlignment.MiddleCenter;
+            label100.Click += SudokuCell_Click;
             // 
             // label101
             // 
             label101.AutoSize = true;
             label101.BorderStyle = BorderStyle.FixedSingle;
+            label101.Cursor = Cursors.Hand;
             label101.Dock = DockStyle.Fill;
             label101.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
             label101.Location = new Point(150, 75);
             label101.Margin = new Padding(0);
             label101.Name = "label101";
             label101.Size = new Size(76, 75);
-            label101.TabIndex = 5;
+            label101.TabIndex = 78;
             label101.TextAlign = ContentAlignment.MiddleCenter;
+            label101.Click += SudokuCell_Click;
             // 
             // label102
             // 
             label102.AutoSize = true;
             label102.BorderStyle = BorderStyle.FixedSingle;
+            label102.Cursor = Cursors.Hand;
             label102.Dock = DockStyle.Fill;
             label102.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
             label102.Location = new Point(75, 75);
             label102.Margin = new Padding(0);
             label102.Name = "label102";
             label102.Size = new Size(75, 75);
-            label102.TabIndex = 4;
+            label102.TabIndex = 77;
             label102.TextAlign = ContentAlignment.MiddleCenter;
+            label102.Click += SudokuCell_Click;
             // 
             // label103
             // 
             label103.AutoSize = true;
             label103.BorderStyle = BorderStyle.FixedSingle;
+            label103.Cursor = Cursors.Hand;
             label103.Dock = DockStyle.Fill;
             label103.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
             label103.Location = new Point(0, 75);
             label103.Margin = new Padding(0);
             label103.Name = "label103";
             label103.Size = new Size(75, 75);
-            label103.TabIndex = 3;
+            label103.TabIndex = 76;
             label103.TextAlign = ContentAlignment.MiddleCenter;
+            label103.Click += SudokuCell_Click;
             // 
             // label104
             // 
             label104.AutoSize = true;
             label104.BorderStyle = BorderStyle.FixedSingle;
+            label104.Cursor = Cursors.Hand;
             label104.Dock = DockStyle.Fill;
             label104.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
             label104.Location = new Point(150, 0);
             label104.Margin = new Padding(0);
             label104.Name = "label104";
             label104.Size = new Size(76, 75);
-            label104.TabIndex = 2;
+            label104.TabIndex = 68;
             label104.TextAlign = ContentAlignment.MiddleCenter;
+            label104.Click += SudokuCell_Click;
             // 
             // label105
             // 
             label105.AutoSize = true;
             label105.BorderStyle = BorderStyle.FixedSingle;
+            label105.Cursor = Cursors.Hand;
             label105.Dock = DockStyle.Fill;
             label105.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
             label105.Location = new Point(75, 0);
             label105.Margin = new Padding(0);
             label105.Name = "label105";
             label105.Size = new Size(75, 75);
-            label105.TabIndex = 1;
+            label105.TabIndex = 67;
             label105.TextAlign = ContentAlignment.MiddleCenter;
+            label105.Click += SudokuCell_Click;
             // 
             // label106
             // 
             label106.AutoSize = true;
             label106.BorderStyle = BorderStyle.FixedSingle;
+            label106.Cursor = Cursors.Hand;
             label106.Dock = DockStyle.Fill;
             label106.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
             label106.Location = new Point(0, 0);
             label106.Margin = new Padding(0);
             label106.Name = "label106";
             label106.Size = new Size(75, 75);
-            label106.TabIndex = 0;
+            label106.TabIndex = 66;
             label106.TextAlign = ContentAlignment.MiddleCenter;
+            label106.Click += SudokuCell_Click;
             // 
             // panelSudokuBox8
             // 
@@ -1982,118 +2000,136 @@
             // 
             label89.AutoSize = true;
             label89.BorderStyle = BorderStyle.FixedSingle;
+            label89.Cursor = Cursors.Hand;
             label89.Dock = DockStyle.Fill;
             label89.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
             label89.Location = new Point(148, 150);
             label89.Margin = new Padding(0);
             label89.Name = "label89";
             label89.Size = new Size(76, 76);
-            label89.TabIndex = 8;
+            label89.TabIndex = 85;
             label89.TextAlign = ContentAlignment.MiddleCenter;
+            label89.Click += SudokuCell_Click;
             // 
             // label90
             // 
             label90.AutoSize = true;
             label90.BorderStyle = BorderStyle.FixedSingle;
+            label90.Cursor = Cursors.Hand;
             label90.Dock = DockStyle.Fill;
             label90.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
             label90.Location = new Point(74, 150);
             label90.Margin = new Padding(0);
             label90.Name = "label90";
             label90.Size = new Size(74, 76);
-            label90.TabIndex = 7;
+            label90.TabIndex = 84;
             label90.TextAlign = ContentAlignment.MiddleCenter;
+            label90.Click += SudokuCell_Click;
             // 
             // label91
             // 
             label91.AutoSize = true;
             label91.BorderStyle = BorderStyle.FixedSingle;
+            label91.Cursor = Cursors.Hand;
             label91.Dock = DockStyle.Fill;
             label91.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
             label91.Location = new Point(0, 150);
             label91.Margin = new Padding(0);
             label91.Name = "label91";
             label91.Size = new Size(74, 76);
-            label91.TabIndex = 6;
+            label91.TabIndex = 83;
             label91.TextAlign = ContentAlignment.MiddleCenter;
+            label91.Click += SudokuCell_Click;
             // 
             // label92
             // 
             label92.AutoSize = true;
             label92.BorderStyle = BorderStyle.FixedSingle;
+            label92.Cursor = Cursors.Hand;
             label92.Dock = DockStyle.Fill;
             label92.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
             label92.Location = new Point(148, 75);
             label92.Margin = new Padding(0);
             label92.Name = "label92";
             label92.Size = new Size(76, 75);
-            label92.TabIndex = 5;
+            label92.TabIndex = 75;
             label92.TextAlign = ContentAlignment.MiddleCenter;
+            label92.Click += SudokuCell_Click;
             // 
             // label93
             // 
             label93.AutoSize = true;
             label93.BorderStyle = BorderStyle.FixedSingle;
+            label93.Cursor = Cursors.Hand;
             label93.Dock = DockStyle.Fill;
             label93.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
             label93.Location = new Point(74, 75);
             label93.Margin = new Padding(0);
             label93.Name = "label93";
             label93.Size = new Size(74, 75);
-            label93.TabIndex = 4;
+            label93.TabIndex = 74;
             label93.TextAlign = ContentAlignment.MiddleCenter;
+            label93.Click += SudokuCell_Click;
             // 
             // label94
             // 
             label94.AutoSize = true;
             label94.BorderStyle = BorderStyle.FixedSingle;
+            label94.Cursor = Cursors.Hand;
             label94.Dock = DockStyle.Fill;
             label94.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
             label94.Location = new Point(0, 75);
             label94.Margin = new Padding(0);
             label94.Name = "label94";
             label94.Size = new Size(74, 75);
-            label94.TabIndex = 3;
+            label94.TabIndex = 73;
             label94.TextAlign = ContentAlignment.MiddleCenter;
+            label94.Click += SudokuCell_Click;
             // 
             // label95
             // 
             label95.AutoSize = true;
             label95.BorderStyle = BorderStyle.FixedSingle;
+            label95.Cursor = Cursors.Hand;
             label95.Dock = DockStyle.Fill;
             label95.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
             label95.Location = new Point(148, 0);
             label95.Margin = new Padding(0);
             label95.Name = "label95";
             label95.Size = new Size(76, 75);
-            label95.TabIndex = 2;
+            label95.TabIndex = 65;
             label95.TextAlign = ContentAlignment.MiddleCenter;
+            label95.Click += SudokuCell_Click;
             // 
             // label96
             // 
             label96.AutoSize = true;
             label96.BorderStyle = BorderStyle.FixedSingle;
+            label96.Cursor = Cursors.Hand;
             label96.Dock = DockStyle.Fill;
             label96.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
             label96.Location = new Point(74, 0);
             label96.Margin = new Padding(0);
             label96.Name = "label96";
             label96.Size = new Size(74, 75);
-            label96.TabIndex = 1;
+            label96.TabIndex = 64;
             label96.TextAlign = ContentAlignment.MiddleCenter;
+            label96.Click += SudokuCell_Click;
             // 
             // label97
             // 
             label97.AutoSize = true;
             label97.BorderStyle = BorderStyle.FixedSingle;
+            label97.Cursor = Cursors.Hand;
             label97.Dock = DockStyle.Fill;
             label97.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
             label97.Location = new Point(0, 0);
             label97.Margin = new Padding(0);
             label97.Name = "label97";
             label97.Size = new Size(74, 75);
-            label97.TabIndex = 0;
+            label97.TabIndex = 63;
             label97.TextAlign = ContentAlignment.MiddleCenter;
+            label97.Click += SudokuCell_Click;
             // 
             // panelSudokuBox7
             // 
@@ -2135,119 +2171,136 @@
             // 
             label80.AutoSize = true;
             label80.BorderStyle = BorderStyle.FixedSingle;
+            label80.Cursor = Cursors.Hand;
             label80.Dock = DockStyle.Fill;
             label80.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
             label80.Location = new Point(148, 150);
             label80.Margin = new Padding(0);
             label80.Name = "label80";
             label80.Size = new Size(76, 76);
-            label80.TabIndex = 8;
-            label80.Text = "9";
+            label80.TabIndex = 82;
             label80.TextAlign = ContentAlignment.MiddleCenter;
+            label80.Click += SudokuCell_Click;
             // 
             // label81
             // 
             label81.AutoSize = true;
             label81.BorderStyle = BorderStyle.FixedSingle;
+            label81.Cursor = Cursors.Hand;
             label81.Dock = DockStyle.Fill;
             label81.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
             label81.Location = new Point(74, 150);
             label81.Margin = new Padding(0);
             label81.Name = "label81";
             label81.Size = new Size(74, 76);
-            label81.TabIndex = 7;
+            label81.TabIndex = 81;
             label81.TextAlign = ContentAlignment.MiddleCenter;
+            label81.Click += SudokuCell_Click;
             // 
             // label82
             // 
             label82.AutoSize = true;
             label82.BorderStyle = BorderStyle.FixedSingle;
+            label82.Cursor = Cursors.Hand;
             label82.Dock = DockStyle.Fill;
             label82.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
             label82.Location = new Point(0, 150);
             label82.Margin = new Padding(0);
             label82.Name = "label82";
             label82.Size = new Size(74, 76);
-            label82.TabIndex = 6;
+            label82.TabIndex = 80;
             label82.TextAlign = ContentAlignment.MiddleCenter;
+            label82.Click += SudokuCell_Click;
             // 
             // label83
             // 
             label83.AutoSize = true;
             label83.BorderStyle = BorderStyle.FixedSingle;
+            label83.Cursor = Cursors.Hand;
             label83.Dock = DockStyle.Fill;
             label83.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
             label83.Location = new Point(148, 75);
             label83.Margin = new Padding(0);
             label83.Name = "label83";
             label83.Size = new Size(76, 75);
-            label83.TabIndex = 5;
+            label83.TabIndex = 72;
             label83.TextAlign = ContentAlignment.MiddleCenter;
+            label83.Click += SudokuCell_Click;
             // 
             // label84
             // 
             label84.AutoSize = true;
             label84.BorderStyle = BorderStyle.FixedSingle;
+            label84.Cursor = Cursors.Hand;
             label84.Dock = DockStyle.Fill;
             label84.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
             label84.Location = new Point(74, 75);
             label84.Margin = new Padding(0);
             label84.Name = "label84";
             label84.Size = new Size(74, 75);
-            label84.TabIndex = 4;
+            label84.TabIndex = 71;
             label84.TextAlign = ContentAlignment.MiddleCenter;
+            label84.Click += SudokuCell_Click;
             // 
             // label85
             // 
             label85.AutoSize = true;
             label85.BorderStyle = BorderStyle.FixedSingle;
+            label85.Cursor = Cursors.Hand;
             label85.Dock = DockStyle.Fill;
             label85.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
             label85.Location = new Point(0, 75);
             label85.Margin = new Padding(0);
             label85.Name = "label85";
             label85.Size = new Size(74, 75);
-            label85.TabIndex = 3;
+            label85.TabIndex = 70;
             label85.TextAlign = ContentAlignment.MiddleCenter;
+            label85.Click += SudokuCell_Click;
             // 
             // label86
             // 
             label86.AutoSize = true;
             label86.BorderStyle = BorderStyle.FixedSingle;
+            label86.Cursor = Cursors.Hand;
             label86.Dock = DockStyle.Fill;
             label86.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
             label86.Location = new Point(148, 0);
             label86.Margin = new Padding(0);
             label86.Name = "label86";
             label86.Size = new Size(76, 75);
-            label86.TabIndex = 2;
+            label86.TabIndex = 62;
             label86.TextAlign = ContentAlignment.MiddleCenter;
+            label86.Click += SudokuCell_Click;
             // 
             // label87
             // 
             label87.AutoSize = true;
             label87.BorderStyle = BorderStyle.FixedSingle;
+            label87.Cursor = Cursors.Hand;
             label87.Dock = DockStyle.Fill;
             label87.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
             label87.Location = new Point(74, 0);
             label87.Margin = new Padding(0);
             label87.Name = "label87";
             label87.Size = new Size(74, 75);
-            label87.TabIndex = 1;
+            label87.TabIndex = 61;
             label87.TextAlign = ContentAlignment.MiddleCenter;
+            label87.Click += SudokuCell_Click;
             // 
             // label88
             // 
             label88.AutoSize = true;
             label88.BorderStyle = BorderStyle.FixedSingle;
+            label88.Cursor = Cursors.Hand;
             label88.Dock = DockStyle.Fill;
             label88.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
             label88.Location = new Point(0, 0);
             label88.Margin = new Padding(0);
             label88.Name = "label88";
             label88.Size = new Size(74, 75);
-            label88.TabIndex = 0;
+            label88.TabIndex = 60;
             label88.TextAlign = ContentAlignment.MiddleCenter;
+            label88.Click += SudokuCell_Click;
             // 
             // panelSudokuBox6
             // 
@@ -2289,119 +2342,136 @@
             // 
             label71.AutoSize = true;
             label71.BorderStyle = BorderStyle.FixedSingle;
+            label71.Cursor = Cursors.Hand;
             label71.Dock = DockStyle.Fill;
             label71.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
             label71.Location = new Point(150, 148);
             label71.Margin = new Padding(0);
             label71.Name = "label71";
             label71.Size = new Size(76, 76);
-            label71.TabIndex = 8;
+            label71.TabIndex = 58;
             label71.TextAlign = ContentAlignment.MiddleCenter;
+            label71.Click += SudokuCell_Click;
             // 
             // label72
             // 
             label72.AutoSize = true;
             label72.BorderStyle = BorderStyle.FixedSingle;
+            label72.Cursor = Cursors.Hand;
             label72.Dock = DockStyle.Fill;
             label72.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
             label72.Location = new Point(75, 148);
             label72.Margin = new Padding(0);
             label72.Name = "label72";
             label72.Size = new Size(75, 76);
-            label72.TabIndex = 7;
+            label72.TabIndex = 57;
             label72.TextAlign = ContentAlignment.MiddleCenter;
+            label72.Click += SudokuCell_Click;
             // 
             // label73
             // 
             label73.AutoSize = true;
             label73.BorderStyle = BorderStyle.FixedSingle;
+            label73.Cursor = Cursors.Hand;
             label73.Dock = DockStyle.Fill;
             label73.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
             label73.Location = new Point(0, 148);
             label73.Margin = new Padding(0);
             label73.Name = "label73";
             label73.Size = new Size(75, 76);
-            label73.TabIndex = 6;
+            label73.TabIndex = 56;
             label73.TextAlign = ContentAlignment.MiddleCenter;
+            label73.Click += SudokuCell_Click;
             // 
             // label74
             // 
             label74.AutoSize = true;
             label74.BorderStyle = BorderStyle.FixedSingle;
+            label74.Cursor = Cursors.Hand;
             label74.Dock = DockStyle.Fill;
             label74.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
             label74.Location = new Point(150, 74);
             label74.Margin = new Padding(0);
             label74.Name = "label74";
             label74.Size = new Size(76, 74);
-            label74.TabIndex = 5;
+            label74.TabIndex = 48;
             label74.TextAlign = ContentAlignment.MiddleCenter;
+            label74.Click += SudokuCell_Click;
             // 
             // label75
             // 
             label75.AutoSize = true;
             label75.BorderStyle = BorderStyle.FixedSingle;
+            label75.Cursor = Cursors.Hand;
             label75.Dock = DockStyle.Fill;
             label75.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
             label75.Location = new Point(75, 74);
             label75.Margin = new Padding(0);
             label75.Name = "label75";
             label75.Size = new Size(75, 74);
-            label75.TabIndex = 4;
+            label75.TabIndex = 47;
             label75.TextAlign = ContentAlignment.MiddleCenter;
+            label75.Click += SudokuCell_Click;
             // 
             // label76
             // 
             label76.AutoSize = true;
             label76.BorderStyle = BorderStyle.FixedSingle;
+            label76.Cursor = Cursors.Hand;
             label76.Dock = DockStyle.Fill;
             label76.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
             label76.Location = new Point(0, 74);
             label76.Margin = new Padding(0);
             label76.Name = "label76";
             label76.Size = new Size(75, 74);
-            label76.TabIndex = 3;
-            label76.Text = "8";
+            label76.TabIndex = 46;
             label76.TextAlign = ContentAlignment.MiddleCenter;
+            label76.Click += SudokuCell_Click;
             // 
             // label77
             // 
             label77.AutoSize = true;
             label77.BorderStyle = BorderStyle.FixedSingle;
+            label77.Cursor = Cursors.Hand;
             label77.Dock = DockStyle.Fill;
             label77.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
             label77.Location = new Point(150, 0);
             label77.Margin = new Padding(0);
             label77.Name = "label77";
             label77.Size = new Size(76, 74);
-            label77.TabIndex = 2;
+            label77.TabIndex = 38;
             label77.TextAlign = ContentAlignment.MiddleCenter;
+            label77.Click += SudokuCell_Click;
             // 
             // label78
             // 
             label78.AutoSize = true;
             label78.BorderStyle = BorderStyle.FixedSingle;
+            label78.Cursor = Cursors.Hand;
             label78.Dock = DockStyle.Fill;
             label78.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
             label78.Location = new Point(75, 0);
             label78.Margin = new Padding(0);
             label78.Name = "label78";
             label78.Size = new Size(75, 74);
-            label78.TabIndex = 1;
+            label78.TabIndex = 37;
             label78.TextAlign = ContentAlignment.MiddleCenter;
+            label78.Click += SudokuCell_Click;
             // 
             // label79
             // 
             label79.AutoSize = true;
             label79.BorderStyle = BorderStyle.FixedSingle;
+            label79.Cursor = Cursors.Hand;
             label79.Dock = DockStyle.Fill;
             label79.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
             label79.Location = new Point(0, 0);
             label79.Margin = new Padding(0);
             label79.Name = "label79";
             label79.Size = new Size(75, 74);
-            label79.TabIndex = 0;
+            label79.TabIndex = 36;
             label79.TextAlign = ContentAlignment.MiddleCenter;
+            label79.Click += SudokuCell_Click;
             // 
             // panelSudokuBox5
             // 
@@ -2443,118 +2513,136 @@
             // 
             label62.AutoSize = true;
             label62.BorderStyle = BorderStyle.FixedSingle;
+            label62.Cursor = Cursors.Hand;
             label62.Dock = DockStyle.Fill;
             label62.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
             label62.Location = new Point(148, 148);
             label62.Margin = new Padding(0);
             label62.Name = "label62";
             label62.Size = new Size(76, 76);
-            label62.TabIndex = 8;
+            label62.TabIndex = 55;
             label62.TextAlign = ContentAlignment.MiddleCenter;
+            label62.Click += SudokuCell_Click;
             // 
             // label63
             // 
             label63.AutoSize = true;
             label63.BorderStyle = BorderStyle.FixedSingle;
+            label63.Cursor = Cursors.Hand;
             label63.Dock = DockStyle.Fill;
             label63.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
             label63.Location = new Point(74, 148);
             label63.Margin = new Padding(0);
             label63.Name = "label63";
             label63.Size = new Size(74, 76);
-            label63.TabIndex = 7;
+            label63.TabIndex = 54;
             label63.TextAlign = ContentAlignment.MiddleCenter;
+            label63.Click += SudokuCell_Click;
             // 
             // label64
             // 
             label64.AutoSize = true;
             label64.BorderStyle = BorderStyle.FixedSingle;
+            label64.Cursor = Cursors.Hand;
             label64.Dock = DockStyle.Fill;
             label64.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
             label64.Location = new Point(0, 148);
             label64.Margin = new Padding(0);
             label64.Name = "label64";
             label64.Size = new Size(74, 76);
-            label64.TabIndex = 6;
+            label64.TabIndex = 53;
             label64.TextAlign = ContentAlignment.MiddleCenter;
+            label64.Click += SudokuCell_Click;
             // 
             // label65
             // 
             label65.AutoSize = true;
             label65.BorderStyle = BorderStyle.FixedSingle;
+            label65.Cursor = Cursors.Hand;
             label65.Dock = DockStyle.Fill;
             label65.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
             label65.Location = new Point(148, 74);
             label65.Margin = new Padding(0);
             label65.Name = "label65";
             label65.Size = new Size(76, 74);
-            label65.TabIndex = 5;
+            label65.TabIndex = 45;
             label65.TextAlign = ContentAlignment.MiddleCenter;
+            label65.Click += SudokuCell_Click;
             // 
             // label66
             // 
             label66.AutoSize = true;
             label66.BorderStyle = BorderStyle.FixedSingle;
+            label66.Cursor = Cursors.Hand;
             label66.Dock = DockStyle.Fill;
             label66.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
             label66.Location = new Point(74, 74);
             label66.Margin = new Padding(0);
             label66.Name = "label66";
             label66.Size = new Size(74, 74);
-            label66.TabIndex = 4;
+            label66.TabIndex = 44;
             label66.TextAlign = ContentAlignment.MiddleCenter;
+            label66.Click += SudokuCell_Click;
             // 
             // label67
             // 
             label67.AutoSize = true;
             label67.BorderStyle = BorderStyle.FixedSingle;
+            label67.Cursor = Cursors.Hand;
             label67.Dock = DockStyle.Fill;
             label67.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
             label67.Location = new Point(0, 74);
             label67.Margin = new Padding(0);
             label67.Name = "label67";
             label67.Size = new Size(74, 74);
-            label67.TabIndex = 3;
+            label67.TabIndex = 43;
             label67.TextAlign = ContentAlignment.MiddleCenter;
+            label67.Click += SudokuCell_Click;
             // 
             // label68
             // 
             label68.AutoSize = true;
             label68.BorderStyle = BorderStyle.FixedSingle;
+            label68.Cursor = Cursors.Hand;
             label68.Dock = DockStyle.Fill;
             label68.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
             label68.Location = new Point(148, 0);
             label68.Margin = new Padding(0);
             label68.Name = "label68";
             label68.Size = new Size(76, 74);
-            label68.TabIndex = 2;
+            label68.TabIndex = 35;
             label68.TextAlign = ContentAlignment.MiddleCenter;
+            label68.Click += SudokuCell_Click;
             // 
             // label69
             // 
             label69.AutoSize = true;
             label69.BorderStyle = BorderStyle.FixedSingle;
+            label69.Cursor = Cursors.Hand;
             label69.Dock = DockStyle.Fill;
             label69.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
             label69.Location = new Point(74, 0);
             label69.Margin = new Padding(0);
             label69.Name = "label69";
             label69.Size = new Size(74, 74);
-            label69.TabIndex = 1;
+            label69.TabIndex = 34;
             label69.TextAlign = ContentAlignment.MiddleCenter;
+            label69.Click += SudokuCell_Click;
             // 
             // label70
             // 
             label70.AutoSize = true;
             label70.BorderStyle = BorderStyle.FixedSingle;
+            label70.Cursor = Cursors.Hand;
             label70.Dock = DockStyle.Fill;
             label70.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
             label70.Location = new Point(0, 0);
             label70.Margin = new Padding(0);
             label70.Name = "label70";
             label70.Size = new Size(74, 74);
-            label70.TabIndex = 0;
+            label70.TabIndex = 33;
             label70.TextAlign = ContentAlignment.MiddleCenter;
+            label70.Click += SudokuCell_Click;
             // 
             // panelSudokuBox4
             // 
@@ -2596,119 +2684,136 @@
             // 
             label53.AutoSize = true;
             label53.BorderStyle = BorderStyle.FixedSingle;
+            label53.Cursor = Cursors.Hand;
             label53.Dock = DockStyle.Fill;
             label53.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
             label53.Location = new Point(148, 148);
             label53.Margin = new Padding(0);
             label53.Name = "label53";
             label53.Size = new Size(76, 76);
-            label53.TabIndex = 8;
+            label53.TabIndex = 52;
             label53.TextAlign = ContentAlignment.MiddleCenter;
+            label53.Click += SudokuCell_Click;
             // 
             // label54
             // 
             label54.AutoSize = true;
             label54.BorderStyle = BorderStyle.FixedSingle;
+            label54.Cursor = Cursors.Hand;
             label54.Dock = DockStyle.Fill;
             label54.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
             label54.Location = new Point(74, 148);
             label54.Margin = new Padding(0);
             label54.Name = "label54";
             label54.Size = new Size(74, 76);
-            label54.TabIndex = 7;
+            label54.TabIndex = 51;
             label54.TextAlign = ContentAlignment.MiddleCenter;
+            label54.Click += SudokuCell_Click;
             // 
             // label55
             // 
             label55.AutoSize = true;
             label55.BorderStyle = BorderStyle.FixedSingle;
+            label55.Cursor = Cursors.Hand;
             label55.Dock = DockStyle.Fill;
             label55.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
             label55.Location = new Point(0, 148);
             label55.Margin = new Padding(0);
             label55.Name = "label55";
             label55.Size = new Size(74, 76);
-            label55.TabIndex = 6;
-            label55.Text = "4";
+            label55.TabIndex = 50;
             label55.TextAlign = ContentAlignment.MiddleCenter;
+            label55.Click += SudokuCell_Click;
             // 
             // label56
             // 
             label56.AutoSize = true;
             label56.BorderStyle = BorderStyle.FixedSingle;
+            label56.Cursor = Cursors.Hand;
             label56.Dock = DockStyle.Fill;
             label56.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
             label56.Location = new Point(148, 74);
             label56.Margin = new Padding(0);
             label56.Name = "label56";
             label56.Size = new Size(76, 74);
-            label56.TabIndex = 5;
+            label56.TabIndex = 42;
             label56.TextAlign = ContentAlignment.MiddleCenter;
+            label56.Click += SudokuCell_Click;
             // 
             // label57
             // 
             label57.AutoSize = true;
             label57.BorderStyle = BorderStyle.FixedSingle;
+            label57.Cursor = Cursors.Hand;
             label57.Dock = DockStyle.Fill;
             label57.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
             label57.Location = new Point(74, 74);
             label57.Margin = new Padding(0);
             label57.Name = "label57";
             label57.Size = new Size(74, 74);
-            label57.TabIndex = 4;
+            label57.TabIndex = 41;
             label57.TextAlign = ContentAlignment.MiddleCenter;
+            label57.Click += SudokuCell_Click;
             // 
             // label58
             // 
             label58.AutoSize = true;
             label58.BorderStyle = BorderStyle.FixedSingle;
+            label58.Cursor = Cursors.Hand;
             label58.Dock = DockStyle.Fill;
             label58.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
             label58.Location = new Point(0, 74);
             label58.Margin = new Padding(0);
             label58.Name = "label58";
             label58.Size = new Size(74, 74);
-            label58.TabIndex = 3;
+            label58.TabIndex = 40;
             label58.TextAlign = ContentAlignment.MiddleCenter;
+            label58.Click += SudokuCell_Click;
             // 
             // label59
             // 
             label59.AutoSize = true;
             label59.BorderStyle = BorderStyle.FixedSingle;
+            label59.Cursor = Cursors.Hand;
             label59.Dock = DockStyle.Fill;
             label59.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
             label59.Location = new Point(148, 0);
             label59.Margin = new Padding(0);
             label59.Name = "label59";
             label59.Size = new Size(76, 74);
-            label59.TabIndex = 2;
+            label59.TabIndex = 32;
             label59.TextAlign = ContentAlignment.MiddleCenter;
+            label59.Click += SudokuCell_Click;
             // 
             // label60
             // 
             label60.AutoSize = true;
             label60.BorderStyle = BorderStyle.FixedSingle;
+            label60.Cursor = Cursors.Hand;
             label60.Dock = DockStyle.Fill;
             label60.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
             label60.Location = new Point(74, 0);
             label60.Margin = new Padding(0);
             label60.Name = "label60";
             label60.Size = new Size(74, 74);
-            label60.TabIndex = 1;
+            label60.TabIndex = 31;
             label60.TextAlign = ContentAlignment.MiddleCenter;
+            label60.Click += SudokuCell_Click;
             // 
             // label61
             // 
             label61.AutoSize = true;
             label61.BorderStyle = BorderStyle.FixedSingle;
+            label61.Cursor = Cursors.Hand;
             label61.Dock = DockStyle.Fill;
             label61.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
             label61.Location = new Point(0, 0);
             label61.Margin = new Padding(0);
             label61.Name = "label61";
             label61.Size = new Size(74, 74);
-            label61.TabIndex = 0;
+            label61.TabIndex = 30;
             label61.TextAlign = ContentAlignment.MiddleCenter;
+            label61.Click += SudokuCell_Click;
             // 
             // panelSudokuBox3
             // 
@@ -2750,118 +2855,137 @@
             // 
             label44.AutoSize = true;
             label44.BorderStyle = BorderStyle.FixedSingle;
+            label44.Cursor = Cursors.Hand;
             label44.Dock = DockStyle.Fill;
             label44.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
             label44.Location = new Point(150, 148);
             label44.Margin = new Padding(0);
             label44.Name = "label44";
             label44.Size = new Size(76, 76);
-            label44.TabIndex = 8;
+            label44.TabIndex = 28;
             label44.TextAlign = ContentAlignment.MiddleCenter;
+            label44.Click += SudokuCell_Click;
             // 
             // label45
             // 
             label45.AutoSize = true;
             label45.BorderStyle = BorderStyle.FixedSingle;
+            label45.Cursor = Cursors.Hand;
             label45.Dock = DockStyle.Fill;
             label45.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
             label45.Location = new Point(75, 148);
             label45.Margin = new Padding(0);
             label45.Name = "label45";
             label45.Size = new Size(75, 76);
-            label45.TabIndex = 7;
+            label45.TabIndex = 27;
             label45.TextAlign = ContentAlignment.MiddleCenter;
+            label45.Click += SudokuCell_Click;
             // 
             // label46
             // 
             label46.AutoSize = true;
             label46.BorderStyle = BorderStyle.FixedSingle;
+            label46.Cursor = Cursors.Hand;
             label46.Dock = DockStyle.Fill;
             label46.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
             label46.Location = new Point(0, 148);
             label46.Margin = new Padding(0);
             label46.Name = "label46";
             label46.Size = new Size(75, 76);
-            label46.TabIndex = 6;
+            label46.TabIndex = 26;
             label46.TextAlign = ContentAlignment.MiddleCenter;
+            label46.Click += SudokuCell_Click;
             // 
             // label47
             // 
             label47.AutoSize = true;
+            label47.BackColor = Color.Transparent;
             label47.BorderStyle = BorderStyle.FixedSingle;
+            label47.Cursor = Cursors.Hand;
             label47.Dock = DockStyle.Fill;
             label47.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
             label47.Location = new Point(150, 74);
             label47.Margin = new Padding(0);
             label47.Name = "label47";
             label47.Size = new Size(76, 74);
-            label47.TabIndex = 5;
+            label47.TabIndex = 18;
             label47.TextAlign = ContentAlignment.MiddleCenter;
+            label47.Click += SudokuCell_Click;
             // 
             // label48
             // 
             label48.AutoSize = true;
             label48.BorderStyle = BorderStyle.FixedSingle;
+            label48.Cursor = Cursors.Hand;
             label48.Dock = DockStyle.Fill;
             label48.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
             label48.Location = new Point(75, 74);
             label48.Margin = new Padding(0);
             label48.Name = "label48";
             label48.Size = new Size(75, 74);
-            label48.TabIndex = 4;
+            label48.TabIndex = 17;
             label48.TextAlign = ContentAlignment.MiddleCenter;
+            label48.Click += SudokuCell_Click;
             // 
             // label49
             // 
             label49.AutoSize = true;
             label49.BorderStyle = BorderStyle.FixedSingle;
+            label49.Cursor = Cursors.Hand;
             label49.Dock = DockStyle.Fill;
             label49.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
             label49.Location = new Point(0, 74);
             label49.Margin = new Padding(0);
             label49.Name = "label49";
             label49.Size = new Size(75, 74);
-            label49.TabIndex = 3;
+            label49.TabIndex = 16;
             label49.TextAlign = ContentAlignment.MiddleCenter;
+            label49.Click += SudokuCell_Click;
             // 
             // label50
             // 
             label50.AutoSize = true;
             label50.BorderStyle = BorderStyle.FixedSingle;
+            label50.Cursor = Cursors.Hand;
             label50.Dock = DockStyle.Fill;
             label50.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
             label50.Location = new Point(150, 0);
             label50.Margin = new Padding(0);
             label50.Name = "label50";
             label50.Size = new Size(76, 74);
-            label50.TabIndex = 2;
+            label50.TabIndex = 8;
             label50.TextAlign = ContentAlignment.MiddleCenter;
+            label50.Click += SudokuCell_Click;
             // 
             // label51
             // 
             label51.AutoSize = true;
             label51.BorderStyle = BorderStyle.FixedSingle;
+            label51.Cursor = Cursors.Hand;
             label51.Dock = DockStyle.Fill;
             label51.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
             label51.Location = new Point(75, 0);
             label51.Margin = new Padding(0);
             label51.Name = "label51";
             label51.Size = new Size(75, 74);
-            label51.TabIndex = 1;
+            label51.TabIndex = 7;
             label51.TextAlign = ContentAlignment.MiddleCenter;
+            label51.Click += SudokuCell_Click;
             // 
             // label52
             // 
             label52.AutoSize = true;
             label52.BorderStyle = BorderStyle.FixedSingle;
+            label52.Cursor = Cursors.Hand;
             label52.Dock = DockStyle.Fill;
             label52.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
             label52.Location = new Point(0, 0);
             label52.Margin = new Padding(0);
             label52.Name = "label52";
             label52.Size = new Size(75, 74);
-            label52.TabIndex = 0;
+            label52.TabIndex = 6;
             label52.TextAlign = ContentAlignment.MiddleCenter;
+            label52.Click += SudokuCell_Click;
             // 
             // panelSudokuBox2
             // 
@@ -2903,119 +3027,136 @@
             // 
             label17.AutoSize = true;
             label17.BorderStyle = BorderStyle.FixedSingle;
+            label17.Cursor = Cursors.Hand;
             label17.Dock = DockStyle.Fill;
             label17.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
             label17.Location = new Point(148, 148);
             label17.Margin = new Padding(0);
             label17.Name = "label17";
             label17.Size = new Size(76, 76);
-            label17.TabIndex = 8;
+            label17.TabIndex = 25;
             label17.TextAlign = ContentAlignment.MiddleCenter;
+            label17.Click += SudokuCell_Click;
             // 
             // label18
             // 
             label18.AutoSize = true;
             label18.BorderStyle = BorderStyle.FixedSingle;
+            label18.Cursor = Cursors.Hand;
             label18.Dock = DockStyle.Fill;
             label18.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
             label18.Location = new Point(74, 148);
             label18.Margin = new Padding(0);
             label18.Name = "label18";
             label18.Size = new Size(74, 76);
-            label18.TabIndex = 7;
+            label18.TabIndex = 24;
             label18.TextAlign = ContentAlignment.MiddleCenter;
+            label18.Click += SudokuCell_Click;
             // 
             // label27
             // 
             label27.AutoSize = true;
             label27.BorderStyle = BorderStyle.FixedSingle;
+            label27.Cursor = Cursors.Hand;
             label27.Dock = DockStyle.Fill;
             label27.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
             label27.Location = new Point(0, 148);
             label27.Margin = new Padding(0);
             label27.Name = "label27";
             label27.Size = new Size(74, 76);
-            label27.TabIndex = 6;
+            label27.TabIndex = 23;
             label27.TextAlign = ContentAlignment.MiddleCenter;
+            label27.Click += SudokuCell_Click;
             // 
             // label38
             // 
             label38.AutoSize = true;
             label38.BorderStyle = BorderStyle.FixedSingle;
+            label38.Cursor = Cursors.Hand;
             label38.Dock = DockStyle.Fill;
             label38.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
             label38.Location = new Point(148, 74);
             label38.Margin = new Padding(0);
             label38.Name = "label38";
             label38.Size = new Size(76, 74);
-            label38.TabIndex = 5;
+            label38.TabIndex = 15;
             label38.TextAlign = ContentAlignment.MiddleCenter;
+            label38.Click += SudokuCell_Click;
             // 
             // label39
             // 
             label39.AutoSize = true;
             label39.BorderStyle = BorderStyle.FixedSingle;
+            label39.Cursor = Cursors.Hand;
             label39.Dock = DockStyle.Fill;
             label39.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
             label39.Location = new Point(74, 74);
             label39.Margin = new Padding(0);
             label39.Name = "label39";
             label39.Size = new Size(74, 74);
-            label39.TabIndex = 4;
+            label39.TabIndex = 14;
             label39.TextAlign = ContentAlignment.MiddleCenter;
+            label39.Click += SudokuCell_Click;
             // 
             // label40
             // 
             label40.AutoSize = true;
             label40.BorderStyle = BorderStyle.FixedSingle;
+            label40.Cursor = Cursors.Hand;
             label40.Dock = DockStyle.Fill;
             label40.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
             label40.Location = new Point(0, 74);
             label40.Margin = new Padding(0);
             label40.Name = "label40";
             label40.Size = new Size(74, 74);
-            label40.TabIndex = 3;
-            label40.Text = "5";
+            label40.TabIndex = 13;
             label40.TextAlign = ContentAlignment.MiddleCenter;
+            label40.Click += SudokuCell_Click;
             // 
             // label41
             // 
             label41.AutoSize = true;
             label41.BorderStyle = BorderStyle.FixedSingle;
+            label41.Cursor = Cursors.Hand;
             label41.Dock = DockStyle.Fill;
             label41.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
             label41.Location = new Point(148, 0);
             label41.Margin = new Padding(0);
             label41.Name = "label41";
             label41.Size = new Size(76, 74);
-            label41.TabIndex = 2;
+            label41.TabIndex = 5;
             label41.TextAlign = ContentAlignment.MiddleCenter;
+            label41.Click += SudokuCell_Click;
             // 
             // label42
             // 
             label42.AutoSize = true;
             label42.BorderStyle = BorderStyle.FixedSingle;
+            label42.Cursor = Cursors.Hand;
             label42.Dock = DockStyle.Fill;
             label42.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
             label42.Location = new Point(74, 0);
             label42.Margin = new Padding(0);
             label42.Name = "label42";
             label42.Size = new Size(74, 74);
-            label42.TabIndex = 1;
+            label42.TabIndex = 4;
             label42.TextAlign = ContentAlignment.MiddleCenter;
+            label42.Click += SudokuCell_Click;
             // 
             // label43
             // 
             label43.AutoSize = true;
             label43.BorderStyle = BorderStyle.FixedSingle;
+            label43.Cursor = Cursors.Hand;
             label43.Dock = DockStyle.Fill;
             label43.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
             label43.Location = new Point(0, 0);
             label43.Margin = new Padding(0);
             label43.Name = "label43";
             label43.Size = new Size(74, 74);
-            label43.TabIndex = 0;
+            label43.TabIndex = 3;
             label43.TextAlign = ContentAlignment.MiddleCenter;
+            label43.Click += SudokuCell_Click;
             // 
             // panelSudokuBox1
             // 
@@ -3057,84 +3198,97 @@
             // 
             label16.AutoSize = true;
             label16.BorderStyle = BorderStyle.FixedSingle;
+            label16.Cursor = Cursors.Hand;
             label16.Dock = DockStyle.Fill;
             label16.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
             label16.Location = new Point(148, 148);
             label16.Margin = new Padding(0);
             label16.Name = "label16";
             label16.Size = new Size(76, 76);
-            label16.TabIndex = 8;
+            label16.TabIndex = 22;
             label16.TextAlign = ContentAlignment.MiddleCenter;
+            label16.Click += SudokuCell_Click;
             // 
             // label15
             // 
             label15.AutoSize = true;
             label15.BorderStyle = BorderStyle.FixedSingle;
+            label15.Cursor = Cursors.Hand;
             label15.Dock = DockStyle.Fill;
             label15.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
             label15.Location = new Point(74, 148);
             label15.Margin = new Padding(0);
             label15.Name = "label15";
             label15.Size = new Size(74, 76);
-            label15.TabIndex = 7;
+            label15.TabIndex = 21;
             label15.TextAlign = ContentAlignment.MiddleCenter;
+            label15.Click += SudokuCell_Click;
             // 
             // label14
             // 
             label14.AutoSize = true;
             label14.BorderStyle = BorderStyle.FixedSingle;
+            label14.Cursor = Cursors.Hand;
             label14.Dock = DockStyle.Fill;
             label14.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
             label14.Location = new Point(0, 148);
             label14.Margin = new Padding(0);
             label14.Name = "label14";
             label14.Size = new Size(74, 76);
-            label14.TabIndex = 6;
+            label14.TabIndex = 20;
             label14.TextAlign = ContentAlignment.MiddleCenter;
+            label14.Click += SudokuCell_Click;
             // 
             // label13
             // 
             label13.AutoSize = true;
             label13.BorderStyle = BorderStyle.FixedSingle;
+            label13.Cursor = Cursors.Hand;
             label13.Dock = DockStyle.Fill;
             label13.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
             label13.Location = new Point(148, 74);
             label13.Margin = new Padding(0);
             label13.Name = "label13";
             label13.Size = new Size(76, 74);
-            label13.TabIndex = 5;
+            label13.TabIndex = 12;
             label13.TextAlign = ContentAlignment.MiddleCenter;
+            label13.Click += SudokuCell_Click;
             // 
             // label12
             // 
             label12.AutoSize = true;
             label12.BorderStyle = BorderStyle.FixedSingle;
+            label12.Cursor = Cursors.Hand;
             label12.Dock = DockStyle.Fill;
             label12.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
             label12.Location = new Point(74, 74);
             label12.Margin = new Padding(0);
             label12.Name = "label12";
             label12.Size = new Size(74, 74);
-            label12.TabIndex = 4;
+            label12.TabIndex = 11;
             label12.TextAlign = ContentAlignment.MiddleCenter;
+            label12.Click += SudokuCell_Click;
             // 
             // label11
             // 
             label11.AutoSize = true;
             label11.BorderStyle = BorderStyle.FixedSingle;
+            label11.Cursor = Cursors.Hand;
             label11.Dock = DockStyle.Fill;
             label11.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
             label11.Location = new Point(0, 74);
             label11.Margin = new Padding(0);
             label11.Name = "label11";
             label11.Size = new Size(74, 74);
-            label11.TabIndex = 3;
+            label11.TabIndex = 10;
             label11.TextAlign = ContentAlignment.MiddleCenter;
+            label11.Click += SudokuCell_Click;
             // 
             // label10
             // 
             label10.AutoSize = true;
             label10.BorderStyle = BorderStyle.FixedSingle;
+            label10.Cursor = Cursors.Hand;
             label10.Dock = DockStyle.Fill;
             label10.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
             label10.Location = new Point(148, 0);
@@ -3142,12 +3296,15 @@
             label10.Name = "label10";
             label10.Size = new Size(76, 74);
             label10.TabIndex = 2;
+            label10.Tag = "";
             label10.TextAlign = ContentAlignment.MiddleCenter;
+            label10.Click += SudokuCell_Click;
             // 
             // label9
             // 
             label9.AutoSize = true;
             label9.BorderStyle = BorderStyle.FixedSingle;
+            label9.Cursor = Cursors.Hand;
             label9.Dock = DockStyle.Fill;
             label9.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
             label9.Location = new Point(74, 0);
@@ -3155,13 +3312,15 @@
             label9.Name = "label9";
             label9.Size = new Size(74, 74);
             label9.TabIndex = 1;
-            label9.Text = "3";
+            label9.Tag = "";
             label9.TextAlign = ContentAlignment.MiddleCenter;
+            label9.Click += SudokuCell_Click;
             // 
             // label8
             // 
             label8.AutoSize = true;
             label8.BorderStyle = BorderStyle.FixedSingle;
+            label8.Cursor = Cursors.Hand;
             label8.Dock = DockStyle.Fill;
             label8.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 238);
             label8.Location = new Point(0, 0);
@@ -3169,8 +3328,9 @@
             label8.Name = "label8";
             label8.Size = new Size(74, 74);
             label8.TabIndex = 0;
-            label8.Text = "1";
+            label8.Tag = "";
             label8.TextAlign = ContentAlignment.MiddleCenter;
+            label8.Click += SudokuCell_Click;
             // 
             // labelSpace4
             // 

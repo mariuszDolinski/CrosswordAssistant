@@ -13,6 +13,7 @@
         StenoAnagram = 9,
         WordInWord = 10,
         Cryptharitm = 11,
+        Sudoku = 12,
         None = 0
     }
 }

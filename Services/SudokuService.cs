@@ -1,14 +1,21 @@
-﻿namespace CrosswordAssistant.Services
+﻿using CrosswordAssistant.Entities;
+
+namespace CrosswordAssistant.Services
 {
     public class SudokuService
     {
         private readonly TableLayoutPanel Boxes;
-        public int[,] Digits;
+        public static Cell CurrentCellNull { get; private set; }
+
+        public int[,] Digits { get; private set; }
+        public Cell CurrentCell {  get; set; }
 
         public SudokuService(TableLayoutPanel gridPanel)
         {
             Boxes = gridPanel;
             Digits = new int[9,9];
+            CurrentCellNull = new Cell(-1, -1, -1, null);
+            CurrentCell = CurrentCellNull;
             InitDigits();
         }
 
@@ -30,6 +37,12 @@
                     }
                 }
             }
+        }
+        public void UpdateCurrentCellDigit(int value)
+        {
+            CurrentCell.Label!.Text = value == 0 ? "" : value.ToString();
+            CurrentCell.Value = value;
+            Digits[CurrentCell.X, CurrentCell.Y] = value;
         }
 
         private void InitDigits()
