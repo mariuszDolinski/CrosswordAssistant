@@ -580,7 +580,7 @@ namespace CrosswordAssistant
                 if (_sudokuService.CurrentCell.Label != null)
                     _sudokuService.CurrentCell.Label.BackColor = Color.Transparent;
                 int value = cellLabel.Text.Length == 0 ? 0 : int.Parse(cellLabel.Text);
-                _sudokuService.CurrentCell = new Cell(x, y, value, cellLabel);
+                _sudokuService.CurrentCell.SetCell(x, y, value, cellLabel);
             }
         }
 
