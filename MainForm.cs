@@ -21,6 +21,7 @@ namespace CrosswordAssistant
         private readonly List<Label> _infoLabels = [];
         private readonly Dictionary<string, string> _filtersNames = [];
         private readonly CustomControls _customControls;
+        private readonly SudokuService _sudokuService;
 
         public MainForm()
         {
@@ -51,6 +52,8 @@ namespace CrosswordAssistant
                 MessageBox.Show("B³¹d przy inicjalizacji aplikacji. SprawdŸ szczegó³y w logu.");
                 Logger.WriteToLog(LogLevel.Error, ex.Message, ex.StackTrace ?? "");
             }
+
+            _sudokuService = new SudokuService(tableSudokuBoxes);
         }
 
         #region events handlers
@@ -987,7 +990,7 @@ namespace CrosswordAssistant
         }
         private void SetSize()
         {
-            if(DeviceDpi < 100)
+            if (DeviceDpi < 100)
             {
                 Width = 859; Height = 538;
             }
