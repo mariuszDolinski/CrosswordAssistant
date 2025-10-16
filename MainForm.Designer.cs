@@ -1751,7 +1751,6 @@
             tableLayoutPanelSudokuMain.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tableLayoutPanelSudokuMain.Size = new Size(1167, 737);
             tableLayoutPanelSudokuMain.TabIndex = 5;
-            tableLayoutPanelSudokuMain.Click += SudokuCell_Click;
             // 
             // panelSudokuGrid
             // 
@@ -1838,7 +1837,9 @@
             label98.Size = new Size(76, 76);
             label98.TabIndex = 88;
             label98.TextAlign = ContentAlignment.MiddleCenter;
-            label98.Click += SudokuCell_Click;
+            label98.MouseDown += SudokuCell_MouseDown;
+            label98.MouseEnter += SudokuCell_MouseEnter;
+            label98.MouseUp += SudokuCell_MouseUp;
             // 
             // label99
             // 
@@ -1853,7 +1854,9 @@
             label99.Size = new Size(75, 76);
             label99.TabIndex = 87;
             label99.TextAlign = ContentAlignment.MiddleCenter;
-            label99.Click += SudokuCell_Click;
+            label99.MouseDown += SudokuCell_MouseDown;
+            label99.MouseEnter += SudokuCell_MouseEnter;
+            label99.MouseUp += SudokuCell_MouseUp;
             // 
             // label100
             // 
@@ -1868,7 +1871,9 @@
             label100.Size = new Size(75, 76);
             label100.TabIndex = 86;
             label100.TextAlign = ContentAlignment.MiddleCenter;
-            label100.Click += SudokuCell_Click;
+            label100.MouseDown += SudokuCell_MouseDown;
+            label100.MouseEnter += SudokuCell_MouseEnter;
+            label100.MouseUp += SudokuCell_MouseUp;
             // 
             // label101
             // 
@@ -1883,7 +1888,9 @@
             label101.Size = new Size(76, 75);
             label101.TabIndex = 78;
             label101.TextAlign = ContentAlignment.MiddleCenter;
-            label101.Click += SudokuCell_Click;
+            label101.MouseDown += SudokuCell_MouseDown;
+            label101.MouseEnter += SudokuCell_MouseEnter;
+            label101.MouseUp += SudokuCell_MouseUp;
             // 
             // label102
             // 
@@ -1898,7 +1905,9 @@
             label102.Size = new Size(75, 75);
             label102.TabIndex = 77;
             label102.TextAlign = ContentAlignment.MiddleCenter;
-            label102.Click += SudokuCell_Click;
+            label102.MouseDown += SudokuCell_MouseDown;
+            label102.MouseEnter += SudokuCell_MouseEnter;
+            label102.MouseUp += SudokuCell_MouseUp;
             // 
             // label103
             // 
@@ -1913,7 +1922,9 @@
             label103.Size = new Size(75, 75);
             label103.TabIndex = 76;
             label103.TextAlign = ContentAlignment.MiddleCenter;
-            label103.Click += SudokuCell_Click;
+            label103.MouseDown += SudokuCell_MouseDown;
+            label103.MouseEnter += SudokuCell_MouseEnter;
+            label103.MouseUp += SudokuCell_MouseUp;
             // 
             // label104
             // 
@@ -1928,7 +1939,9 @@
             label104.Size = new Size(76, 75);
             label104.TabIndex = 68;
             label104.TextAlign = ContentAlignment.MiddleCenter;
-            label104.Click += SudokuCell_Click;
+            label104.MouseDown += SudokuCell_MouseDown;
+            label104.MouseEnter += SudokuCell_MouseEnter;
+            label104.MouseUp += SudokuCell_MouseUp;
             // 
             // label105
             // 
@@ -1943,7 +1956,9 @@
             label105.Size = new Size(75, 75);
             label105.TabIndex = 67;
             label105.TextAlign = ContentAlignment.MiddleCenter;
-            label105.Click += SudokuCell_Click;
+            label105.MouseDown += SudokuCell_MouseDown;
+            label105.MouseEnter += SudokuCell_MouseEnter;
+            label105.MouseUp += SudokuCell_MouseUp;
             // 
             // label106
             // 
@@ -1958,7 +1973,9 @@
             label106.Size = new Size(75, 75);
             label106.TabIndex = 66;
             label106.TextAlign = ContentAlignment.MiddleCenter;
-            label106.Click += SudokuCell_Click;
+            label106.MouseDown += SudokuCell_MouseDown;
+            label106.MouseEnter += SudokuCell_MouseEnter;
+            label106.MouseUp += SudokuCell_MouseUp;
             // 
             // panelSudokuBox8
             // 
@@ -2009,7 +2026,9 @@
             label89.Size = new Size(76, 76);
             label89.TabIndex = 85;
             label89.TextAlign = ContentAlignment.MiddleCenter;
-            label89.Click += SudokuCell_Click;
+            label89.MouseDown += SudokuCell_MouseDown;
+            label89.MouseEnter += SudokuCell_MouseEnter;
+            label89.MouseUp += SudokuCell_MouseUp;
             // 
             // label90
             // 
@@ -2024,7 +2043,9 @@
             label90.Size = new Size(74, 76);
             label90.TabIndex = 84;
             label90.TextAlign = ContentAlignment.MiddleCenter;
-            label90.Click += SudokuCell_Click;
+            label90.MouseDown += SudokuCell_MouseDown;
+            label90.MouseEnter += SudokuCell_MouseEnter;
+            label90.MouseUp += SudokuCell_MouseUp;
             // 
             // label91
             // 
@@ -2039,7 +2060,9 @@
             label91.Size = new Size(74, 76);
             label91.TabIndex = 83;
             label91.TextAlign = ContentAlignment.MiddleCenter;
-            label91.Click += SudokuCell_Click;
+            label91.MouseDown += SudokuCell_MouseDown;
+            label91.MouseEnter += SudokuCell_MouseEnter;
+            label91.MouseUp += SudokuCell_MouseUp;
             // 
             // label92
             // 
@@ -2054,7 +2077,9 @@
             label92.Size = new Size(76, 75);
             label92.TabIndex = 75;
             label92.TextAlign = ContentAlignment.MiddleCenter;
-            label92.Click += SudokuCell_Click;
+            label92.MouseDown += SudokuCell_MouseDown;
+            label92.MouseEnter += SudokuCell_MouseEnter;
+            label92.MouseUp += SudokuCell_MouseUp;
             // 
             // label93
             // 
@@ -2069,7 +2094,9 @@
             label93.Size = new Size(74, 75);
             label93.TabIndex = 74;
             label93.TextAlign = ContentAlignment.MiddleCenter;
-            label93.Click += SudokuCell_Click;
+            label93.MouseDown += SudokuCell_MouseDown;
+            label93.MouseEnter += SudokuCell_MouseEnter;
+            label93.MouseUp += SudokuCell_MouseUp;
             // 
             // label94
             // 
@@ -2084,7 +2111,9 @@
             label94.Size = new Size(74, 75);
             label94.TabIndex = 73;
             label94.TextAlign = ContentAlignment.MiddleCenter;
-            label94.Click += SudokuCell_Click;
+            label94.MouseDown += SudokuCell_MouseDown;
+            label94.MouseEnter += SudokuCell_MouseEnter;
+            label94.MouseUp += SudokuCell_MouseUp;
             // 
             // label95
             // 
@@ -2099,7 +2128,9 @@
             label95.Size = new Size(76, 75);
             label95.TabIndex = 65;
             label95.TextAlign = ContentAlignment.MiddleCenter;
-            label95.Click += SudokuCell_Click;
+            label95.MouseDown += SudokuCell_MouseDown;
+            label95.MouseEnter += SudokuCell_MouseEnter;
+            label95.MouseUp += SudokuCell_MouseUp;
             // 
             // label96
             // 
@@ -2114,7 +2145,9 @@
             label96.Size = new Size(74, 75);
             label96.TabIndex = 64;
             label96.TextAlign = ContentAlignment.MiddleCenter;
-            label96.Click += SudokuCell_Click;
+            label96.MouseDown += SudokuCell_MouseDown;
+            label96.MouseEnter += SudokuCell_MouseEnter;
+            label96.MouseUp += SudokuCell_MouseUp;
             // 
             // label97
             // 
@@ -2129,7 +2162,9 @@
             label97.Size = new Size(74, 75);
             label97.TabIndex = 63;
             label97.TextAlign = ContentAlignment.MiddleCenter;
-            label97.Click += SudokuCell_Click;
+            label97.MouseDown += SudokuCell_MouseDown;
+            label97.MouseEnter += SudokuCell_MouseEnter;
+            label97.MouseUp += SudokuCell_MouseUp;
             // 
             // panelSudokuBox7
             // 
@@ -2180,7 +2215,9 @@
             label80.Size = new Size(76, 76);
             label80.TabIndex = 82;
             label80.TextAlign = ContentAlignment.MiddleCenter;
-            label80.Click += SudokuCell_Click;
+            label80.MouseDown += SudokuCell_MouseDown;
+            label80.MouseEnter += SudokuCell_MouseEnter;
+            label80.MouseUp += SudokuCell_MouseUp;
             // 
             // label81
             // 
@@ -2195,7 +2232,9 @@
             label81.Size = new Size(74, 76);
             label81.TabIndex = 81;
             label81.TextAlign = ContentAlignment.MiddleCenter;
-            label81.Click += SudokuCell_Click;
+            label81.MouseDown += SudokuCell_MouseDown;
+            label81.MouseEnter += SudokuCell_MouseEnter;
+            label81.MouseUp += SudokuCell_MouseUp;
             // 
             // label82
             // 
@@ -2210,7 +2249,9 @@
             label82.Size = new Size(74, 76);
             label82.TabIndex = 80;
             label82.TextAlign = ContentAlignment.MiddleCenter;
-            label82.Click += SudokuCell_Click;
+            label82.MouseDown += SudokuCell_MouseDown;
+            label82.MouseEnter += SudokuCell_MouseEnter;
+            label82.MouseUp += SudokuCell_MouseUp;
             // 
             // label83
             // 
@@ -2225,7 +2266,9 @@
             label83.Size = new Size(76, 75);
             label83.TabIndex = 72;
             label83.TextAlign = ContentAlignment.MiddleCenter;
-            label83.Click += SudokuCell_Click;
+            label83.MouseDown += SudokuCell_MouseDown;
+            label83.MouseEnter += SudokuCell_MouseEnter;
+            label83.MouseUp += SudokuCell_MouseUp;
             // 
             // label84
             // 
@@ -2240,7 +2283,9 @@
             label84.Size = new Size(74, 75);
             label84.TabIndex = 71;
             label84.TextAlign = ContentAlignment.MiddleCenter;
-            label84.Click += SudokuCell_Click;
+            label84.MouseDown += SudokuCell_MouseDown;
+            label84.MouseEnter += SudokuCell_MouseEnter;
+            label84.MouseUp += SudokuCell_MouseUp;
             // 
             // label85
             // 
@@ -2255,7 +2300,9 @@
             label85.Size = new Size(74, 75);
             label85.TabIndex = 70;
             label85.TextAlign = ContentAlignment.MiddleCenter;
-            label85.Click += SudokuCell_Click;
+            label85.MouseDown += SudokuCell_MouseDown;
+            label85.MouseEnter += SudokuCell_MouseEnter;
+            label85.MouseUp += SudokuCell_MouseUp;
             // 
             // label86
             // 
@@ -2270,7 +2317,9 @@
             label86.Size = new Size(76, 75);
             label86.TabIndex = 62;
             label86.TextAlign = ContentAlignment.MiddleCenter;
-            label86.Click += SudokuCell_Click;
+            label86.MouseDown += SudokuCell_MouseDown;
+            label86.MouseEnter += SudokuCell_MouseEnter;
+            label86.MouseUp += SudokuCell_MouseUp;
             // 
             // label87
             // 
@@ -2285,7 +2334,9 @@
             label87.Size = new Size(74, 75);
             label87.TabIndex = 61;
             label87.TextAlign = ContentAlignment.MiddleCenter;
-            label87.Click += SudokuCell_Click;
+            label87.MouseDown += SudokuCell_MouseDown;
+            label87.MouseEnter += SudokuCell_MouseEnter;
+            label87.MouseUp += SudokuCell_MouseUp;
             // 
             // label88
             // 
@@ -2300,7 +2351,9 @@
             label88.Size = new Size(74, 75);
             label88.TabIndex = 60;
             label88.TextAlign = ContentAlignment.MiddleCenter;
-            label88.Click += SudokuCell_Click;
+            label88.MouseDown += SudokuCell_MouseDown;
+            label88.MouseEnter += SudokuCell_MouseEnter;
+            label88.MouseUp += SudokuCell_MouseUp;
             // 
             // panelSudokuBox6
             // 
@@ -2351,7 +2404,9 @@
             label71.Size = new Size(76, 76);
             label71.TabIndex = 58;
             label71.TextAlign = ContentAlignment.MiddleCenter;
-            label71.Click += SudokuCell_Click;
+            label71.MouseDown += SudokuCell_MouseDown;
+            label71.MouseEnter += SudokuCell_MouseEnter;
+            label71.MouseUp += SudokuCell_MouseUp;
             // 
             // label72
             // 
@@ -2366,7 +2421,9 @@
             label72.Size = new Size(75, 76);
             label72.TabIndex = 57;
             label72.TextAlign = ContentAlignment.MiddleCenter;
-            label72.Click += SudokuCell_Click;
+            label72.MouseDown += SudokuCell_MouseDown;
+            label72.MouseEnter += SudokuCell_MouseEnter;
+            label72.MouseUp += SudokuCell_MouseUp;
             // 
             // label73
             // 
@@ -2381,7 +2438,9 @@
             label73.Size = new Size(75, 76);
             label73.TabIndex = 56;
             label73.TextAlign = ContentAlignment.MiddleCenter;
-            label73.Click += SudokuCell_Click;
+            label73.MouseDown += SudokuCell_MouseDown;
+            label73.MouseEnter += SudokuCell_MouseEnter;
+            label73.MouseUp += SudokuCell_MouseUp;
             // 
             // label74
             // 
@@ -2396,7 +2455,9 @@
             label74.Size = new Size(76, 74);
             label74.TabIndex = 48;
             label74.TextAlign = ContentAlignment.MiddleCenter;
-            label74.Click += SudokuCell_Click;
+            label74.MouseDown += SudokuCell_MouseDown;
+            label74.MouseEnter += SudokuCell_MouseEnter;
+            label74.MouseUp += SudokuCell_MouseUp;
             // 
             // label75
             // 
@@ -2411,7 +2472,9 @@
             label75.Size = new Size(75, 74);
             label75.TabIndex = 47;
             label75.TextAlign = ContentAlignment.MiddleCenter;
-            label75.Click += SudokuCell_Click;
+            label75.MouseDown += SudokuCell_MouseDown;
+            label75.MouseEnter += SudokuCell_MouseEnter;
+            label75.MouseUp += SudokuCell_MouseUp;
             // 
             // label76
             // 
@@ -2426,7 +2489,9 @@
             label76.Size = new Size(75, 74);
             label76.TabIndex = 46;
             label76.TextAlign = ContentAlignment.MiddleCenter;
-            label76.Click += SudokuCell_Click;
+            label76.MouseDown += SudokuCell_MouseDown;
+            label76.MouseEnter += SudokuCell_MouseEnter;
+            label76.MouseUp += SudokuCell_MouseUp;
             // 
             // label77
             // 
@@ -2441,7 +2506,9 @@
             label77.Size = new Size(76, 74);
             label77.TabIndex = 38;
             label77.TextAlign = ContentAlignment.MiddleCenter;
-            label77.Click += SudokuCell_Click;
+            label77.MouseDown += SudokuCell_MouseDown;
+            label77.MouseEnter += SudokuCell_MouseEnter;
+            label77.MouseUp += SudokuCell_MouseUp;
             // 
             // label78
             // 
@@ -2456,7 +2523,9 @@
             label78.Size = new Size(75, 74);
             label78.TabIndex = 37;
             label78.TextAlign = ContentAlignment.MiddleCenter;
-            label78.Click += SudokuCell_Click;
+            label78.MouseDown += SudokuCell_MouseDown;
+            label78.MouseEnter += SudokuCell_MouseEnter;
+            label78.MouseUp += SudokuCell_MouseUp;
             // 
             // label79
             // 
@@ -2471,7 +2540,9 @@
             label79.Size = new Size(75, 74);
             label79.TabIndex = 36;
             label79.TextAlign = ContentAlignment.MiddleCenter;
-            label79.Click += SudokuCell_Click;
+            label79.MouseDown += SudokuCell_MouseDown;
+            label79.MouseEnter += SudokuCell_MouseEnter;
+            label79.MouseUp += SudokuCell_MouseUp;
             // 
             // panelSudokuBox5
             // 
@@ -2522,7 +2593,9 @@
             label62.Size = new Size(76, 76);
             label62.TabIndex = 55;
             label62.TextAlign = ContentAlignment.MiddleCenter;
-            label62.Click += SudokuCell_Click;
+            label62.MouseDown += SudokuCell_MouseDown;
+            label62.MouseEnter += SudokuCell_MouseEnter;
+            label62.MouseUp += SudokuCell_MouseUp;
             // 
             // label63
             // 
@@ -2537,7 +2610,9 @@
             label63.Size = new Size(74, 76);
             label63.TabIndex = 54;
             label63.TextAlign = ContentAlignment.MiddleCenter;
-            label63.Click += SudokuCell_Click;
+            label63.MouseDown += SudokuCell_MouseDown;
+            label63.MouseEnter += SudokuCell_MouseEnter;
+            label63.MouseUp += SudokuCell_MouseUp;
             // 
             // label64
             // 
@@ -2552,7 +2627,9 @@
             label64.Size = new Size(74, 76);
             label64.TabIndex = 53;
             label64.TextAlign = ContentAlignment.MiddleCenter;
-            label64.Click += SudokuCell_Click;
+            label64.MouseDown += SudokuCell_MouseDown;
+            label64.MouseEnter += SudokuCell_MouseEnter;
+            label64.MouseUp += SudokuCell_MouseUp;
             // 
             // label65
             // 
@@ -2567,7 +2644,9 @@
             label65.Size = new Size(76, 74);
             label65.TabIndex = 45;
             label65.TextAlign = ContentAlignment.MiddleCenter;
-            label65.Click += SudokuCell_Click;
+            label65.MouseDown += SudokuCell_MouseDown;
+            label65.MouseEnter += SudokuCell_MouseEnter;
+            label65.MouseUp += SudokuCell_MouseUp;
             // 
             // label66
             // 
@@ -2582,7 +2661,9 @@
             label66.Size = new Size(74, 74);
             label66.TabIndex = 44;
             label66.TextAlign = ContentAlignment.MiddleCenter;
-            label66.Click += SudokuCell_Click;
+            label66.MouseDown += SudokuCell_MouseDown;
+            label66.MouseEnter += SudokuCell_MouseEnter;
+            label66.MouseUp += SudokuCell_MouseUp;
             // 
             // label67
             // 
@@ -2597,7 +2678,9 @@
             label67.Size = new Size(74, 74);
             label67.TabIndex = 43;
             label67.TextAlign = ContentAlignment.MiddleCenter;
-            label67.Click += SudokuCell_Click;
+            label67.MouseDown += SudokuCell_MouseDown;
+            label67.MouseEnter += SudokuCell_MouseEnter;
+            label67.MouseUp += SudokuCell_MouseUp;
             // 
             // label68
             // 
@@ -2612,7 +2695,9 @@
             label68.Size = new Size(76, 74);
             label68.TabIndex = 35;
             label68.TextAlign = ContentAlignment.MiddleCenter;
-            label68.Click += SudokuCell_Click;
+            label68.MouseDown += SudokuCell_MouseDown;
+            label68.MouseEnter += SudokuCell_MouseEnter;
+            label68.MouseUp += SudokuCell_MouseUp;
             // 
             // label69
             // 
@@ -2627,7 +2712,9 @@
             label69.Size = new Size(74, 74);
             label69.TabIndex = 34;
             label69.TextAlign = ContentAlignment.MiddleCenter;
-            label69.Click += SudokuCell_Click;
+            label69.MouseDown += SudokuCell_MouseDown;
+            label69.MouseEnter += SudokuCell_MouseEnter;
+            label69.MouseUp += SudokuCell_MouseUp;
             // 
             // label70
             // 
@@ -2642,7 +2729,9 @@
             label70.Size = new Size(74, 74);
             label70.TabIndex = 33;
             label70.TextAlign = ContentAlignment.MiddleCenter;
-            label70.Click += SudokuCell_Click;
+            label70.MouseDown += SudokuCell_MouseDown;
+            label70.MouseEnter += SudokuCell_MouseEnter;
+            label70.MouseUp += SudokuCell_MouseUp;
             // 
             // panelSudokuBox4
             // 
@@ -2693,7 +2782,9 @@
             label53.Size = new Size(76, 76);
             label53.TabIndex = 52;
             label53.TextAlign = ContentAlignment.MiddleCenter;
-            label53.Click += SudokuCell_Click;
+            label53.MouseDown += SudokuCell_MouseDown;
+            label53.MouseEnter += SudokuCell_MouseEnter;
+            label53.MouseUp += SudokuCell_MouseUp;
             // 
             // label54
             // 
@@ -2708,7 +2799,9 @@
             label54.Size = new Size(74, 76);
             label54.TabIndex = 51;
             label54.TextAlign = ContentAlignment.MiddleCenter;
-            label54.Click += SudokuCell_Click;
+            label54.MouseDown += SudokuCell_MouseDown;
+            label54.MouseEnter += SudokuCell_MouseEnter;
+            label54.MouseUp += SudokuCell_MouseUp;
             // 
             // label55
             // 
@@ -2723,7 +2816,9 @@
             label55.Size = new Size(74, 76);
             label55.TabIndex = 50;
             label55.TextAlign = ContentAlignment.MiddleCenter;
-            label55.Click += SudokuCell_Click;
+            label55.MouseDown += SudokuCell_MouseDown;
+            label55.MouseEnter += SudokuCell_MouseEnter;
+            label55.MouseUp += SudokuCell_MouseUp;
             // 
             // label56
             // 
@@ -2738,7 +2833,9 @@
             label56.Size = new Size(76, 74);
             label56.TabIndex = 42;
             label56.TextAlign = ContentAlignment.MiddleCenter;
-            label56.Click += SudokuCell_Click;
+            label56.MouseDown += SudokuCell_MouseDown;
+            label56.MouseEnter += SudokuCell_MouseEnter;
+            label56.MouseUp += SudokuCell_MouseUp;
             // 
             // label57
             // 
@@ -2753,7 +2850,9 @@
             label57.Size = new Size(74, 74);
             label57.TabIndex = 41;
             label57.TextAlign = ContentAlignment.MiddleCenter;
-            label57.Click += SudokuCell_Click;
+            label57.MouseDown += SudokuCell_MouseDown;
+            label57.MouseEnter += SudokuCell_MouseEnter;
+            label57.MouseUp += SudokuCell_MouseUp;
             // 
             // label58
             // 
@@ -2768,7 +2867,9 @@
             label58.Size = new Size(74, 74);
             label58.TabIndex = 40;
             label58.TextAlign = ContentAlignment.MiddleCenter;
-            label58.Click += SudokuCell_Click;
+            label58.MouseDown += SudokuCell_MouseDown;
+            label58.MouseEnter += SudokuCell_MouseEnter;
+            label58.MouseUp += SudokuCell_MouseUp;
             // 
             // label59
             // 
@@ -2783,7 +2884,9 @@
             label59.Size = new Size(76, 74);
             label59.TabIndex = 32;
             label59.TextAlign = ContentAlignment.MiddleCenter;
-            label59.Click += SudokuCell_Click;
+            label59.MouseDown += SudokuCell_MouseDown;
+            label59.MouseEnter += SudokuCell_MouseEnter;
+            label59.MouseUp += SudokuCell_MouseUp;
             // 
             // label60
             // 
@@ -2798,7 +2901,9 @@
             label60.Size = new Size(74, 74);
             label60.TabIndex = 31;
             label60.TextAlign = ContentAlignment.MiddleCenter;
-            label60.Click += SudokuCell_Click;
+            label60.MouseDown += SudokuCell_MouseDown;
+            label60.MouseEnter += SudokuCell_MouseEnter;
+            label60.MouseUp += SudokuCell_MouseUp;
             // 
             // label61
             // 
@@ -2813,7 +2918,9 @@
             label61.Size = new Size(74, 74);
             label61.TabIndex = 30;
             label61.TextAlign = ContentAlignment.MiddleCenter;
-            label61.Click += SudokuCell_Click;
+            label61.MouseDown += SudokuCell_MouseDown;
+            label61.MouseEnter += SudokuCell_MouseEnter;
+            label61.MouseUp += SudokuCell_MouseUp;
             // 
             // panelSudokuBox3
             // 
@@ -2864,7 +2971,9 @@
             label44.Size = new Size(76, 76);
             label44.TabIndex = 28;
             label44.TextAlign = ContentAlignment.MiddleCenter;
-            label44.Click += SudokuCell_Click;
+            label44.MouseDown += SudokuCell_MouseDown;
+            label44.MouseEnter += SudokuCell_MouseEnter;
+            label44.MouseUp += SudokuCell_MouseUp;
             // 
             // label45
             // 
@@ -2879,7 +2988,9 @@
             label45.Size = new Size(75, 76);
             label45.TabIndex = 27;
             label45.TextAlign = ContentAlignment.MiddleCenter;
-            label45.Click += SudokuCell_Click;
+            label45.MouseDown += SudokuCell_MouseDown;
+            label45.MouseEnter += SudokuCell_MouseEnter;
+            label45.MouseUp += SudokuCell_MouseUp;
             // 
             // label46
             // 
@@ -2894,7 +3005,9 @@
             label46.Size = new Size(75, 76);
             label46.TabIndex = 26;
             label46.TextAlign = ContentAlignment.MiddleCenter;
-            label46.Click += SudokuCell_Click;
+            label46.MouseDown += SudokuCell_MouseDown;
+            label46.MouseEnter += SudokuCell_MouseEnter;
+            label46.MouseUp += SudokuCell_MouseUp;
             // 
             // label47
             // 
@@ -2910,7 +3023,9 @@
             label47.Size = new Size(76, 74);
             label47.TabIndex = 18;
             label47.TextAlign = ContentAlignment.MiddleCenter;
-            label47.Click += SudokuCell_Click;
+            label47.MouseDown += SudokuCell_MouseDown;
+            label47.MouseEnter += SudokuCell_MouseEnter;
+            label47.MouseUp += SudokuCell_MouseUp;
             // 
             // label48
             // 
@@ -2925,7 +3040,9 @@
             label48.Size = new Size(75, 74);
             label48.TabIndex = 17;
             label48.TextAlign = ContentAlignment.MiddleCenter;
-            label48.Click += SudokuCell_Click;
+            label48.MouseDown += SudokuCell_MouseDown;
+            label48.MouseEnter += SudokuCell_MouseEnter;
+            label48.MouseUp += SudokuCell_MouseUp;
             // 
             // label49
             // 
@@ -2940,7 +3057,9 @@
             label49.Size = new Size(75, 74);
             label49.TabIndex = 16;
             label49.TextAlign = ContentAlignment.MiddleCenter;
-            label49.Click += SudokuCell_Click;
+            label49.MouseDown += SudokuCell_MouseDown;
+            label49.MouseEnter += SudokuCell_MouseEnter;
+            label49.MouseUp += SudokuCell_MouseUp;
             // 
             // label50
             // 
@@ -2955,7 +3074,9 @@
             label50.Size = new Size(76, 74);
             label50.TabIndex = 8;
             label50.TextAlign = ContentAlignment.MiddleCenter;
-            label50.Click += SudokuCell_Click;
+            label50.MouseDown += SudokuCell_MouseDown;
+            label50.MouseEnter += SudokuCell_MouseEnter;
+            label50.MouseUp += SudokuCell_MouseUp;
             // 
             // label51
             // 
@@ -2970,7 +3091,9 @@
             label51.Size = new Size(75, 74);
             label51.TabIndex = 7;
             label51.TextAlign = ContentAlignment.MiddleCenter;
-            label51.Click += SudokuCell_Click;
+            label51.MouseDown += SudokuCell_MouseDown;
+            label51.MouseEnter += SudokuCell_MouseEnter;
+            label51.MouseUp += SudokuCell_MouseUp;
             // 
             // label52
             // 
@@ -2985,7 +3108,9 @@
             label52.Size = new Size(75, 74);
             label52.TabIndex = 6;
             label52.TextAlign = ContentAlignment.MiddleCenter;
-            label52.Click += SudokuCell_Click;
+            label52.MouseDown += SudokuCell_MouseDown;
+            label52.MouseEnter += SudokuCell_MouseEnter;
+            label52.MouseUp += SudokuCell_MouseUp;
             // 
             // panelSudokuBox2
             // 
@@ -3036,7 +3161,9 @@
             label17.Size = new Size(76, 76);
             label17.TabIndex = 25;
             label17.TextAlign = ContentAlignment.MiddleCenter;
-            label17.Click += SudokuCell_Click;
+            label17.MouseDown += SudokuCell_MouseDown;
+            label17.MouseEnter += SudokuCell_MouseEnter;
+            label17.MouseUp += SudokuCell_MouseUp;
             // 
             // label18
             // 
@@ -3051,7 +3178,9 @@
             label18.Size = new Size(74, 76);
             label18.TabIndex = 24;
             label18.TextAlign = ContentAlignment.MiddleCenter;
-            label18.Click += SudokuCell_Click;
+            label18.MouseDown += SudokuCell_MouseDown;
+            label18.MouseEnter += SudokuCell_MouseEnter;
+            label18.MouseUp += SudokuCell_MouseUp;
             // 
             // label27
             // 
@@ -3066,7 +3195,9 @@
             label27.Size = new Size(74, 76);
             label27.TabIndex = 23;
             label27.TextAlign = ContentAlignment.MiddleCenter;
-            label27.Click += SudokuCell_Click;
+            label27.MouseDown += SudokuCell_MouseDown;
+            label27.MouseEnter += SudokuCell_MouseEnter;
+            label27.MouseUp += SudokuCell_MouseUp;
             // 
             // label38
             // 
@@ -3081,7 +3212,9 @@
             label38.Size = new Size(76, 74);
             label38.TabIndex = 15;
             label38.TextAlign = ContentAlignment.MiddleCenter;
-            label38.Click += SudokuCell_Click;
+            label38.MouseDown += SudokuCell_MouseDown;
+            label38.MouseEnter += SudokuCell_MouseEnter;
+            label38.MouseUp += SudokuCell_MouseUp;
             // 
             // label39
             // 
@@ -3096,7 +3229,9 @@
             label39.Size = new Size(74, 74);
             label39.TabIndex = 14;
             label39.TextAlign = ContentAlignment.MiddleCenter;
-            label39.Click += SudokuCell_Click;
+            label39.MouseDown += SudokuCell_MouseDown;
+            label39.MouseEnter += SudokuCell_MouseEnter;
+            label39.MouseUp += SudokuCell_MouseUp;
             // 
             // label40
             // 
@@ -3111,7 +3246,9 @@
             label40.Size = new Size(74, 74);
             label40.TabIndex = 13;
             label40.TextAlign = ContentAlignment.MiddleCenter;
-            label40.Click += SudokuCell_Click;
+            label40.MouseDown += SudokuCell_MouseDown;
+            label40.MouseEnter += SudokuCell_MouseEnter;
+            label40.MouseUp += SudokuCell_MouseUp;
             // 
             // label41
             // 
@@ -3126,7 +3263,9 @@
             label41.Size = new Size(76, 74);
             label41.TabIndex = 5;
             label41.TextAlign = ContentAlignment.MiddleCenter;
-            label41.Click += SudokuCell_Click;
+            label41.MouseDown += SudokuCell_MouseDown;
+            label41.MouseEnter += SudokuCell_MouseEnter;
+            label41.MouseUp += SudokuCell_MouseUp;
             // 
             // label42
             // 
@@ -3141,7 +3280,9 @@
             label42.Size = new Size(74, 74);
             label42.TabIndex = 4;
             label42.TextAlign = ContentAlignment.MiddleCenter;
-            label42.Click += SudokuCell_Click;
+            label42.MouseDown += SudokuCell_MouseDown;
+            label42.MouseEnter += SudokuCell_MouseEnter;
+            label42.MouseUp += SudokuCell_MouseUp;
             // 
             // label43
             // 
@@ -3156,7 +3297,9 @@
             label43.Size = new Size(74, 74);
             label43.TabIndex = 3;
             label43.TextAlign = ContentAlignment.MiddleCenter;
-            label43.Click += SudokuCell_Click;
+            label43.MouseDown += SudokuCell_MouseDown;
+            label43.MouseEnter += SudokuCell_MouseEnter;
+            label43.MouseUp += SudokuCell_MouseUp;
             // 
             // panelSudokuBox1
             // 
@@ -3207,7 +3350,9 @@
             label16.Size = new Size(76, 76);
             label16.TabIndex = 22;
             label16.TextAlign = ContentAlignment.MiddleCenter;
-            label16.Click += SudokuCell_Click;
+            label16.MouseDown += SudokuCell_MouseDown;
+            label16.MouseEnter += SudokuCell_MouseEnter;
+            label16.MouseUp += SudokuCell_MouseUp;
             // 
             // label15
             // 
@@ -3222,7 +3367,9 @@
             label15.Size = new Size(74, 76);
             label15.TabIndex = 21;
             label15.TextAlign = ContentAlignment.MiddleCenter;
-            label15.Click += SudokuCell_Click;
+            label15.MouseDown += SudokuCell_MouseDown;
+            label15.MouseEnter += SudokuCell_MouseEnter;
+            label15.MouseUp += SudokuCell_MouseUp;
             // 
             // label14
             // 
@@ -3237,7 +3384,9 @@
             label14.Size = new Size(74, 76);
             label14.TabIndex = 20;
             label14.TextAlign = ContentAlignment.MiddleCenter;
-            label14.Click += SudokuCell_Click;
+            label14.MouseDown += SudokuCell_MouseDown;
+            label14.MouseEnter += SudokuCell_MouseEnter;
+            label14.MouseUp += SudokuCell_MouseUp;
             // 
             // label13
             // 
@@ -3252,7 +3401,9 @@
             label13.Size = new Size(76, 74);
             label13.TabIndex = 12;
             label13.TextAlign = ContentAlignment.MiddleCenter;
-            label13.Click += SudokuCell_Click;
+            label13.MouseDown += SudokuCell_MouseDown;
+            label13.MouseEnter += SudokuCell_MouseEnter;
+            label13.MouseUp += SudokuCell_MouseUp;
             // 
             // label12
             // 
@@ -3267,7 +3418,9 @@
             label12.Size = new Size(74, 74);
             label12.TabIndex = 11;
             label12.TextAlign = ContentAlignment.MiddleCenter;
-            label12.Click += SudokuCell_Click;
+            label12.MouseDown += SudokuCell_MouseDown;
+            label12.MouseEnter += SudokuCell_MouseEnter;
+            label12.MouseUp += SudokuCell_MouseUp;
             // 
             // label11
             // 
@@ -3282,7 +3435,9 @@
             label11.Size = new Size(74, 74);
             label11.TabIndex = 10;
             label11.TextAlign = ContentAlignment.MiddleCenter;
-            label11.Click += SudokuCell_Click;
+            label11.MouseDown += SudokuCell_MouseDown;
+            label11.MouseEnter += SudokuCell_MouseEnter;
+            label11.MouseUp += SudokuCell_MouseUp;
             // 
             // label10
             // 
@@ -3298,7 +3453,9 @@
             label10.TabIndex = 2;
             label10.Tag = "";
             label10.TextAlign = ContentAlignment.MiddleCenter;
-            label10.Click += SudokuCell_Click;
+            label10.MouseDown += SudokuCell_MouseDown;
+            label10.MouseEnter += SudokuCell_MouseEnter;
+            label10.MouseUp += SudokuCell_MouseUp;
             // 
             // label9
             // 
@@ -3314,7 +3471,9 @@
             label9.TabIndex = 1;
             label9.Tag = "";
             label9.TextAlign = ContentAlignment.MiddleCenter;
-            label9.Click += SudokuCell_Click;
+            label9.MouseDown += SudokuCell_MouseDown;
+            label9.MouseEnter += SudokuCell_MouseEnter;
+            label9.MouseUp += SudokuCell_MouseUp;
             // 
             // label8
             // 
@@ -3330,7 +3489,9 @@
             label8.TabIndex = 0;
             label8.Tag = "";
             label8.TextAlign = ContentAlignment.MiddleCenter;
-            label8.Click += SudokuCell_Click;
+            label8.MouseDown += SudokuCell_MouseDown;
+            label8.MouseEnter += SudokuCell_MouseEnter;
+            label8.MouseUp += SudokuCell_MouseUp;
             // 
             // labelSpace4
             // 

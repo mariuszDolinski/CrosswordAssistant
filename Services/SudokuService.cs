@@ -5,17 +5,17 @@ namespace CrosswordAssistant.Services
     public class SudokuService
     {
         private readonly TableLayoutPanel Boxes;
-        public static Cell CurrentCellNull { get; private set; }
+        public static bool MultiSelectOn {  get; set; }
 
         public int[,] Digits { get; private set; }
-        public Cell CurrentCell {  get; set; }
+        public List<Cell> CurrentSelectedCells {  get; set; }
 
         public SudokuService(TableLayoutPanel gridPanel)
         {
             Boxes = gridPanel;
             Digits = new int[9,9];
-            CurrentCellNull = new Cell(-1, -1, -1, null);
-            CurrentCell = CurrentCellNull;
+            CurrentSelectedCells = [];
+            MultiSelectOn = false;
             InitDigits();
         }
 
@@ -38,11 +38,30 @@ namespace CrosswordAssistant.Services
                 }
             }
         }
-        public void UpdateCurrentCellDigit(int value)
+        public void UpdateSelectedCellsDigit(int value)
         {
-            CurrentCell.Label!.Text = value == 0 ? "" : value.ToString();
-            CurrentCell.Value = value;
-            Digits[CurrentCell.X, CurrentCell.Y] = value;
+            foreach(var cell in CurrentSelectedCells)
+            {
+                cell.Label!.Text = value == 0 ? "" : value.ToString();
+                cell.Value = value;
+                Digits[cell.X, cell.Y] = value;
+            }
+        }
+        public int ExistsInSelectedCells(int x, int y)
+        {
+            foreach (var cell in CurrentSelectedCells)
+            {
+                if (cell.X == x && cell.Y == y) return CurrentSelectedCells.IndexOf(cell);
+            }
+            return -1;
+        }
+        public void ClearSelectedCells()
+        {
+            foreach( var cell in CurrentSelectedCells)
+            {
+                cell.Label!.BackColor = Color.Transparent;
+            }
+            CurrentSelectedCells.Clear();
         }
 
         private void InitDigits()

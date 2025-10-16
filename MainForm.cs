@@ -23,11 +23,15 @@ namespace CrosswordAssistant
         private readonly CustomControls _customControls;
         private readonly SudokuService _sudokuService;
 
+        private bool _isCtrlPressedInSudoku;
+        
+
         public MainForm()
         {
             InitializeComponent();
             SetSize();
             KeyPreview = true;
+            _isCtrlPressedInSudoku = false;
 
             try { Settings.Init(); }
             catch (Exception ex)
@@ -492,6 +496,7 @@ namespace CrosswordAssistant
         {
             labelCurrentPatternLen.Text = textBoxPattern.Text.Length.ToString();
             labelScrabbleCurrentPatternLen.Text = textBoxScrabblePattern.Text.Length.ToString();
+            if(e.KeyCode == Keys.ControlKey) _isCtrlPressedInSudoku = false;
         }
         private void SearchGoogle_MenuClick(object sender, EventArgs e)
         {
@@ -564,23 +569,31 @@ namespace CrosswordAssistant
         {
             _appearance.SetMainFormLocation();
         }
-        private void SudokuCell_Click(object sender, EventArgs e)
+        private void SudokuCell_MouseDown(object sender, MouseEventArgs e)
         {
-            if (sender is not Label cellLabel) return;
-            int x = cellLabel.TabIndex / 10;
-            int y = cellLabel.TabIndex % 10;
-            if (x == _sudokuService.CurrentCell.X && y == _sudokuService.CurrentCell.Y)
+            SudokuService.MultiSelectOn = true;
+            var lbl = sender as Label;
+            if(lbl is not null) lbl.Capture = false;
+            SudokuSelectedCellAction(sender, e);
+        }
+        private void SudokuCell_MouseUp(object sender, MouseEventArgs e)
+        {
+            SudokuService.MultiSelectOn = false;
+        }
+        private void SudokuCell_MouseEnter(object sender, EventArgs e)
+        {
+            if (SudokuService.MultiSelectOn)
             {
-                cellLabel.BackColor = Color.Transparent;
-                _sudokuService.CurrentCell = SudokuService.CurrentCellNull;
-            }
-            else
-            {
-                cellLabel.BackColor = Color.LightBlue;
-                if (_sudokuService.CurrentCell.Label != null)
-                    _sudokuService.CurrentCell.Label.BackColor = Color.Transparent;
-                int value = cellLabel.Text.Length == 0 ? 0 : int.Parse(cellLabel.Text);
-                _sudokuService.CurrentCell.SetCell(x, y, value, cellLabel);
+                if (sender is not Label cellLabel) return;
+                int x = cellLabel.TabIndex / 10;
+                int y = cellLabel.TabIndex % 10;
+                var selectedCellIndex = _sudokuService.ExistsInSelectedCells(x, y);
+                if (selectedCellIndex < 0)
+                {
+                    cellLabel.BackColor = Color.LightBlue;
+                    int value = cellLabel.Text.Length == 0 ? 0 : int.Parse(cellLabel.Text);
+                    _sudokuService.CurrentSelectedCells.Add(new Cell(x, y, value, cellLabel));
+                }
             }
         }
 
@@ -997,20 +1010,15 @@ namespace CrosswordAssistant
         }
         private void SudokuKeyDownHandle(KeyEventArgs e)
         {
+            if(e.KeyCode == Keys.ControlKey) _isCtrlPressedInSudoku = true;
+            if (e.KeyCode == Keys.Delete || e.KeyCode == Keys.Back) _sudokuService.UpdateSelectedCellsDigit(0);
             if ((e.KeyCode >= Keys.D1 && e.KeyCode <= Keys.D9) ||
                         (e.KeyCode >= Keys.NumPad0 && e.KeyCode <= Keys.NumPad9))
             {
-                if (_sudokuService.CurrentCell.Label != null)
+                if (_sudokuService.CurrentSelectedCells.Count > 0)
                 {
                     var value = e.KeyCode.ToString()[1].ToString();
-                    if (_sudokuService.CurrentCell.Value.ToString() == value)
-                    {
-                        _sudokuService.UpdateCurrentCellDigit(0);
-                    }
-                    else
-                    {
-                        _sudokuService.UpdateCurrentCellDigit(int.Parse(value));
-                    }
+                    _sudokuService.UpdateSelectedCellsDigit(int.Parse(value));
                 }
             }
         }
@@ -1043,6 +1051,25 @@ namespace CrosswordAssistant
                         checkBoxLength.Checked = !checkBoxLength.Checked;
                         break;
                 }
+            }
+        }
+        private void SudokuSelectedCellAction(object sender, EventArgs e)
+        {
+            if (sender is not Label cellLabel) return;
+            int x = cellLabel.TabIndex / 10;
+            int y = cellLabel.TabIndex % 10;
+            var selectedCellIndex = _sudokuService.ExistsInSelectedCells(x, y);
+            if (selectedCellIndex >= 0)
+            {
+                cellLabel.BackColor = Color.Transparent;
+                _sudokuService.CurrentSelectedCells.RemoveAt(selectedCellIndex);
+            }
+            else
+            {
+                cellLabel.BackColor = Color.LightBlue;
+                if (!_isCtrlPressedInSudoku) _sudokuService.ClearSelectedCells();
+                int value = cellLabel.Text.Length == 0 ? 0 : int.Parse(cellLabel.Text);
+                _sudokuService.CurrentSelectedCells.Add(new Cell(x, y, value, cellLabel));
             }
         }
 
