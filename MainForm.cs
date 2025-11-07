@@ -5,6 +5,7 @@ using CrosswordAssistant.Entities.Requests;
 using CrosswordAssistant.Entities.Responses;
 using CrosswordAssistant.Searches;
 using CrosswordAssistant.Services;
+using CrosswordAssistant.Services.Sudoku;
 using System.Globalization;
 using System.Text.RegularExpressions;
 
@@ -24,7 +25,7 @@ namespace CrosswordAssistant
         private readonly SudokuService _sudokuService;
 
         private bool _isCtrlPressedInSudoku;
-        
+
 
         public MainForm()
         {
@@ -496,7 +497,7 @@ namespace CrosswordAssistant
         {
             labelCurrentPatternLen.Text = textBoxPattern.Text.Length.ToString();
             labelScrabbleCurrentPatternLen.Text = textBoxScrabblePattern.Text.Length.ToString();
-            if(e.KeyCode == Keys.ControlKey) _isCtrlPressedInSudoku = false;
+            if (e.KeyCode == Keys.ControlKey) _isCtrlPressedInSudoku = false;
         }
         private void SearchGoogle_MenuClick(object sender, EventArgs e)
         {
@@ -573,7 +574,7 @@ namespace CrosswordAssistant
         {
             SudokuService.MultiSelectOn = true;
             var lbl = sender as Label;
-            if(lbl is not null) lbl.Capture = false;
+            if (lbl is not null) lbl.Capture = false;
             SudokuSelectedCellAction(sender, e);
         }
         private void SudokuCell_MouseUp(object sender, MouseEventArgs e)
@@ -1010,7 +1011,7 @@ namespace CrosswordAssistant
         }
         private void SudokuKeyDownHandle(KeyEventArgs e)
         {
-            if(e.KeyCode == Keys.ControlKey) _isCtrlPressedInSudoku = true;
+            if (e.KeyCode == Keys.ControlKey) _isCtrlPressedInSudoku = true;
             if (e.KeyCode == Keys.Delete || e.KeyCode == Keys.Back) _sudokuService.UpdateSelectedCellsDigit(0);
             if ((e.KeyCode >= Keys.D1 && e.KeyCode <= Keys.D9) ||
                         (e.KeyCode >= Keys.NumPad0 && e.KeyCode <= Keys.NumPad9))
@@ -1074,5 +1075,15 @@ namespace CrosswordAssistant
         }
 
         #endregion
+
+        private void Test_Click(object sender, EventArgs e)
+        {
+            SudokuSolver sSolver = new();
+            var msg = sSolver.ValidateSudoku(_sudokuService.Digits);
+            if (msg.Length == 0)
+                MessageBox.Show("Poprawny diagram sudoku");
+            else
+                MessageBox.Show(msg);
+        }
     }
 }

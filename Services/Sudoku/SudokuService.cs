@@ -1,6 +1,6 @@
 ﻿using CrosswordAssistant.Entities;
 
-namespace CrosswordAssistant.Services
+namespace CrosswordAssistant.Services.Sudoku
 {
     public class SudokuService
     {
@@ -32,7 +32,7 @@ namespace CrosswordAssistant.Services
                         {
                             if (sudokuBoxes.GetControlFromPosition(j, i) is not Label cell) continue;
                             else if (cell.Text == "") continue;
-                            else Digits[i + 3 * r, j + 3 * c] = Int32.Parse(cell.Text);
+                            else Digits[i + 3 * r, j + 3 * c] = int.Parse(cell.Text);
                         }
                     }
                 }

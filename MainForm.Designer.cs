@@ -302,6 +302,7 @@
             label19 = new Label();
             label22 = new Label();
             newDictionaryDialog = new OpenFileDialog();
+            button1 = new Button();
             tabControl.SuspendLayout();
             tabPattern.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainerResults).BeginInit();
@@ -1744,6 +1745,7 @@
             tableLayoutPanelSudokuMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 59F));
             tableLayoutPanelSudokuMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 41F));
             tableLayoutPanelSudokuMain.Controls.Add(panelSudokuGrid, 0, 0);
+            tableLayoutPanelSudokuMain.Controls.Add(button1, 1, 0);
             tableLayoutPanelSudokuMain.Dock = DockStyle.Fill;
             tableLayoutPanelSudokuMain.Location = new Point(3, 38);
             tableLayoutPanelSudokuMain.Name = "tableLayoutPanelSudokuMain";
@@ -4291,6 +4293,17 @@
             newDictionaryDialog.Filter = "Pliki tekstowe|*.txt";
             newDictionaryDialog.Title = "Wybierz plik ze słownikiem";
             // 
+            // button1
+            // 
+            button1.Dock = DockStyle.Top;
+            button1.Location = new Point(691, 3);
+            button1.Name = "button1";
+            button1.Size = new Size(473, 34);
+            button1.TabIndex = 1;
+            button1.Text = "Test";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += Test_Click;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -4684,5 +4697,6 @@
         private Label label10;
         private Label label9;
         private Label label8;
+        private Button button1;
     }
 }
