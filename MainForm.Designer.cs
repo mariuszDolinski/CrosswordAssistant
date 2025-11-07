@@ -245,6 +245,10 @@
             label10 = new Label();
             label9 = new Label();
             label8 = new Label();
+            sudokuControlPanel = new Panel();
+            button1 = new Button();
+            labelsudokuSpace1 = new Label();
+            buttonValidateSudoku = new Button();
             labelSpace4 = new Label();
             labelSudoku = new Label();
             tabPageDictionary = new TabPage();
@@ -302,7 +306,8 @@
             label19 = new Label();
             label22 = new Label();
             newDictionaryDialog = new OpenFileDialog();
-            button1 = new Button();
+            labelSudokuSpace2 = new Label();
+            button2 = new Button();
             tabControl.SuspendLayout();
             tabPattern.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainerResults).BeginInit();
@@ -363,6 +368,7 @@
             tableSudokuBox2.SuspendLayout();
             panelSudokuBox1.SuspendLayout();
             tableSudokuBox1.SuspendLayout();
+            sudokuControlPanel.SuspendLayout();
             tabPageDictionary.SuspendLayout();
             tableLayoutPanel3.SuspendLayout();
             groupBoxAddToDict.SuspendLayout();
@@ -1745,12 +1751,13 @@
             tableLayoutPanelSudokuMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 59F));
             tableLayoutPanelSudokuMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 41F));
             tableLayoutPanelSudokuMain.Controls.Add(panelSudokuGrid, 0, 0);
-            tableLayoutPanelSudokuMain.Controls.Add(button1, 1, 0);
+            tableLayoutPanelSudokuMain.Controls.Add(sudokuControlPanel, 1, 0);
             tableLayoutPanelSudokuMain.Dock = DockStyle.Fill;
             tableLayoutPanelSudokuMain.Location = new Point(3, 38);
             tableLayoutPanelSudokuMain.Name = "tableLayoutPanelSudokuMain";
             tableLayoutPanelSudokuMain.RowCount = 1;
             tableLayoutPanelSudokuMain.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanelSudokuMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
             tableLayoutPanelSudokuMain.Size = new Size(1167, 737);
             tableLayoutPanelSudokuMain.TabIndex = 5;
             // 
@@ -3495,6 +3502,51 @@
             label8.MouseEnter += SudokuCell_MouseEnter;
             label8.MouseUp += SudokuCell_MouseUp;
             // 
+            // sudokuControlPanel
+            // 
+            sudokuControlPanel.Controls.Add(button2);
+            sudokuControlPanel.Controls.Add(labelSudokuSpace2);
+            sudokuControlPanel.Controls.Add(button1);
+            sudokuControlPanel.Controls.Add(labelsudokuSpace1);
+            sudokuControlPanel.Controls.Add(buttonValidateSudoku);
+            sudokuControlPanel.Dock = DockStyle.Fill;
+            sudokuControlPanel.Location = new Point(691, 3);
+            sudokuControlPanel.Name = "sudokuControlPanel";
+            sudokuControlPanel.Size = new Size(473, 731);
+            sudokuControlPanel.TabIndex = 1;
+            // 
+            // button1
+            // 
+            button1.Dock = DockStyle.Top;
+            button1.FlatStyle = FlatStyle.Flat;
+            button1.Location = new Point(0, 37);
+            button1.Name = "button1";
+            button1.Size = new Size(473, 34);
+            button1.TabIndex = 2;
+            button1.Text = "WYPEŁNIJ DIAGRAM";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += testBtn_Click;
+            // 
+            // labelsudokuSpace1
+            // 
+            labelsudokuSpace1.Dock = DockStyle.Top;
+            labelsudokuSpace1.Location = new Point(0, 34);
+            labelsudokuSpace1.Name = "labelsudokuSpace1";
+            labelsudokuSpace1.Size = new Size(473, 3);
+            labelsudokuSpace1.TabIndex = 1;
+            // 
+            // buttonValidateSudoku
+            // 
+            buttonValidateSudoku.Dock = DockStyle.Top;
+            buttonValidateSudoku.FlatStyle = FlatStyle.Flat;
+            buttonValidateSudoku.Location = new Point(0, 0);
+            buttonValidateSudoku.Name = "buttonValidateSudoku";
+            buttonValidateSudoku.Size = new Size(473, 34);
+            buttonValidateSudoku.TabIndex = 0;
+            buttonValidateSudoku.Text = "WALIDUJ DIAGRAM";
+            buttonValidateSudoku.UseVisualStyleBackColor = true;
+            buttonValidateSudoku.Click += ValidateSudokuBtn_Click;
+            // 
             // labelSpace4
             // 
             labelSpace4.BackColor = Color.Transparent;
@@ -4293,16 +4345,25 @@
             newDictionaryDialog.Filter = "Pliki tekstowe|*.txt";
             newDictionaryDialog.Title = "Wybierz plik ze słownikiem";
             // 
-            // button1
+            // labelSudokuSpace2
             // 
-            button1.Dock = DockStyle.Top;
-            button1.Location = new Point(691, 3);
-            button1.Name = "button1";
-            button1.Size = new Size(473, 34);
-            button1.TabIndex = 1;
-            button1.Text = "Test";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += Test_Click;
+            labelSudokuSpace2.Dock = DockStyle.Top;
+            labelSudokuSpace2.Location = new Point(0, 71);
+            labelSudokuSpace2.Name = "labelSudokuSpace2";
+            labelSudokuSpace2.Size = new Size(473, 3);
+            labelSudokuSpace2.TabIndex = 3;
+            // 
+            // button2
+            // 
+            button2.Dock = DockStyle.Top;
+            button2.FlatStyle = FlatStyle.Flat;
+            button2.Location = new Point(0, 74);
+            button2.Name = "button2";
+            button2.Size = new Size(473, 34);
+            button2.TabIndex = 4;
+            button2.Text = "ZNAJDŹ ROZWIĄZANIE";
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += SolveSudokuBtn_Click;
             // 
             // MainForm
             // 
@@ -4400,6 +4461,7 @@
             panelSudokuBox1.ResumeLayout(false);
             tableSudokuBox1.ResumeLayout(false);
             tableSudokuBox1.PerformLayout();
+            sudokuControlPanel.ResumeLayout(false);
             tabPageDictionary.ResumeLayout(false);
             tableLayoutPanel3.ResumeLayout(false);
             groupBoxAddToDict.ResumeLayout(false);
@@ -4697,6 +4759,11 @@
         private Label label10;
         private Label label9;
         private Label label8;
+        private Panel sudokuControlPanel;
+        private Button buttonValidateSudoku;
         private Button button1;
+        private Label labelsudokuSpace1;
+        private Button button2;
+        private Label labelSudokuSpace2;
     }
 }

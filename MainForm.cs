@@ -1076,7 +1076,7 @@ namespace CrosswordAssistant
 
         #endregion
 
-        private void Test_Click(object sender, EventArgs e)
+        private void ValidateSudokuBtn_Click(object sender, EventArgs e)
         {
             SudokuSolver sSolver = new();
             var msg = sSolver.ValidateSudoku(_sudokuService.Digits);
@@ -1084,6 +1084,47 @@ namespace CrosswordAssistant
                 MessageBox.Show("Poprawny diagram sudoku");
             else
                 MessageBox.Show(msg);
+        }
+
+        private void testBtn_Click(object sender, EventArgs e)
+        {
+            int[,] board = new int[,]
+            {
+                {0, 8, 0, 1, 0, 7, 4, 9, 0 },
+                {0, 0, 0, 0, 0, 0, 0, 1, 8 },
+                {9, 0, 0, 2, 8, 0, 0, 0, 0 },
+                {8, 0, 4, 6, 7, 0, 5, 3, 0 },
+                {0, 2, 0, 0, 3, 0, 0, 0, 0 },
+                {1, 0, 0, 0, 0, 0, 0, 0, 7 },
+                {0, 3, 0, 4, 0, 5, 0, 6, 2 },
+                {2, 0, 0, 0, 6, 0, 0, 0, 0 },
+                {0, 5, 0, 9, 0, 0, 0, 7, 0 }
+            };
+            _sudokuService.FillCurrentGrid(board);
+        }
+
+        private void SolveSudokuBtn_Click(object sender, EventArgs e)
+        {
+            SudokuSolver sSolver = new();
+            var board = _sudokuService.Digits;
+            var response = sSolver.SolveSudoku(board);
+            if (response.ValidateResult)
+            {
+                var dlg = MessageBox.Show("Podane sudoku posiada rozwi¹zanie. Kliknij Tak, aby je wyœwietliæ", "Znaleziono rozwi¹zanie", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                if(dlg == DialogResult.Yes)
+                {
+                    _sudokuService.FillCurrentGrid(board);
+                }
+                else
+                {
+                    MessageBox.Show(_sudokuService.Digits[0, 0].ToString());
+                }
+            }
+            else
+            {
+                MessageBox.Show(response.Message, "Brak rozwi¹zañ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            }
         }
     }
 }

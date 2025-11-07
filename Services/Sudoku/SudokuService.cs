@@ -38,6 +38,32 @@ namespace CrosswordAssistant.Services.Sudoku
                 }
             }
         }
+
+        public void FillCurrentGrid(int[,] board)
+        {
+            for (int r = 0; r < Boxes.RowCount; r++)
+            {
+                for (int c = 0; c < Boxes.ColumnCount; c++)
+                {
+                    if (Boxes.GetControlFromPosition(c, r)!.Controls[0] is not TableLayoutPanel sudokuBoxes) continue;
+                    for (int i = 0; i < sudokuBoxes.RowCount; i++)
+                    {
+                        for (int j = 0; j < sudokuBoxes.ColumnCount; j++)
+                        {
+                            int row = i + 3 * r, col = j + 3 * c;
+                            if (sudokuBoxes.GetControlFromPosition(j, i) is not Label cell) continue;
+                            else if (board[i + 3 * r, j + 3 * c] == 0) cell.Text = "";
+                            else
+                            {
+                                cell.Text = board[row, col].ToString();
+                                Digits[row, col] = board[row, col];
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
         public void UpdateSelectedCellsDigit(int value)
         {
             foreach(var cell in CurrentSelectedCells)
