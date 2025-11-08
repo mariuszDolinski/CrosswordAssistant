@@ -11,5 +11,11 @@
         {
             X = x; Y = y; Value = v; Label = l;
         }
+
+        public void SetCellLabel(string txt)
+        {
+            if (Label is null) return;
+            Label.Text = txt;
+        }
     }
 }

@@ -1,4 +1,6 @@
 ﻿using CrosswordAssistant.Entities;
+using CrosswordAssistant.Entities.Enums;
+using System.Drawing.Drawing2D;
 
 namespace CrosswordAssistant.Services.Sudoku
 {
@@ -39,7 +41,7 @@ namespace CrosswordAssistant.Services.Sudoku
             }
         }
 
-        public void FillCurrentGrid(int[,] board)
+        public void FillCurrentGrid(int[,] board, FillGridMode mode)
         {
             for (int r = 0; r < Boxes.RowCount; r++)
             {
@@ -52,12 +54,21 @@ namespace CrosswordAssistant.Services.Sudoku
                         {
                             int row = i + 3 * r, col = j + 3 * c;
                             if (sudokuBoxes.GetControlFromPosition(j, i) is not Label cell) continue;
-                            else if (board[i + 3 * r, j + 3 * c] == 0) cell.Text = "";
-                            else
+                            else if (board[row, col] == 0)
                             {
+                                cell.Text = "";                              
+                                Digits[row, col] = 0;
+                            }
+                            else 
+                            {
+                                if (mode == FillGridMode.Full)
+                                {
+                                    if (board[row, col] != Digits[row, col])
+                                        cell.ForeColor = Color.CornflowerBlue;
+                                }
                                 cell.Text = board[row, col].ToString();
                                 Digits[row, col] = board[row, col];
-                            }
+                            }                          
                         }
                     }
                 }

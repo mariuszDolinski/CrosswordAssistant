@@ -126,6 +126,62 @@ namespace CrosswordAssistant
                 Logger.WriteToLog(LogLevel.Error, ex.Message, ex.StackTrace ?? "");
             }
         }
+        private async void SolveSudokuBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DictionaryService.PendingDictionaryLoading || Search.IsPending)
+                {
+                    MessageBox.Show("Trwa inne wyszukiwanie lub ³adowanie nowego s³ownika. Spróbuj ponownie póŸniej", "Inna operacja w toku", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                IsSearchPending(true);
+
+                var response = await ExecuteSudokuSolverAsync();
+                if (response.ValidateResult)
+                {
+                    var dlg = MessageBox.Show("Podane sudoku posiada rozwi¹zanie. Kliknij Tak, aby je wyœwietliæ", "Znaleziono rozwi¹zanie", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                    if (dlg == DialogResult.Yes)
+                    {
+                        _sudokuService.FillCurrentGrid(response.SolvedGrid!, FillGridMode.Full);
+                    }
+                    else
+                    {
+                        MessageBox.Show(_sudokuService.Digits[0, 0].ToString());
+                    }
+                    labelSudokuSolveInfo.Text = "Znaleziono rozwi¹zanie!";
+                }
+                else
+                {
+                    MessageBox.Show(response.Message, "Brak rozwi¹zañ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    labelSudokuSolveInfo.Text = "Znalezionych rozwi¹zañ: 0";
+                }
+                IsSearchPending(false);
+                SetMode(tabControl.SelectedIndex);
+            }
+            catch (Exception ex)
+            {
+                labelSudokuSolveInfo.Text = "Znalezionych rozwi¹zañ: 0";
+                IsSearchPending(false);
+                MessageBox.Show("Podczas próby rozwi¹zania kryptarytmu wyst¹pi³ b³¹d. SprawdŸ szczegó³y w logu aplikacji.");
+                Logger.WriteToLog(LogLevel.Error, ex.Message, ex.StackTrace ?? "");
+            }
+        }
+        private void ValidateSudokuBtn_Click(object sender, EventArgs e)
+        {
+            SudokuSolver sSolver = new();
+            var msg = sSolver.ValidateSudoku(_sudokuService.Digits);
+            if (msg.Length == 0)
+            {
+                MessageBox.Show("Poprawny diagram sudoku");
+                labelSudokuSolveInfo.Text = "Diagram sudoku nie zwaiera b³êdów.";
+            }
+            else
+            {
+                MessageBox.Show(msg);
+                labelSudokuSolveInfo.Text = msg;
+            }
+        }
         private void AddComponentBtn_Click(object sender, EventArgs e)
         {
             if (_customControls.ComponentsCount == 5)
@@ -643,6 +699,10 @@ namespace CrosswordAssistant
                     RemoveComponentBtn.Enabled = !pending;
                     comboBoxOperations.Enabled = !pending;
                     break;
+                case SearchMode.Sudoku:
+                    buttonValidateSudoku.Enabled = !pending;
+                    buttonSolveSudoku.Enabled = !pending;
+                    break;
                 default: textBoxPattern.ReadOnly = pending; break;
             }
             Search.IsPending = pending;
@@ -762,6 +822,13 @@ namespace CrosswordAssistant
             List<string> matches = await Task.Run(() => search.SearchMatches(pattern));
             labelPatternResultsInfo.Text = "Znalezionych dopasowañ: " + matches.Count;
             return new SearchResponse(matches, true, "");
+        }
+        private async Task<SudokuResponse> ExecuteSudokuSolverAsync()
+        {
+            labelSudokuSolveInfo.Text = "Szukam rozwi¹zañ...";
+            SudokuSolver sSolver = new();
+            var response = await Task.Run(() => sSolver.SolveSudoku(_sudokuService.Digits));
+            return response;
         }
         private void SetLengthControlsEnabled(bool isEnabled)
         {
@@ -1076,16 +1143,6 @@ namespace CrosswordAssistant
 
         #endregion
 
-        private void ValidateSudokuBtn_Click(object sender, EventArgs e)
-        {
-            SudokuSolver sSolver = new();
-            var msg = sSolver.ValidateSudoku(_sudokuService.Digits);
-            if (msg.Length == 0)
-                MessageBox.Show("Poprawny diagram sudoku");
-            else
-                MessageBox.Show(msg);
-        }
-
         private void testBtn_Click(object sender, EventArgs e)
         {
             int[,] board = new int[,]
@@ -1100,31 +1157,21 @@ namespace CrosswordAssistant
                 {2, 0, 0, 0, 6, 0, 0, 0, 0 },
                 {0, 5, 0, 9, 0, 0, 0, 7, 0 }
             };
-            _sudokuService.FillCurrentGrid(board);
+            int[,] board2 = new int[,]
+            {
+                {4, 0, 0, 3, 0, 0, 6, 5, 0 },
+                {0, 0, 0, 0, 0, 0, 7, 0, 0 },
+                {0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                {0, 0, 0, 5, 0, 7, 1, 0, 0 },
+                {8, 0, 0, 0, 0, 0, 0, 0, 4 },
+                {2, 0, 0, 0, 0, 0, 0, 0, 0 },
+                {0, 7, 0, 0, 2, 0, 0, 3, 0 },
+                {0, 0, 0, 4, 0, 0, 0, 0, 8 },
+                {0, 1, 0, 0, 0, 0, 0, 0, 0 },
+            };
+            _sudokuService.FillCurrentGrid(board2, FillGridMode.Partial);
         }
 
-        private void SolveSudokuBtn_Click(object sender, EventArgs e)
-        {
-            SudokuSolver sSolver = new();
-            var board = _sudokuService.Digits;
-            var response = sSolver.SolveSudoku(board);
-            if (response.ValidateResult)
-            {
-                var dlg = MessageBox.Show("Podane sudoku posiada rozwi¹zanie. Kliknij Tak, aby je wyœwietliæ", "Znaleziono rozwi¹zanie", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-                if(dlg == DialogResult.Yes)
-                {
-                    _sudokuService.FillCurrentGrid(board);
-                }
-                else
-                {
-                    MessageBox.Show(_sudokuService.Digits[0, 0].ToString());
-                }
-            }
-            else
-            {
-                MessageBox.Show(response.Message, "Brak rozwi¹zañ", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-            }
-        }
+        
     }
 }

@@ -55,8 +55,8 @@ namespace CrosswordAssistant.Services.Sudoku
             var tempBoard = Utilities.CopyArray(board, 9, 9);
 
             bool result = DepthFirstSearch(emptiesCount, tempBoard);
-            if (result) return new SudokuResponse(board, true, "");
-            else return new SudokuResponse(null, false, "Nie mogłem znaleźć rozwiązania.");
+            if (result) return new SudokuResponse(tempBoard, true, "");
+            else return new SudokuResponse(null, false, "Sudoku nie posiada rozwiązań");
         }
 
         bool DepthFirstSearch(int remaining, int[,] board)
