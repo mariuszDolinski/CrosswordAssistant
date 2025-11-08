@@ -140,16 +140,22 @@ namespace CrosswordAssistant
                 var response = await ExecuteSudokuSolverAsync();
                 if (response.ValidateResult)
                 {
-                    var dlg = MessageBox.Show("Podane sudoku posiada rozwi¹zanie. Kliknij Tak, aby je wyœwietliæ", "Znaleziono rozwi¹zanie", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                    DialogResult dlg = DialogResult.No;
+                    if(response.SolutionsCount > 1)
+                    {
+                        dlg = MessageBox.Show($"Podane sudoku nie jest unikalne. Iloœæ ró¿nych rozwi¹zañ: {response.SolutionsCount}. Kliknij Tak, aby wyœwietliæ przyk³adowe rozwi¹zanie.", 
+                            "Znaleziono rozwi¹zanie", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        dlg = MessageBox.Show("Podane sudoku jest unikalne. Kliknij Tak, aby wyœwietliæ jedyne rozwi¹zanie.", 
+                            "Znaleziono rozwi¹zanie", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                    }
                     if (dlg == DialogResult.Yes)
                     {
                         _sudokuService.FillCurrentGrid(response.SolvedGrid!, FillGridMode.Full);
                     }
-                    else
-                    {
-                        MessageBox.Show(_sudokuService.Digits[0, 0].ToString());
-                    }
-                    labelSudokuSolveInfo.Text = "Znaleziono rozwi¹zanie!";
+                    labelSudokuSolveInfo.Text = $"Sudoku posiada rozwi¹zanie. Iloœæ wszystkich rozwi¹zañ: {response.SolutionsCount}";
                 }
                 else
                 {

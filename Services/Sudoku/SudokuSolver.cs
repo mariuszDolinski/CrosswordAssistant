@@ -10,9 +10,14 @@ namespace CrosswordAssistant.Services.Sudoku
         private readonly int[] Boxes;
         private readonly List<(int r, int c)> EmptyCells;
 
+        private int[,] Solution;
+        private int SolutionCount;
+
         public SudokuSolver()
         {
             Rows = new int[9]; Columns = new int[9]; Boxes = new int[9]; EmptyCells = [];
+            Solution = new int[9, 9];
+            SolutionCount = 0;
         }
 
         public string ValidateSudoku(int[,] board)
@@ -45,23 +50,30 @@ namespace CrosswordAssistant.Services.Sudoku
         public SudokuResponse SolveSudoku(int[,] board)
         {
             if (board == null || board.GetLength(0) != 9 || board.GetLength(1) != 9)
-                return new SudokuResponse(null, false, "Błędny rozmiar diagramu sudoku.");
+                return new SudokuResponse(null, false, "Błędny rozmiar diagramu sudoku.", 0);
 
             var validateResult = ValidateSudoku(board);
             if (validateResult.Length > 0)
-                return new SudokuResponse(null, false, validateResult);
+                return new SudokuResponse(null, false, validateResult, 0);
 
             int emptiesCount = EmptyCells.Count;
             var tempBoard = Utilities.CopyArray(board, 9, 9);
 
-            bool result = DepthFirstSearch(emptiesCount, tempBoard);
-            if (result) return new SudokuResponse(tempBoard, true, "");
-            else return new SudokuResponse(null, false, "Sudoku nie posiada rozwiązań");
+            DepthFirstSearch(emptiesCount, tempBoard);
+            if (SolutionCount == 0)
+                return new SudokuResponse(null, false, "Sudoku nie posiada rozwiązań", 0);
+            else
+                return new SudokuResponse(Solution, true, "", SolutionCount);
         }
 
         bool DepthFirstSearch(int remaining, int[,] board)
         {
-            if (remaining == 0) return true;
+            if (remaining == 0)
+            {
+                SolutionCount++;
+                Solution = Utilities.CopyArray(board, 9, 9);
+                return false;
+            }
 
             // wybieramy komórkę z najmniejszą ilością mozliwych cyfr
             int bestIndex = -1;
