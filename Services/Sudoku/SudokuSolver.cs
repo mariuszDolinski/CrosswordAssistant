@@ -46,6 +46,7 @@ namespace CrosswordAssistant.Services.Sudoku
                     Boxes[boxIndex] |= bit;
                 }
             }
+            if (EmptyCells.Count == 0) return "Sudoku zostało już rozwiązane";
             if (EmptyCells.Count > 64) return "Wpisz conajmniej 17 poprawnych cyfr";
             return "";
         }

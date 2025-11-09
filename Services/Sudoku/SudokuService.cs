@@ -59,7 +59,10 @@ namespace CrosswordAssistant.Services.Sudoku
                         else if (mode == SudokuMode.Selection)
                         {
                             if (ExistsInSelectedCells(r, c) == -1) continue;
-                            else CellLabels[r, c].ForeColor = Color.CornflowerBlue;
+                            else if (board[r, c] != Digits[r, c])
+                            {
+                                CellLabels[r, c].ForeColor = Color.CornflowerBlue;
+                            }
                         }
                         CellLabels[r, c].Text = board[r, c].ToString();
                         Digits[r, c] = board[r, c];
@@ -113,6 +116,16 @@ namespace CrosswordAssistant.Services.Sudoku
                 CurrentSelectedCells.Clear();
                 MultiSelectOn = false;
             }           
+        }
+        public bool IsAnyCellSelected() => CurrentSelectedCells.Count != 0;
+        public bool IsAnyEmptyCellSelected()
+        {
+            if(!IsAnyCellSelected()) return false;
+            foreach (var cell in CurrentSelectedCells)
+            {
+                if (cell.Value == 0) return true;
+            }
+            return false;
         }
 
         private void InitDigits()

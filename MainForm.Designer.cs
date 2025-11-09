@@ -1799,9 +1799,10 @@
             buttonCheckUniquness.Location = new Point(0, 129);
             buttonCheckUniquness.Name = "buttonCheckUniquness";
             buttonCheckUniquness.Size = new Size(473, 40);
-            buttonCheckUniquness.TabIndex = 9;
+            buttonCheckUniquness.TabIndex = 203;
             buttonCheckUniquness.Text = "SPRAWDŹ UNIKALNOŚĆ";
             buttonCheckUniquness.UseVisualStyleBackColor = true;
+            buttonCheckUniquness.Click += SolveSudokuBtn_Click;
             // 
             // labelsudokuSpace3
             // 
@@ -1818,10 +1819,10 @@
             buttonSolveSelection.Location = new Point(0, 86);
             buttonSolveSelection.Name = "buttonSolveSelection";
             buttonSolveSelection.Size = new Size(473, 40);
-            buttonSolveSelection.TabIndex = 7;
+            buttonSolveSelection.TabIndex = 202;
             buttonSolveSelection.Text = "ROZWIĄŻ ZAZNACZENIE";
             buttonSolveSelection.UseVisualStyleBackColor = true;
-            buttonSolveSelection.Click += SolveSudokuSelBtn_Click;
+            buttonSolveSelection.Click += SolveSudokuBtn_Click;
             // 
             // labelsudokuSpace2
             // 
@@ -1901,7 +1902,7 @@
             buttonSolveSudoku.Location = new Point(0, 43);
             buttonSolveSudoku.Name = "buttonSolveSudoku";
             buttonSolveSudoku.Size = new Size(473, 40);
-            buttonSolveSudoku.TabIndex = 4;
+            buttonSolveSudoku.TabIndex = 201;
             buttonSolveSudoku.Text = "ROZWIĄŻ CAŁY DIAGRAM";
             buttonSolveSudoku.UseVisualStyleBackColor = true;
             buttonSolveSudoku.Click += SolveSudokuBtn_Click;
