@@ -130,52 +130,33 @@ namespace CrosswordAssistant
         {
             try
             {
-                if (DictionaryService.PendingDictionaryLoading || Search.IsPending)
-                {
-                    MessageBox.Show("Trwa inne wyszukiwanie lub ³adowanie nowego s³ownika. Spróbuj ponownie póŸniej", "Inna operacja w toku", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-                IsSearchPending(true);
-
-                var response = await ExecuteSudokuSolverAsync();
-                if (response.ValidateResult)
-                {
-                    DialogResult dlg = DialogResult.No;
-                    if(response.SolutionsCount > 1)
-                    {
-                        dlg = MessageBox.Show($"Podane sudoku nie jest unikalne. Iloœæ ró¿nych rozwi¹zañ: {response.SolutionsCount}. Kliknij Tak, aby wyœwietliæ przyk³adowe rozwi¹zanie.", 
-                            "Znaleziono rozwi¹zanie", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-                    }
-                    else
-                    {
-                        dlg = MessageBox.Show("Podane sudoku jest unikalne. Kliknij Tak, aby wyœwietliæ jedyne rozwi¹zanie.", 
-                            "Znaleziono rozwi¹zanie", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-                    }
-                    if (dlg == DialogResult.Yes)
-                    {
-                        _sudokuService.FillCurrentGrid(response.SolvedGrid!, FillGridMode.Full);
-                    }
-                    labelSudokuSolveInfo.Text = $"Sudoku posiada rozwi¹zanie. Iloœæ wszystkich rozwi¹zañ: {response.SolutionsCount}";
-                }
-                else
-                {
-                    MessageBox.Show(response.Message, "Brak rozwi¹zañ", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    labelSudokuSolveInfo.Text = "Znalezionych rozwi¹zañ: 0";
-                }
-                IsSearchPending(false);
-                SetMode(tabControl.SelectedIndex);
+                await SearchForSudokuSolution(SudokuMode.Full);
             }
             catch (Exception ex)
             {
                 labelSudokuSolveInfo.Text = "Znalezionych rozwi¹zañ: 0";
                 IsSearchPending(false);
-                MessageBox.Show("Podczas próby rozwi¹zania kryptarytmu wyst¹pi³ b³¹d. SprawdŸ szczegó³y w logu aplikacji.");
+                MessageBox.Show("Podczas próby rozwi¹zania sudoku wyst¹pi³ b³¹d. SprawdŸ szczegó³y w logu aplikacji.");
+                Logger.WriteToLog(LogLevel.Error, ex.Message, ex.StackTrace ?? "");
+            }
+        }
+        private async void SolveSudokuSelBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                await SearchForSudokuSolution(SudokuMode.Selection);
+            }
+            catch (Exception ex)
+            {
+                labelSudokuSolveInfo.Text = "Znalezionych rozwi¹zañ: 0";
+                IsSearchPending(false);
+                MessageBox.Show("Podczas próby rozwi¹zania sudoku wyst¹pi³ b³¹d. SprawdŸ szczegó³y w logu aplikacji.");
                 Logger.WriteToLog(LogLevel.Error, ex.Message, ex.StackTrace ?? "");
             }
         }
         private void ValidateSudokuBtn_Click(object sender, EventArgs e)
         {
-            SudokuSolver sSolver = new();
+            SudokuSolver sSolver = new(SudokuMode.None);
             var msg = sSolver.ValidateSudoku(_sudokuService.Digits);
             if (msg.Length == 0)
             {
@@ -187,6 +168,12 @@ namespace CrosswordAssistant
                 MessageBox.Show(msg);
                 labelSudokuSolveInfo.Text = msg;
             }
+        }
+        private void ClearSudokuGridBtn_Click(object sender, EventArgs e)
+        {
+            _sudokuService.ClearGrid(checkBoxClearDigits.Checked, checkBoxClearColors.Checked,
+                checkBoxClearSelection.Checked);
+            if (checkBoxClearDigits.Checked) labelSudokuSolveInfo.Text = "Kliknij odpowiedni przycisk, aby rozpocz¹æ...";
         }
         private void AddComponentBtn_Click(object sender, EventArgs e)
         {
@@ -829,10 +816,10 @@ namespace CrosswordAssistant
             labelPatternResultsInfo.Text = "Znalezionych dopasowañ: " + matches.Count;
             return new SearchResponse(matches, true, "");
         }
-        private async Task<SudokuResponse> ExecuteSudokuSolverAsync()
+        private async Task<SudokuResponse> ExecuteSudokuSolverAsync(SudokuMode mode)
         {
             labelSudokuSolveInfo.Text = "Szukam rozwi¹zañ...";
-            SudokuSolver sSolver = new();
+            SudokuSolver sSolver = new(mode);
             var response = await Task.Run(() => sSolver.SolveSudoku(_sudokuService.Digits));
             return response;
         }
@@ -1146,6 +1133,33 @@ namespace CrosswordAssistant
                 _sudokuService.CurrentSelectedCells.Add(new Cell(x, y, value, cellLabel));
             }
         }
+        private async Task SearchForSudokuSolution(SudokuMode mode)
+        {
+            if (DictionaryService.PendingDictionaryLoading || Search.IsPending)
+            {
+                MessageBox.Show("Trwa inne wyszukiwanie lub ³adowanie nowego s³ownika. Spróbuj ponownie póŸniej", "Inna operacja w toku", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            IsSearchPending(true);
+
+            var response = await ExecuteSudokuSolverAsync(mode);
+            if (response.ValidationResult)
+            {
+                if (response.SolutionsCount > 1)
+                {
+                    MessageBox.Show("Podane sudoku nie jest unikalne. Wyœwietlam przyk³adowe rozwi¹zanie.", "Znaleziono rozwi¹zanie", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                _sudokuService.FillCurrentGrid(response.SolvedGrid!, mode);
+                labelSudokuSolveInfo.Text = $"Znalezionych rozwi¹zañ: {response.SolutionsCount}";
+            }
+            else
+            {
+                MessageBox.Show(response.Message, "Brak rozwi¹zañ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                labelSudokuSolveInfo.Text = "Znalezionych rozwi¹zañ: 0";
+            }
+            IsSearchPending(false);
+            SetMode(tabControl.SelectedIndex);
+        }
 
         #endregion
 
@@ -1175,9 +1189,7 @@ namespace CrosswordAssistant
                 {0, 0, 0, 4, 0, 0, 0, 0, 8 },
                 {0, 1, 0, 0, 0, 0, 0, 0, 0 },
             };
-            _sudokuService.FillCurrentGrid(board2, FillGridMode.Partial);
+            _sudokuService.FillCurrentGrid(board, SudokuMode.Initial);
         }
-
-        
     }
 }

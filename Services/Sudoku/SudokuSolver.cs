@@ -1,4 +1,5 @@
-﻿using CrosswordAssistant.Entities.Responses;
+﻿using CrosswordAssistant.Entities.Enums;
+using CrosswordAssistant.Entities.Responses;
 using System.Runtime.CompilerServices;
 
 namespace CrosswordAssistant.Services.Sudoku
@@ -9,15 +10,17 @@ namespace CrosswordAssistant.Services.Sudoku
         private readonly int[] Columns;
         private readonly int[] Boxes;
         private readonly List<(int r, int c)> EmptyCells;
+        private readonly SudokuMode Mode;
 
         private int[,] Solution;
         private int SolutionCount;
 
-        public SudokuSolver()
+        public SudokuSolver(SudokuMode mode)
         {
             Rows = new int[9]; Columns = new int[9]; Boxes = new int[9]; EmptyCells = [];
             Solution = new int[9, 9];
             SolutionCount = 0;
+            Mode = mode;
         }
 
         public string ValidateSudoku(int[,] board)
@@ -72,6 +75,7 @@ namespace CrosswordAssistant.Services.Sudoku
             {
                 SolutionCount++;
                 Solution = Utilities.CopyArray(board, 9, 9);
+                if (Mode == SudokuMode.Uniqueness && SolutionCount > 1) return true;
                 return false;
             }
 

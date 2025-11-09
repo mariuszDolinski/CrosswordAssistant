@@ -145,6 +145,15 @@
             tabPageSudoku = new TabPage();
             tableLayoutPanelSudokuMain = new TableLayoutPanel();
             sudokuControlPanel = new Panel();
+            buttonCheckUniquness = new Button();
+            labelsudokuSpace3 = new Label();
+            buttonSolveSelection = new Button();
+            labelsudokuSpace2 = new Label();
+            groupBoxClearSudoku = new GroupBox();
+            buttonClearSudokuGrid = new Button();
+            checkBoxClearSelection = new CheckBox();
+            checkBoxClearColors = new CheckBox();
+            checkBoxClearDigits = new CheckBox();
             buttonSolveSudoku = new Button();
             button1 = new Button();
             labelsudokuSpace1 = new Label();
@@ -351,6 +360,7 @@
             tabPageSudoku.SuspendLayout();
             tableLayoutPanelSudokuMain.SuspendLayout();
             sudokuControlPanel.SuspendLayout();
+            groupBoxClearSudoku.SuspendLayout();
             panelSudoku.SuspendLayout();
             panelSudokuGrid.SuspendLayout();
             tableSudokuBoxes.SuspendLayout();
@@ -1713,6 +1723,7 @@
             solveCryptharitmBtn.TabIndex = 9;
             solveCryptharitmBtn.Text = "SZUKAJ ROZWIĄZAŃ";
             solveCryptharitmBtn.UseVisualStyleBackColor = true;
+            solveCryptharitmBtn.Click += SolveCryptharitmBtn_Click;
             // 
             // label108
             // 
@@ -1766,6 +1777,11 @@
             // 
             // sudokuControlPanel
             // 
+            sudokuControlPanel.Controls.Add(buttonCheckUniquness);
+            sudokuControlPanel.Controls.Add(labelsudokuSpace3);
+            sudokuControlPanel.Controls.Add(buttonSolveSelection);
+            sudokuControlPanel.Controls.Add(labelsudokuSpace2);
+            sudokuControlPanel.Controls.Add(groupBoxClearSudoku);
             sudokuControlPanel.Controls.Add(buttonSolveSudoku);
             sudokuControlPanel.Controls.Add(button1);
             sudokuControlPanel.Controls.Add(labelsudokuSpace1);
@@ -1776,6 +1792,108 @@
             sudokuControlPanel.Size = new Size(473, 731);
             sudokuControlPanel.TabIndex = 1;
             // 
+            // buttonCheckUniquness
+            // 
+            buttonCheckUniquness.Dock = DockStyle.Top;
+            buttonCheckUniquness.FlatStyle = FlatStyle.Flat;
+            buttonCheckUniquness.Location = new Point(0, 129);
+            buttonCheckUniquness.Name = "buttonCheckUniquness";
+            buttonCheckUniquness.Size = new Size(473, 40);
+            buttonCheckUniquness.TabIndex = 9;
+            buttonCheckUniquness.Text = "SPRAWDŹ UNIKALNOŚĆ";
+            buttonCheckUniquness.UseVisualStyleBackColor = true;
+            // 
+            // labelsudokuSpace3
+            // 
+            labelsudokuSpace3.Dock = DockStyle.Top;
+            labelsudokuSpace3.Location = new Point(0, 126);
+            labelsudokuSpace3.Name = "labelsudokuSpace3";
+            labelsudokuSpace3.Size = new Size(473, 3);
+            labelsudokuSpace3.TabIndex = 8;
+            // 
+            // buttonSolveSelection
+            // 
+            buttonSolveSelection.Dock = DockStyle.Top;
+            buttonSolveSelection.FlatStyle = FlatStyle.Flat;
+            buttonSolveSelection.Location = new Point(0, 86);
+            buttonSolveSelection.Name = "buttonSolveSelection";
+            buttonSolveSelection.Size = new Size(473, 40);
+            buttonSolveSelection.TabIndex = 7;
+            buttonSolveSelection.Text = "ROZWIĄŻ ZAZNACZENIE";
+            buttonSolveSelection.UseVisualStyleBackColor = true;
+            buttonSolveSelection.Click += SolveSudokuSelBtn_Click;
+            // 
+            // labelsudokuSpace2
+            // 
+            labelsudokuSpace2.Dock = DockStyle.Top;
+            labelsudokuSpace2.Location = new Point(0, 83);
+            labelsudokuSpace2.Name = "labelsudokuSpace2";
+            labelsudokuSpace2.Size = new Size(473, 3);
+            labelsudokuSpace2.TabIndex = 6;
+            // 
+            // groupBoxClearSudoku
+            // 
+            groupBoxClearSudoku.Controls.Add(buttonClearSudokuGrid);
+            groupBoxClearSudoku.Controls.Add(checkBoxClearSelection);
+            groupBoxClearSudoku.Controls.Add(checkBoxClearColors);
+            groupBoxClearSudoku.Controls.Add(checkBoxClearDigits);
+            groupBoxClearSudoku.Dock = DockStyle.Bottom;
+            groupBoxClearSudoku.FlatStyle = FlatStyle.Flat;
+            groupBoxClearSudoku.Location = new Point(0, 597);
+            groupBoxClearSudoku.Name = "groupBoxClearSudoku";
+            groupBoxClearSudoku.Size = new Size(473, 134);
+            groupBoxClearSudoku.TabIndex = 5;
+            groupBoxClearSudoku.TabStop = false;
+            groupBoxClearSudoku.Text = "Wyczyść diagram";
+            // 
+            // buttonClearSudokuGrid
+            // 
+            buttonClearSudokuGrid.Dock = DockStyle.Bottom;
+            buttonClearSudokuGrid.FlatStyle = FlatStyle.Flat;
+            buttonClearSudokuGrid.Location = new Point(3, 91);
+            buttonClearSudokuGrid.Name = "buttonClearSudokuGrid";
+            buttonClearSudokuGrid.Size = new Size(467, 40);
+            buttonClearSudokuGrid.TabIndex = 3;
+            buttonClearSudokuGrid.Text = "WYCZYŚĆ";
+            buttonClearSudokuGrid.UseVisualStyleBackColor = true;
+            buttonClearSudokuGrid.Click += ClearSudokuGridBtn_Click;
+            // 
+            // checkBoxClearSelection
+            // 
+            checkBoxClearSelection.AutoSize = true;
+            checkBoxClearSelection.Checked = true;
+            checkBoxClearSelection.CheckState = CheckState.Checked;
+            checkBoxClearSelection.Location = new Point(263, 43);
+            checkBoxClearSelection.Name = "checkBoxClearSelection";
+            checkBoxClearSelection.Size = new Size(132, 29);
+            checkBoxClearSelection.TabIndex = 2;
+            checkBoxClearSelection.Text = "Zaznaczenie";
+            checkBoxClearSelection.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxClearColors
+            // 
+            checkBoxClearColors.AutoSize = true;
+            checkBoxClearColors.Checked = true;
+            checkBoxClearColors.CheckState = CheckState.Checked;
+            checkBoxClearColors.Location = new Point(141, 43);
+            checkBoxClearColors.Name = "checkBoxClearColors";
+            checkBoxClearColors.Size = new Size(89, 29);
+            checkBoxClearColors.TabIndex = 1;
+            checkBoxClearColors.Text = "Kolory";
+            checkBoxClearColors.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxClearDigits
+            // 
+            checkBoxClearDigits.AutoSize = true;
+            checkBoxClearDigits.Checked = true;
+            checkBoxClearDigits.CheckState = CheckState.Checked;
+            checkBoxClearDigits.Location = new Point(25, 43);
+            checkBoxClearDigits.Name = "checkBoxClearDigits";
+            checkBoxClearDigits.Size = new Size(79, 29);
+            checkBoxClearDigits.TabIndex = 0;
+            checkBoxClearDigits.Text = "Cyfry";
+            checkBoxClearDigits.UseVisualStyleBackColor = true;
+            // 
             // buttonSolveSudoku
             // 
             buttonSolveSudoku.Dock = DockStyle.Top;
@@ -1784,14 +1902,14 @@
             buttonSolveSudoku.Name = "buttonSolveSudoku";
             buttonSolveSudoku.Size = new Size(473, 40);
             buttonSolveSudoku.TabIndex = 4;
-            buttonSolveSudoku.Text = "ZNAJDŹ ROZWIĄZANIE";
+            buttonSolveSudoku.Text = "ROZWIĄŻ CAŁY DIAGRAM";
             buttonSolveSudoku.UseVisualStyleBackColor = true;
             buttonSolveSudoku.Click += SolveSudokuBtn_Click;
             // 
             // button1
             // 
             button1.FlatStyle = FlatStyle.Flat;
-            button1.Location = new Point(183, 659);
+            button1.Location = new Point(95, 330);
             button1.Name = "button1";
             button1.Size = new Size(271, 40);
             button1.TabIndex = 2;
@@ -1839,7 +1957,7 @@
             labelSudokuSolveInfo.Name = "labelSudokuSolveInfo";
             labelSudokuSolveInfo.Size = new Size(682, 46);
             labelSudokuSolveInfo.TabIndex = 3;
-            labelSudokuSolveInfo.Text = "Znalezionych rozwiązań: 0";
+            labelSudokuSolveInfo.Text = "Kliknij odpowiedni przycisk, aby rozpocząć...";
             labelSudokuSolveInfo.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // labelSpace5
@@ -4457,6 +4575,8 @@
             tabPageSudoku.ResumeLayout(false);
             tableLayoutPanelSudokuMain.ResumeLayout(false);
             sudokuControlPanel.ResumeLayout(false);
+            groupBoxClearSudoku.ResumeLayout(false);
+            groupBoxClearSudoku.PerformLayout();
             panelSudoku.ResumeLayout(false);
             panelSudokuGrid.ResumeLayout(false);
             tableSudokuBoxes.ResumeLayout(false);
@@ -4792,5 +4912,14 @@
         private Panel panelSudoku;
         private Label labelSpace5;
         internal Label labelSudokuSolveInfo;
+        private GroupBox groupBoxClearSudoku;
+        private CheckBox checkBoxClearSelection;
+        private CheckBox checkBoxClearColors;
+        private CheckBox checkBoxClearDigits;
+        private Button buttonClearSudokuGrid;
+        private Button buttonCheckUniquness;
+        private Label labelsudokuSpace3;
+        private Button buttonSolveSelection;
+        private Label labelsudokuSpace2;
     }
 }

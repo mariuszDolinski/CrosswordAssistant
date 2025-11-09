@@ -36,7 +36,7 @@ namespace CrosswordAssistant.Services.Sudoku
             }
         }
 
-        public void FillCurrentGrid(int[,] board, FillGridMode mode)
+        public void FillCurrentGrid(int[,] board, SudokuMode mode)
         {
             for (int r = 0; r < 9; r++)
             {
@@ -49,10 +49,17 @@ namespace CrosswordAssistant.Services.Sudoku
                     }
                     else 
                     {
-                        if (mode == FillGridMode.Full)
+                        if (mode == SudokuMode.Full)
                         {
                             if (board[r, c] != Digits[r, c])
+                            {
                                 CellLabels[r, c].ForeColor = Color.CornflowerBlue;
+                            }
+                        }
+                        else if (mode == SudokuMode.Selection)
+                        {
+                            if (ExistsInSelectedCells(r, c) == -1) continue;
+                            else CellLabels[r, c].ForeColor = Color.CornflowerBlue;
                         }
                         CellLabels[r, c].Text = board[r, c].ToString();
                         Digits[r, c] = board[r, c];
@@ -85,6 +92,27 @@ namespace CrosswordAssistant.Services.Sudoku
                 cell.Label!.BackColor = Color.Transparent;
             }
             CurrentSelectedCells.Clear();
+        }
+        public void ClearGrid(bool digits, bool colors, bool selection)
+        {
+            for (int r = 0; r < 9; r++)
+            {
+                for(int  c = 0; c < 9; c++)
+                {
+                    if(digits)
+                    {
+                        Digits[r, c] = 0;
+                        CellLabels[r, c].Text = "";
+                    }
+                    if(colors) CellLabels[r, c].ForeColor = SystemColors.ControlText;
+                    if(selection) CellLabels[r, c].BackColor = Color.Transparent;
+                }
+            }
+            if (selection)
+            {
+                CurrentSelectedCells.Clear();
+                MultiSelectOn = false;
+            }           
         }
 
         private void InitDigits()
