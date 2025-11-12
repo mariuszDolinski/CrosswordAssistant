@@ -356,6 +356,32 @@
             SplitContainerCryptharitms.Panel1.SuspendLayout();
             SplitContainerCryptharitms.Panel2.SuspendLayout();
             SplitContainerCryptharitms.SuspendLayout();
+            panelCrptSettings.SuspendLayout();
+            tabPageSudoku.SuspendLayout();
+            tableLayoutPanelSudokuMain.SuspendLayout();
+            sudokuControlPanel.SuspendLayout();
+            groupBoxClearSudoku.SuspendLayout();
+            panelSudoku.SuspendLayout();
+            panelSudokuGrid.SuspendLayout();
+            tableSudokuBoxes.SuspendLayout();
+            panelSudokuBox9.SuspendLayout();
+            tableSudokuBox9.SuspendLayout();
+            panelSudokuBox8.SuspendLayout();
+            tableSudokuBox8.SuspendLayout();
+            panelSudokuBox7.SuspendLayout();
+            tableSudokuBox7.SuspendLayout();
+            panelSudokuBox6.SuspendLayout();
+            tableSudokuBox6.SuspendLayout();
+            panelSudokuBox5.SuspendLayout();
+            tableSudokuBox5.SuspendLayout();
+            panelSudokuBox4.SuspendLayout();
+            tableSudokuBox4.SuspendLayout();
+            panelSudokuBox3.SuspendLayout();
+            tableSudokuBox3.SuspendLayout();
+            panelSudokuBox2.SuspendLayout();
+            tableSudokuBox2.SuspendLayout();
+            panelSudokuBox1.SuspendLayout();
+            tableSudokuBox1.SuspendLayout();
             tabPageDictionary.SuspendLayout();
             tableLayoutPanel3.SuspendLayout();
             groupBoxAddToDict.SuspendLayout();
@@ -513,115 +539,21 @@
             groupBoxFilters.TabStop = false;
             groupBoxFilters.Text = "Dodatkowe filtry";
             // 
-            // groupBoxContainsFilter
+            // tableLayoutPanel5
             // 
-            groupBoxContainsFilter.Controls.Add(radioButtonContainsOr);
-            groupBoxContainsFilter.Controls.Add(radioButtonContainsAnd);
-            groupBoxContainsFilter.Controls.Add(checkBoxContainsActive);
-            groupBoxContainsFilter.Controls.Add(label26);
-            groupBoxContainsFilter.Controls.Add(checkBoxNotContains);
-            groupBoxContainsFilter.Controls.Add(checkBoxContains);
-            groupBoxContainsFilter.Controls.Add(textBoxNotContains);
-            groupBoxContainsFilter.Controls.Add(textBoxContains);
-            groupBoxContainsFilter.Dock = DockStyle.Bottom;
-            groupBoxContainsFilter.Location = new Point(3, 250);
-            groupBoxContainsFilter.Name = "groupBoxContainsFilter";
-            groupBoxContainsFilter.Size = new Size(703, 220);
-            groupBoxContainsFilter.TabIndex = 13;
-            groupBoxContainsFilter.TabStop = false;
-            groupBoxContainsFilter.Text = "Zawiera";
-            // 
-            // radioButtonContainsOr
-            // 
-            radioButtonContainsOr.AutoSize = true;
-            radioButtonContainsOr.Enabled = false;
-            radioButtonContainsOr.Location = new Point(540, 125);
-            radioButtonContainsOr.Name = "radioButtonContainsOr";
-            radioButtonContainsOr.Size = new Size(67, 29);
-            radioButtonContainsOr.TabIndex = 14;
-            radioButtonContainsOr.TabStop = true;
-            radioButtonContainsOr.Text = "LUB";
-            radioButtonContainsOr.UseVisualStyleBackColor = true;
-            radioButtonContainsOr.CheckedChanged += SelectedFilters_CheckedChanged;
-            // 
-            // radioButtonContainsAnd
-            // 
-            radioButtonContainsAnd.AutoSize = true;
-            radioButtonContainsAnd.Enabled = false;
-            radioButtonContainsAnd.Location = new Point(540, 84);
-            radioButtonContainsAnd.Name = "radioButtonContainsAnd";
-            radioButtonContainsAnd.Size = new Size(85, 29);
-            radioButtonContainsAnd.TabIndex = 13;
-            radioButtonContainsAnd.TabStop = true;
-            radioButtonContainsAnd.Text = "ORAZ";
-            radioButtonContainsAnd.UseVisualStyleBackColor = true;
-            radioButtonContainsAnd.CheckedChanged += SelectedFilters_CheckedChanged;
-            // 
-            // checkBoxContainsActive
-            // 
-            checkBoxContainsActive.AutoSize = true;
-            checkBoxContainsActive.Location = new Point(574, 33);
-            checkBoxContainsActive.Name = "checkBoxContainsActive";
-            checkBoxContainsActive.Size = new Size(106, 29);
-            checkBoxContainsActive.TabIndex = 12;
-            checkBoxContainsActive.Text = "Aktywny";
-            checkBoxContainsActive.UseVisualStyleBackColor = true;
-            checkBoxContainsActive.CheckedChanged += ActiveFilters_CheckedChanged;
-            // 
-            // label26
-            // 
-            label26.AutoSize = true;
-            label26.Location = new Point(12, 33);
-            label26.Name = "label26";
-            label26.Size = new Size(202, 25);
-            label26.TabIndex = 9;
-            label26.Text = "Wyświetlaj tylko wyrazy:";
-            // 
-            // checkBoxNotContains
-            // 
-            checkBoxNotContains.AutoSize = true;
-            checkBoxNotContains.Enabled = false;
-            checkBoxNotContains.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            checkBoxNotContains.Location = new Point(16, 125);
-            checkBoxNotContains.Name = "checkBoxNotContains";
-            checkBoxNotContains.Size = new Size(149, 29);
-            checkBoxNotContains.TabIndex = 6;
-            checkBoxNotContains.Text = "niezawierające";
-            checkBoxNotContains.UseVisualStyleBackColor = true;
-            checkBoxNotContains.CheckedChanged += SelectedFilters_CheckedChanged;
-            // 
-            // checkBoxContains
-            // 
-            checkBoxContains.AutoSize = true;
-            checkBoxContains.Enabled = false;
-            checkBoxContains.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            checkBoxContains.Location = new Point(16, 82);
-            checkBoxContains.Name = "checkBoxContains";
-            checkBoxContains.Size = new Size(126, 29);
-            checkBoxContains.TabIndex = 4;
-            checkBoxContains.Text = "zawierające";
-            checkBoxContains.UseVisualStyleBackColor = true;
-            checkBoxContains.CheckedChanged += SelectedFilters_CheckedChanged;
-            // 
-            // textBoxNotContains
-            // 
-            textBoxNotContains.CharacterCasing = CharacterCasing.Upper;
-            textBoxNotContains.Enabled = false;
-            textBoxNotContains.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            textBoxNotContains.Location = new Point(171, 119);
-            textBoxNotContains.Name = "textBoxNotContains";
-            textBoxNotContains.Size = new Size(306, 37);
-            textBoxNotContains.TabIndex = 7;
-            // 
-            // textBoxContains
-            // 
-            textBoxContains.CharacterCasing = CharacterCasing.Upper;
-            textBoxContains.Enabled = false;
-            textBoxContains.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            textBoxContains.Location = new Point(171, 76);
-            textBoxContains.Name = "textBoxContains";
-            textBoxContains.Size = new Size(306, 37);
-            textBoxContains.TabIndex = 5;
+            tableLayoutPanel5.ColumnCount = 2;
+            tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel5.Controls.Add(groupBoxEndsWithFilters, 1, 0);
+            tableLayoutPanel5.Controls.Add(groupBoxBeginWithFilters, 0, 0);
+            tableLayoutPanel5.Dock = DockStyle.Fill;
+            tableLayoutPanel5.Location = new Point(3, 27);
+            tableLayoutPanel5.Margin = new Padding(0);
+            tableLayoutPanel5.Name = "tableLayoutPanel5";
+            tableLayoutPanel5.RowCount = 1;
+            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanel5.Size = new Size(703, 237);
+            tableLayoutPanel5.TabIndex = 14;
             // 
             // groupBoxEndsWithFilters
             // 
@@ -1332,8 +1264,8 @@
             labelScrabbePoints.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 238);
             labelScrabbePoints.Location = new Point(236, 0);
             labelScrabbePoints.Name = "labelScrabbePoints";
-            labelScrabbePoints.Size = new Size(124, 42);
-            labelScrabbePoints.TabIndex = 16;
+            labelScrabbePoints.Size = new Size(150, 46);
+            labelScrabbePoints.TabIndex = 22;
             labelScrabbePoints.Text = "0";
             labelScrabbePoints.TextAlign = ContentAlignment.MiddleCenter;
             // 
@@ -1377,7 +1309,7 @@
             groupBoxScrabbleBlanks.Dock = DockStyle.Top;
             groupBoxScrabbleBlanks.Location = new Point(0, 484);
             groupBoxScrabbleBlanks.Name = "groupBoxScrabbleBlanks";
-            groupBoxScrabbleBlanks.Size = new Size(360, 167);
+            groupBoxScrabbleBlanks.Size = new Size(386, 162);
             groupBoxScrabbleBlanks.TabIndex = 12;
             groupBoxScrabbleBlanks.TabStop = false;
             groupBoxScrabbleBlanks.Text = "Blanka";
@@ -1421,7 +1353,7 @@
             groupBoxScrabbleCharBonuses.Dock = DockStyle.Top;
             groupBoxScrabbleCharBonuses.Location = new Point(0, 270);
             groupBoxScrabbleCharBonuses.Name = "groupBoxScrabbleCharBonuses";
-            groupBoxScrabbleCharBonuses.Size = new Size(360, 213);
+            groupBoxScrabbleCharBonuses.Size = new Size(386, 214);
             groupBoxScrabbleCharBonuses.TabIndex = 11;
             groupBoxScrabbleCharBonuses.TabStop = false;
             groupBoxScrabbleCharBonuses.Text = "Premie literowe";
@@ -1677,8 +1609,8 @@
             SplitContainerCryptharitms.Panel2.Controls.Add(panelCrptSettings);
             SplitContainerCryptharitms.Panel2.Controls.Add(solveCryptharitmBtn);
             SplitContainerCryptharitms.Size = new Size(1167, 737);
-            SplitContainerCryptharitms.SplitterDistance = 704;
-            SplitContainerCryptharitms.TabIndex = 3;
+            SplitContainerCryptharitms.SplitterDistance = 761;
+            SplitContainerCryptharitms.TabIndex = 5;
             // 
             // textBoxCryptharitmResult
             // 
@@ -1716,38 +1648,25 @@
             labelCryptharitmResultsInfo.Text = "Znalezionych rozwiązań: 0";
             labelCryptharitmResultsInfo.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // solveCryptharitmBtn
+            // panelCrpt
             // 
-            solveCryptharitmBtn.Cursor = Cursors.Hand;
-            solveCryptharitmBtn.Dock = DockStyle.Bottom;
-            solveCryptharitmBtn.FlatStyle = FlatStyle.Flat;
-            solveCryptharitmBtn.Location = new Point(0, 703);
-            solveCryptharitmBtn.Name = "solveCryptharitmBtn";
-            solveCryptharitmBtn.Size = new Size(459, 34);
-            solveCryptharitmBtn.TabIndex = 9;
-            solveCryptharitmBtn.Text = "SZUKAJ ROZWIĄZAŃ";
-            solveCryptharitmBtn.UseVisualStyleBackColor = true;
-            solveCryptharitmBtn.Click += SolveCryptharitmBtn_Click;
+            panelCrpt.Dock = DockStyle.Fill;
+            panelCrpt.Location = new Point(0, 101);
+            panelCrpt.Name = "panelCrpt";
+            panelCrpt.Size = new Size(402, 591);
+            panelCrpt.TabIndex = 18;
             // 
-            // labelCryptharitm
+            // panelCrptSettings
             // 
-            labelCryptharitm.Dock = DockStyle.Top;
-            labelCryptharitm.Location = new Point(0, 0);
-            labelCryptharitm.Name = "labelCryptharitm";
-            labelCryptharitm.Size = new Size(459, 58);
-            labelCryptharitm.TabIndex = 13;
-            labelCryptharitm.Text = "  Podaj składowe działania, a pod kreską jego wynik.\r\n  Użyj maksymalnie 10 różnych liter.\r\n";
-            // 
-            // comboBoxOperations
-            // 
-            comboBoxOperations.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBoxOperations.FormattingEnabled = true;
-            comboBoxOperations.Items.AddRange(new object[] { "dodawanie", "odejmowanie", "mnożenie" });
-            comboBoxOperations.Location = new Point(252, 63);
-            comboBoxOperations.Name = "comboBoxOperations";
-            comboBoxOperations.Size = new Size(182, 33);
-            comboBoxOperations.TabIndex = 15;
-            comboBoxOperations.SelectedIndexChanged += ComboBoxOperations_SelectedIndexChanged;
+            panelCrptSettings.Controls.Add(label4);
+            panelCrptSettings.Controls.Add(RemoveComponentBtn);
+            panelCrptSettings.Controls.Add(AddComponentBtn);
+            panelCrptSettings.Controls.Add(comboBoxOperations);
+            panelCrptSettings.Dock = DockStyle.Top;
+            panelCrptSettings.Location = new Point(0, 0);
+            panelCrptSettings.Name = "panelCrptSettings";
+            panelCrptSettings.Size = new Size(402, 101);
+            panelCrptSettings.TabIndex = 17;
             // 
             // label4
             // 
@@ -1758,29 +1677,61 @@
             label4.TabIndex = 14;
             label4.Text = "Wybierz działanie:";
             // 
+            // RemoveComponentBtn
+            // 
+            RemoveComponentBtn.Cursor = Cursors.Hand;
+            RemoveComponentBtn.FlatStyle = FlatStyle.Flat;
+            RemoveComponentBtn.Location = new Point(303, 15);
+            RemoveComponentBtn.Name = "RemoveComponentBtn";
+            RemoveComponentBtn.Size = new Size(81, 61);
+            RemoveComponentBtn.TabIndex = 12;
+            RemoveComponentBtn.Text = "USUŃ";
+            RemoveComponentBtn.UseVisualStyleBackColor = true;
+            RemoveComponentBtn.Click += RemoveComponentBtn_Click;
+            // 
             // AddComponentBtn
             // 
             AddComponentBtn.Cursor = Cursors.Hand;
             AddComponentBtn.FlatStyle = FlatStyle.Flat;
-            AddComponentBtn.Location = new Point(55, 120);
+            AddComponentBtn.Location = new Point(194, 15);
             AddComponentBtn.Name = "AddComponentBtn";
-            AddComponentBtn.Size = new Size(175, 34);
+            AddComponentBtn.Size = new Size(87, 61);
             AddComponentBtn.TabIndex = 11;
             AddComponentBtn.Text = "DODAJ";
             AddComponentBtn.UseVisualStyleBackColor = true;
             AddComponentBtn.Click += AddComponentBtn_Click;
             // 
-            // RemoveComponentBtn
+            // comboBoxOperations
             // 
-            RemoveComponentBtn.Cursor = Cursors.Hand;
-            RemoveComponentBtn.FlatStyle = FlatStyle.Flat;
-            RemoveComponentBtn.Location = new Point(253, 120);
-            RemoveComponentBtn.Name = "RemoveComponentBtn";
-            RemoveComponentBtn.Size = new Size(175, 34);
-            RemoveComponentBtn.TabIndex = 12;
-            RemoveComponentBtn.Text = "USUŃ SKŁADNIK";
-            RemoveComponentBtn.UseVisualStyleBackColor = true;
-            RemoveComponentBtn.Click += RemoveComponentBtn_Click;
+            comboBoxOperations.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBoxOperations.FormattingEnabled = true;
+            comboBoxOperations.Items.AddRange(new object[] { "dodawanie", "odejmowanie", "mnożenie" });
+            comboBoxOperations.Location = new Point(15, 43);
+            comboBoxOperations.Name = "comboBoxOperations";
+            comboBoxOperations.Size = new Size(154, 33);
+            comboBoxOperations.TabIndex = 15;
+            comboBoxOperations.SelectedIndexChanged += ComboBoxOperations_SelectedIndexChanged;
+            // 
+            // solveCryptharitmBtn
+            // 
+            solveCryptharitmBtn.Cursor = Cursors.Hand;
+            solveCryptharitmBtn.Dock = DockStyle.Bottom;
+            solveCryptharitmBtn.FlatStyle = FlatStyle.Flat;
+            solveCryptharitmBtn.Location = new Point(0, 692);
+            solveCryptharitmBtn.Name = "solveCryptharitmBtn";
+            solveCryptharitmBtn.Size = new Size(402, 45);
+            solveCryptharitmBtn.TabIndex = 9;
+            solveCryptharitmBtn.Text = "SZUKAJ ROZWIĄZAŃ";
+            solveCryptharitmBtn.UseVisualStyleBackColor = true;
+            solveCryptharitmBtn.Click += SolveCryptharitmBtn_Click;
+            // 
+            // label108
+            // 
+            label108.Dock = DockStyle.Top;
+            label108.Location = new Point(3, 35);
+            label108.Name = "label108";
+            label108.Size = new Size(1167, 3);
+            label108.TabIndex = 4;
             // 
             // labelCryptharitms
             // 
@@ -4620,6 +4571,43 @@
             SplitContainerCryptharitms.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)SplitContainerCryptharitms).EndInit();
             SplitContainerCryptharitms.ResumeLayout(false);
+            panelCrptSettings.ResumeLayout(false);
+            panelCrptSettings.PerformLayout();
+            tabPageSudoku.ResumeLayout(false);
+            tableLayoutPanelSudokuMain.ResumeLayout(false);
+            sudokuControlPanel.ResumeLayout(false);
+            groupBoxClearSudoku.ResumeLayout(false);
+            groupBoxClearSudoku.PerformLayout();
+            panelSudoku.ResumeLayout(false);
+            panelSudokuGrid.ResumeLayout(false);
+            tableSudokuBoxes.ResumeLayout(false);
+            panelSudokuBox9.ResumeLayout(false);
+            tableSudokuBox9.ResumeLayout(false);
+            tableSudokuBox9.PerformLayout();
+            panelSudokuBox8.ResumeLayout(false);
+            tableSudokuBox8.ResumeLayout(false);
+            tableSudokuBox8.PerformLayout();
+            panelSudokuBox7.ResumeLayout(false);
+            tableSudokuBox7.ResumeLayout(false);
+            tableSudokuBox7.PerformLayout();
+            panelSudokuBox6.ResumeLayout(false);
+            tableSudokuBox6.ResumeLayout(false);
+            tableSudokuBox6.PerformLayout();
+            panelSudokuBox5.ResumeLayout(false);
+            tableSudokuBox5.ResumeLayout(false);
+            tableSudokuBox5.PerformLayout();
+            panelSudokuBox4.ResumeLayout(false);
+            tableSudokuBox4.ResumeLayout(false);
+            tableSudokuBox4.PerformLayout();
+            panelSudokuBox3.ResumeLayout(false);
+            tableSudokuBox3.ResumeLayout(false);
+            tableSudokuBox3.PerformLayout();
+            panelSudokuBox2.ResumeLayout(false);
+            tableSudokuBox2.ResumeLayout(false);
+            tableSudokuBox2.PerformLayout();
+            panelSudokuBox1.ResumeLayout(false);
+            tableSudokuBox1.ResumeLayout(false);
+            tableSudokuBox1.PerformLayout();
             tabPageDictionary.ResumeLayout(false);
             tableLayoutPanel3.ResumeLayout(false);
             groupBoxAddToDict.ResumeLayout(false);
@@ -4795,13 +4783,144 @@
         private Button RemoveComponentBtn;
         private Button AddComponentBtn;
         private ComboBox comboBoxOperations;
-        private Label label4;
-        private Label label7;
-        private TextBox textBoxCryptharitmResult;
-        public SplitContainer SplitContainerCryptharitms;
-        public Panel PanelPatternFilters;
-        private RadioButton radioUlozSamMode;
-        internal Label labelCryptharitmResultsInfo;
-        private Label labelCryptharitmInfo;
+        private Button solveCryptharitmBtn;
+        private Button buttonCalcuateSrabblePoints;
+        internal Label labelScrabbePoints;
+        private Panel panelScrabbleBtn;
+        private Label label34;
+        private TableLayoutPanel tableLayoutPanel5;
+        private GroupBox groupBoxEndsWithFilters;
+        private RadioButton radioButtonEndsWithNot;
+        private RadioButton radioButtonEndsWith;
+        private Label label25;
+        private CheckBox checkBoxEndsWithActive;
+        internal TextBox textBoxEndsWith;
+        private GroupBox groupBoxBeginWithFilters;
+        private CheckBox checkBoxBeginsWithActive;
+        private RadioButton radioButtonBeginWithNot;
+        private RadioButton radioButtonBeginsWith;
+        private Label label6;
+        internal TextBox textBoxBeginsWith;
+        private Label labelSpace4;
+        internal Label labelSudoku;
+        private TableLayoutPanel tableLayoutPanelSudokuMain;
+        private Panel panelSudokuGrid;
+        private TableLayoutPanel tableSudokuBoxes;
+        private Panel panelSudokuBox9;
+        private TableLayoutPanel tableSudokuBox9;
+        private Label label98;
+        private Label label99;
+        private Label label100;
+        private Label label101;
+        private Label label102;
+        private Label label103;
+        private Label label104;
+        private Label label105;
+        private Label label106;
+        private Panel panelSudokuBox8;
+        private TableLayoutPanel tableSudokuBox8;
+        private Label label89;
+        private Label label90;
+        private Label label91;
+        private Label label92;
+        private Label label93;
+        private Label label94;
+        private Label label95;
+        private Label label96;
+        private Label label97;
+        private Panel panelSudokuBox7;
+        private TableLayoutPanel tableSudokuBox7;
+        private Label label80;
+        private Label label81;
+        private Label label82;
+        private Label label83;
+        private Label label84;
+        private Label label85;
+        private Label label86;
+        private Label label87;
+        private Label label88;
+        private Panel panelSudokuBox6;
+        private TableLayoutPanel tableSudokuBox6;
+        private Label label71;
+        private Label label72;
+        private Label label73;
+        private Label label74;
+        private Label label75;
+        private Label label76;
+        private Label label77;
+        private Label label78;
+        private Label label79;
+        private Panel panelSudokuBox5;
+        private TableLayoutPanel tableSudokuBox5;
+        private Label label62;
+        private Label label63;
+        private Label label64;
+        private Label label65;
+        private Label label66;
+        private Label label67;
+        private Label label68;
+        private Label label69;
+        private Label label70;
+        private Panel panelSudokuBox4;
+        private TableLayoutPanel tableSudokuBox4;
+        private Label label53;
+        private Label label54;
+        private Label label55;
+        private Label label56;
+        private Label label57;
+        private Label label58;
+        private Label label59;
+        private Label label60;
+        private Label label61;
+        private Panel panelSudokuBox3;
+        private TableLayoutPanel tableSudokuBox3;
+        private Label label44;
+        private Label label45;
+        private Label label46;
+        private Label label47;
+        private Label label48;
+        private Label label49;
+        private Label label50;
+        private Label label51;
+        private Label label52;
+        private Panel panelSudokuBox2;
+        private TableLayoutPanel tableSudokuBox2;
+        private Label label17;
+        private Label label18;
+        private Label label27;
+        private Label label38;
+        private Label label39;
+        private Label label40;
+        private Label label41;
+        private Label label42;
+        private Label label43;
+        private Panel panelSudokuBox1;
+        private TableLayoutPanel tableSudokuBox1;
+        private Label label16;
+        private Label label15;
+        private Label label14;
+        private Label label13;
+        private Label label12;
+        private Label label11;
+        private Label label10;
+        private Label label9;
+        private Label label8;
+        private Panel sudokuControlPanel;
+        private Button buttonValidateSudoku;
+        private Button button1;
+        private Label labelsudokuSpace1;
+        private Button buttonSolveSudoku;
+        private Panel panelSudoku;
+        private Label labelSpace5;
+        internal Label labelSudokuSolveInfo;
+        private GroupBox groupBoxClearSudoku;
+        private CheckBox checkBoxClearSelection;
+        private CheckBox checkBoxClearColors;
+        private CheckBox checkBoxClearDigits;
+        private Button buttonClearSudokuGrid;
+        private Button buttonCheckUniquness;
+        private Label labelsudokuSpace3;
+        private Button buttonSolveSelection;
+        private Label labelsudokuSpace2;
     }
 }
