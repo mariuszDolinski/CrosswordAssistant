@@ -5,6 +5,7 @@ using CrosswordAssistant.Entities.Requests;
 using CrosswordAssistant.Entities.Responses;
 using CrosswordAssistant.Searches;
 using CrosswordAssistant.Services;
+using CrosswordAssistant.Services.Sudoku;
 using System.Globalization;
 using System.Text.RegularExpressions;
 
@@ -21,13 +22,17 @@ namespace CrosswordAssistant
         private readonly List<Label> _infoLabels = [];
         private readonly Dictionary<string, string> _filtersNames = [];
         private readonly CustomControls _customControls;
+        private readonly SudokuService _sudokuService;
+
+        private bool _isCtrlPressedInSudoku;
+
 
         public MainForm()
         {
             InitializeComponent();
-            MinimumSize = Size;
-            MaximumSize = Size;
+            SetSize();
             KeyPreview = true;
+            _isCtrlPressedInSudoku = false;
 
             try { Settings.Init(); }
             catch (Exception ex)
@@ -52,6 +57,8 @@ namespace CrosswordAssistant
                 MessageBox.Show("B³¹d przy inicjalizacji aplikacji. SprawdŸ szczegó³y w logu.");
                 Logger.WriteToLog(LogLevel.Error, ex.Message, ex.StackTrace ?? "");
             }
+
+            _sudokuService = new SudokuService(tableSudokuBoxes);
         }
 
         #region events handlers
@@ -118,6 +125,46 @@ namespace CrosswordAssistant
                 MessageBox.Show("Podczas próby rozwi¹zania kryptarytmu wyst¹pi³ b³¹d. SprawdŸ szczegó³y w logu aplikacji.");
                 Logger.WriteToLog(LogLevel.Error, ex.Message, ex.StackTrace ?? "");
             }
+        }
+        private async void SolveSudokuBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (sender is not Button btn) return;
+                SudokuMode mode = SudokuMode.None;
+                if (btn.TabIndex == 201) mode = SudokuMode.Full;
+                else if (btn.TabIndex == 202) mode = SudokuMode.Selection;
+                else if (btn.TabIndex == 203) mode = SudokuMode.Uniqueness;
+                await SearchForSudokuSolution(mode);
+            }
+            catch (Exception ex)
+            {
+                labelSudokuSolveInfo.Text = "Znalezionych rozwi¹zañ: 0";
+                IsSearchPending(false);
+                MessageBox.Show("Podczas próby rozwi¹zania sudoku wyst¹pi³ b³¹d. SprawdŸ szczegó³y w logu aplikacji.");
+                Logger.WriteToLog(LogLevel.Error, ex.Message, ex.StackTrace ?? "");
+            }
+        }
+        private void ValidateSudokuBtn_Click(object sender, EventArgs e)
+        {
+            SudokuSolver sSolver = new(SudokuMode.None);
+            var msg = sSolver.ValidateSudoku(_sudokuService.Digits);
+            if (msg.Length == 0)
+            {
+                MessageBox.Show("Poprawny diagram sudoku");
+                labelSudokuSolveInfo.Text = "Diagram sudoku nie zwaiera b³êdów.";
+            }
+            else
+            {
+                MessageBox.Show(msg);
+                labelSudokuSolveInfo.Text = msg;
+            }
+        }
+        private void ClearSudokuGridBtn_Click(object sender, EventArgs e)
+        {
+            _sudokuService.ClearGrid(checkBoxClearDigits.Checked, checkBoxClearColors.Checked,
+                checkBoxClearSelection.Checked);
+            if (checkBoxClearDigits.Checked) labelSudokuSolveInfo.Text = "Kliknij odpowiedni przycisk, aby rozpocz¹æ...";
         }
         private void AddComponentBtn_Click(object sender, EventArgs e)
         {
@@ -478,35 +525,11 @@ namespace CrosswordAssistant
                             break;
                     }
                     break;
+                case SearchMode.Sudoku:
+                    SudokuKeyDownHandle(e);
+                    break;
                 default:
-                    switch (e.KeyCode)
-                    {
-                        case Keys.Enter:
-                            SearchPattern_Click(sender, e);
-                            e.SuppressKeyPress = true;
-                            break;
-                        case Keys.F6:
-                            textBoxPattern.SelectAll();
-                            textBoxPattern.Focus();
-                            break;
-                    }
-                    if (e.Control)
-                    {
-                        switch (e.KeyCode)
-                        {
-                            case Keys.D1: radioPatternMode.Checked = true; break;
-                            case Keys.D2: radioAnagramMode.Checked = true; break;
-                            case Keys.D3: radioMetagramMode.Checked = true; break;
-                            case Keys.D4: radioPM1Mode.Checked = true; break;
-                            case Keys.D5: radioSubWordMode.Checked = true; break;
-                            case Keys.D6: radioSuperWordMode.Checked = true; break;
-                            case Keys.D7: radioStenoAnagramMode.Checked = true; break;
-                            case Keys.D8: radioWordInWord.Checked = true; break;
-                            case Keys.D9:
-                                checkBoxLength.Checked = !checkBoxLength.Checked;
-                                break;
-                        }
-                    }
+                    PatternKeyDownHandle(e, sender);
                     break;
             }
         }
@@ -514,6 +537,7 @@ namespace CrosswordAssistant
         {
             labelCurrentPatternLen.Text = textBoxPattern.Text.Length.ToString();
             labelScrabbleCurrentPatternLen.Text = textBoxScrabblePattern.Text.Length.ToString();
+            if (e.KeyCode == Keys.ControlKey) _isCtrlPressedInSudoku = false;
         }
         private void SearchGoogle_MenuClick(object sender, EventArgs e)
         {
@@ -538,20 +562,20 @@ namespace CrosswordAssistant
             switch (comboBoxOperations.SelectedIndex)
             {
                 case 1:
-                    AddComponentBtn.Text = "DODAJ SK£ADNIK";
-                    RemoveComponentBtn.Text = "USUÑ SK£ADNIK";
+                    //AddComponentBtn.Text = "DODAJ SK£ADNIK";
+                    //RemoveComponentBtn.Text = "USUÑ SK£ADNIK";
                     _customControls.SetCurrentOperatorLabelText("-");
                     Search.CurrentOperator = Operators.Subtraction;
                     break;
                 case 2:
-                    AddComponentBtn.Text = "DODAJ CZYNNIK";
-                    RemoveComponentBtn.Text = "USUÑ CZYNNIK";
+                    //AddComponentBtn.Text = "DODAJ CZYNNIK";
+                    //RemoveComponentBtn.Text = "USUÑ CZYNNIK";
                     _customControls.SetCurrentOperatorLabelText("•");
                     Search.CurrentOperator = Operators.Multiplication;
                     break;
                 default:
-                    AddComponentBtn.Text = "DODAJ SK£ADNIK";
-                    RemoveComponentBtn.Text = "USUÑ SK£ADNIK";
+                    //AddComponentBtn.Text = "DODAJ SK£ADNIK";
+                    //RemoveComponentBtn.Text = "USUÑ SK£ADNIK";
                     _customControls.SetCurrentOperatorLabelText("+");
                     Search.CurrentOperator = Operators.Addition;
                     break;
@@ -585,6 +609,33 @@ namespace CrosswordAssistant
         private void MainForm_Load(object sender, EventArgs e)
         {
             _appearance.SetMainFormLocation();
+        }
+        private void SudokuCell_MouseDown(object sender, MouseEventArgs e)
+        {
+            SudokuService.MultiSelectOn = true;
+            var lbl = sender as Label;
+            if (lbl is not null) lbl.Capture = false;
+            SudokuSelectedCellAction(sender, e);
+        }
+        private void SudokuCell_MouseUp(object sender, MouseEventArgs e)
+        {
+            SudokuService.MultiSelectOn = false;
+        }
+        private void SudokuCell_MouseEnter(object sender, EventArgs e)
+        {
+            if (SudokuService.MultiSelectOn)
+            {
+                if (sender is not Label cellLabel) return;
+                int x = cellLabel.TabIndex / 10;
+                int y = cellLabel.TabIndex % 10;
+                var selectedCellIndex = _sudokuService.ExistsInSelectedCells(x, y);
+                if (selectedCellIndex < 0)
+                {
+                    cellLabel.BackColor = Color.LightBlue;
+                    int value = cellLabel.Text.Length == 0 ? 0 : int.Parse(cellLabel.Text);
+                    _sudokuService.CurrentSelectedCells.Add(new Cell(x, y, value, cellLabel));
+                }
+            }
         }
 
         #endregion
@@ -631,6 +682,10 @@ namespace CrosswordAssistant
                     AddComponentBtn.Enabled = !pending;
                     RemoveComponentBtn.Enabled = !pending;
                     comboBoxOperations.Enabled = !pending;
+                    break;
+                case SearchMode.Sudoku:
+                    buttonValidateSudoku.Enabled = !pending;
+                    buttonSolveSudoku.Enabled = !pending;
                     break;
                 default: textBoxPattern.ReadOnly = pending; break;
             }
@@ -681,7 +736,7 @@ namespace CrosswordAssistant
                         case SearchMode.Cryptharitm: FillTextBoxResults(searchResponse.SearchResults, textBoxCryptharitmResult); break;
                         default: FillTextBoxResults(searchResponse.SearchResults, textBoxPatternResults); break;
                     }
-                    
+
                 }
             }
             IsSearchPending(false);
@@ -751,6 +806,13 @@ namespace CrosswordAssistant
             List<string> matches = await Task.Run(() => search.SearchMatches(pattern));
             labelPatternResultsInfo.Text = "Znalezionych dopasowañ: " + matches.Count;
             return new SearchResponse(matches, true, "");
+        }
+        private async Task<SudokuResponse> ExecuteSudokuSolverAsync(SudokuMode mode)
+        {
+            labelSudokuSolveInfo.Text = mode == SudokuMode.Uniqueness ? "Sprawdzam unikalnoœæ..." : "Szukam rozwi¹zañ...";
+            SudokuSolver sSolver = new(mode);
+            var response = await Task.Run(() => sSolver.SolveSudoku(_sudokuService.Digits));
+            return response;
         }
         private void SetLengthControlsEnabled(bool isEnabled)
         {
@@ -941,7 +1003,10 @@ namespace CrosswordAssistant
                     Search.Mode = SearchMode.Cryptharitm;
                     break;
                 case 3:
+                    Search.Mode = SearchMode.Sudoku;
+                    break;
                 case 4:
+                case 5:
                     Search.Mode = SearchMode.None;
                     break;
                 default:
@@ -986,7 +1051,159 @@ namespace CrosswordAssistant
             lbl.BackColor = Color.LightSteelBlue;
             textBoxAbout.Text = msg;
         }
+        private void SetSize()
+        {
+            if (DeviceDpi < 100)
+            {
+                Width = 859; Height = 538;
+            }
+            MinimumSize = Size;
+            MaximumSize = Size;
+        }
+        private void SudokuKeyDownHandle(KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.ControlKey) _isCtrlPressedInSudoku = true;
+            if (e.KeyCode == Keys.Delete || e.KeyCode == Keys.Back) _sudokuService.UpdateSelectedCellsDigit(0);
+            if ((e.KeyCode >= Keys.D1 && e.KeyCode <= Keys.D9) ||
+                        (e.KeyCode >= Keys.NumPad0 && e.KeyCode <= Keys.NumPad9))
+            {
+                if (_sudokuService.CurrentSelectedCells.Count > 0)
+                {
+                    var value = e.KeyCode.ToString()[1].ToString();
+                    _sudokuService.UpdateSelectedCellsDigit(int.Parse(value));
+                }
+            }
+        }
+        private void PatternKeyDownHandle(KeyEventArgs e, object sender)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Enter:
+                    SearchPattern_Click(sender, e);
+                    e.SuppressKeyPress = true;
+                    break;
+                case Keys.F6:
+                    textBoxPattern.SelectAll();
+                    textBoxPattern.Focus();
+                    break;
+            }
+            if (e.Control)
+            {
+                switch (e.KeyCode)
+                {
+                    case Keys.D1: radioPatternMode.Checked = true; break;
+                    case Keys.D2: radioAnagramMode.Checked = true; break;
+                    case Keys.D3: radioMetagramMode.Checked = true; break;
+                    case Keys.D4: radioPM1Mode.Checked = true; break;
+                    case Keys.D5: radioSubWordMode.Checked = true; break;
+                    case Keys.D6: radioSuperWordMode.Checked = true; break;
+                    case Keys.D7: radioStenoAnagramMode.Checked = true; break;
+                    case Keys.D8: radioWordInWord.Checked = true; break;
+                    case Keys.D9:
+                        checkBoxLength.Checked = !checkBoxLength.Checked;
+                        break;
+                }
+            }
+        }
+        private void SudokuSelectedCellAction(object sender, EventArgs e)
+        {
+            if (sender is not Label cellLabel) return;
+            int x = cellLabel.TabIndex / 10;
+            int y = cellLabel.TabIndex % 10;
+            var selectedCellIndex = _sudokuService.ExistsInSelectedCells(x, y);
+            if (selectedCellIndex >= 0)
+            {
+                cellLabel.BackColor = Color.Transparent;
+                _sudokuService.CurrentSelectedCells.RemoveAt(selectedCellIndex);
+            }
+            else
+            {
+                cellLabel.BackColor = Color.LightBlue;
+                if (!_isCtrlPressedInSudoku) _sudokuService.ClearSelectedCells();
+                int value = cellLabel.Text.Length == 0 ? 0 : int.Parse(cellLabel.Text);
+                _sudokuService.CurrentSelectedCells.Add(new Cell(x, y, value, cellLabel));
+            }
+        }
+        private async Task SearchForSudokuSolution(SudokuMode mode)
+        {
+            if (DictionaryService.PendingDictionaryLoading || Search.IsPending)
+            {
+                MessageBox.Show("Trwa inne wyszukiwanie lub ³adowanie nowego s³ownika. Spróbuj ponownie póŸniej", "Inna operacja w toku", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            IsSearchPending(true);
+
+            var response = await ExecuteSudokuSolverAsync(mode);
+            if (response.ValidationResult)
+            {
+                var msg = string.Empty;
+                if (mode == SudokuMode.Uniqueness)
+                {
+                    if (response.SolutionsCount > 1)
+                    {
+                        msg = "Sudoku nie jest unikalne, posiada wiêcej ni¿ jedno rozwi¹zanie.";
+                    }
+                    else
+                    {
+                        msg = "Sudoku jest unikalne, posiada dok³adnie jedno rozwi¹zanie.";
+                    }
+                    MessageBox.Show(msg, "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    labelSudokuSolveInfo.Text = msg;
+                }
+                else
+                {
+                    if(mode == SudokuMode.Selection && !_sudokuService.IsAnyEmptyCellSelected())
+                    {
+                        MessageBox.Show("Najpierw zaznacz jakieœ puste komórki", "Brak zaznaczenia",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    if (response.SolutionsCount > 1)
+                    {
+                        MessageBox.Show("Podane sudoku nie jest unikalne. Wyœwietlam przyk³adowe rozwi¹zanie.", "",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    _sudokuService.FillCurrentGrid(response.SolvedGrid!, mode);
+                    labelSudokuSolveInfo.Text = $"Znalezionych rozwi¹zañ: {response.SolutionsCount}";
+                }
+            }
+            else
+            {
+                MessageBox.Show(response.Message, "Niepoprawne sudoku", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                labelSudokuSolveInfo.Text = "Znalezionych rozwi¹zañ: 0";
+            }
+            IsSearchPending(false);
+            SetMode(tabControl.SelectedIndex);
+        }
 
         #endregion
+
+        private void testBtn_Click(object sender, EventArgs e)
+        {
+            int[,] board = new int[,]
+            {
+                {0, 8, 0, 1, 0, 7, 4, 9, 0 },
+                {0, 0, 0, 0, 0, 0, 0, 1, 8 },
+                {9, 0, 0, 2, 8, 0, 0, 0, 0 },
+                {8, 0, 4, 6, 7, 0, 5, 3, 0 },
+                {0, 2, 0, 0, 3, 0, 0, 0, 0 },
+                {1, 0, 0, 0, 0, 0, 0, 0, 7 },
+                {0, 3, 0, 4, 0, 5, 0, 6, 2 },
+                {2, 0, 0, 0, 6, 0, 0, 0, 0 },
+                {0, 5, 0, 9, 0, 0, 0, 7, 0 }
+            };
+            int[,] board2 = new int[,]
+            {
+                {4, 0, 0, 3, 0, 0, 6, 5, 0 },
+                {0, 0, 0, 0, 0, 0, 7, 0, 0 },
+                {0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                {0, 0, 0, 5, 0, 7, 1, 0, 0 },
+                {8, 0, 0, 0, 0, 0, 0, 0, 4 },
+                {2, 0, 0, 0, 0, 0, 0, 0, 0 },
+                {0, 7, 0, 0, 2, 0, 0, 3, 0 },
+                {0, 0, 0, 4, 0, 0, 0, 0, 8 },
+                {0, 1, 0, 0, 0, 0, 0, 0, 0 },
+            };
+            _sudokuService.FillCurrentGrid(board2, SudokuMode.Initial);
+        }
     }
 }

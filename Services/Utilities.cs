@@ -34,5 +34,14 @@ namespace CrosswordAssistant.Services
             return result;
         }
 
+        public static int[,] CopyArray(int[,] tab, int rowCount, int colCount)
+        {
+            int[,] result = new int[rowCount, colCount];
+            for (int i = 0; i < rowCount; i++)
+                for (int j = 0; j < colCount; j++)
+                    result[i, j] = tab[i, j];
+            return result;
+        }
+
     }
 }
