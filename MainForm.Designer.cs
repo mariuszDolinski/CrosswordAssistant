@@ -66,6 +66,7 @@
             textBoxContains = new TextBox();
             tableLayoutPanelPatternMode = new TableLayoutPanel();
             groupBoxMode = new GroupBox();
+            radioWordsFromWord = new RadioButton();
             radioUlozSamMode = new RadioButton();
             radioWordInWord = new RadioButton();
             radioStenoAnagramMode = new RadioButton();
@@ -155,7 +156,6 @@
             checkBoxClearColors = new CheckBox();
             checkBoxClearDigits = new CheckBox();
             buttonSolveSudoku = new Button();
-            button1 = new Button();
             labelsudokuSpace1 = new Label();
             buttonValidateSudoku = new Button();
             panelSudoku = new Panel();
@@ -319,6 +319,7 @@
             label19 = new Label();
             label22 = new Label();
             newDictionaryDialog = new OpenFileDialog();
+            labelWordsFromWordInfo = new Label();
             tabControl.SuspendLayout();
             tabPattern.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainerResults).BeginInit();
@@ -821,6 +822,7 @@
             // 
             // groupBoxMode
             // 
+            groupBoxMode.Controls.Add(radioWordsFromWord);
             groupBoxMode.Controls.Add(radioUlozSamMode);
             groupBoxMode.Controls.Add(radioWordInWord);
             groupBoxMode.Controls.Add(radioStenoAnagramMode);
@@ -838,6 +840,18 @@
             groupBoxMode.TabIndex = 0;
             groupBoxMode.TabStop = false;
             groupBoxMode.Text = "Tryb";
+            // 
+            // radioWordsFromWord
+            // 
+            radioWordsFromWord.AutoSize = true;
+            radioWordsFromWord.Location = new Point(216, 174);
+            radioWordsFromWord.Name = "radioWordsFromWord";
+            radioWordsFromWord.Size = new Size(158, 29);
+            radioWordsFromWord.TabIndex = 15;
+            radioWordsFromWord.TabStop = true;
+            radioWordsFromWord.Text = "Słowa ze słowa";
+            radioWordsFromWord.UseVisualStyleBackColor = true;
+            radioWordsFromWord.CheckedChanged += RadioButtonMode_CheckedChanged;
             // 
             // radioUlozSamMode
             // 
@@ -1783,7 +1797,6 @@
             sudokuControlPanel.Controls.Add(labelsudokuSpace2);
             sudokuControlPanel.Controls.Add(groupBoxClearSudoku);
             sudokuControlPanel.Controls.Add(buttonSolveSudoku);
-            sudokuControlPanel.Controls.Add(button1);
             sudokuControlPanel.Controls.Add(labelsudokuSpace1);
             sudokuControlPanel.Controls.Add(buttonValidateSudoku);
             sudokuControlPanel.Dock = DockStyle.Fill;
@@ -1906,17 +1919,6 @@
             buttonSolveSudoku.Text = "ROZWIĄŻ CAŁY DIAGRAM";
             buttonSolveSudoku.UseVisualStyleBackColor = true;
             buttonSolveSudoku.Click += SolveSudokuBtn_Click;
-            // 
-            // button1
-            // 
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.Location = new Point(95, 330);
-            button1.Name = "button1";
-            button1.Size = new Size(271, 40);
-            button1.TabIndex = 2;
-            button1.Text = "TEST (WYPEŁNIJ DIAGRAM)";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += testBtn_Click;
             // 
             // labelsudokuSpace1
             // 
@@ -4162,8 +4164,7 @@
             // 
             tableLayoutPanel4.ColumnCount = 1;
             tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutPanel4.Controls.Add(labelCryptharitmInfo, 0, 11);
-            tableLayoutPanel4.Controls.Add(labelWordInWordInfo, 0, 10);
+            tableLayoutPanel4.Controls.Add(labelWordsFromWordInfo, 0, 10);
             tableLayoutPanel4.Controls.Add(labelStenoAnagramInfo, 0, 8);
             tableLayoutPanel4.Controls.Add(labelSuperWordInfo, 0, 7);
             tableLayoutPanel4.Controls.Add(labelSubwordInfo, 0, 6);
@@ -4173,14 +4174,16 @@
             tableLayoutPanel4.Controls.Add(labelMetagramInfo, 0, 2);
             tableLayoutPanel4.Controls.Add(labelAnagramInfo, 0, 1);
             tableLayoutPanel4.Controls.Add(labelPatternInfo, 0, 0);
-            tableLayoutPanel4.Controls.Add(labelScrabbleInfo, 0, 9);
-            tableLayoutPanel4.Controls.Add(buttonSettings, 0, 14);
-            tableLayoutPanel4.Controls.Add(labelShortcuts, 0, 13);
-            tableLayoutPanel4.Controls.Add(labelInfoFilters, 0, 12);
+            tableLayoutPanel4.Controls.Add(buttonSettings, 0, 15);
+            tableLayoutPanel4.Controls.Add(labelShortcuts, 0, 14);
+            tableLayoutPanel4.Controls.Add(labelScrabbleInfo, 0, 13);
+            tableLayoutPanel4.Controls.Add(labelWordInWordInfo, 0, 9);
+            tableLayoutPanel4.Controls.Add(labelCryptharitmInfo, 0, 12);
+            tableLayoutPanel4.Controls.Add(labelInfoFilters, 0, 11);
             tableLayoutPanel4.Dock = DockStyle.Left;
             tableLayoutPanel4.Location = new Point(3, 40);
             tableLayoutPanel4.Name = "tableLayoutPanel4";
-            tableLayoutPanel4.RowCount = 15;
+            tableLayoutPanel4.RowCount = 16;
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
@@ -4196,6 +4199,7 @@
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
+            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
             tableLayoutPanel4.Size = new Size(231, 735);
             tableLayoutPanel4.TabIndex = 13;
             // 
@@ -4205,7 +4209,7 @@
             labelCryptharitmInfo.Cursor = Cursors.Hand;
             labelCryptharitmInfo.Dock = DockStyle.Fill;
             labelCryptharitmInfo.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            labelCryptharitmInfo.Location = new Point(0, 440);
+            labelCryptharitmInfo.Location = new Point(0, 480);
             labelCryptharitmInfo.Margin = new Padding(0, 0, 3, 5);
             labelCryptharitmInfo.Name = "labelCryptharitmInfo";
             labelCryptharitmInfo.Size = new Size(228, 35);
@@ -4220,7 +4224,7 @@
             labelWordInWordInfo.Cursor = Cursors.Hand;
             labelWordInWordInfo.Dock = DockStyle.Fill;
             labelWordInWordInfo.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            labelWordInWordInfo.Location = new Point(0, 400);
+            labelWordInWordInfo.Location = new Point(0, 360);
             labelWordInWordInfo.Margin = new Padding(0, 0, 3, 5);
             labelWordInWordInfo.Name = "labelWordInWordInfo";
             labelWordInWordInfo.Size = new Size(228, 35);
@@ -4370,7 +4374,7 @@
             labelScrabbleInfo.Cursor = Cursors.Hand;
             labelScrabbleInfo.Dock = DockStyle.Fill;
             labelScrabbleInfo.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            labelScrabbleInfo.Location = new Point(0, 360);
+            labelScrabbleInfo.Location = new Point(0, 520);
             labelScrabbleInfo.Margin = new Padding(0, 0, 3, 5);
             labelScrabbleInfo.Name = "labelScrabbleInfo";
             labelScrabbleInfo.Size = new Size(228, 35);
@@ -4399,7 +4403,7 @@
             labelShortcuts.Cursor = Cursors.Hand;
             labelShortcuts.Dock = DockStyle.Fill;
             labelShortcuts.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            labelShortcuts.Location = new Point(0, 520);
+            labelShortcuts.Location = new Point(0, 560);
             labelShortcuts.Margin = new Padding(0, 0, 3, 5);
             labelShortcuts.Name = "labelShortcuts";
             labelShortcuts.Size = new Size(228, 35);
@@ -4414,7 +4418,7 @@
             labelInfoFilters.Cursor = Cursors.Hand;
             labelInfoFilters.Dock = DockStyle.Fill;
             labelInfoFilters.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            labelInfoFilters.Location = new Point(0, 480);
+            labelInfoFilters.Location = new Point(0, 440);
             labelInfoFilters.Margin = new Padding(0, 0, 3, 5);
             labelInfoFilters.Name = "labelInfoFilters";
             labelInfoFilters.Size = new Size(228, 35);
@@ -4507,6 +4511,21 @@
             newDictionaryDialog.FileName = "slownik.txt";
             newDictionaryDialog.Filter = "Pliki tekstowe|*.txt";
             newDictionaryDialog.Title = "Wybierz plik ze słownikiem";
+            // 
+            // labelWordsFromWordInfo
+            // 
+            labelWordsFromWordInfo.BackColor = Color.Silver;
+            labelWordsFromWordInfo.Cursor = Cursors.Hand;
+            labelWordsFromWordInfo.Dock = DockStyle.Fill;
+            labelWordsFromWordInfo.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            labelWordsFromWordInfo.Location = new Point(0, 400);
+            labelWordsFromWordInfo.Margin = new Padding(0, 0, 3, 5);
+            labelWordsFromWordInfo.Name = "labelWordsFromWordInfo";
+            labelWordsFromWordInfo.Size = new Size(228, 35);
+            labelWordsFromWordInfo.TabIndex = 22;
+            labelWordsFromWordInfo.Text = "SŁOWA ZE SŁOWA";
+            labelWordsFromWordInfo.TextAlign = ContentAlignment.MiddleLeft;
+            labelWordsFromWordInfo.Click += InfoLabel_Click;
             // 
             // MainForm
             // 
@@ -4907,7 +4926,6 @@
         private Label label8;
         private Panel sudokuControlPanel;
         private Button buttonValidateSudoku;
-        private Button button1;
         private Label labelsudokuSpace1;
         private Button buttonSolveSudoku;
         private Panel panelSudoku;
@@ -4922,5 +4940,7 @@
         private Label labelsudokuSpace3;
         private Button buttonSolveSelection;
         private Label labelsudokuSpace2;
+        private RadioButton radioWordsFromWord;
+        private Label labelWordsFromWordInfo;
     }
 }

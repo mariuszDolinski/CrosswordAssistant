@@ -12,8 +12,9 @@
         SuperWord = 8,
         StenoAnagram = 9,
         WordInWord = 10,
-        Cryptharitm = 11,
-        Sudoku = 12,
+        WordsFromWord = 11,
+        Cryptharitm = 12,
+        Sudoku = 13,
         None = 0
     }
 }

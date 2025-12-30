@@ -406,6 +406,10 @@ namespace CrosswordAssistant
             {
                 OnModeChanged(Messages.UlozSamModeMessage, true);
             }
+            else if (radioWordsFromWord.Checked)
+            {
+                OnModeChanged(Messages.MetagramModeMessage, false);
+            }
         }
         private void RadioLength_CheckedChanged(object sender, EventArgs e)
         {
@@ -658,6 +662,7 @@ namespace CrosswordAssistant
             _infoLabels.Add(labelStenoAnagramInfo);
             _infoLabels.Add(labelWordInWordInfo);
             _infoLabels.Add(labelCryptharitmInfo);
+            _infoLabels.Add(labelWordsFromWordInfo);
             SetFileInfo(0);
             labelAbout.Text = Messages.VersionInfo;
             labelMergeDicts.Text = Messages.MergeDictsInfo;
@@ -1019,6 +1024,7 @@ namespace CrosswordAssistant
                     else if (radioStenoAnagramMode.Checked) Search.Mode = SearchMode.StenoAnagram;
                     else if (radioWordInWord.Checked) Search.Mode = SearchMode.WordInWord;
                     else if (radioUlozSamMode.Checked) Search.Mode = SearchMode.UluzSam;
+                    else if (radioWordsFromWord.Checked) Search.Mode = SearchMode.WordsFromWord;
                     else Search.Mode = SearchMode.None;
                     break;
             }
@@ -1177,33 +1183,5 @@ namespace CrosswordAssistant
 
         #endregion
 
-        private void testBtn_Click(object sender, EventArgs e)
-        {
-            int[,] board = new int[,]
-            {
-                {0, 8, 0, 1, 0, 7, 4, 9, 0 },
-                {0, 0, 0, 0, 0, 0, 0, 1, 8 },
-                {9, 0, 0, 2, 8, 0, 0, 0, 0 },
-                {8, 0, 4, 6, 7, 0, 5, 3, 0 },
-                {0, 2, 0, 0, 3, 0, 0, 0, 0 },
-                {1, 0, 0, 0, 0, 0, 0, 0, 7 },
-                {0, 3, 0, 4, 0, 5, 0, 6, 2 },
-                {2, 0, 0, 0, 6, 0, 0, 0, 0 },
-                {0, 5, 0, 9, 0, 0, 0, 7, 0 }
-            };
-            int[,] board2 = new int[,]
-            {
-                {4, 0, 0, 3, 0, 0, 6, 5, 0 },
-                {0, 0, 0, 0, 0, 0, 7, 0, 0 },
-                {0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                {0, 0, 0, 5, 0, 7, 1, 0, 0 },
-                {8, 0, 0, 0, 0, 0, 0, 0, 4 },
-                {2, 0, 0, 0, 0, 0, 0, 0, 0 },
-                {0, 7, 0, 0, 2, 0, 0, 3, 0 },
-                {0, 0, 0, 4, 0, 0, 0, 0, 8 },
-                {0, 1, 0, 0, 0, 0, 0, 0, 0 },
-            };
-            _sudokuService.FillCurrentGrid(board2, SudokuMode.Initial);
-        }
     }
 }

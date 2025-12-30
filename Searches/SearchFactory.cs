@@ -20,6 +20,7 @@ namespace CrosswordAssistant.Searches
                 SearchMode.StenoAnagram => new StenoAnagramSearch(),
                 SearchMode.WordInWord => new WordInWordSearch(),
                 SearchMode.Cryptharitm => new CryptharitmSearch(),
+                SearchMode.WordsFromWord => new WordsFromWordSearch(),
                 _ => throw new NotImplementedException("SearchFactory Error: Search not implemented"),
             };
         }

@@ -9,7 +9,7 @@
         public static string LengthModeMessage { get; } = "Wybierz dodatkowe filtry i kliknij Szukaj...";
         public static string UlozSamModeMessage { get; } = "Podaj wzorzec złożony z cyfr 1-8 i kliknij Szukaj...";
         public static string EmptyPattern { get; } = "Wzorzec nie zawiera żadnych znaków.";
-        public static string VersionInfo { get; } = "Pomocnik szaradzisty v3.1.3" + Environment.NewLine +
+        public static string VersionInfo { get; } = "Pomocnik szaradzisty v3.2.4" + Environment.NewLine +
                 "Autor: Mariusz Doliński" + Environment.NewLine + "© 2025";
         public static string MergeDictsInfo { get; } = "Wczytaj plik z wyrazami, które chcesz dodać do bieżącego słownika";
         public static string PatternInfo { get; } = "Wyszukuje wyrazy pasujące do podanego wzorca. Znak kropki (.) zastępuje dowolną jedną literę, " +
@@ -73,6 +73,11 @@
             "dopasowany, gdyż wyrażenie AŁAS nie występuje w słowniku." + Environment.NewLine + Environment.NewLine +
             "W tym trybie wzorzec musi zawierać co najmniej 3 kropki.";
 
+        public static string WordsFromWordInfo { get; } = "W tym trybie wyszukiwane są wszystkie wyrazy, które złożone są tylko z liter podanych we wzorcu. " +
+            " Litery te mogą wystapić dowolną ilość razy (w szczególności mogą nie wystąpić wcale), np. " +
+            "do słowa AGREST dopasowane zostaną m. in. słowa: GEST, TARG, STRATEG, AGREGAT." + Environment.NewLine + Environment.NewLine +
+            "UWAGA. W tym trybie dopasowywane są tylko wyrazy złożone z co najmniej 3 liter.";
+
         public static string CryptharitmInfo { get; } = "Tryb do szukania rozwiązań kryptarytmów, czyli łamigłowek, w których w poprawnym działaniu, " +
             "wszystkie cyfry zostały zastąpione literami (różnym cyfrom odpowiadają różne litery, różnym literom odpowiadają " +
             "różne cyfry). Należy wypełnić wszystkie pola literami, tworząc kryptarytm. Przyciskami dodaj/usuń " +
@@ -106,11 +111,12 @@
                 6 => SubwordInfo,
                 7 => SuperwordInfo,
                 8 => StenoanagramwordInfo,
-                9 => ScrabbleInfo,
-                10 => WordInWordInfo,
-                11 => CryptharitmInfo,
-                12 => FiltersInfo,
-                13 => Shortcuts,
+                9 => WordInWordInfo,
+                10 => WordsFromWordInfo,
+                11 => FiltersInfo,
+                12 => CryptharitmInfo,
+                13 => ScrabbleInfo,
+                14 => Shortcuts,
                 _ => "Nie ma takiego trybu",
             };
         }
