@@ -296,8 +296,7 @@
             label1 = new Label();
             textBoxAbout = new TextBox();
             tableLayoutPanel4 = new TableLayoutPanel();
-            labelCryptharitmInfo = new Label();
-            labelWordInWordInfo = new Label();
+            labelWordsFromWordInfo = new Label();
             labelStenoAnagramInfo = new Label();
             labelSuperWordInfo = new Label();
             labelSubwordInfo = new Label();
@@ -307,9 +306,11 @@
             labelMetagramInfo = new Label();
             labelAnagramInfo = new Label();
             labelPatternInfo = new Label();
-            labelScrabbleInfo = new Label();
             buttonSettings = new Button();
             labelShortcuts = new Label();
+            labelScrabbleInfo = new Label();
+            labelWordInWordInfo = new Label();
+            labelCryptharitmInfo = new Label();
             labelInfoFilters = new Label();
             label3 = new Label();
             labelSpace2 = new Label();
@@ -319,7 +320,6 @@
             label19 = new Label();
             label22 = new Label();
             newDictionaryDialog = new OpenFileDialog();
-            labelWordsFromWordInfo = new Label();
             tabControl.SuspendLayout();
             tabPattern.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainerResults).BeginInit();
@@ -614,6 +614,7 @@
             checkBoxEndsWithActive.TabIndex = 4;
             checkBoxEndsWithActive.Text = "Aktywny";
             checkBoxEndsWithActive.UseVisualStyleBackColor = true;
+            checkBoxEndsWithActive.CheckedChanged += ActiveFilters_CheckedChanged;
             // 
             // textBoxEndsWith
             // 
@@ -650,6 +651,7 @@
             checkBoxBeginsWithActive.TabIndex = 11;
             checkBoxBeginsWithActive.Text = "Aktywny";
             checkBoxBeginsWithActive.UseVisualStyleBackColor = true;
+            checkBoxBeginsWithActive.CheckedChanged += ActiveFilters_CheckedChanged;
             // 
             // radioButtonBeginWithNot
             // 
@@ -4203,35 +4205,20 @@
             tableLayoutPanel4.Size = new Size(231, 735);
             tableLayoutPanel4.TabIndex = 13;
             // 
-            // labelCryptharitmInfo
+            // labelWordsFromWordInfo
             // 
-            labelCryptharitmInfo.BackColor = Color.Silver;
-            labelCryptharitmInfo.Cursor = Cursors.Hand;
-            labelCryptharitmInfo.Dock = DockStyle.Fill;
-            labelCryptharitmInfo.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            labelCryptharitmInfo.Location = new Point(0, 480);
-            labelCryptharitmInfo.Margin = new Padding(0, 0, 3, 5);
-            labelCryptharitmInfo.Name = "labelCryptharitmInfo";
-            labelCryptharitmInfo.Size = new Size(228, 35);
-            labelCryptharitmInfo.TabIndex = 21;
-            labelCryptharitmInfo.Text = "KRYPTARYTMY";
-            labelCryptharitmInfo.TextAlign = ContentAlignment.MiddleLeft;
-            labelCryptharitmInfo.Click += InfoLabel_Click;
-            // 
-            // labelWordInWordInfo
-            // 
-            labelWordInWordInfo.BackColor = Color.Silver;
-            labelWordInWordInfo.Cursor = Cursors.Hand;
-            labelWordInWordInfo.Dock = DockStyle.Fill;
-            labelWordInWordInfo.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            labelWordInWordInfo.Location = new Point(0, 360);
-            labelWordInWordInfo.Margin = new Padding(0, 0, 3, 5);
-            labelWordInWordInfo.Name = "labelWordInWordInfo";
-            labelWordInWordInfo.Size = new Size(228, 35);
-            labelWordInWordInfo.TabIndex = 20;
-            labelWordInWordInfo.Text = "SŁOWO W SŁOWIE";
-            labelWordInWordInfo.TextAlign = ContentAlignment.MiddleLeft;
-            labelWordInWordInfo.Click += InfoLabel_Click;
+            labelWordsFromWordInfo.BackColor = Color.Silver;
+            labelWordsFromWordInfo.Cursor = Cursors.Hand;
+            labelWordsFromWordInfo.Dock = DockStyle.Fill;
+            labelWordsFromWordInfo.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            labelWordsFromWordInfo.Location = new Point(0, 400);
+            labelWordsFromWordInfo.Margin = new Padding(0, 0, 3, 5);
+            labelWordsFromWordInfo.Name = "labelWordsFromWordInfo";
+            labelWordsFromWordInfo.Size = new Size(228, 35);
+            labelWordsFromWordInfo.TabIndex = 22;
+            labelWordsFromWordInfo.Text = "SŁOWA ZE SŁOWA";
+            labelWordsFromWordInfo.TextAlign = ContentAlignment.MiddleLeft;
+            labelWordsFromWordInfo.Click += InfoLabel_Click;
             // 
             // labelStenoAnagramInfo
             // 
@@ -4368,21 +4355,6 @@
             labelPatternInfo.TextAlign = ContentAlignment.MiddleLeft;
             labelPatternInfo.Click += InfoLabel_Click;
             // 
-            // labelScrabbleInfo
-            // 
-            labelScrabbleInfo.BackColor = Color.Silver;
-            labelScrabbleInfo.Cursor = Cursors.Hand;
-            labelScrabbleInfo.Dock = DockStyle.Fill;
-            labelScrabbleInfo.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            labelScrabbleInfo.Location = new Point(0, 520);
-            labelScrabbleInfo.Margin = new Padding(0, 0, 3, 5);
-            labelScrabbleInfo.Name = "labelScrabbleInfo";
-            labelScrabbleInfo.Size = new Size(228, 35);
-            labelScrabbleInfo.TabIndex = 16;
-            labelScrabbleInfo.Text = "SCRABBLE";
-            labelScrabbleInfo.TextAlign = ContentAlignment.MiddleLeft;
-            labelScrabbleInfo.Click += InfoLabel_Click;
-            // 
             // buttonSettings
             // 
             buttonSettings.BackColor = Color.PaleGoldenrod;
@@ -4411,6 +4383,51 @@
             labelShortcuts.Text = "SKRÓTY";
             labelShortcuts.TextAlign = ContentAlignment.MiddleLeft;
             labelShortcuts.Click += InfoLabel_Click;
+            // 
+            // labelScrabbleInfo
+            // 
+            labelScrabbleInfo.BackColor = Color.Silver;
+            labelScrabbleInfo.Cursor = Cursors.Hand;
+            labelScrabbleInfo.Dock = DockStyle.Fill;
+            labelScrabbleInfo.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            labelScrabbleInfo.Location = new Point(0, 520);
+            labelScrabbleInfo.Margin = new Padding(0, 0, 3, 5);
+            labelScrabbleInfo.Name = "labelScrabbleInfo";
+            labelScrabbleInfo.Size = new Size(228, 35);
+            labelScrabbleInfo.TabIndex = 16;
+            labelScrabbleInfo.Text = "SCRABBLE";
+            labelScrabbleInfo.TextAlign = ContentAlignment.MiddleLeft;
+            labelScrabbleInfo.Click += InfoLabel_Click;
+            // 
+            // labelWordInWordInfo
+            // 
+            labelWordInWordInfo.BackColor = Color.Silver;
+            labelWordInWordInfo.Cursor = Cursors.Hand;
+            labelWordInWordInfo.Dock = DockStyle.Fill;
+            labelWordInWordInfo.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            labelWordInWordInfo.Location = new Point(0, 360);
+            labelWordInWordInfo.Margin = new Padding(0, 0, 3, 5);
+            labelWordInWordInfo.Name = "labelWordInWordInfo";
+            labelWordInWordInfo.Size = new Size(228, 35);
+            labelWordInWordInfo.TabIndex = 20;
+            labelWordInWordInfo.Text = "SŁOWO W SŁOWIE";
+            labelWordInWordInfo.TextAlign = ContentAlignment.MiddleLeft;
+            labelWordInWordInfo.Click += InfoLabel_Click;
+            // 
+            // labelCryptharitmInfo
+            // 
+            labelCryptharitmInfo.BackColor = Color.Silver;
+            labelCryptharitmInfo.Cursor = Cursors.Hand;
+            labelCryptharitmInfo.Dock = DockStyle.Fill;
+            labelCryptharitmInfo.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            labelCryptharitmInfo.Location = new Point(0, 480);
+            labelCryptharitmInfo.Margin = new Padding(0, 0, 3, 5);
+            labelCryptharitmInfo.Name = "labelCryptharitmInfo";
+            labelCryptharitmInfo.Size = new Size(228, 35);
+            labelCryptharitmInfo.TabIndex = 21;
+            labelCryptharitmInfo.Text = "KRYPTARYTMY";
+            labelCryptharitmInfo.TextAlign = ContentAlignment.MiddleLeft;
+            labelCryptharitmInfo.Click += InfoLabel_Click;
             // 
             // labelInfoFilters
             // 
@@ -4511,21 +4528,6 @@
             newDictionaryDialog.FileName = "slownik.txt";
             newDictionaryDialog.Filter = "Pliki tekstowe|*.txt";
             newDictionaryDialog.Title = "Wybierz plik ze słownikiem";
-            // 
-            // labelWordsFromWordInfo
-            // 
-            labelWordsFromWordInfo.BackColor = Color.Silver;
-            labelWordsFromWordInfo.Cursor = Cursors.Hand;
-            labelWordsFromWordInfo.Dock = DockStyle.Fill;
-            labelWordsFromWordInfo.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            labelWordsFromWordInfo.Location = new Point(0, 400);
-            labelWordsFromWordInfo.Margin = new Padding(0, 0, 3, 5);
-            labelWordsFromWordInfo.Name = "labelWordsFromWordInfo";
-            labelWordsFromWordInfo.Size = new Size(228, 35);
-            labelWordsFromWordInfo.TabIndex = 22;
-            labelWordsFromWordInfo.Text = "SŁOWA ZE SŁOWA";
-            labelWordsFromWordInfo.TextAlign = ContentAlignment.MiddleLeft;
-            labelWordsFromWordInfo.Click += InfoLabel_Click;
             // 
             // MainForm
             // 

@@ -7,7 +7,7 @@ namespace CrosswordAssistant.Searches
     public abstract class Search
     {
         protected string AllowedLetters = "aąbcćdeęfghijklłmnńoópqrsśtuvwxyzźż";
-        protected const string regexStart = "^";
+        protected const string RegexStart = "^";
         public static SearchMode Mode { get; set; }
         public static bool IsPending { get; set; }
         public static Operators CurrentOperator { get; set; } = Operators.Addition;

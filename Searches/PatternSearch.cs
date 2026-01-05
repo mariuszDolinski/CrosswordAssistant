@@ -16,7 +16,7 @@ namespace CrosswordAssistant.Searches
         public override List<string> SearchMatches(string pattern)
         {
             List<string> result = [];
-            string regexPattern = regexStart;
+            string regexPattern = RegexStart;
 
             foreach (var ch in pattern)
             {

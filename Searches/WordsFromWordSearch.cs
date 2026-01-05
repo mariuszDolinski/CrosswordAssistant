@@ -10,14 +10,8 @@ namespace CrosswordAssistant.Searches
         public override List<string> SearchMatches(string pattern)
         {
             List<string> result = [];
-            string regexPattern = regexStart + "[";
-
-            foreach(var c in pattern)
-            {
-                regexPattern += c;
-            }
-
-            regexPattern += "]*$";
+            string regexPattern = RegexStart + "[";
+            regexPattern += pattern + "]*$";
 
             if (BaseSettings.CaseSensitive)
             {
