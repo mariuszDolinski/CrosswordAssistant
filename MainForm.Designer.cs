@@ -291,7 +291,10 @@
             buttonLoadDict = new Button();
             labelDictionary = new Label();
             tabPageAbout = new TabPage();
+            panel1 = new Panel();
             labelAbout = new Label();
+            label107 = new Label();
+            buttonSettings = new Button();
             label2 = new Label();
             label1 = new Label();
             textBoxAbout = new TextBox();
@@ -306,7 +309,6 @@
             labelMetagramInfo = new Label();
             labelAnagramInfo = new Label();
             labelPatternInfo = new Label();
-            buttonSettings = new Button();
             labelShortcuts = new Label();
             labelScrabbleInfo = new Label();
             labelWordInWordInfo = new Label();
@@ -398,6 +400,7 @@
             splitContainer1.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
             tabPageAbout.SuspendLayout();
+            panel1.SuspendLayout();
             tableLayoutPanel4.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
             SuspendLayout();
@@ -4101,7 +4104,7 @@
             // 
             // tabPageAbout
             // 
-            tabPageAbout.Controls.Add(labelAbout);
+            tabPageAbout.Controls.Add(panel1);
             tabPageAbout.Controls.Add(label2);
             tabPageAbout.Controls.Add(label1);
             tabPageAbout.Controls.Add(textBoxAbout);
@@ -4117,16 +4120,51 @@
             tabPageAbout.Text = "O aplikacji";
             tabPageAbout.UseVisualStyleBackColor = true;
             // 
+            // panel1
+            // 
+            panel1.Controls.Add(labelAbout);
+            panel1.Controls.Add(label107);
+            panel1.Controls.Add(buttonSettings);
+            panel1.Dock = DockStyle.Fill;
+            panel1.Location = new Point(234, 674);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(936, 98);
+            panel1.TabIndex = 19;
+            // 
             // labelAbout
             // 
             labelAbout.BackColor = Color.Silver;
             labelAbout.Dock = DockStyle.Fill;
+            labelAbout.FlatStyle = FlatStyle.Flat;
             labelAbout.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            labelAbout.Location = new Point(234, 674);
+            labelAbout.Location = new Point(0, 0);
             labelAbout.Name = "labelAbout";
-            labelAbout.Size = new Size(936, 98);
-            labelAbout.TabIndex = 18;
+            labelAbout.Size = new Size(803, 98);
+            labelAbout.TabIndex = 20;
             labelAbout.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label107
+            // 
+            label107.Dock = DockStyle.Right;
+            label107.Location = new Point(803, 0);
+            label107.Name = "label107";
+            label107.Size = new Size(3, 98);
+            label107.TabIndex = 20;
+            // 
+            // buttonSettings
+            // 
+            buttonSettings.BackColor = Color.PaleGoldenrod;
+            buttonSettings.BackgroundImage = Properties.Resources.settingsImg;
+            buttonSettings.BackgroundImageLayout = ImageLayout.Stretch;
+            buttonSettings.Dock = DockStyle.Right;
+            buttonSettings.FlatStyle = FlatStyle.Flat;
+            buttonSettings.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            buttonSettings.Location = new Point(806, 0);
+            buttonSettings.Name = "buttonSettings";
+            buttonSettings.Size = new Size(130, 98);
+            buttonSettings.TabIndex = 19;
+            buttonSettings.UseVisualStyleBackColor = false;
+            buttonSettings.Click += OpenSettings_Click;
             // 
             // label2
             // 
@@ -4176,7 +4214,6 @@
             tableLayoutPanel4.Controls.Add(labelMetagramInfo, 0, 2);
             tableLayoutPanel4.Controls.Add(labelAnagramInfo, 0, 1);
             tableLayoutPanel4.Controls.Add(labelPatternInfo, 0, 0);
-            tableLayoutPanel4.Controls.Add(buttonSettings, 0, 15);
             tableLayoutPanel4.Controls.Add(labelShortcuts, 0, 14);
             tableLayoutPanel4.Controls.Add(labelScrabbleInfo, 0, 13);
             tableLayoutPanel4.Controls.Add(labelWordInWordInfo, 0, 9);
@@ -4354,20 +4391,6 @@
             labelPatternInfo.Text = "WZORZEC";
             labelPatternInfo.TextAlign = ContentAlignment.MiddleLeft;
             labelPatternInfo.Click += InfoLabel_Click;
-            // 
-            // buttonSettings
-            // 
-            buttonSettings.BackColor = Color.PaleGoldenrod;
-            buttonSettings.Dock = DockStyle.Bottom;
-            buttonSettings.FlatStyle = FlatStyle.Flat;
-            buttonSettings.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            buttonSettings.Location = new Point(3, 697);
-            buttonSettings.Name = "buttonSettings";
-            buttonSettings.Size = new Size(225, 35);
-            buttonSettings.TabIndex = 19;
-            buttonSettings.Text = "Ustawienia";
-            buttonSettings.UseVisualStyleBackColor = false;
-            buttonSettings.Click += OpenSettings_Click;
             // 
             // labelShortcuts
             // 
@@ -4647,6 +4670,7 @@
             tableLayoutPanel2.ResumeLayout(false);
             tabPageAbout.ResumeLayout(false);
             tabPageAbout.PerformLayout();
+            panel1.ResumeLayout(false);
             tableLayoutPanel4.ResumeLayout(false);
             tableLayoutPanel1.ResumeLayout(false);
             ResumeLayout(false);
@@ -4703,7 +4727,6 @@
         private TextBox textBoxAbout;
         private Label label2;
         private Label label1;
-        private Label labelAbout;
         private RadioButton radioPM1Mode;
         private Label labelShortcuts;
         private TabPage tabPageScrabble;
@@ -4944,5 +4967,8 @@
         private Label labelsudokuSpace2;
         private RadioButton radioWordsFromWord;
         private Label labelWordsFromWordInfo;
+        private Panel panel1;
+        private Label label107;
+        private Label labelAbout;
     }
 }

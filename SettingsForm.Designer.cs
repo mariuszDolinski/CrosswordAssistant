@@ -34,7 +34,7 @@
             buttonSettingsApply = new Button();
             buttonSettingsCancel = new Button();
             buttonSettingsOK = new Button();
-            tabControl1 = new TabControl();
+            tabControlSettings = new TabControl();
             tabPageGeneral = new TabPage();
             groupBoxSzaradzistaSettings = new GroupBox();
             radioBtnCaseSensitiveNo = new RadioButton();
@@ -42,16 +42,16 @@
             radioBtnCaseSensitiveYes = new RadioButton();
             textBoxMaxResultsCount = new TextBox();
             labelCaseSensitive = new Label();
-            groupBoxMainFormPosition = new GroupBox();
-            label3 = new Label();
-            radioBtnPosC = new RadioButton();
-            radioBtnPosTL = new RadioButton();
-            radioBtnPosTR = new RadioButton();
             groupBoxDictSettings = new GroupBox();
             saveDictLocBtn = new Button();
             textBoxDefaultDictPath = new TextBox();
             labelDefaultDictLoc = new Label();
             tabPageApparence = new TabPage();
+            groupBoxMainFormPosition = new GroupBox();
+            label4 = new Label();
+            radioBtnPosC = new RadioButton();
+            radioBtnPosTL = new RadioButton();
+            radioBtnPosTR = new RadioButton();
             groupBoxColorsSettings = new GroupBox();
             buttonScrabbleColor = new Button();
             labelColorScrabble = new Label();
@@ -63,18 +63,19 @@
             labelColorPattern = new Label();
             labelPatternColor = new Label();
             labelColorSettings = new Label();
-            setColorDialog = new ColorDialog();
             tabPageOthers = new TabPage();
             groupBoxClearAppConfig = new GroupBox();
-            labelClearAppConfig = new Label();
             buttonClearAppConfig = new Button();
+            labelClearAppConfig = new Label();
+            setColorDialog = new ColorDialog();
+            groupBoxScrebbleSettings = new GroupBox();
             panelSettingsControls.SuspendLayout();
-            tabControl1.SuspendLayout();
+            tabControlSettings.SuspendLayout();
             tabPageGeneral.SuspendLayout();
             groupBoxSzaradzistaSettings.SuspendLayout();
-            groupBoxMainFormPosition.SuspendLayout();
             groupBoxDictSettings.SuspendLayout();
             tabPageApparence.SuspendLayout();
+            groupBoxMainFormPosition.SuspendLayout();
             groupBoxColorsSettings.SuspendLayout();
             tabPageOthers.SuspendLayout();
             groupBoxClearAppConfig.SuspendLayout();
@@ -91,9 +92,9 @@
             panelSettingsControls.Controls.Add(buttonSettingsCancel);
             panelSettingsControls.Controls.Add(buttonSettingsOK);
             panelSettingsControls.Dock = DockStyle.Bottom;
-            panelSettingsControls.Location = new Point(0, 400);
+            panelSettingsControls.Location = new Point(0, 471);
             panelSettingsControls.Name = "panelSettingsControls";
-            panelSettingsControls.Size = new Size(896, 56);
+            panelSettingsControls.Size = new Size(978, 71);
             panelSettingsControls.TabIndex = 1;
             // 
             // buttonResetToDefault
@@ -111,7 +112,7 @@
             // 
             buttonSettingsApply.Enabled = false;
             buttonSettingsApply.FlatStyle = FlatStyle.Flat;
-            buttonSettingsApply.Location = new Point(653, 11);
+            buttonSettingsApply.Location = new Point(741, 11);
             buttonSettingsApply.Name = "buttonSettingsApply";
             buttonSettingsApply.Size = new Size(112, 34);
             buttonSettingsApply.TabIndex = 2;
@@ -122,7 +123,7 @@
             // buttonSettingsCancel
             // 
             buttonSettingsCancel.FlatStyle = FlatStyle.Flat;
-            buttonSettingsCancel.Location = new Point(771, 11);
+            buttonSettingsCancel.Location = new Point(859, 11);
             buttonSettingsCancel.Name = "buttonSettingsCancel";
             buttonSettingsCancel.Size = new Size(112, 34);
             buttonSettingsCancel.TabIndex = 1;
@@ -134,7 +135,7 @@
             // 
             buttonSettingsOK.Enabled = false;
             buttonSettingsOK.FlatStyle = FlatStyle.Flat;
-            buttonSettingsOK.Location = new Point(536, 11);
+            buttonSettingsOK.Location = new Point(624, 11);
             buttonSettingsOK.Name = "buttonSettingsOK";
             buttonSettingsOK.Size = new Size(112, 34);
             buttonSettingsOK.TabIndex = 0;
@@ -142,28 +143,28 @@
             buttonSettingsOK.UseVisualStyleBackColor = true;
             buttonSettingsOK.Click += SettingsSave_Click;
             // 
-            // tabControl1
+            // tabControlSettings
             // 
-            tabControl1.Appearance = TabAppearance.FlatButtons;
-            tabControl1.Controls.Add(tabPageGeneral);
-            tabControl1.Controls.Add(tabPageApparence);
-            tabControl1.Controls.Add(tabPageOthers);
-            tabControl1.Dock = DockStyle.Fill;
-            tabControl1.Location = new Point(0, 0);
-            tabControl1.Name = "tabControl1";
-            tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(896, 400);
-            tabControl1.TabIndex = 2;
+            tabControlSettings.Appearance = TabAppearance.FlatButtons;
+            tabControlSettings.Controls.Add(tabPageGeneral);
+            tabControlSettings.Controls.Add(tabPageApparence);
+            tabControlSettings.Controls.Add(tabPageOthers);
+            tabControlSettings.Dock = DockStyle.Fill;
+            tabControlSettings.Location = new Point(0, 0);
+            tabControlSettings.Name = "tabControlSettings";
+            tabControlSettings.SelectedIndex = 0;
+            tabControlSettings.Size = new Size(978, 471);
+            tabControlSettings.TabIndex = 2;
             // 
             // tabPageGeneral
             // 
+            tabPageGeneral.Controls.Add(groupBoxScrebbleSettings);
             tabPageGeneral.Controls.Add(groupBoxSzaradzistaSettings);
-            tabPageGeneral.Controls.Add(groupBoxMainFormPosition);
             tabPageGeneral.Controls.Add(groupBoxDictSettings);
             tabPageGeneral.Location = new Point(4, 37);
             tabPageGeneral.Name = "tabPageGeneral";
             tabPageGeneral.Padding = new Padding(3);
-            tabPageGeneral.Size = new Size(888, 359);
+            tabPageGeneral.Size = new Size(970, 430);
             tabPageGeneral.TabIndex = 0;
             tabPageGeneral.Text = "Ogólne";
             tabPageGeneral.UseVisualStyleBackColor = true;
@@ -178,7 +179,7 @@
             groupBoxSzaradzistaSettings.Dock = DockStyle.Top;
             groupBoxSzaradzistaSettings.Location = new Point(3, 3);
             groupBoxSzaradzistaSettings.Name = "groupBoxSzaradzistaSettings";
-            groupBoxSzaradzistaSettings.Size = new Size(882, 120);
+            groupBoxSzaradzistaSettings.Size = new Size(964, 120);
             groupBoxSzaradzistaSettings.TabIndex = 11;
             groupBoxSzaradzistaSettings.TabStop = false;
             groupBoxSzaradzistaSettings.Text = "Szaradzista";
@@ -233,73 +234,15 @@
             labelCaseSensitive.TabIndex = 8;
             labelCaseSensitive.Text = "Rozróżnianie wielkości liter:";
             // 
-            // groupBoxMainFormPosition
-            // 
-            groupBoxMainFormPosition.Controls.Add(label3);
-            groupBoxMainFormPosition.Controls.Add(radioBtnPosC);
-            groupBoxMainFormPosition.Controls.Add(radioBtnPosTL);
-            groupBoxMainFormPosition.Controls.Add(radioBtnPosTR);
-            groupBoxMainFormPosition.Dock = DockStyle.Bottom;
-            groupBoxMainFormPosition.Location = new Point(3, 123);
-            groupBoxMainFormPosition.Name = "groupBoxMainFormPosition";
-            groupBoxMainFormPosition.Size = new Size(882, 107);
-            groupBoxMainFormPosition.TabIndex = 7;
-            groupBoxMainFormPosition.TabStop = false;
-            groupBoxMainFormPosition.Text = "Okno główne";
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new Point(6, 36);
-            label3.Name = "label3";
-            label3.Size = new Size(291, 25);
-            label3.TabIndex = 3;
-            label3.Text = "Domyślna pozycja okna głównego:";
-            // 
-            // radioBtnPosC
-            // 
-            radioBtnPosC.AutoSize = true;
-            radioBtnPosC.Checked = true;
-            radioBtnPosC.Location = new Point(461, 72);
-            radioBtnPosC.Name = "radioBtnPosC";
-            radioBtnPosC.Size = new Size(156, 29);
-            radioBtnPosC.TabIndex = 6;
-            radioBtnPosC.TabStop = true;
-            radioBtnPosC.Text = "wyśrodkowane";
-            radioBtnPosC.UseVisualStyleBackColor = true;
-            radioBtnPosC.CheckedChanged += RadioBtnPos_CheckedChange;
-            // 
-            // radioBtnPosTL
-            // 
-            radioBtnPosTL.AutoSize = true;
-            radioBtnPosTL.Location = new Point(76, 72);
-            radioBtnPosTL.Name = "radioBtnPosTL";
-            radioBtnPosTL.Size = new Size(157, 29);
-            radioBtnPosTL.TabIndex = 4;
-            radioBtnPosTL.Text = "lewy górny róg";
-            radioBtnPosTL.UseVisualStyleBackColor = true;
-            radioBtnPosTL.CheckedChanged += RadioBtnPos_CheckedChange;
-            // 
-            // radioBtnPosTR
-            // 
-            radioBtnPosTR.AutoSize = true;
-            radioBtnPosTR.Location = new Point(259, 72);
-            radioBtnPosTR.Name = "radioBtnPosTR";
-            radioBtnPosTR.Size = new Size(170, 29);
-            radioBtnPosTR.TabIndex = 5;
-            radioBtnPosTR.Text = "prawy górny róg";
-            radioBtnPosTR.UseVisualStyleBackColor = true;
-            radioBtnPosTR.CheckedChanged += RadioBtnPos_CheckedChange;
-            // 
             // groupBoxDictSettings
             // 
             groupBoxDictSettings.Controls.Add(saveDictLocBtn);
             groupBoxDictSettings.Controls.Add(textBoxDefaultDictPath);
             groupBoxDictSettings.Controls.Add(labelDefaultDictLoc);
             groupBoxDictSettings.Dock = DockStyle.Bottom;
-            groupBoxDictSettings.Location = new Point(3, 230);
+            groupBoxDictSettings.Location = new Point(3, 282);
             groupBoxDictSettings.Name = "groupBoxDictSettings";
-            groupBoxDictSettings.Size = new Size(882, 126);
+            groupBoxDictSettings.Size = new Size(964, 145);
             groupBoxDictSettings.TabIndex = 2;
             groupBoxDictSettings.TabStop = false;
             groupBoxDictSettings.Text = "Słownik";
@@ -336,14 +279,73 @@
             // 
             // tabPageApparence
             // 
+            tabPageApparence.Controls.Add(groupBoxMainFormPosition);
             tabPageApparence.Controls.Add(groupBoxColorsSettings);
             tabPageApparence.Location = new Point(4, 37);
             tabPageApparence.Name = "tabPageApparence";
             tabPageApparence.Padding = new Padding(3);
-            tabPageApparence.Size = new Size(888, 359);
+            tabPageApparence.Size = new Size(970, 430);
             tabPageApparence.TabIndex = 1;
             tabPageApparence.Text = "Wygląd";
             tabPageApparence.UseVisualStyleBackColor = true;
+            // 
+            // groupBoxMainFormPosition
+            // 
+            groupBoxMainFormPosition.Controls.Add(label4);
+            groupBoxMainFormPosition.Controls.Add(radioBtnPosC);
+            groupBoxMainFormPosition.Controls.Add(radioBtnPosTL);
+            groupBoxMainFormPosition.Controls.Add(radioBtnPosTR);
+            groupBoxMainFormPosition.Dock = DockStyle.Top;
+            groupBoxMainFormPosition.Location = new Point(3, 153);
+            groupBoxMainFormPosition.Name = "groupBoxMainFormPosition";
+            groupBoxMainFormPosition.Size = new Size(964, 107);
+            groupBoxMainFormPosition.TabIndex = 8;
+            groupBoxMainFormPosition.TabStop = false;
+            groupBoxMainFormPosition.Text = "Okno główne";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(6, 36);
+            label4.Name = "label4";
+            label4.Size = new Size(291, 25);
+            label4.TabIndex = 3;
+            label4.Text = "Domyślna pozycja okna głównego:";
+            // 
+            // radioBtnPosC
+            // 
+            radioBtnPosC.AutoSize = true;
+            radioBtnPosC.Checked = true;
+            radioBtnPosC.Location = new Point(461, 72);
+            radioBtnPosC.Name = "radioBtnPosC";
+            radioBtnPosC.Size = new Size(156, 29);
+            radioBtnPosC.TabIndex = 6;
+            radioBtnPosC.TabStop = true;
+            radioBtnPosC.Text = "wyśrodkowane";
+            radioBtnPosC.UseVisualStyleBackColor = true;
+            radioBtnPosC.CheckedChanged += RadioBtnPos_CheckedChange;
+            // 
+            // radioBtnPosTL
+            // 
+            radioBtnPosTL.AutoSize = true;
+            radioBtnPosTL.Location = new Point(76, 72);
+            radioBtnPosTL.Name = "radioBtnPosTL";
+            radioBtnPosTL.Size = new Size(157, 29);
+            radioBtnPosTL.TabIndex = 4;
+            radioBtnPosTL.Text = "lewy górny róg";
+            radioBtnPosTL.UseVisualStyleBackColor = true;
+            radioBtnPosTL.CheckedChanged += RadioBtnPos_CheckedChange;
+            // 
+            // radioBtnPosTR
+            // 
+            radioBtnPosTR.AutoSize = true;
+            radioBtnPosTR.Location = new Point(259, 72);
+            radioBtnPosTR.Name = "radioBtnPosTR";
+            radioBtnPosTR.Size = new Size(170, 29);
+            radioBtnPosTR.TabIndex = 5;
+            radioBtnPosTR.Text = "prawy górny róg";
+            radioBtnPosTR.UseVisualStyleBackColor = true;
+            radioBtnPosTR.CheckedChanged += RadioBtnPos_CheckedChange;
             // 
             // groupBoxColorsSettings
             // 
@@ -360,7 +362,7 @@
             groupBoxColorsSettings.Dock = DockStyle.Top;
             groupBoxColorsSettings.Location = new Point(3, 3);
             groupBoxColorsSettings.Name = "groupBoxColorsSettings";
-            groupBoxColorsSettings.Size = new Size(882, 150);
+            groupBoxColorsSettings.Size = new Size(964, 150);
             groupBoxColorsSettings.TabIndex = 0;
             groupBoxColorsSettings.TabStop = false;
             groupBoxColorsSettings.Text = "Kolory";
@@ -464,7 +466,7 @@
             tabPageOthers.Location = new Point(4, 37);
             tabPageOthers.Name = "tabPageOthers";
             tabPageOthers.Padding = new Padding(3);
-            tabPageOthers.Size = new Size(888, 359);
+            tabPageOthers.Size = new Size(970, 430);
             tabPageOthers.TabIndex = 2;
             tabPageOthers.Text = "Inne";
             tabPageOthers.UseVisualStyleBackColor = true;
@@ -476,20 +478,10 @@
             groupBoxClearAppConfig.Dock = DockStyle.Top;
             groupBoxClearAppConfig.Location = new Point(3, 3);
             groupBoxClearAppConfig.Name = "groupBoxClearAppConfig";
-            groupBoxClearAppConfig.Size = new Size(882, 83);
+            groupBoxClearAppConfig.Size = new Size(964, 83);
             groupBoxClearAppConfig.TabIndex = 0;
             groupBoxClearAppConfig.TabStop = false;
             groupBoxClearAppConfig.Text = "Czyszczenie pliku z ustawieniami";
-            // 
-            // labelClearAppConfig
-            // 
-            labelClearAppConfig.Dock = DockStyle.Left;
-            labelClearAppConfig.Location = new Point(3, 27);
-            labelClearAppConfig.Name = "labelClearAppConfig";
-            labelClearAppConfig.Size = new Size(646, 53);
-            labelClearAppConfig.TabIndex = 0;
-            labelClearAppConfig.Text = "Wyczyść plik z ustawieniami z niepotrzebnych wpisów.\r\nMoże to spoodować restart niektórych ustawień do wartości domyślnych.\r\n";
-            labelClearAppConfig.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // buttonClearAppConfig
             // 
@@ -501,28 +493,48 @@
             buttonClearAppConfig.UseVisualStyleBackColor = true;
             buttonClearAppConfig.Click += ClearAppConfigBtn_Click;
             // 
+            // labelClearAppConfig
+            // 
+            labelClearAppConfig.Dock = DockStyle.Left;
+            labelClearAppConfig.Location = new Point(3, 27);
+            labelClearAppConfig.Name = "labelClearAppConfig";
+            labelClearAppConfig.Size = new Size(646, 53);
+            labelClearAppConfig.TabIndex = 0;
+            labelClearAppConfig.Text = "Wyczyść plik z ustawieniami z niepotrzebnych wpisów.\r\nMoże to spoodować restart niektórych ustawień do wartości domyślnych.\r\n";
+            labelClearAppConfig.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // groupBoxScrebbleSettings
+            // 
+            groupBoxScrebbleSettings.Dock = DockStyle.Top;
+            groupBoxScrebbleSettings.Location = new Point(3, 123);
+            groupBoxScrebbleSettings.Name = "groupBoxScrebbleSettings";
+            groupBoxScrebbleSettings.Size = new Size(964, 153);
+            groupBoxScrebbleSettings.TabIndex = 12;
+            groupBoxScrebbleSettings.TabStop = false;
+            groupBoxScrebbleSettings.Text = "Scrabble";
+            // 
             // SettingsForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(896, 456);
-            Controls.Add(tabControl1);
+            ClientSize = new Size(978, 542);
+            Controls.Add(tabControlSettings);
             Controls.Add(panelSettingsControls);
-            MaximumSize = new Size(918, 514);
-            MinimumSize = new Size(918, 514);
+            MaximumSize = new Size(1000, 600);
+            MinimumSize = new Size(1000, 600);
             Name = "SettingsForm";
             Text = "Ustawienia";
             FormClosing += Settings_OnClosed;
             panelSettingsControls.ResumeLayout(false);
-            tabControl1.ResumeLayout(false);
+            tabControlSettings.ResumeLayout(false);
             tabPageGeneral.ResumeLayout(false);
             groupBoxSzaradzistaSettings.ResumeLayout(false);
             groupBoxSzaradzistaSettings.PerformLayout();
-            groupBoxMainFormPosition.ResumeLayout(false);
-            groupBoxMainFormPosition.PerformLayout();
             groupBoxDictSettings.ResumeLayout(false);
             groupBoxDictSettings.PerformLayout();
             tabPageApparence.ResumeLayout(false);
+            groupBoxMainFormPosition.ResumeLayout(false);
+            groupBoxMainFormPosition.PerformLayout();
             groupBoxColorsSettings.ResumeLayout(false);
             groupBoxColorsSettings.PerformLayout();
             tabPageOthers.ResumeLayout(false);
@@ -533,7 +545,7 @@
         #endregion
         private OpenFileDialog openFileDialogNewDefaultDictPath;
         private Panel panelSettingsControls;
-        private TabControl tabControl1;
+        private TabControl tabControlSettings;
         private TabPage tabPageGeneral;
         private GroupBox groupBoxDictSettings;
         private TextBox textBoxDefaultDictPath;
@@ -558,10 +570,6 @@
         private Button buttonScrabbleColor;
         private Label labelColorScrabble;
         private Label label2;
-        private Label label3;
-        private RadioButton radioBtnPosTR;
-        private RadioButton radioBtnPosTL;
-        private RadioButton radioBtnPosC;
         private GroupBox groupBoxMainFormPosition;
         private Label labelCaseSensitive;
         private RadioButton radioBtnCaseSensitiveNo;
@@ -571,5 +579,10 @@
         private GroupBox groupBoxClearAppConfig;
         private Label labelClearAppConfig;
         private Button buttonClearAppConfig;
+        private Label label4;
+        private RadioButton radioBtnPosC;
+        private RadioButton radioBtnPosTL;
+        private RadioButton radioBtnPosTR;
+        private GroupBox groupBoxScrebbleSettings;
     }
 }
