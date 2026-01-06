@@ -36,6 +36,9 @@
             buttonSettingsOK = new Button();
             tabControlSettings = new TabControl();
             tabPageGeneral = new TabPage();
+            groupBoxScrebbleSettings = new GroupBox();
+            comboBoxScrabbleSort = new ComboBox();
+            label3 = new Label();
             groupBoxSzaradzistaSettings = new GroupBox();
             radioBtnCaseSensitiveNo = new RadioButton();
             labelMaxResultsCount = new Label();
@@ -68,10 +71,10 @@
             buttonClearAppConfig = new Button();
             labelClearAppConfig = new Label();
             setColorDialog = new ColorDialog();
-            groupBoxScrebbleSettings = new GroupBox();
             panelSettingsControls.SuspendLayout();
             tabControlSettings.SuspendLayout();
             tabPageGeneral.SuspendLayout();
+            groupBoxScrebbleSettings.SuspendLayout();
             groupBoxSzaradzistaSettings.SuspendLayout();
             groupBoxDictSettings.SuspendLayout();
             tabPageApparence.SuspendLayout();
@@ -100,9 +103,9 @@
             // buttonResetToDefault
             // 
             buttonResetToDefault.FlatStyle = FlatStyle.Flat;
-            buttonResetToDefault.Location = new Point(7, 11);
+            buttonResetToDefault.Location = new Point(7, 19);
             buttonResetToDefault.Name = "buttonResetToDefault";
-            buttonResetToDefault.Size = new Size(269, 34);
+            buttonResetToDefault.Size = new Size(295, 40);
             buttonResetToDefault.TabIndex = 3;
             buttonResetToDefault.Text = "Przywróć ustawienia domyślne";
             buttonResetToDefault.UseVisualStyleBackColor = true;
@@ -112,9 +115,9 @@
             // 
             buttonSettingsApply.Enabled = false;
             buttonSettingsApply.FlatStyle = FlatStyle.Flat;
-            buttonSettingsApply.Location = new Point(741, 11);
+            buttonSettingsApply.Location = new Point(725, 19);
             buttonSettingsApply.Name = "buttonSettingsApply";
-            buttonSettingsApply.Size = new Size(112, 34);
+            buttonSettingsApply.Size = new Size(120, 40);
             buttonSettingsApply.TabIndex = 2;
             buttonSettingsApply.Text = "Zastosuj";
             buttonSettingsApply.UseVisualStyleBackColor = true;
@@ -123,9 +126,9 @@
             // buttonSettingsCancel
             // 
             buttonSettingsCancel.FlatStyle = FlatStyle.Flat;
-            buttonSettingsCancel.Location = new Point(859, 11);
+            buttonSettingsCancel.Location = new Point(851, 19);
             buttonSettingsCancel.Name = "buttonSettingsCancel";
-            buttonSettingsCancel.Size = new Size(112, 34);
+            buttonSettingsCancel.Size = new Size(120, 40);
             buttonSettingsCancel.TabIndex = 1;
             buttonSettingsCancel.Text = "Anuluj";
             buttonSettingsCancel.UseVisualStyleBackColor = true;
@@ -135,9 +138,9 @@
             // 
             buttonSettingsOK.Enabled = false;
             buttonSettingsOK.FlatStyle = FlatStyle.Flat;
-            buttonSettingsOK.Location = new Point(624, 11);
+            buttonSettingsOK.Location = new Point(599, 19);
             buttonSettingsOK.Name = "buttonSettingsOK";
-            buttonSettingsOK.Size = new Size(112, 34);
+            buttonSettingsOK.Size = new Size(120, 40);
             buttonSettingsOK.TabIndex = 0;
             buttonSettingsOK.Text = "Zapisz";
             buttonSettingsOK.UseVisualStyleBackColor = true;
@@ -168,6 +171,39 @@
             tabPageGeneral.TabIndex = 0;
             tabPageGeneral.Text = "Ogólne";
             tabPageGeneral.UseVisualStyleBackColor = true;
+            // 
+            // groupBoxScrebbleSettings
+            // 
+            groupBoxScrebbleSettings.Controls.Add(comboBoxScrabbleSort);
+            groupBoxScrebbleSettings.Controls.Add(label3);
+            groupBoxScrebbleSettings.Dock = DockStyle.Top;
+            groupBoxScrebbleSettings.Location = new Point(3, 123);
+            groupBoxScrebbleSettings.Name = "groupBoxScrebbleSettings";
+            groupBoxScrebbleSettings.Size = new Size(964, 111);
+            groupBoxScrebbleSettings.TabIndex = 12;
+            groupBoxScrebbleSettings.TabStop = false;
+            groupBoxScrebbleSettings.Text = "Scrabble";
+            // 
+            // comboBoxScrabbleSort
+            // 
+            comboBoxScrabbleSort.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBoxScrabbleSort.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            comboBoxScrabbleSort.FormattingEnabled = true;
+            comboBoxScrabbleSort.Items.AddRange(new object[] { "najpierw ilość liter, potem punktacja", "napierw ilość liter, potem alfabetycznie", "napierw punktacja, potem alfabetycznie" });
+            comboBoxScrabbleSort.Location = new Point(272, 43);
+            comboBoxScrabbleSort.Name = "comboBoxScrabbleSort";
+            comboBoxScrabbleSort.Size = new Size(457, 36);
+            comboBoxScrabbleSort.TabIndex = 1;
+            comboBoxScrabbleSort.SelectedIndexChanged += ScrabbleSort_SelectedIndexChnged;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(6, 49);
+            label3.Name = "label3";
+            label3.Size = new Size(236, 25);
+            label3.TabIndex = 0;
+            label3.Text = "Reguła sortowania wyników:";
             // 
             // groupBoxSzaradzistaSettings
             // 
@@ -219,9 +255,10 @@
             // 
             // textBoxMaxResultsCount
             // 
-            textBoxMaxResultsCount.Location = new Point(397, 33);
+            textBoxMaxResultsCount.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            textBoxMaxResultsCount.Location = new Point(397, 29);
             textBoxMaxResultsCount.Name = "textBoxMaxResultsCount";
-            textBoxMaxResultsCount.Size = new Size(102, 31);
+            textBoxMaxResultsCount.Size = new Size(102, 37);
             textBoxMaxResultsCount.TabIndex = 1;
             textBoxMaxResultsCount.TextChanged += MaxResults_TextChanged;
             // 
@@ -240,9 +277,9 @@
             groupBoxDictSettings.Controls.Add(textBoxDefaultDictPath);
             groupBoxDictSettings.Controls.Add(labelDefaultDictLoc);
             groupBoxDictSettings.Dock = DockStyle.Bottom;
-            groupBoxDictSettings.Location = new Point(3, 282);
+            groupBoxDictSettings.Location = new Point(3, 240);
             groupBoxDictSettings.Name = "groupBoxDictSettings";
-            groupBoxDictSettings.Size = new Size(964, 145);
+            groupBoxDictSettings.Size = new Size(964, 187);
             groupBoxDictSettings.TabIndex = 2;
             groupBoxDictSettings.TabStop = false;
             groupBoxDictSettings.Text = "Słownik";
@@ -250,9 +287,9 @@
             // saveDictLocBtn
             // 
             saveDictLocBtn.FlatStyle = FlatStyle.Flat;
-            saveDictLocBtn.Location = new Point(735, 78);
+            saveDictLocBtn.Location = new Point(827, 96);
             saveDictLocBtn.Name = "saveDictLocBtn";
-            saveDictLocBtn.Size = new Size(141, 34);
+            saveDictLocBtn.Size = new Size(131, 37);
             saveDictLocBtn.TabIndex = 2;
             saveDictLocBtn.Text = "Zmień";
             saveDictLocBtn.UseVisualStyleBackColor = true;
@@ -261,17 +298,17 @@
             // textBoxDefaultDictPath
             // 
             textBoxDefaultDictPath.BackColor = Color.White;
-            textBoxDefaultDictPath.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            textBoxDefaultDictPath.Location = new Point(6, 78);
+            textBoxDefaultDictPath.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            textBoxDefaultDictPath.Location = new Point(6, 96);
             textBoxDefaultDictPath.Name = "textBoxDefaultDictPath";
             textBoxDefaultDictPath.ReadOnly = true;
-            textBoxDefaultDictPath.Size = new Size(723, 34);
+            textBoxDefaultDictPath.Size = new Size(815, 37);
             textBoxDefaultDictPath.TabIndex = 1;
             // 
             // labelDefaultDictLoc
             // 
             labelDefaultDictLoc.AutoSize = true;
-            labelDefaultDictLoc.Location = new Point(5, 37);
+            labelDefaultDictLoc.Location = new Point(5, 47);
             labelDefaultDictLoc.Name = "labelDefaultDictLoc";
             labelDefaultDictLoc.Size = new Size(764, 25);
             labelDefaultDictLoc.TabIndex = 0;
@@ -503,16 +540,6 @@
             labelClearAppConfig.Text = "Wyczyść plik z ustawieniami z niepotrzebnych wpisów.\r\nMoże to spoodować restart niektórych ustawień do wartości domyślnych.\r\n";
             labelClearAppConfig.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // groupBoxScrebbleSettings
-            // 
-            groupBoxScrebbleSettings.Dock = DockStyle.Top;
-            groupBoxScrebbleSettings.Location = new Point(3, 123);
-            groupBoxScrebbleSettings.Name = "groupBoxScrebbleSettings";
-            groupBoxScrebbleSettings.Size = new Size(964, 153);
-            groupBoxScrebbleSettings.TabIndex = 12;
-            groupBoxScrebbleSettings.TabStop = false;
-            groupBoxScrebbleSettings.Text = "Scrabble";
-            // 
             // SettingsForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -528,6 +555,8 @@
             panelSettingsControls.ResumeLayout(false);
             tabControlSettings.ResumeLayout(false);
             tabPageGeneral.ResumeLayout(false);
+            groupBoxScrebbleSettings.ResumeLayout(false);
+            groupBoxScrebbleSettings.PerformLayout();
             groupBoxSzaradzistaSettings.ResumeLayout(false);
             groupBoxSzaradzistaSettings.PerformLayout();
             groupBoxDictSettings.ResumeLayout(false);
@@ -584,5 +613,7 @@
         private RadioButton radioBtnPosTL;
         private RadioButton radioBtnPosTR;
         private GroupBox groupBoxScrebbleSettings;
+        private ComboBox comboBoxScrabbleSort;
+        private Label label3;
     }
 }

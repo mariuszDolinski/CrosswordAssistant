@@ -9,7 +9,7 @@
         public static string LengthModeMessage { get; } = "Wybierz dodatkowe filtry i kliknij Szukaj...";
         public static string UlozSamModeMessage { get; } = "Podaj wzorzec złożony z cyfr 1-8 i kliknij Szukaj...";
         public static string EmptyPattern { get; } = "Wzorzec nie zawiera żadnych znaków.";
-        public static string VersionInfo { get; } = "Pomocnik szaradzisty v3.2.4" + Environment.NewLine +
+        public static string VersionInfo { get; } = "Pomocnik szaradzisty v3.2.5" + Environment.NewLine +
                 "Autor: Mariusz Doliński" + Environment.NewLine + "© 2025";
         public static string MergeDictsInfo { get; } = "Wczytaj plik z wyrazami, które chcesz dodać do bieżącego słownika";
         public static string PatternInfo { get; } = "Wyszukuje wyrazy pasujące do podanego wzorca. Znak kropki (.) zastępuje dowolną jedną literę, " +
@@ -42,9 +42,9 @@
             " We wzorcu dozwolone są jedynie litery.";
         public static string ScrabbleInfo { get; } = "W tym trybie wyszukiwane są wszystkie wyrazy, które można ułożyć " +
             "z liter podanych we wzorcu (niekoniecznie wszystkich). We wzorcu można użyć maksymalnie dwóch znaków kropki (.) zatępjących dowolną literę. " +
-            "Wzorzec powinien mieć od 4 do 15 znaków. Dopasowane wyrazy pogrupowane są według ilości znaków, " +
+            "Wzorzec powinien mieć od 4 do 15 znaków. Dopasowane wyrazy pogrupowane są domyślnie według ilości znaków, " +
             "w nawiasie podana jest podstawowa punktacja słowa w grze Scrabble (nie uwzględniająca dodatkowych premii " +
-            "oraz liter użytych jako mydła (znak kropki)). ";
+            "oraz liter użytych jako mydła (znak kropki)). Sposób wyświetlania dopasowań można zmienić w ustawieniach.";
         public static string FiltersInfo { get; } = "Dodatkowe filtry w zakładce Szaradzista pozwalają ograniczyć ilość dopsowań " +
             "dla wyszukiwań z tej zakładki. Aby aktywować daną grupę filtrów należy zaznaczyć w niej przycisk 'Aktywny'" +
             Environment.NewLine + Environment.NewLine + "Dostępne grupy filtrów:" + Environment.NewLine +

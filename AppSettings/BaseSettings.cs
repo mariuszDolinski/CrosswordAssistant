@@ -1,9 +1,12 @@
-﻿namespace CrosswordAssistant.AppSettings
+﻿using CrosswordAssistant.Entities.Enums;
+
+namespace CrosswordAssistant.AppSettings
 {
     public class BaseSettings
     {
         public static int MaxResultDisplay { get; set; }
         public static bool CaseSensitive { get; set; }
+        public static ScrabbleSort ScrabbleSortType { get; set; }
 
         public const string LogLevelKey = "logLevel";
         public const string DictPathKey = "dictionaryLocation";
@@ -14,6 +17,7 @@
         public const string ScrabbleColorKey = "scrabbleColor";
         public const string MainFormPosKey = "mainFormPosition";
         public const string CaseSensitiveKey = "caseSensitive";
+        public const string ScrabbleSortKey = "scrabbleSort";
 
         protected readonly static List<string> SettingsRequiredRestart =
         [

@@ -26,6 +26,7 @@ namespace CrosswordAssistant
             labelColorPattern.BackColor = Color.FromArgb((int)Settings.CurrentSettings[BaseSettings.PatternColorKey]);
             labelColorCryptharitm.BackColor = Color.FromArgb((int)Settings.CurrentSettings[BaseSettings.CryptharitmColorKey]);
             labelColorScrabble.BackColor = Color.FromArgb((int)Settings.CurrentSettings[BaseSettings.ScrabbleColorKey]);
+            comboBoxScrabbleSort.SelectedIndex = (int)Settings.CurrentSettings[BaseSettings.ScrabbleSortKey];
             SetMainFormPositionRadioButtons();
             SetCaseSensitiveRadioButtons();
         }
@@ -204,6 +205,14 @@ namespace CrosswordAssistant
         private void ClearAppConfigBtn_Click(object sender, EventArgs e)
         {
             Settings.ClearAppConfig();
+        }
+
+        private void ScrabbleSort_SelectedIndexChnged(object sender, EventArgs e)
+        {
+            var comboBox = (ComboBox)sender;
+            BaseSettings.ScrabbleSortType = (ScrabbleSort)comboBox.SelectedIndex;
+            Settings.CurrentSettings[BaseSettings.ScrabbleSortKey] = comboBox.SelectedIndex;
+            SetButtonsVisibility();
         }
     }
 }

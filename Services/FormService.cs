@@ -1,4 +1,5 @@
 ﻿using CrosswordAssistant.AppSettings;
+using CrosswordAssistant.Entities.Enums;
 using System.Text.RegularExpressions;
 
 namespace CrosswordAssistant.Services
@@ -35,24 +36,12 @@ namespace CrosswordAssistant.Services
         }
         public static void FillTextBoxScrabbleResults(TextBox textBox, List<string> words)
         {
-            string result = "";
-            int maxLength = words.Max(w => w[..w.IndexOf('(')].Length);
-            for (int i = maxLength; i > 3; i--)
-            {
-                var wordsByLength = words.Where(w => w[..w.IndexOf('(')].Length == i).ToList();
-                wordsByLength = [.. wordsByLength.OrderByDescending(w => w.GetWordPoints())];
-                if (wordsByLength.Count == 0) continue;
-                result += $"Wyrazy {i}-literowe:" + Environment.NewLine;
-                foreach (var word in wordsByLength)
-                {
-                    if (wordsByLength.IndexOf(word) != wordsByLength.Count - 1)
-                        result += $"{word}, ";
-                    else
-                        result += $"{word}";
-                }
-                result += Environment.NewLine + Environment.NewLine;
-                textBox.Text = result;
-            }
+            if (BaseSettings.ScrabbleSortType == ScrabbleSort.LengthPoints)
+                FillTextBoxScrabbleResultsLengthFirst(textBox, words, wl => [.. wl.OrderByDescending(w => w.GetWordPoints())]);
+            else if (BaseSettings.ScrabbleSortType == ScrabbleSort.PointsAlph)
+                FillTextBoxScrabbleResultsPointsAlph(textBox, words);
+            else if (BaseSettings.ScrabbleSortType == ScrabbleSort.LengthAlph)
+                FillTextBoxScrabbleResultsLengthFirst(textBox, words, wl => [.. wl.OrderBy(w => w)]);
         }
         public static void FillTextBoxWithWords(TextBox textBox, List<string> words, bool appendText)
         {
@@ -108,6 +97,61 @@ namespace CrosswordAssistant.Services
                 i++;
             }
             textBox.Text = result;
+        }
+
+        private static void FillTextBoxScrabbleResultsLengthFirst(TextBox textBox, List<string> words, 
+            Func<List<string>, List<string>> sortSelector)
+        {
+            string result = "";
+            int maxLength = words.Max(w => w[..w.IndexOf('(')].Length);
+            for (int i = maxLength; i > 3; i--)
+            {
+                var wordsByLength = words.Where(w => w[..w.IndexOf('(')].Length == i).ToList();
+                if (wordsByLength.Count == 0) continue;
+                wordsByLength = sortSelector(wordsByLength);
+                result += $"Wyrazy {i}-literowe:" + Environment.NewLine;
+                foreach (var word in wordsByLength)
+                {
+                    if (wordsByLength.IndexOf(word) != wordsByLength.Count - 1)
+                        result += $"{word}, ";
+                    else
+                        result += $"{word}";
+                }
+                result += Environment.NewLine + Environment.NewLine;
+                textBox.Text = result;
+            }
+        }
+
+        private static void FillTextBoxScrabbleResultsPointsAlph(TextBox textBox, List<string> words)
+        {
+            string result = "";
+            int maxPoints = words.Max(w => w.GetWordPoints());
+            int minPoints = words.Min(w => w.GetWordPoints());
+
+            for (int i = maxPoints; i >= minPoints; i--)
+            {
+                var wordsByPoints = words.Where(w => w.GetWordPoints() == i).ToList();
+                if (wordsByPoints.Count == 0) continue;
+                wordsByPoints = [.. wordsByPoints.OrderBy(w => w)];
+                result += $"Wyrazy za {i} " + GetCorrectPrenouncation(i).ToString() + ":" + Environment.NewLine;
+                foreach (var word in wordsByPoints)
+                {
+                    if (wordsByPoints.IndexOf(word) != wordsByPoints.Count - 1)
+                        result += word[..word.IndexOf('(')] + ", ";
+                    else
+                        result += word[..word.IndexOf('(')];
+                }
+                result += Environment.NewLine + Environment.NewLine;
+                textBox.Text = result;
+            }
+        }
+
+        private static string GetCorrectPrenouncation(int n)
+        {
+            if (n == 1) return "punkt";
+            else if (n == 12 || n == 13 || n == 14) return "punktów";
+            else if (n % 10 == 2 || n % 10 == 3 || n % 10 == 4) return "punkty";
+            else return "punktów"; 
         }
     }
 }

@@ -29,6 +29,7 @@ namespace CrosswordAssistant.AppSettings
             DefaultSettings[MainFormPosKey] = (int)MainFormPosition.Center;
             DefaultSettings[CaseSensitiveKey] = 0;
             DefaultSettings[LogLevelKey] = (int)Logger.LogLevel;
+            DefaultSettings[ScrabbleSortKey] = (int)ScrabbleSort.LengthPoints;
         }
         private static void InitCurrentSettings()
         {
@@ -83,7 +84,8 @@ namespace CrosswordAssistant.AppSettings
             SavedSettings[ScrabbleColorKey] = ConfigurationManager.AppSettings[ScrabbleColorKey] is null ? DefaultSettings[ScrabbleColorKey] : int.Parse(ConfigurationManager.AppSettings[ScrabbleColorKey]!);
             SavedSettings[MainFormPosKey] = ConfigurationManager.AppSettings[MainFormPosKey] is null ? DefaultSettings[MainFormPosKey] : int.Parse(ConfigurationManager.AppSettings[MainFormPosKey]!);
             SavedSettings[CaseSensitiveKey] = ConfigurationManager.AppSettings[CaseSensitiveKey] is null ? DefaultSettings[CaseSensitiveKey] : int.Parse(ConfigurationManager.AppSettings[CaseSensitiveKey]!);
-            SavedSettings[LogLevelKey] = ConfigurationManager.AppSettings[LogLevelKey] is null ? DefaultSettings[LogLevelKey]: int.Parse(ConfigurationManager.AppSettings[LogLevelKey]!);
+            SavedSettings[LogLevelKey] = ConfigurationManager.AppSettings[LogLevelKey] is null ? DefaultSettings[LogLevelKey] : int.Parse(ConfigurationManager.AppSettings[LogLevelKey]!);
+            SavedSettings[ScrabbleSortKey] = ConfigurationManager.AppSettings[ScrabbleSortKey] is null ? DefaultSettings[ScrabbleSortKey] : int.Parse(ConfigurationManager.AppSettings[ScrabbleSortKey]!);
         }
         public static void ReturnToDefaultSettings()
         {
@@ -96,6 +98,7 @@ namespace CrosswordAssistant.AppSettings
         {
             MaxResultDisplay = (int)SavedSettings[MaxResultsKey];
             CaseSensitive = (int)SavedSettings[CaseSensitiveKey] == 1;
+            ScrabbleSortType = (ScrabbleSort)SavedSettings[ScrabbleSortKey];
             Logger.LogLevel = (LogLevel)SavedSettings[LogLevelKey];
         }
         
