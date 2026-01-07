@@ -1068,16 +1068,31 @@ namespace CrosswordAssistant
         }
         private void SudokuKeyDownHandle(KeyEventArgs e)
         {
+            string value = string.Empty;
             if (e.KeyCode == Keys.ControlKey) _isCtrlPressedInSudoku = true;
             if (e.KeyCode == Keys.Delete || e.KeyCode == Keys.Back) _sudokuService.UpdateSelectedCellsDigit(0);
-            if ((e.KeyCode >= Keys.D1 && e.KeyCode <= Keys.D9) ||
-                        (e.KeyCode >= Keys.NumPad0 && e.KeyCode <= Keys.NumPad9))
+            if (e.KeyCode >= Keys.D1 && e.KeyCode <= Keys.D9)
             {
                 if (_sudokuService.CurrentSelectedCells.Count > 0)
                 {
-                    var value = e.KeyCode.ToString()[1].ToString();
-                    _sudokuService.UpdateSelectedCellsDigit(int.Parse(value));
+                    value = e.KeyCode.ToString()[1].ToString();
                 }
+            }
+            if (e.KeyCode >= Keys.NumPad1 && e.KeyCode <= Keys.NumPad9)
+            {
+                if (_sudokuService.CurrentSelectedCells.Count > 0)
+                {
+                    value = e.KeyCode.ToString()[6].ToString();
+                }
+            }
+            if (value.Length > 0 && int.TryParse(value, out int correctValue))
+            {
+                _sudokuService.UpdateSelectedCellsDigit(correctValue);
+            }
+            else if (value.Length > 0)
+            {
+                MessageBox.Show("Coœ posz³o nie tak. SprawdŸ log aplikacji");
+                Logger.WriteToLog(LogLevel.Error, $"B³¹d konwersji wartoœci {e.KeyCode.ToString()} na cyfrê");
             }
         }
         private void PatternKeyDownHandle(KeyEventArgs e, object sender)

@@ -55,7 +55,7 @@
             "które zawierają/niezwierają każde lub conajmniej jedno z podanych po przecinku wyrażeń/liter, " +
             "w zależności od zaznaczenia opcji ORAZ/LUB. " +
             "W przypadku zaznaczenia jednoczesnie filtru zawiera i niezawiera, pomiędzy tymi filtrami zwasze stosowany jest spójnik ORAZ. " +
-            "Opcje ORAZ/LUB mają zastosowania do każdego filtru zawiera/niezawiera oddzielnie, jeśli podanych jest kilka wyrażeń po przecinku." +
+            "Opcje ORAZ/LUB mają zastosowania do każdego filtru zawiera/niezawiera oddzielnie, jeśli podanych jest kilka wyrażeń po przecinku. " +
             "W przypadku wpisania jedego wyrażenia opcje ORAZ/LUB nie mają zastosowania.";
         public static string SubwordInfo { get; } = "W tym trybie wyszukiwane są wyrazy, które można utworzyć z wyrazu wzorca, " +
             "poprzez usunięcie z niego niektórych liter, np. dla wzorca TTATARAK dopasowane zostaną m. in. wyrazy: " +
