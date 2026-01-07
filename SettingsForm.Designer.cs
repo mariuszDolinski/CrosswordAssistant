@@ -56,12 +56,15 @@
             radioBtnPosTL = new RadioButton();
             radioBtnPosTR = new RadioButton();
             groupBoxColorsSettings = new GroupBox();
+            labelSudokuColor = new Label();
+            buttonSudokuColor = new Button();
+            labelColorSudoku = new Label();
             buttonScrabbleColor = new Button();
             labelColorScrabble = new Label();
-            label2 = new Label();
+            labelScrabbleColor = new Label();
             buttonCryptharitmColor = new Button();
             labelColorCryptharitm = new Label();
-            label1 = new Label();
+            labelCryptarithmColor = new Label();
             buttonPatternColor = new Button();
             labelColorPattern = new Label();
             labelPatternColor = new Label();
@@ -386,12 +389,15 @@
             // 
             // groupBoxColorsSettings
             // 
+            groupBoxColorsSettings.Controls.Add(labelSudokuColor);
+            groupBoxColorsSettings.Controls.Add(buttonSudokuColor);
+            groupBoxColorsSettings.Controls.Add(labelColorSudoku);
             groupBoxColorsSettings.Controls.Add(buttonScrabbleColor);
             groupBoxColorsSettings.Controls.Add(labelColorScrabble);
-            groupBoxColorsSettings.Controls.Add(label2);
+            groupBoxColorsSettings.Controls.Add(labelScrabbleColor);
             groupBoxColorsSettings.Controls.Add(buttonCryptharitmColor);
             groupBoxColorsSettings.Controls.Add(labelColorCryptharitm);
-            groupBoxColorsSettings.Controls.Add(label1);
+            groupBoxColorsSettings.Controls.Add(labelCryptarithmColor);
             groupBoxColorsSettings.Controls.Add(buttonPatternColor);
             groupBoxColorsSettings.Controls.Add(labelColorPattern);
             groupBoxColorsSettings.Controls.Add(labelPatternColor);
@@ -404,61 +410,89 @@
             groupBoxColorsSettings.TabStop = false;
             groupBoxColorsSettings.Text = "Kolory";
             // 
+            // labelSudokuColor
+            // 
+            labelSudokuColor.AutoSize = true;
+            labelSudokuColor.Location = new Point(731, 72);
+            labelSudokuColor.Name = "labelSudokuColor";
+            labelSudokuColor.Size = new Size(73, 25);
+            labelSudokuColor.TabIndex = 10;
+            labelSudokuColor.Text = "Sudoku";
+            // 
+            // buttonSudokuColor
+            // 
+            buttonSudokuColor.FlatStyle = FlatStyle.Flat;
+            buttonSudokuColor.Location = new Point(782, 100);
+            buttonSudokuColor.Name = "buttonSudokuColor";
+            buttonSudokuColor.Size = new Size(112, 34);
+            buttonSudokuColor.TabIndex = 12;
+            buttonSudokuColor.Text = "Zmień";
+            buttonSudokuColor.UseVisualStyleBackColor = true;
+            buttonSudokuColor.Click += ButtonTabColor_Click;
+            // 
+            // labelColorSudoku
+            // 
+            labelColorSudoku.BackColor = Color.DarkSeaGreen;
+            labelColorSudoku.Location = new Point(731, 100);
+            labelColorSudoku.Name = "labelColorSudoku";
+            labelColorSudoku.Size = new Size(45, 34);
+            labelColorSudoku.TabIndex = 11;
+            // 
             // buttonScrabbleColor
             // 
             buttonScrabbleColor.FlatStyle = FlatStyle.Flat;
-            buttonScrabbleColor.Location = new Point(335, 100);
+            buttonScrabbleColor.Location = new Point(302, 100);
             buttonScrabbleColor.Name = "buttonScrabbleColor";
             buttonScrabbleColor.Size = new Size(112, 34);
-            buttonScrabbleColor.TabIndex = 9;
+            buttonScrabbleColor.TabIndex = 6;
             buttonScrabbleColor.Text = "Zmień";
             buttonScrabbleColor.UseVisualStyleBackColor = true;
-            buttonScrabbleColor.Click += ScrabbleColor_Click;
+            buttonScrabbleColor.Click += ButtonTabColor_Click;
             // 
             // labelColorScrabble
             // 
             labelColorScrabble.BackColor = Color.DarkSeaGreen;
-            labelColorScrabble.Location = new Point(284, 100);
+            labelColorScrabble.Location = new Point(251, 100);
             labelColorScrabble.Name = "labelColorScrabble";
             labelColorScrabble.Size = new Size(45, 34);
-            labelColorScrabble.TabIndex = 8;
+            labelColorScrabble.TabIndex = 5;
             // 
-            // label2
+            // labelScrabbleColor
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(284, 72);
-            label2.Name = "label2";
-            label2.Size = new Size(80, 25);
-            label2.TabIndex = 7;
-            label2.Text = "Scrabble";
+            labelScrabbleColor.AutoSize = true;
+            labelScrabbleColor.Location = new Point(251, 72);
+            labelScrabbleColor.Name = "labelScrabbleColor";
+            labelScrabbleColor.Size = new Size(80, 25);
+            labelScrabbleColor.TabIndex = 4;
+            labelScrabbleColor.Text = "Scrabble";
             // 
             // buttonCryptharitmColor
             // 
             buttonCryptharitmColor.FlatStyle = FlatStyle.Flat;
-            buttonCryptharitmColor.Location = new Point(608, 100);
+            buttonCryptharitmColor.Location = new Point(542, 100);
             buttonCryptharitmColor.Name = "buttonCryptharitmColor";
             buttonCryptharitmColor.Size = new Size(112, 34);
-            buttonCryptharitmColor.TabIndex = 6;
+            buttonCryptharitmColor.TabIndex = 9;
             buttonCryptharitmColor.Text = "Zmień";
             buttonCryptharitmColor.UseVisualStyleBackColor = true;
-            buttonCryptharitmColor.Click += UlozSamColor_Click;
+            buttonCryptharitmColor.Click += ButtonTabColor_Click;
             // 
             // labelColorCryptharitm
             // 
             labelColorCryptharitm.BackColor = Color.DarkSeaGreen;
-            labelColorCryptharitm.Location = new Point(557, 100);
+            labelColorCryptharitm.Location = new Point(491, 100);
             labelColorCryptharitm.Name = "labelColorCryptharitm";
             labelColorCryptharitm.Size = new Size(45, 34);
-            labelColorCryptharitm.TabIndex = 5;
+            labelColorCryptharitm.TabIndex = 8;
             // 
-            // label1
+            // labelCryptarithmColor
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(557, 72);
-            label1.Name = "label1";
-            label1.Size = new Size(109, 25);
-            label1.TabIndex = 4;
-            label1.Text = "Kryptarytmy";
+            labelCryptarithmColor.AutoSize = true;
+            labelCryptarithmColor.Location = new Point(491, 72);
+            labelCryptarithmColor.Name = "labelCryptarithmColor";
+            labelCryptarithmColor.Size = new Size(109, 25);
+            labelCryptarithmColor.TabIndex = 7;
+            labelCryptarithmColor.Text = "Kryptarytmy";
             // 
             // buttonPatternColor
             // 
@@ -469,7 +503,7 @@
             buttonPatternColor.TabIndex = 3;
             buttonPatternColor.Text = "Zmień";
             buttonPatternColor.UseVisualStyleBackColor = true;
-            buttonPatternColor.Click += PatternColor_Click;
+            buttonPatternColor.Click += ButtonTabColor_Click;
             // 
             // labelColorPattern
             // 
@@ -595,10 +629,10 @@
         private Button buttonResetToDefault;
         private Button buttonCryptharitmColor;
         private Label labelColorCryptharitm;
-        private Label label1;
+        private Label labelCryptarithmColor;
         private Button buttonScrabbleColor;
         private Label labelColorScrabble;
-        private Label label2;
+        private Label labelScrabbleColor;
         private GroupBox groupBoxMainFormPosition;
         private Label labelCaseSensitive;
         private RadioButton radioBtnCaseSensitiveNo;
@@ -615,5 +649,8 @@
         private GroupBox groupBoxScrebbleSettings;
         private ComboBox comboBoxScrabbleSort;
         private Label label3;
+        private Button buttonSudokuColor;
+        private Label labelColorSudoku;
+        private Label labelSudokuColor;
     }
 }

@@ -16,7 +16,7 @@ namespace CrosswordAssistant.AppSettings
             SetDefaultSettings();
             GetSavedSettings();
             InitCurrentSettings();
-            SetCurrentSettings();
+            SetCurrentSettingsVariables();
         }
         private static void SetDefaultSettings()
         {
@@ -26,6 +26,7 @@ namespace CrosswordAssistant.AppSettings
             DefaultSettings[PatternColorKey] = -7357297;
             DefaultSettings[CryptharitmColorKey] = -7114533;
             DefaultSettings[ScrabbleColorKey] = -2968436;
+            DefaultSettings[SudokuColorKey] = -4565549;
             DefaultSettings[MainFormPosKey] = (int)MainFormPosition.Center;
             DefaultSettings[CaseSensitiveKey] = 0;
             DefaultSettings[LogLevelKey] = (int)Logger.LogLevel;
@@ -82,6 +83,7 @@ namespace CrosswordAssistant.AppSettings
             SavedSettings[PatternColorKey] = ConfigurationManager.AppSettings[PatternColorKey] is null ? DefaultSettings[PatternColorKey] : int.Parse(ConfigurationManager.AppSettings[PatternColorKey]!);
             SavedSettings[CryptharitmColorKey] = ConfigurationManager.AppSettings[CryptharitmColorKey] is null ? DefaultSettings[CryptharitmColorKey] : int.Parse(ConfigurationManager.AppSettings[CryptharitmColorKey]!);
             SavedSettings[ScrabbleColorKey] = ConfigurationManager.AppSettings[ScrabbleColorKey] is null ? DefaultSettings[ScrabbleColorKey] : int.Parse(ConfigurationManager.AppSettings[ScrabbleColorKey]!);
+            SavedSettings[SudokuColorKey] = ConfigurationManager.AppSettings[SudokuColorKey] is null ? DefaultSettings[SudokuColorKey] : int.Parse(ConfigurationManager.AppSettings[SudokuColorKey]!);
             SavedSettings[MainFormPosKey] = ConfigurationManager.AppSettings[MainFormPosKey] is null ? DefaultSettings[MainFormPosKey] : int.Parse(ConfigurationManager.AppSettings[MainFormPosKey]!);
             SavedSettings[CaseSensitiveKey] = ConfigurationManager.AppSettings[CaseSensitiveKey] is null ? DefaultSettings[CaseSensitiveKey] : int.Parse(ConfigurationManager.AppSettings[CaseSensitiveKey]!);
             SavedSettings[LogLevelKey] = ConfigurationManager.AppSettings[LogLevelKey] is null ? DefaultSettings[LogLevelKey] : int.Parse(ConfigurationManager.AppSettings[LogLevelKey]!);
@@ -94,7 +96,7 @@ namespace CrosswordAssistant.AppSettings
                 CurrentSettings[ss.Key] = DefaultSettings[ss.Key];
             }
         }
-        public static void SetCurrentSettings()
+        public static void SetCurrentSettingsVariables()
         {
             MaxResultDisplay = (int)SavedSettings[MaxResultsKey];
             CaseSensitive = (int)SavedSettings[CaseSensitiveKey] == 1;

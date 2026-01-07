@@ -15,6 +15,7 @@ namespace CrosswordAssistant.AppSettings
         public const string PatternColorKey = "patternColor";
         public const string CryptharitmColorKey = "cryptharitmColor";
         public const string ScrabbleColorKey = "scrabbleColor";
+        public const string SudokuColorKey = "sudokuColor";
         public const string MainFormPosKey = "mainFormPosition";
         public const string CaseSensitiveKey = "caseSensitive";
         public const string ScrabbleSortKey = "scrabbleSort";
@@ -22,7 +23,7 @@ namespace CrosswordAssistant.AppSettings
         protected readonly static List<string> SettingsRequiredRestart =
         [
             "dictionaryLocation", "dictionaryName",
-            "patternColor", "cryptharitmColor", "scrabbleColor"
+            "patternColor", "cryptharitmColor", "scrabbleColor", "sudokuColor"
         ];
     }
 }

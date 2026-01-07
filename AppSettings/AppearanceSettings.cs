@@ -25,6 +25,10 @@ namespace CrosswordAssistant.AppSettings
                         _mainForm.labelScrabbleCurrentPatternLen,
                         _mainForm.labelScrabbleCalc,
                         _mainForm.labelScrabbePoints
+                    ],
+                    [
+                        _mainForm.labelSudoku,
+                        _mainForm.labelSudokuSolveInfo
                     ]
                 ];
         }
@@ -34,7 +38,8 @@ namespace CrosswordAssistant.AppSettings
                 [
                     Color.FromArgb((int)Settings.SavedSettings[BaseSettings.PatternColorKey]),
                     Color.FromArgb((int)Settings.SavedSettings[BaseSettings.CryptharitmColorKey]),
-                    Color.FromArgb((int)Settings.SavedSettings[BaseSettings.ScrabbleColorKey])
+                    Color.FromArgb((int)Settings.SavedSettings[BaseSettings.ScrabbleColorKey]),
+                    Color.FromArgb((int)Settings.SavedSettings[BaseSettings.SudokuColorKey])
                 ];
         }
 

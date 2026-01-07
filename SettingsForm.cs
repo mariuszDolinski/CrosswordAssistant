@@ -26,6 +26,7 @@ namespace CrosswordAssistant
             labelColorPattern.BackColor = Color.FromArgb((int)Settings.CurrentSettings[BaseSettings.PatternColorKey]);
             labelColorCryptharitm.BackColor = Color.FromArgb((int)Settings.CurrentSettings[BaseSettings.CryptharitmColorKey]);
             labelColorScrabble.BackColor = Color.FromArgb((int)Settings.CurrentSettings[BaseSettings.ScrabbleColorKey]);
+            labelColorSudoku.BackColor = Color.FromArgb((int)Settings.CurrentSettings[BaseSettings.SudokuColorKey]);
             comboBoxScrabbleSort.SelectedIndex = (int)Settings.CurrentSettings[BaseSettings.ScrabbleSortKey];
             SetMainFormPositionRadioButtons();
             SetCaseSensitiveRadioButtons();
@@ -72,7 +73,8 @@ namespace CrosswordAssistant
             [
                 ColorTranslator.ToOle(labelColorPattern.BackColor),
                 ColorTranslator.ToOle(labelColorCryptharitm.BackColor),
-                ColorTranslator.ToOle(labelColorScrabble.BackColor)
+                ColorTranslator.ToOle(labelColorScrabble.BackColor),
+                ColorTranslator.ToOle(labelColorSudoku.BackColor)
             ];
         }
         private void SetNewColor(Label label, string key)
@@ -129,7 +131,7 @@ namespace CrosswordAssistant
                 Settings.SaveSettingToAppConfig();
                 buttonSettingsApply.Enabled = false;
                 buttonSettingsOK.Enabled = false;
-                Settings.SetCurrentSettings();
+                Settings.SetCurrentSettingsVariables();
                 _appearanceSettings.SetTextBoxesCasing(BaseSettings.CaseSensitive);
                 _isValidateOk = true;
             }
@@ -171,18 +173,6 @@ namespace CrosswordAssistant
                 "Przywracanie ustawień domyślnych", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
-        private void PatternColor_Click(object sender, EventArgs e)
-        {
-            SetNewColor(labelColorPattern, Settings.PatternColorKey);
-        }
-        private void UlozSamColor_Click(object sender, EventArgs e)
-        {
-            SetNewColor(labelColorCryptharitm, Settings.CryptharitmColorKey);
-        }
-        private void ScrabbleColor_Click(object sender, EventArgs e)
-        {
-            SetNewColor(labelColorScrabble, Settings.ScrabbleColorKey);
-        }
         private void RadioBtnPos_CheckedChange(object sender, EventArgs e)
         {
             var radioBtn = (RadioButton)sender;
@@ -201,18 +191,30 @@ namespace CrosswordAssistant
                 SetButtonsVisibility();
             }
         }
-
         private void ClearAppConfigBtn_Click(object sender, EventArgs e)
         {
             Settings.ClearAppConfig();
         }
-
         private void ScrabbleSort_SelectedIndexChnged(object sender, EventArgs e)
         {
             var comboBox = (ComboBox)sender;
-            BaseSettings.ScrabbleSortType = (ScrabbleSort)comboBox.SelectedIndex;
             Settings.CurrentSettings[BaseSettings.ScrabbleSortKey] = comboBox.SelectedIndex;
             SetButtonsVisibility();
+        }
+        private void ButtonTabColor_Click(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            switch (btn.TabIndex)
+            {
+                case 3: SetNewColor(labelColorPattern, Settings.PatternColorKey); break;
+                case 6: SetNewColor(labelColorScrabble, Settings.ScrabbleColorKey); break;
+                case 9: SetNewColor(labelColorCryptharitm, Settings.CryptharitmColorKey); break;
+                case 12: SetNewColor(labelColorSudoku, Settings.SudokuColorKey); break;
+                default:
+                    MessageBox.Show("Coś poszło nie tak. Sprawdź log aplikacji");
+                    Logger.WriteToLog(LogLevel.Error, $"Niepoprawny Tag ({btn.TabIndex}) przycisku do zmiany koloru zakładki");
+                    break;
+            }
         }
     }
 }
