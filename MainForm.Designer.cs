@@ -39,6 +39,7 @@
             contextMenuStripResults = new ContextMenuStrip(components);
             szukajWToolStripMenuItem = new ToolStripMenuItem();
             googleToolStripMenuItem = new ToolStripMenuItem();
+            bingToolStripMenuItem = new ToolStripMenuItem();
             sJPToolStripMenuItem = new ToolStripMenuItem();
             PanelPatternFilters = new Panel();
             groupBoxFilters = new GroupBox();
@@ -322,6 +323,7 @@
             label19 = new Label();
             label22 = new Label();
             newDictionaryDialog = new OpenFileDialog();
+            duckDuckGoToolStripMenuItem = new ToolStripMenuItem();
             tabControl.SuspendLayout();
             tabPattern.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainerResults).BeginInit();
@@ -499,26 +501,33 @@
             contextMenuStripResults.ImageScalingSize = new Size(24, 24);
             contextMenuStripResults.Items.AddRange(new ToolStripItem[] { szukajWToolStripMenuItem });
             contextMenuStripResults.Name = "contextMenuStripPR";
-            contextMenuStripResults.Size = new Size(164, 36);
+            contextMenuStripResults.Size = new Size(241, 69);
             // 
             // szukajWToolStripMenuItem
             // 
-            szukajWToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { googleToolStripMenuItem, sJPToolStripMenuItem });
+            szukajWToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { sJPToolStripMenuItem, googleToolStripMenuItem, bingToolStripMenuItem, duckDuckGoToolStripMenuItem });
             szukajWToolStripMenuItem.Name = "szukajWToolStripMenuItem";
-            szukajWToolStripMenuItem.Size = new Size(163, 32);
+            szukajWToolStripMenuItem.Size = new Size(240, 32);
             szukajWToolStripMenuItem.Text = "Szukaj w...";
             // 
             // googleToolStripMenuItem
             // 
             googleToolStripMenuItem.Name = "googleToolStripMenuItem";
-            googleToolStripMenuItem.Size = new Size(172, 34);
+            googleToolStripMenuItem.Size = new Size(270, 34);
             googleToolStripMenuItem.Text = "Google";
             googleToolStripMenuItem.Click += SearchGoogle_MenuClick;
+            // 
+            // bingToolStripMenuItem
+            // 
+            bingToolStripMenuItem.Name = "bingToolStripMenuItem";
+            bingToolStripMenuItem.Size = new Size(270, 34);
+            bingToolStripMenuItem.Text = "Bing";
+            bingToolStripMenuItem.Click += SearchBing_MenuClick;
             // 
             // sJPToolStripMenuItem
             // 
             sJPToolStripMenuItem.Name = "sJPToolStripMenuItem";
-            sJPToolStripMenuItem.Size = new Size(172, 34);
+            sJPToolStripMenuItem.Size = new Size(270, 34);
             sJPToolStripMenuItem.Text = "SJP";
             sJPToolStripMenuItem.Click += SearchSJP_MenuClick;
             // 
@@ -4552,6 +4561,13 @@
             newDictionaryDialog.Filter = "Pliki tekstowe|*.txt";
             newDictionaryDialog.Title = "Wybierz plik ze słownikiem";
             // 
+            // duckDuckGoToolStripMenuItem
+            // 
+            duckDuckGoToolStripMenuItem.Name = "duckDuckGoToolStripMenuItem";
+            duckDuckGoToolStripMenuItem.Size = new Size(270, 34);
+            duckDuckGoToolStripMenuItem.Text = "DuckDuckGo";
+            duckDuckGoToolStripMenuItem.Click += DuckDuckGoSearch_MenuClick;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -4970,5 +4986,7 @@
         private Panel panel1;
         private Label label107;
         private Label labelAbout;
+        private ToolStripMenuItem bingToolStripMenuItem;
+        private ToolStripMenuItem duckDuckGoToolStripMenuItem;
     }
 }

@@ -313,24 +313,7 @@ namespace CrosswordAssistant
                 return;
             }
 
-            var addedWords = _dictionaryService.AddWordsToDictionary(wordsToAdd);
-            if (addedWords.Count == 0)
-            {
-                MessageBox.Show("Podane wyrazy s¹ ju¿ w bie¿¹cym s³owniku.", "Uwaga", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
-            string msg = "";
-            foreach (var word in addedWords)
-            {
-                msg += word + Environment.NewLine;
-            }
-            if (FileService.SaveDictionary(DictionaryService.CurrentDictionary))
-            {
-                MessageBox.Show("Wyrazy: " + Environment.NewLine + msg + "dodane poprawnie.", "Dodano wyrazy do s³ownika",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
-                Logger.WriteToLog(LogLevel.Info, $"Dodano ${addedWords.Count} nowe wyrazy do s³ownika ${FileService.FileName}");
-            }
-            SetFileInfo(0);
+            AddWordsToDictionary(wordsToAdd);
         }
         private void RemoveFromDictionaryBtn_Click(object sender, EventArgs e)
         {
@@ -554,6 +537,18 @@ namespace CrosswordAssistant
             string searchPhrase = GetSelectedResult();
             if (searchPhrase.Length > 0)
                 Utilities.SearchInWeb(WebSearch.Sjp, searchPhrase);
+        }
+        private void SearchBing_MenuClick(object sender, EventArgs e)
+        {
+            string searchPhrase = GetSelectedResult();
+            if (searchPhrase.Length > 0)
+                Utilities.SearchInWeb(WebSearch.Bing, searchPhrase);
+        }
+        private void DuckDuckGoSearch_MenuClick(object sender, EventArgs e)
+        {
+            string searchPhrase = GetSelectedResult();
+            if (searchPhrase.Length > 0)
+                Utilities.SearchInWeb(WebSearch.DuckDuckGo, searchPhrase);
         }
         private void TabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -1045,7 +1040,7 @@ namespace CrosswordAssistant
 
             if (string.IsNullOrEmpty(searchPhrase))
             {
-                MessageBox.Show("Zaznacz tekst do wyszukania", "Uwaga", MessageBoxButtons.OK,
+                MessageBox.Show("Najpierw zaznacz jakiœ wyraz", "Uwaga", MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
                 return "";
             }
@@ -1071,16 +1066,13 @@ namespace CrosswordAssistant
             string value = string.Empty;
             if (e.KeyCode == Keys.ControlKey) _isCtrlPressedInSudoku = true;
             if (e.KeyCode == Keys.Delete || e.KeyCode == Keys.Back) _sudokuService.UpdateSelectedCellsDigit(0);
-            if (e.KeyCode >= Keys.D1 && e.KeyCode <= Keys.D9)
+            if (_sudokuService.CurrentSelectedCells.Count > 0)
             {
-                if (_sudokuService.CurrentSelectedCells.Count > 0)
+                if (e.KeyCode >= Keys.D1 && e.KeyCode <= Keys.D9)
                 {
                     value = e.KeyCode.ToString()[1].ToString();
                 }
-            }
-            if (e.KeyCode >= Keys.NumPad1 && e.KeyCode <= Keys.NumPad9)
-            {
-                if (_sudokuService.CurrentSelectedCells.Count > 0)
+                else if (e.KeyCode >= Keys.NumPad1 && e.KeyCode <= Keys.NumPad9)
                 {
                     value = e.KeyCode.ToString()[6].ToString();
                 }
@@ -1173,7 +1165,7 @@ namespace CrosswordAssistant
                 }
                 else
                 {
-                    if(mode == SudokuMode.Selection && !_sudokuService.IsAnyEmptyCellSelected())
+                    if (mode == SudokuMode.Selection && !_sudokuService.IsAnyEmptyCellSelected())
                     {
                         MessageBox.Show("Najpierw zaznacz jakieœ puste komórki", "Brak zaznaczenia",
                             MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -1195,8 +1187,28 @@ namespace CrosswordAssistant
             IsSearchPending(false);
             SetMode(tabControl.SelectedIndex);
         }
+        private void AddWordsToDictionary(List<string> wordsToAdd)
+        {
+            var addedWords = _dictionaryService.AddWordsToDictionary(wordsToAdd);
+            if (addedWords.Count == 0)
+            {
+                MessageBox.Show("Podane wyrazy s¹ ju¿ w bie¿¹cym s³owniku.", "Uwaga", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            string msg = "";
+            foreach (var word in addedWords)
+            {
+                msg += word + Environment.NewLine;
+            }
+            if (FileService.SaveDictionary(DictionaryService.CurrentDictionary))
+            {
+                MessageBox.Show("Wyrazy: " + Environment.NewLine + msg + "dodane poprawnie.", "Dodano wyrazy do s³ownika",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Logger.WriteToLog(LogLevel.Info, $"Dodano ${addedWords.Count} nowe wyrazy do s³ownika ${FileService.FileName}");
+            }
+            SetFileInfo(0);
+        }
 
         #endregion
-
     }
 }
