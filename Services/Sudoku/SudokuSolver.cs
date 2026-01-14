@@ -23,7 +23,7 @@ namespace CrosswordAssistant.Services.Sudoku
             Mode = mode;
         }
 
-        public string ValidateSudoku(int[,] board)
+        public string ValidateSudoku(int[,] board, SudokuValidationMode mode)
         {
             for (int r = 0; r < 9; r++)
             {
@@ -46,6 +46,7 @@ namespace CrosswordAssistant.Services.Sudoku
                     Boxes[boxIndex] |= bit;
                 }
             }
+            if (mode == SudokuValidationMode.Partial) return "";
             if (EmptyCells.Count == 0) return "Sudoku zostało już rozwiązane";
             if (EmptyCells.Count > 64) return "Wpisz conajmniej 17 poprawnych cyfr";
             return "";
@@ -56,7 +57,7 @@ namespace CrosswordAssistant.Services.Sudoku
             if (board == null || board.GetLength(0) != 9 || board.GetLength(1) != 9)
                 return new SudokuResponse(null, false, "Błędny rozmiar diagramu sudoku.", 0);
 
-            var validateResult = ValidateSudoku(board);
+            var validateResult = ValidateSudoku(board,SudokuValidationMode.Full);
             if (validateResult.Length > 0)
                 return new SudokuResponse(null, false, validateResult, 0);
 
@@ -132,7 +133,7 @@ namespace CrosswordAssistant.Services.Sudoku
         }
 
         /// <summary>
-        /// Zamieniamy liczbę, ktra w zapisie binarnym ma tylko jedną 1 na liczbę całkowitą
+        /// Zamieniamy liczbę, która w zapisie binarnym ma tylko jedną 1 na liczbę całkowitą
         /// </summary>
         /// <param name="bit">ciąg zerojedynkowy z jedną 1</param>
         /// <returns></returns>

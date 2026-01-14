@@ -1,6 +1,7 @@
 ﻿using CrosswordAssistant.Entities;
 using CrosswordAssistant.Entities.Enums;
 using System.Drawing.Drawing2D;
+using static System.Windows.Forms.LinkLabel;
 
 namespace CrosswordAssistant.Services.Sudoku
 {
@@ -124,6 +125,32 @@ namespace CrosswordAssistant.Services.Sudoku
             foreach (var cell in CurrentSelectedCells)
             {
                 if (cell.Value == 0) return true;
+            }
+            return false;
+        }
+        public List<string> GetGridToTxt()
+        {
+            List<string> result = [];
+            string line;
+            for (int r = 0; r < 9; r++)
+            {
+                line = string.Empty;
+                for (int c = 0; c < 9; c++)
+                {
+                    line += Digits[r, c].ToString();
+                }
+                result.Add(line);
+            }
+            return result;
+        }
+        public bool IsAnyCellNotEmpty()
+        {
+            for (int r = 0; r < 9; r++)
+            {
+                for (int c = 0; c < 9; c++)
+                {
+                    if (Digits[r, c] > 0) return true;
+                }
             }
             return false;
         }

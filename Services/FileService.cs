@@ -1,6 +1,7 @@
 ﻿using CrosswordAssistant.AppSettings;
 using CrosswordAssistant.Entities;
 using CrosswordAssistant.Entities.Enums;
+using CrosswordAssistant.Entities.Responses;
 using System.Configuration;
 using System.Windows.Forms;
 
@@ -121,6 +122,53 @@ namespace CrosswordAssistant.Services
                 }
             }
             return [];
+        }
+        public static SudokuResponse IsFileInSudokuFormat(string[]? lines)
+        {
+            if(lines ==  null || lines.Length == 0)
+            {
+                return new SudokuResponse(null, false, "Podany plik jest pusty lub uszkodzony.", 0);
+            }
+            bool isCorrectFormat = true;
+            int[,] digits = new int[9, 9];
+            if (lines.Length != 9) isCorrectFormat = false;
+            if (isCorrectFormat)
+            {
+                for (int i = 0; i < lines.Length; i++)
+                {
+                    if (lines[i].Length != 9)
+                    {
+                        isCorrectFormat = false;
+                        break;
+                    }
+                    for (int j = 0; j < lines[i].Length; j++)
+                    {
+                        if (int.TryParse(lines[i][j].ToString(), out int val))
+                        {
+                            if(val >= 0 && val <= 9)
+                            {
+                                digits[i, j] = val;
+                            }
+                            else
+                            {
+                                isCorrectFormat = false;
+                                break;
+                            }
+                        }
+                        else
+                        {
+                            isCorrectFormat = false;
+                            break;
+                        }
+                    }
+                }
+            }
+            if (!isCorrectFormat)
+            {
+                return new SudokuResponse(null, false, "Podany plik ma zły format. Powinien zawierać dokładnie 9 wierszy, w każdym z nich dokładnie 9 cyfr od 0 do 9", 0);
+            }
+
+            return new SudokuResponse(digits, true, "", 0);
         }
 
     }

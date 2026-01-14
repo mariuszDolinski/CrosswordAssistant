@@ -38,9 +38,10 @@
             textBoxPatternResults = new TextBox();
             contextMenuStripResults = new ContextMenuStrip(components);
             szukajWToolStripMenuItem = new ToolStripMenuItem();
+            sJPToolStripMenuItem = new ToolStripMenuItem();
             googleToolStripMenuItem = new ToolStripMenuItem();
             bingToolStripMenuItem = new ToolStripMenuItem();
-            sJPToolStripMenuItem = new ToolStripMenuItem();
+            duckDuckGoToolStripMenuItem = new ToolStripMenuItem();
             PanelPatternFilters = new Panel();
             groupBoxFilters = new GroupBox();
             tableLayoutPanel5 = new TableLayoutPanel();
@@ -147,6 +148,8 @@
             tabPageSudoku = new TabPage();
             tableLayoutPanelSudokuMain = new TableLayoutPanel();
             sudokuControlPanel = new Panel();
+            buttonSaveSudokuToFile = new Button();
+            label109 = new Label();
             buttonCheckUniquness = new Button();
             labelsudokuSpace3 = new Label();
             buttonSolveSelection = new Button();
@@ -322,8 +325,10 @@
             tableLayoutPanel1 = new TableLayoutPanel();
             label19 = new Label();
             label22 = new Label();
-            newDictionaryDialog = new OpenFileDialog();
-            duckDuckGoToolStripMenuItem = new ToolStripMenuItem();
+            openFileDialog = new OpenFileDialog();
+            saveFileDialog = new SaveFileDialog();
+            label110 = new Label();
+            buttonLoadGridFromFile = new Button();
             tabControl.SuspendLayout();
             tabPattern.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainerResults).BeginInit();
@@ -501,35 +506,42 @@
             contextMenuStripResults.ImageScalingSize = new Size(24, 24);
             contextMenuStripResults.Items.AddRange(new ToolStripItem[] { szukajWToolStripMenuItem });
             contextMenuStripResults.Name = "contextMenuStripPR";
-            contextMenuStripResults.Size = new Size(241, 69);
+            contextMenuStripResults.Size = new Size(164, 36);
             // 
             // szukajWToolStripMenuItem
             // 
             szukajWToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { sJPToolStripMenuItem, googleToolStripMenuItem, bingToolStripMenuItem, duckDuckGoToolStripMenuItem });
             szukajWToolStripMenuItem.Name = "szukajWToolStripMenuItem";
-            szukajWToolStripMenuItem.Size = new Size(240, 32);
+            szukajWToolStripMenuItem.Size = new Size(163, 32);
             szukajWToolStripMenuItem.Text = "Szukaj w...";
+            // 
+            // sJPToolStripMenuItem
+            // 
+            sJPToolStripMenuItem.Name = "sJPToolStripMenuItem";
+            sJPToolStripMenuItem.Size = new Size(217, 34);
+            sJPToolStripMenuItem.Text = "SJP";
+            sJPToolStripMenuItem.Click += SearchSJP_MenuClick;
             // 
             // googleToolStripMenuItem
             // 
             googleToolStripMenuItem.Name = "googleToolStripMenuItem";
-            googleToolStripMenuItem.Size = new Size(270, 34);
+            googleToolStripMenuItem.Size = new Size(217, 34);
             googleToolStripMenuItem.Text = "Google";
             googleToolStripMenuItem.Click += SearchGoogle_MenuClick;
             // 
             // bingToolStripMenuItem
             // 
             bingToolStripMenuItem.Name = "bingToolStripMenuItem";
-            bingToolStripMenuItem.Size = new Size(270, 34);
+            bingToolStripMenuItem.Size = new Size(217, 34);
             bingToolStripMenuItem.Text = "Bing";
             bingToolStripMenuItem.Click += SearchBing_MenuClick;
             // 
-            // sJPToolStripMenuItem
+            // duckDuckGoToolStripMenuItem
             // 
-            sJPToolStripMenuItem.Name = "sJPToolStripMenuItem";
-            sJPToolStripMenuItem.Size = new Size(270, 34);
-            sJPToolStripMenuItem.Text = "SJP";
-            sJPToolStripMenuItem.Click += SearchSJP_MenuClick;
+            duckDuckGoToolStripMenuItem.Name = "duckDuckGoToolStripMenuItem";
+            duckDuckGoToolStripMenuItem.Size = new Size(217, 34);
+            duckDuckGoToolStripMenuItem.Text = "DuckDuckGo";
+            duckDuckGoToolStripMenuItem.Click += DuckDuckGoSearch_MenuClick;
             // 
             // PanelPatternFilters
             // 
@@ -1805,6 +1817,10 @@
             // 
             // sudokuControlPanel
             // 
+            sudokuControlPanel.Controls.Add(buttonLoadGridFromFile);
+            sudokuControlPanel.Controls.Add(label110);
+            sudokuControlPanel.Controls.Add(buttonSaveSudokuToFile);
+            sudokuControlPanel.Controls.Add(label109);
             sudokuControlPanel.Controls.Add(buttonCheckUniquness);
             sudokuControlPanel.Controls.Add(labelsudokuSpace3);
             sudokuControlPanel.Controls.Add(buttonSolveSelection);
@@ -1818,6 +1834,26 @@
             sudokuControlPanel.Name = "sudokuControlPanel";
             sudokuControlPanel.Size = new Size(473, 731);
             sudokuControlPanel.TabIndex = 1;
+            // 
+            // buttonSaveSudokuToFile
+            // 
+            buttonSaveSudokuToFile.Dock = DockStyle.Top;
+            buttonSaveSudokuToFile.FlatStyle = FlatStyle.Flat;
+            buttonSaveSudokuToFile.Location = new Point(0, 184);
+            buttonSaveSudokuToFile.Name = "buttonSaveSudokuToFile";
+            buttonSaveSudokuToFile.Size = new Size(473, 40);
+            buttonSaveSudokuToFile.TabIndex = 205;
+            buttonSaveSudokuToFile.Text = "ZAPISZ DO PLIKU...";
+            buttonSaveSudokuToFile.UseVisualStyleBackColor = true;
+            buttonSaveSudokuToFile.Click += SaveSudokuToFileBtn_Click;
+            // 
+            // label109
+            // 
+            label109.Dock = DockStyle.Top;
+            label109.Location = new Point(0, 169);
+            label109.Name = "label109";
+            label109.Size = new Size(473, 15);
+            label109.TabIndex = 204;
             // 
             // buttonCheckUniquness
             // 
@@ -4555,18 +4591,35 @@
             label22.Text = "112112";
             label22.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // newDictionaryDialog
+            // openFileDialog
             // 
-            newDictionaryDialog.FileName = "slownik.txt";
-            newDictionaryDialog.Filter = "Pliki tekstowe|*.txt";
-            newDictionaryDialog.Title = "Wybierz plik ze słownikiem";
+            openFileDialog.FileName = "slownik.txt";
+            openFileDialog.Filter = "Pliki tekstowe|*.txt";
+            openFileDialog.Title = "Wybierz plik ze słownikiem";
             // 
-            // duckDuckGoToolStripMenuItem
+            // saveFileDialog
             // 
-            duckDuckGoToolStripMenuItem.Name = "duckDuckGoToolStripMenuItem";
-            duckDuckGoToolStripMenuItem.Size = new Size(270, 34);
-            duckDuckGoToolStripMenuItem.Text = "DuckDuckGo";
-            duckDuckGoToolStripMenuItem.Click += DuckDuckGoSearch_MenuClick;
+            saveFileDialog.Filter = "Plik tekstowy (*.txt)|*.txt";
+            // 
+            // label110
+            // 
+            label110.Dock = DockStyle.Top;
+            label110.Location = new Point(0, 224);
+            label110.Name = "label110";
+            label110.Size = new Size(473, 3);
+            label110.TabIndex = 206;
+            // 
+            // buttonLoadGridFromFile
+            // 
+            buttonLoadGridFromFile.Dock = DockStyle.Top;
+            buttonLoadGridFromFile.FlatStyle = FlatStyle.Flat;
+            buttonLoadGridFromFile.Location = new Point(0, 227);
+            buttonLoadGridFromFile.Name = "buttonLoadGridFromFile";
+            buttonLoadGridFromFile.Size = new Size(473, 40);
+            buttonLoadGridFromFile.TabIndex = 207;
+            buttonLoadGridFromFile.Text = "WCZYTAJ Z PLIKU...";
+            buttonLoadGridFromFile.UseVisualStyleBackColor = true;
+            buttonLoadGridFromFile.Click += LoadSudokuFromFileBtn_Click;
             // 
             // MainForm
             // 
@@ -4726,7 +4779,7 @@
         private Label labelDicLengthInfo;
         private Label labelFileName;
         private Label labelWordsCount;
-        private OpenFileDialog newDictionaryDialog;
+        private OpenFileDialog openFileDialog;
         private Label label20;
         private Button buttonLoadDict;
         private TableLayoutPanel tableLayoutPanel3;
@@ -4988,5 +5041,10 @@
         private Label labelAbout;
         private ToolStripMenuItem bingToolStripMenuItem;
         private ToolStripMenuItem duckDuckGoToolStripMenuItem;
+        private Label label109;
+        private Button buttonSaveSudokuToFile;
+        private SaveFileDialog saveFileDialog;
+        private Button buttonLoadGridFromFile;
+        private Label label110;
     }
 }

@@ -148,7 +148,7 @@ namespace CrosswordAssistant
         private void ValidateSudokuBtn_Click(object sender, EventArgs e)
         {
             SudokuSolver sSolver = new(SudokuMode.None);
-            var msg = sSolver.ValidateSudoku(_sudokuService.Digits);
+            var msg = sSolver.ValidateSudoku(_sudokuService.Digits, SudokuValidationMode.Full);
             if (msg.Length == 0)
             {
                 MessageBox.Show("Poprawny diagram sudoku");
@@ -190,7 +190,7 @@ namespace CrosswordAssistant
         }
         private async void LoadDictionaryBtn_Click(object sender, EventArgs e)
         {
-            if (FileService.SetCurrentDictionaryPathFromDialog(newDictionaryDialog, DictionaryMode.NewFile))
+            if (FileService.SetCurrentDictionaryPathFromDialog(openFileDialog, DictionaryMode.NewFile))
             {
                 DictionaryService.PendingDictionaryLoading = true;
                 int count = 0;
@@ -214,7 +214,7 @@ namespace CrosswordAssistant
         private async void LoadToMerge_Click(object sender, EventArgs e)
         {
             textBoxWordsToMerge.Text = "Wczytujê plik..." + Environment.NewLine;
-            var wordsToAdd = FileService.LoadTextFile(newDictionaryDialog);
+            var wordsToAdd = FileService.LoadTextFile(openFileDialog);
             textBoxWordsToMerge.Text += "OK" + Environment.NewLine;
 
             if (wordsToAdd.Count > 0)
@@ -633,6 +633,58 @@ namespace CrosswordAssistant
                     cellLabel.BackColor = Color.LightBlue;
                     int value = cellLabel.Text.Length == 0 ? 0 : int.Parse(cellLabel.Text);
                     _sudokuService.CurrentSelectedCells.Add(new Cell(x, y, value, cellLabel));
+                }
+            }
+        }
+        private void SaveSudokuToFileBtn_Click(object sender, EventArgs e)
+        {
+            SudokuSolver sSolver = new(SudokuMode.None);
+            var msg = sSolver.ValidateSudoku(_sudokuService.Digits, SudokuValidationMode.Partial);
+            if (msg != null && msg.Length > 0)
+            {
+                var response = MessageBox.Show("Diagram sudoku zawiera b³êdy. Czy nadal chcesz go zapisaæ?", "B³êdny diagram", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (response == DialogResult.No) return;
+            }
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    var gridText = _sudokuService.GetGridToTxt();
+                    File.WriteAllLines(saveFileDialog.FileName, gridText);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("B³¹d przy próbie zapisu diagramu sudoku do pliku. SprawdŸ szczegó³y w logu.");
+                    Logger.WriteToLog(LogLevel.Error, ex.Message, ex.StackTrace ?? "");
+                }
+            }
+        }
+        private void LoadSudokuFromFileBtn_Click(object sender, EventArgs e)
+        {
+            if (_sudokuService.IsAnyCellNotEmpty())
+            {
+                var response = MessageBox.Show("Ta czynnoœæ spowoduje wyczyszczenie obecnego diagramu. Czy chcesz kontynuowaæ?",
+                    "Diagram nie jest pusty", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (response == DialogResult.No) return;
+            }
+            if(openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    var lines = File.ReadAllLines(openFileDialog.FileName);
+                    var response = FileService.IsFileInSudokuFormat(lines);
+                    if (!response.ValidationResult)
+                    {
+                        MessageBox.Show(response.Message, "Z³y format pliku", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        return;
+                    }
+                    _sudokuService.ClearGrid(true, true, true);
+                    _sudokuService.FillCurrentGrid(response.Grid!, SudokuMode.None);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("B³¹d przy ³adowaniu diagramu sudoku z pliku. SprawdŸ szczegó³y w logu.");
+                    Logger.WriteToLog(LogLevel.Error, ex.Message, ex.StackTrace ?? "");
                 }
             }
         }
@@ -1175,7 +1227,7 @@ namespace CrosswordAssistant
                         MessageBox.Show("Podane sudoku nie jest unikalne. Wyœwietlam przyk³adowe rozwi¹zanie.", "",
                             MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
-                    _sudokuService.FillCurrentGrid(response.SolvedGrid!, mode);
+                    _sudokuService.FillCurrentGrid(response.Grid!, mode);
                     labelSudokuSolveInfo.Text = $"Znalezionych rozwi¹zañ: {response.SolutionsCount}";
                 }
             }
