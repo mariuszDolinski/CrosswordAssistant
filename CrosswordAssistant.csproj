@@ -6,15 +6,10 @@
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
-    <ApplicationIcon>crossword_2.ico</ApplicationIcon>
     <StartupObject>CrosswordAssistant.Program</StartupObject>
 	<AssemblyVersion>3.2.4.0</AssemblyVersion>
-	<FileVersion>3.2.6.8</FileVersion>
+	<FileVersion>3.2.6.9</FileVersion>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Content Include="crossword_2.ico" />
-  </ItemGroup>
 
   <ItemGroup>
     <Compile Update="Properties\Resources.Designer.cs">

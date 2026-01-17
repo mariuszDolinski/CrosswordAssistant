@@ -148,6 +148,8 @@
             tabPageSudoku = new TabPage();
             tableLayoutPanelSudokuMain = new TableLayoutPanel();
             sudokuControlPanel = new Panel();
+            buttonLoadGridFromFile = new Button();
+            label110 = new Label();
             buttonSaveSudokuToFile = new Button();
             label109 = new Label();
             buttonCheckUniquness = new Button();
@@ -327,8 +329,6 @@
             label22 = new Label();
             openFileDialog = new OpenFileDialog();
             saveFileDialog = new SaveFileDialog();
-            label110 = new Label();
-            buttonLoadGridFromFile = new Button();
             tabControl.SuspendLayout();
             tabPattern.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainerResults).BeginInit();
@@ -1834,6 +1834,26 @@
             sudokuControlPanel.Name = "sudokuControlPanel";
             sudokuControlPanel.Size = new Size(473, 731);
             sudokuControlPanel.TabIndex = 1;
+            // 
+            // buttonLoadGridFromFile
+            // 
+            buttonLoadGridFromFile.Dock = DockStyle.Top;
+            buttonLoadGridFromFile.FlatStyle = FlatStyle.Flat;
+            buttonLoadGridFromFile.Location = new Point(0, 227);
+            buttonLoadGridFromFile.Name = "buttonLoadGridFromFile";
+            buttonLoadGridFromFile.Size = new Size(473, 40);
+            buttonLoadGridFromFile.TabIndex = 207;
+            buttonLoadGridFromFile.Text = "WCZYTAJ Z PLIKU...";
+            buttonLoadGridFromFile.UseVisualStyleBackColor = true;
+            buttonLoadGridFromFile.Click += LoadSudokuFromFileBtn_Click;
+            // 
+            // label110
+            // 
+            label110.Dock = DockStyle.Top;
+            label110.Location = new Point(0, 224);
+            label110.Name = "label110";
+            label110.Size = new Size(473, 3);
+            label110.TabIndex = 206;
             // 
             // buttonSaveSudokuToFile
             // 
@@ -4600,26 +4620,6 @@
             // saveFileDialog
             // 
             saveFileDialog.Filter = "Plik tekstowy (*.txt)|*.txt";
-            // 
-            // label110
-            // 
-            label110.Dock = DockStyle.Top;
-            label110.Location = new Point(0, 224);
-            label110.Name = "label110";
-            label110.Size = new Size(473, 3);
-            label110.TabIndex = 206;
-            // 
-            // buttonLoadGridFromFile
-            // 
-            buttonLoadGridFromFile.Dock = DockStyle.Top;
-            buttonLoadGridFromFile.FlatStyle = FlatStyle.Flat;
-            buttonLoadGridFromFile.Location = new Point(0, 227);
-            buttonLoadGridFromFile.Name = "buttonLoadGridFromFile";
-            buttonLoadGridFromFile.Size = new Size(473, 40);
-            buttonLoadGridFromFile.TabIndex = 207;
-            buttonLoadGridFromFile.Text = "WCZYTAJ Z PLIKU...";
-            buttonLoadGridFromFile.UseVisualStyleBackColor = true;
-            buttonLoadGridFromFile.Click += LoadSudokuFromFileBtn_Click;
             // 
             // MainForm
             // 
