@@ -62,8 +62,8 @@ namespace CrosswordAssistant
         }
 
         #region events handlers
-        
-        
+
+
         private void SearchScrabble_Click(object sender, EventArgs e)
         {
             if (DictionaryService.PendingDictionaryLoading || Search.IsPending)
@@ -265,25 +265,19 @@ namespace CrosswordAssistant
 
             var wordsToRemove = textBoxAddToDictionary.Lines.ToList();
             wordsToRemove = Utilities.CorrectLines(wordsToRemove);
-            var removedWords = DictionaryService.RemoveWordsFromDictionary(wordsToRemove);
-            if (removedWords.Count == 0)
+            RemoveWordsFromDictionary(wordsToRemove);
+        }
+        private void RemoveFromDictionary_MenuClick(object sender, EventArgs e)
+        {
+            var selectedText = GetSelectedResult();
+            if (selectedText.Length > 0)
             {
-                MessageBox.Show("Podane wyrazy nie wystêpuj¹ w bie¿¹cym s³owniku.", "Uwaga", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
+                var response = MessageBox.Show("Czy na pewno chcesz usun¹æ podane wyrazy ze s³ownika? Wciœnij Tak aby kontynuowaæ lub Nie aby anulowaæ."
+                , "Uwaga", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (response == DialogResult.No) return;
+                var selectedWords = selectedText.Split(Environment.NewLine).ToList();
+                RemoveWordsFromDictionary(selectedWords);
             }
-
-            string msg = "";
-            foreach (var word in removedWords)
-            {
-                msg += word + Environment.NewLine;
-            }
-
-            if (FileService.SaveDictionary(DictionaryService.CurrentDictionary))
-            {
-                MessageBox.Show("Wyrazy: " + Environment.NewLine + msg + "usuniête poprawnie.", "Usuniêto wyrazy ze s³ownika",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            SetFileInfo(0);
         }
         private void MainForm_KeyDown(object sender, KeyEventArgs e)
         {
@@ -675,6 +669,29 @@ namespace CrosswordAssistant
                 MessageBox.Show("Wyrazy: " + Environment.NewLine + msg + "dodane poprawnie.", "Dodano wyrazy do s³ownika",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Logger.WriteToLog(LogLevel.Info, $"Dodano ${addedWords.Count} nowe wyrazy do s³ownika ${FileService.FileName}");
+            }
+            SetFileInfo(0);
+        }
+
+        private void RemoveWordsFromDictionary(List<string> wordsToRemove)
+        {
+            var removedWords = DictionaryService.RemoveWordsFromDictionary(wordsToRemove);
+            if (removedWords.Count == 0)
+            {
+                MessageBox.Show("Podane wyrazy nie wystêpuj¹ w bie¿¹cym s³owniku.", "Uwaga", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            string msg = "";
+            foreach (var word in removedWords)
+            {
+                msg += word + Environment.NewLine;
+            }
+
+            if (FileService.SaveDictionary(DictionaryService.CurrentDictionary))
+            {
+                MessageBox.Show("Wyrazy: " + Environment.NewLine + msg + "usuniête poprawnie.", "Usuniêto wyrazy ze s³ownika",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             SetFileInfo(0);
         }

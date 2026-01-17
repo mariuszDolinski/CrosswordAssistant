@@ -1,4 +1,5 @@
 -----------------------------------------------------------------------------------
 Wersja 3.2.6.7
 - dodana możliwość zapisu diagramu Sudoku do pliku tekstowego
-- dodna możliwość wczytania diagramu Sudoku z pliku tekstowego
+- dodana możliwość wczytania diagramu Sudoku z pliku tekstowego
+- dodana możliwość usuwania zaznaczonych słów ze słownika przez menu kontekstowe w zakładce Szaradzista

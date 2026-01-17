@@ -329,6 +329,7 @@
             label22 = new Label();
             openFileDialog = new OpenFileDialog();
             saveFileDialog = new SaveFileDialog();
+            removeFromDictToolStripMenuItem = new ToolStripMenuItem();
             tabControl.SuspendLayout();
             tabPattern.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainerResults).BeginInit();
@@ -504,15 +505,15 @@
             // contextMenuStripResults
             // 
             contextMenuStripResults.ImageScalingSize = new Size(24, 24);
-            contextMenuStripResults.Items.AddRange(new ToolStripItem[] { szukajWToolStripMenuItem });
+            contextMenuStripResults.Items.AddRange(new ToolStripItem[] { szukajWToolStripMenuItem, removeFromDictToolStripMenuItem });
             contextMenuStripResults.Name = "contextMenuStripPR";
-            contextMenuStripResults.Size = new Size(164, 36);
+            contextMenuStripResults.Size = new Size(241, 101);
             // 
             // szukajWToolStripMenuItem
             // 
             szukajWToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { sJPToolStripMenuItem, googleToolStripMenuItem, bingToolStripMenuItem, duckDuckGoToolStripMenuItem });
             szukajWToolStripMenuItem.Name = "szukajWToolStripMenuItem";
-            szukajWToolStripMenuItem.Size = new Size(163, 32);
+            szukajWToolStripMenuItem.Size = new Size(240, 32);
             szukajWToolStripMenuItem.Text = "Szukaj w...";
             // 
             // sJPToolStripMenuItem
@@ -4621,6 +4622,13 @@
             // 
             saveFileDialog.Filter = "Plik tekstowy (*.txt)|*.txt";
             // 
+            // removeFromDictToolStripMenuItem
+            // 
+            removeFromDictToolStripMenuItem.Name = "removeFromDictToolStripMenuItem";
+            removeFromDictToolStripMenuItem.Size = new Size(240, 32);
+            removeFromDictToolStripMenuItem.Text = "Usuń ze słownika";
+            removeFromDictToolStripMenuItem.Click += RemoveFromDictionary_MenuClick;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -5046,5 +5054,6 @@
         private SaveFileDialog saveFileDialog;
         private Button buttonLoadGridFromFile;
         private Label label110;
+        private ToolStripMenuItem removeFromDictToolStripMenuItem;
     }
 }
