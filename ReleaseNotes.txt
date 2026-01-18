@@ -1,5 +1,32 @@
+Wersja 3.2.7
+- do trybu Wzorzec dodane znaki specjalne [] oznaczające dopasowanie na danej pozycji jedengo znaku z podanych w nawiasach
 -----------------------------------------------------------------------------------
-Wersja 3.2.6.7
+Wersja 3.2.6
 - dodana możliwość zapisu diagramu Sudoku do pliku tekstowego
 - dodana możliwość wczytania diagramu Sudoku z pliku tekstowego
 - dodana możliwość usuwania zaznaczonych słów ze słownika przez menu kontekstowe w zakładce Szaradzista
+-----------------------------------------------------------------------------------
+Wersja 3.2.5
+- dodane dodatowe wyszukiwarki haseł do menu kontekstowego: Bing i DucuDuckGo
+- dodanie do Ustawień możliwości zmiany koloru wiodącego zakładki Sudoku
+- dodanie do Ustawień możliwości zmiany sposobu sortowania dopasowań w trybie Scrabble
+- poprawa błędu przy wpisywaniu cyfr do diagramu Sudoku z klawiatury numerycznej
+- poprawa błędu, który uniemożliwiał korzystanie z filtrów Początek i Koniec
+-----------------------------------------------------------------------------------
+Wersja 3.2.4
+- nowy tryb w zakładce Szaradzista: Słowa ze słowa
+- Zmiana lokalizacji i wyglądu przycisku otwierania Ustawień
+- zmiany w układzie i wyglądzie okna ustawień 
+- drobne poprawki optymalizujące kod
+-----------------------------------------------------------------------------------
+Wersja 3.1.3
+- nowy tryb: Sudoku
+	- możliwość uzupełnienia diagramu sudoku cyframi
+	- weryfikacja czy diah=gram spełnia zasady klasycznego sudoku
+	- rozwiązanie aktualnego diagramu sudoku (całego lub tylko zaznaczonych pól)
+	- weryfikacja unikalności rozwiązania danego diagramu sudoku
+- poprawki poprawiające wygląd aplikacji na ekranach ze skalowaniem 125% i 100%
+
+
+
+

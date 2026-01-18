@@ -333,5 +333,28 @@ namespace CrosswordAssistant
             }
             return result;
         }
+
+        public static bool CheckBrackets(this string word)
+        {
+            if(word.CountChars('[') != word.CountChars(']')) return false;
+            return CheckBracketsRec(word, 1);
+        }
+
+        private static bool CheckBracketsRec(string word, int i)
+        {
+            int openIndex = word.IndexOf('[');
+            int closeIndex = word.IndexOf(']');
+            if(i % 2 == 1)
+            {
+                if (openIndex > closeIndex) return false;
+                else return CheckBracketsRec(word[(openIndex + 1)..], ++i);
+            }
+            else
+            {
+                if (openIndex == -1) return true;
+                if (openIndex < closeIndex) return false;
+                else return CheckBracketsRec(word[(closeIndex + 1)..], ++i);
+            }
+        }
     }
 }

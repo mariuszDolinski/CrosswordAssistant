@@ -8,8 +8,13 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <StartupObject>CrosswordAssistant.Program</StartupObject>
 	<AssemblyVersion>3.2.4.0</AssemblyVersion>
-	<FileVersion>3.2.6.10</FileVersion>
+	<FileVersion>3.2.7.11</FileVersion>
+	<ApplicationIcon>Resources\crossword_2.ico</ApplicationIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="Resources\crossword_2.ico" />
+  </ItemGroup>
 
   <ItemGroup>
     <Compile Update="Properties\Resources.Designer.cs">

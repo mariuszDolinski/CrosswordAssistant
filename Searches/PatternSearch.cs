@@ -45,6 +45,7 @@ namespace CrosswordAssistant.Searches
                     }
                 }
             }
+
             return result;
         }
 
@@ -54,7 +55,7 @@ namespace CrosswordAssistant.Searches
             {
                 return new ValidationResponse(false, "Wzorzec jest pusty.");
             }
-            string allowedChars = AllowedLetters + ".?";
+            string allowedChars = AllowedLetters + ".?[]";
             if (BaseSettings.CaseSensitive) allowedChars += AllowedLetters.ToUpper();
             foreach (var ch in pattern)
             {
@@ -64,7 +65,36 @@ namespace CrosswordAssistant.Searches
                 }
                     
             }
+            if (!pattern.CheckBrackets())
+            {
+                return new ValidationResponse(false, "Błędne użycie nawiasów kwadratowych.");
+            }
             return new ValidationResponse(true, "");
+        }
+
+        static List<int> BracketLettersPositions(string pattern)
+        {
+            List<int> result = [];
+            int currentPos = 0;
+            bool isCharInBrackets = false;
+            foreach (var ch in pattern)
+            {
+                if (ch == '[')
+                {
+                    result.Add(currentPos);
+                    isCharInBrackets = true;
+                }
+                else if (ch == ']')
+                {
+                    isCharInBrackets = false;
+                    currentPos++;
+                }
+                else
+                {
+                    if (!isCharInBrackets) currentPos++;
+                }
+            }
+            return result;
         }
     }
 }
