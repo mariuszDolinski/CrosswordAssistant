@@ -1,7 +1,5 @@
 ﻿using CrosswordAssistant.Entities;
 using CrosswordAssistant.Entities.Enums;
-using System.Drawing.Drawing2D;
-using static System.Windows.Forms.LinkLabel;
 
 namespace CrosswordAssistant.Services.Sudoku
 {

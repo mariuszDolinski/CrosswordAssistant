@@ -15,6 +15,7 @@
         WordsFromWord = 11,
         Cryptharitm = 12,
         Sudoku = 13,
+        SubAnagram = 14,
         None = 0
     }
 }

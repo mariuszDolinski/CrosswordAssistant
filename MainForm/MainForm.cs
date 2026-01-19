@@ -63,6 +63,304 @@ namespace CrosswordAssistant
 
         #region events handlers
 
+        #region Pattern events
+        private async void SearchPattern_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                await MakeSearch(0);
+            }
+            catch (Exception ex)
+            {
+                labelPatternResultsInfo.Text = "Znalezionych dopasowañ: 0";
+                IsSearchPending(false);
+                MessageBox.Show("B³¹d wyszukiwania. SprawdŸ szczegó³y w logu aplikacji.");
+                Logger.WriteToLog(LogLevel.Error, ex.Message, ex.StackTrace ?? "");
+            }
+        }
+        private async void RandomWord_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                await MakeSearch(1);
+            }
+            catch (Exception ex)
+            {
+                labelPatternResultsInfo.Text = "Znalezionych dopasowañ: 0";
+                IsSearchPending(false);
+                MessageBox.Show("B³¹d wyszukiwania. SprawdŸ szczegó³y w logu aplikacji.");
+                Logger.WriteToLog(LogLevel.Error, ex.Message, ex.StackTrace ?? "");
+            }
+        }
+        private void RadioButtonMode_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioPatternMode.Checked)
+            {
+                OnModeChanged(Messages.PatternModeMessage, false);
+            }
+            else if (radioAnagramMode.Checked)
+            {
+                OnModeChanged(Messages.AnagramModeMessage, false);
+            }
+            else if (radioMetagramMode.Checked)
+            {
+                OnModeChanged(Messages.MetagramModeMessage, false);
+            }
+            else if (radioPM1Mode.Checked)
+            {
+                OnModeChanged(Messages.MetagramModeMessage, false);
+            }
+            else if (radioSubWordMode.Checked)
+            {
+                OnModeChanged(Messages.MetagramModeMessage, false);
+            }
+            else if (radioSuperWordMode.Checked)
+            {
+                OnModeChanged(Messages.MetagramModeMessage, false);
+            }
+            else if (radioStenoAnagramMode.Checked)
+            {
+                OnModeChanged(Messages.MetagramModeMessage, false);
+            }
+            else if (radioWordInWord.Checked)
+            {
+                OnModeChanged(Messages.PatternModeMessage, false);
+            }
+            else if (radioUlozSamMode.Checked)
+            {
+                OnModeChanged(Messages.UlozSamModeMessage, true);
+            }
+            else if (radioWordsFromWord.Checked)
+            {
+                OnModeChanged(Messages.MetagramModeMessage, false);
+            }
+            else if (radioSubAnagram.Checked)
+            {
+                OnModeChanged(Messages.PatternModeMessage, false);
+            }
+        }
+        private void RadioLength_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioLength.Checked)
+            {
+                textBoxLength.Enabled = true;
+            }
+            else
+            {
+                textBoxLength.Enabled = false;
+            }
+        }
+        private void ActiveFilters_CheckedChanged(object sender, EventArgs e)
+        {
+            var obj = (CheckBox)sender;
+            var container = (GroupBox?)obj.Parent;
+            if (container == null) return;
+            var radioButtons = container.Controls.OfType<RadioButton>().ToList();
+            var textBox = container.Controls.OfType<TextBox>().ToList();
+            var checkBoxes = container.Controls.OfType<CheckBox>().ToList();
+            var checkBoxActive = checkBoxes.First(c => c.Text == "Aktywny");
+            var checkBoxOthers = checkBoxes.FindAll(c => c.Text != "Aktywny").ToList();
+
+
+            labelCurrentPatternLen.Text = textBoxPattern.Text.Length.ToString();
+            FormService.FilterChecked(checkBoxActive, checkBoxOthers, textBox, radioButtons);
+            if (!checkBoxActive.Checked) textBoxPattern.Focus();
+        }
+        private void SelectedFilters_CheckedChanged(object sender, EventArgs e)
+        {
+            if (sender is RadioButton radio)
+            {
+                var container = (GroupBox?)radio.Parent;
+                if (container == null) return;
+                var textBoxes = container.Controls.OfType<TextBox>().ToList();
+                foreach (var c in textBoxes) c.Focus();
+            }
+
+            if (sender is CheckBox cb)
+            {
+                var container = (GroupBox?)cb.Parent;
+                if (container == null) return;
+                var textBoxes = container.Controls.OfType<TextBox>().ToList();
+                foreach (var c in textBoxes) c.Focus();
+            }
+        }
+        private void CheckBoxLength_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxLength.Checked)
+            {
+                SetLengthControlsEnabled(true);
+                radioLength.Checked = true;
+            }
+            else
+            {
+                SetLengthControlsEnabled(false);
+                radioLength.Checked = false;
+                radioLengthInterval.Checked = false;
+                textBoxLength.Text = "";
+                textBoxLengthFrom.Text = "";
+                textBoxLengthTo.Text = "";
+            }
+        }
+        private void TextBoxLengthInterval_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioLengthInterval.Checked)
+            {
+                textBoxLengthFrom.Enabled = true;
+                textBoxLengthTo.Enabled = true;
+            }
+            else
+            {
+                textBoxLengthFrom.Enabled = false;
+                textBoxLengthTo.Enabled = false;
+            }
+        }
+        private void SearchGoogle_MenuClick(object sender, EventArgs e)
+        {
+            string searchPhrase = GetSelectedResult();
+            if (searchPhrase.Length > 0)
+                Utilities.SearchInWeb(WebSearch.Google, searchPhrase);
+        }
+        private void SearchSJP_MenuClick(object sender, EventArgs e)
+        {
+            string searchPhrase = GetSelectedResult();
+            if (searchPhrase.Length > 0)
+                Utilities.SearchInWeb(WebSearch.Sjp, searchPhrase);
+        }
+        private void SearchBing_MenuClick(object sender, EventArgs e)
+        {
+            string searchPhrase = GetSelectedResult();
+            if (searchPhrase.Length > 0)
+                Utilities.SearchInWeb(WebSearch.Bing, searchPhrase);
+        }
+        private void DuckDuckGoSearch_MenuClick(object sender, EventArgs e)
+        {
+            string searchPhrase = GetSelectedResult();
+            if (searchPhrase.Length > 0)
+                Utilities.SearchInWeb(WebSearch.DuckDuckGo, searchPhrase);
+        }
+        #endregion
+
+        #region Sudoku events
+        private async void SolveSudokuBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (sender is not Button btn) return;
+                SudokuMode mode = SudokuMode.None;
+                if (btn.TabIndex == 201) mode = SudokuMode.Full;
+                else if (btn.TabIndex == 202) mode = SudokuMode.Selection;
+                else if (btn.TabIndex == 203) mode = SudokuMode.Uniqueness;
+                await SearchForSudokuSolution(mode);
+            }
+            catch (Exception ex)
+            {
+                labelSudokuSolveInfo.Text = "Znalezionych rozwi¹zañ: 0";
+                IsSearchPending(false);
+                MessageBox.Show("Podczas próby rozwi¹zania sudoku wyst¹pi³ b³¹d. SprawdŸ szczegó³y w logu aplikacji.");
+                Logger.WriteToLog(LogLevel.Error, ex.Message, ex.StackTrace ?? "");
+            }
+        }
+        private void ValidateSudokuBtn_Click(object sender, EventArgs e)
+        {
+            SudokuSolver sSolver = new(SudokuMode.None);
+            var msg = sSolver.ValidateSudoku(_sudokuService.Digits, SudokuValidationMode.Full);
+            if (msg.Length == 0)
+            {
+                MessageBox.Show("Poprawny diagram sudoku");
+                labelSudokuSolveInfo.Text = "Diagram sudoku nie zwaiera b³êdów.";
+            }
+            else
+            {
+                MessageBox.Show(msg);
+                labelSudokuSolveInfo.Text = msg;
+            }
+        }
+        private void ClearSudokuGridBtn_Click(object sender, EventArgs e)
+        {
+            _sudokuService.ClearGrid(checkBoxClearDigits.Checked, checkBoxClearColors.Checked,
+                checkBoxClearSelection.Checked);
+            if (checkBoxClearDigits.Checked) labelSudokuSolveInfo.Text = "Kliknij odpowiedni przycisk, aby rozpocz¹æ...";
+        }
+        private void SudokuCell_MouseDown(object sender, MouseEventArgs e)
+        {
+            SudokuService.MultiSelectOn = true;
+            var lbl = sender as Label;
+            if (lbl is not null) lbl.Capture = false;
+            SudokuSelectedCellAction(sender, e);
+        }
+        private void SudokuCell_MouseUp(object sender, MouseEventArgs e)
+        {
+            SudokuService.MultiSelectOn = false;
+        }
+        private void SudokuCell_MouseEnter(object sender, EventArgs e)
+        {
+            if (SudokuService.MultiSelectOn)
+            {
+                if (sender is not Label cellLabel) return;
+                int x = cellLabel.TabIndex / 10;
+                int y = cellLabel.TabIndex % 10;
+                var selectedCellIndex = _sudokuService.ExistsInSelectedCells(x, y);
+                if (selectedCellIndex < 0)
+                {
+                    cellLabel.BackColor = Color.LightBlue;
+                    int value = cellLabel.Text.Length == 0 ? 0 : int.Parse(cellLabel.Text);
+                    _sudokuService.CurrentSelectedCells.Add(new Cell(x, y, value, cellLabel));
+                }
+            }
+        }
+        private void SaveSudokuToFileBtn_Click(object sender, EventArgs e)
+        {
+            SudokuSolver sSolver = new(SudokuMode.None);
+            var msg = sSolver.ValidateSudoku(_sudokuService.Digits, SudokuValidationMode.Partial);
+            if (msg != null && msg.Length > 0)
+            {
+                var response = MessageBox.Show("Diagram sudoku zawiera b³êdy. Czy nadal chcesz go zapisaæ?", "B³êdny diagram", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (response == DialogResult.No) return;
+            }
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    var gridText = _sudokuService.GetGridToTxt();
+                    File.WriteAllLines(saveFileDialog.FileName, gridText);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("B³¹d przy próbie zapisu diagramu sudoku do pliku. SprawdŸ szczegó³y w logu.");
+                    Logger.WriteToLog(LogLevel.Error, ex.Message, ex.StackTrace ?? "");
+                }
+            }
+        }
+        private void LoadSudokuFromFileBtn_Click(object sender, EventArgs e)
+        {
+            if (_sudokuService.IsAnyCellNotEmpty())
+            {
+                var response = MessageBox.Show("Ta czynnoœæ spowoduje wyczyszczenie obecnego diagramu. Czy chcesz kontynuowaæ?",
+                    "Diagram nie jest pusty", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (response == DialogResult.No) return;
+            }
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    var lines = File.ReadAllLines(openFileDialog.FileName);
+                    var response = FileService.IsFileInSudokuFormat(lines);
+                    if (!response.ValidationResult)
+                    {
+                        MessageBox.Show(response.Message, "Z³y format pliku", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        return;
+                    }
+                    _sudokuService.ClearGrid(true, true, true);
+                    _sudokuService.FillCurrentGrid(response.Grid!, SudokuMode.None);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("B³¹d przy ³adowaniu diagramu sudoku z pliku. SprawdŸ szczegó³y w logu.");
+                    Logger.WriteToLog(LogLevel.Error, ex.Message, ex.StackTrace ?? "");
+                }
+            }
+        }
+        #endregion
 
         private void SearchScrabble_Click(object sender, EventArgs e)
         {
@@ -398,7 +696,310 @@ namespace CrosswordAssistant
 
         #endregion
 
+
         #region private methods
+
+        #region Pattern methods
+        private async Task<SearchResponse> ExecutePatternSearchAsync()
+        {
+            string pattern = textBoxPattern.Text.Trim();
+            if (!BaseSettings.CaseSensitive) pattern = pattern.ToLower();
+            labelPatternResultsInfo.Text = "Szukam dopasowañ...";
+            var search = SearchFactory.CreateSearch(Search.Mode);
+            List<string> matches;
+            if (checkBoxLength.Checked && pattern.Length == 0)
+            {
+                matches = DictionaryService.CurrentDictionary;
+            }
+            else
+            {
+                var validateResponse = search.ValidatePattern(pattern);
+                if (!validateResponse.Result)
+                {
+                    return new SearchResponse([], false, validateResponse.Message);
+                }
+                matches = await Task.Run(() => search.SearchMatches(pattern));
+            }
+
+            //await Task.Delay(20000);
+            matches = ApplyFilters(matches);
+            labelPatternResultsInfo.Text = "Znalezionych dopasowañ: " + matches.Count;
+            return new SearchResponse(matches, true, "");
+        }
+        private async Task<SearchResponse> ExecuteUlozSamSearchAsync()
+        {
+            string pattern = textBoxPattern.Text.Trim();
+            labelPatternResultsInfo.Text = "Szukam dopasowañ...";
+            var search = SearchFactory.CreateSearch(Search.Mode);
+            var validateResponse = search.ValidatePattern(pattern);
+            if (!validateResponse.Result)
+            {
+                return new SearchResponse([], false, validateResponse.Message);
+            }
+
+            var groups = _customControls.ConvertUlozSamGroupsToArray();
+            if (groups == null) return new SearchResponse([], false, "Litery w grupach nie powinny siê powtarzaæ");
+            foreach (string group in groups)
+            {
+                pattern += "|" + group.ToLower();
+            }
+
+            List<string> matches = await Task.Run(() => search.SearchMatches(pattern));
+            labelPatternResultsInfo.Text = "Znalezionych dopasowañ: " + matches.Count;
+            return new SearchResponse(matches, true, "");
+        }
+        private List<string> ApplyFilters(List<string> words)
+        {
+            List<string> results = words;
+            if (checkBoxLength.Checked)
+            {
+                int min = 0, max = 0;
+                if (radioLength.Checked)
+                {
+                    min = FormService.TextBoxPositiveNumber(textBoxLength);
+                    if (min <= 0)
+                    {
+                        MessageBox.Show("B³êdna d³ugoœæ. Wpisz poprawne liczby.", "B³êdne dane", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return [];
+                    }
+                    else
+                    {
+                        results = [.. results.Where(w => w.Length == min)];
+                    }
+                }
+                else
+                {
+                    min = FormService.TextBoxPositiveNumber(textBoxLengthFrom);
+                    max = FormService.TextBoxPositiveNumber(textBoxLengthTo);
+                    if (min == -1 || max == -1 || (max > 0 && min > max) || (min == 0 && max == 0))
+                    {
+                        MessageBox.Show("B³êdna d³ugoœæ. Wpisz poprawne liczby.", "B³êdne dane", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return [];
+                    }
+                    else
+                    {
+                        if (min != 0 && max != 0)
+                            results = [.. results.Where(w => w.Length >= min && w.Length <= max)];
+                        else if (min == 0)
+                            results = [.. results.Where(w => w.Length <= max)];
+                        else
+                            results = [.. results.Where(w => w.Length >= min)];
+                    }
+                }
+            }
+            if (checkBoxBeginsWithActive.Checked)
+            {
+                results = ApplyStartWithFilter(results);
+            }
+            if (checkBoxEndsWithActive.Checked)
+            {
+                results = ApplyEndsWithFilter(results);
+            }
+            if (checkBoxContainsActive.Checked)
+            {
+                results = ApplyContainsFilters(results);
+            }
+            return results;
+        }
+        private List<string> ApplyStartWithFilter(List<string> results)
+        {
+            if (radioButtonBeginsWith.Checked && textBoxBeginsWith.Text.Length > 0)
+            {
+                return [.. results.Where(w => w.BeginsWithAny(textBoxBeginsWith.Text))];
+            }
+            else if (radioButtonBeginWithNot.Checked && textBoxBeginsWith.Text.Length > 0)
+            {
+                return [.. results.Where(w => w.NotBeginsWithAll(textBoxBeginsWith.Text))];
+            }
+            else
+            {
+                return [];
+            }
+        }
+        private List<string> ApplyEndsWithFilter(List<string> results)
+        {
+            if (radioButtonEndsWith.Checked && textBoxEndsWith.Text.Length > 0)
+            {
+                return [.. results.Where(w => w.EndsWithAny(textBoxEndsWith.Text))];
+            }
+            else if (radioButtonEndsWithNot.Checked && textBoxEndsWith.Text.Length > 0)
+            {
+                return [.. results.Where(w => w.NotEndsWithAll(textBoxEndsWith.Text))];
+            }
+            else
+            {
+                return [];
+            }
+        }
+        private List<string> ApplyContainsFilters(List<string> results)
+        {
+            if (checkBoxContains.Checked && textBoxContains.Text.Length > 0)
+            {
+                if (radioButtonContainsAnd.Checked)
+                    results = [.. results.Where(w => w.ContainsAll(textBoxContains.Text))];
+                if (radioButtonContainsOr.Checked)
+                    results = [.. results.Where(w => w.ContainsAny(textBoxContains.Text))];
+            }
+            if (checkBoxNotContains.Checked && textBoxNotContains.Text.Length > 0)
+            {
+                if (radioButtonContainsAnd.Checked)
+                    results = [.. results.Where(w => w.NotContainsAny(textBoxNotContains.Text))];
+                if (radioButtonContainsOr.Checked)
+                    results = [.. results.Where(w => w.NotContainsSome(textBoxNotContains.Text))];
+            }
+
+            return results;
+        }
+        private string GetSelectedResult()
+        {
+            string searchPhrase = textBoxPatternResults.SelectedText;
+
+            if (string.IsNullOrEmpty(searchPhrase))
+            {
+                MessageBox.Show("Najpierw zaznacz jakiœ wyraz", "Uwaga", MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                return "";
+            }
+            return searchPhrase;
+        }
+        private void PatternKeyDownHandle(KeyEventArgs e, object sender)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Enter:
+                    SearchPattern_Click(sender, e);
+                    e.SuppressKeyPress = true;
+                    break;
+                case Keys.F6:
+                    textBoxPattern.SelectAll();
+                    textBoxPattern.Focus();
+                    break;
+            }
+            if (e.Control)
+            {
+                switch (e.KeyCode)
+                {
+                    case Keys.D1: radioPatternMode.Checked = true; break;
+                    case Keys.D2: radioAnagramMode.Checked = true; break;
+                    case Keys.D3: radioMetagramMode.Checked = true; break;
+                    case Keys.D4: radioPM1Mode.Checked = true; break;
+                    case Keys.D5: radioSubWordMode.Checked = true; break;
+                    case Keys.D6: radioSuperWordMode.Checked = true; break;
+                    case Keys.D7: radioStenoAnagramMode.Checked = true; break;
+                    case Keys.D8: radioWordInWord.Checked = true; break;
+                    case Keys.D9:
+                        checkBoxLength.Checked = !checkBoxLength.Checked;
+                        break;
+                }
+            }
+        }
+        #endregion
+
+        #region Sudoku methods
+        private async Task SearchForSudokuSolution(SudokuMode mode)
+        {
+            if (DictionaryService.PendingDictionaryLoading || Search.IsPending)
+            {
+                MessageBox.Show("Trwa inne wyszukiwanie lub ³adowanie nowego s³ownika. Spróbuj ponownie póŸniej", "Inna operacja w toku", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            IsSearchPending(true);
+
+            var response = await ExecuteSudokuSolverAsync(mode);
+            if (response.ValidationResult)
+            {
+                var msg = string.Empty;
+                if (mode == SudokuMode.Uniqueness)
+                {
+                    if (response.SolutionsCount > 1)
+                    {
+                        msg = "Sudoku nie jest unikalne, posiada wiêcej ni¿ jedno rozwi¹zanie.";
+                    }
+                    else
+                    {
+                        msg = "Sudoku jest unikalne, posiada dok³adnie jedno rozwi¹zanie.";
+                    }
+                    MessageBox.Show(msg, "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    labelSudokuSolveInfo.Text = msg;
+                }
+                else
+                {
+                    if (mode == SudokuMode.Selection && !_sudokuService.IsAnyEmptyCellSelected())
+                    {
+                        MessageBox.Show("Najpierw zaznacz jakieœ puste komórki", "Brak zaznaczenia",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    if (response.SolutionsCount > 1)
+                    {
+                        MessageBox.Show("Podane sudoku nie jest unikalne. Wyœwietlam przyk³adowe rozwi¹zanie.", "",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    _sudokuService.FillCurrentGrid(response.Grid!, mode);
+                    labelSudokuSolveInfo.Text = $"Znalezionych rozwi¹zañ: {response.SolutionsCount}";
+                }
+            }
+            else
+            {
+                MessageBox.Show(response.Message, "Niepoprawne sudoku", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                labelSudokuSolveInfo.Text = "Znalezionych rozwi¹zañ: 0";
+            }
+            IsSearchPending(false);
+            SetMode(tabControl.SelectedIndex);
+        }
+        private async Task<SudokuResponse> ExecuteSudokuSolverAsync(SudokuMode mode)
+        {
+            labelSudokuSolveInfo.Text = mode == SudokuMode.Uniqueness ? "Sprawdzam unikalnoœæ..." : "Szukam rozwi¹zañ...";
+            SudokuSolver sSolver = new(mode);
+            var response = await Task.Run(() => sSolver.SolveSudoku(_sudokuService.Digits));
+            return response;
+        }
+        private void SudokuKeyDownHandle(KeyEventArgs e)
+        {
+            string value = string.Empty;
+            if (e.KeyCode == Keys.ControlKey) _isCtrlPressedInSudoku = true;
+            if (e.KeyCode == Keys.Delete || e.KeyCode == Keys.Back) _sudokuService.UpdateSelectedCellsDigit(0);
+            if (_sudokuService.CurrentSelectedCells.Count > 0)
+            {
+                if (e.KeyCode >= Keys.D1 && e.KeyCode <= Keys.D9)
+                {
+                    value = e.KeyCode.ToString()[1].ToString();
+                }
+                else if (e.KeyCode >= Keys.NumPad1 && e.KeyCode <= Keys.NumPad9)
+                {
+                    value = e.KeyCode.ToString()[6].ToString();
+                }
+            }
+            if (value.Length > 0 && int.TryParse(value, out int correctValue))
+            {
+                _sudokuService.UpdateSelectedCellsDigit(correctValue);
+            }
+            else if (value.Length > 0)
+            {
+                MessageBox.Show("Coœ posz³o nie tak. SprawdŸ log aplikacji");
+                Logger.WriteToLog(LogLevel.Error, $"B³¹d konwersji wartoœci {e.KeyCode.ToString()} na cyfrê");
+            }
+        }
+        private void SudokuSelectedCellAction(object sender, EventArgs e)
+        {
+            if (sender is not Label cellLabel) return;
+            int x = cellLabel.TabIndex / 10;
+            int y = cellLabel.TabIndex % 10;
+            var selectedCellIndex = _sudokuService.ExistsInSelectedCells(x, y);
+            if (selectedCellIndex >= 0)
+            {
+                cellLabel.BackColor = Color.Transparent;
+                _sudokuService.CurrentSelectedCells.RemoveAt(selectedCellIndex);
+            }
+            else
+            {
+                cellLabel.BackColor = Color.LightBlue;
+                if (!_isCtrlPressedInSudoku) _sudokuService.ClearSelectedCells();
+                int value = cellLabel.Text.Length == 0 ? 0 : int.Parse(cellLabel.Text);
+                _sudokuService.CurrentSelectedCells.Add(new Cell(x, y, value, cellLabel));
+            }
+        }
+        #endregion
+
         private void InitControls()
         {
             textBoxPatternResults.Text = Messages.PatternModeMessage + Environment.NewLine;
@@ -622,6 +1223,7 @@ namespace CrosswordAssistant
                     else if (radioWordInWord.Checked) Search.Mode = SearchMode.WordInWord;
                     else if (radioUlozSamMode.Checked) Search.Mode = SearchMode.UluzSam;
                     else if (radioWordsFromWord.Checked) Search.Mode = SearchMode.WordsFromWord;
+                    else if (radioSubAnagram.Checked) Search.Mode = SearchMode.SubAnagram;
                     else Search.Mode = SearchMode.None;
                     break;
             }
