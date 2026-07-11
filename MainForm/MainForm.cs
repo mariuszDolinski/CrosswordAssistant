@@ -1018,6 +1018,7 @@ namespace CrosswordAssistant
             _infoLabels.Add(labelWordInWordInfo);
             _infoLabels.Add(labelCryptharitmInfo);
             _infoLabels.Add(labelWordsFromWordInfo);
+            _infoLabels.Add(labelSubanagramInfo);
             SetFileInfo(0);
             labelAbout.Text = Messages.VersionInfo;
             labelMergeDicts.Text = Messages.MergeDictsInfo;

@@ -45,6 +45,7 @@
             removeFromDictToolStripMenuItem = new ToolStripMenuItem();
             PanelPatternFilters = new Panel();
             groupBoxMode = new GroupBox();
+            radioSubAnagram = new RadioButton();
             radioWordsFromWord = new RadioButton();
             radioUlozSamMode = new RadioButton();
             radioWordInWord = new RadioButton();
@@ -330,7 +331,7 @@
             label22 = new Label();
             openFileDialog = new OpenFileDialog();
             saveFileDialog = new SaveFileDialog();
-            radioSubAnagram = new RadioButton();
+            labelSubanagramInfo = new Label();
             tabControl.SuspendLayout();
             tabPattern.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainerResults).BeginInit();
@@ -583,6 +584,18 @@
             groupBoxMode.TabStop = false;
             groupBoxMode.Text = "Tryb";
             // 
+            // radioSubAnagram
+            // 
+            radioSubAnagram.AutoSize = true;
+            radioSubAnagram.Location = new Point(486, 34);
+            radioSubAnagram.Name = "radioSubAnagram";
+            radioSubAnagram.Size = new Size(147, 29);
+            radioSubAnagram.TabIndex = 16;
+            radioSubAnagram.TabStop = true;
+            radioSubAnagram.Text = "Podanagramy";
+            radioSubAnagram.UseVisualStyleBackColor = true;
+            radioSubAnagram.CheckedChanged += RadioButtonMode_CheckedChanged;
+            // 
             // radioWordsFromWord
             // 
             radioWordsFromWord.AutoSize = true;
@@ -593,7 +606,7 @@
             radioWordsFromWord.TabStop = true;
             radioWordsFromWord.Text = "Słowa ze słowa";
             radioWordsFromWord.UseVisualStyleBackColor = true;
-            radioWordsFromWord.CheckedChanged += this.RadioButtonMode_CheckedChanged;
+            radioWordsFromWord.CheckedChanged += RadioButtonMode_CheckedChanged;
             // 
             // radioUlozSamMode
             // 
@@ -605,7 +618,7 @@
             radioUlozSamMode.TabStop = true;
             radioUlozSamMode.Text = "Ułóż Sam";
             radioUlozSamMode.UseVisualStyleBackColor = true;
-            radioUlozSamMode.CheckedChanged += this.RadioButtonMode_CheckedChanged;
+            radioUlozSamMode.CheckedChanged += RadioButtonMode_CheckedChanged;
             // 
             // radioWordInWord
             // 
@@ -617,7 +630,7 @@
             radioWordInWord.TabStop = true;
             radioWordInWord.Text = "Słowo w słowie";
             radioWordInWord.UseVisualStyleBackColor = true;
-            radioWordInWord.CheckedChanged += this.RadioButtonMode_CheckedChanged;
+            radioWordInWord.CheckedChanged += RadioButtonMode_CheckedChanged;
             // 
             // radioStenoAnagramMode
             // 
@@ -629,7 +642,7 @@
             radioStenoAnagramMode.TabStop = true;
             radioStenoAnagramMode.Text = "Stenoanagramy";
             radioStenoAnagramMode.UseVisualStyleBackColor = true;
-            radioStenoAnagramMode.CheckedChanged += this.RadioButtonMode_CheckedChanged;
+            radioStenoAnagramMode.CheckedChanged += RadioButtonMode_CheckedChanged;
             // 
             // radioSuperWordMode
             // 
@@ -641,7 +654,7 @@
             radioSuperWordMode.TabStop = true;
             radioSuperWordMode.Text = "Nadsłowa";
             radioSuperWordMode.UseVisualStyleBackColor = true;
-            radioSuperWordMode.CheckedChanged += this.RadioButtonMode_CheckedChanged;
+            radioSuperWordMode.CheckedChanged += RadioButtonMode_CheckedChanged;
             // 
             // radioSubWordMode
             // 
@@ -653,7 +666,7 @@
             radioSubWordMode.TabStop = true;
             radioSubWordMode.Text = "Podsłowa";
             radioSubWordMode.UseVisualStyleBackColor = true;
-            radioSubWordMode.CheckedChanged += this.RadioButtonMode_CheckedChanged;
+            radioSubWordMode.CheckedChanged += RadioButtonMode_CheckedChanged;
             // 
             // radioPM1Mode
             // 
@@ -665,7 +678,7 @@
             radioPM1Mode.TabStop = true;
             radioPM1Mode.Text = "Plus/Minus 1";
             radioPM1Mode.UseVisualStyleBackColor = true;
-            radioPM1Mode.CheckedChanged += this.RadioButtonMode_CheckedChanged;
+            radioPM1Mode.CheckedChanged += RadioButtonMode_CheckedChanged;
             // 
             // radioMetagramMode
             // 
@@ -678,7 +691,7 @@
             radioMetagramMode.TabStop = true;
             radioMetagramMode.Text = "Metagramy";
             radioMetagramMode.UseVisualStyleBackColor = true;
-            radioMetagramMode.CheckedChanged += this.RadioButtonMode_CheckedChanged;
+            radioMetagramMode.CheckedChanged += RadioButtonMode_CheckedChanged;
             // 
             // radioAnagramMode
             // 
@@ -690,7 +703,7 @@
             radioAnagramMode.TabIndex = 1;
             radioAnagramMode.Text = "Anagramy";
             radioAnagramMode.UseVisualStyleBackColor = true;
-            radioAnagramMode.CheckedChanged += this.RadioButtonMode_CheckedChanged;
+            radioAnagramMode.CheckedChanged += RadioButtonMode_CheckedChanged;
             // 
             // radioPatternMode
             // 
@@ -704,7 +717,7 @@
             radioPatternMode.TabStop = true;
             radioPatternMode.Text = "Wzorzec";
             radioPatternMode.UseVisualStyleBackColor = true;
-            radioPatternMode.CheckedChanged += this.RadioButtonMode_CheckedChanged;
+            radioPatternMode.CheckedChanged += RadioButtonMode_CheckedChanged;
             // 
             // groupBoxFilters
             // 
@@ -4279,6 +4292,7 @@
             // 
             tableLayoutPanel4.ColumnCount = 1;
             tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanel4.Controls.Add(labelSubanagramInfo, 0, 11);
             tableLayoutPanel4.Controls.Add(labelWordsFromWordInfo, 0, 10);
             tableLayoutPanel4.Controls.Add(labelStenoAnagramInfo, 0, 8);
             tableLayoutPanel4.Controls.Add(labelSuperWordInfo, 0, 7);
@@ -4289,15 +4303,15 @@
             tableLayoutPanel4.Controls.Add(labelMetagramInfo, 0, 2);
             tableLayoutPanel4.Controls.Add(labelAnagramInfo, 0, 1);
             tableLayoutPanel4.Controls.Add(labelPatternInfo, 0, 0);
-            tableLayoutPanel4.Controls.Add(labelShortcuts, 0, 14);
-            tableLayoutPanel4.Controls.Add(labelScrabbleInfo, 0, 13);
             tableLayoutPanel4.Controls.Add(labelWordInWordInfo, 0, 9);
-            tableLayoutPanel4.Controls.Add(labelCryptharitmInfo, 0, 12);
-            tableLayoutPanel4.Controls.Add(labelInfoFilters, 0, 11);
+            tableLayoutPanel4.Controls.Add(labelShortcuts, 0, 15);
+            tableLayoutPanel4.Controls.Add(labelScrabbleInfo, 0, 14);
+            tableLayoutPanel4.Controls.Add(labelCryptharitmInfo, 0, 13);
+            tableLayoutPanel4.Controls.Add(labelInfoFilters, 0, 12);
             tableLayoutPanel4.Dock = DockStyle.Left;
             tableLayoutPanel4.Location = new Point(3, 40);
             tableLayoutPanel4.Name = "tableLayoutPanel4";
-            tableLayoutPanel4.RowCount = 16;
+            tableLayoutPanel4.RowCount = 17;
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
@@ -4313,7 +4327,8 @@
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
-            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
+            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 8F));
             tableLayoutPanel4.Size = new Size(231, 735);
             tableLayoutPanel4.TabIndex = 13;
             // 
@@ -4473,7 +4488,7 @@
             labelShortcuts.Cursor = Cursors.Hand;
             labelShortcuts.Dock = DockStyle.Fill;
             labelShortcuts.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            labelShortcuts.Location = new Point(0, 560);
+            labelShortcuts.Location = new Point(0, 600);
             labelShortcuts.Margin = new Padding(0, 0, 3, 5);
             labelShortcuts.Name = "labelShortcuts";
             labelShortcuts.Size = new Size(228, 35);
@@ -4488,7 +4503,7 @@
             labelScrabbleInfo.Cursor = Cursors.Hand;
             labelScrabbleInfo.Dock = DockStyle.Fill;
             labelScrabbleInfo.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            labelScrabbleInfo.Location = new Point(0, 520);
+            labelScrabbleInfo.Location = new Point(0, 560);
             labelScrabbleInfo.Margin = new Padding(0, 0, 3, 5);
             labelScrabbleInfo.Name = "labelScrabbleInfo";
             labelScrabbleInfo.Size = new Size(228, 35);
@@ -4518,7 +4533,7 @@
             labelCryptharitmInfo.Cursor = Cursors.Hand;
             labelCryptharitmInfo.Dock = DockStyle.Fill;
             labelCryptharitmInfo.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            labelCryptharitmInfo.Location = new Point(0, 480);
+            labelCryptharitmInfo.Location = new Point(0, 520);
             labelCryptharitmInfo.Margin = new Padding(0, 0, 3, 5);
             labelCryptharitmInfo.Name = "labelCryptharitmInfo";
             labelCryptharitmInfo.Size = new Size(228, 35);
@@ -4533,7 +4548,7 @@
             labelInfoFilters.Cursor = Cursors.Hand;
             labelInfoFilters.Dock = DockStyle.Fill;
             labelInfoFilters.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            labelInfoFilters.Location = new Point(0, 440);
+            labelInfoFilters.Location = new Point(0, 480);
             labelInfoFilters.Margin = new Padding(0, 0, 3, 5);
             labelInfoFilters.Name = "labelInfoFilters";
             labelInfoFilters.Size = new Size(228, 35);
@@ -4631,17 +4646,20 @@
             // 
             saveFileDialog.Filter = "Plik tekstowy (*.txt)|*.txt";
             // 
-            // radioSubAnagram
+            // labelSubanagramInfo
             // 
-            radioSubAnagram.AutoSize = true;
-            radioSubAnagram.Location = new Point(486, 34);
-            radioSubAnagram.Name = "radioSubAnagram";
-            radioSubAnagram.Size = new Size(147, 29);
-            radioSubAnagram.TabIndex = 16;
-            radioSubAnagram.TabStop = true;
-            radioSubAnagram.Text = "Podanagramy";
-            radioSubAnagram.UseVisualStyleBackColor = true;
-            radioSubAnagram.CheckedChanged += this.RadioButtonMode_CheckedChanged;
+            labelSubanagramInfo.BackColor = Color.Silver;
+            labelSubanagramInfo.Cursor = Cursors.Hand;
+            labelSubanagramInfo.Dock = DockStyle.Fill;
+            labelSubanagramInfo.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            labelSubanagramInfo.Location = new Point(0, 440);
+            labelSubanagramInfo.Margin = new Padding(0, 0, 3, 5);
+            labelSubanagramInfo.Name = "labelSubanagramInfo";
+            labelSubanagramInfo.Size = new Size(228, 35);
+            labelSubanagramInfo.TabIndex = 23;
+            labelSubanagramInfo.Text = "PODANAGRAM";
+            labelSubanagramInfo.TextAlign = ContentAlignment.MiddleLeft;
+            labelSubanagramInfo.Click += InfoLabel_Click;
             // 
             // MainForm
             // 
@@ -5070,5 +5088,6 @@
         private ToolStripMenuItem removeFromDictToolStripMenuItem;
         private TableLayoutPanel tableLayoutPanelFilters2;
         private RadioButton radioSubAnagram;
+        private Label labelSubanagramInfo;
     }
 }

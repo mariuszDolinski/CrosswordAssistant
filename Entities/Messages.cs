@@ -78,6 +78,17 @@
             "do słowa AGREST dopasowane zostaną m. in. słowa: GEST, TARG, STRATEG, AGREGAT." + Environment.NewLine + Environment.NewLine +
             "UWAGA. W tym trybie dopasowywane są tylko wyrazy złożone z co najmniej 3 liter.";
 
+
+        public static string SubanagramInfo { get; } = "W tym trybie wzorzec składa się z dwóch części oddzielonych znakiem |. " +
+            "W pierwszej części, na lewo od znaku |, podajemy litery oraz znaki specjalne: " + Environment.NewLine +
+            ". (kropka) - zastępuje jedną dowolną literę," + Environment.NewLine +
+            "? (znak zapytania) - zastępuje jedną lub więcej dowolnych liter," + Environment.NewLine +
+            "* (gwiazdka) - zastępuje dokładnie jedną literę występującą na prawo od znaku |." + Environment.NewLine + Environment.NewLine +
+            "Każda litera po znaku | musi byc użyta dokładnie raz we wzorcu, stąd ilość znaków * na lewo od znaku |, " +
+            "musi być równa ilości liter na prawo od znaku |. Na prawo od znaku | mogą się znaleźć tylko litery, np:" + Environment.NewLine +
+            "do wzorca K*.*A|WR dopasowane zostanie np. słowo KROWA," + Environment.NewLine +
+            "do wzorca K*?*A|WR dopasowane zostaną np. słowa KROWA lub KRAWCOWA.";
+
         public static string CryptharitmInfo { get; } = "Tryb do szukania rozwiązań kryptarytmów, czyli łamigłowek, w których w poprawnym działaniu, " +
             "wszystkie cyfry zostały zastąpione literami (różnym cyfrom odpowiadają różne litery, różnym literom odpowiadają " +
             "różne cyfry). Należy wypełnić wszystkie pola literami, tworząc kryptarytm. Przyciskami dodaj/usuń " +
@@ -113,10 +124,11 @@
                 8 => StenoanagramwordInfo,
                 9 => WordInWordInfo,
                 10 => WordsFromWordInfo,
-                11 => FiltersInfo,
-                12 => CryptharitmInfo,
-                13 => ScrabbleInfo,
-                14 => Shortcuts,
+                11 => SubanagramInfo,
+                12 => FiltersInfo,
+                13 => CryptharitmInfo,
+                14 => ScrabbleInfo,
+                15 => Shortcuts,
                 _ => "Nie ma takiego trybu",
             };
         }
